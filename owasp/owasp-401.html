@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
+<link href="https://unpkg.com/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@carbon/charts/styles.css" rel="stylesheet">
+<title>DevOps Zero2Hero by Skunkworks - Introduction Chapter</title>
+<style>
+    /* General Styles */
+    body {
+        font-family: 'IBM Plex Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #000;
+    }
+    header {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+    }
+    header img {
+        max-width: 100%;
+        height: auto;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav ul li {
+        margin: 0 15px;
+        position: relative;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+    }
+    nav ul li ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #333;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        z-index: 1000;
+    }
+    nav ul li:hover ul {
+        display: block;
+    }
+    nav ul li ul li a {
+        padding: 10px 15px;
+    }
+    .section {
+        padding: 20px;
+        margin: 20px 0;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    .section h2, .section h3 {
+        text-align: center;
+        margin-top: 0;
+    }
+    .section p, .section ul, .section ol {
+        text-align: left;
+        padding: 0 20px;
+    }
+    .divider {
+        height: 2px;
+        background-color: #444;
+        margin: 20px 0;
+    }
+    footer {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #555;
+    }
+    .centered-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        text-align: center;
+        color: #000;
+    }
+    .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+    .service-icon {
+        width: 40px;
+        height: 40px;
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+    .partners-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        text-align: center;
+    }
+    .partner-item {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .partner-item img {
+        max-width: 100%;
+        max-height: 100px;
+        object-fit: contain;
+    }
+    .platform-logo {
+        display: block;
+        margin: 10px auto;
+        background-color: #fff; /* White background */
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%; /* Ensures it fits the parent */
+        max-width: 100%; /* Prevents it from overflowing */
+        height: auto; /* Maintains aspect ratio */
+        border: 2px solid transparent;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease; /* Smooth pop-up and shadow effect */
+    }
+    .platform-logo:hover {
+        transform: scale(1.1); /* Pop-up effect on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for emphasis */
+        border: 2px solid #2563EB; /* Border color on hover */
+        background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Gradient background on hover */
+    }
+    .platform-logo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: inherit; /* Matches parent border radius */
+    }
+    .harness-platform-logo-container {
+        background-color: #000; /* Black background for the Harness Platform image container */
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .section p a {
+        color: #0f62fe;
+        text-decoration: none;
+    }
+    .section p a:hover {
+        text-decoration: underline;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: 1fr;
+        }
+        nav ul {
+            flex-direction: column;
+        }
+        nav ul li {
+            margin: 10px 0;
+        }
+        .partners-list {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<ul>
+<li><a href="https://skunkworks.africa/index.html"><img alt="Home" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/application.svg"/>Home</a></li>
+<li>
+<a href="#"><img alt="Training" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/training.svg"/>Training</a>
+<ul>
+<li><a href="https://skunkworks.africa/blended-learning.html"><img alt="Blended Learning" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/literature.svg"/>Blended Learning</a></li>
+<li><a href="https://skunkworks.africa/course-development.html"><img alt="Course Development" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/presentation.svg"/>Course Development</a></li>
+<li><a href="https://skunkworks.africa/project-mentoring.html"><img alt="Project Mentoring" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/presenter.svg"/>Project Mentoring</a></li>
+<li><a href="https://skunkworks.africa/performance-support.html"><img alt="Performance Support Tools" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/support--services.svg"/>Performance Support Tools</a></li>
+<li><a href="https://skunkworks.africa/training-programs.html"><img alt="Training Programs" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/professional--marketplace.svg"/>Training Programs</a></li>
+</ul>
+</li>
+<li>
+<a href="#"><img alt="Services" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/automation--software.svg"/>Services</a>
+<ul>
+<li><a href="https://skunkworks.africa/software-development.html"><img alt="Software Development" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/software.svg"/>Software Development</a></li>
+<li><a href="https://skunkworks.africa/hardware-software.html"><img alt="Hardware and Software" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/server--rack.svg"/>HW/SW Solutions</a></li>
+<li><a href="https://skunkworks.africa/managed-cloud.html"><img alt="Managed Cloud Services" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/bd6b329933add88d1b2fbd81339a6a2cf0683aaa/carbon/cloud--managed--services.svg"/>Managed Cloud</a></li>
+<li><a href="https://skunkworks.africa/technical-support.html"><img alt="Technical Support Services" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/support--services.svg"/>Technical Support</a></li>
+<li><a href="https://skunkworks.africa/placement-recruitment.html"><img alt="Placements" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/global--partner%20(1).svg"/>Placements</a></li>
+</ul>
+</li>
+<li>
+<a href="#"><img alt="Careers" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/high--performance.svg"/>Careers</a>
+<ul>
+<li><a href="https://skunkworks.africa/job-posting.html"><img alt="Job Posting" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/collaboration.svg"/>Job Posting</a></li>
+<li><a href="https://skunkworks.africa/candidate-screening.html"><img alt="Candidate Screening" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/literature.svg"/>Candidate Screening</a></li>
+<li><a href="https://skunkworks.africa/interviews.html"><img alt="Interviews" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/bd6b329933add88d1b2fbd81339a6a2cf0683aaa/carbon/professional--marketplace.svg"/>Interviews</a></li>
+<li><a href="https://skunkworks.africa/job-offers.html"><img alt="Job Offers" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/bd6b329933add88d1b2fbd81339a6a2cf0683aaa/carbon/bluepages.svg"/>Job Offers</a></li>
+<li><a href="https://skunkworks.africa/perosacademy/"><img alt="Pero's Academy" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/training.svg"/>Pero's Academy</a></li>
+</ul>
+</li>
+<li><a href="#contact"><img alt="Contact" class="icon" src="https://raw.githubusercontent.com/skunkworksza/Media/0b53a76fb034583714f1660a8f0dfe6c405928b6/carbon/bluepages.svg"/>Contact</a></li>
+</ul>
+</nav>
+</header>
+<body>
+    <nav>
+        <h2>Navigation</h2>
+        <a href="#course-notices">Course Notices and Disclaimers</a>
+        <a href="#toc">Table of Contents</a>
+        <a href="#course-welcome">Course Welcome</a>
+        <a href="#course-overview">Course Overview</a>
+        <a href="#course-agenda">Course Agenda</a>
+        <a href="#day1">Day 1</a>
+        <a href="#day2">Day 2</a>
+        <a href="#day3">Day 3</a>
+        <a href="#day4">Day 4</a>
+        <a href="#day5">Day 5</a>
+    </nav>
+
+    <div class="container">
+        <div class="cover-page">
+            <div>
+                <img src="https://raw.githubusercontent.com/skunkworksza/Media/main/SKUNKWORKS%20transparent.png" alt="Skunkworks Logo">
+            </div>
+            <h1>Secure Coding Practices with OWASP Top 10</h1>
+            <h2>Mastering Web Application Security</h2>
+            <p>Course Code: OWASP-401</p>
+            <p>Duration: 5 Days</p>
+            <p>Cost per Delegate: $1,800</p>
+        </div>
+
+        <div id="course-notices" class="section">
+            <div class="section-title">Course Notices and Disclaimers</div>
+            <div class="content">
+                <p>Please note that the information provided in this course is for educational purposes only.</p> 
+                <p>The course content is subject to change based on the latest security practices and technological advancements.</p> 
+                <p>Skunkworks and its partners are not liable for any direct or indirect damages arising from the use of the information provided in this course.</p>
+            </div>
+        </div>
+
+        <div id="toc" class="section">
+            <div class="section-title">Table of Contents</div>
+            <div class="content">
+                <ul>
+                    <li><strong>Cover Page..................................................................................... 1</strong></li>
+                    <li><strong>Course Notices and Disclaimers ...................................................... 2</strong></li>
+                    <li><strong>Table of Contents ........................................................................... 3</strong></li>
+                    <li><strong>Secure Coding Practices with OWASP Top 10................................. 6</strong></li>
+                    <li><strong>Course Welcome ........................................................................... 7</strong></li>
+                    <li><strong>Course Overview ........................................................................... 9</strong></li>
+                    <li><strong>Course Agenda ............................................................................. 10</strong></li>
+                    <li><strong>Day 1: Fundamentals of Web Application Security ......................... 12</strong></li>
+                    <li><strong>Section 1: Introduction Day 1 .......................................................... 12</strong></li>
+                    <li><strong>Section 2: Introduction to Web Application Security ....................... 14</strong></li>
+                    <li><strong>Module 1: Foundations of Web Development and Security ............... 16</strong></li>
+                    <li><strong>Module 2: Server-Side Technologies and Security Evolution ............. 27</strong></li>
+                    <li><strong>Module 3: Advancements in Full-Stack Development and Frameworks .. 42</strong></li>
+                    <li><strong>Module 4: Modern Web Architectures and Security Trends ................. 46</strong></li>
+                    <li><strong>Section 3: Deep Dive into OWASP Top 10 - Part 1 (A01-A05) ............. 58</strong></li>
+                    <li><strong>Module A01: Broken Access Control ................................................ 60</strong></li>
+                    <li><strong>Module A02: Cryptographic Failures - Examination Across Programming Languages ............... 74</strong></li>
+                    <li><strong>Module A03: Injection - Vulnerabilities Across Programming Languages .. 81</strong></li>
+                    <li><strong>Module A04: Insecure Design - Addressing Design Flaws Across Programming Environments .... 95</strong></li>
+                    <li><strong>Module A05: Security Misconfiguration - Common Pitfalls and Best Practices Across Technologies ...... 110</strong></li>
+                    <li><strong>Day 2: Continuation of OWASP Top 10 ........................................... 122</strong></li>
+                    <li><strong>Section 4: Introduction to Day 2 ...................................................... 122</strong></li>
+                    <li><strong>Section 5: Deep Dive into OWASP Top 10 - Part 2 (A06-A10) ........... 124</strong></li>
+                    <li><strong>Introduction .................................................................................. 124</strong></li>
+                    <li><strong>Module A06: Vulnerable and Outdated Components ........................ 126</strong></li>
+                    <li><strong>Module A07: Identification and Authentication Failures ................ 133</strong></li>
+                    <li><strong>Module A08: Software and Data Integrity Failures ......................... 139</strong></li>
+                    <li><strong>Module A09: Security Logging and Monitoring Failures ................. 145</strong></li>
+                    <li><strong>Module A10: Server-Side Request Forgery (SSRF) .......................... 152</strong></li>
+                    <li><strong>Summary of Section 1: Deep Dive into OWASP Top 10 - Part 2 (A06-A10) .......................... 158</strong></li>
+                    <li><strong>Section 6: Case Studies on A01-A05 ............................................. 160</strong></li>
+                    <li><strong>Case Studies A01: Broken Access Control .................................... 160</strong></li>
+                    <li><strong>Case Study A02: Cryptographic Failures ....................................... 161</strong></li>
+                    <li><strong>Case Studies A03: Injection ........................................................ 162</strong></li>
+                    <li><strong>Case Studies A04: Insecure Design ............................................... 163</strong></li>
+                    <li><strong>Case Study A05: Security Misconfiguration .................................. 164</strong></li>
+                    <li><strong>Section 7: Hands-on Workshop on Identifying Vulnerabilities (A01-A05) ................................ 166</strong></li>
+                    <li><strong>Workshop Structure ................................................................. 166</strong></li>
+                    <li><strong>Tools and Techniques .............................................................. 167</strong></li>
+                    <li><strong>Diagnostic ................................................................................... 167</strong></li>
+                    <li><strong>Conclusion .................................................................................. 170</strong></li>
+                    <li><strong>Day 3: Mitigation Strategies & Secure Coding Practices .................. 171</strong></li>
+                    <li><strong>Section 8: Introduction to Day 3 ...................................................... 171</strong></li>
+                    <li><strong>Introduction Strategies to Mitigation: A01-A05 ............................... 173</strong></li>
+                    <li><strong>Advancing Secure Coding Practices Across Languages: .................. 173</strong></li>
+                    <li><strong>Practical Workshop: Multi-Language Secure Coding Application: ..... 173</strong></li>
+                    <li><strong>Section 9: Strategies to Mitigate A01-A05 Risks ............................. 176</strong></li>
+                    <li><strong>Topics Covered: ............................................................................ 176</strong></li>
+                    <li><strong>Conclusion: ................................................................................. 176</strong></li>
+                    <li><strong>A01: Broken Access Control ....................................................... 177</strong></li>
+                    <li><strong>Research and Educational Material on the Principle of Least Privilege ....... 185</strong></li>
+                    <li><strong>A02: Cryptographic Failures ...................................................... 187</strong></li>
+                    <li><strong>A03: Injection .............................................................................. 197</strong></li>
+                    <li><strong>A04: Insecure Design ............................................................... 198</strong></li>
+                    <li><strong>A05: Security Misconfiguration .................................................. 199</strong></li>
+                    <li><strong>Section 10: Secure Coding Practices - Part 1 ................................... 200</strong></li>
+                    <li><strong>Topics Covered: ............................................................................ 200</strong></li>
+                    <li><strong>Conclusion: ................................................................................. 200</strong></li>
+                    <li><strong>Section 11: Hands-on Workshop on Implementing Security Measures (A01-A05) ...................... 201</strong></li>
+                    <li><strong>Day 4: Advanced Secure Coding Practices ................................... 203</strong></li>
+                    <li><strong>Section 12: Introduction to Day 4 .................................................. 203</strong></li>
+                    <li><strong>Section 13: Strategies to Mitigate A06-A10 Risks ........................... 204</strong></li>
+                    <li><strong>A06: Vulnerable and Outdated Components ................................. 206</strong></li>
+                    <li><strong>A07: Identification and Authentication Failures .......................... 206</strong></li>
+                    <li><strong>A08: Software and Data Integrity Failures .................................. 206</strong></li>
+                    <li><strong>A09: Security Logging and Monitoring Failures ............................ 206</strong></li>
+                    <li><strong>A10: Server-Side Request Forgery (SSRF) ................................... 206</strong></li>
+                    <li><strong>Section 14: Secure Coding Practices - Part 2 ................................ 208</strong></li>
+                    <li><strong>Security in Modern Web Frameworks: Best Practices ................... 209</strong></li>
+                    <li><strong>Section 15: Hands-on Workshop on Identifying and Mitigating Vulnerabilities (A06-A10) ............ 212</strong></li>
+                    <li><strong>Workshop Activities: ...................................................................... 212</strong></li>
+                    <li><strong>Activity 1: Securing Outdated Components ................................... 213</strong></li>
+                    <li><strong>Activity 2: Enhancing Authentication and Session Management ........ 213</strong></li>
+                    <li><strong>Activity 3: Protecting Data Integrity ............................................ 213</strong></li>
+                    <li><strong>Activity 4: Improving Logging and Monitoring ................................. 213</strong></li>
+                    <li><strong>Activity 5: Mitigating SSRF Vulnerabilities .................................. 214</strong></li>
+                    <li><strong>Day 5: Emerging Trends, Compliance, Auditing, and Wrap-Up .......... 215</strong></li>
+                    <li><strong>Section 16: Introduction to Day 5 .................................................. 215</strong></li>
+                    <li><strong>Section 17: Latest Trends and Compliance in Web Application Security ....... 217</strong></li>
+                    <li><strong>Topics Covered: ............................................................................ 217</strong></li>
+                    <li><strong>Real-World Examples and Activities: .......................................... 217</strong></li>
+                    <li><strong>Section 18: Course Review, Q&A Session, and Certification Preparation ......... 218</strong></li>
+                    <li><strong>Overview ................................................................................... 218</strong></li>
+                    <li><strong>Activities: ................................................................................... 218</strong></li>
+                    <li><strong>Preparation for Certification: ..................................................... 218</strong></li>
+                    <li><strong>Section 19: Certification Assessment and Course Feedback .......... 219</strong></li>
+                    <li><strong>Overview ................................................................................... 219</strong></li>
+                    <li><strong>Certification Assessment: .......................................................... 219</strong></li>
+                    <li><strong>Course Feedback and Wrap-Up: ................................................. 219</strong></li>
+                    <li><strong>Conclusion ................................................................................ 220</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="course-welcome" class="section">
+            <div class="section-title">Course Welcome</div>
+            <div class="content">
+                <p>Welcome to the Secure Coding Practices with OWASP Top 10 course. This course is designed to provide you with a comprehensive understanding of secure coding practices and how to implement them effectively in your web applications. By the end of this course, you will be well-equipped to identify and mitigate common security vulnerabilities in web applications.</p>
+            </div>
+        </div>
+
+        <div id="course-overview" class="section">
+            <div class="section-title">Course Overview</div>
+            <div class="content">
+                <p>This course covers the following key topics:</p>
+                <ul>
+                    <li>Introduction to Web Application Security</li>
+                    <li>Foundations of Web Development and Security</li>
+                    <li>Server-Side Technologies and Security Evolution</li>
+                    <li>Advancements in Full-Stack Development and Frameworks</li>
+                    <li>Modern Web Architectures and Security Trends</li>
+                    <li>Deep Dive into OWASP Top 10 Vulnerabilities</li>
+                    <li>Mitigation Strategies and Secure Coding Practices</li>
+                    <li>Hands-on Workshops and Case Studies</li>
+                    <li>Emerging Trends, Compliance, and Auditing</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="course-agenda" class="section">
+            <div class="section-title">Course Agenda</div>
+            <div class="content">
+                <p>The course is structured over five days as follows:</p>
+                <ul>
+                    <li><strong>Day 1:</strong> Fundamentals of Web Application Security</li>
+                    <li><strong>Day 2:</strong> Continuation of OWASP Top 10</li>
+                    <li><strong>Day 3:</strong> Mitigation Strategies & Secure Coding Practices</li>
+                    <li><strong>Day 4:</strong> Advanced Secure Coding Practices</li>
+                    <li><strong>Day 5:</strong> Emerging Trends, Compliance, Auditing, and Wrap-Up</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="day1" class="section">
+            <div class="section-title">Day 1: Fundamentals of Web Application Security</div>
+            <div class="content">
+                <p><strong>Section 1:</strong> Introduction Day 1</p>
+                <ul>
+                    <li>Welcome and Course Overview</li>
+                    <li>Introduction to Web Application Security</li>
+                    <li>Key Concepts and Terminologies</li>
+                </ul>
+                <p><strong>Section 2:</strong> Introduction to Web Application Security</p>
+                <ul>
+                    <li>Historical Context and Evolution</li>
+                    <li>Importance of Security in Modern Web Development</li>
+                </ul>
+                <p><strong>Module 1:</strong> Foundations of Web Development and Security</p>
+                <ul>
+                    <li>Basic Principles of Web Development</li>
+                    <li>Security Considerations in Web Development</li>
+                </ul>
+                <p><strong>Module 2:</strong> Server-Side Technologies and Security Evolution</p>
+                <ul>
+                    <li>Overview of Server-Side Technologies</li>
+                    <li>Security Challenges and Solutions</li>
+                </ul>
+                <p><strong>Module 3:</strong> Advancements in Full-Stack Development and Frameworks</p>
+                <ul>
+                    <li>Full-Stack Development Overview</li>
+                    <li>Security Practices in Full-Stack Development</li>
+                </ul>
+                <p><strong>Module 4:</strong> Modern Web Architectures and Security Trends</p>
+                <ul>
+                    <li>Introduction to Modern Web Architectures</li>
+                    <li>Emerging Security Trends</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="day2" class="section">
+            <div class="section-title">Day 2: Continuation of OWASP Top 10</div>
+            <div class="content">
+                <p><strong>Section 3:</strong> Deep Dive into OWASP Top 10 - Part 1 (A01-A05)</p>
+                <ul>
+                    <li><strong>Module A01:</strong> Broken Access Control</li>
+                    <li><strong>Module A02:</strong> Cryptographic Failures - Examination Across Programming Languages</li>
+                    <li><strong>Module A03:</strong> Injection - Vulnerabilities Across Programming Languages</li>
+                    <li><strong>Module A04:</strong> Insecure Design - Addressing Design Flaws Across Programming Environments</li>
+                    <li><strong>Module A05:</strong> Security Misconfiguration - Common Pitfalls and Best Practices Across Technologies</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="day3" class="section">
+            <div class="section-title">Day 3: Mitigation Strategies & Secure Coding Practices</div>
+            <div class="content">
+                <p><strong>Section 4:</strong> Strategies to Mitigate A01-A05 Risks</p>
+                <ul>
+                    <li>Introduction Strategies to Mitigation: A01-A05</li>
+                    <li>Advancing Secure Coding Practices Across Languages</li>
+                    <li>Practical Workshop: Multi-Language Secure Coding Application</li>
+                </ul>
+                <p><strong>Section 5:</strong> Hands-on Workshop on Implementing Security Measures (A01-A05)</p>
+                <ul>
+                    <li>Hands-on Workshop Activities</li>
+                    <li>Implementing Security Measures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="day4" class="section">
+            <div class="section-title">Day 4: Advanced Secure Coding Practices</div>
+            <div class="content">
+                <p><strong>Section 6:</strong> Strategies to Mitigate A06-A10 Risks</p>
+                <ul>
+                    <li><strong>Module A06:</strong> Vulnerable and Outdated Components</li>
+                    <li><strong>Module A07:</strong> Identification and Authentication Failures</li>
+                    <li><strong>Module A08:</strong> Software and Data Integrity Failures</li>
+                    <li><strong>Module A09:</strong> Security Logging and Monitoring Failures</li>
+                    <li><strong>Module A10:</strong> Server-Side Request Forgery (SSRF)</li>
+                </ul>
+                <p><strong>Section 7:</strong> Hands-on Workshop on Identifying and Mitigating Vulnerabilities (A06-A10)</p>
+                <ul>
+                    <li>Workshop Activities on Mitigation Strategies</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="day5" class="section">
+            <div class="section-title">Day 5: Emerging Trends, Compliance, Auditing, and Wrap-Up</div>
+            <div class="content">
+                <p><strong>Section 8:</strong> Latest Trends and Compliance in Web Application Security</p>
+                <ul>
+                    <li>Real-World Examples and Activities</li>
+                </ul>
+                <p><strong>Section 9:</strong> Course Review, Q&A Session, and Certification Preparation</p>
+                <ul>
+                    <li>Review of Key Concepts</li>
+                    <li>Preparation for Certification</li>
+                </ul>
+                <p><strong>Section 10:</strong> Certification Assessment and Course Feedback</p>
+                <ul>
+                    <li>Certification Assessment</li>
+                    <li>Course Feedback and Wrap-Up</li>
+                </ul>
+            </div>
+        </div
+    </div>
+
+    <div class="sidebar">
+        <h3>About the Course</h3>
+        <p>This course is designed to provide in-depth training on secure coding practices and the OWASP Top 10. It is ideal for IT professionals looking to enhance their skills in web application security.</p>
+        <p><strong>Course Duration:</strong> 5 Days</p>
+        <p><strong>Prerequisites:</strong> Basic knowledge of web development and security concepts.</p>
+        <p><strong>Instructor:</strong> Experienced professionals with deep knowledge of web security practices.</p>
+        <p><strong>Contact:</strong> For more information, email us at info@skunkworks.africa.</p>
+    </div>
+
+</body>
+</html>

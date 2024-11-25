@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.ibm.com/favicon.ico" type="image/x-icon">
+    <title>Unit 3 - Demonstration 1: Create a new Db2 instance</title>
+    <style>
+        body {
+            font-family: 'IBM Plex Sans', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'IBM Plex Sans', Arial, sans-serif;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 {
+            font-size: 2em;
+            color: #0f62fe; /* IBM Blue */
+            border-bottom: 2px solid #0f62fe;
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.75em;
+            color: #0f62fe; /* IBM Blue */
+            border-bottom: 2px solid #0f62fe;
+            padding-bottom: 8px;
+        }
+        h3 {
+            font-size: 1.5em;
+            color: #0f62fe; /* IBM Blue */
+        }
+        h4 {
+            font-size: 1.25em;
+            color: #0f62fe; /* IBM Blue */
+        }
+        .section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .section-title {
+            background-color: #0f62fe;
+            color: #fff;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 1.25em;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        ul ul, ol ol {
+            padding-left: 25px;
+        }
+        .command {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #f4f4f4;
+            border: 1px solid #CCCCCC;
+            padding: 10px;
+            display: block;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note-box {
+            background-color: #e0e0e0;
+            border-left: 5px solid #0f62fe;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            border-radius: 5px;
+        }
+        .important-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffecb5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0f62fe;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .page {
+            position: relative;
+            margin-bottom: 60px;
+            border: 2px solid #0f62fe;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        nav {
+            background-color: #0f62fe;
+            padding: 10px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.25em;
+            }
+            h4 {
+                font-size: 1em;
+            }
+            .section {
+                padding: 15px;
+            }
+            .section-title {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="http://courses.skunkworks.africa/ibm/cl207.html">Overview</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u01.html">Unit 1</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u02.html">Unit 2</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u03.html">Unit 3</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u04.html">Unit 4</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u05.html">Unit 5</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u06.html">Unit 6</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u07.html">Unit 7</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u08.html">Unit 8</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u09.html">Unit 9</a>
+        <a href="http://courses.skunkworks.africa/ibm/cl207-u10.html">Unit 10</a>
+    </nav>
+    <header>
+        <h1>Unit 3 - Demonstration 1: Create a new Db2 instance</h1>
+    </header>
+    <div class="section">
+        <div class="section-title">Introduction</div>
+        <div class="content">
+            <div class="note-box">
+                <p>Creating a new Db2 instance, particularly for educational or training purposes, involves several critical steps. This process not only entails the actual creation of the instance but also requires understanding how to configure, manage, and troubleshoot it effectively. Below is a detailed, step-by-step guide with troubleshooting tips for setting up a Db2 instance on a Linux system:</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Step-by-Step Guide to Create a New Db2 Instance</div>
+        <div class="content">
+            <h2>Task 1: Prepare for the Db2 Instance Creation</h2>
+            <ol>
+                <li>
+                    <strong>Log into the Linux System</strong>: Begin by logging into your Linux server using a user account with sufficient privileges to switch to root. In this case, log in as <code>inst00</code> with the password <code>ibm2blue</code>.
+                    <div class="command">ssh inst00@&lt;hostname&gt;</div>
+                </li>
+                <li>
+                    <strong>Open a Terminal Session</strong>: Once logged in, access the terminal. This can often be done by right-clicking on the desktop and selecting "Open in Terminal" or by using a terminal application.
+                </li>
+                <li>
+                    <strong>Verify Current Db2 Environment</strong>:
+                    <div class="command">db2 get instance</div>
+                    <div class="command">db2 list db directory</div>
+                    <div class="command">db2start</div>
+                </li>
+            </ol>
+            <div class="important-box">
+                <p>These steps help confirm the environment's status before creating a new instance, ensuring there are no conflicts.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Task 2: Create the New Db2 Instance</div>
+        <div class="content">
+            <ol>
+                <li>
+                    <strong>Switch to Root User</strong>: To perform system-level operations such as creating Db2 instances, switch to the root user.
+                    <div class="command">su - root</div>
+                    <p>Enter the root password <code>dalvm3</code> when prompted.</p>
+                </li>
+                <li>
+                    <strong>Check Existing Db2 Instances</strong>: Verify which Db2 instances are already installed to avoid naming conflicts.
+                    <div class="command">/opt/ibm/db2/V11.1/instance/db2ilist</div>
+                </li>
+                <li>
+                    <strong>Create the New Instance</strong>: Use the <code>db2icrt</code> command to create a new Db2 instance named <code>inst23</code> with a fenced user <code>fenced23</code>.
+                    <div class="command">/opt/ibm/db2/V11.1/instance/db2icrt -u fenced23 inst23</div>
+                </li>
+            </ol>
+            <div class="important-box">
+                <p>This command initializes the installation and configures the necessary Db2 instance parameters. The command's output will indicate the progress and confirm successful completion.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Task 3: Verify and Troubleshoot Instance Creation</div>
+        <div class="content">
+            <ol>
+                <li>
+                    <strong>Check the Creation Log</strong>: Review the installation log to ensure there were no errors during the instance creation.
+                    <div class="command">cat /tmp/db2icrt.log.14455</div>
+                </li>
+                <li>
+                    <strong>Test the New Instance</strong>: Switch to the new instance owner <code>inst23</code>.
+                    <div class="command">su - inst23</div>
+                    <p>Start the Db2 instance to verify it's working correctly.</p>
+                    <div class="command">db2start</div>
+                </li>
+            </ol>
+            <div class="content">
+                <h3>Troubleshooting Common Issues</h3>
+                <ul>
+                    <li><strong>Permission Errors</strong>: Ensure the root and instance owner have appropriate permissions. Check user groups and permissions for the directory where Db2 is installed.</li>
+                    <li><strong>Instance Start Failures</strong>: Review the error codes in the terminal or logs. Common issues might include misconfigurations in network settings or insufficient resources.</li>
+                    <li><strong>Log Review</strong>: Always check the logs after running Db2 commands. If there are initialization errors, logs may provide specific codes and descriptions that help in troubleshooting.</li>
+                </ul>
+                <div class="note-box">
+                    <p>This structured approach not only facilitates the creation of a new Db2 instance but also incorporates best practices for verification and troubleshooting, ensuring a smooth setup process for educational purposes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Detailed Setup Guide for Db2 Instance Configuration</div>
+        <div class="content">
+            <h3>Preparation Steps</h3>
+            <ol>
+                <li>
+                    <strong>Verify System Requirements</strong>: Ensure the Linux system meets all hardware and software requirements for Db2 installation, such as CPU, memory, and disk space.
+                </li>
+                <li>
+                    <strong>Install Db2 Software</strong>: If not already installed, install Db2 following the IBM provided installation guide specific to the version and environment. Use root privileges for installation.
+                    <div class="command">
+                        cd /path/to/db2/installation/files<br>
+                        sudo ./db2_install
+                    </div>
+                </li>
+                <li>
+                    <strong>Create Required Users and Groups</strong>: Ensure that the <code>inst23</code> user and <code>fenced23</code> user exist and are configured correctly, along with their respective groups.
+                    <div class="command">
+                        sudo groupadd db2iadm1<br>
+                        sudo groupadd db2fadm1<br>
+                        sudo useradd -g db2iadm1 -m inst23<br>
+                        sudo useradd -g db2fadm1 -m fenced23
+                    </div>
+                </li>
+            </ol>
+
+            <h3>Instance Creation and Initial Configuration</h3>
+            <ol>
+                <li>
+                    <strong>Log in as Root and Create Db2 Instance</strong>: Switch to root user and create the Db2 instance <code>inst23</code> with <code>fenced23</code> as the fenced user.
+                    <div class="command">
+                        su -<br>
+                        /opt/ibm/db2/V11.1/instance/db2icrt -u fenced23 inst23
+                    </div>
+                </li>
+                <li>
+                    <strong>Environment Setup for inst23</strong>: Log in as <code>inst23</code> to set environment variables needed for Db2 operations. Add the following commands to <code>.bash_profile</code> for <code>inst23</code>:
+                    <div class="command">
+                        export DB2INSTANCE=inst23<br>
+                        export PATH=$PATH:/opt/ibm/db2/V11.1/bin<br>
+                        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ibm/db2/V11.1/lib
+                    </div>
+                </li>
+            </ol>
+
+            <h3>Configuration for Network and Diagnostic</h3>
+            <ol>
+                <li>
+                    <strong>Configure TCP/IP Network Communication</strong>: Set DB2 to use TCP/IP for network communication.
+                    <div class="command">db2set DB2COMM=tcpip</div>
+                </li>
+                <li>
+                    <strong>Set Service Name and Diagnostic Path</strong>: Configure the service name and the path for diagnostic logs.
+                    <div class="command">
+                        db2 update dbm cfg using SVCENAME 50000<br>
+                        mkdir /home/inst23/diag<br>
+                        db2 update dbm cfg using DIAGPATH /home/inst23/diag
+                    </div>
+                </li>
+            </ol>
+
+            <h3>Starting the Instance and Verifying Configuration</h3>
+            <ol>
+                <li>
+                    <strong>Start the Db2 Instance</strong>: Start the newly created Db2 instance to ensure all configurations are loaded.
+                    <div class="command">db2start</div>
+                </li>
+                <li>
+                    <strong>Verify Configuration Settings</strong>: Check the effective settings of the TCP/IP communication and diagnostic path.
+                    <div class="command">
+                        db2 get dbm cfg | grep SVCENAME<br>
+                        db2 get dbm cfg | grep DIAGPATH
+                    </div>
+                </li>
+            </ol>
+
+            <h3>Error Handling and Troubleshooting</h3>
+            <ol>
+                <li>
+                    <strong>Common Error Checking</strong>: If any command fails, check the <code>db2diag.log</code> for detailed error messages and troubleshooting tips.
+                    <div class="command">less /home/inst23/sqllib/db2dump/db2diag.log</div>
+                </li>
+                <li>
+                    <strong>Permission and Access Errors</strong>: If encountering permission errors, verify that the <code>inst23</code> user has the correct permissions for the directories and files involved in the configuration.
+                    <div class="command">
+                        ls -l /home/inst23/<br>
+                        chmod -R 755 /home/inst23/
+                    </div>
+                </li>
+                <li>
+                    <strong>Network Configuration Errors</strong>: Ensure that the specified service name does not conflict with other services and that TCP/IP is properly configured and operational on the system.
+                </li>
+            </ol>
+
+            <h3>Maintenance and Regular Checks</h3>
+            <ol>
+                <li>
+                    <strong>Backup Configuration Files</strong>: Regularly back up configuration files and critical data.
+                    <div class="command">db2 backup db mydb to /path/to/backup/location</div>
+                </li>
+                <li>
+                    <strong>Apply Security Patches and Updates</strong>: Regularly update the Db2 software to ensure it is secure and up to date. Check for updates and apply them.
+                    <div class="command">db2updv11.1</div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>

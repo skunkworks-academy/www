@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github</title>
+    <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #000;
+            --accent-color: #0f62fe;
+            --hover-color: #0353e9;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-color: #161616;
+            --transition-speed: 0.3s;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --bg-color: #161616;
+            --card-bg: #262626;
+            --text-color: #ffffff;
+            --primary-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color var(--transition-speed);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: var(--primary-color);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+
+        /* Main Content Styles */
+        .welcome-section {
+            text-align: center;
+            background: white;
+            color: grey;
+            padding: 1rem 2rem;
+            /* margin-bottom: 2rem; */
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all var(--transition-speed);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(15, 98, 254, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+        }
+
+        /* Course Grid Styles */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-category {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .course-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .course-category a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .course-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .course-category i {
+            color: var(--accent-color);
+        }
+
+        .course-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--hover-color));
+            transform: scaleX(0);
+            transition: transform var(--transition-speed);
+            transform-origin: left;
+        }
+
+        .course-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                background-color: var(--primary-color);
+                top: 100%;
+                left: 0;
+                padding: 1rem;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+
+            .welcome-section p {
+                font-size: 1rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(90deg, var(--card-bg) 25%, var(--bg-color) 50%, var(--card-bg) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            to {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            transition: transform var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .information-on-partner{
+            text-align: center;
+            padding: 0 20% 0 20%;
+        }
+
+        .info-on-partner{
+            margin-bottom: 3%;
+            text-align: justify;
+        }
+
+        .info-on-partnering-with-skunkworks{
+            text-align: justify;
+        }
+
+        .bold-main-headers{
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* Style for dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content li {
+    display: block;
+}
+
+.dropdown-content li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.banner-pic{
+    height: 150px;;
+}
+
+.resale-list{
+    display: flex;
+    justify-content: space-evenly;
+    /* justify-content: center; */
+    
+}
+
+.resale-list ul li{
+    list-style: circle;
+}
+
+.partner-dropdown:hover{
+    color: white;
+    background-color: #0f62fe;
+}
+
+.partner-dropdown li:hover{
+    color: white;
+    background-color: #0f62fe;
+}
+
+.partner-dropdown li a:hover{
+    color: white;
+    background-color: #0f62fe;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Skunkworks Academy
+            </a>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
+            <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
+            <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
+            <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
+            <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
+            <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Partners</a>
+                <ul class="dropdown-content ">
+                    <li class="partner-dropdown "><a href="cisco.html">Cisco</a></li>
+                    <li><a href="#">CompTia</a></li>
+                    <li><a href="ibm.html">IBM</a></li>
+                    <li><a href="lenovo.html">Lenovo</a></li>
+                    <li><a href="microsoft.html">Microsoft</a></li>
+                    <li><a href="red hat.html">Red Hat</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+
+    
+    <section class="welcome-section fade-in py-4">
+        <img src="../../images/gh-logo.png" class="banner-pic my-3" alt="...">
+        <p>The complete developer platform to build, scale, and deliver secure software.
+        </p>
+    </section>
+    
+    <section class="information-on-partner my-5">
+
+
+        <div class="info-on-partner my-5 ">
+        <h1 class="bold-main-headers my-5">GitHub: Powering Collaboration for Developers Worldwide</h1>
+        <p class="mb-5">GitHub is the world’s leading platform for software development and version control, enabling developers to collaborate, share, and innovate seamlessly. With tools for managing repositories, continuous integration, and secure code deployment, GitHub supports the entire software development lifecycle. Its extensive ecosystem, including GitHub Actions and Copilot, empowers individuals and teams to accelerate innovation while maintaining code quality and security. GitHub serves as the backbone for millions of open-source projects and enterprise solutions, driving collaboration across the globe.
+        </p>
+        </div>
+
+        <div class="info-on-partnering-with-skunkworks my-5">
+            
+        <h1 class="bold-main-headers my-5">Skunkworks Partnering with GitHub to Provide Training for GitHub Certifications</h1>
+        <p>Skunkworks has partnered with GitHub to offer training programs designed for GitHub certifications, focusing on essential skills like repository management, DevOps workflows, and GitHub Actions. Combining Skunkworks' engaging instructional techniques with GitHub's powerful tools, these programs prepare professionals to master modern software development practices. Learners gain practical experience in leveraging GitHub’s capabilities to enhance collaboration, streamline workflows, and succeed in certification assessments.</p>
+        </div>
+
+        <h1 class="bold-main-headers mb-4">Resale Authorisation</h1>
+        <div class="resale-list">
+            <div class="resale-list-1">
+                <ul>
+                    <li>Software - IOS XR
+
+                    </li>
+                    <li>Palantir Withdrawn
+                    </li>
+                    <li>Security AppScan
+                    </li>
+                    <!-- <li>sans-serif</li>
+                    <li>jbjk</li>
+                    <li>ffff</li> -->
+                </ul>
+            </div>
+
+            <div class="resale-list-2">
+                <ul>
+                    <li>Clinical Development Portfolio Withdrawn
+                    </li>
+                    <li>LinuxONE Rockhopper II Withdrawn
+                    </li>
+                    <li>Hyper Protect Data Controller Withdrawn
+                    </li>
+                    <!-- <li>sans-serif</li>
+                    <li>jbjk</li>
+                    <li>ffff</li> -->
+                </ul>
+            </div>
+
+            <div class="resale-list-3">
+                <ul>
+                    <li>Tape - High End Enterprise
+                    </li>
+                    <li>Security Intelligence Withdrawn
+                    </li>
+                    <li>Identity and Access Management Withdrawn
+                    </li>
+                    <!-- <li>sans-serif</li>
+                    <li>jbjk</li>
+                    <li>ffff</li> -->
+                </ul>
+            </div>
+        </div>
+        </div>
+
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Empowering professionals through cutting-edge technology education since 2024.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/skunkworksacademy/"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
+                    <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                    <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
+                    <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
+                    <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
