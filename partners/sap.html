@@ -659,6 +659,166 @@ nav {
             margin: 0 10% 0 10%;
         }
 
+        /* Responsiveness */
+
+        /* General Responsive Adjustments */
+@media (max-width: 1024px) {
+    .path-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .learning-paths {
+        margin: 4% 5%;
+    }
+
+    .information-on-partner {
+        padding: 0 5%;
+    }
+
+    .skwpartnership {
+        margin: 0 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navigation Adjustments */
+    nav {
+        padding: 0.5rem 1rem;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 60px;
+        /* left: 10%; */
+        width: 50%;
+        /* height: calc(100vh - 60px); */
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: 2rem;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+
+    nav ul.show {
+        left: 45%;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Header Content Adjustments */
+    .header-content {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    /* Path Grid Adjustments */
+    .path-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Stats Section Adjustments */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    /* Welcome Section Adjustments */
+    .welcome-section {
+        padding: 1rem;
+    }
+
+    .banner-pic {
+        height: 100px;
+    }
+
+    .lead {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further Mobile Optimizations */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-content {
+        flex-wrap: wrap;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+
+    .path-features li {
+        width: 100%;
+        max-width: none;
+    }
+
+    .information-on-partner,
+    .skwpartnership {
+        margin: 0 2%;
+    }
+
+    .bold-main-headers {
+        font-size: 1.5rem;
+    }
+
+    footer .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Additional Navigation Improvements */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
+
 
 
     </style>
@@ -875,6 +1035,45 @@ nav {
             </div>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navUl = document.querySelector('nav ul');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+        navUl.classList.toggle('show');
+    });
+
+    // Handle dropdowns on mobile
+    dropdowns.forEach(dropdown => {
+        const dropdownBtn = dropdown.querySelector('.dropbtn');
+        
+        dropdownBtn.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navUl.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            navUl.classList.remove('show');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            navUl.classList.remove('show');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        }
+    });
+});
+</script>
 </body>
 </html>
