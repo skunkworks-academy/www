@@ -1029,6 +1029,45 @@ nav {
             </div>
         </div>
     </footer>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navUl = document.querySelector('nav ul');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', function() {
+            navUl.classList.toggle('show');
+        });
+    
+        // Handle dropdowns on mobile
+        dropdowns.forEach(dropdown => {
+            const dropdownBtn = dropdown.querySelector('.dropbtn');
+            
+            dropdownBtn.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navUl.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navUl.classList.remove('show');
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navUl.classList.remove('show');
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    });
+    </script>
 </body>
 </html>
