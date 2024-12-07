@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HashiCorp</title>
+    <title>CISCO</title>
     <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -23,11 +23,14 @@
             --card-bg: #ffffff;
             --text-color: #161616;
             --transition-speed: 0.3s;
-
+            
+            --cisco-blue: #009edc;
+            --cisco-grey:#444444;
+            --cisco-teal: #00A0A0;
 
             --button-bg: #121619; /* Base green background */
             --button-text-color: #ffffff; /* White text color */
-            --button-hover-bg:grey; /* Darker green for hover state */
+            --button-hover-bg: #009edc; /* Darker green for hover state */
             --button-padding: 0.5rem; /* Vertical padding */
             --button-radius: 0.5rem; /* Rounded corners */
             --button-transition: background-color 0.3s ease; /* Smooth transition */
@@ -643,7 +646,7 @@ nav {
 
 .stats-section {
             background-color: var(--card-bg);
-            color: var(--google-blue);
+            color: var(--cisco-blue);
             padding: 1rem 2rem;
             text-align: center;
             
@@ -665,7 +668,7 @@ nav {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: var(--google-gold);
+            color: var(--cisco-blue);
         }
 
         .skwpartnership{
@@ -842,7 +845,7 @@ nav {
         .course-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-color:black;
+            border-color:var(--cisco-blue);
         }
 
         .search-input {
@@ -854,7 +857,7 @@ nav {
             outline: none;
         }
         .search-input:focus {
-            border-color:black;
+            border-color:var(--cisco-blue);
             box-shadow: 0 0 0 2px rgba(46, 164, 79, 0.1);
         }
 
@@ -866,7 +869,7 @@ nav {
             cursor: pointer;
         }
         .filter-button.active {
-            background-color:grey;
+            background-color:var(--cisco-blue);
             color: white;
         }
 
@@ -975,10 +978,8 @@ nav {
 
     
     <section class="welcome-section fade-in py-5">
-        <img src="HashiCorp_Logo.png" class="banner-pic my-3" alt="...">
-        <p>We're a once-in-a-generation company helping organizations operate in the cloud
-
-
+        <img src="Cisco.png" class="banner-pic my-3" alt="...">
+        <p>Cisco technology is creating a world of potential
         </p>
     </section>
     
@@ -986,9 +987,8 @@ nav {
 
 
         <div class="info-on-partner my-5 ">
-        <h1 class="bold-main-headers my-5">HashiCorp: Empowering Cloud Infrastructure Automation
-        </h1>
-        <p class="lead">HashiCorp is a leader in infrastructure automation, providing open-source tools and enterprise solutions for provisioning, securing, and running cloud environments. Renowned for products like Terraform, Vault, Consul, and Nomad, HashiCorp enables organizations to manage infrastructure as code, secure secrets, and simplify service networking. With a focus on multi-cloud strategies and operational efficiency, HashiCorp empowers businesses to scale dynamically while maintaining robust security and reliability.
+        <h1 class="bold-main-headers my-5">Cisco: Connecting the World Through Technology</h1>
+        <p class="lead">Cisco Systems is a global leader in networking and telecommunications, specializing in solutions that drive digital transformation across industries. Renowned for its cutting-edge products in areas like enterprise networking, cybersecurity, and collaboration tools, Cisco enables seamless connectivity and robust security for businesses of all sizes. With a focus on innovation and scalability, Cisco empowers organizations to build resilient networks, optimize operations, and adapt to the ever-evolving digital landscape.
         </p>
         </div>
 
@@ -1062,11 +1062,8 @@ nav {
         
     <div class="info-on-partnering-with-skunkworks my-5">
         
-        <h1 class="bold-main-headers my-5">Skunkworks Partnering with HashiCorp to Provide Training for HashiCorp Certifications
-
-        </h1>
-        <p class="lead">Skunkworks has teamed up with HashiCorp to offer specialized training programs for HashiCorp certification exams, such as Terraform Associate and Vault Associate. By combining Skunkworks' interactive teaching methods with HashiCorp's cutting-edge infrastructure automation tools, these courses provide hands-on learning and practical scenarios. Professionals gain the skills to provision infrastructure, secure applications, and manage complex cloud environments, ensuring they are well-prepared to excel in certification assessments.
-        </p>
+        <h1 class="bold-main-headers my-5">Skunkworks Partnering with Cisco to Provide Training for Cisco Certifications</h1>
+        <p class="lead">Skunkworks has joined forces with Cisco to offer comprehensive training programs for Cisco certification exams, such as CCNA, CCNP, and CCIE. This partnership leverages Skunkworks' advanced educational methodologies and Cisco's expertise in networking and IT to create immersive, hands-on learning experiences. These training programs are tailored to help professionals develop the technical skills needed to design, implement, and manage complex network systems while preparing them for success in Cisco's globally recognized certification exams.</p>
         </div>
 </section>
     
@@ -1147,92 +1144,89 @@ nav {
            const courses = [
            {
         id: 1,
-        title: "HashiCorp Terraform Associate Certification",
-        level: "beginner",
-        levelDisplay: "Beginner to Intermediate",
-        description: `The HashiCorp Terraform Associate certification is designed for cloud professionals seeking to validate their foundational knowledge of Terraform. This course covers infrastructure as code (IaC) concepts, managing cloud resources, and using Terraform to automate infrastructure provisioning.`,
+        title: "Cisco Certified Network Associate (CCNA)",
+        level: "intermediate",
+        levelDisplay: "Intermediate",
+        description: `The Cisco Certified Network Associate (CCNA) certification is designed for network professionals who want to validate their skills in managing and optimizing Cisco network environments. This certification covers essential networking concepts and prepares you for advanced roles in IT networking.`,
         duration: "Self-Paced",
-        price: "$70 (Exam Fee)",
-        link: `https://developer.hashicorp.com/terraform/certifications/terraform-associate`,
+        price: "$300",
+        link: `https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html`,
         topics: [
-            "Infrastructure as Code (IaC) Fundamentals",
-            "Writing and Understanding Terraform Configuration Files",
-            "Managing State and Workspaces",
-            "Terraform CLI and Workflow Automation",
-            "Provisioning Cloud Infrastructure"
+            "Network Fundamentals",
+            "Switching and Routing",
+            "IP Connectivity and Services",
+            "Security Fundamentals",
+            "Automation and Programmability"
         ],
         skills: [
-            "Implementing Infrastructure as Code with Terraform",
-            "Managing Terraform States and Backends",
-            "Understanding Terraform Providers and Modules",
-            "Automating Cloud Infrastructure Deployments",
-            "Troubleshooting and Debugging Terraform Configurations"
+            "Configuring and Troubleshooting Cisco Routers and Switches",
+            "Understanding and Implementing VLANs and ACLs",
+            "TCP/IP Protocol Stack Mastery",
+            "Network Security Best Practices",
+            "Basic Automation and Network Programming"
         ],
-        prerequisites: "Basic understanding of cloud platforms and IaC concepts",
-        certification: "HashiCorp Terraform Associate",
-        startDate: "2024-11-20",
-        progress: 0
-    }
-,
-
-    {
-        id: 2,
-        title: "HashiCorp Consul Associate Certification",
-        level: "beginner",
-        levelDisplay: "Beginner to Intermediate",
-        description: `The HashiCorp Consul Associate certification is designed for cloud professionals seeking to validate their knowledge of service networking. This course covers foundational Consul concepts, including service discovery, securing service communications, and automating network configurations.`,
-        duration: "Self-Paced",
-        price: "$70 (Exam Fee)",
-        link: `https://developer.hashicorp.com/consul/certifications/consul-associate`,
-        topics: [
-            "Introduction to Service Networking",
-            "Consul Architecture and Workflow",
-            "Service Discovery and Registration",
-            "Securing Services with Consul Connect",
-            "Managing Network Automation with Consul"
-        ],
-        skills: [
-            "Understanding Consul's Role in Service Networking",
-            "Implementing Service Discovery and Registration",
-            "Securing Service-to-Service Communication",
-            "Automating Network Configuration",
-            "Troubleshooting and Debugging Consul Workflows"
-        ],
-        prerequisites: "Basic understanding of cloud infrastructure and networking concepts",
-        certification: "HashiCorp Consul Associate",
+        prerequisites: "Basic networking knowledge or equivalent experience",
+        certification: "Cisco Certified Network Associate (CCNA)",
         startDate: "2024-11-20",
         progress: 0
     },
 
-    
-{
-        id: 3,
-        title: "Terraform Authoring and Operations Professional Certification",
-        level: "advanced",
-        levelDisplay: "Advanced",
-        description: `The HashiCorp Terraform Authoring and Operations Professional certification is designed for experienced cloud engineers and architects. This course focuses on advanced Terraform practices, custom module creation, infrastructure scalability, and operational workflows for managing multi-cloud environments.`,
+    {
+        id: 2,
+        title: "Cisco Certified CyberOps Associate",
+        level: "intermediate",
+        levelDisplay: "Intermediate",
+        description: `The Cisco Certified CyberOps Associate certification is designed for professionals starting their career in cybersecurity. This course equips learners with the knowledge and skills to monitor, detect, and respond to security threats in modern IT environments. It covers essential topics like security monitoring, threat analysis, and incident response. This certification also provides hands-on experience with real-world tools and techniques used by security professionals, ensuring they are job-ready for entry-level roles in cybersecurity.`,
         duration: "Self-Paced",
-        price: "$150 (Exam Fee)",
-        link: `https://developer.hashicorp.com/terraform/certifications/terraform-operations-professional`,
+        price: "$400",
+        link: `https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/cyberops-associate.html`,
         topics: [
-            "Advanced Terraform Configuration Authoring",
-            "Custom Module Development and Versioning",
-            "Managing Multi-Cloud Environments with Terraform",
-            "Infrastructure Scalability and Resilience"
+            "Security Concepts",
+            "Security Monitoring",
+            "Host-Based Analysis",
+            "Network Intrusion Analysis",
+            "Security Policies and Procedures"
         ],
         skills: [
-            "Designing and Authoring Custom Terraform Modules",
-            "Optimizing Terraform Workflow and CLI Usage",
-            "Implementing Multi-Cloud Strategies",
-            "Enhancing Infrastructure Scalability and Resilience",
-            "Debugging and Auditing Terraform State"
+            "Threat Detection and Mitigation",
+            "Network Intrusion Analysis and Reporting",
+            "Understanding Malware and Security Threats",
+            "Incident Response Strategies",
+            "Working with Security Tools like SIEM"
         ],
-        prerequisites: "Terraform Associate Certification or equivalent experience in Terraform and IaC",
-        certification: "Terraform Authoring and Operations Professional",
+        prerequisites: "Basic IT knowledge or equivalent experience",
+        certification: "Cisco Certified CyberOps Associate",
         startDate: "2024-11-20",
         progress: 0
     }
-];
+,
+{
+        id: 3,
+        title: "Cisco Certified Internetwork Expert (CCIE)",
+        level: "advanced",
+        levelDisplay: "Advanced",
+        description: `The Cisco Certified Internetwork Expert (CCIE) certification is designed for seasoned professionals aiming to demonstrate mastery in the design, implementation, and troubleshooting of complex network infrastructures. This is Cisco's most prestigious certification, showcasing elite-level expertise.`,
+        duration: "Self-Paced with Practical Labs",
+        price: "$1,600",
+        link: `https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/expert.html`,
+        topics: [
+            "Advanced Routing and Switching",
+            "Service Provider Technologies",
+            "Data Center Infrastructure",
+            "Security and Threat Management",
+            "Network Automation and Programmability"
+        ],
+        skills: [
+            "Designing and Implementing Complex Networks",
+            "Optimizing Multilayer Network Architectures",
+            "Advanced Network Security Implementation",
+            "Troubleshooting Large-Scale Network Issues"
+        ],
+        prerequisites: "CCNP Certification or equivalent networking experience",
+        certification: "Cisco Certified Internetwork Expert (CCIE)",
+        startDate: "2024-11-20",
+        progress: 0
+    }     ];
 
         // Utility Functions
         function showAlert(message, type = 'info') {
@@ -1262,7 +1256,7 @@ nav {
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <div class="github-icon">
-                        <img src="HashiCorp_Logo.png"></img>
+                        <img src="Cisco.png"></img>
                     </div>
                     <span class="level-badge level-${course.level}">
                         ${course.levelDisplay}
@@ -1399,6 +1393,5 @@ nav {
         });
  
     </script>
-    <!-- <a target="_blank" href="https://icons8.com/icon/17949/google">Google</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
 </body>
 </html>
