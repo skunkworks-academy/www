@@ -24,12 +24,12 @@
             --text-color: #161616;
             --transition-speed: 0.3s;
 
-            --s-green:#00D639;            ;
+            --sf-blue:#00A1E0;            ;
 
 
             --button-bg: #121619; /* Base green background */
             --button-text-color: #ffffff; /* White text color */
-            --button-hover-bg:#00D639; /* Darker green for hover state */
+            --button-hover-bg:#00A1E0; /* Darker green for hover state */
             --button-padding: 0.5rem; /* Vertical padding */
             --button-radius: 0.5rem; /* Rounded corners */
             --button-transition: background-color 0.3s ease; /* Smooth transition */
@@ -644,8 +644,8 @@ nav {
 }
 
 .stats-section {
-            background-color: white;
-            color: var(--s-green);
+            background-color: var(--sf-blue);
+            color: white;
             padding: 1rem 2rem;
             text-align: center;
             
@@ -844,7 +844,7 @@ nav {
         .course-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-color:var(--s-green);
+            border-color:var(--sf-blue);
         }
 
         .search-input {
@@ -856,7 +856,7 @@ nav {
             outline: none;
         }
         .search-input:focus {
-            border-color:var(--s-green);
+            border-color:var(--sf-blue);
             box-shadow: 0 0 0 2px rgba(46, 164, 79, 0.1);
         }
 
@@ -868,8 +868,8 @@ nav {
             cursor: pointer;
         }
         .filter-button.active {
-            background-color:var(--s-green);
-            color: var(--pa-black);
+            background-color:var(--sf-blue);
+            color: white;
         }
 
         .course-cont{
@@ -977,8 +977,8 @@ nav {
 
     
     <section class="welcome-section fade-in py-5">
-        <img src="sage logo.png" class="banner-pic my-3" alt="...">
-        <p>Be Sage. Build on.
+        <img src="Salesforce_logo.png" class="banner-pic my-3" alt="...">
+        <p>We’re Salesforce, the Customer Company
         </p>
     </section>
     
@@ -986,9 +986,9 @@ nav {
 
 
         <div class="info-on-partner my-5 ">
-        <h1 class="bold-main-headers my-5">Sage: Simplifying Business Management for Growth
+        <h1 class="bold-main-headers my-5">Salesforce: Driving Customer Success Through Innovation
         </h1>
-        <p class="lead">Sage is a global leader in business management solutions, offering intuitive software for accounting, payroll, human resources, and enterprise resource planning (ERP). Tailored for small to medium-sized businesses, Sage’s solutions enable efficient financial management, compliance, and operational oversight. By focusing on simplicity, automation, and real-time insights, Sage empowers organizations to streamline their operations, drive growth, and adapt to an ever-changing business environment.
+        <p class="lead">Salesforce is a global leader in customer relationship management (CRM), offering a comprehensive platform to help businesses manage sales, service, marketing, and more. Renowned for its cloud-based solutions, including Sales Cloud, Service Cloud, and Marketing Cloud, Salesforce empowers organizations to build stronger customer relationships and achieve operational excellence. By integrating AI, analytics, and automation, Salesforce provides tools to personalize experiences, streamline workflows, and drive business growth.
         </p>
         </div>
 
@@ -1058,9 +1058,9 @@ nav {
         
     <div class="info-on-partnering-with-skunkworks my-5">
         
-        <h1 class="bold-main-headers my-5">Skunkworks Partnering with Sage to Provide Training for Sage Certifications
+        <h1 class="bold-main-headers my-5">Skunkworks Partnering with Salesforce to Provide Training for Salesforce Certifications
         </h1>
-        <p class="lead">Skunkworks has collaborated with Sage to offer specialized training programs for Sage certifications, covering areas like Sage Intacct, Sage 50cloud, and Sage X3. These courses blend Skunkworks' interactive teaching methods with Sage’s robust business management tools, equipping professionals with the skills to implement, configure, and optimize Sage solutions. Designed for practical application, these training sessions prepare participants to achieve certification success and enhance their business management expertise
+        <p class="lead">Skunkworks has partnered with Salesforce to deliver tailored training programs for Salesforce certification exams, such as Salesforce Administrator, Platform Developer, and Marketing Cloud Consultant. By combining Skunkworks' effective teaching methodologies with Salesforce's cutting-edge CRM tools, these programs provide hands-on learning and real-world application. Professionals gain the skills necessary to implement, configure, and optimize Salesforce solutions, preparing them for success in globally recognized certification exams.
         </p>
         </div>
 </section>
@@ -1142,29 +1142,29 @@ nav {
            const courses = [
            {
         id: 1,
-        title: "Sage Business Cloud Accounting Certification",
+        title: "Salesforce Associate Certification",
         level: "beginner",
         levelDisplay: "Beginner",
-        description: `TThe Sage Business Cloud Accounting certification is designed for individuals and small business professionals seeking to manage finances effectively. This certification provides foundational skills in using Sage's cloud-based accounting software to handle bookkeeping, invoicing, and financial reporting. It also prepares learners to streamline financial processes and improve business decision-making with real-time insights.`,
+        description: `The Salesforce Associate certification is designed for individuals new to Salesforce, providing foundational knowledge of the platform's capabilities. This certification introduces learners to the core features of Salesforce, including customer relationship management (CRM) tools, data management, and basic automation.`,
         duration: "Self-Paced",
-        price: "$150 (Exam Fee)",
-        link: `https://www.sage.com/en-us/accounting/certifications/`,
+        price: "$75 (Exam Fee)",
+        link: `https://trailhead.salesforce.com/en/content/learn/certifications/associate`,
         topics: [
-            "Setting Up and Navigating Sage Business Cloud Accounting",
-            "Invoicing and Payment Processing",
-            "Bank Reconciliation and Expense Tracking",
-            "Generating Financial Reports",
-            "Understanding Tax Compliance"
+            "Introduction to Salesforce CRM",
+            "Managing and Customizing Salesforce Data",
+            "Basic Automation with Salesforce Flow",
+            "User and Security Management",
+            "Understanding Salesforce Reports and Dashboards"
         ],
         skills: [
-            "Configuring Sage Business Cloud Accounting",
-            "Managing Invoices and Payments",
-            "Tracking and Reconciling Expenses",
-            "Generating Accurate Financial Statements",
-            "Ensuring Compliance with Tax Regulations"
+            "Navigating Salesforce Interface",
+            "Customizing Data Models and Fields",
+            "Creating Basic Reports and Dashboards",
+            "Implementing Simple Automation and Workflow Rules",
+            "Managing Users and Access Control"
         ],
         prerequisites: "None",
-        certification: "Sage Business Cloud Accounting Certification",
+        certification: "Salesforce Associate Certification",
         startDate: "2024-11-20",
         progress: 0
     }
@@ -1172,29 +1172,28 @@ nav {
 
 {
         id: 2,
-        title: "Sage 50cloud Pastel Certification",
+        title: "Salesforce AI Associate Certification",
         level: "intermediate",
         levelDisplay: "Intermediate",
-        description: `The Sage 50cloud Pastel certification is designed for professionals and small business owners who want to master financial management and accounting with Sage 50cloud Pastel. This certification focuses on bookkeeping, financial reporting, and inventory management, using Sage's powerful desktop and cloud-connected tools.`,
+        description: `The Salesforce AI Associate certification focuses on leveraging artificial intelligence within the Salesforce ecosystem. This certification covers the fundamentals of integrating AI tools, predictive analytics, and automation features within Salesforce to enhance customer experience and business processes.`,
         duration: "Self-Paced",
-        price: "$200 (Exam Fee)",
-        link: `https://www.sage.com/en-za/products/sage-50cloud-pastel/certifications/`,
+        price: "$150 (Exam Fee)",
+        link: `https://trailhead.salesforce.com/en/content/learn/certifications/ai-associate`,
         topics: [
-            "Installing and Setting Up Sage 50cloud Pastel",
-            "Managing Accounts Payable and Receivable",
-            "Inventory and Stock Management",
-            "Processing VAT and Other Tax Transactions",
-            "Generating Financial and Management Reports"
+            "Leveraging AI for Predictive Analytics",
+            "Building AI-Driven Workflows and Automation",
+            "Data Quality and Model Training for AI",
+            "Integrating AI into Salesforce Applications"
         ],
         skills: [
-            "Configuring and Customizing Sage 50cloud Pastel",
-            "Handling Day-to-Day Bookkeeping Tasks",
-            "Managing Inventory and Stock Levels",
-            "Processing Taxes and Compliance Documents",
-            "Generating Professional Financial Statements"
+            "Using Salesforce Einstein for AI-powered Insights",
+            "Creating Predictive Models and Automation",
+            "Integrating AI with Salesforce CRM for Personalized Experiences",
+            "Managing Data Quality for AI Training",
+            "Optimizing Business Processes with AI and Automation"
         ],
-        prerequisites: "Basic knowledge of accounting and bookkeeping principles",
-        certification: "Sage 50cloud Pastel Certification",
+        prerequisites: "Basic understanding of Salesforce CRM and AI concepts",
+        certification: "Salesforce AI Associate Certification",
         startDate: "2024-11-20",
         progress: 0
     },
@@ -1202,29 +1201,28 @@ nav {
     
     {
         id: 3,
-        title: "Sage 200 Evolution Certification",
-        level: "advanced",
-        levelDisplay: "Advanced",
-        description: `The Sage 200 Evolution certification is tailored for experienced accounting and business professionals seeking to master advanced financial and operational management. This certification validates expertise in managing complex financial processes, inventory systems, and operational workflows using Sage 200 Evolution.`,
+        title: "Salesforce Marketing Associate Certification",
+        level: "beginner",
+        levelDisplay: "Beginner",
+        description: `The Salesforce Marketing Associate certification is designed for individuals looking to enhance their understanding of marketing automation and digital marketing within the Salesforce ecosystem. This certification covers key topics such as lead management, email marketing, and customer segmentation using Salesforce Marketing Cloud.`,
         duration: "Self-Paced",
-        price: "$250 (Exam Fee)",
-        link: `https://www.sage.com/en-za/products/sage-200-evolution/certifications/`,
+        price: "$100 (Exam Fee)",
+        link: `https://trailhead.salesforce.com/en/content/learn/certifications/marketing-associate`,
         topics: [
-            "Advanced Financial Management in Sage 200 Evolution",
-            "Operational Workflow and Process Optimization",
-            "Comprehensive Inventory and Supply Chain Management",
-            "Custom Reporting and Data Analysis",
-            "Integrating Third-Party Applications"
+            "Introduction to Salesforce Marketing Cloud",
+            "Lead Management and Nurturing",
+            "Email Campaign Management",
+            "Customer Segmentation and Targetin
         ],
         skills: [
-            "Implementing Advanced Financial Controls",
-            "Managing Multi-Currency and Consolidated Accounts",
-            "Optimizing Supply Chain and Inventory Systems",
-            "Creating Custom Reports and Dashboards",
-            "Configuring and Integrating Sage 200 Evolution Solutions"
+            "Navigating Salesforce Marketing Cloud",
+            "Setting up and Managing Marketing Campaigns",
+            "Creating and Sending Email Campaigns",
+            "Segmenting Audiences for Targeted Marketing",
+            "Analyzing Marketing Performance Metrics"
         ],
-        prerequisites: "Experience in financial management and familiarity with Sage products",
-        certification: "Sage 200 Evolution Certification",
+        prerequisites: "None",
+        certification: "Salesforce Marketing Associate Certification",
         startDate: "2024-11-20",
         progress: 0
     }
@@ -1258,7 +1256,7 @@ nav {
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <div class="github-icon">
-                        <img src="sage logo.png"></img>
+                        <img src="salesforce_logo.png"></img>
                     </div>
                     <span class="level-badge level-${course.level}">
                         ${course.levelDisplay}
