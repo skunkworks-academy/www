@@ -55,6 +55,8 @@
             color: var(--text-color);
             margin: 0;
             transition: background-color var(--transition-speed);
+            min-height: 100vh;
+
         }
 
                 /* Header Styles */
@@ -525,6 +527,41 @@ nav {
     font-size: 0.8em;
     margin-left: 0.5rem;
 }
+
+/* Sticky whatsapp icon and phone icon */
+
+/* body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 20px;
+} */
+
+.sticky-element {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.sticky-hidden {
+  transform: translateY(180%);
+}
+
+
     </style>
 </head>
 <body>
@@ -588,6 +625,12 @@ nav {
         </div>
     </section>
     
+    <div class="sticky-element">I'm sticky!
+        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fa-solid fa-phone"></i>
+    </div>
+
+
     
 
     <!-- <section class="welcome-section fade-in">
@@ -818,8 +861,24 @@ nav {
 
         // Handle global errors
         window.addEventListener('error', (error) => {
+
             console.error('Global error caught:', error);
         });
-    </script>
+
+// Sticky icons 
+document.addEventListener("scroll", function () {
+  const stickyElement = document.querySelector(".sticky-element");
+  const footer = document.querySelector("footer");
+  
+  const footerRect = footer.getBoundingClientRect();
+  const stickyRect = stickyElement.getBoundingClientRect();
+
+  if (footerRect.top <= window.innerHeight) {
+    stickyElement.classList.add("sticky-hidden");
+  } else {
+    stickyElement.classList.remove("sticky-hidden");
+  }
+});
+</script>
 </body>
 </html>
