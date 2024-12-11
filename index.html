@@ -207,20 +207,20 @@ nav {
             text-align: center;
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
-            padding: 4rem 2rem;
+            /* padding: 4rem 2rem; */
             margin-bottom: 2rem;
         }
 
         .welcome-section h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .welcome-section p {
-            font-size: 1.2rem;
+        .welcome-section h6 {
+            font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto;
-            opacity: 0.9;
+            
         }
 
         .search-container {
@@ -234,7 +234,6 @@ nav {
             width: 100%;
             padding: 1rem 1.5rem;
             border: 2px solid var(--accent-color);
-            border-radius: 25px;
             font-size: 1rem;
             transition: all var(--transition-speed);
             background-color: var(--card-bg);
@@ -266,7 +265,6 @@ nav {
 
         .course-category {
             background-color: var(--card-bg);
-            border-radius: 8px;
             padding: 1.5rem;
             transition: all var(--transition-speed);
             position: relative;
@@ -313,6 +311,33 @@ nav {
             transform: scaleX(1);
         }
 
+        /* BG img */
+.bg-img{
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.card-img-overlay {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.text-highlight {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Adds a subtle shadow for readability */
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: 500; /* Enhances readability */
+}
+
+.card-title {
+    font-size: 2.5rem; /* Larger font for the title */
+    font-weight: bold; /* Makes the title stand out */
+}
         /* Footer Styles */
         footer {
             background-color: var(--primary-color);
@@ -550,10 +575,27 @@ nav {
         </div>
     </nav>
 
-    <section class="welcome-section fade-in">
+    <section class="welcome-section">
+        <div class="card bg-dark text-white">
+            <img src="images/pexels-enginakyurt-2952871.jpg" class="card-img bg-img" alt="...">
+            <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center">
+                <h1 class="card-title ibm-plex-sans-medium text-highlight">Welcome to Skunkworks Academy</h1>
+                <h6 class="card-text ibm-plex-sans-regular text-highlight">
+                    Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.
+                </h6>
+            </div>
+            
+        </div>
+    </section>
+    
+    
+
+    <!-- <section class="welcome-section fade-in">
         <h1 class="ibm-plex-sans-extralight">Welcome to Skunkworks Academy</h1>
         <p class="ibm-plex-sans-regular">Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.</p>
-    </section>
+    </section> -->
+
+    <h1 class="text-center mt-5">Find the training you need</h1>
 
     <div class="search-container fade-in">
         <input type="text" class="search-bar" placeholder="Search courses..." id="courseSearch">
@@ -567,16 +609,16 @@ nav {
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>About Us</h3>
+                <h3 class="ibm-plex-sans-regular">About Us</h3>
                 <p>Empowering professionals through cutting-edge technology education since 2024.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/skunkworksacademy/"><i class="fab fa-linkedin"></i></a>
+                <div class="social-links ">
+                    <a href="https://www.linkedin.com/company/skunkworksacademy/" class="ibm-plex-sans-regular"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3 class="ibm-plex-sans-regular">Quick Links</h3>
                 <div class="footer-links">
                     <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
                     <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
@@ -584,7 +626,7 @@ nav {
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Legal</h3>
+                <h3 class="ibm-plex-sans-regular">Legal</h3>
                 <div class="footer-links">
                     <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
                     <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
@@ -660,11 +702,11 @@ nav {
             const courseElements = coursesToShow.map(course => `
                 <div class="course-category fade-in">
                     <a href="${course.path}">
-                        <h3>
+                        <h3 class="ibm-plex-sans-medium">
                             <i class="fas fa-${course.icon}"></i>
                             ${course.title}
                         </h3>
-                        <p>${course.description}</p>
+                        <p class="ibm-plex-sans-regular">${course.description}</p>
                     </a>
                 </div>
             `).join('');
