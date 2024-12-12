@@ -549,17 +549,17 @@ footer {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
 .sticky-hidden {
   transform: translateY(180%);
 }
+
+.tel-link{
+    text-decoration: none;
+}
+
 
 
     </style>
@@ -625,9 +625,18 @@ footer {
         </div>
     </section>
     
-    <div class="sticky-element">I'm sticky!
-        <i class="fa-brands fa-whatsapp"></i>
-        <i class="fa-solid fa-phone"></i>
+    <div class="sticky-element">
+        <div class="whatsapp-icon-br">
+            <a href="https://wa.me/0697471109" target="_blank" style="text-decoration: none;">
+                <i class="fa-brands fa-whatsapp" style="color: green; font-size: 50px;"></i>
+              </a>
+        </div>
+        <div class="phone-icon-br mt-3">
+            <a href="tel:+1234567890" class="tel-link">
+
+        <i class="fa-solid fa-phone " style=" font-size: 40px;"></i>
+            </a>
+        </div>
     </div>
 
 
