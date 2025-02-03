@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Security Training | Skunkworks Academy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #fbbf24;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .navbar {
+            background: var(--dark);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .hero {
+            /* Replace [URL] with the actual OWASP banner URL */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/skunkworksacademy/www/6addb1450f33e06e7968b127ea8fc8d34c193c1b/owasp/owasp-banner.svg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section:nth-child(even) {
+            background: var(--light);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Skunkworks Academy</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#curriculum">Curriculum</a>
+                <a href="#resources">Resources</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Master Web Application Security with OWASP</h1>
+        <p>Learn to identify, exploit, and defend against the most critical web security vulnerabilities. Join our comprehensive OWASP training program designed for security professionals, developers, and ethical hackers.</p>
+        <a href="#enroll" class="cta-button">Start Learning Today</a>
+    </section>
+
+    <section class="section" id="features">
+        <div class="section-content">
+            <h2 style="text-align: center;">Why Choose Our OWASP Training?</h2>
+            <div class="grid-container">
+                <div class="card" data-aos="fade-up">
+                    <h3>Hands-on Labs</h3>
+                    <p>Practice in our secure, containerized environment with real-world scenarios and vulnerable applications.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Expert Instruction</h3>
+                    <p>Learn from certified security professionals with years of experience in penetration testing and secure development.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Updated Content</h3>
+                    <p>Stay current with the latest OWASP Top 10 vulnerabilities, attack vectors, and defense strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="curriculum">
+        <div class="section-content">
+            <h2 style="text-align: center;">Comprehensive Curriculum</h2>
+            <div class="grid-container">
+                <div class="card" data-aos="fade-up">
+                    <h3>OWASP Foundations</h3>
+                    <ul>
+                        <li>Introduction to Web Security</li>
+                        <li>OWASP Top 10 Overview</li>
+                        <li>Security Testing Methodology</li>
+                    </ul>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Common Vulnerabilities</h3>
+                    <ul>
+                        <li>Injection Attacks</li>
+                        <li>Authentication Flaws</li>
+                        <li>Cross-Site Scripting (XSS)</li>
+                    </ul>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Advanced Topics</h3>
+                    <ul>
+                        <li>API Security</li>
+                        <li>Security Architecture</li>
+                        <li>Secure Code Review</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="resources">
+        <div class="section-content">
+            <h2 style="text-align: center;">Learning Resources</h2>
+            <div class="grid-container">
+                <div class="card" data-aos="fade-up">
+                    <h3>Practice Labs</h3>
+                    <p>Access to vulnerable applications and CTF challenges designed to reinforce your learning.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Documentation</h3>
+                    <p>Comprehensive guides, cheatsheets, and reference materials for continued learning.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Community</h3>
+                    <p>Join our community of security professionals and participate in discussions and knowledge sharing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="card">
+                <h3>Contact Us</h3>
+                <p>Email: contact@skunkworksacademy.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="card">
+                <h3>Quick Links</h3>
+                <p>Course Catalog</p>
+                <p>Student Portal</p>
+                <p>Support Center</p>
+            </div>
+            <div class="card">
+                <h3>Follow Us</h3>
+                <p>Twitter</p>
+                <p>LinkedIn</p>
+                <p>GitHub</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                offset: 100,
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>

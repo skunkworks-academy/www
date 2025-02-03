@@ -84,7 +84,6 @@
         }
 
         .breadcrumb {
-            background: black;
             padding: 0.5rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -93,7 +92,7 @@
             max-width: 1200px;
             /* margin: 0 auto; */
             padding: 0 20px;
-            color: white;
+            color: black;
         }
 
         .logo {
@@ -111,7 +110,7 @@
         }
 
         .breadcrumb a {
-            color: white;
+            color: black;
             text-decoration: none;
         }
 
@@ -228,6 +227,63 @@
                 font-size: 1.75rem;
             }
         }
+
+        * Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
@@ -268,7 +324,7 @@
     </div>
     <main class="course-grid">
         <div class="course-card">
-            <div class="course-image" style="background-image: url('/api/placeholder/300/200')"></div>
+            
             <div class="course-content">
                 <h2 class="course-title">Adobe Photoshop CC 2024 Essential Training</h2>
                 <p>Master photo editing, digital art, and graphic design with the industry's leading image manipulation software.</p>
@@ -290,7 +346,7 @@
         </div>
 
         <div class="course-card">
-            <div class="course-image" style="background-image: url('/api/placeholder/300/200')"></div>
+            
             <div class="course-content">
                 <h2 class="course-title">Adobe Illustrator CC Advanced Vector Graphics</h2>
                 <p>Create scalable vector graphics, logos, and illustrations with precision and professional quality.</p>
@@ -312,7 +368,7 @@
         </div>
 
         <div class="course-card">
-            <div class="course-image" style="background-image: url('/api/placeholder/300/200')"></div>
+            
             <div class="course-content">
                 <h2 class="course-title">Adobe InDesign CC Publication Design</h2>
                 <p>Design professional publications, magazines, and digital documents with industry-standard layout tools.</p>
@@ -334,7 +390,7 @@
         </div>
 
         <div class="course-card">
-            <div class="course-image" style="background-image: url('/api/placeholder/300/200')"></div>
+            
             <div class="course-content">
                 <h2 class="course-title">Adobe Premiere Pro Video Editing</h2>
                 <p>Learn professional video editing techniques and create compelling visual stories.</p>
@@ -358,11 +414,30 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Skunkworks Academy. All Rights Reserved.</p>
-            <div style="margin-top: 1rem;">
-                <a href="/terms.html" style="color: white; margin: 0 10px;">Terms</a>
-                <a href="/privacy.html" style="color: white; margin: 0 10px;">Privacy</a>
-                <a href="/contact.html" style="color: white; margin: 0 10px;">Contact</a>
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Empowering professionals through cutting-edge technology education since 2024.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/skunkworksacademy/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/skunkworksza"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/skunkworks-io"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
+                    <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                    <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
+                    <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
+                    <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
+                </div>
             </div>
         </div>
     </footer>

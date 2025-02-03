@@ -1,47 +1,57 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\OAuth;
+//@see https://github.com/greew/oauth2-azure-provider
+use Greew\OAuth2\Client\Provider\Azure;
 
-//Load Composer's autoloader
 require 'vendor/autoload.php';
 
-//Create an instance; passing `true` enables exceptions
+$email = getenv('loyiso@skunkworks.africa'); // your office365 email
+$clientId = getenv('a53bd6dd-854c-40c3-b417-6a4d97a55d2b'); // Azure Client ID
+$tenantId = getenv('972e8de4-e365-43a3-99ec-c86a0cc249e8'); // Azure Tenant ID
+$clientSecret = getenv('AZURE_CLIENT_SECRET_VALUE'); // Optional. Azure Client Secret Value (Certificates & secrets)
+$refreshToken = getenv('AZURE_REFRESH_TOKEN');
+
 $mail = new PHPMailer(true);
+$clientId = 'a53bd6dd-854c-40c3-b417-6a4d97a55d2b';
+$tenantId = ' 972e8de4-e365-43a3-99ec-c86a0cc249e8';
+$clientSecret = '2f83b05d-85db-4e14-b671-2220bdc7afab';
 
 try {
-    //Server settings
-  
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'user@example.com';                     //SMTP username
-    $mail->Password   = 'secret';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+   // Configure PHPMailer for SMTP
+   $mail->isSMTP();
+   $mail->Host       = 'smtp.office365.com';
+   $mail->SMTPAuth   = true;
+   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+   $mail->Port       = 587;
 
-    //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-    $mail->addAddress('ellen@example.com');               //Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
+   // Set OAuth2 token
+   $mail->AuthType = 'XOAUTH2';
+   $mail->setOAuth(new OAuth([
+       'provider' => new Azure([
+           'clientId' => $clientId,
+           'tenantId' => $tenantId,
+           'clientSecret' => $clientSecret
+       ]),
+       'clientId' => $clientId,
+       'refreshToken' => $refreshToken,
+       'clientSecret' => $clientSecret,
+       'userName' => $email,
+   ]));
 
-    //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+   //Sender and recipient settings
+   $mail->setFrom($email, 'First Last'); // your office365 email
+   $mail->addAddress('someone@someserver.com', 'John Doe');
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+   //Content
+   $mail->isHTML(true);
+   $mail->Subject = 'OAuth2 Email Test';
+   $mail->Body    = 'This is a test email using OAuth2 authentication with Office 365 SMTP and PHPMailer.';
 
-    $mail->send();
-    echo 'Message has been sent';
+   //Send email
+   $mail->send();
+   echo 'Message has been sent';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+   echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
