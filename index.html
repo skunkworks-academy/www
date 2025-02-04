@@ -44,20 +44,21 @@
             --primary-color: #000000;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        
 
         body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-container{
+            width: 100vw;
+            margin: 0;
             font-family: 'IBM Plex Sans', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
             transition: background-color var(--transition-speed);
             min-height: 100vh;
-
         }
 
                 /* Header Styles */
@@ -399,6 +400,48 @@ nav {
         }
 
         /* Responsive Design */
+
+
+        /* Desktops and large screens */
+@media (max-width: 1200px) {
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+        max-width: 880px;  /* Larger max-width for bigger screens */
+        margin: 0 auto;
+    }
+}
+
+/* Tablets (landscape mode) and small desktops */
+@media (max-width: 1024px) {
+
+    
+
+.nav{
+    max-width: 100%;
+}
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    max-width: 800px;  /* Smaller max-width for tablets and small desktops */
+    margin: 0 auto;
+}
+
+/* nav ul {
+width: 40%;
+} */
+
+.contact-btn{
+display: none;
+}
+
+
+}
+
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -411,9 +454,19 @@ nav {
                 position: absolute;
                 background-color: var(--primary-color);
                 top: 100%;
-                left: 0;
-                padding: 1rem;
+                padding: 1rem;  
+                width: 40%;
+                right: 0;
             }
+
+            .contact-btn{
+        display: none;
+    }
+    
+
+    .header-actions{
+        margin-right: -100%;
+    }
 
             nav ul.show {
                 display: flex;
@@ -432,6 +485,90 @@ nav {
                 padding: 1rem;
             }
         }
+
+ 
+
+/* Phones in landscape mode */
+@media (max-width: 480px) {
+    /* Styles for screens smaller than or equal to 480px */
+
+    .contact-btn{
+        display: none;
+    }
+
+    .mobile-menu-btn{
+        margin-left: 5%;
+    }
+
+    nav{
+        width: 100vw;
+    }
+
+    footer{
+        width: 100vw;
+    }
+
+    .logo{
+        font-size: 1.3rem;
+        gap: 10px;
+    }
+
+    nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                background-color: var(--primary-color);
+                top: 100%;
+                padding: 1rem;  
+                width: 40%;
+                right: 0;
+            }
+    
+            .header-actions{
+        margin-right: 0;
+    }
+
+    .show{
+        right: 10%;
+    }
+
+    .main-container{
+        width: 100vw;
+    }
+
+    .search-container{
+        max-width: 350px;
+    }
+
+    .header-content{
+        gap: 7px;
+    }
+
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+        max-width: 350px;  /* Smaller max-width for tablets and small desktops */
+        margin: 0 auto;
+    }
+
+
+
+}
+
+       /* Small devices (phones in portrait mode) */
+       @media (max-width: 320px) {
+
+    /* Styles for screens smaller than or equal to 320px */
+
+}
+
+
+
+
+
 
         /* Animation Classes */
         .fade-in {
@@ -551,6 +688,7 @@ footer {
   bottom: 20px;
   right: 20px;
   transition: transform 0.3s ease;
+  z-index: 100;
 }
 
 .sticky-hidden {
@@ -567,127 +705,142 @@ footer {
 </head>
 <body>
 
-    <nav class="p-4 sticky-top">
-        <div class="header-content">
-            <a href="../index.html" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Skunkworks Academy
-            </a>
-            <div class="header-actions">
-                <!-- <button class="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button> -->
-                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <ul>
-            <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
-            <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
-            <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
-            <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
-            <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
-            <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Partners</a>
-                <ul class="dropdown-content">
+    <div class="main-container">
+        <nav class="p-4 sticky-top">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Skunkworks Academy
+                </a>
+                <div class="header-actions">
                     
-                    <li><a href="../cisco/index.html">Cisco</a></li>
-                    <li><a href="../comptia/index.html">Comptia</a></li>
-                    <li><a href="../github/index.html">Github</a></li>
-                    <li><a href="../google/index.html">Google</a></li>
-                    <li><a href="../HashiCorp/index.html">HashiCorp</a></li>
-                    <li><a href="../ibm/index.html">IBM</a></li>
-                    <li><a href="../microsoft/">Microsoft</a></li>
-                    <li><a href="../paloalto/index.html">Paloalto Networks</a></li>
-                    <li><a href="../redhat/index.html">Red Hat</a></li>
-                    <li><a href="../sage/index.html">Sage</a></li>
-                    <li><a href="../salesforce/index.html">Salesforce</a></li>
-                    <li><a href="../sap/index.html">SAP</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="d-flex justify-content-center mt-5">
-            <a href="../contact.html" class="btn btn-outline-danger">Contact Us</a>
-        </div>
-    </nav>
-
-    <section class="welcome-section">
-        <div class="card bg-dark text-white">
-            <img src="images/pexels-enginakyurt-2952871.jpg" class="card-img bg-img" alt="...">
-            <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center">
-                <h1 class="card-title ibm-plex-sans-medium text-highlight">Welcome to Skunkworks Academy</h1>
-                <h6 class="card-text ibm-plex-sans-regular text-highlight">
-                    Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.
-                </h6>
+                    <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
             
-        </div>
-    </section>
+            <div class="d-flex justify-content-center mt-5">
+                <ul>
+                    <!-- <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
+                    <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
+                    <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
+                    <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
+                    <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
+                    <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Categories</a>
+                        <ul class="dropdown-content">
+                            
+                            <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
+                            <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
+                            <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
+                            <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
+                            <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
+                            <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Partners</a>
+                        <ul class="dropdown-content">
+                            
+                            <li><a href="../cisco/index.html">Cisco</a></li>
+                            <li><a href="../comptia/index.html">Comptia</a></li>
+                            <li><a href="../github/index.html">Github</a></li>
+                            <li><a href="../google/index.html">Google</a></li>
+                            <li><a href="../HashiCorp/index.html">HashiCorp</a></li>
+                            <li><a href="../ibm/index.html">IBM</a></li>
+                            <li><a href="../microsoft/">Microsoft</a></li>
+                            <li><a href="../paloalto/index.html">Paloalto Networks</a></li>
+                            <li><a href="../redhat/index.html">Red Hat</a></li>
+                            <li><a href="../sage/index.html">Sage</a></li>
+                            <li><a href="../salesforce/index.html">Salesforce</a></li>
+                            <li><a href="../sap/index.html">SAP</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="../contact.html" class="contact-btn btn btn-outline-danger">Contact Us</a>
+            </div>
+        </nav>
     
-    <div class="sticky-element">
-        <div class="whatsapp-icon-br">
-            <a href="https://wa.me/" target="_blank" style="text-decoration: none;">
-                <i class="fa-brands fa-whatsapp" style="color: green; font-size: 50px;"></i>
-              </a>
-        </div>
-        <div class="phone-icon-br mt-3">
-            <a href="tel:+1234567890" class="tel-link">
-
-        <i class="fa-solid fa-phone " style=" font-size: 40px;"></i>
-            </a>
-        </div>
-    </div>
-
-
+        <section class="welcome-section">
+            <div class="card bg-dark text-white">
+                <img src="images/pexels-enginakyurt-2952871.jpg" class="card-img bg-img" alt="...">
+                <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center">
+                    <h1 class="card-title ibm-plex-sans-medium text-highlight">Welcome to Skunkworks Academy</h1>
+                    <h6 class="card-text ibm-plex-sans-regular text-highlight">
+                        Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.
+                    </h6>
+                </div>
+                
+            </div>
+        </section>
+        
+        <div class="sticky-element">
+            <div class="whatsapp-icon-br">
+                <a href="https://wa.me/" target="_blank" style="text-decoration: none;">
+                    <i class="fa-brands fa-whatsapp" style="color: green; font-size: 50px;"></i>
+                  </a>
+            </div>
+            <div class="phone-icon-br mt-3">
+                <a href="tel:+1234567890" class="tel-link">
     
-
-    <!-- <section class="welcome-section fade-in">
-        <h1 class="ibm-plex-sans-extralight">Welcome to Skunkworks Academy</h1>
-        <p class="ibm-plex-sans-regular">Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.</p>
-    </section> -->
-
-    <h1 class="text-center mt-5">Find the training you need</h1>
-
-    <div class="search-container fade-in">
-        <input type="text" class="search-bar" placeholder="Search courses..." id="courseSearch">
-        <i class="fas fa-search search-icon"></i>
-    </div>
-
-    <div class="course-grid" id="courseGrid">
-        <!-- Course categories will be populated by JavaScript -->
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 class="ibm-plex-sans-regular">About Us</h3>
-                <p>Empowering professionals through cutting-edge technology education since 2024.</p>
-                <div class="social-links ">
-                    <a href="https://www.linkedin.com/company/skunkworksacademy/" class="ibm-plex-sans-regular"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3 class="ibm-plex-sans-regular">Quick Links</h3>
-                <div class="footer-links">
-                    <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
-                    <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
-                    <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3 class="ibm-plex-sans-regular">Legal</h3>
-                <div class="footer-links">
-                    <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
-                    <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
-                    <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
-                </div>
+            <i class="fa-solid fa-phone " style=" font-size: 40px;"></i>
+                </a>
             </div>
         </div>
-    </footer>
+    
+    
+        
+    
+        <!-- <section class="welcome-section fade-in">
+            <h1 class="ibm-plex-sans-extralight">Welcome to Skunkworks Academy</h1>
+            <p class="ibm-plex-sans-regular">Your gateway to mastering cutting-edge technologies. Explore our comprehensive course catalog designed for IT professionals, developers, and business leaders.</p>
+        </section> -->
+    
+        <h1 class="text-center mt-5">Find the training you need</h1>
+    
+        <div class="search-container fade-in">
+            <input type="text" class="search-bar" placeholder="Search courses..." id="courseSearch">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    
+        <div class="course-grid" id="courseGrid">
+            <!-- Course categories will be populated by JavaScript -->
+        </div>
+    
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="ibm-plex-sans-regular">About Us</h3>
+                    <p>Empowering professionals through cutting-edge technology education since 2024.</p>
+                    <div class="social-links ">
+                        <a href="https://www.linkedin.com/company/skunkworksacademy/" class="ibm-plex-sans-regular"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="ibm-plex-sans-regular">Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
+                        <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                        <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="ibm-plex-sans-regular">Legal</h3>
+                    <div class="footer-links">
+                        <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
+                        <a href="/https://www.skunkworks.com/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
+                        <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
 
     <!-- Previous HTML remains the same until the script section -->
 
@@ -800,20 +953,41 @@ footer {
             }
         };
 
-        // Navigation Management
-        const navManager = {
-            toggleMenu: () => {
-                elements.nav.classList.toggle('show');
-            },
+        document.addEventListener("DOMContentLoaded", () => {
+    const elements = {
+        courseGrid: document.getElementById("courseGrid"),
+        searchBar: document.getElementById("courseSearch"),
+        menuBtn: document.querySelector(".mobile-menu-btn"),
+        nav: document.querySelector("nav ul"),
+        themeToggle: document.querySelector(".theme-toggle"),
+        body: document.body
+    };
 
-            handleClickOutside: (event) => {
-                if (elements.nav.classList.contains('show') && 
-                    !event.target.closest('nav') && 
-                    !event.target.closest('.mobile-menu-btn')) {
-                    elements.nav.classList.remove('show');
-                }
+    const navManager = {
+        toggleMenu: () => {
+            elements.nav.classList.toggle("show");
+            if (elements.nav.classList.contains("show")) {
+                document.addEventListener("click", navManager.handleClickOutside);
+            } else {
+                document.removeEventListener("click", navManager.handleClickOutside);
             }
-        };
+        },
+
+        handleClickOutside: (event) => {
+            if (!event.target.closest("nav ul") && !event.target.closest(".mobile-menu-btn")) {
+                elements.nav.classList.remove("show");
+                document.removeEventListener("click", navManager.handleClickOutside);
+            }
+        }
+    };
+
+    elements.menuBtn.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents immediate closing when clicking the menu button
+        navManager.toggleMenu();
+    });
+});
+
+
 
         // Animation Management
         const animationManager = {
