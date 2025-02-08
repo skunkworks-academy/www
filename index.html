@@ -364,20 +364,29 @@ nav {
             color: var(--accent-color);
         }
 
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+        .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color var(--transition-speed);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #ffffff;
+}
+
 
         .footer-links a:hover {
             color: var(--accent-color);
@@ -387,6 +396,7 @@ nav {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
+            justify-content: center;
         }
 
         .social-links a {
@@ -821,8 +831,9 @@ footer {
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3 class="ibm-plex-sans-regular">Quick Links</h3>
+                    
                     <div class="footer-links">
+                        <h3 class="ibm-plex-sans-regular">Quick Links</h3>
                         <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
                         <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
                         <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
