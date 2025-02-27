@@ -3,278 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedHat Training - Skunkworks Academy</title>
+    <title>Red Hat</title>
+    <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
-        /* Custom Animations and Styles */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        :root {
+            --primary-color: #000;
+            --accent-color: #0f62fe;
+            --hover-color: #0353e9;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-color: #161616;
+            --transition-speed: 0.3s;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --bg-color: #161616;
+            --card-bg: #262626;
+            --text-color: #ffffff;
+            --primary-color: #000000;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .gradient-bg {
-            background: linear-gradient(-45deg, #1a1a1a, #2a2a2a, #1a1a1a, #2d2d2d);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color var(--transition-speed);
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .pulse-animation {
-            animation: pulse 2s ease-in-out infinite;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .card {
-            transition: all 0.3s ease;
-            background: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .logo:hover {
+            color: var(--accent-color);
         }
 
-        .glow-text {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .progress-bar {
+        /* Navigation Styles */
+        nav {
+            background-color: var(--primary-color);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Styles */
+        .welcome-section {
+            text-align: center;
+            background: white;
+            color: grey;
+            padding: 1rem 2rem;
+            /* margin-bottom: 2rem; */
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .search-bar {
             width: 100%;
-            height: 4px;
-            background: #333;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all var(--transition-speed);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(15, 98, 254, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+        }
+
+        /* Course Grid Styles */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-category {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all var(--transition-speed);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
-        .progress-bar::after {
+        .course-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .course-category a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .course-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .course-category i {
+            color: var(--accent-color);
+        }
+
+        .course-category::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
-            width: 30%;
-            background: #ee0000;
-            animation: progress 2s ease-in-out infinite;
-        }
-
-        @keyframes progress {
-            0% { left: -30%; }
-            100% { left: 100%; }
-        }
-
-        /* Particle Effect */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--hover-color));
+            transform: scaleX(0);
+            transition: transform var(--transition-speed);
+            transform-origin: left;
         }
 
-        .particle {
-            position: absolute;
-            background: rgba(255, 0, 0, 0.1);
-            border-radius: 50%;
-            pointer-events: none;
+        .course-category:hover::before {
+            transform: scaleX(1);
         }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                background-color: var(--primary-color);
+                top: 100%;
+                left: 0;
+                padding: 1rem;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+
+            .welcome-section p {
+                font-size: 1rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(90deg, var(--card-bg) 25%, var(--bg-color) 50%, var(--card-bg) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            to {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            transition: transform var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .information-on-partner{
+            text-align: center;
+            padding: 0 20% 0 20%;
+        }
+
+        .info-on-partner{
+            margin-bottom: 3%;
+            text-align: justify;
+        }
+
+        .info-on-partnering-with-skunkworks{
+            text-align: justify;
+        }
+
+        .bold-main-headers{
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* Style for dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content li {
+    display: block;
+}
+
+.dropdown-content li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.banner-pic{
+    height: 150px;;
+}
+
+.resale-list{
+    display: flex;
+    justify-content: space-evenly;
+    /* justify-content: center; */
+    
+}
+
+.resale-list ul li{
+    list-style: circle;
+}
+
+        /* Dropdown specific styles that won't clash with your existing CSS */
+        .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary-color);
+    min-width: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-content li a {
+    padding: 0.75rem 1rem;
+    display: block;
+    width: 100%;
+    color: white;
+    transition: all var(--transition-speed);
+}
+
+.dropdown-content li a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(0); /* Override the default nav hover transform */
+}
+
+/* Override any conflicting Bootstrap styles */
+.dropdown-content {
+    border: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    list-style: none;
+}
+
+.dropdown > a::after {
+    content: '▼';
+    font-size: 0.8em;
+    margin-left: 0.5rem;
+}
+
+/* Sticky whatsapp icon and phone icon */
+
+.sticky-element {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.sticky-hidden {
+  transform: translateY(180%);
+}
+
+.tel-link{
+    text-decoration: none;
+}
+
+
+
     </style>
 </head>
-<body class="gradient-bg text-white min-h-screen">
-    <!-- Particle Container -->
-    <div class="particles" id="particles"></div>
+<body>
 
-    <!-- Navigation -->
-    <nav class="p-4 backdrop-filter backdrop-blur-lg bg-opacity-30 bg-black fixed w-full z-50">
-        <div class="container mx-auto flex items-center justify-between">
-            <a href="/" class="text-blue-500 text-xl font-semibold flex items-center">
-                <!-- RedHat Logo SVG -->
-                <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#EE0000"/>
-                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z" fill="#000000"/>
-                </svg>
-                Skunkworks EdTech
+    <header>
+        <div class="header-content">
+            <a href="..\index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Skunkworks Academy
             </a>
-            <div class="progress-bar w-32"></div>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="pt-32 pb-20 px-4 text-center">
-        <h1 class="text-5xl font-bold mb-6 glow-text float-animation">RedHat Certification Tracks</h1>
-        <p class="text-xl text-gray-300 max-w-2xl mx-auto">Master enterprise Linux and cloud technologies with our comprehensive certification programs.</p>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Course Categories -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- RHCSA Track -->
-            <div class="card p-6 rounded-lg">
-                <div class="float-animation">
-                    <svg class="w-16 h-16 mb-4" viewBox="0 0 24 24" fill="#EE0000">
-                        <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L19.5 8 12 11.2 4.5 8 12 4.8zM4 9.8l7 3.2v7.2l-7-3.5V9.8zm9 10.4v-7.2l7-3.2v6.9l-7 3.5z"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold mb-4">RHCSA</h2>
-                <p class="text-gray-300 mb-4">Red Hat Certified System Administrator - Entry-level certification for Linux system administration.</p>
-                <ul class="text-gray-400 list-disc list-inside mb-4">
-                    <li>Linux Fundamentals</li>
-                    <li>System Management</li>
-                    <li>Network Configuration</li>
-                    <li>Security Basics</li>
-                </ul>
-                <button class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition pulse-animation">
-                    Enroll Now
-                </button>
-            </div>
-
-            <!-- RHCE Track -->
-            <div class="card p-6 rounded-lg">
-                <div class="float-animation" style="animation-delay: 0.2s;">
-                    <svg class="w-16 h-16 mb-4" viewBox="0 0 24 24" fill="#EE0000">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold mb-4">RHCE</h2>
-                <p class="text-gray-300 mb-4">Red Hat Certified Engineer - Advanced certification for enterprise Linux solutions.</p>
-                <ul class="text-gray-400 list-disc list-inside mb-4">
-                    <li>Advanced Networking</li>
-                    <li>Security Hardening</li>
-                    <li>Automation with Ansible</li>
-                    <li>Enterprise Services</li>
-                </ul>
-                <button class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition pulse-animation">
-                    Enroll Now
-                </button>
-            </div>
-
-            <!-- OpenShift Track -->
-            <div class="card p-6 rounded-lg">
-                <div class="float-animation" style="animation-delay: 0.4s;">
-                    <svg class="w-16 h-16 mb-4" viewBox="0 0 24 24" fill="#EE0000">
-                        <path d="M21 18v-2H3v2h18zm0-5v-2H3v2h18zm0-5V6H3v2h18z"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold mb-4">OpenShift</h2>
-                <p class="text-gray-300 mb-4">Container platform certification for cloud-native applications.</p>
-                <ul class="text-gray-400 list-disc list-inside mb-4">
-                    <li>Container Basics</li>
-                    <li>Kubernetes Foundation</li>
-                    <li>OpenShift Administration</li>
-                    <li>CI/CD Pipelines</li>
-                </ul>
-                <button class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition pulse-animation">
-                    Enroll Now
+    <nav class="p-4 sticky-top">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Skunkworks Academy
+            </a>
+            <div class="header-actions">
+                
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
+        
+        <div class="d-flex justify-content-center mt-5">
+            <ul>
+                <!-- <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
+                <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
+                <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
+                <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
+                <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
+                <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li> -->
+                <li class="dropdown">
+                    <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Categories</a>
+                    <ul class="dropdown-content">
+                        
+                        <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
+                        <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
+                        <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
+                        <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
+                        <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
+                        <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Partners</a>
+                    <ul class="dropdown-content">
+                        
+                        <li><a href="cisco/index.html">Cisco</a></li>
+                        <li><a href="../comptia/index.html">Comptia</a></li>
+                        <li><a href="../github/index.html">Github</a></li>
+                        <li><a href="../google/index.html">Google</a></li>
+                        <li><a href="../HashiCorp/index.html">HashiCorp</a></li>
+                        <li><a href="../ibm/index.html">IBM</a></li>
+                        <li><a href="../microsoft/">Microsoft</a></li>
+                        <li><a href="../paloalto/index.html">Paloalto Networks</a></li>
+                        <li><a href="../redhat/index.html">Red Hat</a></li>
+                        <li><a href="../sage/index.html">Sage</a></li>
+                        <li><a href="../salesforce/index.html">Salesforce</a></li>
+                        <li><a href="../sap/index.html">SAP</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="../contact.html" class="contact-btn btn btn-outline-danger">Contact Us</a>
+        </div>
+    </nav>
+    
 
-        <!-- Learning Path Section -->
-        <section class="mt-12">
-            <h2 class="text-3xl font-bold mb-6 glow-text">Learning Path</h2>
-            <div class="card p-6 rounded-lg">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="flex-1 text-center float-animation">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">1</div>
-                        <h3 class="font-bold">Fundamentals</h3>
-                        <p class="text-gray-400">Master the basics</p>
-                    </div>
-                    <div class="flex-1 text-center float-animation" style="animation-delay: 0.2s;">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">2</div>
-                        <h3 class="font-bold">Hands-on Labs</h3>
-                        <p class="text-gray-400">Practice scenarios</p>
-                    </div>
-                    <div class="flex-1 text-center float-animation" style="animation-delay: 0.4s;">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">3</div>
-                        <h3 class="font-bold">Certification</h3>
-                        <p class="text-gray-400">Get certified</p>
-                    </div>
+    
+    <section class="welcome-section fade-in">
+        <img src="images/Red_Hat_Logo_2019.svg" class="banner-pic my-3" alt="...">
+        <p>Building a better foundation for the future of IT
+        </p>
+    </section>
+    
+    <section class="information-on-partner">
+
+
+        <div class="info-on-partner my-4">
+        <div class="imgae-for-partner">
+            <img src="" alt="">
+        </div>
+        <h1 class="bold-main-headers mb-4">Red Hat: Leading the Open Source Revolution        </h1>
+        <p>Red Hat is a pioneer in open-source software solutions, providing enterprises with the tools to build, deploy, and scale applications seamlessly. Renowned for its flagship product, Red Hat Enterprise Linux (RHEL), the company offers a comprehensive portfolio that includes container management, hybrid cloud infrastructure, and automation tools. By combining the power of open source with enterprise-grade reliability, Red Hat enables organizations to innovate faster, enhance security, and achieve greater operational efficiency.
+        </p>
+        </div>
+
+        <div class="info-on-partnering-with-skunkworks my-5">
+            
+        <h1 class="bold-main-headers mb-4">Skunkworks Partnering with Red Hat to Provide Training for Red Hat Certifications</h1>
+        <p>Skunkworks has partnered with Red Hat to deliver robust training programs for Red Hat certification exams, such as RHCSA, RHCE, and OpenShift Certifications. Leveraging Skunkworks' dynamic teaching methodologies and Red Hat's expertise in enterprise Linux and open-source solutions, these programs provide learners with hands-on labs and real-world scenarios. These courses empower IT professionals to master Red Hat's technologies while preparing for globally recognized certifications that validate their skills in system administration, automation, and cloud computing.</p>
+        </div>
+
+        </div>
+
+
+    </section>
+
+    
+    <div class="d-flex justify-content-center mt-5">
+        <a href="..\contact.html" class="btn btn-outline-dark btn-lg">Contact Us</a>
+</div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Empowering professionals through cutting-edge technology education since 2024.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/skunkworksacademy/"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg mt-12 py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            <p>© 2024 Skunkworks Academy. All rights reserved.</p>
-            <div class="mt-4">
-                <a href="#" class="hover:text-white mx-2 transition">Terms</a>
-                <a href="#" class="hover:text-white mx-2 transition">Privacy</a>
-                <a href="#" class="hover:text-white mx-2 transition">Contact</a>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
+                    <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                    <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <div class="footer-links">
+                    <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
+                    <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
+                    <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Particle Animation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const size = Math.random() * 5 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            const startX = Math.random() * window.innerWidth;
-            const startY = Math.random() * window.innerHeight;
-            
-            particle.style.left = `${startX}px`;
-            particle.style.top = `${startY}px`;
-            
-            document.getElementById('particles').appendChild(particle);
-            
-            const animation = particle.animate([
-                { transform: `translate(0, 0)`, opacity: 0 },
-                { transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`, opacity: 0.5 },
-                { transform: `translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'ease-out'
-            });
-            
-            animation.onfinish = () => {
-                particle.remove();
-                createParticle();
-            };
-        }
-
-        // Create initial particles
-        for (let i = 0; i < 50; i++) {
-            setTimeout(createParticle, Math.random() * 2000);
-        }
-
-        // Add hover effect to cards
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-                card.style.boxShadow = '0 20px 40px rgba(238, 0, 0, 0.2)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'none';
-            });
-        });
-    </script>
 </body>
 </html>
