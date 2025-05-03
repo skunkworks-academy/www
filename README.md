@@ -119,7 +119,7 @@ We invite:
 - **Enterprises & Governments** to collaborate on workforce transformation
 - **Institutions** to white-label our LMS or partner in regional deployment
 
-📧 [raydo@skunkworks.africa](mailto:raydo@skunkworks.africa)  
+📧 [sales@skunkworks.africa](mailto:sales@skunkworks.africa)  
 🔗 [www.skunkworksacademy.com](https://www.skunkworksacademy.com)
 
 ---
