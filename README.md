@@ -77,6 +77,17 @@ Below are the core learning categories with active courses from our platform:
 
 ---
 
+## 📝 Course Registration & Enrolment Forms
+
+The Skunkworks Academy course registration page is available at:
+
+- **Registration page:** [`/course-registration/`](./course-registration/)
+- **Confirmation page:** [`/course-registration/thank-you.html`](./course-registration/thank-you.html)
+
+Student registrations are submitted to **training@skunkworksacademy.com** for course scheduling, pricing, enrolment administration and learner onboarding.
+
+---
+
 ## 🗂️ Repository Structure
 ```bash
 📦 Course Outlines
@@ -88,6 +99,7 @@ Below are the core learning categories with active courses from our platform:
 ├── DevOps
 ├── Data Analytics
 ├── Business Skills
+├── course-registration
 └── ... more
 ```
 
