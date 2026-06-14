@@ -1,0 +1,21 @@
+name: Repository Health Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static site repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm repository health
+        run: |
+          echo "Skunkworks Academy static site repository is available."
+          echo "Default CodeQL setup can now detect GitHub Actions workflow source."
