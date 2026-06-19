@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CLD-UF-101 Module Reader</title>
+  <link rel="stylesheet" href="assets/course.css" />
+  <style>
+    .reader-shell { padding: 34px 0 64px; }
+    .reader-nav { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:22px; flex-wrap:wrap; }
+    .reader-panel { background:#fff; border:1px solid var(--line); border-radius:18px; padding: clamp(22px, 4vw, 48px); box-shadow:0 10px 22px rgba(43,39,35,.06); }
+    .reader-panel h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); letter-spacing:-.04em; color:var(--dark); }
+    .reader-panel h2 { margin-top: 42px; border-top:1px solid var(--line); padding-top:28px; }
+    .reader-panel h3 { margin-top: 28px; }
+    .reader-panel p, .reader-panel li { font-size: 1.02rem; color:#3a352e; }
+    .reader-panel table { width:100%; border-collapse: collapse; margin:18px 0; }
+    .reader-panel th, .reader-panel td { border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top; }
+    .reader-panel th { background:#faf7f0; }
+    .reader-panel pre { background:#2b2723; color:#f3eee3; padding:18px; border-radius:12px; overflow:auto; }
+    .reader-panel code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .reader-panel blockquote { border-left:4px solid var(--accent); margin:20px 0; padding:8px 18px; background:#faf7f0; color:#574f45; }
+    .module-select { padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; min-width:280px; }
+  </style>
+</head>
+<body>
+  <header class="hero" style="padding:38px 0;">
+    <div class="container">
+      <span class="eyebrow">CLD-UF-101 · Module Reader</span>
+      <h1 style="font-size:clamp(2.2rem,5vw,4.4rem);">Self-Paced Course</h1>
+      <p class="lead">Read each module, complete the activities, and mark progress from the course home page.</p>
+    </div>
+  </header>
+
+  <main class="container reader-shell">
+    <nav class="reader-nav">
+      <a class="button primary" href="index.html">← Course Home</a>
+      <select id="moduleSelect" class="module-select" aria-label="Choose module">
+        <option value="module-01-introduction.md">Module 1 — Introduction to Claude</option>
+        <option value="module-02-getting-started.md">Module 2 — Getting Started</option>
+        <option value="module-03-core-use-cases.md">Module 3 — Core Use Cases</option>
+        <option value="module-04-effective-prompting.md">Module 4 — Effective Prompting</option>
+        <option value="module-05-documents-files.md">Module 5 — Documents and Files</option>
+        <option value="module-06-projects-memory.md">Module 6 — Projects and Memory</option>
+        <option value="module-07-best-practices-pitfalls.md">Module 7 — Best Practices and Pitfalls</option>
+        <option value="module-08-capstone-qa.md">Module 8 — Capstone</option>
+      </select>
+    </nav>
+
+    <article id="content" class="reader-panel">
+      <p>Loading module...</p>
+    </article>
+  </main>
+
+  <script src="assets/reader.js"></script>
+</body>
+</html>
