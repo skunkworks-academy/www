@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="CLD-UF-101-self-paced" version="1.0"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+
+  <organizations default="ORG-CLD-UF-101">
+    <organization identifier="ORG-CLD-UF-101">
+      <title>CLD-UF-101 — Claude User Fundamentals</title>
+      <item identifier="ITEM-CLD-UF-101" identifierref="RES-CLD-UF-101">
+        <title>Claude User Fundamentals — Online Self-Paced</title>
+      </item>
+    </organization>
+  </organizations>
+
+  <resources>
+    <resource identifier="RES-CLD-UF-101" type="webcontent" adlcp:scormtype="sco" href="../index.html">
+      <file href="../index.html" />
+      <file href="../assets/course.css" />
+      <file href="../assets/course.js" />
+      <file href="../modules/module-01-introduction.md" />
+      <file href="../modules/module-02-getting-started.md" />
+      <file href="../modules/module-03-core-use-cases.md" />
+      <file href="../modules/module-04-effective-prompting.md" />
+      <file href="../modules/module-05-documents-files.md" />
+      <file href="../modules/module-06-projects-memory.md" />
+      <file href="../modules/module-07-best-practices-pitfalls.md" />
+      <file href="../modules/module-08-capstone-qa.md" />
+      <file href="../resources/prompt-library.md" />
+      <file href="../resources/learner-workbook.md" />
+      <file href="../resources/verification-checklist.md" />
+      <file href="../resources/ai-use-policy-template.md" />
+      <file href="../assessments/final-knowledge-check.md" />
+      <file href="../assessments/capstone-project.md" />
+    </resource>
+  </resources>
+</manifest>
