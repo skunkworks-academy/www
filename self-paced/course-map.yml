@@ -1,0 +1,179 @@
+course:
+  code: CLD-UF-101
+  title: Claude User Fundamentals
+  edition: Online Self-Paced
+  version: 1.0.0
+  estimated_duration: 4-5 hours
+  level: Foundational Level 1
+  audience:
+    - Knowledge workers
+    - Business users
+    - Managers
+    - Operations teams
+    - Administrators
+    - Sales and marketing teams
+    - Non-technical professionals
+  prerequisites:
+    - Internet access
+    - Claude account or approved enterprise access
+    - Basic computer literacy
+  completion:
+    required_modules: 8
+    passing_score: 70
+    capstone_required: true
+
+learning_outcomes:
+  - Explain what Claude is and where it fits in everyday work.
+  - Distinguish Claude from a traditional search engine.
+  - Start and manage useful Claude conversations.
+  - Use Claude for writing, summarization, brainstorming, analysis, and Q&A.
+  - Write effective prompts with context, audience, tone, constraints, and format.
+  - Work with files and documents safely and productively.
+  - Use Projects, instructions, styles, and Memory concepts for recurring work.
+  - Verify high-stakes output and protect sensitive information.
+  - Complete a real task using Claude and document the workflow.
+
+modules:
+  - id: M01
+    slug: introduction
+    title: Introduction to Claude
+    duration: 30 minutes
+    required: true
+    file: modules/module-01-introduction.md
+    outcomes:
+      - Define Claude in plain language.
+      - Explain the difference between Claude and search.
+      - Identify key capabilities and limits.
+    activities:
+      - AI experience reflection
+      - Confidence versus accuracy scenario
+    check: Module 1 knowledge check
+
+  - id: M02
+    slug: getting-started
+    title: Getting Started
+    duration: 30 minutes
+    required: true
+    file: modules/module-02-getting-started.md
+    outcomes:
+      - Start a Claude conversation.
+      - Use natural-language prompting.
+      - Explain conversation context.
+    activities:
+      - First message activity
+      - Follow-up prompt refinement
+    check: Module 2 knowledge check
+
+  - id: M03
+    slug: core-use-cases
+    title: Core Use Cases
+    duration: 45 minutes
+    required: true
+    file: modules/module-03-core-use-cases.md
+    outcomes:
+      - Select the correct use case for a task.
+      - Apply Claude to writing, summarizing, brainstorming, analysis, and explanation.
+      - Iterate output quality.
+    activities:
+      - Choose one real task
+      - Use-case mapping table
+    check: Module 3 knowledge check
+
+  - id: M04
+    slug: effective-prompting
+    title: Effective Prompting
+    duration: 45 minutes
+    required: true
+    file: modules/module-04-effective-prompting.md
+    outcomes:
+      - Improve vague prompts.
+      - Add context, constraints, examples, tone, and format.
+      - Use follow-up prompts effectively.
+    activities:
+      - Before and after prompt rewrite
+      - Prompt quality checklist
+    check: Module 4 knowledge check
+
+  - id: M05
+    slug: documents-files
+    title: Working with Documents and Files
+    duration: 40 minutes
+    required: true
+    file: modules/module-05-documents-files.md
+    outcomes:
+      - Upload files safely.
+      - Ask targeted document questions.
+      - Produce reusable outputs from files.
+    activities:
+      - Document summary task
+      - File-to-checklist transformation
+    check: Module 5 knowledge check
+
+  - id: M06
+    slug: projects-memory
+    title: Projects and Memory
+    duration: 35 minutes
+    required: true
+    file: modules/module-06-projects-memory.md
+    outcomes:
+      - Explain Projects, instructions, styles, and Memory.
+      - Match recurring tasks to the correct context feature.
+      - Describe privacy considerations.
+    activities:
+      - Recurring task map
+      - Project setup plan
+    check: Module 6 knowledge check
+
+  - id: M07
+    slug: best-practices-pitfalls
+    title: Best Practices and Pitfalls
+    duration: 40 minutes
+    required: true
+    file: modules/module-07-best-practices-pitfalls.md
+    outcomes:
+      - Identify confidently wrong output.
+      - Scale verification to task risk.
+      - Protect sensitive data.
+    activities:
+      - Verification list
+      - Data sensitivity decision tree
+    check: Module 7 knowledge check
+
+  - id: M08
+    slug: capstone
+    title: Capstone Practice and Reflection
+    duration: 60 minutes
+    required: true
+    file: modules/module-08-capstone-qa.md
+    outcomes:
+      - Complete a real task end to end.
+      - Document prompting and iteration.
+      - Explain verification and workplace application.
+    activities:
+      - Capstone project
+      - Final reflection
+    check: Capstone submission
+
+assessments:
+  module_checks:
+    file: assessments/module-knowledge-checks.md
+    weight: 20
+  final_knowledge_check:
+    file: assessments/final-knowledge-check.md
+    weight: 40
+  capstone_project:
+    file: assessments/capstone-project.md
+    weight: 40
+  grading_guide:
+    file: assessments/grading-guide.md
+
+resources:
+  prompt_library: resources/prompt-library.md
+  learner_workbook: resources/learner-workbook.md
+  verification_checklist: resources/verification-checklist.md
+  ai_policy_template: resources/ai-use-policy-template.md
+
+lms:
+  implementation_guide: lms/implementation-guide.md
+  scorm_readme: lms/scorm-readme.md
+  imsmanifest: lms/imsmanifest.xml
