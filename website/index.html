@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CLD-UF-101 — Claude User Fundamentals</title>
+  <style>
+    :root {
+      --dark: #2b2723;
+      --light: #f3eee3;
+      --accent: #b8563a;
+      --muted: #6b6358;
+      --line: #e2dacb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--dark);
+      color: var(--light);
+      padding: 72px 24px;
+    }
+    main, .wrap { max-width: 1080px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      background: #e6c9b8;
+      color: var(--dark);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.98; margin: 24px 0; }
+    h2 { font-size: 2rem; margin-top: 0; }
+    p.lead { font-size: 1.25rem; max-width: 760px; color: #d8cdba; }
+    section { padding: 48px 24px; border-bottom: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+    th, td { padding: 14px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { background: #faf7f0; }
+    .cta { display: inline-block; background: var(--accent); color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; }
+    footer { padding: 32px 24px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <span class="badge">CLD-UF-101</span>
+      <h1>Claude User Fundamentals</h1>
+      <p class="lead">A half-day, instructor-led course that helps business users apply Claude to real work: writing, summarization, brainstorming, analysis, prompting, document workflows, Projects, Memory, and responsible use.</p>
+      <a class="cta" href="../README.md">View Course Repository</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>At a Glance</h2>
+      <div class="grid">
+        <div class="card"><strong>Duration</strong><p class="meta">Approximately 3 hours 50 minutes including breaks</p></div>
+        <div class="card"><strong>Audience</strong><p class="meta">Knowledge workers and business users</p></div>
+        <div class="card"><strong>Prerequisites</strong><p class="meta">None beyond basic computer and internet literacy</p></div>
+        <div class="card"><strong>Assessment</strong><p class="meta">Quiz 40% + hands-on lab review 60%</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Course Structure</h2>
+      <table>
+        <thead><tr><th>Unit</th><th>Topic</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Introduction to Claude</td><td>20 min</td></tr>
+          <tr><td>2</td><td>Getting Started</td><td>25 min</td></tr>
+          <tr><td>3</td><td>Core Use Cases</td><td>40 min</td></tr>
+          <tr><td>4</td><td>Effective Prompting</td><td>35 min</td></tr>
+          <tr><td>5</td><td>Working with Documents and Files</td><td>30 min</td></tr>
+          <tr><td>6</td><td>Projects and Memory</td><td>25 min</td></tr>
+          <tr><td>7</td><td>Best Practices and Pitfalls</td><td>25 min</td></tr>
+          <tr><td>8</td><td>Hands-On Practice and Q&amp;A</td><td>30 min</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>What Learners Will Do</h2>
+      <div class="grid">
+        <div class="card">Start a Claude conversation and ask role-relevant questions.</div>
+        <div class="card">Draft, summarize, brainstorm, analyse, and explain using real workplace examples.</div>
+        <div class="card">Improve prompts using context, audience, tone, constraints, and format.</div>
+        <div class="card">Upload safe documents and ask useful questions about them.</div>
+        <div class="card">Use Projects and Memory concepts for recurring work.</div>
+        <div class="card">Build a verification checklist for high-stakes output.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Skunkworks Academy · CLD-UF-101 · Claude User Fundamentals</div>
+  </footer>
+</body>
+</html>
