@@ -5,10 +5,18 @@ on:
     paths:
       - "**/*.md"
       - "course.yml"
+      - "self-paced/course-map.yml"
+      - "self-paced/**/*.html"
+      - "self-paced/**/*.css"
+      - "self-paced/**/*.js"
   pull_request:
     paths:
       - "**/*.md"
       - "course.yml"
+      - "self-paced/course-map.yml"
+      - "self-paced/**/*.html"
+      - "self-paced/**/*.css"
+      - "self-paced/**/*.js"
 
 jobs:
   markdown-check:
@@ -17,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate required files
+      - name: Validate required instructor-led files
         run: |
           test -f README.md
           test -f course.yml
@@ -26,7 +34,23 @@ jobs:
           test -f assessments/quiz.md
           test -f assessments/lab-review-rubric.md
 
-      - name: Basic markdown sanity check
+      - name: Validate required self-paced files
         run: |
-          grep -R "CLD-UF-101" README.md docs assessments activities slides
-          grep -R "Claude User Fundamentals" README.md docs
+          test -f self-paced/README.md
+          test -f self-paced/course-map.yml
+          test -f self-paced/index.html
+          test -f self-paced/assets/course.css
+          test -f self-paced/assets/course.js
+          test -f self-paced/modules/module-01-introduction.md
+          test -f self-paced/modules/module-08-capstone-qa.md
+          test -f self-paced/resources/prompt-library.md
+          test -f self-paced/resources/learner-workbook.md
+          test -f self-paced/assessments/final-knowledge-check.md
+          test -f self-paced/assessments/capstone-project.md
+          test -f self-paced/lms/implementation-guide.md
+
+      - name: Basic content sanity check
+        run: |
+          grep -R "CLD-UF-101" README.md docs assessments activities slides self-paced
+          grep -R "Claude User Fundamentals" README.md docs self-paced
+          grep -R "capstone" self-paced/assessments self-paced/modules
