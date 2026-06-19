@@ -1,1 +1,32 @@
+# Existing IDE private files
 /nbproject/private/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Local exports
+/dist/
+/build/
+/tmp/
+
+# Node / static tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python utility scripts
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Large generated exports
+*.zip
+*.tar.gz
