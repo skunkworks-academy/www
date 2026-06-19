@@ -39,12 +39,21 @@ jobs:
           test -f self-paced/README.md
           test -f self-paced/course-map.yml
           test -f self-paced/index.html
+          test -f self-paced/reader.html
           test -f self-paced/assets/course.css
           test -f self-paced/assets/course.js
+          test -f self-paced/assets/reader.js
           test -f self-paced/modules/module-01-introduction.md
+          test -f self-paced/modules/module-02-getting-started.md
+          test -f self-paced/modules/module-03-core-use-cases.md
+          test -f self-paced/modules/module-04-effective-prompting.md
+          test -f self-paced/modules/module-05-documents-files.md
+          test -f self-paced/modules/module-06-projects-memory.md
+          test -f self-paced/modules/module-07-best-practices-pitfalls.md
           test -f self-paced/modules/module-08-capstone-qa.md
           test -f self-paced/resources/prompt-library.md
           test -f self-paced/resources/learner-workbook.md
+          test -f self-paced/resources/verification-checklist.md
           test -f self-paced/assessments/final-knowledge-check.md
           test -f self-paced/assessments/capstone-project.md
           test -f self-paced/lms/implementation-guide.md
