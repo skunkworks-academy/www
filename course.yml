@@ -1,0 +1,63 @@
+course:
+  code: CLD-UF-101
+  title: Claude User Fundamentals
+  level: Foundational Level 1
+  duration: 3h 50m
+  delivery_mode:
+    - Instructor-led in person
+    - Instructor-led live virtual
+  audience: Knowledge workers and business users with no technical background required
+  prerequisites:
+    - Basic computer literacy
+    - Internet access
+    - Active Claude account
+  certification: Certificate of Completion
+  assessment:
+    quiz_weight: 40
+    lab_review_weight: 60
+    passing_score: 70
+    retake_policy: One quiz retake and one lab resubmission within 2 weeks
+
+units:
+  - number: 1
+    title: Introduction to Claude
+    duration_minutes: 20
+    objective: Explain what Claude is, where it is useful, and where it must be used carefully.
+  - number: 2
+    title: Getting Started
+    duration_minutes: 25
+    objective: Start a conversation and understand conversation context.
+  - number: 3
+    title: Core Use Cases
+    duration_minutes: 40
+    objective: Apply Claude to writing, summarization, brainstorming, analysis, and Q&A.
+  - number: 4
+    title: Effective Prompting
+    duration_minutes: 35
+    objective: Improve output quality using context, specificity, examples, iteration, and clarification.
+  - number: 5
+    title: Working with Documents and Files
+    duration_minutes: 30
+    objective: Upload real materials and ask Claude to summarize, extract, analyze, or transform content.
+  - number: 6
+    title: Projects and Memory
+    duration_minutes: 25
+    objective: Use Projects, instructions, styles, and optional Memory for repeated work.
+  - number: 7
+    title: Best Practices and Pitfalls
+    duration_minutes: 25
+    objective: Verify high-stakes output and handle sensitive information responsibly.
+  - number: 8
+    title: Hands-On Practice and Q&A
+    duration_minutes: 30
+    objective: Complete one real work task end to end and commit to one next use case.
+
+breaks:
+  - after_unit: 3
+    duration_minutes: 10
+  - after_unit: 5
+    duration_minutes: 10
+
+pathway:
+  current: CLD-UF-101
+  next: CLD-DEV-201 Claude for Developers
