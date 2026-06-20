@@ -5,22 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CLD-UF-101 | Claude User Fundamentals | Skunkworks Academy</title>
   <meta name="description" content="Online self-paced Claude User Fundamentals course from Skunkworks Academy." />
-  <link rel="icon" href="https://skunkworksacademy.com/favicon.ico" />
-  <link rel="shortcut icon" href="https://skunkworksacademy.com/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://skunkworksacademy.com/favicon.ico" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon.png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon.png" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .locked-content.is-locked{display:none!important}.gate-panel{margin-top:28px;padding:24px;border-radius:20px;background:#fff;border:1px solid #e4dacb;box-shadow:0 18px 40px rgba(36,31,27,.10)}.gate-panel.is-unlocked{border-color:rgba(39,103,73,.35);background:#f7fbf6}.agreement-scroll{max-height:220px;overflow:auto;padding:16px;border:1px solid #e4dacb;border-radius:14px;background:#fffaf5;color:#4d443b}.identity-note{font-size:.9rem;color:#70675d;margin-top:4px}.hidden-frame{width:0;height:0;border:0;position:absolute;left:-9999px}.locked-link{opacity:.55;pointer-events:none}.access-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#eadfce;color:#241f1b;padding:7px 11px;font-weight:900;font-size:.85rem}.access-pill.unlocked{background:#e8f5ec;color:#276749}
+  </style>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
-      <img src="https://skunkworksacademy.com/favicon.ico" alt="" class="brand-favicon" />
+      <img src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon.png" alt="" class="brand-favicon" />
       <span>Skunkworks Academy</span>
     </a>
     <nav class="top-nav" aria-label="Course navigation">
-      <a href="#modules">Modules</a>
-      <a href="#resources">Resources</a>
-      <a href="#quiz">Final Quiz</a>
-      <a href="#capstone">Capstone</a>
+      <a href="#modules" data-gated-nav>Modules</a>
+      <a href="#resources" data-gated-nav>Resources</a>
+      <a href="#quiz" data-gated-nav>Final Quiz</a>
+      <a href="#capstone" data-gated-nav>Capstone</a>
       <a href="#enrol" class="nav-cta">Enrol</a>
     </nav>
   </header>
@@ -33,7 +36,11 @@
         <p class="lead">A complete self-paced course for business users who want to use Claude for writing, summarization, brainstorming, analysis, document workflows, Projects, Memory, and responsible AI use.</p>
         <div class="hero-actions">
           <a href="#enrol" class="button primary">Enrol / Register</a>
-          <a href="#modules" class="button secondary">View Course Modules</a>
+          <a href="#modules" class="button secondary" data-gated-nav>View Course Modules</a>
+        </div>
+        <div id="accessStatus" class="gate-panel">
+          <span class="access-pill">Locked</span>
+          <p><strong>Course content is locked.</strong> Complete the enrolment form and accept the AI Privacy and Course Usage Agreement to unlock modules, resources, quizzes, and the capstone workspace.</p>
         </div>
       </div>
       <aside class="hero-panel" aria-label="Course snapshot">
@@ -48,31 +55,45 @@
       <div class="section-heading">
         <span class="eyebrow">Registration</span>
         <h2>Enrol for CLD-UF-101</h2>
-        <p>Submit the registration form below. The form is configured to email the training team at <strong>training@skunkworksacademy.com</strong>. A mail fallback is also available after submission.</p>
+        <p>Submit the registration form below. The enrolment and signed AI Privacy and Course Usage Agreement are emailed to <strong>training@skunkworksacademy.com</strong>.</p>
       </div>
-      <form id="enrolmentForm" class="panel form-panel" action="https://formsubmit.co/training@skunkworksacademy.com" method="POST">
-        <input type="hidden" name="_subject" value="CLD-UF-101 Self-Paced Course Enrolment" />
+      <form id="enrolmentForm" class="panel form-panel" action="https://formsubmit.co/training@skunkworksacademy.com" method="POST" target="enrolSubmitFrame">
+        <input type="hidden" name="_subject" value="CLD-UF-101 Self-Paced Course Enrolment and AI Usage Agreement" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://skunkworksacademy.com/self-paced/claude/cld-uf-101/index.html?registered=1" />
         <input type="hidden" name="course" value="CLD-UF-101 Claude User Fundamentals" />
+        <input type="hidden" id="agreementTimestamp" name="agreement_timestamp" value="" />
+        <input type="hidden" id="agreementVersion" name="agreement_version" value="CLD-UF-101 AI Privacy and Course Usage Agreement v1.0" />
+        <input type="hidden" id="agreementTextField" name="agreement_text" value="I acknowledge that Claude and other AI tools may assist with drafting, summarization, analysis, learning activities, and productivity tasks. I remain responsible for verifying outputs before use, protecting confidential and personal information, following my organisation's approved AI/data/privacy policies, and not submitting passwords, secrets, regulated data, customer records, employee records, or other sensitive information unless explicitly approved. I understand that course activity and enrolment details may be used by Skunkworks Academy for course administration, support, attendance, assessment, and certification purposes." />
         <div class="form-grid">
           <label>First name<input required name="first_name" autocomplete="given-name" /></label>
           <label>Last name<input required name="last_name" autocomplete="family-name" /></label>
           <label>Email<input required type="email" name="email" autocomplete="email" /></label>
-          <label>Mobile / WhatsApp<input name="mobile" autocomplete="tel" /></label>
-          <label>Company / Organisation<input name="company" autocomplete="organization" /></label>
-          <label>Role / Job title<input name="role" /></label>
-          <label>Country<input name="country" autocomplete="country-name" /></label>
+          <label>Mobile / WhatsApp<input required name="mobile" autocomplete="tel" /></label>
+          <label>Company / Organisation<input required name="company" autocomplete="organization" /></label>
+          <label>Role / Job title<input required name="role" /></label>
+          <label>Country<input required name="country" autocomplete="country-name" /></label>
+          <label>Delegate identity / employee number<input required name="delegate_identity_reference" autocomplete="off" /><span class="identity-note">Use employee number, student number, passport/ID reference, or another official delegate identifier required by your organisation.</span></label>
           <label>Preferred start date<input type="date" name="preferred_start_date" /></label>
+          <label>Manager / sponsor email<input type="email" name="manager_or_sponsor_email" /></label>
         </div>
         <label>Learning goal<textarea name="learning_goal" rows="4" placeholder="Tell us why you want to complete this course."></textarea></label>
-        <label class="checkline"><input required type="checkbox" name="privacy_acknowledgement" value="Accepted" /> I confirm that I am submitting my registration details for course administration and learner support.</label>
-        <button class="button primary" type="submit">Submit enrolment</button>
+        <div class="agreement-scroll" id="agreementText">
+          <h3>AI Privacy and Course Usage Agreement</h3>
+          <p>I acknowledge that Claude and other AI tools may assist with drafting, summarization, analysis, learning activities, and productivity tasks.</p>
+          <p>I remain responsible for verifying outputs before use, protecting confidential and personal information, following my organisation's approved AI/data/privacy policies, and not submitting passwords, secrets, regulated data, customer records, employee records, or other sensitive information unless explicitly approved.</p>
+          <p>I understand that my enrolment details, contact information, delegate identity information, agreement acknowledgement, course activity, assessment progress, and capstone submission may be used by Skunkworks Academy for course administration, support, attendance, assessment, and certification purposes.</p>
+        </div>
+        <label class="checkline"><input required id="courseAgreementAccept" type="checkbox" name="agreement_acceptance" value="Accepted" /> I have read, understood, and accept the AI Privacy and Course Usage Agreement.</label>
+        <label class="checkline"><input required type="checkbox" name="privacy_acknowledgement" value="Accepted" /> I confirm that the personal contact and identity information provided is accurate and may be used for this course enrolment, learner support, assessment, and certification administration.</label>
+        <button class="button primary" type="submit">Submit enrolment and unlock course</button>
         <p id="enrolmentStatus" class="form-status" role="status"></p>
       </form>
+      <iframe class="hidden-frame" name="enrolSubmitFrame" title="Enrolment submission target"></iframe>
     </section>
 
-    <section class="section container" id="modules">
+    <section class="section container locked-content" id="modules" data-locked-content>
       <div class="section-heading">
         <span class="eyebrow">Course Path</span>
         <h2>Interactive modules and knowledge checks</h2>
@@ -86,7 +107,7 @@
       <div id="moduleWorkspace" class="panel workspace" aria-live="polite"></div>
     </section>
 
-    <section class="section container" id="resources">
+    <section class="section container locked-content" id="resources" data-locked-content>
       <div class="section-heading">
         <span class="eyebrow">Resources</span>
         <h2>Downloadable course materials</h2>
@@ -123,18 +144,15 @@
         </article>
         <article class="resource-card wide" id="agreement">
           <h3>AI Use Policy User Agreement</h3>
-          <p>Read, acknowledge, and accept responsible-use expectations before completing the course activities.</p>
+          <p>Your agreement was captured during enrolment and emailed with your delegate registration details.</p>
           <div class="agreement-box">
-            <p>I understand that Claude can assist with drafting, summarization, analysis, and learning, but I remain responsible for verifying output, protecting sensitive information, and following my organisation's approved AI and data policies.</p>
-            <label class="checkline"><input id="agreementAccept" type="checkbox" /> I acknowledge and accept the AI Use Policy User Agreement.</label>
-            <button id="saveAgreement" class="button secondary small" type="button">Save acknowledgement</button>
             <p id="agreementStatus" class="form-status"></p>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section container" id="quiz">
+    <section class="section container locked-content" id="quiz" data-locked-content>
       <div class="section-heading">
         <span class="eyebrow">Final Assessment</span>
         <h2>Final Knowledge Check</h2>
@@ -149,7 +167,7 @@
       </div>
     </section>
 
-    <section class="section container" id="capstone">
+    <section class="section container locked-content" id="capstone" data-locked-content>
       <div class="section-heading">
         <span class="eyebrow">Capstone Project</span>
         <h2>Practical workplace task submission</h2>
