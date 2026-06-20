@@ -5,6 +5,8 @@ on:
     paths:
       - "**/*.md"
       - "course.yml"
+      - "package.json"
+      - "scripts/**/*.mjs"
       - "self-paced/course-map.yml"
       - "self-paced/**/*.html"
       - "self-paced/**/*.css"
@@ -13,6 +15,8 @@ on:
     paths:
       - "**/*.md"
       - "course.yml"
+      - "package.json"
+      - "scripts/**/*.mjs"
       - "self-paced/course-map.yml"
       - "self-paced/**/*.html"
       - "self-paced/**/*.css"
@@ -63,3 +67,6 @@ jobs:
           grep -R "CLD-UF-101" README.md docs assessments activities slides self-paced
           grep -R "Claude User Fundamentals" README.md docs self-paced
           grep -R "capstone" self-paced/assessments self-paced/modules
+
+      - name: Run Node course validator
+        run: node scripts/validate-self-paced.mjs
