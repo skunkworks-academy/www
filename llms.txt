@@ -1,0 +1,28 @@
+# Skunkworks Academy
+
+Skunkworks Academy provides instructor-led, self-paced and portal-based learning across AI, cloud, cybersecurity, software development, productivity, labs and career pathways.
+
+## Main domain
+
+- Academy home and ecosystem navigation: https://skunkworksacademy.com/
+- Self-paced catalogue: https://skunkworksacademy.com/self-paced/
+- Microsoft training catalogue: https://skunkworksacademy.com/microsoft/index.html
+
+## Claude self-paced courses
+
+- CLD-UF-101 — Claude User Fundamentals: https://skunkworksacademy.com/self-paced/claude/cld-uf-101/
+- CLD-DEV-201 — Claude for Developers: https://skunkworksacademy.com/self-paced/claude/cld-dev-201/
+
+## Academy subdomains
+
+- Learner portal: https://portal.skunkworksacademy.com/
+- Jobs and talent pathways: https://jobs.skunkworksacademy.com/
+- Practical labs: https://labs.skunkworksacademy.com/
+- Blog and updates: https://blog.skunkworksacademy.com/
+- Documentation: https://docs.skunkworksacademy.com/
+- Prompt library and templates: https://prompt.skunkworksacademy.com/
+- Publishing workflow: https://publish.skunkworksacademy.com/
+
+## Contact
+
+Training enquiries: training@skunkworksacademy.com
