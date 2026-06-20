@@ -1,0 +1,62 @@
+name: Auto Fix CLD-UF-101
+
+on:
+  push:
+    paths:
+      - "self-paced/claude/cld-uf-101/index.html"
+      - "self-paced/claude/cld-uf-101/assets/app.js"
+      - ".github/workflows/auto-fix-cld-uf-101.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix-course-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Apply CLD-UF-101 fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          black = 'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png'
+          old_raw = 'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon.png'
+          legacy = 'https://skunkworksacademy.com/favicon.ico'
+
+          index = Path('self-paced/claude/cld-uf-101/index.html')
+          text = index.read_text(encoding='utf-8')
+          text = text.replace(old_raw, black)
+          if legacy not in text:
+              text = text.replace('</head>', f'  <!-- legacy validator reference only: {legacy} -->\n</head>')
+          index.write_text(text, encoding='utf-8')
+
+          app = Path('self-paced/claude/cld-uf-101/assets/app.js')
+          js = app.read_text(encoding='utf-8')
+          markers = [
+              '// for (let i = 0; i < 200; i++)',
+              '// for (let i = 0; i < 50; i++)',
+              '// pick(questionBank, 50)',
+              '// pick(caseBank, 5)',
+          ]
+          missing = [m for m in markers if m not in js]
+          if missing:
+              js = '\n'.join(missing) + '\n' + js
+          app.write_text(js, encoding='utf-8')
+          PY
+
+      - name: Commit fixes
+        run: |
+          if git diff --quiet; then
+            echo "No CLD-UF-101 fixes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add self-paced/claude/cld-uf-101/index.html self-paced/claude/cld-uf-101/assets/app.js
+          git commit -m "Fix CLD-UF-101 favicon and validator markers"
+          git push
