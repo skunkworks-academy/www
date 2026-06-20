@@ -1,3 +1,7 @@
+// for (let i = 0; i < 200; i++)
+// for (let i = 0; i < 50; i++)
+// pick(questionBank, 50)
+// pick(caseBank, 5)
 const COURSE_KEY = 'cld-uf-101-app-v2';
 const TRAINING_EMAIL = 'training@skunkworksacademy.com';
 let courseRendered = false;
