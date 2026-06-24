@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA Certifications – Skunkworks Academy</title>
+    <!-- Project global styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../main.css">
+    <!-- IBM Plex Sans font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styling using IBM Plex Sans and Carbon colour tokens */
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #161616;
+        }
+        header {
+            background-color: #000;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        header img {
+            height: 40px;
+            width: auto;
+        }
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-weight: 500;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2rem;
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: #0f62fe;
+        }
+        p.lead {
+            font-size: 1.125rem;
+            color: #525252;
+            margin-bottom: 2rem;
+        }
+        .cards {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .card img {
+            height: 80px;
+            width: auto;
+            align-self: flex-start;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            color: #0f62fe;
+        }
+        .card p {
+            flex: 1;
+            margin: 0 0 1rem;
+            color: #525252;
+        }
+        .card a {
+            align-self: flex-start;
+            color: #0f62fe;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background-color: #f4f4f4;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6f6f6f;
+        }
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #161616;
+                color: #f4f4f4;
+            }
+            header {
+                background-color: #262626;
+            }
+            main {
+                background-color: #161616;
+            }
+            .card {
+                background-color: #262626;
+                color: #f4f4f4;
+            }
+            h1 {
+                color: #78a9ff;
+            }
+            .card h3 {
+                color: #78a9ff;
+            }
+            .card p {
+                color: #c6c6c6;
+            }
+            footer {
+                background-color: #262626;
+                border-top-color: #393939;
+                color: #8d8d8d;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Logo on left -->
+        <a href="../index.html" style="display:flex;align-items:center;gap:0.5rem;">
+            <img src="Comptia-logo.svg" alt="CompTIA Logo">
+        </a>
+        <!-- Navigation -->
+        <nav>
+            <a href="../index.html">Skunkworks Home</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </header>
+    <main class="bx--grid">
+        <div class="bx--row">
+            <div class="bx--col">
+                <h1>CompTIA Certification Catalog</h1>
+                <p class="lead">Launch or advance your technology career with industry‑leading CompTIA certifications. Our accredited courses and exams cover cybersecurity, networking, infrastructure, data, cloud and more.</p>
+            </div>
+        </div>
+        <div class="bx--row cards">
+            <!-- Security+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/a_Cyber_CompCert.svg?raw=true" alt="Security+ icon">
+                <h3>Security+</h3>
+                <p>Establish your core cybersecurity skills and prove you can secure networks, applications and data against modern threats.</p>
+                <a href="security-plus.html">Learn more</a>
+            </div>
+            <!-- Network+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/a_Network_CompCert.svg?raw=true" alt="Network+ icon">
+                <h3>Network+</h3>
+                <p>Gain the confidence to design, configure and troubleshoot wired and wireless networks across vendors and platforms.</p>
+                <a href="network-plus.html">Learn more</a>
+            </div>
+            <!-- A+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_A_Certification.svg?raw=true" alt="A+ icon">
+                <h3>A+</h3>
+                <p>Start your IT journey by validating essential hardware, software, networking, troubleshooting and security skills.</p>
+                <a href="a-plus.html">Learn more</a>
+            </div>
+            <!-- CySA+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_CyberDefense_CompCert.svg?raw=true" alt="CySA+ icon">
+                <h3>CySA+</h3>
+                <p>Detect, analyze and respond to threats with practical skills in security analytics, incident response and vulnerability management.</p>
+                <a href="cysa-plus.html">Learn more</a>
+            </div>
+            <!-- Linux+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_Server_Certification.svg?raw=true" alt="Linux+ icon">
+                <h3>Linux+</h3>
+                <p>Prove you can install, manage and automate Linux servers across hybrid and multi‑cloud environments.</p>
+                <a href="linux-plus.html">Learn more</a>
+            </div>
+            <!-- Data+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_DataSys_Certification.svg?raw=true" alt="Data+ icon">
+                <h3>Data+</h3>
+                <p>Translate data into decisions by demonstrating skills in data analysis, visualization and communication.</p>
+                <a href="data-plus.html">Learn more</a>
+            </div>
+            <!-- Tech+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_Tech_Certification.svg?raw=true" alt="Tech+ icon">
+                <h3>Tech+</h3>
+                <p>Explore foundational computing, networking, software, data and security concepts to discover your tech interests.</p>
+                <a href="tech-plus.html">Learn more</a>
+            </div>
+            <!-- PenTest+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_EthicalHacker_CompCert.svg?raw=true" alt="PenTest+ icon">
+                <h3>PenTest+</h3>
+                <p>Think like an attacker—perform penetration tests on networks, web apps and APIs to reveal and remediate vulnerabilities.</p>
+                <a href="pentest-plus.html">Learn more</a>
+            </div>
+            <!-- Cloud+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Xpert_CloudNetX_Certification.svg?raw=true" alt="Cloud+ icon">
+                <h3>Cloud+</h3>
+                <p>Design, secure and optimize multi‑cloud environments while mastering architecture, deployment and operations.</p>
+                <a href="cloud-plus.html">Learn more</a>
+            </div>
+            <!-- Project+ -->
+            <div class="card">
+                <img src="https://github.com/skunkworks-academy/.github/blob/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_DigitalLiteracy_CompCert.svg?raw=true" alt="Project+ icon">
+                <h3>Project+</h3>
+                <p>Manage IT projects from initiation through delivery by mastering scheduling, governance and stakeholder communication.</p>
+                <a href="project-plus.html">Learn more</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2026 Skunkworks Academy – Empowering learners across Africa and the world.
+    </footer>
+</body>
+</html>

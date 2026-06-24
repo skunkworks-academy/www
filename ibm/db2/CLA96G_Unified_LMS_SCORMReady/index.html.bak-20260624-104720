@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CLA96G – Unified LMS Portal</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<nav>
+  <a href="index.html">Portal</a>
+  <a href="part-1.html">Part 1</a>
+  <a href="part-2.html">Part 2</a>
+  <a href="part-3.html">Part 3</a>
+  <a href="part-4.html">Part 4</a>
+  <a href="assessment.html">Final Assessment</a>
+  <a href="analytics.html">Analytics</a>
+</nav>
+<header>
+  <h1>CLA96G – Db2 Administration Unified Portal</h1>
+  <p>Course progress, mastery tracking, and SCORM-compatible reporting.</p>
+</header>
+
+<div class="wrap" id="content">
+  <div class="card">
+    <div class="row">
+      <div>
+        <h2>Overall Status</h2>
+        <p class="unitMeta">Completion is based on answered knowledge checks in Parts 1–4. Course pass/fail is based on the Final Assessment mastery threshold.</p>
+      </div>
+      <div class="row">
+        <button class="primary" id="btnPrint">Print Executive Summary</button>
+        <button class="danger" id="btnReset">Reset Entire Course</button>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="progress-bar"><span id="overallBar"></span></div>
+      <div class="badges" style="margin-top:12px">
+        <span class="badge"><strong>Completion:</strong> <span id="overallCompletion">0%</span></span>
+        <span class="badge"><strong>Knowledge Score:</strong> <span id="overallScore">0%</span></span>
+        <span class="badge"><strong>Course Result:</strong> <span id="courseResult">—</span></span>
+      </div>
+      <div class="notice" id="courseNote"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Module Breakdown</h2>
+    <table class="table" aria-label="Module breakdown">
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Completion</th>
+          <th>Score</th>
+          <th>Mastery</th>
+          <th>Open</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Final Assessment</h2>
+    <div class="badges" style="margin-top:10px">
+      <span class="badge"><strong>Status:</strong> <span id="assessStatus">Not started</span></span>
+      <span class="badge"><strong>Score:</strong> <span id="assessScore">0%</span></span>
+      <span class="badge"><strong>Threshold:</strong> <span id="assessThreshold">75%</span></span>
+    </div>
+    <div class="notice">Recommendation: require <strong>≥ 75%</strong> pass score to confirm readiness for production responsibilities.</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="scorm-api.js"></script>
+<script src="quiz-engine.js"></script>
+
+<script>
+  logEvent("page_view", {page:"index"});
+
+  const summary = LMS.getSummary();
+
+  document.getElementById("overallCompletion").textContent = summary.completionPct + "%";
+  document.getElementById("overallScore").textContent = summary.scorePct + "%";
+  document.getElementById("overallBar").style.width = summary.completionPct + "%";
+
+  const courseResult = document.getElementById("courseResult");
+  const note = document.getElementById("courseNote");
+
+  if(summary.coursePassed){
+    courseResult.textContent = "PASS";
+    courseResult.style.color = "var(--success)";
+    note.textContent = "Course passed: final assessment mastery threshold met.";
+  } else {
+    courseResult.textContent = "In progress";
+    courseResult.style.color = "var(--muted)";
+    note.textContent = "Course result will show PASS after the Final Assessment is submitted with a passing score.";
+  }
+
+  document.getElementById("assessStatus").textContent = summary.assessment.submitted ? "Submitted" : "Not submitted";
+  document.getElementById("assessScore").textContent = (summary.assessment.scorePct || 0) + "%";
+  document.getElementById("assessThreshold").textContent = (summary.assessment.threshold || 75) + "%";
+
+  const mapName = {part1:"Part 1",part2:"Part 2",part3:"Part 3",part4:"Part 4"};
+  const mapHref = {part1:"part-1.html",part2:"part-2.html",part3:"part-3.html",part4:"part-4.html"};
+  const tbody = document.getElementById("rows");
+  summary.parts.forEach(p => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${mapName[p.partKey]}</td>
+      <td>${p.completionPct}%</td>
+      <td>${p.scorePct}%</td>
+      <td style="color:${p.masteryPassed ? "var(--success)" : "var(--muted)"}">${p.masteryPassed ? "PASSED" : "Not yet"}</td>
+      <td><a href="${mapHref[p.partKey]}" style="color:#b6c8ff;text-decoration:none;">Open</a></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  if(window.SCORM){
+    const status = summary.coursePassed ? "passed" : "incomplete";
+    const sc = summary.assessment.submitted ? summary.assessment.scorePct : summary.scorePct;
+    SCORM.update(sc, summary.completionPct, status);
+  }
+
+  document.getElementById("btnPrint").addEventListener("click", () => window.print());
+
+  document.getElementById("btnReset").addEventListener("click", () => {
+    if(!confirm("Reset the entire course (all parts + assessment + analytics)?")) return;
+    Object.values(LMS_KEYS).forEach(k => localStorage.removeItem(k));
+    location.reload();
+  });
+</script>
+</body>
+</html>
