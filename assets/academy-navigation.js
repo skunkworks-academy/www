@@ -3,24 +3,30 @@
 (function () {
   const logoLight = 'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png';
   const logoDark = 'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png';
+  const pricingBase = 'https://skunkworksacademy.com/pricing.index.html';
+  const isPricingPage = /\/pricing\.index\.html\/?$/.test(window.location.pathname);
+  const planHref = isPricingPage ? '#pricing' : `${pricingBase}#pricing`;
+  const purchaseHref = isPricingPage ? '#purchasing' : `${pricingBase}#purchasing`;
 
-  const headerMarkup = `
-    <div class="shell nav">
-      <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
-        <img class="brand-logo logo-light" src="${logoLight}" alt="">
-        <img class="brand-logo logo-dark" src="${logoDark}" alt="">
-        <span>Skunkworks Academy <span style="color:var(--muted);font-weight:700;letter-spacing:0">Pricing</span></span>
-      </a>
-      <nav class="links" aria-label="Primary pricing navigation">
-        <a href="https://skunkworksacademy.com/">Home</a>
-        <a href="https://skunkworksacademy.com/self-paced/">Self-paced</a>
-        <a href="https://portal.skunkworksacademy.com/">Portal</a>
-        <a href="https://labs.skunkworksacademy.com/">Labs</a>
-        <a href="#pricing">Plans</a>
-        <a href="#purchasing">Purchase</a>
-      </nav>
-    </div>
-  `;
+  function getHeaderMarkup() {
+    return `
+      <div class="shell nav">
+        <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
+          <img class="brand-logo logo-light" src="${logoLight}" alt="">
+          <img class="brand-logo logo-dark" src="${logoDark}" alt="">
+          <span>Skunkworks Academy <span style="color:var(--muted);font-weight:700;letter-spacing:0">Pricing</span></span>
+        </a>
+        <nav class="links" aria-label="Primary pricing navigation">
+          <a href="https://skunkworksacademy.com/">Home</a>
+          <a href="https://skunkworksacademy.com/self-paced/">Self-paced</a>
+          <a href="https://portal.skunkworksacademy.com/">Portal</a>
+          <a href="https://labs.skunkworksacademy.com/">Labs</a>
+          <a href="${planHref}">Plans</a>
+          <a href="${purchaseHref}">Purchase</a>
+        </nav>
+      </div>
+    `;
+  }
 
   function injectHeaderStyles() {
     if (document.getElementById('academy-navigation-styles')) return;
@@ -144,7 +150,7 @@
     const header = document.createElement('header');
     header.className = 'top';
     header.setAttribute('data-fallback-header', 'true');
-    header.innerHTML = headerMarkup;
+    header.innerHTML = getHeaderMarkup();
     setCurrentState(header);
     return header;
   }
