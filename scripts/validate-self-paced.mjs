@@ -13,23 +13,28 @@ const requiredFiles = [
 const requiredContent = [
   {
     file: 'self-paced/index.html',
-    text: 'claude/cld-uf-101/index.html',
-    description: 'self-paced index redirects to the CLD-UF-101 course landing page'
+    text: '/self-paced/claude/cld-uf-101/',
+    description: 'self-paced index links to CLD-UF-101'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: '/pricing.index.html',
+    description: 'self-paced index links to pricing'
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
-    text: 'CLD-UF-101 | Claude User Fundamentals | Skunkworks Academy',
+    text: 'CLD-UF-101 Claude User Fundamentals | Self-Paced AI Course | Skunkworks Academy',
     description: 'course page title is present'
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
     text: 'https://skunkworksacademy.com/favicon.ico',
-    description: 'course page uses the main Skunkworks Academy favicon'
+    description: 'legacy favicon reference is present'
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
     text: 'https://formsubmit.co/training@skunkworksacademy.com',
-    description: 'enrolment form submits to the training mailbox'
+    description: 'enrolment form target is present'
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
