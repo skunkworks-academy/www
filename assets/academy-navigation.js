@@ -14,7 +14,7 @@
         <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
           <img class="brand-logo logo-light" src="${logoLight}" alt="">
           <img class="brand-logo logo-dark" src="${logoDark}" alt="">
-          <span>Skunkworks Academy <span style="color:var(--muted);font-weight:700;letter-spacing:0">Pricing</span></span>
+          <span>Skunkworks Academy</span>
         </a>
         <nav class="links" aria-label="Primary pricing navigation">
           <a href="https://skunkworksacademy.com/">Home</a>
