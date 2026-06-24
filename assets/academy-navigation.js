@@ -29,8 +29,13 @@
     const style = document.createElement('style');
     style.id = 'academy-navigation-styles';
     style.textContent = `
+      .nav-toggle,
+      .sk-nav-toggle {
+        display: none !important;
+      }
+
       nav.links[aria-label="Primary pricing navigation"] {
-        display: flex;
+        display: flex !important;
         flex-wrap: wrap;
         justify-content: flex-end;
         align-items: center;
