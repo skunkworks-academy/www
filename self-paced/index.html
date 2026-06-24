@@ -60,21 +60,82 @@
     }
   }
   </script>
-  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.06.24"></script>
+  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.06.24.5"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270041066336676" crossorigin="anonymous"></script>
 
   <style>
-    .sk-brand__logo {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: .75rem;
-      object-fit: contain;
+    header.top[data-fallback-header="true"] {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--sk-border, rgba(148, 163, 184, .22));
+      background: color-mix(in srgb, var(--sk-bg, #050505) 92%, transparent);
+      backdrop-filter: blur(18px);
     }
 
-    .sk-logo--dark { display: none; }
+    header.top[data-fallback-header="true"] .shell.nav {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    header.top[data-fallback-header="true"] .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--sk-text, currentColor);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+
+    header.top[data-fallback-header="true"] .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    header.top[data-fallback-header="true"] .logo-dark { display: none; }
     @media (prefers-color-scheme: dark) {
-      .sk-logo--light { display: none; }
-      .sk-logo--dark { display: inline-block; }
+      header.top[data-fallback-header="true"] .logo-light { display: none; }
+      header.top[data-fallback-header="true"] .logo-dark { display: inline-block; }
+    }
+
+    header.top[data-fallback-header="true"] nav.links[aria-label="Primary pricing navigation"] {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+
+    header.top[data-fallback-header="true"] nav.links[aria-label="Primary pricing navigation"] a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid var(--sk-border, rgba(148, 163, 184, .26));
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--sk-muted, #64748b);
+      background: rgba(255, 255, 255, .035);
+      text-decoration: none;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    header.top[data-fallback-header="true"] nav.links[aria-label="Primary pricing navigation"] a:hover,
+    header.top[data-fallback-header="true"] nav.links[aria-label="Primary pricing navigation"] a[aria-current="page"] {
+      color: var(--sk-text, currentColor);
+      border-color: color-mix(in srgb, var(--sk-text, currentColor) 42%, transparent);
     }
 
     .sk-hero__badges,
@@ -187,6 +248,22 @@
       .sk-plan-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
+    @media (max-width: 860px) {
+      header.top[data-fallback-header="true"] .shell.nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      header.top[data-fallback-header="true"] nav.links[aria-label="Primary pricing navigation"] {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scrollbar-width: thin;
+      }
+    }
+
     @media (max-width: 720px) {
       .sk-feature-strip,
       .sk-plan-snapshot { grid-template-columns: 1fr; }
@@ -196,33 +273,20 @@
 
 <body>
   <div class="sk-app">
-    <header class="sk-topbar">
-      <div class="sk-container sk-topbar__inner">
-        <a class="sk-brand" href="/" aria-label="Skunkworks Academy home">
-          <img class="sk-brand__logo sk-logo--light" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" alt="" />
-          <img class="sk-brand__logo sk-logo--dark" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" alt="" />
-          <span class="sk-brand__text">
-            Skunkworks Academy
-            <span class="sk-brand__subtext">Self-Paced Learning</span>
-          </span>
+    <header class="top" data-fallback-header="true">
+      <div class="shell nav">
+        <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
+          <img class="brand-logo logo-light" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" alt="">
+          <img class="brand-logo logo-dark" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" alt="">
+          <span>Skunkworks Academy <span style="color:var(--sk-muted);font-weight:700;letter-spacing:0">Pricing</span></span>
         </a>
-
-        <button class="sk-nav-toggle" type="button" data-sk-nav-toggle aria-label="Open navigation" aria-expanded="false">
-          <i class="bi bi-list" aria-hidden="true"></i>
-        </button>
-
-        <nav class="sk-nav" data-sk-nav aria-label="Primary navigation">
-          <a href="/">Home</a>
-          <a href="/self-paced/" aria-current="page">Self-Paced</a>
-          <a href="/pricing.index.html">Pricing</a>
+        <nav class="links" aria-label="Primary pricing navigation">
+          <a href="https://skunkworksacademy.com/">Home</a>
+          <a href="https://skunkworksacademy.com/self-paced/" aria-current="page">Self-paced</a>
           <a href="https://portal.skunkworksacademy.com/">Portal</a>
           <a href="https://labs.skunkworksacademy.com/">Labs</a>
-          <a href="/forms/">Forms</a>
-          <a href="mailto:training@skunkworksacademy.com">Contact</a>
-          <button type="button" data-sk-theme-toggle aria-label="Toggle light and dark mode">
-            <i class="bi bi-circle-half" aria-hidden="true"></i>
-            Theme
-          </button>
+          <a href="https://skunkworksacademy.com/pricing.index.html#pricing">Plans</a>
+          <a href="https://skunkworksacademy.com/pricing.index.html#purchasing">Purchase</a>
         </nav>
       </div>
     </header>
