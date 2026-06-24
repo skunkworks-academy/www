@@ -3,32 +3,468 @@
 <head>
   <meta charset="utf-8" data-skunkworks-head="mandatory-v1" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-  <title>Skunkworks Academy Forms</title>
-  <meta name="description" content="Skunkworks Academy forms hub." />
+  <title>Career Growth and Learning Assessment | Skunkworks Academy Forms</title>
+  <meta name="description" content="Complete the Skunkworks Academy Career Growth and Learning Assessment. Responses are captured through Microsoft Forms for Excel reporting and training-team follow-up." />
+  <meta name="author" content="Skunkworks Academy" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
 
-  <link rel="icon" type="image/png"
-        href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png"
-        media="(prefers-color-scheme: light)" />
-  <link rel="icon" type="image/png"
-        href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png"
-        media="(prefers-color-scheme: dark)" />
-  <link rel="apple-touch-icon"
-        href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
+  <link rel="canonical" href="https://skunkworksacademy.com/forms/" />
+
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" media="(prefers-color-scheme: dark)" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Skunkworks Academy" />
+  <meta property="og:title" content="Career Growth and Learning Assessment | Skunkworks Academy" />
+  <meta property="og:description" content="Assess your career goals, technical baseline, preferred learning style and certification pathway with Skunkworks Academy." />
+  <meta property="og:url" content="https://skunkworksacademy.com/forms/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Career Growth and Learning Assessment",
+      "url": "https://skunkworksacademy.com/forms/",
+      "description": "Skunkworks Academy assessment form for career growth, learning preferences, professional development and certification pathway planning.",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "Skunkworks Academy",
+        "url": "https://skunkworksacademy.com/"
+      }
+    }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.06.23"></script>
+
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #101010;
+      --panel-2: #171717;
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --line: #2a2a2a;
+      --soft-line: rgba(255, 255, 255, 0.12);
+      --accent: #7c3aed;
+      --accent-2: #06b6d4;
+      --green: #22c55e;
+      --warning: #f59e0b;
+      --radius: 24px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "IBM Plex Sans", Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.24), transparent 34rem),
+        radial-gradient(circle at top right, rgba(6, 182, 212, 0.2), transparent 30rem),
+        linear-gradient(180deg, #050505 0%, #070707 48%, #f4f7fb 48%, #f4f7fb 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(var(--max), calc(100% - 32px));
+      margin: auto;
+    }
+
+    .hero {
+      padding: 76px 0 42px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5f3fc;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: clamp(44px, 7.6vw, 88px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: #d8d8d8;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.45;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 800;
+      transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover {
+      color: var(--text);
+      border-color: #555;
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      color: #fff !important;
+      border: 0 !important;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 18px 48px rgba(6, 182, 212, 0.2);
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-card,
+    .panel,
+    .status-card {
+      border: 1px solid var(--soft-line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 26px;
+    }
+
+    .hero-card h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-card p { color: var(--muted); }
+
+    .signal-list {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .signal-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      color: #d6d6d6;
+      align-items: start;
+    }
+
+    .tick {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      background: rgba(34, 197, 94, 0.18);
+      color: #86efac;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .main-content {
+      padding: 6px 0 84px;
+      color: #111827;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: #fff;
+      border-color: #d9e2ef;
+      color: #111827;
+    }
+
+    .panel-inner { padding: 26px; }
+
+    .panel h2 {
+      margin-bottom: 12px;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .panel p,
+    .panel li { color: #5b6577; }
+
+    .sticky { position: sticky; top: 100px; }
+
+    .process {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .process li {
+      border: 1px solid #e1e8f3;
+      border-radius: 18px;
+      padding: 16px;
+      background: #f8fafc;
+    }
+
+    .process strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .status-card {
+      padding: 16px;
+      color: #111827;
+      background: #f8fafc;
+      border-color: #e1e8f3;
+      box-shadow: none;
+    }
+
+    .status-card strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .status-card span {
+      color: #64748b;
+      font-size: 0.94rem;
+    }
+
+    .form-frame-wrap {
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .form-frame-header {
+      padding: 24px 26px;
+      border-bottom: 1px solid #d9e2ef;
+      background: linear-gradient(135deg, #ffffff, #f7fbff);
+    }
+
+    .form-frame-header p { margin-bottom: 0; }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 1180px;
+      border: 0;
+      background: #fff;
+    }
+
+    .fallback {
+      padding: 18px 26px 26px;
+      border-top: 1px solid #d9e2ef;
+      background: #fff;
+    }
+
+    .fallback p {
+      margin: 0 0 14px;
+      color: #5b6577;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid #fde68a;
+      background: #fffbeb;
+      color: #713f12;
+    }
+
+    .notice strong { display: block; margin-bottom: 4px; }
+
+    .ops {
+      margin-top: 24px;
+    }
+
+    .ops code {
+      word-break: break-word;
+      border-radius: 8px;
+      padding: 2px 6px;
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .footer {
+      padding: 28px 0 36px;
+      color: #68758b;
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .layout,
+      .meta-grid { grid-template-columns: 1fr; }
+      .sticky { position: static; }
+      iframe { height: 1020px; }
+    }
+
+    @media (max-width: 700px) {
+      .hero { padding-top: 48px; }
+      .panel-inner,
+      .form-frame-header,
+      .fallback,
+      .hero-card { padding: 22px; }
+      .btn { width: 100%; }
+      iframe { height: 940px; }
+    }
+  </style>
 </head>
 <body>
   <main>
-    <!-- forms page content -->
+    <section class="shell hero">
+      <div>
+        <p class="eyebrow">Forms • Career Pathways • Learner Intake</p>
+        <h1>Career Growth and Learning Assessment</h1>
+        <p class="lead">
+          Complete the assessment to help Skunkworks Academy map your current capability, preferred learning style,
+          professional development goals, technology interests and certification pathway.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#assessment-form">Start Assessment</a>
+          <a class="btn secondary" href="https://forms.office.com/r/3pDGVLp645" target="_blank" rel="noopener noreferrer">Open in Microsoft Forms</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Assessment response workflow">
+        <h2>Response workflow</h2>
+        <p>Use the embedded Microsoft Form below for controlled capture, reporting and follow-up.</p>
+        <ul class="signal-list">
+          <li><span class="tick">1</span><span>Responses are submitted through Microsoft Forms.</span></li>
+          <li><span class="tick">2</span><span>Training operations can review and export responses in Excel.</span></li>
+          <li><span class="tick">3</span><span>Power Automate should route a formatted copy to training@skunkworksacademy.com.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="shell main-content" id="assessment-form">
+      <div class="layout">
+        <aside class="panel sticky">
+          <div class="panel-inner">
+            <h2>Assessment coverage</h2>
+            <p>This intake captures the information required to recommend a fit-for-purpose Skunkworks Academy learning path.</p>
+            <ul class="process">
+              <li><strong>Member information</strong><span>Contact details, current position, department and professional links.</span></li>
+              <li><strong>Professional preferences</strong><span>Technology domains, partner alignment and project interests.</span></li>
+              <li><strong>Career goals</strong><span>Short-, medium- and long-term development outcomes.</span></li>
+              <li><strong>Learning readiness</strong><span>Time allocation, preferred learning mode, work style and mentoring needs.</span></li>
+              <li><strong>Skills and experience</strong><span>Leadership exposure, technical capability, collaboration preferences and growth barriers.</span></li>
+            </ul>
+
+            <div class="notice">
+              <strong>Operational note</strong>
+              The public page hosts the form. Excel storage and email routing are controlled inside Microsoft 365 using the form response workbook and a Power Automate notification flow.
+            </div>
+          </div>
+        </aside>
+
+        <section class="panel form-frame-wrap" aria-labelledby="form-title">
+          <div class="form-frame-header">
+            <p class="eyebrow" style="color:#2563eb;margin-bottom:10px;">Microsoft Forms Embed</p>
+            <h2 id="form-title">Start the Career Growth and Learning Assessment</h2>
+            <p>Complete all required fields. The training team will use your responses for pathway mapping, mentoring and follow-up.</p>
+            <div class="meta-grid">
+              <div class="status-card"><strong>Destination</strong><span>training@skunkworksacademy.com</span></div>
+              <div class="status-card"><strong>Reporting</strong><span>Excel response workbook</span></div>
+              <div class="status-card"><strong>Form ID</strong><span>3pDGVLp645</span></div>
+            </div>
+          </div>
+
+          <iframe
+            title="Career Growth and Learning Assessment Microsoft Form"
+            src="https://forms.office.com/r/3pDGVLp645?embed=true"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            msallowfullscreen>
+          </iframe>
+
+          <div class="fallback">
+            <p>If the embedded form does not load correctly, open the secure Microsoft Forms page directly.</p>
+            <a class="btn primary" href="https://forms.office.com/r/3pDGVLp645" target="_blank" rel="noopener noreferrer">Open Assessment Form</a>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel ops" aria-labelledby="automation-title">
+        <div class="panel-inner">
+          <h2 id="automation-title">Excel and email routing requirement</h2>
+          <p>
+            Configure the Microsoft 365 owner account for this form so each submission is captured in the response Excel workbook and emailed to
+            <a href="mailto:training@skunkworksacademy.com"><code>training@skunkworksacademy.com</code></a>.
+          </p>
+          <ol class="process">
+            <li><strong>Excel capture</strong><span>Open the form in Microsoft Forms, go to Responses, and use the Excel response workbook for reporting.</span></li>
+            <li><strong>Email notification</strong><span>Create a Power Automate flow: When a new response is submitted → Get response details → Send an email to training@skunkworksacademy.com.</span></li>
+            <li><strong>Test submission</strong><span>Submit one internal test response from this page and verify the Excel row and training mailbox notification.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <footer class="footer">© <span id="year"></span> Skunkworks Academy. Dream. Design. Deliver.</footer>
+    </section>
   </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
