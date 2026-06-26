@@ -1,9 +1,3 @@
-(main branch)
-
-No fluff. No over‑explaining. Just the essentials.
-
----
-
 # **Self‑Paced Program — README**
 
 ## **Overview**
@@ -82,9 +76,3 @@ To enroll in a self‑paced course, visit:
 - Technical: support@skunkworks.academy  
 - Training: training@skunkworks.academy  
 
----
-
-If you want, I can also generate:
-- a **metadata schema example**,  
-- a **course card template**,  
-- or a **minimal landing page HTML** to match this README.
