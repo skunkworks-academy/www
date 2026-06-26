@@ -14,11 +14,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Skunkworks Academy" />
   <meta property="og:title" content="Skunkworks Academy | Unified Learning Ecosystem" />
-  <meta property="og:description" content="Navigate Skunkworks Academy courses, forms, LMS portal, labs, security, IBM, badge tracking, jobs, docs and publishing from one unified landing page." />
+  <meta property="og:description" content="Explore Skunkworks Academy's AI-guided learning experience, interactive modules, labs, LMS portal, credential pathways, jobs and publishing workflows." />
   <meta property="og:url" content="https://skunkworksacademy.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Skunkworks Academy" />
-  <meta name="twitter:description" content="Unified Academy navigation for courses, forms, LMS, labs, security, IBM, badge tracking, jobs and docs." />
+  <meta name="twitter:description" content="AI-guided Academy navigation for interactive modules, courses, labs, LMS, credentials, jobs and docs." />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Skunkworks Academy","url":"https://skunkworksacademy.com/","description":"Unified learning ecosystem for technical training, labs, learner portals, forms and credential pathways.","department":[{"@type":"Organization","name":"Skunkworks Academy Forms","url":"https://skunkworksacademy.com/forms/"},{"@type":"Organization","name":"Skunkworks Academy Portal","url":"https://portal.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Labs","url":"https://labs.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Security","url":"https://security.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy IBM","url":"https://ibm.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Badge Hub","url":"https://badge-hub.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Jobs","url":"https://jobs.skunkworksacademy.com/"}]}</script>
   <style>
     :root{
@@ -76,6 +76,33 @@
     .repo-panel{margin:32px 0 80px}.repo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .repo-item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.04);text-decoration:none;min-width:0}.repo-item b{display:block}.repo-item span{color:var(--muted);font-size:14px;overflow-wrap:anywhere}
     .footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted)}
+
+    .section-block{padding:34px 0}
+    .section-heading{max-width:860px;margin-bottom:18px}
+    .section-heading h2{font-size:clamp(30px,4.8vw,56px);line-height:.95;letter-spacing:-.065em;margin:0 0 12px}
+    .section-heading p{margin:0;color:var(--muted);line-height:1.6;font-size:1.05rem}
+    .ai-learning{scroll-margin-top:calc(var(--nav-height) + 20px)}
+    .module-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .module-card{position:relative;display:grid;gap:14px;min-height:260px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.032));box-shadow:var(--shadow);overflow:hidden}
+    .module-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:radial-gradient(circle at top right,rgba(6,182,212,.18),transparent 42%),radial-gradient(circle at bottom left,rgba(124,58,237,.16),transparent 44%);pointer-events:none}
+    .module-card>*{position:relative;z-index:1}
+    .module-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .module-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:900;color:#fff;box-shadow:0 14px 34px rgba(6,182,212,.18)}
+    .ai-badge{border:1px solid rgba(6,182,212,.35);border-radius:999px;padding:5px 8px;color:#a5f3fc;background:rgba(6,182,212,.08);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+    .module-card h3{margin:0;font-size:20px;line-height:1.1;letter-spacing:-.04em}
+    .module-card p{margin:0;color:var(--muted);line-height:1.55}
+    .module-list{display:grid;gap:6px;margin:0;padding:0;list-style:none;color:var(--muted);font-size:.94rem}
+    .module-list li{display:flex;gap:8px;align-items:flex-start}.module-list li::before{content:"•";color:#a5f3fc;font-weight:900}
+    .module-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.module-actions .btn,.copilot-actions .btn{min-height:42px}
+    button.btn{appearance:none;background:rgba(255,255,255,.035);cursor:pointer;font:inherit}.copilot-button{border-color:rgba(6,182,212,.38)!important;color:var(--text)!important;background:rgba(6,182,212,.1)!important}.copilot-button:hover{background:rgba(6,182,212,.18)!important}
+    .copilot-console{display:grid;grid-template-columns:minmax(0,.94fr) minmax(280px,1.06fr);gap:20px;margin:8px 0 30px;scroll-margin-top:calc(var(--nav-height) + 20px)}
+    .copilot-copy h2{font-size:clamp(28px,4.4vw,52px);line-height:.98;letter-spacing:-.06em;margin:0 0 12px}.copilot-copy p{margin:0;color:var(--muted);line-height:1.6}
+    .copilot-window{border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(0,0,0,.22);overflow:hidden}
+    .copilot-titlebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .status-dot{display:inline-flex;align-items:center;gap:7px;color:#a5f3fc;font-size:.84rem;font-weight:900}.status-dot::before{content:"";width:8px;height:8px;border-radius:999px;background:#22c55e;box-shadow:0 0 20px rgba(34,197,94,.75)}
+    .copilot-body{display:grid;gap:12px;padding:14px}.prompt-chip{display:inline-flex;width:max-content;max-width:100%;border:1px solid rgba(124,58,237,.35);border-radius:999px;padding:6px 10px;color:#ddd;background:rgba(124,58,237,.12);font-size:.85rem;font-weight:800}.copilot-response{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.04)}.copilot-response strong{display:block;margin-bottom:4px}.copilot-response p{margin:0;color:var(--muted);line-height:1.55}
+    .copilot-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
     @media(max-width:920px){
       :root{--nav-height:68px}
       .nav-toggle{display:inline-flex}
@@ -83,7 +110,7 @@
       .links.open{display:grid}
       .links a{width:100%;justify-content:flex-start;min-height:48px;padding:12px 14px;border-radius:14px;color:var(--text);background:rgba(255,255,255,.035);font-size:1rem}
       .links a:hover,.links a[aria-current="page"]{background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45)}
-      .hero,.grid,.repo-grid{grid-template-columns:1fr}.hero{padding-top:48px}
+      .hero,.grid,.repo-grid,.module-grid,.copilot-console{grid-template-columns:1fr}.hero{padding-top:48px}
     }
     @media(max-width:560px){
       .shell{width:min(100% - 24px,1180px)}
@@ -108,6 +135,7 @@
       </button>
       <div class="links" id="primaryNav">
         <a href="https://skunkworksacademy.com/" aria-current="page">Home</a>
+        <a href="#new-way-to-learn">AI Learning</a>
         <a href="https://skunkworksacademy.com/catalogue/">Self-paced</a>
         <a href="https://portal.skunkworksacademy.com/">Portal</a>
         <a href="https://labs.skunkworksacademy.com/">Labs</a>
@@ -117,7 +145,111 @@
       </div>
     </nav>
   </header>
-  <main class="shell"><section class="hero"><div><p class="eyebrow">Unified Academy navigation</p><h1>One learning ecosystem. Every Academy domain aligned.</h1><p class="lead">A cohesive, responsive navigation layer for forms, courses, portal access, labs, security, IBM enablement, badge pathways, jobs and future publishing workflows.</p><div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/forms/">Open Forms</a><a class="btn" href="https://portal.skunkworksacademy.com/">Open Portal</a><a class="btn" href="https://github.com/skunkworks-academy">View GitHub Organisation</a></div></div><aside class="card"><div class="metric"><strong>Unified</strong><span>Theme, head, navigation and metadata</span></div><div class="metric"><strong>Responsive</strong><span>Mobile-first landing pages</span></div><div class="metric"><strong>GitHub</strong><span>Organisation and repo structure aware</span></div></aside></section><section class="grid"><a class="tile" href="https://skunkworksacademy.com/forms/"><h2>Forms</h2><p>Career growth assessments, learner intake and training-team response workflows.</p></a><a class="tile" href="https://portal.skunkworksacademy.com/"><h2>Portal</h2><p>LMS access for learners, instructors and academy operations.</p></a><a class="tile" href="https://labs.skunkworksacademy.com/"><h2>Labs</h2><p>On-demand labs, cloud sandboxes and practical exercises.</p></a><a class="tile" href="https://security.skunkworksacademy.com/"><h2>Security</h2><p>Cybersecurity, governance, SOC readiness and defensive skills.</p></a><a class="tile" href="https://ibm.skunkworksacademy.com/"><h2>IBM</h2><p>IBM Power, LinuxONE, cloud, security, data and enterprise learning.</p></a><a class="tile" href="https://badge-hub.skunkworksacademy.com/"><h2>Badge Hub</h2><p>Digital badges, credential pathways and learner evidence.</p></a><a class="tile" href="https://jobs.skunkworksacademy.com/"><h2>Jobs</h2><p>Career pathways, placement opportunities and talent pipelines.</p></a></section><section class="repo-panel"><p class="eyebrow">Repository intelligence</p><h2>GitHub organisation and repo structure</h2><div class="repo-grid"><a class="repo-item" href="https://github.com/skunkworks-academy/.github"><b>Current repository</b><span>skunkworks-academy/.github</span></a><a class="repo-item" href="https://github.com/skunkworks-academy"><b>GitHub organisation</b><span>Browse Academy repositories and source structure.</span></a></div></section></main><footer class="footer"><div class="shell">© Skunkworks Academy. Dream. Design. Deliver.</div></footer>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">A new way to learn</p>
+        <h1>Learn with an AI co-pilot, practical labs and guided pathways.</h1>
+        <p class="lead">Skunkworks Academy should guide each learner from interest to skill evidence: discover a path, launch an interactive module, ask for help, practise in a lab, and produce proof of competence.</p>
+        <div class="actions">
+          <a class="btn primary" href="#new-way-to-learn">Explore AI modules</a>
+          <a class="btn" href="#ai-copilot">Open Learning Copilot</a>
+          <a class="btn" href="#ecosystem">View learning pathways</a>
+        </div>
+      </div>
+      <aside class="card">
+        <div class="metric"><strong>AI-guided</strong><span>Copilot-style learner support and path recommendations</span></div>
+        <div class="metric"><strong>Interactive</strong><span>Modules, labs, checks and reflective prompts</span></div>
+        <div class="metric"><strong>Evidence</strong><span>Badges, portfolios, GitHub outputs and career readiness</span></div>
+      </aside>
+    </section>
+
+    <section class="section-block ai-learning" id="new-way-to-learn">
+      <div class="section-heading">
+        <p class="eyebrow">Interactive AI modules</p>
+        <h2>A new way to learn: guided, practical and personalised.</h2>
+        <p>Replace disconnected CTAs with a learner funnel. Each module card gives the learner a clear next step and a Copilot-style assistant action that can later connect to the Academy AI agent, prompt hub, LMS or portal workflow.</p>
+      </div>
+      <div class="module-grid" aria-label="AI-guided learning modules">
+        <article class="module-card">
+          <div class="module-top"><span class="module-icon">01</span><span class="ai-badge">AI Path</span></div>
+          <h3>Course Navigator</h3>
+          <p>Diagnoses the learner goal and recommends the right certification, short course or academy pathway.</p>
+          <ul class="module-list"><li>Skill-gap discovery</li><li>Path recommendation</li><li>Study-plan generation</li></ul>
+          <div class="module-actions"><button class="btn copilot-button" type="button" data-module="Course Navigator" data-prompt="Build me a personalised Skunkworks Academy learning path based on my current skills, target role and available study time.">Ask AI Copilot</button></div>
+        </article>
+        <article class="module-card">
+          <div class="module-top"><span class="module-icon">02</span><span class="ai-badge">Lab Coach</span></div>
+          <h3>Interactive Lab Coach</h3>
+          <p>Turns practical work into guided, step-by-step labs with hints, checks and troubleshooting support.</p>
+          <ul class="module-list"><li>Guided lab setup</li><li>Real-time hints</li><li>Evidence capture</li></ul>
+          <div class="module-actions"><button class="btn copilot-button" type="button" data-module="Interactive Lab Coach" data-prompt="Coach me through this lab step by step. Ask me questions, validate my commands and help me troubleshoot errors without giving away the answer immediately.">Ask AI Copilot</button></div>
+        </article>
+        <article class="module-card">
+          <div class="module-top"><span class="module-icon">03</span><span class="ai-badge">Assessment</span></div>
+          <h3>Assessment Copilot</h3>
+          <p>Creates readiness checks, quizzes, scenario questions and remediation plans from the course objective.</p>
+          <ul class="module-list"><li>Knowledge checks</li><li>Scenario practice</li><li>Remediation plan</li></ul>
+          <div class="module-actions"><button class="btn copilot-button" type="button" data-module="Assessment Copilot" data-prompt="Assess my readiness for this topic. Give me scenario-based questions, mark my answers and create a remediation plan for weak areas.">Ask AI Copilot</button></div>
+        </article>
+        <article class="module-card">
+          <div class="module-top"><span class="module-icon">04</span><span class="ai-badge">Career</span></div>
+          <h3>Career Pathway Coach</h3>
+          <p>Connects learning to employability through portfolio tasks, GitHub evidence, badges and job-readiness actions.</p>
+          <ul class="module-list"><li>Portfolio guidance</li><li>Badge mapping</li><li>Job-readiness tasks</li></ul>
+          <div class="module-actions"><button class="btn copilot-button" type="button" data-module="Career Pathway Coach" data-prompt="Turn my course progress into a career plan with portfolio tasks, GitHub evidence, badges to earn and job-search next steps.">Ask AI Copilot</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card copilot-console" id="ai-copilot" aria-label="Learning Copilot preview">
+      <div class="copilot-copy">
+        <p class="eyebrow">Learning Copilot preview</p>
+        <h2>One assistant across courses, labs, assessments and career pathways.</h2>
+        <p>This static preview shows the intended interaction pattern. The next implementation step is wiring these buttons into the Skunkworks Academy AI assistant, LMS context and learner profile data.</p>
+        <div class="copilot-actions">
+          <a class="btn primary" href="mailto:training@skunkworks.africa?subject=Skunkworks%20Academy%20AI%20Copilot%20Pilot">Request AI Copilot pilot</a>
+          <a class="btn" href="https://prompt.skunkworksacademy.com/">Open Prompt Hub</a>
+        </div>
+      </div>
+      <div class="copilot-window">
+        <div class="copilot-titlebar"><strong>Skunkworks Learning Copilot</strong><span class="status-dot">Ready</span></div>
+        <div class="copilot-body">
+          <span class="prompt-chip" id="copilotModule">Select a module</span>
+          <div class="copilot-response">
+            <strong id="copilotTitle">How can I guide your learning?</strong>
+            <p id="copilotPrompt">Choose any AI module above. The Copilot preview will load a contextual prompt for course navigation, lab coaching, assessment readiness or career pathway planning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="ecosystem">
+      <div class="section-heading">
+        <p class="eyebrow">Academy pathways</p>
+        <h2>From discovery to delivery.</h2>
+        <p>The original Forms, Portal and GitHub routes remain available, but they now sit inside the learning journey instead of competing as disconnected hero CTAs.</p>
+      </div>
+      <div class="grid">
+        <a class="tile" href="https://skunkworksacademy.com/forms/"><h2>Forms</h2><p>Career growth assessments, learner intake and training-team response workflows.</p></a>
+        <a class="tile" href="https://portal.skunkworksacademy.com/"><h2>Portal</h2><p>LMS access for learners, instructors and academy operations.</p></a>
+        <a class="tile" href="https://labs.skunkworksacademy.com/"><h2>Labs</h2><p>On-demand labs, cloud sandboxes and practical exercises.</p></a>
+        <a class="tile" href="https://security.skunkworksacademy.com/"><h2>Security</h2><p>Cybersecurity, governance, SOC readiness and defensive skills.</p></a>
+        <a class="tile" href="https://ibm.skunkworksacademy.com/"><h2>IBM</h2><p>IBM Power, LinuxONE, cloud, security, data and enterprise learning.</p></a>
+        <a class="tile" href="https://badge-hub.skunkworksacademy.com/"><h2>Badge Hub</h2><p>Digital badges, credential pathways and learner evidence.</p></a>
+        <a class="tile" href="https://jobs.skunkworksacademy.com/"><h2>Jobs</h2><p>Career pathways, placement opportunities and talent pipelines.</p></a>
+      </div>
+    </section>
+
+    <section class="repo-panel">
+      <p class="eyebrow">Repository intelligence</p>
+      <h2>GitHub organisation and repo structure</h2>
+      <div class="repo-grid">
+        <a class="repo-item" href="https://github.com/skunkworks-academy/.github"><b>Current repository</b><span>skunkworks-academy/.github</span></a>
+        <a class="repo-item" href="https://github.com/skunkworks-academy"><b>GitHub organisation</b><span>Browse Academy repositories and source structure.</span></a>
+      </div>
+    </section>
+  </main><footer class="footer"><div class="shell">© Skunkworks Academy. Dream. Design. Deliver.</div></footer>
   <script>
     (() => {
       const toggle = document.querySelector('.nav-toggle');
@@ -145,6 +277,24 @@
         if (event.key === 'Escape') close();
       });
       window.matchMedia('(min-width: 921px)').addEventListener('change', close);
+    })();
+
+    (() => {
+      const moduleLabel = document.getElementById('copilotModule');
+      const title = document.getElementById('copilotTitle');
+      const prompt = document.getElementById('copilotPrompt');
+      const buttons = document.querySelectorAll('[data-module][data-prompt]');
+      if (!moduleLabel || !title || !prompt || !buttons.length) return;
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const moduleName = button.getAttribute('data-module') || 'Learning Copilot';
+          const promptText = button.getAttribute('data-prompt') || '';
+          moduleLabel.textContent = moduleName;
+          title.textContent = `${moduleName} prompt loaded`;
+          prompt.textContent = promptText;
+          document.getElementById('ai-copilot')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
     })();
   </script>
 </body>
