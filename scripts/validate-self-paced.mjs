@@ -7,7 +7,10 @@ const requiredFiles = [
   'self-paced/index.html',
   'self-paced/claude/cld-uf-101/index.html',
   'self-paced/claude/cld-uf-101/assets/styles.css',
-  'self-paced/claude/cld-uf-101/assets/app.js'
+  'self-paced/claude/cld-uf-101/assets/app.js',
+  'self-paced/microsoft/ms-saas-plan-101/index.html',
+  'self-paced/microsoft/ms-saas-plan-101/assets/styles.css',
+  'self-paced/microsoft/ms-saas-plan-101/assets/app.js'
 ];
 
 const requiredContent = [
@@ -65,6 +68,56 @@ const requiredContent = [
     file: 'self-paced/claude/cld-uf-101/assets/app.js',
     text: "pick(caseBank, 5)",
     description: 'final quiz selects 5 randomized case-study questions'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'MS-SaaS-PLAN-101 Create Plans for a SaaS Offer | Self-Paced Microsoft Course | Skunkworks Academy',
+    description: 'Microsoft SaaS plan course page title is present'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'Create Plans for a SaaS Offer',
+    description: 'Microsoft SaaS plan course heading is present'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'https://learn.microsoft.com/en-us/partner-center/marketplace-offers/create-new-saas-offer-plans',
+    description: 'course links to primary Microsoft Learn source'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'https://formsubmit.co/training@skunkworksacademy.com',
+    description: 'Microsoft course enrolment form target is present'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'Final Knowledge Check',
+    description: 'Microsoft course final assessment section exists'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/index.html',
+    text: 'Capstone Project',
+    description: 'Microsoft course capstone section exists'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
+    text: 'for (let i = 0; i < 200; i++)',
+    description: 'Microsoft course 200-question MCQ pool generation exists'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
+    text: 'for (let i = 0; i < 50; i++)',
+    description: 'Microsoft course 50-question case-study pool generation exists'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
+    text: "pick(questionBank, 50)",
+    description: 'Microsoft course final quiz selects 50 randomized MCQs'
+  },
+  {
+    file: 'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
+    text: "pick(caseBank, 5)",
+    description: 'Microsoft course final quiz selects 5 randomized case-study questions'
   }
 ];
 
@@ -89,10 +142,10 @@ for (const check of requiredContent) {
 }
 
 if (errors.length) {
-  console.error('CLD-UF-101 self-paced site validation failed.');
+  console.error('Self-paced site validation failed.');
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
 
-console.log('CLD-UF-101 self-paced site validation passed.');
+console.log('Self-paced site validation passed.');
 console.log(`Validated ${requiredFiles.length} files and ${requiredContent.length} content checks.`);
