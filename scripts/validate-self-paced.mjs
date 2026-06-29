@@ -25,6 +25,16 @@ const requiredContent = [
     description: 'self-paced index links to pricing'
   },
   {
+    file: 'self-paced/index.html',
+    text: '/self-paced/microsoft/ms-saas-plan-101/',
+    description: 'self-paced index links to MS-SaaS-PLAN-101'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: 'MS-SaaS-PLAN-101 · Create Plans for a SaaS Offer',
+    description: 'self-paced index lists the Microsoft SaaS plan course card'
+  },
+  {
     file: 'self-paced/claude/cld-uf-101/index.html',
     text: 'CLD-UF-101 Claude User Fundamentals | Self-Paced AI Course | Skunkworks Academy',
     description: 'course page title is present'
