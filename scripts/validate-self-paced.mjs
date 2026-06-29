@@ -10,7 +10,10 @@ const requiredFiles = [
   'self-paced/claude/cld-uf-101/assets/app.js',
   'self-paced/microsoft/ms-saas-plan-101/index.html',
   'self-paced/microsoft/ms-saas-plan-101/assets/styles.css',
-  'self-paced/microsoft/ms-saas-plan-101/assets/app.js'
+  'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
+  'self-paced/microsoft/d365-ce-bp-101/index.html',
+  'self-paced/microsoft/d365-ce-bp-101/assets/styles.css',
+  'self-paced/microsoft/d365-ce-bp-101/assets/app.js'
 ];
 
 const requiredContent = [
@@ -33,6 +36,16 @@ const requiredContent = [
     file: 'self-paced/index.html',
     text: 'MS-SaaS-PLAN-101 · Create Plans for a SaaS Offer',
     description: 'self-paced index lists the Microsoft SaaS plan course card'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: '/self-paced/microsoft/d365-ce-bp-101/',
+    description: 'self-paced index links to D365-CE-BP-101'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: 'D365-CE-BP-101 · Dynamics 365 Customer Engagement Best Practices',
+    description: 'self-paced index lists the Dynamics CE best practices course card'
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
@@ -128,6 +141,51 @@ const requiredContent = [
     file: 'self-paced/microsoft/ms-saas-plan-101/assets/app.js',
     text: "pick(caseBank, 5)",
     description: 'Microsoft course final quiz selects 5 randomized case-study questions'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/index.html',
+    text: 'D365-CE-BP-101 Best Practices for Developing with Dynamics 365 Customer Engagement | Self-Paced Microsoft Course | Skunkworks Academy',
+    description: 'Dynamics CE best practices course page title is present'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/index.html',
+    text: 'https://formsubmit.co/training@skunkworksacademy.com',
+    description: 'Dynamics CE course enrolment form target is present'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/index.html',
+    text: 'Final Knowledge Check',
+    description: 'Dynamics CE final assessment section exists'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/index.html',
+    text: 'Capstone Project',
+    description: 'Dynamics CE capstone section exists'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/index.html',
+    text: 'https://learn.microsoft.com/en-us/dynamics365/',
+    description: 'Dynamics CE course links to Microsoft Dynamics 365 documentation'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/assets/app.js',
+    text: 'for (let i = 0; i < 200; i++)',
+    description: 'Dynamics CE 200-question MCQ pool generation exists'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/assets/app.js',
+    text: 'for (let i = 0; i < 50; i++)',
+    description: 'Dynamics CE 50-question case-study pool generation exists'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/assets/app.js',
+    text: "pick(questionBank, 50)",
+    description: 'Dynamics CE final quiz selects 50 randomized MCQs'
+  },
+  {
+    file: 'self-paced/microsoft/d365-ce-bp-101/assets/app.js',
+    text: "pick(caseBank, 5)",
+    description: 'Dynamics CE final quiz selects 5 randomized case-study questions'
   }
 ];
 
