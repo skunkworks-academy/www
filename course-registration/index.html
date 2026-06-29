@@ -1,456 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Register for Skunkworks Academy cyber security, cloud, AI, vendor-aligned and corporate training courses." />
+  <meta name="description" content="Register for Skunkworks Academy self-paced, cybersecurity, cloud, AI, vendor-aligned and corporate training courses." />
   <title>Course Registration | Skunkworks Academy</title>
   <style>
-    :root {
-      --bg: #07111f;
-      --panel: #0d1b2f;
-      --panel-soft: #13253d;
-      --card: #ffffff;
-      --text: #152033;
-      --muted: #5c677d;
-      --brand: #21c55d;
-      --brand-dark: #0f8f44;
-      --accent: #00a8ff;
-      --danger: #c62828;
-      --border: #d9e2ef;
-      --shadow: 0 24px 60px rgba(2, 8, 23, 0.22);
-      --radius: 22px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Inter, "IBM Plex Sans", Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(0, 168, 255, 0.24), transparent 34%),
-        radial-gradient(circle at 84% 5%, rgba(33, 197, 93, 0.19), transparent 32%),
-        linear-gradient(180deg, #07111f 0%, #0a1425 45%, #f4f7fb 45%, #f4f7fb 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(7, 17, 31, 0.82);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .logo-dot {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      box-shadow: 0 10px 30px rgba(33, 197, 93, 0.35);
-      display: grid;
-      place-items: center;
-      color: #06111f;
-      font-weight: 900;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-actions a {
-      color: #d7e8ff;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .nav-actions .pill-link {
-      padding: 9px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-    }
-
-    .hero {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 72px 24px 44px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 36px;
-      align-items: center;
-      color: #fff;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(33, 197, 93, 0.12);
-      border: 1px solid rgba(33, 197, 93, 0.42);
-      color: #b9ffd0;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.35rem, 5.6vw, 5rem);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-    }
-
-    .hero p {
-      margin: 22px 0 0;
-      color: #d5e2f5;
-      font-size: 1.12rem;
-      max-width: 66ch;
-    }
-
-    .hero-actions {
-      margin-top: 28px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      min-height: 48px;
-      padding: 13px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 1rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--brand), #65e085);
-      color: #04140d;
-      box-shadow: 0 18px 40px rgba(33, 197, 93, 0.25);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.22);
-    }
-
-    .hero-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card h2 {
-      color: #fff;
-      margin: 0 0 14px;
-      font-size: 1.35rem;
-    }
-
-    .course-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #e9f3ff;
-      font-weight: 700;
-      font-size: 0.88rem;
-    }
-
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 24px 72px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 0.72fr 1.28fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    .info-panel, .form-panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .info-panel {
-      padding: 28px;
-      position: sticky;
-      top: 92px;
-    }
-
-    .info-panel h2, .form-panel h2 {
-      margin-top: 0;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .feature-list li {
-      display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .tick {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(33,197,93,0.13);
-      color: var(--brand-dark);
-      display: inline-grid;
-      place-items: center;
-      font-weight: 900;
-    }
-
-    .mini-card {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 18px;
-      background: #eef8ff;
-      border: 1px solid #cae9ff;
-      color: #16324a;
-    }
-
-    .mini-card strong { display: block; margin-bottom: 4px; }
-
-    .form-panel { overflow: hidden; }
-
-    .form-header {
-      padding: 30px 32px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, #ffffff, #f6fbff);
-    }
-
-    .form-header p { margin: 8px 0 0; color: var(--muted); }
-
-    form { padding: 32px; }
-
-    fieldset {
-      border: 0;
-      padding: 0;
-      margin: 0 0 28px;
-    }
-
-    legend {
-      width: 100%;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .fields {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .field { display: grid; gap: 7px; }
-
-    .field.full { grid-column: 1 / -1; }
-
-    label {
-      font-weight: 800;
-      color: #243149;
-      font-size: 0.95rem;
-    }
-
-    .hint {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.84rem;
-      margin-top: 2px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #cfd8e6;
-      border-radius: 14px;
-      padding: 13px 14px;
-      font: inherit;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    textarea { min-height: 116px; resize: vertical; }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.12);
-    }
-
-    .checkrow {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      margin: 12px 0;
-      color: #334155;
-    }
-
-    .checkrow input { width: 18px; margin-top: 3px; }
-
-    .required { color: var(--danger); }
-
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-top: 8px;
-    }
-
-    .privacy-note {
-      color: var(--muted);
-      font-size: 0.9rem;
-      max-width: 55ch;
-    }
-
-    .status {
-      display: none;
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      font-weight: 700;
-    }
-
-    .status.show { display: block; }
-    .status.error { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
-
-    footer {
-      margin-top: 56px;
-      color: #68758b;
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 920px) {
-      .hero, .grid { grid-template-columns: 1fr; }
-      .info-panel { position: static; }
-    }
-
-    @media (max-width: 640px) {
-      .topbar-inner { align-items: flex-start; flex-direction: column; }
-      .nav-actions { width: 100%; }
-      .hero { padding-top: 44px; }
-      .fields { grid-template-columns: 1fr; }
-      form, .form-header, .info-panel, .hero-card { padding: 22px; }
-      .btn { width: 100%; }
-    }
+    :root{--bg:#07111f;--card:#fff;--text:#152033;--muted:#5c677d;--brand:#21c55d;--brand-dark:#0f8f44;--accent:#00a8ff;--danger:#c62828;--border:#d9e2ef;--shadow:0 24px 60px rgba(2,8,23,.22);--radius:22px;--max:1180px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"IBM Plex Sans",Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(circle at 12% 10%,rgba(0,168,255,.24),transparent 34%),radial-gradient(circle at 84% 5%,rgba(33,197,93,.19),transparent 32%),linear-gradient(180deg,#07111f 0%,#0a1425 45%,#f4f7fb 45%,#f4f7fb 100%);color:var(--text);line-height:1.6}a{color:inherit}.topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(7,17,31,.82);border-bottom:1px solid rgba(255,255,255,.12)}.topbar-inner{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand-mark{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:-.02em}.logo-dot{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 10px 30px rgba(33,197,93,.35);display:grid;place-items:center;color:#06111f;font-weight:900}.nav-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.nav-actions a{color:#d7e8ff;text-decoration:none;font-size:.95rem;font-weight:600}.pill-link{padding:9px 14px;border:1px solid rgba(255,255,255,.2);border-radius:999px}.hero{max-width:var(--max);margin:0 auto;padding:72px 24px 44px;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;color:#fff}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(33,197,93,.12);border:1px solid rgba(33,197,93,.42);color:#b9ffd0;font-weight:700;font-size:.9rem;margin-bottom:18px}h1{margin:0;font-size:clamp(2.35rem,5.6vw,5rem);line-height:.98;letter-spacing:-.07em}.hero p{margin:22px 0 0;color:#d5e2f5;font-size:1.12rem;max-width:66ch}.hero-actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:48px;padding:13px 18px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;font-weight:800;font-size:1rem;transition:transform .18s ease}.btn:hover{transform:translateY(-1px)}.btn-primary{background:linear-gradient(135deg,var(--brand),#65e085);color:#04140d;box-shadow:0 18px 40px rgba(33,197,93,.25)}.btn-secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22)}.hero-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}.hero-card h2{color:#fff;margin:0 0 14px;font-size:1.35rem}.course-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.chip{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#e9f3ff;font-weight:700;font-size:.88rem}.wrap{max-width:var(--max);margin:0 auto;padding:0 24px 72px}.grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:28px;align-items:start}.info-panel,.form-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.info-panel{padding:28px;position:sticky;top:92px}.info-panel h2,.form-panel h2{margin-top:0;line-height:1.15;letter-spacing:-.03em}.feature-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px}.feature-list li{display:grid;grid-template-columns:26px 1fr;gap:10px;color:var(--muted)}.tick{width:24px;height:24px;border-radius:50%;background:rgba(33,197,93,.13);color:var(--brand-dark);display:inline-grid;place-items:center;font-weight:900}.mini-card{margin-top:22px;padding:18px;border-radius:18px;background:#eef8ff;border:1px solid #cae9ff;color:#16324a}.mini-card strong{display:block;margin-bottom:4px}.form-panel{overflow:hidden}.form-header{padding:30px 32px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#fff,#f6fbff)}.form-header p{margin:8px 0 0;color:var(--muted)}form{padding:32px}fieldset{border:0;padding:0;margin:0 0 28px}legend{width:100%;font-weight:900;letter-spacing:-.02em;font-size:1.1rem;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}label{font-weight:800;color:#243149;font-size:.95rem}.hint{display:block;color:var(--muted);font-weight:500;font-size:.84rem;margin-top:2px}input,select,textarea{width:100%;border:1px solid #cfd8e6;border-radius:14px;padding:13px 14px;font:inherit;background:#fff;color:var(--text);outline:none}textarea{min-height:116px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,168,255,.12)}.checkrow{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:12px 0;color:#334155}.checkrow input{width:18px;margin-top:3px}.required{color:var(--danger)}.form-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:8px}.privacy-note{color:var(--muted);font-size:.9rem;max-width:55ch}.status{display:none;margin-top:18px;padding:14px 16px;border-radius:14px;font-weight:700}.status.show{display:block}.status.error{background:#fff1f2;color:#9f1239;border:1px solid #fecdd3}.status.success{background:#ecfdf5;color:#065f46;border:1px solid #bbf7d0}footer{margin-top:56px;color:#68758b;text-align:center;font-size:.92rem}@media(max-width:920px){.hero,.grid{grid-template-columns:1fr}.info-panel{position:static}}@media(max-width:640px){.topbar-inner{align-items:flex-start;flex-direction:column}.nav-actions{width:100%}.hero{padding-top:44px}.fields{grid-template-columns:1fr}form,.form-header,.info-panel,.hero-card{padding:22px}.btn{width:100%}}
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand-mark" href="https://www.skunkworksacademy.com" aria-label="Skunkworks Academy home">
-        <span class="logo-dot">S</span>
-        <span>Skunkworks Academy</span>
-      </a>
-      <nav class="nav-actions" aria-label="Page navigation">
-        <a href="#registration">Register</a>
-        <a class="pill-link" href="mailto:training@skunkworksacademy.com">training@skunkworksacademy.com</a>
-      </nav>
+      <a class="brand-mark" href="https://www.skunkworksacademy.com" aria-label="Skunkworks Academy home"><span class="logo-dot">S</span><span>Skunkworks Academy</span></a>
+      <nav class="nav-actions" aria-label="Page navigation"><a href="#registration">Register</a><a class="pill-link" href="mailto:training@skunkworksacademy.com">training@skunkworksacademy.com</a></nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div>
-        <span class="eyebrow">June 2026 Intake • Cyber Security Training</span>
+        <span class="eyebrow">Self-paced and cohort learning</span>
         <h1>Course Registration</h1>
-        <p>
-          Register for Skunkworks Academy training across cybersecurity, ethical hacking,
-          Microsoft security fundamentals, cloud, AI, DevOps and corporate upskilling pathways.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#registration">Complete Registration</a>
-          <a class="btn btn-secondary" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Enquiry">Ask a Training Advisor</a>
-        </div>
+        <p>Register for Skunkworks Academy training. When you arrive here from a locked self-paced course, the registration flow records your intended course and returns you to that course unlocked after submission.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#registration">Complete Registration</a><a class="btn btn-secondary" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Enquiry">Ask a Training Advisor</a></div>
       </div>
-
-      <aside class="hero-card" aria-label="Featured course tracks">
-        <h2>Featured Cyber Security Tracks</h2>
-        <p>
-          Select a single course, a full pathway, or request a corporate cohort for your team.
-        </p>
-        <div class="course-chips">
-          <span class="chip">Cisco Ethical Hacker</span>
-          <span class="chip">CompTIA Ethical Hacker Pro</span>
-          <span class="chip">Microsoft SC-900</span>
-          <span class="chip">SOC Analyst Foundations</span>
-          <span class="chip">OWASP Top 10</span>
-          <span class="chip">Corporate Cyber Awareness</span>
-        </div>
+      <aside class="hero-card" aria-label="Registration routing">
+        <h2>Course access after registration</h2>
+        <p id="selectedCourseSummary">Select a course below. If this registration was launched from a course page, that course is preselected and will reopen after submission.</p>
+        <div class="course-chips"><span class="chip">Self-paced courses</span><span class="chip">OWASP Top 10</span><span class="chip">Cybersecurity</span><span class="chip">Cloud</span><span class="chip">AI</span><span class="chip">Corporate cohorts</span></div>
       </aside>
     </section>
 
@@ -460,219 +38,147 @@
           <h2>What happens after you register?</h2>
           <ul class="feature-list">
             <li><span class="tick">✓</span><span>Your registration details are emailed directly to the Skunkworks Academy training team.</span></li>
-            <li><span class="tick">✓</span><span>A training advisor confirms availability, dates, delivery mode and pricing.</span></li>
-            <li><span class="tick">✓</span><span>Corporate learners can request a quotation, invoice and cohort schedule.</span></li>
-            <li><span class="tick">✓</span><span>Students receive next steps for enrolment, payment and class access.</span></li>
+            <li><span class="tick">✓</span><span>The course you came from is stored as your requested course.</span></li>
+            <li><span class="tick">✓</span><span>For self-paced courses, your browser entitlement is set immediately after submission.</span></li>
+            <li><span class="tick">✓</span><span>You are redirected back to the original course page so the workspace can unlock.</span></li>
           </ul>
-
-          <div class="mini-card">
-            <strong>Privacy note</strong>
-            This form collects only course registration information. Do not submit passwords,
-            card details, ID documents or confidential client information.
-          </div>
+          <div class="mini-card"><strong>Privacy note</strong>This form collects only course registration information. Do not submit passwords, card details, ID documents or confidential client information.</div>
         </aside>
 
         <section class="form-panel" aria-labelledby="form-title">
-          <div class="form-header">
-            <h2 id="form-title">Student Course Registration Form</h2>
-            <p>Fields marked with <span class="required">*</span> are required. Submissions are sent to <strong>training@skunkworksacademy.com</strong>.</p>
-          </div>
-
+          <div class="form-header"><h2 id="form-title">Student Course Registration Form</h2><p>Fields marked with <span class="required">*</span> are required. Submissions are sent to <strong>training@skunkworksacademy.com</strong>.</p></div>
           <form id="courseRegistrationForm" action="https://formsubmit.co/training@skunkworksacademy.com" method="POST">
             <input type="hidden" name="_subject" value="New Skunkworks Academy Course Registration" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://skunkworks-academy.github.io/.github/course-registration/thank-you.html" />
-            <input type="hidden" name="Registration Source" value="Skunkworks Academy GitHub Course Registration Page" />
+            <input type="hidden" id="nextUrl" name="_next" value="" />
+            <input type="hidden" name="Registration Source" value="Skunkworks Academy Course Registration Page" />
             <input type="hidden" id="registrationTimestamp" name="Registration Timestamp" value="" />
+            <input type="hidden" id="requestedCourseCode" name="Requested Course Code" value="" />
+            <input type="hidden" id="returnUrl" name="Return URL" value="" />
             <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" />
 
-            <fieldset>
-              <legend>1. Student Details</legend>
-              <div class="fields">
-                <div class="field">
-                  <label for="firstName">First name <span class="required">*</span></label>
-                  <input id="firstName" name="First Name" type="text" autocomplete="given-name" required />
-                </div>
-                <div class="field">
-                  <label for="lastName">Last name <span class="required">*</span></label>
-                  <input id="lastName" name="Last Name" type="text" autocomplete="family-name" required />
-                </div>
-                <div class="field">
-                  <label for="email">Email address <span class="required">*</span></label>
-                  <input id="email" name="Email" type="email" autocomplete="email" required />
-                </div>
-                <div class="field">
-                  <label for="phone">Mobile / WhatsApp number <span class="required">*</span></label>
-                  <input id="phone" name="Mobile / WhatsApp" type="tel" autocomplete="tel" placeholder="+27 83 000 0000" required />
-                </div>
-                <div class="field">
-                  <label for="country">Country <span class="required">*</span></label>
-                  <input id="country" name="Country" type="text" autocomplete="country-name" value="South Africa" required />
-                </div>
-                <div class="field">
-                  <label for="city">City / Region</label>
-                  <input id="city" name="City / Region" type="text" autocomplete="address-level2" placeholder="Johannesburg" />
-                </div>
-              </div>
+            <fieldset><legend>1. Student Details</legend><div class="fields">
+              <div class="field"><label for="firstName">First name <span class="required">*</span></label><input id="firstName" name="First Name" type="text" autocomplete="given-name" required /></div>
+              <div class="field"><label for="lastName">Last name <span class="required">*</span></label><input id="lastName" name="Last Name" type="text" autocomplete="family-name" required /></div>
+              <div class="field"><label for="email">Email address <span class="required">*</span></label><input id="email" name="Email" type="email" autocomplete="email" required /></div>
+              <div class="field"><label for="phone">Mobile / WhatsApp number <span class="required">*</span></label><input id="phone" name="Mobile / WhatsApp" type="tel" autocomplete="tel" placeholder="+27 83 000 0000" required /></div>
+              <div class="field"><label for="country">Country <span class="required">*</span></label><input id="country" name="Country" type="text" autocomplete="country-name" value="South Africa" required /></div>
+              <div class="field"><label for="city">City / Region</label><input id="city" name="City / Region" type="text" autocomplete="address-level2" placeholder="Johannesburg" /></div>
+            </div></fieldset>
+
+            <fieldset><legend>2. Course Selection</legend><div class="fields">
+              <div class="field full"><label for="course">Course / programme <span class="required">*</span></label><select id="course" name="Course / Programme" required>
+                <option value="">Select a course</option>
+                <option value="SKW-OWASP10-2025">OWASP Top 10:2025 Web Application Security</option>
+                <option value="CYBER-PATHWAY">Cyber Security Pathway - Full Bundle</option>
+                <option value="CISCO-EH">Cisco Networking Academy Ethical Hacker</option>
+                <option value="COMPTIA-EHP">CompTIA Ethical Hacker Pro</option>
+                <option value="MS-SC900">Microsoft SC-900T00-A: Security, Compliance, and Identity</option>
+                <option value="SOC-FOUNDATIONS">SOC Analyst Foundations</option>
+                <option value="CORP-CYBER-AWARENESS">Corporate Cyber Awareness</option>
+                <option value="AI-ZERO-TRUST">AI, Cyber Risk & Zero Trust Awareness</option>
+                <option value="CLOUD-SECURITY">Cloud Security Essentials</option>
+                <option value="CUSTOM">Other / Custom Training Request</option>
+              </select><span class="hint" id="courseHint">If you came from a course page, the course is preselected from the URL.</span></div>
+              <div class="field"><label for="intake">Preferred intake</label><input id="intake" name="Preferred Intake" type="text" value="Self-paced / Next available" /></div>
+              <div class="field"><label for="delivery">Preferred delivery mode <span class="required">*</span></label><select id="delivery" name="Preferred Delivery Mode" required><option value="">Select delivery mode</option><option>Self-paced with mentor support</option><option>Online instructor-led</option><option>Classroom / in-person</option><option>Blended learning</option><option>Corporate private class</option></select></div>
+              <div class="field"><label for="experience">Current experience level</label><select id="experience" name="Current Experience Level"><option>Beginner</option><option>Student / Graduate</option><option>IT Support</option><option>Network / Systems Administrator</option><option>Cloud / DevOps Professional</option><option>Security Professional</option><option>Manager / Business Leader</option></select></div>
+              <div class="field"><label for="learners">Number of learners</label><input id="learners" name="Number of Learners" type="number" min="1" value="1" /></div>
+            </div></fieldset>
+
+            <fieldset><legend>3. Organisation & Billing</legend><div class="fields">
+              <div class="field"><label for="learnerType">Registration type <span class="required">*</span></label><select id="learnerType" name="Registration Type" required><option value="">Select registration type</option><option>Individual learner</option><option>Student / Graduate</option><option>Corporate learner</option><option>Corporate team / cohort</option><option>Government / Public sector</option><option>University / School / Institution</option></select></div>
+              <div class="field"><label for="company">Company / institution</label><input id="company" name="Company / Institution" type="text" autocomplete="organization" /></div>
+              <div class="field"><label for="billingName">Billing contact name</label><input id="billingName" name="Billing Contact Name" type="text" /></div>
+              <div class="field"><label for="billingEmail">Billing email</label><input id="billingEmail" name="Billing Email" type="email" /></div>
+              <div class="field full"><label for="purchasePath">Payment / purchase preference</label><select id="purchasePath" name="Payment / Purchase Preference"><option>Please send pricing and enrolment steps</option><option>Please send a quotation</option><option>Please issue a pro-forma invoice</option><option>Company purchase order to follow</option><option>I need funding / sponsorship guidance</option></select></div>
+            </div></fieldset>
+
+            <fieldset><legend>4. Learning Goals</legend><div class="fields"><div class="field full"><label for="goals">What do you want to achieve from this training?</label><textarea id="goals" name="Learning Goals" placeholder="Example: I want to improve secure coding, prepare for a security role, upskill my team, or complete a self-paced certification pathway."></textarea></div><div class="field full"><label for="notes">Additional notes / special requirements</label><textarea id="notes" name="Additional Notes" placeholder="Share preferred dates, accessibility needs, team requirements, or questions for the training team."></textarea></div></div></fieldset>
+
+            <fieldset><legend>5. Consent</legend>
+              <label class="checkrow" for="contactConsent"><input id="contactConsent" name="Consent to Contact" type="checkbox" value="Yes" required /><span>I consent to Skunkworks Academy contacting me about this course registration, schedule, pricing and enrolment steps. <span class="required">*</span></span></label>
+              <label class="checkrow" for="privacyConsent"><input id="privacyConsent" name="POPIA / Privacy Consent" type="checkbox" value="Yes" required /><span>I confirm that the information submitted is accurate and may be processed for course registration and training administration purposes. <span class="required">*</span></span></label>
+              <label class="checkrow" for="marketingConsent"><input id="marketingConsent" name="Marketing Updates Consent" type="checkbox" value="Yes" /><span>I would like to receive occasional updates about Skunkworks Academy courses, badges, events and learning pathways.</span></label>
             </fieldset>
 
-            <fieldset>
-              <legend>2. Course Selection</legend>
-              <div class="fields">
-                <div class="field full">
-                  <label for="course">Course / programme <span class="required">*</span></label>
-                  <select id="course" name="Course / Programme" required>
-                    <option value="">Select a course</option>
-                    <option>Cyber Security Pathway - Full Bundle</option>
-                    <option>Cisco Networking Academy Ethical Hacker</option>
-                    <option>CompTIA Ethical Hacker Pro</option>
-                    <option>Microsoft SC-900T00-A: Security, Compliance, and Identity</option>
-                    <option>SOC Analyst Foundations</option>
-                    <option>OWASP Top 10 & Secure Coding</option>
-                    <option>Corporate Cyber Awareness</option>
-                    <option>AI, Cyber Risk & Zero Trust Awareness</option>
-                    <option>Cloud Security Essentials</option>
-                    <option>Other / Custom Training Request</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="intake">Preferred intake</label>
-                  <input id="intake" name="Preferred Intake" type="text" value="June 2026" />
-                </div>
-                <div class="field">
-                  <label for="delivery">Preferred delivery mode <span class="required">*</span></label>
-                  <select id="delivery" name="Preferred Delivery Mode" required>
-                    <option value="">Select delivery mode</option>
-                    <option>Online instructor-led</option>
-                    <option>Classroom / in-person</option>
-                    <option>Blended learning</option>
-                    <option>Self-paced with mentor support</option>
-                    <option>Corporate private class</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="experience">Current experience level</label>
-                  <select id="experience" name="Current Experience Level">
-                    <option>Beginner</option>
-                    <option>Student / Graduate</option>
-                    <option>IT Support</option>
-                    <option>Network / Systems Administrator</option>
-                    <option>Cloud / DevOps Professional</option>
-                    <option>Security Professional</option>
-                    <option>Manager / Business Leader</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="learners">Number of learners</label>
-                  <input id="learners" name="Number of Learners" type="number" min="1" value="1" />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>3. Organisation & Billing</legend>
-              <div class="fields">
-                <div class="field">
-                  <label for="learnerType">Registration type <span class="required">*</span></label>
-                  <select id="learnerType" name="Registration Type" required>
-                    <option value="">Select registration type</option>
-                    <option>Individual learner</option>
-                    <option>Student / Graduate</option>
-                    <option>Corporate learner</option>
-                    <option>Corporate team / cohort</option>
-                    <option>Government / Public sector</option>
-                    <option>University / School / Institution</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="company">Company / institution</label>
-                  <input id="company" name="Company / Institution" type="text" autocomplete="organization" />
-                </div>
-                <div class="field">
-                  <label for="billingName">Billing contact name</label>
-                  <input id="billingName" name="Billing Contact Name" type="text" />
-                </div>
-                <div class="field">
-                  <label for="billingEmail">Billing email</label>
-                  <input id="billingEmail" name="Billing Email" type="email" />
-                </div>
-                <div class="field full">
-                  <label for="purchasePath">Payment / purchase preference</label>
-                  <select id="purchasePath" name="Payment / Purchase Preference">
-                    <option>Please send pricing and enrolment steps</option>
-                    <option>Please send a quotation</option>
-                    <option>Please issue a pro-forma invoice</option>
-                    <option>Company purchase order to follow</option>
-                    <option>I need funding / sponsorship guidance</option>
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>4. Learning Goals</legend>
-              <div class="fields">
-                <div class="field full">
-                  <label for="goals">What do you want to achieve from this training?</label>
-                  <textarea id="goals" name="Learning Goals" placeholder="Example: I want to move into a SOC analyst role, prepare for ethical hacking, upskill my IT team, or build Microsoft security fundamentals."></textarea>
-                </div>
-                <div class="field full">
-                  <label for="notes">Additional notes / special requirements</label>
-                  <textarea id="notes" name="Additional Notes" placeholder="Share preferred dates, accessibility needs, team requirements, or questions for the training team."></textarea>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>5. Consent</legend>
-              <label class="checkrow" for="contactConsent">
-                <input id="contactConsent" name="Consent to Contact" type="checkbox" value="Yes" required />
-                <span>I consent to Skunkworks Academy contacting me about this course registration, schedule, pricing and enrolment steps. <span class="required">*</span></span>
-              </label>
-              <label class="checkrow" for="privacyConsent">
-                <input id="privacyConsent" name="POPIA / Privacy Consent" type="checkbox" value="Yes" required />
-                <span>I confirm that the information submitted is accurate and may be processed for course registration and training administration purposes. <span class="required">*</span></span>
-              </label>
-              <label class="checkrow" for="marketingConsent">
-                <input id="marketingConsent" name="Marketing Updates Consent" type="checkbox" value="Yes" />
-                <span>I would like to receive occasional updates about Skunkworks Academy courses, badges, events and learning pathways.</span>
-              </label>
-            </fieldset>
-
-            <div class="form-footer">
-              <p class="privacy-note">
-                Submission uses FormSubmit to route registration details to the Skunkworks Academy training mailbox.
-                The training team will confirm your enrolment manually.
-              </p>
-              <button class="btn btn-primary" type="submit">Submit Registration</button>
-            </div>
+            <div class="form-footer"><p class="privacy-note">After successful submission, you will be returned to your requested course. For self-paced gated courses, local browser access is unlocked immediately while the training team completes manual follow-up.</p><button class="btn btn-primary" type="submit">Submit Registration</button></div>
             <div class="status error" id="formError" role="alert"></div>
           </form>
         </section>
       </div>
-
-      <footer>
-        <p>© <span id="year"></span> Skunkworks Academy. Dream. Design. Deliver.</p>
-      </footer>
+      <footer><p>© <span id="year"></span> Skunkworks Academy. Dream. Design. Deliver.</p></footer>
     </section>
   </main>
 
   <script>
+    const COURSE_RETURN = {
+      'SKW-OWASP10-2025': '/self-paced/security/skw-owasp-top10-2025/'
+    };
+    const COURSE_LABEL = {
+      'SKW-OWASP10-2025': 'OWASP Top 10:2025 Web Application Security'
+    };
     const form = document.getElementById('courseRegistrationForm');
     const errorBox = document.getElementById('formError');
     const timestamp = document.getElementById('registrationTimestamp');
+    const nextUrl = document.getElementById('nextUrl');
+    const requestedCourseCode = document.getElementById('requestedCourseCode');
+    const returnUrl = document.getElementById('returnUrl');
+    const courseSelect = document.getElementById('course');
+    const selectedCourseSummary = document.getElementById('selectedCourseSummary');
     const year = document.getElementById('year');
+    const params = new URLSearchParams(window.location.search);
+
+    function normaliseReturn(value, courseCode) {
+      const fallback = COURSE_RETURN[courseCode] || '/self-paced/';
+      if (!value) return fallback;
+      try {
+        const parsed = new URL(value, window.location.origin);
+        if (parsed.origin !== window.location.origin) return fallback;
+        return `${parsed.pathname}${parsed.search}${parsed.hash}`;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function selectedCourseCode() {
+      return courseSelect.value || params.get('course') || '';
+    }
+
+    function updateRoutingFields() {
+      const courseCode = selectedCourseCode();
+      const destination = normaliseReturn(params.get('return'), courseCode);
+      const thankYou = new URL('./thank-you.html', window.location.href);
+      thankYou.searchParams.set('course', courseCode);
+      thankYou.searchParams.set('return', destination);
+      thankYou.searchParams.set('unlock', '1');
+      nextUrl.value = thankYou.href;
+      requestedCourseCode.value = courseCode;
+      returnUrl.value = destination;
+      selectedCourseSummary.textContent = courseCode && COURSE_LABEL[courseCode]
+        ? `${COURSE_LABEL[courseCode]} is selected. After registration you will return to ${destination} and the course workspace will unlock in this browser.`
+        : 'Select a course below. If this registration was launched from a course page, that course is preselected and will reopen after submission.';
+    }
 
     year.textContent = new Date().getFullYear();
+    const requestedCourse = params.get('course');
+    if (requestedCourse && [...courseSelect.options].some(option => option.value === requestedCourse)) {
+      courseSelect.value = requestedCourse;
+      if (requestedCourse === 'SKW-OWASP10-2025') document.getElementById('delivery').value = 'Self-paced with mentor support';
+    }
+    courseSelect.addEventListener('change', updateRoutingFields);
+    updateRoutingFields();
 
     form.addEventListener('submit', function (event) {
       errorBox.className = 'status error';
       errorBox.textContent = '';
       timestamp.value = new Date().toISOString();
+      updateRoutingFields();
 
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
+      const courseCode = selectedCourseCode();
 
       if (!email.includes('@') || !email.includes('.')) {
         event.preventDefault();
@@ -685,6 +191,19 @@
         event.preventDefault();
         errorBox.textContent = 'Please enter a valid phone or WhatsApp number.';
         errorBox.classList.add('show');
+        return;
+      }
+
+      if (!courseCode) {
+        event.preventDefault();
+        errorBox.textContent = 'Please select the course you want to register for.';
+        errorBox.classList.add('show');
+        return;
+      }
+
+      if (courseCode === 'SKW-OWASP10-2025') {
+        localStorage.setItem(`skwacademy.entitlement.${courseCode}`, 'granted');
+        localStorage.setItem(`skwacademy.registration.${courseCode}`, JSON.stringify({ courseCode, email, returnUrl: returnUrl.value, submittedAt: timestamp.value }));
       }
     });
   </script>
