@@ -1,0 +1,15 @@
+{
+  "name": "skw-owasp10-2025-local-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only Skunkworks Academy OWASP Top 10:2025 training lab server using built-in Node.js modules.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
