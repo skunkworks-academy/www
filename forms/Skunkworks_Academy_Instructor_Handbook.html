@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skunkworks Academy Instructor Handbook</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm;
+    }
+
+    body {
+      margin: 0;
+      padding: 28px;
+      background: #f3f4f6;
+      color: #1f2933;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .document {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 52px 64px;
+      border-top: 8px solid #111827;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .cover {
+      text-align: center;
+      padding: 80px 20px 60px;
+      border-bottom: 2px solid #111827;
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #374151;
+    }
+
+    .version {
+      margin-top: 34px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .company-box {
+      margin: 34px auto 0;
+      max-width: 540px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 18px;
+      font-size: 13px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin: 34px 0 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-top: 30px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #d1d5db;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #111827;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin-top: 18px;
+      color: #111827;
+    }
+
+    p, li, td, th, label, input, textarea {
+      font-size: 13px;
+    }
+
+    p {
+      margin: 9px 0;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .toc a {
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .note {
+      border-left: 4px solid #111827;
+      background: #f9fafb;
+      padding: 12px 15px;
+      margin: 16px 0;
+      color: #374151;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+    }
+
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 9px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 7px 8px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .checkbox-line input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .page-break {
+      page-break-before: always;
+      margin-top: 42px;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 18px;
+    }
+
+    .signature-box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 18px;
+      min-height: 230px;
+      page-break-inside: avoid;
+    }
+
+    .signature-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #111827;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid #111827;
+      height: 28px;
+      margin-top: 12px;
+    }
+
+    .sig-label {
+      font-size: 10.5px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .footer-note {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid #d1d5db;
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+        border-top: none;
+      }
+
+      h2, h3 {
+        page-break-after: avoid;
+      }
+
+      table, .box, .signature-box {
+        page-break-inside: avoid;
+      }
+
+      input, textarea {
+        border: none;
+        border-bottom: 1px solid #111827;
+        border-radius: 0;
+        padding: 3px 0;
+      }
+
+      textarea {
+        border: 1px solid #d1d5db;
+        min-height: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="document">
+
+  <section class="cover">
+    <div class="brand">Skunkworks Academy</div>
+    <div class="subtitle">Instructor Handbook</div>
+    <div class="version">
+      Version: <input type="text" placeholder="e.g. July 2026" />
+    </div>
+
+    <div class="company-box">
+      <strong>Skunkworks Academy (Pty) Ltd</strong><br />
+      Registration Number: 2026 / 401210 / 07<br />
+      26 Second Avenue, Alberton, Gauteng, 1401, South Africa<br />
+      Website: <input type="text" placeholder="Insert website" /><br />
+      General Contact: <input type="email" placeholder="Insert general contact email" />
+    </div>
+  </section>
+
+  <h1>Table of Contents</h1>
+  <div class="toc">
+    <ol>
+      <li><a href="#welcome">Welcome to Skunkworks Academy</a></li>
+      <li><a href="#profile">Company Profile</a></li>
+      <li><a href="#mission">Mission Statement</a></li>
+      <li><a href="#philosophy">Educational Philosophy</a></li>
+      <li><a href="#tips">Training Tips and Professional Conduct</a></li>
+      <li><a href="#training">Training for Skunkworks Academy</a></li>
+      <li><a href="#delivery">Class Delivery Requirements</a></li>
+      <li><a href="#evaluations">Evaluations, NPS and Quality Benchmarks</a></li>
+      <li><a href="#skills">Instructor Skills</a></li>
+      <li><a href="#materials">Course Materials and Facilities</a></li>
+      <li><a href="#postclass">Post-Class Activities</a></li>
+      <li><a href="#invoicing">Expenses and Invoicing</a></li>
+      <li><a href="#bootcamps">Boot Camps and Re-Skilling Programmes</a></li>
+      <li><a href="#mentoring">Project Mentoring</a></li>
+      <li><a href="#privacy">Confidentiality, Privacy and Data Handling</a></li>
+      <li><a href="#appendices">Appendices</a></li>
+    </ol>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h1 id="welcome">1. Welcome to Skunkworks Academy</h1>
+
+  <p>
+    Welcome to the Skunkworks Academy instructor network. As an instructor, facilitator,
+    mentor, coach, or subject matter expert, you represent Skunkworks Academy whenever
+    you deliver training, mentoring, consulting, boot camp support, assessments, or client-facing services.
+  </p>
+
+  <p>
+    This handbook explains the standards, processes, expectations, and professional conduct
+    required when delivering services for Skunkworks Academy. It is intended to help instructors
+    prepare properly, deliver consistently, support learners effectively, and protect the reputation
+    of Skunkworks Academy and its clients.
+  </p>
+
+  <div class="note">
+    Instructors must read this handbook before accepting or delivering any Skunkworks Academy engagement.
+    Questions should be raised with the Skunkworks Academy delivery or education team before class begins.
+  </div>
+
+  <h1 id="profile">2. Company Profile</h1>
+
+  <p>
+    Skunkworks Academy provides training, mentoring, consulting, workforce development,
+    technical enablement, academy programmes, and related learning services. The company
+    supports organisations and individuals in building practical, job-ready technology and business skills.
+  </p>
+
+  <p>
+    Skunkworks Academy’s approach combines structured training, real-world exercises,
+    practical labs, mentoring, project-based learning, and client-specific delivery requirements.
+    Our instructors are expected to deliver learning that is professional, practical, respectful,
+    outcomes-focused, and aligned to the client’s objectives.
+  </p>
+
+  <table>
+    <tr>
+      <th>Registered Name</th>
+      <td>Skunkworks Academy (Pty) Ltd</td>
+    </tr>
+    <tr>
+      <th>Registration Number</th>
+      <td>2026 / 401210 / 07</td>
+    </tr>
+    <tr>
+      <th>Registered Address</th>
+      <td>26 Second Avenue, Alberton, Gauteng, 1401, South Africa</td>
+    </tr>
+    <tr>
+      <th>Main Business / Object</th>
+      <td>Business activities not restricted</td>
+    </tr>
+  </table>
+
+  <h1 id="mission">3. Mission Statement</h1>
+
+  <p>
+    Skunkworks Academy’s mission is to deliver practical, high-quality learning experiences
+    that help learners, teams, and organisations build skills they can apply immediately.
+  </p>
+
+  <p>
+    We aim to combine technical depth, professional instruction, hands-on learning,
+    mentorship, and client-focused delivery to improve capability, confidence, productivity,
+    and long-term career outcomes.
+  </p>
+
+  <div class="box">
+    <strong>Instructor commitment:</strong>
+    Every Skunkworks Academy instructor must help create a learning environment where
+    learners feel respected, challenged, supported, and equipped to apply what they learn.
+  </div>
+
+  <h1 id="philosophy">4. Educational Philosophy</h1>
+
+  <p>
+    Adult learners bring existing knowledge, work experience, expectations, and practical
+    challenges into the classroom. Skunkworks Academy instructors should use that experience
+    as part of the learning process.
+  </p>
+
+  <ul>
+    <li>Adults generally learn best in a respectful, non-threatening, and supportive environment.</li>
+    <li>Interactive teaching methods create more meaningful learning than lecture-only delivery.</li>
+    <li>New knowledge should be connected to prior knowledge and real-world work scenarios.</li>
+    <li>Training should be problem-based, practical, and relevant to the learner’s role.</li>
+    <li>Labs, discussions, examples, and demonstrations should reinforce the course objectives.</li>
+    <li>Instructors should encourage questions and manage the class so all learners can participate.</li>
+  </ul>
+
+  <h1 id="tips">5. Training Tips and Professional Conduct</h1>
+
+  <h2>5.1 Always</h2>
+
+  <ul>
+    <li>Review all course materials before the first day of class.</li>
+    <li>Complete all exercises, labs, assessments, and demonstrations before delivering the course.</li>
+    <li>Study test questions or assessment criteria, where applicable, so the required topics are covered.</li>
+    <li>Arrive or connect early enough to verify the classroom, platform, tools, labs, audio, video, and materials.</li>
+    <li>Report any problems, learner issues, client concerns, or platform failures to Skunkworks Academy immediately.</li>
+    <li>Introduce yourself as a Skunkworks Academy instructor or approved delivery partner.</li>
+    <li>Teach to the whole class, not only to the most vocal or advanced learners.</li>
+    <li>Monitor learner progress during labs and exercises.</li>
+    <li>Use examples that are practical, respectful, and relevant to the client environment.</li>
+    <li>Maintain a professional tone at all times.</li>
+  </ul>
+
+  <h2>5.2 Never</h2>
+
+  <ul>
+    <li>Tell learners that you are unprepared, inexperienced, or unfamiliar with the course.</li>
+    <li>Criticise the client’s infrastructure, systems, tools, technology choices, staff, or processes.</li>
+    <li>Read directly from slides or manuals for extended periods.</li>
+    <li>Criticise course materials in front of learners or the client.</li>
+    <li>Ignore disruptive behaviour or learner conflict.</li>
+    <li>Embarrass a learner publicly.</li>
+    <li>Change class start or end times without prior approval.</li>
+    <li>Cancel a class or end a class early without Skunkworks Academy approval.</li>
+    <li>Market your own services, employer, products, or competing offerings to Skunkworks Academy clients.</li>
+    <li>Share personal contact details with learners unless expressly authorised.</li>
+  </ul>
+
+  <h2>5.3 Client Sensitivity</h2>
+
+  <p>
+    Instructors must remain neutral and professional when discussing tools, vendors, platforms,
+    frameworks, client policies, or internal systems. Learners and clients may have invested
+    heavily in specific technologies or processes. Negative comments can harm the client relationship.
+  </p>
+
+  <h2>5.4 Personal Relationships and Conflicts</h2>
+
+  <p>
+    Personal relationships with learners, client staff, or client decision-makers during an
+    engagement may create conflicts of interest or reputational risk. Any existing or potential
+    conflict must be disclosed to Skunkworks Academy before the engagement begins.
+  </p>
+
+  <h2>5.5 Representation</h2>
+
+  <p>
+    Instructors must represent Skunkworks Academy professionally. Unless authorised, instructors
+    must not distribute personal business cards, promote another company, use non-approved
+    branding, or solicit work from Skunkworks Academy clients or learners.
+  </p>
+
+  <h1 id="training">6. Training for Skunkworks Academy</h1>
+
+  <h2>6.1 Training Lifecycle</h2>
+
+  <p>A typical Skunkworks Academy training engagement may include:</p>
+
+  <ol>
+    <li>Client training request or internal programme requirement.</li>
+    <li>Instructor availability request.</li>
+    <li>Client requirement review or subject matter expert call.</li>
+    <li>Courseware and lab verification.</li>
+    <li>Instructor task order or written booking confirmation.</li>
+    <li>Client-specific orientation and logistics confirmation.</li>
+    <li>Delivery of training or mentoring.</li>
+    <li>Daily feedback, attendance, progress tracking, and final evaluations.</li>
+    <li>Post-class reporting, cleanup, invoice submission, and lessons learned.</li>
+  </ol>
+
+  <h2>6.2 Pre-Class Activities</h2>
+
+  <p>
+    For private, customised, or client-specific engagements, Skunkworks Academy may arrange
+    a preparation call with the instructor, client, project manager, or subject matter expert.
+    The purpose is to confirm requirements, learner profiles, expected outcomes, course scope,
+    environment setup, and any customisation needed.
+  </p>
+
+  <h2>6.3 Request for Available Training Dates</h2>
+
+  <p>
+    Skunkworks Academy may contact instructors or vendors to request availability before
+    a client confirms dates. Availability does not guarantee assignment. A confirmed assignment
+    will be issued through a task order, booking confirmation, written instruction, or other approved method.
+  </p>
+
+  <h2>6.4 Courseware Verification</h2>
+
+  <ul>
+    <li>Instructors must review all courseware before class.</li>
+    <li>Slides, learner guides, labs, exercises, assessments, and platform access must be tested.</li>
+    <li>All labs must be tested in the same or equivalent environment that learners will use.</li>
+    <li>Errors or concerns must be reported before class begins.</li>
+    <li>Courseware must not be criticised in front of learners or clients.</li>
+  </ul>
+
+  <h2>6.5 Learning Management System and Platforms</h2>
+
+  <p>
+    Skunkworks Academy may use a learning management system, learner portal, lab platform,
+    webinar platform, assessment system, or client system to manage training delivery.
+    Instructors must use the assigned platform and follow the instructions provided in the
+    instructor confirmation.
+  </p>
+
+  <table>
+    <tr>
+      <th>LMS / Portal Name</th>
+      <td><input type="text" placeholder="Insert LMS or portal name" /></td>
+    </tr>
+    <tr>
+      <th>Instructor Login URL</th>
+      <td><input type="text" placeholder="Insert URL" /></td>
+    </tr>
+    <tr>
+      <th>Support Contact</th>
+      <td><input type="text" placeholder="Insert support email or phone" /></td>
+    </tr>
+  </table>
+
+  <h2>6.6 Task Orders</h2>
+
+  <p>
+    Task orders or written booking confirmations contain the official details for a specific
+    engagement, including client, course, dates, times, location, rate, invoicing details,
+    materials, travel, cancellation terms, and special conditions.
+  </p>
+
+  <p>
+    If a task order conflicts with this handbook, the task order will apply for that specific
+    engagement unless prohibited by a signed master agreement or applicable law.
+  </p>
+
+  <h2>6.7 Travel Arrangements</h2>
+
+  <p>
+    Travel must not be booked for Skunkworks Academy’s account unless approved in writing.
+    Client travel rules, where issued, override the general travel guidance in this handbook.
+  </p>
+
+  <h2>6.8 Client-Specific Orientation</h2>
+
+  <p>
+    Instructors may receive information about client contacts, site access, security, dress code,
+    platform access, learner profile, classroom procedures, software versions, course customisation,
+    and client-specific standards. Instructors must review this information before class.
+  </p>
+
+  <h2>6.9 Instructor Confirmation</h2>
+
+  <p>
+    Before the engagement, instructors should receive a confirmation containing logistics such as:
+  </p>
+
+  <ul>
+    <li>Course code and title.</li>
+    <li>Start and end dates.</li>
+    <li>Class times and time zone.</li>
+    <li>Arrival or connection time.</li>
+    <li>Delivery format and location.</li>
+    <li>Client contact person.</li>
+    <li>Expected number of learners.</li>
+    <li>Course material format.</li>
+    <li>Daily feedback and final evaluation process.</li>
+    <li>Progress report requirements.</li>
+    <li>Emergency contacts.</li>
+  </ul>
+
+  <h1 id="delivery">7. Class Delivery Requirements</h1>
+
+  <h2>7.1 Verification of Setup</h2>
+
+  <p>
+    Instructors must verify setup before class. For virtual delivery, this includes audio,
+    video, screen sharing, breakout rooms, lab access, browser access, passwords, and learner
+    material links. For in-person delivery, this includes classroom layout, projector, whiteboard,
+    network, lab machines, power, software, and learner materials.
+  </p>
+
+  <h2>7.2 Arrival and Class Time</h2>
+
+  <ul>
+    <li>For the first day of training, instructors must arrive or connect at least one hour before class start time unless otherwise stated.</li>
+    <li>For later days, instructors must arrive or connect at least thirty minutes before class start time unless otherwise stated.</li>
+    <li>Classes must start and end on time.</li>
+    <li>Instructors must not dismiss learners early without approval.</li>
+    <li>All labs and exercises must be supervised.</li>
+    <li>Emergency delays must be reported immediately.</li>
+  </ul>
+
+  <h2>7.3 Cancellation by Instructor</h2>
+
+  <p>
+    Instructors must not cancel classes directly with the client or learners. If an emergency
+    prevents delivery, the instructor must immediately contact Skunkworks Academy so alternative
+    arrangements can be made.
+  </p>
+
+  <h2>7.4 Security</h2>
+
+  <p>
+    Instructors must comply with client security procedures, including access badges,
+    visitor registration, system credentials, confidentiality, device restrictions, recording rules,
+    and data handling requirements.
+  </p>
+
+  <h2>7.5 Attendance and Rosters</h2>
+
+  <ul>
+    <li>For classroom training, instructors must ensure learners sign the attendance roster each day, unless otherwise instructed.</li>
+    <li>For virtual training, instructors must monitor attendance and report missing learners if required.</li>
+    <li>Attendance records must be submitted according to the instructor confirmation.</li>
+  </ul>
+
+  <h2>7.6 Daily Feedback</h2>
+
+  <p>
+    Instructors should tell learners at the beginning of class that daily feedback may be required.
+    Feedback should be reviewed daily so issues can be addressed before the final evaluation.
+  </p>
+
+  <h2>7.7 Final Evaluations</h2>
+
+  <p>
+    On the last day of training, instructors must ensure learners complete final evaluations
+    using the approved process. If client-specific evaluation forms are required, the instructor
+    must use those forms.
+  </p>
+
+  <h2>7.8 Testing and Assessments</h2>
+
+  <p>
+    Where assessments are part of the programme, instructors must review assessment requirements
+    before class and ensure that relevant topics are covered. Assessment records must be completed
+    and submitted as instructed.
+  </p>
+
+  <h2>7.9 Student Progress Reports</h2>
+
+  <p>
+    For boot camps, mentoring, private engagements, and assessed programmes, instructors may be
+    required to document learner participation, lab performance, test results, attendance, and progress.
+  </p>
+
+  <h2>7.10 Certificates</h2>
+
+  <p>
+    Skunkworks Academy may issue certificates after successful completion, subject to attendance,
+    assessment, client requirements, or programme rules.
+  </p>
+
+  <h2>7.11 Classroom and Virtual Cleanup</h2>
+
+  <ul>
+    <li>Leave physical classrooms clean and ready for the next session.</li>
+    <li>Erase whiteboards and remove flipchart pages unless the client asks otherwise.</li>
+    <li>Collect extra materials and dispose of rubbish.</li>
+    <li>Log out of client systems and close virtual rooms correctly.</li>
+    <li>Do not retain client data, learner data, passwords, recordings, or materials unless authorised.</li>
+  </ul>
+
+  <h1 id="evaluations">8. Evaluations, NPS and Quality Benchmarks</h1>
+
+  <h2>8.1 Quality Expectations</h2>
+
+  <p>
+    Skunkworks Academy expects instructors to deliver high-quality training and maintain
+    strong learner and client satisfaction.
+  </p>
+
+  <table>
+    <tr>
+      <th>Target Average Instructor Rating</th>
+      <td><input type="text" placeholder="e.g. 4.0 / 5.0 or 4.5 / 5.0" /></td>
+    </tr>
+    <tr>
+      <th>Minimum Acceptable Rating</th>
+      <td><input type="text" placeholder="e.g. 3.5 / 5.0" /></td>
+    </tr>
+    <tr>
+      <th>NPS Target</th>
+      <td><input type="text" placeholder="e.g. 50+" /></td>
+    </tr>
+  </table>
+
+  <h2>8.2 Net Promoter Score</h2>
+
+  <p>
+    Some clients may use Net Promoter Score, or NPS, to measure learner satisfaction.
+    Learners are usually asked whether they would recommend the training to a friend
+    or colleague on a scale from 0 to 10.
+  </p>
+
+  <ul>
+    <li>Scores of 9 or 10 are generally treated as promoters.</li>
+    <li>Scores of 7 or 8 are generally treated as passive.</li>
+    <li>Scores of 0 to 6 are generally treated as detractors.</li>
+  </ul>
+
+  <p>
+    Instructors should not pressure learners for scores. However, instructors may explain
+    how the evaluation scale works and encourage learners to provide honest, constructive feedback.
+  </p>
+
+  <h2>8.3 Failed Delivery</h2>
+
+  <p>
+    If a delivery fails because of instructor non-performance, lack of preparation,
+    misconduct, lateness, failure to follow instructions, or unsatisfactory delivery, Skunkworks Academy
+    may review payment, future assignments, corrective action, and client remedies according
+    to the applicable task order or subcontractor agreement.
+  </p>
+
+  <h1 id="skills">9. Instructor Skills</h1>
+
+  <h2>9.1 Knowledge of Subject Matter and Courseware</h2>
+
+  <ul>
+    <li>Review the full course before delivery.</li>
+    <li>Run all labs and exercises successfully before class.</li>
+    <li>Review the outline and understand the course objectives.</li>
+    <li>Prepare examples beyond the course material.</li>
+    <li>Be ready to answer learner questions within and reasonably around the subject matter.</li>
+    <li>Prepare extra exercises for advanced learners.</li>
+  </ul>
+
+  <h2>9.2 Presentation of Lecture and Materials</h2>
+
+  <ul>
+    <li>Use a mix of lecture, demonstration, discussion, exercises, and labs.</li>
+    <li>Avoid long lecture blocks without learner activity.</li>
+    <li>Use real-world examples where appropriate.</li>
+    <li>Explain slides in your own words instead of reading them.</li>
+    <li>Use diagrams, demos, whiteboards, and screen sharing effectively.</li>
+  </ul>
+
+  <h2>9.3 Creating a Productive Learning Environment</h2>
+
+  <ul>
+    <li>Encourage questions and respectful discussion.</li>
+    <li>Prevent one learner or group from dominating the class.</li>
+    <li>Call learners by name where possible.</li>
+    <li>Check progress during labs instead of waiting for learners to ask for help.</li>
+    <li>Provide constructive feedback.</li>
+  </ul>
+
+  <h2>9.4 Staying Focused on Objectives</h2>
+
+  <ul>
+    <li>Explain class objectives at the start.</li>
+    <li>Review what was covered at the beginning of each day.</li>
+    <li>Manage off-topic questions carefully.</li>
+    <li>Use a parking lot for questions that fall outside the class scope.</li>
+    <li>Summarise key points at the end of each section.</li>
+  </ul>
+
+  <h2>9.5 Responding to Questions</h2>
+
+  <p>
+    If you do not know the answer to a question, say that you will investigate and return
+    with an answer. Do not guess on technical, legal, security, financial, or client-sensitive questions.
+  </p>
+
+  <h1 id="materials">10. Course Materials and Facilities</h1>
+
+  <h2>10.1 Course Materials</h2>
+
+  <ul>
+    <li>Use the approved materials for the class.</li>
+    <li>Do not distribute unapproved materials.</li>
+    <li>Do not copy, reuse, sell, or share proprietary courseware without approval.</li>
+    <li>Do not upload confidential courseware or client content into public AI tools.</li>
+    <li>Report errors or improvement suggestions privately to Skunkworks Academy.</li>
+  </ul>
+
+  <h2>10.2 Facilities</h2>
+
+  <p>
+    Instructors must report facility issues immediately, including room temperature, noise,
+    lighting, internet access, power, lab access, projector problems, or platform instability.
+  </p>
+
+  <h2>10.3 Virtual Delivery Environment</h2>
+
+  <ul>
+    <li>Use a professional background and quiet environment.</li>
+    <li>Test microphone, camera, screen sharing, and internet connection.</li>
+    <li>Keep learner information private.</li>
+    <li>Do not record sessions unless authorised.</li>
+    <li>Monitor chat and participation.</li>
+  </ul>
+
+  <h1 id="postclass">11. Post-Class Activities</h1>
+
+  <p>After every engagement, instructors must complete all required closeout activities.</p>
+
+  <ul>
+    <li>Submit attendance records.</li>
+    <li>Submit daily and final evaluations where required.</li>
+    <li>Submit learner progress reports where required.</li>
+    <li>Report courseware issues or client concerns.</li>
+    <li>Return, delete, or secure client materials and data.</li>
+    <li>Submit invoice and supporting documents according to the payment policy.</li>
+  </ul>
+
+  <h1 id="invoicing">12. Expenses and Invoicing</h1>
+
+  <h2>12.1 Invoice Requirements</h2>
+
+  <p>
+    Invoices must be complete, accurate, and supported by required documentation.
+    Incomplete invoices may be rejected and payment timing may run from the date of correct resubmission.
+  </p>
+
+  <ul>
+    <li>Invoice must be addressed to Skunkworks Academy (Pty) Ltd.</li>
+    <li>Invoice must include the task order, job code, or purchase order number.</li>
+    <li>Invoice must include dates of services delivered.</li>
+    <li>Invoice must match approved fees unless a written variation was approved.</li>
+    <li>A signed task order or written approval must be attached.</li>
+    <li>Approved expenses must be itemised with valid receipts.</li>
+  </ul>
+
+  <h2>12.2 Invoice Submission</h2>
+
+  <table>
+    <tr>
+      <th>Invoice Email</th>
+      <td><input type="email" placeholder="Insert invoice submission email" /></td>
+    </tr>
+    <tr>
+      <th>Standard Payment Terms</th>
+      <td><input type="text" placeholder="e.g. NET 30 days after valid invoice" /></td>
+    </tr>
+    <tr>
+      <th>Invoice Deadline</th>
+      <td><input type="text" placeholder="e.g. within 30 days after completion" /></td>
+    </tr>
+  </table>
+
+  <h2>12.3 Expenses</h2>
+
+  <p>
+    Expenses are reimbursable only if approved in writing and supported by receipts.
+    Credit card slips or bank statements alone may not be sufficient. Personal, luxury,
+    entertainment, alcohol, fines, upgrades, and unapproved expenses are not reimbursable.
+  </p>
+
+  <h1 id="bootcamps">13. Boot Camps and Re-Skilling Programmes</h1>
+
+  <p>
+    Skunkworks Academy boot camps and re-skilling programmes may combine instructor-led
+    training, labs, assessments, mentoring, project work, coaching, and progress tracking.
+  </p>
+
+  <p>
+    Instructors assigned to boot camps may be required to attend programme orientation,
+    follow a structured learning path, document learner progress, support remediation,
+    participate in instructor meetings, and submit regular progress reports.
+  </p>
+
+  <h1 id="mentoring">14. Project Mentoring</h1>
+
+  <p>
+    Project mentoring helps learners apply new skills to real work. Mentors should support
+    knowledge transfer, practical application, standards adoption, documentation, problem solving,
+    code or solution review, and progress reporting.
+  </p>
+
+  <h2>14.1 Mentoring Activities</h2>
+
+  <ul>
+    <li>Review learner or team objectives.</li>
+    <li>Help define practical action plans.</li>
+    <li>Support design, development, testing, documentation, and deployment activities.</li>
+    <li>Provide constructive feedback.</li>
+    <li>Track skills development and project progress.</li>
+    <li>Submit weekly or agreed status reports.</li>
+  </ul>
+
+  <h2>14.2 Mentoring Deliverables</h2>
+
+  <ul>
+    <li>Skills development plan.</li>
+    <li>Weekly progress notes.</li>
+    <li>Project or learner risk notes.</li>
+    <li>Recommendations for additional training or support.</li>
+    <li>Final mentoring summary, if required.</li>
+  </ul>
+
+  <h1 id="privacy">15. Confidentiality, Privacy and Data Handling</h1>
+
+  <p>
+    Instructors may receive confidential information from Skunkworks Academy, clients,
+    learners, partners, or vendors. This information must be protected and used only for the
+    approved engagement.
+  </p>
+
+  <ul>
+    <li>Do not disclose client, learner, pricing, platform, courseware, or business information.</li>
+    <li>Do not retain personal information longer than necessary.</li>
+    <li>Do not share learner records, attendance, assessment results, or client information without approval.</li>
+    <li>Report any suspected data breach, lost device, unauthorised access, or accidental disclosure immediately.</li>
+    <li>Use only approved systems for storing and submitting learner information.</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <h1 id="appendices">Appendices</h1>
+
+  <h2>Appendix A: Instructor Task Order Template</h2>
+
+  <table>
+    <tr><th>Customer</th><td><input type="text" /></td></tr>
+    <tr><th>Invoicing Address</th><td><textarea>Skunkworks Academy (Pty) Ltd, 26 Second Avenue, Alberton, Gauteng, 1401, South Africa</textarea></td></tr>
+    <tr><th>Job Code</th><td><input type="text" /></td></tr>
+    <tr><th>Subcontractor</th><td><input type="text" /></td></tr>
+    <tr><th>Instructor</th><td><input type="text" /></td></tr>
+    <tr><th>Training Provided</th><td><textarea></textarea></td></tr>
+    <tr><th>Start Date - End Date</th><td><input type="text" placeholder="DD Month YYYY - DD Month YYYY" /></td></tr>
+    <tr><th>Start Time - End Time</th><td><input type="text" placeholder="HH:MM Time Zone - HH:MM Time Zone" /></td></tr>
+    <tr><th>Number of Training Days</th><td><input type="text" /></td></tr>
+    <tr><th>Number of Students</th><td><input type="text" /></td></tr>
+    <tr><th>Rate</th><td><textarea></textarea></td></tr>
+    <tr><th>Training Materials</th><td><textarea></textarea></td></tr>
+    <tr><th>Location of Training</th><td><input type="text" /></td></tr>
+    <tr><th>Travel</th><td><textarea placeholder="N/A or approved travel details"></textarea></td></tr>
+    <tr><th>Payment Terms</th><td><input type="text" placeholder="e.g. NET 30" /></td></tr>
+  </table>
+
+  <h2>Appendix B: Accounts Payable Policy</h2>
+
+  <div class="box">
+    <strong>Purpose:</strong> To identify the information required to process instructor,
+    subcontractor, and vendor invoices accurately and on time.
+  </div>
+
+  <h3>Required Invoice Documentation</h3>
+  <ul>
+    <li>Invoice in PDF format.</li>
+    <li>Correct Skunkworks Academy invoicing address.</li>
+    <li>Task order, job code, or purchase order number.</li>
+    <li>Date or dates of services delivered.</li>
+    <li>Copy of the signed task order or written approval.</li>
+    <li>Itemised approved expenses and receipts, if applicable.</li>
+  </ul>
+
+  <h3>Invoice Submission Rules</h3>
+  <ul>
+    <li>Invoices must be submitted to the approved invoice email address.</li>
+    <li>Invoices sent to individual staff members may not count as correct submission.</li>
+    <li>Incomplete invoices may be returned unpaid for correction.</li>
+    <li>Payment timing may be calculated from the date a complete and correct invoice is received.</li>
+  </ul>
+
+  <h2>Appendix C: Travel Policy</h2>
+
+  <p>
+    Instructors are responsible for complying with approved travel arrangements and limits.
+    Travel must be approved in writing before booking unless the task order states otherwise.
+  </p>
+
+  <h3>Usually Not Reimbursable Unless Approved</h3>
+  <ul>
+    <li>Airfare upgrades or premium seating.</li>
+    <li>Alcoholic beverages.</li>
+    <li>Hotel minibar, entertainment, movies, spa, gym, or personal services.</li>
+    <li>Traffic fines, parking fines, penalties, and interest.</li>
+    <li>Lost or stolen personal property.</li>
+    <li>Personal purchases, toiletries, clothing, luggage, or recreational activities.</li>
+    <li>Unapproved car rental upgrades or additional insurance.</li>
+    <li>Unapproved non-refundable bookings.</li>
+  </ul>
+
+  <h3>Travel Approval Fields</h3>
+
+  <table>
+    <tr><th>Approved By</th><td><input type="text" /></td></tr>
+    <tr><th>Approval Date</th><td><input type="date" /></td></tr>
+    <tr><th>Maximum Approved Travel Amount</th><td><input type="text" /></td></tr>
+    <tr><th>Approved Travel Items</th><td><textarea></textarea></td></tr>
+  </table>
+
+  <h2>Appendix D: Travel and Living Reimbursement Form</h2>
+
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Receipt Attached</th>
+    </tr>
+    <tr>
+      <td><input type="date" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" placeholder="Yes / No" /></td>
+    </tr>
+    <tr>
+      <td><input type="date" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" placeholder="Yes / No" /></td>
+    </tr>
+    <tr>
+      <td><input type="date" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" placeholder="Yes / No" /></td>
+    </tr>
+  </table>
+
+  <h2>Appendix E: Sample Student Evaluation</h2>
+
+  <table>
+    <tr>
+      <th>Course Name</th>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <th>Instructor Name</th>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <th>Course Date</th>
+      <td><input type="date" /></td>
+    </tr>
+  </table>
+
+  <p>Please rate the following from 1 to 5, where 5 is outstanding.</p>
+
+  <table>
+    <tr><th>Evaluation Item</th><th>Rating</th><th>Comments</th></tr>
+    <tr><td>Instructor knowledge</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+    <tr><td>Instructor presentation</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+    <tr><td>Course materials</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+    <tr><td>Exercises and labs</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+    <tr><td>Learning environment</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+    <tr><td>Overall satisfaction</td><td><input type="text" /></td><td><input type="text" /></td></tr>
+  </table>
+
+  <p>
+    Would you recommend this training to a friend or colleague?
+    <input type="text" placeholder="0 to 10" />
+  </p>
+
+  <p>Additional comments:</p>
+  <textarea></textarea>
+
+  <h2>Appendix F: Sample Daily Student Feedback</h2>
+
+  <table>
+    <tr><th>Student Name</th><td><input type="text" /></td></tr>
+    <tr><th>Date</th><td><input type="date" /></td></tr>
+    <tr><th>What worked well today?</th><td><textarea></textarea></td></tr>
+    <tr><th>What needs clarification?</th><td><textarea></textarea></td></tr>
+    <tr><th>Any technical or lab issues?</th><td><textarea></textarea></td></tr>
+    <tr><th>Any other feedback?</th><td><textarea></textarea></td></tr>
+  </table>
+
+  <h2>Appendix G: Sample Instructor Feedback</h2>
+
+  <table>
+    <tr><th>Instructor Name</th><td><input type="text" /></td></tr>
+    <tr><th>Course / Programme</th><td><input type="text" /></td></tr>
+    <tr><th>Client</th><td><input type="text" /></td></tr>
+    <tr><th>What went well?</th><td><textarea></textarea></td></tr>
+    <tr><th>Courseware issues</th><td><textarea></textarea></td></tr>
+    <tr><th>Lab or platform issues</th><td><textarea></textarea></td></tr>
+    <tr><th>Learner concerns</th><td><textarea></textarea></td></tr>
+    <tr><th>Recommended improvements</th><td><textarea></textarea></td></tr>
+  </table>
+
+  <h2>Appendix H: Instructor Progress Report</h2>
+
+  <table>
+    <tr>
+      <th>Learner Name</th>
+      <th>Attendance</th>
+      <th>Participation</th>
+      <th>Lab Progress</th>
+      <th>Assessment Score</th>
+      <th>Comments</th>
+    </tr>
+    <tr>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+    </tr>
+  </table>
+
+  <h2>Appendix I: Skunkworks Academy Contact List</h2>
+
+  <table>
+    <tr>
+      <th>Function</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    <tr>
+      <td>Education / Delivery Manager</td>
+      <td><input type="text" /></td>
+      <td><input type="email" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Instructor Support</td>
+      <td><input type="text" /></td>
+      <td><input type="email" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Technical / Lab Support</td>
+      <td><input type="text" /></td>
+      <td><input type="email" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Emergency After-Hours Contact</td>
+      <td><input type="text" /></td>
+      <td><input type="email" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Accounts / Invoices</td>
+      <td><input type="text" /></td>
+      <td><input type="email" /></td>
+      <td><input type="text" /></td>
+    </tr>
+  </table>
+
+  <h2>Appendix J: Instructor Confirmation Template</h2>
+
+  <div class="box">
+    <p>Dear Instructor,</p>
+    <p>
+      Below are the logistics for the class or engagement you are scheduled to deliver.
+      Please review this information before the session and contact Skunkworks Academy immediately
+      if anything is unclear.
+    </p>
+  </div>
+
+  <table>
+    <tr><th>Course Code and Title</th><td><input type="text" /></td></tr>
+    <tr><th>Start / End Dates</th><td><input type="text" /></td></tr>
+    <tr><th>Class Time and Time Zone</th><td><input type="text" /></td></tr>
+    <tr><th>Arrival / Connection Time</th><td><input type="text" /></td></tr>
+    <tr><th>Location / Platform</th><td><input type="text" /></td></tr>
+    <tr><th>Client Contact</th><td><input type="text" /></td></tr>
+    <tr><th>Job Code / Reference</th><td><input type="text" /></td></tr>
+    <tr><th>Expected Number of Learners</th><td><input type="text" /></td></tr>
+    <tr><th>Course Material Format</th><td><input type="text" /></td></tr>
+    <tr><th>Daily Feedback Instructions</th><td><textarea></textarea></td></tr>
+    <tr><th>Final Evaluation Instructions</th><td><textarea></textarea></td></tr>
+    <tr><th>Progress Report Instructions</th><td><textarea></textarea></td></tr>
+    <tr><th>Emergency Instructions</th><td><textarea></textarea></td></tr>
+  </table>
+
+  <h2>Appendix K: Receipt of Instructor Handbook</h2>
+
+  <p>
+    I confirm that I have reviewed the Skunkworks Academy Instructor Handbook and understand
+    the expectations, policies, delivery standards, confidentiality obligations, invoicing procedures,
+    and professional conduct requirements contained in this document.
+  </p>
+
+  <div class="signature-grid">
+    <div class="signature-box">
+      <div class="signature-title">Instructor / Subcontractor</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Printed Name</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Signature</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Company / Capacity</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Date</div>
+    </div>
+
+    <div class="signature-box">
+      <div class="signature-title">For Skunkworks Academy</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Printed Name</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Signature</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Title</div>
+
+      <div class="sig-line"></div>
+      <div class="sig-label">Date</div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Skunkworks Academy Instructor Handbook. Prepared as a reusable operational template.
+    Review and update contact details, payment terms, travel limits, platform names, and internal policies before issuing.
+  </div>
+
+</div>
+</body>
+</html>
