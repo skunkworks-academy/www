@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skunkworks Academy - Instructor Task Order Template</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm;
+    }
+
+    body {
+      margin: 0;
+      padding: 28px;
+      background: #f3f4f6;
+      color: #1f2933;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .document {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 48px 58px;
+      border-top: 8px solid #111827;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111827;
+    }
+
+    .doc-title {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .company-details {
+      text-align: right;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin: 28px 0 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin-top: 28px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #d1d5db;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #111827;
+    }
+
+    h3 {
+      font-size: 13.5px;
+      margin-top: 18px;
+      color: #111827;
+    }
+
+    p, li, label, input, textarea, select, td, th {
+      font-size: 13px;
+    }
+
+    p {
+      margin: 9px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+    }
+
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 9px;
+      vertical-align: top;
+    }
+
+    th {
+      width: 31%;
+      background: #f3f4f6;
+      color: #111827;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 7px 8px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .short {
+      max-width: 240px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .note {
+      border-left: 4px solid #111827;
+      background: #f9fafb;
+      padding: 12px 15px;
+      margin: 16px 0;
+      font-size: 12.5px;
+      color: #374151;
+    }
+
+    ol {
+      padding-left: 22px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 18px;
+    }
+
+    .signature-box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 18px;
+      min-height: 245px;
+      page-break-inside: avoid;
+    }
+
+    .signature-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #111827;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid #111827;
+      height: 26px;
+      margin-top: 12px;
+    }
+
+    .sig-label {
+      font-size: 10.5px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .page-break {
+      page-break-before: always;
+      margin-top: 42px;
+    }
+
+    .footer-note {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid #d1d5db;
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+        border-top: none;
+      }
+
+      h2, h3 {
+        page-break-after: avoid;
+      }
+
+      table, .box, .signature-box {
+        page-break-inside: avoid;
+      }
+
+      input, textarea, select {
+        border: none;
+        border-bottom: 1px solid #111827;
+        border-radius: 0;
+        padding: 3px 0;
+      }
+
+      textarea {
+        border: 1px solid #d1d5db;
+        min-height: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="document">
+
+    <div class="header">
+      <div>
+        <div class="brand">Skunkworks Academy</div>
+        <div class="doc-title">Instructor Task Order Template</div>
+      </div>
+      <div class="company-details">
+        <strong>Skunkworks Academy (Pty) Ltd</strong><br />
+        Reg. No. 2026 / 401210 / 07<br />
+        26 Second Avenue, Alberton<br />
+        Gauteng, 1401, South Africa
+      </div>
+    </div>
+
+    <h1>Instructor Task Order</h1>
+
+    <div class="note">
+      This Task Order is intended to be used with Skunkworks Academy’s master subcontractor agreement.
+      If no master agreement has been signed, the terms in this Task Order apply together with any written terms agreed by the parties.
+    </div>
+
+    <h2>1. Task Order Details</h2>
+
+    <table>
+      <tr>
+        <th>Task Order / Job Code</th>
+        <td><input type="text" placeholder="e.g. SKA-ITO-2026-001" /></td>
+      </tr>
+      <tr>
+        <th>Date Issued</th>
+        <td><input type="date" /></td>
+      </tr>
+      <tr>
+        <th>Customer / Client</th>
+        <td><input type="text" placeholder="Client name" /></td>
+      </tr>
+      <tr>
+        <th>Project / Programme</th>
+        <td><input type="text" placeholder="Programme, bootcamp, course, or project name" /></td>
+      </tr>
+      <tr>
+        <th>Subcontractor</th>
+        <td><input type="text" placeholder="Subcontractor legal name" /></td>
+      </tr>
+      <tr>
+        <th>Instructor</th>
+        <td><input type="text" placeholder="Instructor full name" /></td>
+      </tr>
+      <tr>
+        <th>Instructor Email</th>
+        <td><input type="email" placeholder="name@example.com" /></td>
+      </tr>
+      <tr>
+        <th>Instructor Phone</th>
+        <td><input type="text" placeholder="+27..." /></td>
+      </tr>
+    </table>
+
+    <h2>2. Training / Services Provided</h2>
+
+    <table>
+      <tr>
+        <th>Course / Service Title</th>
+        <td><input type="text" placeholder="Course or service title" /></td>
+      </tr>
+      <tr>
+        <th>Course Code</th>
+        <td><input type="text" placeholder="Optional course code" /></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><textarea placeholder="Briefly describe the training, mentoring, facilitation, assessment, consulting, or related services to be provided."></textarea></td>
+      </tr>
+      <tr>
+        <th>Attached Course Outline</th>
+        <td>
+          <select>
+            <option value="">Select</option>
+            <option>Yes - attached as Appendix A</option>
+            <option>No</option>
+            <option>To be provided separately</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Delivery Format</th>
+        <td>
+          <select>
+            <option value="">Select format</option>
+            <option>Virtual</option>
+            <option>In-person</option>
+            <option>Hybrid</option>
+            <option>Self-paced support</option>
+            <option>Other</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Location / Platform</th>
+        <td><input type="text" placeholder="Venue, client site, Teams, Zoom, LMS, lab platform, etc." /></td>
+      </tr>
+      <tr>
+        <th>Number of Students</th>
+        <td><input type="text" placeholder="e.g. Up to 15 students" /></td>
+      </tr>
+      <tr>
+        <th>Training Materials</th>
+        <td><textarea placeholder="State who provides slides, manuals, labs, exercises, learner guides, platform access, and other materials."></textarea></td>
+      </tr>
+    </table>
+
+    <h2>3. Dates and Times</h2>
+
+    <table>
+      <tr>
+        <th>Start Date</th>
+        <td><input type="date" /></td>
+      </tr>
+      <tr>
+        <th>End Date</th>
+        <td><input type="date" /></td>
+      </tr>
+      <tr>
+        <th>Start Time</th>
+        <td><input type="time" /></td>
+      </tr>
+      <tr>
+        <th>End Time</th>
+        <td><input type="time" /></td>
+      </tr>
+      <tr>
+        <th>Time Zone</th>
+        <td><input type="text" placeholder="e.g. SAST, UTC, CET, ET" /></td>
+      </tr>
+      <tr>
+        <th>Number of Training Days</th>
+        <td><input type="text" placeholder="e.g. 2 days" /></td>
+      </tr>
+      <tr>
+        <th>Preparation / Setup Time</th>
+        <td><textarea placeholder="e.g. Instructor must be online 60 minutes before first session and 30 minutes before later sessions."></textarea></td>
+      </tr>
+    </table>
+
+    <h2>4. Fees, Rates and Expenses</h2>
+
+    <table>
+      <tr>
+        <th>Rate Type</th>
+        <td>
+          <select>
+            <option value="">Select rate type</option>
+            <option>Daily rate</option>
+            <option>Hourly rate</option>
+            <option>Fixed project fee</option>
+            <option>Per-student rate</option>
+            <option>Tiered rate</option>
+            <option>Other</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Rate / Fee</th>
+        <td><textarea placeholder="Example: R____ per training day; or tiered rate based on student numbers."></textarea></td>
+      </tr>
+      <tr>
+        <th>Currency</th>
+        <td><input type="text" placeholder="e.g. ZAR, USD, EUR" /></td>
+      </tr>
+      <tr>
+        <th>VAT / Tax Treatment</th>
+        <td><textarea placeholder="State whether fees are VAT inclusive, VAT exclusive, or not VAT applicable."></textarea></td>
+      </tr>
+      <tr>
+        <th>Approved Expenses</th>
+        <td><textarea placeholder="List approved travel, accommodation, data, platform, parking, meals, or other expenses. State N/A if none."></textarea></td>
+      </tr>
+      <tr>
+        <th>Travel Required</th>
+        <td>
+          <select>
+            <option value="">Select</option>
+            <option>No - N/A</option>
+            <option>Yes - local travel</option>
+            <option>Yes - domestic travel</option>
+            <option>Yes - international travel</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <h2>5. Payment and Invoicing</h2>
+
+    <table>
+      <tr>
+        <th>Invoice To</th>
+        <td>
+          <strong>Skunkworks Academy (Pty) Ltd</strong><br />
+          Reg. No. 2026 / 401210 / 07<br />
+          26 Second Avenue, Alberton, Gauteng, 1401, South Africa<br />
+          Email for invoices: <input type="email" placeholder="accounts@skunkworks.africa or other billing email" />
+        </td>
+      </tr>
+      <tr>
+        <th>Payment Terms</th>
+        <td><input type="text" placeholder="e.g. NET 30 days after valid invoice and required documents" /></td>
+      </tr>
+      <tr>
+        <th>Invoice Deadline</th>
+        <td><input type="text" placeholder="e.g. Invoice must be submitted within 30 days after completion" /></td>
+      </tr>
+      <tr>
+        <th>Required Invoice Items</th>
+        <td>
+          <label><input type="checkbox" /> Invoice addressed to Skunkworks Academy</label><br />
+          <label><input type="checkbox" /> Task Order / Job Code included</label><br />
+          <label><input type="checkbox" /> Dates of services included</label><br />
+          <label><input type="checkbox" /> Signed Task Order attached</label><br />
+          <label><input type="checkbox" /> Approved expenses itemised with receipts, where applicable</label><br />
+          <label><input type="checkbox" /> VAT number included, where applicable</label>
+        </td>
+      </tr>
+      <tr>
+        <th>Invoice Format</th>
+        <td><input type="text" placeholder="e.g. PDF format only" /></td>
+      </tr>
+      <tr>
+        <th>Payment Notes</th>
+        <td><textarea placeholder="Add any extra invoicing or payment conditions."></textarea></td>
+      </tr>
+    </table>
+
+    <h2>6. Quality Benchmarks</h2>
+
+    <div class="box">
+      <p>
+        The Instructor shall deliver high-quality training or services in a professional manner and in accordance
+        with Skunkworks Academy’s standards, the client’s requirements, and the applicable course or project outline.
+      </p>
+      <p>
+        Target average evaluation rating:
+        <input class="short" type="text" placeholder="e.g. 4.0 / 5.0" />
+      </p>
+      <p>
+        Minimum acceptable evaluation rating:
+        <input class="short" type="text" placeholder="e.g. 3.5 / 5.0" />
+      </p>
+    </div>
+
+    <h2>7. Class Cancellation and Rescheduling</h2>
+
+    <ol>
+      <li>
+        If a confirmed public class is cancelled or rescheduled fourteen (14) or more calendar days before the start date,
+        Skunkworks Academy may reassign the Instructor to the rescheduled class or release the Instructor from the engagement.
+      </li>
+      <li>
+        If cancellation occurs between six (6) and thirteen (13) calendar days before the start date, the Instructor may be paid
+        up to fifty percent (50%) of the agreed delivery fee, plus approved non-refundable expenses.
+      </li>
+      <li>
+        If cancellation occurs between one (1) and five (5) calendar days before the start date, the Instructor may be paid
+        up to seventy-five percent (75%) of the agreed delivery fee, plus approved non-refundable expenses.
+      </li>
+      <li>
+        Private, client-specific, bespoke, or project-based engagements may follow different cancellation terms if stated in this Task Order.
+      </li>
+      <li>
+        If the Instructor cancels or becomes unavailable, the Instructor must immediately notify Skunkworks Academy and assist,
+        where possible, with identifying a suitable replacement approved by Skunkworks Academy.
+      </li>
+    </ol>
+
+    <h2>8. Instructor Obligations</h2>
+
+    <ol>
+      <li>The Instructor must be prepared, punctual, suitably qualified, and familiar with all course materials, labs, tools, and platform requirements.</li>
+      <li>The Instructor must comply with Skunkworks Academy policies, client policies, platform rules, confidentiality requirements, and security instructions.</li>
+      <li>The Instructor must complete attendance records, learner evaluations, assessment records, delivery notes, and reports where required.</li>
+      <li>Daily evaluations must be submitted by the end of the applicable training day, unless otherwise agreed.</li>
+      <li>Final evaluations and required completion documentation must be submitted within <input class="short" type="text" placeholder="e.g. 24 hours" /> after course completion.</li>
+      <li>No additional expenses, scope changes, delivery changes, or substitutions will be accepted unless approved in writing by Skunkworks Academy.</li>
+    </ol>
+
+    <h2>9. Failed Delivery / Client Non-Payment</h2>
+
+    <div class="box">
+      <p>
+        If a client refuses to pay Skunkworks Academy because of the Instructor’s failed, incomplete, negligent,
+        materially late, or unsatisfactory delivery, Skunkworks Academy may withhold payment to the Instructor for
+        the affected services.
+      </p>
+      <p>
+        If the client makes partial payment due to delivery issues attributable to the Instructor, Skunkworks Academy
+        may prorate the Instructor’s payment based on the amount actually received and the original agreed fee.
+      </p>
+    </div>
+
+    <h2>10. Confidentiality, Materials and Data</h2>
+
+    <ol>
+      <li>
+        The Instructor must keep confidential all Skunkworks Academy, client, learner, pricing, platform, courseware,
+        business, technical, and personal information.
+      </li>
+      <li>
+        Materials, slides, labs, manuals, recordings, credentials, systems, and client data may be used only for the
+        approved engagement.
+      </li>
+      <li>
+        The Instructor must not copy, distribute, reuse, publish, sell, share, or train AI systems on Skunkworks Academy
+        or client materials without written approval.
+      </li>
+      <li>
+        Where personal information is handled, the Instructor must process it only as instructed by Skunkworks Academy
+        and must protect it against loss, unauthorised access, misuse, or unlawful disclosure.
+      </li>
+      <li>
+        The Instructor must immediately notify Skunkworks Academy of any suspected confidentiality, security, or data breach.
+      </li>
+    </ol>
+
+    <h2>11. Special Client Requirements</h2>
+
+    <table>
+      <tr>
+        <th>Background / Security Checks</th>
+        <td><textarea placeholder="State whether checks are required, such as ID verification, criminal check, certification check, or client onboarding."></textarea></td>
+      </tr>
+      <tr>
+        <th>Certification Requirements</th>
+        <td><textarea placeholder="List any required instructor certifications, vendor credentials, or experience."></textarea></td>
+      </tr>
+      <tr>
+        <th>Client Policies</th>
+        <td><textarea placeholder="List dress code, recording policy, site rules, remote delivery rules, platform policies, etc."></textarea></td>
+      </tr>
+      <tr>
+        <th>Emergency Contact</th>
+        <td><textarea placeholder="Add Skunkworks Academy emergency contact details for delivery issues."></textarea></td>
+      </tr>
+    </table>
+
+    <h2>12. Acceptance</h2>
+
+    <p>
+      By signing below, the parties confirm that they accept this Instructor Task Order and agree to perform the
+      services on the terms set out above.
+    </p>
+
+    <div class="signature-grid">
+      <div class="signature-box">
+        <div class="signature-title">For Skunkworks Academy (Pty) Ltd</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Print Name</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Title</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+
+      <div class="signature-box">
+        <div class="signature-title">For Subcontractor / Instructor</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Print Name</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Title / Capacity</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>Appendix A: Course / Service Outline</h1>
+
+    <table>
+      <tr>
+        <th>Course / Service Name</th>
+        <td><input type="text" placeholder="Course or service name" /></td>
+      </tr>
+      <tr>
+        <th>Course Code</th>
+        <td><input type="text" placeholder="Optional code" /></td>
+      </tr>
+      <tr>
+        <th>Duration</th>
+        <td><input type="text" placeholder="e.g. 2 days" /></td>
+      </tr>
+      <tr>
+        <th>Course Description</th>
+        <td><textarea placeholder="Describe the course or engagement."></textarea></td>
+      </tr>
+      <tr>
+        <th>Objectives</th>
+        <td><textarea placeholder="List learning objectives or delivery outcomes."></textarea></td>
+      </tr>
+      <tr>
+        <th>Prerequisites</th>
+        <td><textarea placeholder="List required learner knowledge, experience, tools, or system access."></textarea></td>
+      </tr>
+      <tr>
+        <th>Audience</th>
+        <td><textarea placeholder="Describe the intended audience."></textarea></td>
+      </tr>
+      <tr>
+        <th>Topics / Agenda</th>
+        <td><textarea placeholder="List modules, units, topics, labs, assessments, or daily agenda."></textarea></td>
+      </tr>
+      <tr>
+        <th>Labs / Assessments</th>
+        <td><textarea placeholder="Describe any labs, tests, quizzes, projects, or assessments."></textarea></td>
+      </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>Appendix B: Invoice Submission Policy</h1>
+
+    <div class="box">
+      <p><strong>Purpose:</strong> To ensure invoices are accurate, complete, and processed timeously.</p>
+    </div>
+
+    <h2>B1. Required Invoice Documentation</h2>
+
+    <ol>
+      <li>Invoice must be submitted in PDF format.</li>
+      <li>Invoice must be addressed to Skunkworks Academy (Pty) Ltd.</li>
+      <li>Invoice must include the Task Order / Job Code.</li>
+      <li>Invoice must include the date or dates on which services were delivered.</li>
+      <li>A signed copy of this Task Order must be attached.</li>
+      <li>Approved expense claims must include itemised details and valid receipts.</li>
+      <li>The invoice amount must match the approved Task Order unless Skunkworks Academy approved a variation in writing.</li>
+    </ol>
+
+    <h2>B2. Submission Deadline</h2>
+
+    <p>
+      Invoices should be submitted within
+      <input class="short" type="text" placeholder="e.g. 7 days" />
+      after completion of the services and no later than
+      <input class="short" type="text" placeholder="e.g. 30 days" />.
+    </p>
+
+    <p>
+      Invoices submitted late, incomplete, or without required documentation may be rejected or delayed.
+    </p>
+
+    <h2>B3. Submission Email</h2>
+
+    <p>
+      Invoices and supporting documents must be sent to:
+      <input type="email" placeholder="accounts@skunkworks.africa" />
+    </p>
+
+    <h2>B4. Rejected Invoices</h2>
+
+    <p>
+      If an invoice is incomplete or incorrect, Skunkworks Academy may return it for correction. Payment timing will run from the date
+      Skunkworks Academy receives the corrected invoice and all required documents.
+    </p>
+
+    <div class="footer-note">
+      Template prepared for Skunkworks Academy (Pty) Ltd. Review before use for a specific instructor, subcontractor, client, or training engagement.
+    </div>
+
+  </div>
+</body>
+</html>
