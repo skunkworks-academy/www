@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skunkworks Academy - Accounts Payable Policy</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 16mm;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px;
+      background: #f3f4f6;
+      color: #1f2933;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .document {
+      max-width: 950px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 52px 64px;
+      border-top: 8px solid #111827;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 24px;
+      margin-bottom: 34px;
+    }
+
+    .company {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #374151;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .meta {
+      margin-top: 22px;
+      font-size: 12.5px;
+      color: #6b7280;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin: 34px 0 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin-top: 28px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #d1d5db;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #111827;
+    }
+
+    h3 {
+      font-size: 13.5px;
+      margin-top: 18px;
+      color: #111827;
+    }
+
+    p, li, td, th, label, input {
+      font-size: 13px;
+    }
+
+    p {
+      margin: 9px 0;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 15px 17px;
+      margin: 16px 0;
+    }
+
+    .important {
+      border-left: 5px solid #111827;
+      background: #f9fafb;
+      padding: 14px 16px;
+      margin: 18px 0;
+    }
+
+    .payment-highlight {
+      text-align: center;
+      border: 2px solid #111827;
+      background: #f9fafb;
+      padding: 20px;
+      margin: 24px 0;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+    }
+
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f4f6;
+      color: #111827;
+      text-align: left;
+      font-weight: 700;
+      width: 32%;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 7px 8px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .checkbox-list label {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .checkbox-list input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 22px;
+    }
+
+    .signature-box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 20px;
+      min-height: 230px;
+      page-break-inside: avoid;
+    }
+
+    .signature-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: #111827;
+      font-size: 13px;
+    }
+
+    .line {
+      border-bottom: 1px solid #111827;
+      height: 28px;
+      margin-top: 12px;
+    }
+
+    .label {
+      font-size: 10.5px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .footer-note {
+      margin-top: 38px;
+      padding-top: 18px;
+      border-top: 1px solid #d1d5db;
+      font-size: 11.5px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+        border-top: none;
+      }
+
+      h2, h3 {
+        page-break-after: avoid;
+      }
+
+      table, .box, .important, .signature-box {
+        page-break-inside: avoid;
+      }
+
+      input {
+        border: none;
+        border-bottom: 1px solid #111827;
+        border-radius: 0;
+        padding: 3px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="document">
+
+    <div class="header">
+      <div class="company">Skunkworks Academy (Pty) Ltd</div>
+      <div class="subtitle">Accounts Payable Policy</div>
+      <div class="meta">
+        Vendor, Instructor, Subcontractor and Supplier Invoice Requirements
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>Effective Date</th>
+        <td><input type="text" placeholder="Insert effective date" /></td>
+      </tr>
+      <tr>
+        <th>Version</th>
+        <td><input type="text" placeholder="e.g. 1.0" /></td>
+      </tr>
+      <tr>
+        <th>Approved By</th>
+        <td><input type="text" placeholder="Insert approving person / role" /></td>
+      </tr>
+      <tr>
+        <th>Applies To</th>
+        <td>
+          Vendors, instructors, subcontractors, consultants, service providers, suppliers,
+          contractors, and any other party submitting invoices to Skunkworks Academy.
+        </td>
+      </tr>
+    </table>
+
+    <h1>Accounts Payable Policy</h1>
+
+    <h2>1. Purpose</h2>
+
+    <p>
+      The purpose of this Accounts Payable Policy is to ensure that invoices submitted to
+      <strong>Skunkworks Academy (Pty) Ltd</strong> are complete, accurate, properly authorised,
+      and paid within the agreed payment terms.
+    </p>
+
+    <p>
+      This Policy explains what must be included on invoices, where invoices must be submitted,
+      when invoices must be submitted, when payment will be made, and when invoices may be
+      rejected, delayed, reduced, or withheld.
+    </p>
+
+    <h2>2. Company Details for Invoicing</h2>
+
+    <div class="box">
+      <p>
+        <strong>Skunkworks Academy (Pty) Ltd</strong><br />
+        Registration Number: <strong>2026 / 401210 / 07</strong><br />
+        26 Second Avenue<br />
+        Alberton<br />
+        Gauteng<br />
+        1401<br />
+        South Africa
+      </p>
+    </div>
+
+    <table>
+      <tr>
+        <th>Invoice Email</th>
+        <td><input type="email" placeholder="Insert invoice submission email" /></td>
+      </tr>
+      <tr>
+        <th>Accounts Contact</th>
+        <td><input type="text" placeholder="Insert accounts contact person or team" /></td>
+      </tr>
+      <tr>
+        <th>VAT Number, if applicable</th>
+        <td><input type="text" placeholder="Insert VAT number or N/A" /></td>
+      </tr>
+    </table>
+
+    <h2>3. Definitions</h2>
+
+    <p>
+      <strong>Invoice</strong> means a valid tax invoice or commercial invoice submitted by a
+      vendor, instructor, subcontractor, consultant, supplier, or contractor.
+    </p>
+
+    <p>
+      <strong>Task Order</strong> means a written instruction, purchase order, statement of work,
+      instructor task order, booking confirmation, signed agreement, or approved written
+      authorisation issued by Skunkworks Academy.
+    </p>
+
+    <p>
+      <strong>Complete and Correct Invoice</strong> means an invoice that contains all required
+      information, supporting documents, approvals, and receipts required by this Policy.
+    </p>
+
+    <p>
+      <strong>Payment Terms</strong> means the agreed number of days within which payment will
+      be made after Skunkworks Academy receives a Complete and Correct Invoice.
+    </p>
+
+    <h2>4. Standard Payment Terms</h2>
+
+    <div class="payment-highlight">
+      Standard Payment Terms: NET 30 Days
+    </div>
+
+    <p>
+      Unless a signed agreement, task order, purchase order, or statement of work states otherwise,
+      Skunkworks Academy’s standard payment terms are <strong>NET 30 calendar days</strong>.
+    </p>
+
+    <p>
+      Payment will be made within <strong>30 calendar days after Skunkworks Academy receives
+      a Complete and Correct Invoice</strong>, together with all required supporting documents.
+    </p>
+
+    <div class="important">
+      <p>
+        The payment period starts only once Skunkworks Academy receives a Complete and Correct
+        Invoice through the approved invoice submission channel.
+      </p>
+    </div>
+
+    <p>The payment period does <strong>not</strong> start from:</p>
+
+    <ul>
+      <li>the date the invoice was created;</li>
+      <li>the date services were completed;</li>
+      <li>the date an incomplete invoice was sent;</li>
+      <li>the date an invoice was sent to the wrong person or wrong email address;</li>
+      <li>the date supporting documents were requested but not yet supplied.</li>
+    </ul>
+
+    <h2>5. Required Invoice Information</h2>
+
+    <p>Every invoice submitted to Skunkworks Academy must include the following:</p>
+
+    <div class="checkbox-list">
+      <label><input type="checkbox" /> Vendor / subcontractor legal name</label>
+      <label><input type="checkbox" /> Vendor registration number or ID number, if applicable</label>
+      <label><input type="checkbox" /> Vendor VAT number, if applicable</label>
+      <label><input type="checkbox" /> Vendor banking details</label>
+      <label><input type="checkbox" /> Invoice number</label>
+      <label><input type="checkbox" /> Invoice date</label>
+      <label><input type="checkbox" /> Skunkworks Academy billing details</label>
+      <label><input type="checkbox" /> Task Order, Job Code, Purchase Order, or project reference</label>
+      <label><input type="checkbox" /> Date or dates on which services were delivered</label>
+      <label><input type="checkbox" /> Description of goods or services provided</label>
+      <label><input type="checkbox" /> Quantity, rate, daily rate, hourly rate, or agreed fixed fee</label>
+      <label><input type="checkbox" /> Total amount payable</label>
+      <label><input type="checkbox" /> VAT amount, if applicable</label>
+      <label><input type="checkbox" /> Currency</label>
+      <label><input type="checkbox" /> Payment terms</label>
+      <label><input type="checkbox" /> Contact person for invoice queries</label>
+    </div>
+
+    <h2>6. Required Supporting Documents</h2>
+
+    <p>The following documents must be attached where applicable:</p>
+
+    <ul>
+      <li>signed task order, purchase order, statement of work, or written approval;</li>
+      <li>attendance register or delivery confirmation;</li>
+      <li>completion report or signed acceptance, where required;</li>
+      <li>approved travel and living expense form;</li>
+      <li>original receipts for reimbursable expenses;</li>
+      <li>proof of prior written approval for any additional costs;</li>
+      <li>client approval or acceptance, where payment depends on client sign-off.</li>
+    </ul>
+
+    <p>
+      Invoices without required supporting documents may be rejected, delayed, or returned
+      for correction.
+    </p>
+
+    <h2>7. Invoice Submission Deadline</h2>
+
+    <p>
+      Invoices must be submitted as soon as possible after completion of the relevant goods
+      or services.
+    </p>
+
+    <table>
+      <tr>
+        <th>Recommended Submission Period</th>
+        <td>Within 7 calendar days after completion of services.</td>
+      </tr>
+      <tr>
+        <th>Final Standard Deadline</th>
+        <td>No later than 30 calendar days after completion of services.</td>
+      </tr>
+      <tr>
+        <th>Late Invoice Cut-Off</th>
+        <td>
+          Invoices submitted more than 90 calendar days after completion may not be considered
+          for payment unless Skunkworks Academy approves payment in writing.
+        </td>
+      </tr>
+    </table>
+
+    <h2>8. Invoice Submission Method</h2>
+
+    <p>
+      Invoices and supporting documents must be submitted to the approved invoice email address:
+    </p>
+
+    <table>
+      <tr>
+        <th>Approved Invoice Email</th>
+        <td><input type="email" placeholder="Insert invoice email address" /></td>
+      </tr>
+    </table>
+
+    <p>
+      Invoices sent to individual employees, instructors, project managers, sales staff, or
+      client contacts will not be treated as properly submitted unless Skunkworks Academy
+      confirms otherwise in writing.
+    </p>
+
+    <p>
+      If an invoice is sent to the wrong address or person, the payment period will only start
+      when the invoice is correctly submitted to the approved invoice email address.
+    </p>
+
+    <h2>9. Invoice Format</h2>
+
+    <p>
+      All invoices must be submitted in <strong>PDF format</strong> unless Skunkworks Academy
+      agrees otherwise in writing.
+    </p>
+
+    <p>
+      Excel files, Word documents, screenshots, WhatsApp messages, or email text alone will not
+      be accepted as valid invoices unless expressly approved in writing.
+    </p>
+
+    <h2>10. Invoice Review and Approval</h2>
+
+    <p>Skunkworks Academy may review each invoice to confirm that:</p>
+
+    <ul>
+      <li>the invoice matches the approved task order or purchase order;</li>
+      <li>the goods or services were completed;</li>
+      <li>the rates and totals are correct;</li>
+      <li>required supporting documents are attached;</li>
+      <li>expenses were pre-approved;</li>
+      <li>client acceptance or learner attendance requirements were met, where applicable;</li>
+      <li>the invoice complies with this Policy.</li>
+    </ul>
+
+    <p>
+      Skunkworks Academy may request clarification, corrections, or additional documents before
+      approving an invoice for payment.
+    </p>
+
+    <h2>11. Rejected or Incomplete Invoices</h2>
+
+    <p>Skunkworks Academy may reject or return an invoice if:</p>
+
+    <ul>
+      <li>it is missing required information;</li>
+      <li>it is not in PDF format;</li>
+      <li>it does not include the task order, job code, or project reference;</li>
+      <li>it does not include dates of service;</li>
+      <li>the invoice amount does not match the approved task order;</li>
+      <li>required supporting documents are missing;</li>
+      <li>it includes unapproved expenses;</li>
+      <li>it is sent to the wrong email address;</li>
+      <li>it is submitted late;</li>
+      <li>the goods or services were incomplete, defective, disputed, or not accepted.</li>
+    </ul>
+
+    <div class="important">
+      <p>
+        If an invoice is rejected, the vendor must resubmit a corrected invoice. The payment
+        period will restart from the date Skunkworks Academy receives the corrected Complete
+        and Correct Invoice.
+      </p>
+    </div>
+
+    <h2>12. Expense Reimbursement</h2>
+
+    <p>Expenses will only be reimbursed if:</p>
+
+    <ul>
+      <li>they were approved in writing before being incurred;</li>
+      <li>they are allowed under the applicable task order, travel policy, or written approval;</li>
+      <li>they are reasonable and directly related to the approved services;</li>
+      <li>valid receipts are submitted;</li>
+      <li>the expense claim is submitted with the invoice.</li>
+    </ul>
+
+    <p>
+      Skunkworks Academy will not reimburse personal, luxury, entertainment, alcohol, traffic fine,
+      parking fine, upgrade, or unapproved expenses.
+    </p>
+
+    <p>
+      Credit card slips, bank statements, or screenshots alone may not be sufficient proof of expense.
+    </p>
+
+    <h2>13. Travel and Living Expenses</h2>
+
+    <p>
+      Travel and living expenses must be approved in writing before booking.
+    </p>
+
+    <ul>
+      <li>Economy travel applies unless otherwise approved.</li>
+      <li>Reasonable accommodation applies.</li>
+      <li>Non-refundable bookings are at the vendor’s risk unless pre-approved.</li>
+      <li>All travel costs must remain within the approved limit.</li>
+      <li>Receipts are required for all reimbursable travel expenses.</li>
+      <li>If a client-specific travel policy applies, that policy will take precedence for the relevant engagement.</li>
+    </ul>
+
+    <h2>14. Payment Method</h2>
+
+    <p>
+      Approved invoices will be paid by electronic funds transfer into the bank account nominated
+      on the invoice or vendor onboarding form.
+    </p>
+
+    <p>
+      Skunkworks Academy may require bank confirmation before making payment.
+    </p>
+
+    <p>
+      Vendors are responsible for ensuring that banking details are accurate. Skunkworks Academy
+      is not responsible for delayed or misdirected payments caused by incorrect banking information
+      supplied by the vendor.
+    </p>
+
+    <h2>15. Taxes</h2>
+
+    <p>
+      Vendors are responsible for their own taxes, VAT, PAYE, income tax, levies, duties,
+      statutory contributions, and related obligations.
+    </p>
+
+    <p>
+      Where VAT applies, vendors must provide a valid VAT invoice.
+    </p>
+
+    <p>
+      If withholding tax or any statutory deduction is legally required, Skunkworks Academy may
+      deduct the required amount and pay the balance to the vendor.
+    </p>
+
+    <h2>16. Disputed Invoices</h2>
+
+    <p>
+      If Skunkworks Academy disputes an invoice, it will notify the vendor of the issue.
+    </p>
+
+    <p>
+      Skunkworks Academy may withhold the disputed portion of the invoice while the dispute is
+      being resolved. Any undisputed portion may be paid according to the applicable payment terms.
+    </p>
+
+    <h2>17. Failed, Incomplete or Unsatisfactory Delivery</h2>
+
+    <p>
+      Where payment relates to training, instruction, consulting, mentoring, facilitation, or
+      subcontractor services, Skunkworks Academy may withhold, reduce, or prorate payment if:
+    </p>
+
+    <ul>
+      <li>the services were not delivered;</li>
+      <li>the services were materially incomplete;</li>
+      <li>the instructor or subcontractor failed to attend or deliver;</li>
+      <li>the client refuses to pay Skunkworks Academy due to the vendor’s performance;</li>
+      <li>the client makes only partial payment because of the vendor’s performance;</li>
+      <li>required reports, evaluations, attendance records, or completion documents were not submitted.</li>
+    </ul>
+
+    <p>
+      Where partial payment is received from the client due to vendor-related delivery issues,
+      Skunkworks Academy may prorate the vendor’s payment based on the amount actually received.
+    </p>
+
+    <h2>18. Set-Off</h2>
+
+    <p>
+      Skunkworks Academy may set off amounts owed by a vendor against amounts payable to that
+      vendor, including:
+    </p>
+
+    <ul>
+      <li>overpayments;</li>
+      <li>duplicate payments;</li>
+      <li>replacement costs;</li>
+      <li>client penalties;</li>
+      <li>approved chargebacks;</li>
+      <li>losses caused by non-performance;</li>
+      <li>unpaid amounts owed to Skunkworks Academy.</li>
+    </ul>
+
+    <h2>19. Payment Runs</h2>
+
+    <p>
+      Skunkworks Academy may process approved payments during scheduled payment runs.
+    </p>
+
+    <table>
+      <tr>
+        <th>Standard Payment Run Day</th>
+        <td><input type="text" placeholder="e.g. Every Friday / 15th and 30th of each month" /></td>
+      </tr>
+      <tr>
+        <th>Alternative Payment Run Day</th>
+        <td><input type="text" placeholder="Optional" /></td>
+      </tr>
+    </table>
+
+    <p>
+      If a payment due date falls on a weekend or public holiday, payment may be processed on
+      the next business day.
+    </p>
+
+    <h2>20. Currency</h2>
+
+    <p>
+      Invoices must be issued in the currency stated in the applicable task order, purchase order,
+      statement of work, or agreement.
+    </p>
+
+    <p>
+      If no currency is stated, invoices must be issued in <strong>South African Rand (ZAR)</strong>.
+    </p>
+
+    <p>
+      Foreign currency payments may be converted using Skunkworks Academy’s bank rate,
+      accounting system rate, or another rate approved by Skunkworks Academy.
+    </p>
+
+    <p>
+      Bank charges, intermediary charges, and exchange rate differences may be for the vendor’s
+      account unless otherwise agreed in writing.
+    </p>
+
+    <h2>21. No Payment Without Authorisation</h2>
+
+    <p>
+      Skunkworks Academy is not required to pay for goods, services, expenses, travel, software,
+      materials, subscriptions, or other costs that were not approved in writing before being incurred.
+    </p>
+
+    <p>
+      Verbal approval is not sufficient unless confirmed in writing.
+    </p>
+
+    <h2>22. Policy Priority</h2>
+
+    <p>
+      If there is a conflict between this Policy and a signed agreement, task order, purchase order,
+      or statement of work, the signed agreement or task order will apply to the extent of the conflict.
+    </p>
+
+    <p>
+      For all other matters, this Policy applies.
+    </p>
+
+    <h2>23. Policy Updates</h2>
+
+    <p>
+      Skunkworks Academy may update this Policy from time to time.
+    </p>
+
+    <p>
+      The version in effect on the date the relevant task order, purchase order, or agreement is
+      issued will apply unless Skunkworks Academy states otherwise.
+    </p>
+
+    <h1>Vendor Acknowledgement</h1>
+
+    <p>
+      I confirm that I have read and understood the Skunkworks Academy Accounts Payable Policy
+      and agree to comply with its invoice submission, documentation, timing, and payment requirements.
+    </p>
+
+    <div class="signature-grid">
+      <div class="signature-box">
+        <div class="signature-title">Vendor / Subcontractor</div>
+
+        <div class="line"></div>
+        <div class="label">Vendor / Subcontractor Name</div>
+
+        <div class="line"></div>
+        <div class="label">Representative Name</div>
+
+        <div class="line"></div>
+        <div class="label">Title / Capacity</div>
+
+        <div class="line"></div>
+        <div class="label">Signature</div>
+
+        <div class="line"></div>
+        <div class="label">Date</div>
+      </div>
+
+      <div class="signature-box">
+        <div class="signature-title">For Skunkworks Academy</div>
+
+        <div class="line"></div>
+        <div class="label">Representative Name</div>
+
+        <div class="line"></div>
+        <div class="label">Title</div>
+
+        <div class="line"></div>
+        <div class="label">Signature</div>
+
+        <div class="line"></div>
+        <div class="label">Date</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Skunkworks Academy (Pty) Ltd — Accounts Payable Policy. Review payment terms,
+      invoice email, VAT details, and payment run dates before issuing.
+    </div>
+
+  </div>
+</body>
+</html>
