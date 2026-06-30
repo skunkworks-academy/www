@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skunkworks Academy - Global Vendor Form</title>
+
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px;
+      background: #f3f4f6;
+      color: #1f2933;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .document {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 48px 56px;
+      border-top: 8px solid #111827;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 22px;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .company-details {
+      text-align: right;
+      font-size: 12px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 28px 0 22px;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin-top: 28px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #d1d5db;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #111827;
+    }
+
+    p, label, input, textarea, select, td, th {
+      font-size: 13px;
+    }
+
+    p {
+      margin: 9px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+    }
+
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    th {
+      width: 32%;
+      background: #f3f4f6;
+      text-align: left;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 8px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 74px;
+      resize: vertical;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      margin-top: 6px;
+    }
+
+    .checkbox-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .checkbox-line input {
+      width: auto;
+    }
+
+    .note {
+      border-left: 4px solid #111827;
+      background: #f9fafb;
+      padding: 12px 15px;
+      margin: 16px 0;
+      color: #374151;
+      font-size: 12.5px;
+    }
+
+    .box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .signature-box {
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      padding: 18px;
+      min-height: 220px;
+      page-break-inside: avoid;
+    }
+
+    .signature-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: #111827;
+      font-size: 13px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid #111827;
+      height: 28px;
+      margin-top: 12px;
+    }
+
+    .sig-label {
+      font-size: 10.5px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .footer-note {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid #d1d5db;
+      text-align: center;
+      font-size: 11.5px;
+      color: #6b7280;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+        border-top: none;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      table, .box, .note, .signature-box {
+        page-break-inside: avoid;
+      }
+
+      input, textarea, select {
+        border: none;
+        border-bottom: 1px solid #111827;
+        border-radius: 0;
+        padding: 3px 0;
+      }
+
+      textarea {
+        border: 1px solid #d1d5db;
+        min-height: 76px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="document">
+
+    <div class="header">
+      <div>
+        <div class="brand">Skunkworks Academy</div>
+        <div class="subtitle">Global Vendor Form</div>
+      </div>
+
+      <div class="company-details">
+        <strong>Skunkworks Academy (Pty) Ltd</strong><br />
+        Reg. No. 2026 / 401210 / 07<br />
+        26 Second Avenue, Alberton<br />
+        Gauteng, 1401, South Africa<br />
+        Website: <input type="text" placeholder="www.skunkworks.africa" /><br />
+        Email: <input type="email" placeholder="billing@skunkworks.africa" />
+      </div>
+    </div>
+
+    <h1>Global Vendor Form</h1>
+
+    <div class="note">
+      Please complete this form in full and return it with the required supporting documents.
+      Payment may be delayed if vendor details, tax information, banking details, or required documents are incomplete.
+    </div>
+
+    <h2>1. Vendor Business Information</h2>
+
+    <table>
+      <tr>
+        <th>Legal Business Name</th>
+        <td><input type="text" placeholder="Registered legal name of vendor" /></td>
+      </tr>
+      <tr>
+        <th>Trading Name</th>
+        <td><input type="text" placeholder="Trading name, if different" /></td>
+      </tr>
+      <tr>
+        <th>Business Registration Number</th>
+        <td><input type="text" placeholder="Company / close corporation / other registration number" /></td>
+      </tr>
+      <tr>
+        <th>VAT / GST / Taxpayer ID</th>
+        <td><input type="text" placeholder="VAT number, GST number, taxpayer ID, or N/A" /></td>
+      </tr>
+      <tr>
+        <th>Business Type</th>
+        <td>
+          <select>
+            <option value="">Select business type</option>
+            <option>Private Company</option>
+            <option>Public Company</option>
+            <option>Sole Proprietor</option>
+            <option>Partnership</option>
+            <option>Non-Profit Organisation</option>
+            <option>Trust</option>
+            <option>Individual Contractor</option>
+            <option>Other</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Physical Address</th>
+        <td><textarea placeholder="Street address, city, province/state, postal code, country"></textarea></td>
+      </tr>
+      <tr>
+        <th>Postal Address</th>
+        <td><textarea placeholder="Postal address, if different from physical address"></textarea></td>
+      </tr>
+      <tr>
+        <th>Business Phone</th>
+        <td><input type="text" placeholder="+27..." /></td>
+      </tr>
+      <tr>
+        <th>Company Website</th>
+        <td><input type="url" placeholder="https://..." /></td>
+      </tr>
+    </table>
+
+    <h2>2. Business Ownership Information</h2>
+
+    <p>
+      Complete this section only if applicable or required for client, supplier, transformation,
+      procurement, diversity, or reporting purposes.
+    </p>
+
+    <div class="box">
+      <div class="checkbox-grid">
+        <label class="checkbox-line"><input type="checkbox" /> Women-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> Minority-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> People with disabilities</label>
+        <label class="checkbox-line"><input type="checkbox" /> LGBTQ-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> Youth-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> Black-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> Veteran-owned</label>
+        <label class="checkbox-line"><input type="checkbox" /> Not applicable</label>
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>B-BBEE Level, if applicable</th>
+        <td><input type="text" placeholder="e.g. Level 1 / Level 2 / N/A" /></td>
+      </tr>
+      <tr>
+        <th>B-BBEE Certificate / Affidavit Attached</th>
+        <td>
+          <select>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Not applicable</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <h2>3. Primary Contact Details</h2>
+
+    <table>
+      <tr>
+        <th>Primary Contact Name</th>
+        <td><input type="text" placeholder="Full name" /></td>
+      </tr>
+      <tr>
+        <th>Primary Contact Title</th>
+        <td><input type="text" placeholder="Role / title" /></td>
+      </tr>
+      <tr>
+        <th>Primary Contact Email</th>
+        <td><input type="email" placeholder="name@example.com" /></td>
+      </tr>
+      <tr>
+        <th>Primary Contact Phone</th>
+        <td><input type="text" placeholder="+27..." /></td>
+      </tr>
+    </table>
+
+    <h2>4. Accounting Contact Details</h2>
+
+    <table>
+      <tr>
+        <th>Accounting Contact</th>
+        <td><input type="text" placeholder="Accounts contact name" /></td>
+      </tr>
+      <tr>
+        <th>Accounting Email Address</th>
+        <td><input type="email" placeholder="accounts@example.com" /></td>
+      </tr>
+      <tr>
+        <th>Accounting Phone</th>
+        <td><input type="text" placeholder="+27..." /></td>
+      </tr>
+      <tr>
+        <th>Invoice Submission Email</th>
+        <td><input type="email" placeholder="Email address vendor will use to submit invoices" /></td>
+      </tr>
+    </table>
+
+    <h2>5. Banking Information</h2>
+
+    <div class="note">
+      Banking details must match the vendor’s legal or trading name. Skunkworks Academy may request
+      bank confirmation before approving a vendor for payment.
+    </div>
+
+    <table>
+      <tr>
+        <th>Name on Bank Account</th>
+        <td><input type="text" placeholder="Account holder name" /></td>
+      </tr>
+      <tr>
+        <th>Bank Name</th>
+        <td><input type="text" placeholder="Bank name" /></td>
+      </tr>
+      <tr>
+        <th>Branch Name</th>
+        <td><input type="text" placeholder="Branch name, if applicable" /></td>
+      </tr>
+      <tr>
+        <th>Branch Code / Routing Code</th>
+        <td><input type="text" placeholder="Branch code, routing number, sort code, etc." /></td>
+      </tr>
+      <tr>
+        <th>Account Number / IBAN</th>
+        <td><input type="text" placeholder="Bank account number or IBAN" /></td>
+      </tr>
+      <tr>
+        <th>SWIFT / BIC</th>
+        <td><input type="text" placeholder="SWIFT or BIC code, if applicable" /></td>
+      </tr>
+      <tr>
+        <th>Account Type</th>
+        <td>
+          <select>
+            <option value="">Select account type</option>
+            <option>Current / Cheque</option>
+            <option>Savings</option>
+            <option>Business Account</option>
+            <option>Foreign Currency Account</option>
+            <option>Other</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Bank Country</th>
+        <td><input type="text" placeholder="Country where bank account is held" /></td>
+      </tr>
+      <tr>
+        <th>Currency</th>
+        <td><input type="text" placeholder="e.g. ZAR, USD, EUR, GBP" /></td>
+      </tr>
+    </table>
+
+    <h2>6. Payment Information</h2>
+
+    <table>
+      <tr>
+        <th>Preferred Payment Terms</th>
+        <td><input type="text" placeholder="e.g. NET 30 days" /></td>
+      </tr>
+      <tr>
+        <th>Payment Reference Required</th>
+        <td><input type="text" placeholder="Reference to appear on payments, if any" /></td>
+      </tr>
+      <tr>
+        <th>Purchase Order Required?</th>
+        <td>
+          <select>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Invoice Currency</th>
+        <td><input type="text" placeholder="Currency vendor will invoice in" /></td>
+      </tr>
+    </table>
+
+    <h2>7. Required Supporting Documents</h2>
+
+    <p>Please attach the following documents where applicable:</p>
+
+    <div class="box">
+      <label class="checkbox-line"><input type="checkbox" /> Company registration document</label>
+      <label class="checkbox-line"><input type="checkbox" /> VAT registration certificate, if applicable</label>
+      <label class="checkbox-line"><input type="checkbox" /> Tax clearance / tax compliance document, if applicable</label>
+      <label class="checkbox-line"><input type="checkbox" /> Bank confirmation letter or cancelled cheque</label>
+      <label class="checkbox-line"><input type="checkbox" /> B-BBEE certificate or affidavit, if applicable</label>
+      <label class="checkbox-line"><input type="checkbox" /> Signed agreement, task order, purchase order, or onboarding approval</label>
+      <label class="checkbox-line"><input type="checkbox" /> Proof of identity for individual contractors, where required</label>
+      <label class="checkbox-line"><input type="checkbox" /> Professional indemnity / public liability insurance, where required</label>
+    </div>
+
+    <h2>8. Vendor Compliance Declarations</h2>
+
+    <div class="box">
+      <label class="checkbox-line">
+        <input type="checkbox" />
+        I confirm that the information provided in this form is true, accurate, and complete.
+      </label>
+
+      <label class="checkbox-line">
+        <input type="checkbox" />
+        I confirm that the banking details provided belong to the vendor named in this form.
+      </label>
+
+      <label class="checkbox-line">
+        <input type="checkbox" />
+        I agree to notify Skunkworks Academy promptly of any change to business, tax, contact, or banking details.
+      </label>
+
+      <label class="checkbox-line">
+        <input type="checkbox" />
+        I understand that incomplete or inaccurate information may delay vendor onboarding or payment.
+      </label>
+
+      <label class="checkbox-line">
+        <input type="checkbox" />
+        I consent to Skunkworks Academy processing the information in this form for vendor onboarding, payment, compliance, and recordkeeping purposes.
+      </label>
+    </div>
+
+    <h2>9. Authorised Vendor Signature</h2>
+
+    <div class="signature-grid">
+      <div class="signature-box">
+        <div class="signature-title">Vendor Authorisation</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Representative Name</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Title / Capacity</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+
+      <div class="signature-box">
+        <div class="signature-title">For Skunkworks Academy Use</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Reviewed By</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Approved By</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Vendor Number / Internal Reference</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Date Approved</div>
+      </div>
+    </div>
+
+    <h2>10. Return Instructions</h2>
+
+    <div class="box">
+      <p>
+        Please complete this form and return it with all required supporting documents to:
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <input type="email" placeholder="billing@skunkworks.africa" />
+      </p>
+
+      <p>
+        <strong>Subject Line:</strong>
+        Vendor Form - <input type="text" placeholder="Vendor legal name" />
+      </p>
+    </div>
+
+    <div class="footer-note">
+      Skunkworks Academy (Pty) Ltd — Global Vendor Form. Review return email, website,
+      VAT details, banking verification requirements, and supporting document requirements before issuing.
+    </div>
+
+  </div>
+</body>
+</html>
