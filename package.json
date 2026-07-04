@@ -1,0 +1,19 @@
+{
+  "name": "skunkworks-academy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skunkworks Academy course platform and resources",
+  "homepage": "https://skunkworksacademy.com",
+  "license": "Other",
+  "workspaces": [
+    "comptia",
+    "self-paced/security/skw-owasp-top10-2025/vulnerable-app"
+  ],
+  "scripts": {
+    "postinstall": "npm run validate",
+    "validate": "node scripts/validate-self-paced.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
