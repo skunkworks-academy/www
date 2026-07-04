@@ -1,0 +1,37 @@
+version: 2
+updates:
+  # npm dependencies in comptia React app
+  - package-ecosystem: "npm"
+    directory: "/comptia"
+    schedule:
+      interval: "daily"
+    auto-merge:
+      squash: true
+      commit-message: "chore(comptia): update dependencies"
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  # npm dependencies in OWASP vulnerable app lab
+  - package-ecosystem: "npm"
+    directory: "/self-paced/security/skw-owasp-top10-2025/vulnerable-app"
+    schedule:
+      interval: "daily"
+    auto-merge:
+      squash: true
+      commit-message: "chore(owasp-lab): update dependencies"
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  # Composer (PHP) dependencies if they exist in root or subdirs
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    auto-merge:
+      squash: true
+      commit-message: "chore: update PHP dependencies"
+    labels:
+      - "dependencies"
+      - "php"
