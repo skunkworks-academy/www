@@ -8,9 +8,13 @@ Completed:
 - .github central nav asset v3 and homepage fallback.
 - academy-validation rule and audit command.
 - portal app nav validator and v3 asset reference.
+- portal privacy statement v3 single navigation reference.
 - labs mandatory head include v3.
 - media index v3 plus brand-only fallback.
 - badging index v3 plus brand-only fallback.
+- security index v3 navigation reference.
+- dashboard index v3 navigation reference.
+- ibm index v3 navigation reference.
 - academy-portal index v3.
 - jobs navigation standard v3.
 - comptia navigation standard.
@@ -22,10 +26,9 @@ Completed:
 
 Remaining constrained:
 
-- security index write returned 403.
-- dashboard index write returned 403 and is not in installation 100245519.
-- portal privacy statement update blocked by connector safety checks.
-- ibm index still needs cache-key refresh from old shared nav asset to 2026.07.04.
+- No remaining known installed-repository navigation blocker from the retry pass.
+- Note: dashboard was writable on retry despite not appearing in the skunkworks-academy installation list response.
+- Note: the ibm page required a smaller safe replacement because the full original payload was blocked by the connector safety layer.
 
 Canonical asset: https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04
 
