@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Azure training • Skunkworks Academy</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand__logo" src="../../microsoft-logo.png" alt="Microsoft" />
+      <div class="brand__text">
+        <div class="brand__title">Skunkworks Academy</div>
+        <div class="brand__subtitle">Azure training</div>
+      </div>
+    </div>
+    <div class="topbar__actions">
+      <a class="nav__item" href="../../index.html" style="border:1px solid var(--border);">Back to Microsoft home</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <nav class="nav">
+        <a class="nav__item" href="../all/">All training</a>
+        <a class="nav__item" href="../azure/">Azure training</a>
+        <a class="nav__item" href="../dynamics365/">Dynamics 365 training</a>
+        <a class="nav__item" href="../copilot/">Microsoft Copilot training</a>
+        <a class="nav__item" href="../microsoft365/">Microsoft 365 training</a>
+        <a class="nav__item" href="../power-platform/">Microsoft Power Platform training</a>
+        <a class="nav__item" href="../labs/">Labs</a>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <h1 class="h1">Azure training</h1>
+      <p class="muted">Add course tiles here (AZ-900, AZ-104, AZ-305, etc.).</p>
+
+      <div class="grid">
+        <a class="card" href="#">
+          <div class="card__title">AZ-900: Azure Fundamentals</div>
+          <div class="card__meta">Core cloud concepts, Azure services, pricing, governance.</div>
+        </a>
+        <a class="card" href="#">
+          <div class="card__title">AZ-104: Azure Administrator</div>
+          <div class="card__meta">Identity, compute, storage, networking, monitoring.</div>
+        </a>
+        <a class="card" href="#">
+          <div class="card__title">AZ-305: Azure Solutions Architect</div>
+          <div class="card__meta">Design identity, data, apps, infrastructure, and security.</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>
