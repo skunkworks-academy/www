@@ -1,49 +1,77 @@
 # Skunkworks Academy Design System
 
-This directory contains the shared visual foundation for Skunkworks Academy static pages, portal pages, forms, landing pages, and faculty pages.
+This document defines the single visual foundation for Skunkworks Academy static pages, portal pages, forms, landing pages, faculty pages, course pages, and document-style templates.
 
 ## Purpose
 
-Every new page should feel like part of the same Skunkworks Academy website. Authors must not create one-off page styling unless there is a specific approved brand exception.
+Every page must feel like part of the same Skunkworks Academy ecosystem. Authors must not create one-off page styling, duplicate navigation systems, page-local colour palettes, or vendor-specific themes.
 
-## Required assets
+The only approved brand styling authority is:
 
-Add these files to every page:
+```html
+<link rel="stylesheet" href="/assets/skunkworks-design-system.css" />
+<script src="/assets/skunkworks-ui.js" defer></script>
+```
+
+The older faculty paths remain as compatibility aliases only:
 
 ```html
 <link rel="stylesheet" href="/faculty/assets/css/skunkworks-design-system.css" />
-<script src="/faculty/assets/js/skunkworks-ui.js" defer></script>
 ```
+
+New pages must not use the faculty path unless maintaining a legacy page that cannot yet be moved.
 
 ## Page shell
 
 Use the same high-level structure on every page:
 
 ```html
-<html lang="en-ZA" data-brand="academy">
+<!doctype html>
+<html lang="en-ZA" data-theme="light" data-format="course">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/skunkworks-design-system.css" />
+  <script src="/assets/skunkworks-ui.js" defer></script>
+</head>
 <body>
+  <a class="sk-skip-link" href="#main">Skip to main content</a>
   <div class="sk-app">
-    <header class="sk-topbar">...</header>
-    <main class="sk-main">...</main>
+    <main id="main" class="sk-main">...</main>
     <footer class="sk-footer">...</footer>
   </div>
 </body>
 </html>
 ```
 
-## Brand variants
+The global navigation is injected by `/assets/skunkworks-ui.js`. Do not add a second header menu unless a page has an approved exception and uses `data-sk-preserve-header`.
 
-Use the `data-brand` attribute to keep one base system while allowing controlled colour variation:
+## Format modes
 
-- `data-brand="academy"` for Skunkworks Academy public pages.
-- `data-brand="skunkworks"` for Skunkworks corporate/service pages.
-- `data-brand="portal"` for authenticated portals, dashboards, login screens, and learner/admin forms.
+There is one brand. Use format modes for layout needs, not separate brand variants.
+
+| Attribute | Use |
+|---|---|
+| `data-format="course"` | Course, learning path, lesson, lab, and catalogue pages. |
+| `data-format="portal"` | Learner/admin portal screens, dashboards, and login screens. |
+| `data-format="document"` | Policies, agreements, forms, vendor templates, and long-form documents. |
+| `data-format="print"` | Print-first or PDF-first pages. |
+
+Allowed theme values:
+
+| Attribute | Use |
+|---|---|
+| `data-theme="light"` | Explicit light mode. |
+| `data-theme="dark"` | Explicit dark mode. |
+
+Do not use `data-brand` for colour variation. Do not create Microsoft, IBM, partner, faculty, forms, or portal colour systems.
 
 ## Core components
 
 | Component | Classes |
 |---|---|
-| Header/navigation | `sk-topbar`, `sk-brand`, `sk-nav`, `sk-nav-toggle` |
+| Global navigation | Injected `.swa-global-nav` from `/assets/skunkworks-ui.js` |
+| Static header exception | `sk-site-header`, `sk-site-header__inner`, `sk-site-brand`, `sk-nav` |
 | Page header | `sk-page-header`, `sk-eyebrow`, `sk-actions` |
 | Hero landing area | `sk-hero`, `sk-hero__inner`, `sk-hero__content` |
 | Layout container | `sk-container`, `sk-section`, `sk-grid` |
@@ -53,21 +81,26 @@ Use the `data-brand` attribute to keep one base system while allowing controlled
 | Forms | `sk-form`, `sk-field`, `sk-label`, `sk-input`, `sk-select`, `sk-textarea`, `sk-help-text` |
 | Portal layout | `sk-portal-layout`, `sk-sidebar`, `sk-panel` |
 | Login layout | `sk-login-layout`, `sk-form-card` |
+| Documents | `sk-document`, `sk-document-header`, `sk-document-title`, `sk-signature-grid`, `sk-signature-box` |
 | Tables | `sk-table-wrap`, `sk-table` |
 | Footer | `sk-footer`, `sk-footer__inner`, `sk-footer__bottom` |
 
 ## Implementation rules
 
-1. Do not use inline page-level CSS for layout, buttons, cards, forms, or navigation.
-2. Use design tokens from `skunkworks-design-system.css` for colour, spacing, typography, borders, and states.
-3. Every page must include the shared header and footer pattern.
-4. Every portal form must use the `sk-form` component classes.
-5. Every login screen must use `sk-login-layout` and `sk-form-card`.
-6. Every dashboard/portal page should use `sk-portal-layout` with `sk-sidebar` and `sk-panel`.
-7. Use `aria-current="page"` on the active navigation item.
-8. Use semantic HTML: `header`, `main`, `section`, `article`, `footer`, `form`, `label`.
-9. Keep spacing on the shared 2x scale through existing utility/component classes.
-10. Use `data-brand` for controlled brand colour variation instead of creating new CSS files per page.
+1. Load `/assets/skunkworks-design-system.css` and `/assets/skunkworks-ui.js` on every new HTML page.
+2. Do not use inline page-level CSS for layout, buttons, cards, forms, typography, colours, or navigation.
+3. Do not create new page-specific CSS files unless they are thin compatibility shims importing the global design system.
+4. Use `--sk-*` design tokens for colour, spacing, typography, borders, elevation, and states.
+5. Use `data-format` for page layout intent and `data-theme` for light/dark mode.
+6. Do not use `data-brand` for colour variation.
+7. Every page must use the shared global navigation or an explicitly approved static-header exception.
+8. Every portal form must use the `sk-form` component classes.
+9. Every login screen must use `sk-login-layout` and `sk-form-card`.
+10. Every dashboard/portal page should use `sk-portal-layout` with `sk-sidebar` and `sk-panel`.
+11. Use `aria-current="page"` on any static active navigation item.
+12. Use semantic HTML: `header`, `main`, `section`, `article`, `footer`, `form`, and `label`.
+13. Keep spacing on the shared scale through the existing utility/component classes.
+14. Print/PDF documents must use `sk-document` classes and the shared `@media print` rules.
 
 ## Portal form starter
 
@@ -89,6 +122,22 @@ Use the `data-brand` attribute to keep one base system while allowing controlled
 </section>
 ```
 
+## Document starter
+
+```html
+<main id="main" class="sk-main">
+  <article class="sk-document">
+    <header class="sk-document-header">
+      <p class="sk-eyebrow">Skunkworks Academy</p>
+      <h1 class="sk-document-title">Document Title</h1>
+    </header>
+    ...
+  </article>
+</main>
+```
+
 ## Governance
 
-When a new page is created, it should first be built using this design system. Only page-specific content should change. Structural layout, navigation, buttons, cards, forms, and footer patterns should remain consistent.
+When a new page is created, it must first be built using the global design system. Only page-specific content should change. Structural layout, navigation, buttons, cards, forms, print styles, document styles, and footer patterns must remain consistent.
+
+Any deviation must be documented in the pull request and treated as a brand exception.
