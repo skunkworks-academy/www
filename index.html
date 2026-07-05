@@ -10,12 +10,12 @@
   <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
   <!-- /Skunkworks Academy global shell: managed -->
 
-  <title>Skunkworks Academy | Unified Learning Platform</title>
-  <meta name="description" content="Skunkworks Academy unified learning platform for self-paced courses, LMS portal access, forms, labs, security, IBM enablement, badge tracking, jobs, media and purchasing workflows." />
+  <title>Skunkworks Academy | Technical Learning, Labs and Talent</title>
+  <meta name="description" content="Skunkworks Academy is a unified technical learning ecosystem for self-paced courses, virtual labs, instructor-led training, badge pathways, learner portals, career readiness and enterprise enablement." />
   <meta name="author" content="Skunkworks Academy" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
   <meta name="google-adsense-account" content="ca-pub-9270041066336676" />
   <link rel="canonical" href="https://skunkworksacademy.com/" />
@@ -27,14 +27,14 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Skunkworks Academy" />
-  <meta property="og:title" content="Skunkworks Academy | Unified Learning Platform" />
-  <meta property="og:description" content="Navigate Skunkworks Academy courses, self-paced learning, portal access, labs, security, IBM, badge tracking, jobs, media, plans and purchasing from one unified landing page." />
+  <meta property="og:title" content="Skunkworks Academy | Technical Learning, Labs and Talent" />
+  <meta property="og:description" content="A unified Academy landing page for AI learning, self-paced courses, instructor-led delivery, virtual labs, badges, jobs, IBM enablement, security and learner operations." />
   <meta property="og:url" content="https://skunkworksacademy.com/" />
   <meta property="og:image" content="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
   <meta property="og:locale" content="en_ZA" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Skunkworks Academy" />
-  <meta name="twitter:description" content="Unified Academy navigation for AI learning, self-paced courses, portal access, labs, security, IBM, badges, jobs, media and purchasing." />
+  <meta name="twitter:description" content="Technical learning, labs, badges, jobs and enterprise enablement in one Academy ecosystem." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
 
   <script type="application/ld+json">
@@ -43,15 +43,17 @@
       "@type": "EducationalOrganization",
       "name": "Skunkworks Academy",
       "url": "https://skunkworksacademy.com/",
-      "description": "Unified learning platform for technical training, labs, learner portals, forms and credential pathways.",
+      "description": "Technical learning ecosystem for instructor-led training, self-paced learning, virtual labs, badge pathways, learner portals and enterprise enablement.",
+      "slogan": "Dream. Design. Deliver.",
+      "sameAs": [
+        "https://github.com/skunkworks-academy"
+      ],
       "department": [
-        {"@type": "Organization", "name": "Skunkworks Academy AI Learning", "url": "https://skunkworksacademy.com/#new-way-to-learn"},
         {"@type": "Organization", "name": "Skunkworks Academy Self-paced", "url": "https://skunkworksacademy.com/self-paced/"},
         {"@type": "Organization", "name": "Skunkworks Academy Portal", "url": "https://portal.skunkworksacademy.com/"},
         {"@type": "Organization", "name": "Skunkworks Academy Labs", "url": "https://labs.skunkworksacademy.com/"},
         {"@type": "Organization", "name": "Skunkworks Academy Badge Hub", "url": "https://badging.skunkworksacademy.com/"},
         {"@type": "Organization", "name": "Skunkworks Academy Jobs", "url": "https://jobs.skunkworksacademy.com/"},
-        {"@type": "Organization", "name": "Skunkworks Academy Media", "url": "https://media.skunkworksacademy.com/"},
         {"@type": "Organization", "name": "Skunkworks Academy Security", "url": "https://security.skunkworksacademy.com/"},
         {"@type": "Organization", "name": "Skunkworks Academy IBM", "url": "https://ibm.skunkworksacademy.com/"}
       ]
@@ -62,34 +64,42 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NWBW8HWEDR');
+    gtag("js", new Date());
+    gtag("config", "G-NWBW8HWEDR");
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270041066336676" crossorigin="anonymous"></script>
-  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.05" data-skunkworks-global-nav="v4"></script>
 
   <style>
     :root {
       --bg: #050505;
-      --panel: #101010;
-      --panel-2: #171717;
-      --text: #f5f5f5;
+      --surface: #101010;
+      --surface-2: #171717;
+      --surface-3: #202020;
+      --text: #f8fafc;
       --muted: #a3a3a3;
-      --line: #2a2a2a;
+      --soft: #d4d4d4;
+      --line: rgba(255, 255, 255, .13);
       --accent: #7c3aed;
       --accent-2: #06b6d4;
+      --good: #22c55e;
+      --warn: #f59e0b;
+      --danger: #fb7185;
       --radius: 24px;
-      --shadow: 0 24px 80px rgba(0, 0, 0, .35);
+      --radius-lg: 34px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, .38);
+      --container: min(1200px, calc(100% - 32px));
     }
 
     @media (prefers-color-scheme: light) {
       :root {
         --bg: #f8fafc;
-        --panel: #ffffff;
-        --panel-2: #f1f5f9;
+        --surface: #ffffff;
+        --surface-2: #f1f5f9;
+        --surface-3: #e8eef7;
         --text: #050505;
         --muted: #475569;
-        --line: #dbe3ef;
+        --soft: #1f2937;
+        --line: rgba(15, 23, 42, .12);
         --shadow: 0 24px 70px rgba(15, 23, 42, .12);
       }
     }
@@ -98,146 +108,513 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, .22), transparent 34rem),
-        radial-gradient(circle at top right, rgba(6, 182, 212, .18), transparent 30rem),
+        radial-gradient(circle at 0 0, rgba(124, 58, 237, .28), transparent 34rem),
+        radial-gradient(circle at 100% 0, rgba(6, 182, 212, .20), transparent 32rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .03), transparent 18rem),
         var(--bg);
       color: var(--text);
       line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
+    body.nav-open { overflow: hidden; }
     a { color: inherit; }
+    button { font: inherit; }
 
     .skip-link {
       position: fixed;
       top: 10px;
       left: 10px;
-      z-index: 2147483001;
+      z-index: 1000;
       transform: translateY(-150%);
       background: var(--text);
       color: var(--bg);
       padding: 10px 14px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 850;
     }
 
     .skip-link:focus { transform: translateY(0); }
 
-    .shell {
-      width: min(1180px, calc(100% - 32px));
+    .shell,
+    .nav-shell,
+    .footer-shell {
+      width: var(--container);
       margin-inline: auto;
     }
 
-    .hero {
-      padding: 86px 0 42px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-shell {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 950;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .24);
+    }
+
+    .logo-dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+      .logo-light { display: none; }
+      .logo-dark { display: inline-block; }
+    }
+
+    .brand small {
+      display: block;
+      margin-top: -4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 10px 14px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .nav-toggle-lines {
       display: grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap: 32px;
+      gap: 4px;
+    }
+
+    .nav-toggle-lines span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .primary-nav a,
+    .dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      background: transparent;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a:focus,
+    .dropdown-toggle:hover,
+    .dropdown-toggle:focus {
+      border-color: var(--line);
+      background: rgba(148, 163, 184, .12);
+      color: var(--text);
+      outline: none;
+    }
+
+    .nav-cta {
+      border-color: transparent !important;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+      color: #fff !important;
+      box-shadow: 0 18px 40px rgba(6, 182, 212, .22);
+    }
+
+    .nav-group {
+      position: relative;
+    }
+
+    .dropdown-toggle::after {
+      content: "▾";
+      margin-left: 6px;
+      font-size: 10px;
+      opacity: .72;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      width: 288px;
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+    }
+
+    .nav-group:hover .dropdown-menu,
+    .nav-group:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      justify-content: flex-start;
+      min-height: unset;
+      border-color: var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      line-height: 1.25;
+      white-space: normal;
+    }
+
+    .dropdown-menu b {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .dropdown-menu span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .hero {
+      padding: 88px 0 38px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
+      gap: 34px;
       align-items: center;
     }
 
     .eyebrow {
-      margin: 0;
+      margin: 0 0 12px;
       color: #a5f3fc;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
 
-    h1, h2, p { margin-top: 0; }
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
 
     .hero h1 {
-      margin: 14px 0;
-      font-size: clamp(44px, 8vw, 92px);
+      margin-bottom: 18px;
+      max-width: 860px;
+      font-size: clamp(46px, 8vw, 96px);
       line-height: .9;
-      letter-spacing: -.075em;
+      letter-spacing: -.08em;
     }
 
     .lead {
-      max-width: 780px;
+      max-width: 790px;
       color: var(--muted);
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: clamp(18px, 2.1vw, 24px);
       line-height: 1.45;
     }
 
     .actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 26px;
+      flex-wrap: wrap;
+      margin-top: 28px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
+      min-height: 46px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 10px 14px;
-      color: var(--muted);
+      padding: 11px 16px;
+      color: var(--text);
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 900;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
     }
 
-    .btn:hover {
-      color: var(--text);
-      border-color: #666;
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent-2), var(--line) 35%);
+      outline: none;
     }
 
     .primary {
-      border: 0 !important;
+      border-color: transparent;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff !important;
+      color: #fff;
+      box-shadow: 0 20px 55px rgba(124, 58, 237, .28);
     }
 
+    .hero-card,
     .card,
-    .tile {
+    .tile,
+    .process,
+    .repo-panel {
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .035));
+      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
       box-shadow: var(--shadow);
     }
 
-    .card { padding: 24px; }
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+    }
 
-    .metric {
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -60% -40% auto auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(6, 182, 212, .32), transparent 70%);
+      pointer-events: none;
+    }
+
+    .command-card {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 4px;
-      padding: 16px 0;
+      gap: 14px;
+    }
+
+    .command-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--line);
     }
 
-    .metric:last-child { border-bottom: 0; }
-    .metric strong { font-size: 34px; }
-    .metric span,
-    .muted { color: var(--muted); }
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 850;
+    }
 
-    .grid {
+    .status-dot::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, .14);
+    }
+
+    .metric-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .045);
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .terminal {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, .35);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .terminal { background: rgba(15, 23, 42, .04); }
+    }
+
+    .terminal-bar {
+      display: flex;
+      gap: 6px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .terminal-bar span {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--muted);
+      opacity: .65;
+    }
+
+    .terminal pre {
+      margin: 0;
+      overflow: auto;
+      padding: 16px;
+      color: var(--soft);
+      font: 700 13px/1.7 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+
+    .section {
+      padding: 52px 0;
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: .96;
+      letter-spacing: -.06em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      padding: 28px 0;
     }
 
     .tile {
+      position: relative;
+      min-height: 210px;
+      overflow: hidden;
       padding: 22px;
       color: var(--text);
       text-decoration: none;
-      transition: transform .2s ease, border-color .2s ease;
+      transition: transform .22s ease, border-color .22s ease;
     }
 
-    .tile:hover {
-      transform: translateY(-3px);
-      border-color: #666;
+    .tile:hover,
+    .tile:focus {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent-2), var(--line) 45%);
+      outline: none;
     }
 
-    .tile h2 {
-      margin: 0 0 8px;
-      font-size: 20px;
+    .tile::after {
+      content: "→";
+      position: absolute;
+      right: 20px;
+      bottom: 16px;
+      color: var(--muted);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .tile-kicker {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .tile h3 {
+      margin: 28px 0 10px;
+      font-size: 23px;
+      line-height: 1.12;
+      letter-spacing: -.035em;
     }
 
     .tile p {
@@ -245,90 +622,603 @@
       color: var(--muted);
     }
 
-    .repo-panel { margin: 32px 0 80px; }
-
-    .repo-grid {
+    .pathways {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      letter-spacing: -.035em;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 11px;
+      padding: 0;
+      margin: 20px 0 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      color: var(--soft);
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      display: inline-grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, .16);
+      color: var(--good);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .process {
+      padding: 24px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 14px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .04);
+      padding: 18px;
+    }
+
+    .step b {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, .35), rgba(6, 182, 212, .25));
+      color: var(--text);
+      font-weight: 950;
+    }
+
+    .step h3 {
+      margin: 18px 0 8px;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .repo-panel {
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .repo-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .repo-list {
+      display: grid;
+      gap: 10px;
     }
 
     .repo-item {
+      display: grid;
+      gap: 4px;
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 14px;
       background: rgba(255, 255, 255, .04);
+      padding: 14px;
       text-decoration: none;
     }
 
-    .repo-item b { display: block; }
+    .repo-item b {
+      color: var(--text);
+    }
+
     .repo-item span {
       color: var(--muted);
       font-size: 14px;
     }
 
-    .footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0;
-      color: var(--muted);
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin: 24px 0 72px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, .26), rgba(6, 182, 212, .18)),
+        linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .035));
+      padding: clamp(28px, 5vw, 54px);
+      box-shadow: var(--shadow);
     }
 
-    @media (max-width: 900px) {
+    .cta h2 {
+      max-width: 780px;
+      margin-bottom: 14px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: .96;
+      letter-spacing: -.06em;
+    }
+
+    .cta p {
+      max-width: 740px;
+      color: var(--soft);
+      font-size: 18px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 28px 0;
+    }
+
+    .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .footer a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 1040px) {
+      .primary-nav {
+        position: fixed;
+        inset: 78px 16px auto 16px;
+        display: none;
+        max-height: calc(100vh - 98px);
+        overflow: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      body.nav-open .primary-nav {
+        display: grid;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .primary-nav a,
+      .dropdown-toggle {
+        justify-content: flex-start;
+        min-height: 46px;
+        border-color: var(--line);
+        border-radius: 16px;
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+
+      .nav-group {
+        display: contents;
+      }
+
+      .dropdown-toggle {
+        display: none;
+      }
+
+      .dropdown-menu {
+        position: static;
+        display: contents;
+        width: auto;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+
+      .dropdown-menu a {
+        min-height: 46px;
+      }
+
       .hero,
-      .grid,
-      .repo-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 48px; }
+      .repo-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .ecosystem-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root { --container: min(100% - 24px, 1200px); }
+
+      .brand span {
+        display: none;
+      }
+
+      .primary-nav,
+      body.nav-open .primary-nav,
+      .ecosystem-grid,
+      .pathways,
+      .process-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 15vw, 64px);
+      }
+
+      .tile {
+        min-height: 180px;
+      }
+
+      .section {
+        padding: 42px 0;
+      }
+
+      .footer-shell {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <main class="shell" id="main">
-    <section class="hero">
+  <header class="site-header" data-skunkworks-global-header="static-v5">
+    <div class="nav-shell">
+      <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
+        <img class="logo-light" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" alt="" />
+        <img class="logo-dark" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" alt="" />
+        <span>Skunkworks Academy <small>Dream. Design. Deliver.</small></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle site navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Main menu">
+        <a href="https://skunkworksacademy.com/" aria-current="page">Home</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="https://skunkworksacademy.com/self-paced/">Self-paced</a>
+        <a href="https://portal.skunkworksacademy.com/">Portal</a>
+        <a href="https://labs.skunkworksacademy.com/">Labs</a>
+
+        <div class="nav-group">
+          <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">More</button>
+          <div class="dropdown-menu" role="menu">
+            <a href="https://badging.skunkworksacademy.com/" role="menuitem"><b>Badge Hub</b><span>Credential evidence and digital badge pathways.</span></a>
+            <a href="https://jobs.skunkworksacademy.com/" role="menuitem"><b>Jobs</b><span>Career readiness, job discovery and placement support.</span></a>
+            <a href="https://security.skunkworksacademy.com/" role="menuitem"><b>Security</b><span>Cybersecurity, SOC, governance and compliance learning.</span></a>
+            <a href="https://ibm.skunkworksacademy.com/" role="menuitem"><b>IBM Enablement</b><span>IBM Power, LinuxONE, automation, security and cloud tracks.</span></a>
+            <a href="https://blog.skunkworksacademy.com/" role="menuitem"><b>Blog</b><span>Academy updates, articles and campaign content.</span></a>
+            <a href="https://docs.skunkworksacademy.com/" role="menuitem"><b>Docs</b><span>Operational documentation and learner guidance.</span></a>
+          </div>
+        </div>
+
+        <a class="nav-cta" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer">GitHub Org</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="shell hero" aria-labelledby="hero-title">
       <div>
-        <p class="eyebrow">Unified Academy navigation</p>
-        <h1>One Academy platform. Every domain aligned.</h1>
-        <p class="lead">A cohesive, responsive navigation layer for AI learning, self-paced courses, portal access, labs, security, IBM enablement, badge pathways, jobs, media and purchasing workflows.</p>
+        <p class="eyebrow">Unified technical learning ecosystem</p>
+        <h1 id="hero-title">One Academy front door for learning, labs, badges and talent.</h1>
+        <p class="lead">Skunkworks Academy connects self-paced learning, instructor-led delivery, virtual labs, credential evidence, learner operations and job readiness into one navigable platform for technical skills development.</p>
         <div class="actions">
-          <a class="btn primary" href="https://skunkworksacademy.com/self-paced/">Explore Self-paced</a>
+          <a class="btn primary" href="https://skunkworksacademy.com/self-paced/">Explore Self-paced Courses</a>
+          <a class="btn" href="https://labs.skunkworksacademy.com/">Launch Labs</a>
           <a class="btn" href="https://portal.skunkworksacademy.com/">Open Portal</a>
-          <a class="btn" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener">View GitHub Organisation</a>
         </div>
       </div>
 
-      <aside class="card" aria-label="Landing page summary">
-        <div class="metric"><strong>Unified</strong><span>One central global nav asset</span></div>
-        <div class="metric"><strong>Responsive</strong><span>Desktop links and mobile menu</span></div>
-        <div class="metric"><strong>Clean</strong><span>Legacy page headers removed</span></div>
+      <aside class="hero-card" aria-label="Academy operating summary">
+        <div class="command-card">
+          <div class="command-top">
+            <span class="status-dot">Academy ecosystem online</span>
+            <span class="eyebrow" style="margin:0">v5 nav</span>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric"><strong>12+</strong><span>Core learning and platform destinations</span></div>
+            <div class="metric"><strong>24/7</strong><span>On-demand access to digital learning assets</span></div>
+            <div class="metric"><strong>Labs</strong><span>Practical environments for skill validation</span></div>
+            <div class="metric"><strong>Jobs</strong><span>Career pathways linked to learner evidence</span></div>
+          </div>
+
+          <div class="terminal" aria-label="Academy workflow">
+            <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <pre>academy.connect({
+  learner: "profile + pathway",
+  content: "course + lab + assessment",
+  evidence: "badge + portfolio",
+  outcome: "placement readiness"
+});</pre>
+          </div>
+        </div>
       </aside>
     </section>
 
-    <section class="grid" aria-label="Academy destinations">
-      <a class="tile" href="https://skunkworksacademy.com/#new-way-to-learn"><h2>AI Learning</h2><p>Modern learning experiences powered by practical AI-enabled workflows.</p></a>
-      <a class="tile" href="https://skunkworksacademy.com/self-paced/"><h2>Self-paced</h2><p>Flexible courses with guided pathways, evidence and placement readiness.</p></a>
-      <a class="tile" href="https://portal.skunkworksacademy.com/"><h2>Portal</h2><p>LMS access for learners, instructors and academy operations.</p></a>
-      <a class="tile" href="https://labs.skunkworksacademy.com/"><h2>Labs</h2><p>On-demand labs, cloud sandboxes and practical exercises.</p></a>
-      <a class="tile" href="https://badging.skunkworksacademy.com/"><h2>Badge Hub</h2><p>Digital badges, credential pathways and learner evidence.</p></a>
-      <a class="tile" href="https://jobs.skunkworksacademy.com/"><h2>Jobs</h2><p>Career pathways, placement opportunities and talent pipelines.</p></a>
-      <a class="tile" href="https://media.skunkworksacademy.com/"><h2>Media</h2><p>Academy announcements, stories, updates and campaign assets.</p></a>
-      <a class="tile" href="https://security.skunkworksacademy.com/"><h2>Security</h2><p>Cybersecurity, governance, SOC readiness and defensive skills.</p></a>
-      <a class="tile" href="https://ibm.skunkworksacademy.com/"><h2>IBM</h2><p>IBM Power, LinuxONE, cloud, security, data and enterprise learning.</p></a>
+    <section class="shell section" id="ecosystem" aria-labelledby="ecosystem-title">
+      <div class="section-heading">
+        <p class="eyebrow">Main destinations</p>
+        <h2 id="ecosystem-title">A cleaner navigation model for every Academy domain.</h2>
+        <p>The page now gives users a direct route into the learning, operations, lab, evidence, security and career layers without burying key destinations behind a broken or overcrowded menu.</p>
+      </div>
+
+      <div class="ecosystem-grid">
+        <a class="tile" href="https://skunkworksacademy.com/self-paced/">
+          <span class="tile-kicker">Learning</span>
+          <h3>Self-paced Catalogue</h3>
+          <p>Structured online learning paths for learners who need flexible, guided technical upskilling.</p>
+        </a>
+
+        <a class="tile" href="https://portal.skunkworksacademy.com/">
+          <span class="tile-kicker">Operations</span>
+          <h3>Learner Portal</h3>
+          <p>Access point for learners, instructors, LMS workflows, forms and academic operations.</p>
+        </a>
+
+        <a class="tile" href="https://labs.skunkworksacademy.com/">
+          <span class="tile-kicker">Practice</span>
+          <h3>Virtual Labs</h3>
+          <p>On-demand lab environments, cloud sandboxes and guided exercises for applied competence.</p>
+        </a>
+
+        <a class="tile" href="https://badging.skunkworksacademy.com/">
+          <span class="tile-kicker">Evidence</span>
+          <h3>Badge Hub</h3>
+          <p>Credential pathways, digital badges and achievement evidence for employability.</p>
+        </a>
+
+        <a class="tile" href="https://jobs.skunkworksacademy.com/">
+          <span class="tile-kicker">Talent</span>
+          <h3>Jobs and Placement</h3>
+          <p>Curated job channels, career readiness resources and learner-to-employer pathways.</p>
+        </a>
+
+        <a class="tile" href="https://security.skunkworksacademy.com/">
+          <span class="tile-kicker">Cyber</span>
+          <h3>Security Academy</h3>
+          <p>Cybersecurity, governance, SOC readiness, secure operations and defensive skill tracks.</p>
+        </a>
+
+        <a class="tile" href="https://ibm.skunkworksacademy.com/">
+          <span class="tile-kicker">Enterprise</span>
+          <h3>IBM Enablement</h3>
+          <p>IBM Power, LinuxONE, automation, cloud, security, data and infrastructure enablement.</p>
+        </a>
+
+        <a class="tile" href="https://blog.skunkworksacademy.com/">
+          <span class="tile-kicker">Media</span>
+          <h3>Academy Blog</h3>
+          <p>Campaigns, articles, announcements and market-facing learning content.</p>
+        </a>
+
+        <a class="tile" href="https://docs.skunkworksacademy.com/">
+          <span class="tile-kicker">Docs</span>
+          <h3>Documentation Hub</h3>
+          <p>Guides, policies, learner support content and operational documentation.</p>
+        </a>
+      </div>
     </section>
 
-    <section class="repo-panel">
-      <p class="eyebrow">Repository intelligence</p>
-      <h2>GitHub organisation and repo structure</h2>
-      <div class="repo-grid">
-        <a class="repo-item" href="https://github.com/skunkworks-academy/.github" target="_blank" rel="noopener"><b>Current repository</b><span>skunkworks-academy/.github</span></a>
-        <a class="repo-item" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener"><b>GitHub organisation</b><span>Browse Academy repositories and source structure.</span></a>
+    <section class="shell section" aria-labelledby="pathway-title">
+      <div class="section-heading">
+        <p class="eyebrow">Learning architecture</p>
+        <h2 id="pathway-title">Built for learners, instructors and delivery operations.</h2>
+        <p>The landing page positions Skunkworks Academy as a full delivery ecosystem rather than a flat link directory.</p>
+      </div>
+
+      <div class="pathways">
+        <article class="card">
+          <h3>For learners</h3>
+          <p>Clear routes into learning content, labs, badges and job readiness so students know where to start and how to prove progress.</p>
+          <ul class="feature-list">
+            <li>Self-paced course discovery and portal access.</li>
+            <li>Guided lab environments for practical competence.</li>
+            <li>Badge and portfolio evidence for placement conversations.</li>
+            <li>Career pathways linked to job boards and readiness resources.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>For the Academy team</h3>
+          <p>A cleaner operational front page that can support course publishing, instructor routing, partner campaigns and GitHub-backed platform work.</p>
+          <ul class="feature-list">
+            <li>Responsive navigation that works on desktop and mobile.</li>
+            <li>Direct links to primary Academy domains and sub-platforms.</li>
+            <li>Reduced dependency on injected navigation for first-page usability.</li>
+            <li>Repository-aware links for maintainers and contributors.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" aria-labelledby="process-title">
+      <div class="process">
+        <div class="section-heading">
+          <p class="eyebrow">Operating flow</p>
+          <h2 id="process-title">From learning intake to measurable outcomes.</h2>
+          <p>Use the landing page as the navigation hub for learner acquisition, onboarding, practical learning, credential evidence and placement readiness.</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="step">
+            <b>01</b>
+            <h3>Discover</h3>
+            <p>Visitors land on a clear Academy homepage with direct routes to courses, labs and portal access.</p>
+          </article>
+          <article class="step">
+            <b>02</b>
+            <h3>Enroll</h3>
+            <p>Learners move into the portal, forms and learning catalogue without navigation friction.</p>
+          </article>
+          <article class="step">
+            <b>03</b>
+            <h3>Practice</h3>
+            <p>Labs and projects validate applied capability beyond passive content completion.</p>
+          </article>
+          <article class="step">
+            <b>04</b>
+            <h3>Evidence</h3>
+            <p>Badges, GitHub work and job readiness assets connect training to measurable outcomes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" aria-labelledby="repo-title">
+      <div class="repo-panel">
+        <div class="repo-layout">
+          <div>
+            <p class="eyebrow">Repository intelligence</p>
+            <h2 id="repo-title">GitHub-backed Academy delivery.</h2>
+            <p class="lead" style="font-size:18px">This landing page is maintained from the organisation profile repository and links directly to the Academy source structure for maintainers, contributors and platform work.</p>
+          </div>
+
+          <div class="repo-list">
+            <a class="repo-item" href="https://github.com/skunkworks-academy/.github" target="_blank" rel="noopener noreferrer">
+              <b>Current repository</b>
+              <span>skunkworks-academy/.github</span>
+            </a>
+            <a class="repo-item" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer">
+              <b>GitHub organisation</b>
+              <span>Browse Academy repositories, public assets and source-controlled delivery work.</span>
+            </a>
+            <a class="repo-item" href="https://skunkworksacademy.com/repositories/">
+              <b>Repository sitemap</b>
+              <span>Use the Academy repo map as the operational index for platform content.</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell cta" aria-labelledby="cta-title">
+      <p class="eyebrow">Next step</p>
+      <h2 id="cta-title">Start with the right learning route.</h2>
+      <p>Move learners into structured content, practical labs, evidence-backed badges and placement-aligned pathways from one front door.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://skunkworksacademy.com/self-paced/">Browse Courses</a>
+        <a class="btn" href="https://portal.skunkworksacademy.com/">Access Portal</a>
+        <a class="btn" href="https://jobs.skunkworksacademy.com/">Explore Jobs</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="shell">© Skunkworks Academy. Dream. Design. Deliver.</div>
+    <div class="footer-shell">
+      <div>© Skunkworks Academy. Dream. Design. Deliver.</div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="https://skunkworksacademy.com/repositories/">Repositories</a>
+        <a href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://portal.skunkworksacademy.com/">Portal</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var toggle = document.querySelector(".nav-toggle");
+      var nav = document.getElementById("primary-nav");
+      var dropdownToggle = document.querySelector(".dropdown-toggle");
+
+      function setOpen(open) {
+        document.body.classList.toggle("nav-open", open);
+        if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+          setOpen(!document.body.classList.contains("nav-open"));
+        });
+
+        nav.addEventListener("click", function (event) {
+          if (event.target.closest("a")) setOpen(false);
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") setOpen(false);
+        });
+
+        window.matchMedia("(min-width: 1041px)").addEventListener("change", function (event) {
+          if (event.matches) setOpen(false);
+        });
+      }
+
+      if (dropdownToggle) {
+        dropdownToggle.addEventListener("click", function () {
+          var expanded = dropdownToggle.getAttribute("aria-expanded") === "true";
+          dropdownToggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
