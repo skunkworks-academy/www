@@ -1,112 +1,143 @@
 <!doctype html>
-<html lang="en-ZA" data-theme="light" data-format="course">
+<html lang="en-ZA">
 <head>
   <meta charset="utf-8" data-skunkworks-head="mandatory-v1" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="skunkworks:org" content="skunkworks-academy" />
   <meta name="skunkworks:repo" content=".github" />
   <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <title>Skunkworks Academy | Technical Learning, Labs and Talent</title>
-  <meta name="description" content="Skunkworks Academy is a unified technical learning ecosystem for self-paced courses, virtual labs, instructor-led training, badge pathways, learner portals, career readiness and enterprise enablement." />
+  <title>Skunkworks Academy | Unified Learning Ecosystem</title>
+  <meta name="description" content="Skunkworks Academy unified learning ecosystem for self-paced courses, LMS portal, forms, labs, security, IBM, badge tracking, jobs, docs and publishing workflows." />
   <meta name="author" content="Skunkworks Academy" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#050505" />
   <link rel="canonical" href="https://skunkworksacademy.com/" />
   <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" media="(prefers-color-scheme: light)" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" media="(prefers-color-scheme: dark)" />
+  <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Skunkworks Academy" />
-  <meta property="og:title" content="Skunkworks Academy | Technical Learning, Labs and Talent" />
-  <meta property="og:description" content="A unified Academy landing page for learning, labs, badges, jobs, security and learner operations." />
+  <meta property="og:title" content="Skunkworks Academy | Unified Learning Ecosystem" />
+  <meta property="og:description" content="Navigate Skunkworks Academy courses, forms, LMS portal, labs, security, IBM, badge tracking, jobs, docs and publishing from one unified landing page." />
   <meta property="og:url" content="https://skunkworksacademy.com/" />
   <meta property="og:image" content="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
   <meta property="og:locale" content="en_ZA" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Skunkworks Academy" />
-  <meta name="twitter:description" content="Technical learning, labs, badges, jobs and enterprise enablement in one Academy ecosystem." />
+  <meta name="twitter:description" content="Unified Academy navigation for courses, forms, LMS, labs, security, IBM, badge tracking, jobs and docs." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" />
-  <link rel="stylesheet" href="/assets/skunkworks-design-system.css" />
-  <script src="/assets/skunkworks-ui.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Skunkworks Academy","url":"https://skunkworksacademy.com/","description":"Unified learning ecosystem for technical training, labs, learner portals, forms and credential pathways.","department":[{"@type":"Organization","name":"Skunkworks Academy Forms","url":"https://skunkworksacademy.com/forms/"},{"@type":"Organization","name":"Skunkworks Academy Portal","url":"https://portal.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Labs","url":"https://labs.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Security","url":"https://security.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy IBM","url":"https://ibm.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Badge Hub","url":"https://badge-hub.skunkworksacademy.com/"},{"@type":"Organization","name":"Skunkworks Academy Jobs","url":"https://jobs.skunkworksacademy.com/"}]}</script>
+  <style>
+    :root{--bg:#050505;--panel:#101010;--text:#f5f5f5;--muted:#a3a3a3;--line:#2a2a2a;--accent:#7c3aed;--accent2:#06b6d4;--radius:24px;--shadow:0 24px 80px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,rgba(124,58,237,.22),transparent 34rem),radial-gradient(circle at top right,rgba(6,182,212,.18),transparent 30rem),var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit}
+    .skip-link{position:fixed;top:10px;left:10px;z-index:1000;transform:translateY(-150%);background:#fff;color:#050505;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:800}.skip-link:focus{transform:translateY(0)}
+    .shell{width:min(1180px,calc(100% - 32px));margin-inline:auto}
+    .top{position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.14);background:rgba(5,5,5,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px;position:relative}
+    .brand{display:inline-flex;align-items:center;gap:10px;min-width:0;color:#fff;font-weight:900;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+    .brand:hover{text-decoration:none}.brand-logo{width:34px;height:34px;border-radius:10px;object-fit:contain;flex:0 0 auto}.brand-text{overflow:hidden;text-overflow:ellipsis}
+    .links{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+    .links a,.btn{border:1px solid var(--line);border-radius:999px;padding:10px 14px;text-decoration:none;color:var(--muted);font-weight:800}.links a:hover,.btn:hover{color:var(--text);border-color:#555;text-decoration:none}
+    .menu-toggle{display:none;align-items:center;justify-content:center;gap:9px;min-width:46px;min-height:46px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:10px 12px;font:inherit;font-weight:850;cursor:pointer}.menu-toggle:hover,.menu-toggle:focus{background:rgba(255,255,255,.13)}.menu-bars{display:grid;gap:5px}.menu-bars span{display:block;width:22px;height:2px;border-radius:999px;background:#fff}.menu-label{font-size:14px;color:#fff}
+    .hero{padding:86px 0 42px;display:grid;grid-template-columns:1.18fr .82fr;gap:32px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:#a5f3fc;font-size:12px;font-weight:900}.hero h1{font-size:clamp(44px,8vw,92px);line-height:.9;letter-spacing:-.075em;margin:14px 0}.lead{font-size:clamp(18px,2vw,24px);line-height:1.45;color:var(--muted);max-width:780px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;border:0!important}.card,.tile{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));border-radius:var(--radius);box-shadow:var(--shadow)}.card{padding:24px}.metric{display:grid;gap:4px;padding:16px 0;border-bottom:1px solid var(--line)}.metric:last-child{border:0}.metric strong{font-size:34px}.metric span,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 0}.tile{padding:22px;text-decoration:none;color:var(--text);transition:transform .2s ease,border-color .2s ease}.tile:hover{transform:translateY(-3px);border-color:#666;text-decoration:none}.tile h2{margin:0 0 8px;font-size:20px}.tile p{margin:0;color:var(--muted)}.repo-panel{margin:32px 0 80px}.repo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}.repo-item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.04);text-decoration:none}.repo-item b{display:block}.repo-item span{color:var(--muted);font-size:14px}.footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted)}
+    @media(max-width:900px){.menu-toggle{display:inline-flex}.menu-label{display:none}.links{position:absolute;top:calc(100% + 10px);right:0;width:min(360px,calc(100vw - 32px));display:none;grid-template-columns:1fr;gap:8px;border:1px solid rgba(255,255,255,.14);border-radius:20px;background:#101010;box-shadow:0 30px 90px rgba(0,0,0,.48);padding:12px}.nav[data-open="true"] .links{display:grid}.links a{min-height:44px;border-color:rgba(255,255,255,.14);border-radius:14px;color:#e5e7eb;background:rgba(255,255,255,.04)}.hero,.grid,.repo-grid{grid-template-columns:1fr}.hero{padding-top:48px}.nav{min-height:66px}.brand-logo{width:32px;height:32px}}
+    @media(max-width:480px){.shell{width:min(100% - 24px,1180px)}.brand{max-width:calc(100vw - 100px)}.hero h1{font-size:clamp(42px,14vw,64px)}}
+  </style>
 </head>
 <body>
-  <a class="sk-skip-link" href="#main">Skip to main content</a>
-  <div class="sk-app">
-    <main id="main" class="sk-main">
-      <section class="sk-hero" aria-labelledby="hero-title">
-        <div class="sk-container sk-hero__inner">
-          <div class="sk-hero__content">
-            <p class="sk-eyebrow">Unified technical learning ecosystem</p>
-            <h1 id="hero-title">One Academy front door for learning, labs, badges and talent.</h1>
-            <p>Skunkworks Academy connects self-paced learning, instructor-led delivery, virtual labs, credential evidence, learner operations and job readiness into one navigable platform for technical skills development.</p>
-            <div class="sk-actions">
-              <a class="sk-button" href="https://skunkworksacademy.com/self-paced/">Explore Self-paced Courses</a>
-              <a class="sk-button sk-button--secondary" href="https://labs.skunkworksacademy.com/">Launch Labs</a>
-              <a class="sk-button sk-button--secondary" href="https://portal.skunkworksacademy.com/">Open Portal</a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="sk-container sk-section" id="ecosystem" aria-labelledby="ecosystem-title">
-        <p class="sk-eyebrow">Main destinations</p>
-        <h2 id="ecosystem-title" class="sk-heading-xl">A cleaner navigation model for every Academy domain.</h2>
-        <p class="sk-section-lead">The Academy homepage now uses the global design system and routes users directly into the learning, operations, lab, evidence, security and career layers.</p>
-        <div class="ecosystem-grid sk-card-grid">
-          <a class="tile" href="https://skunkworksacademy.com/self-paced/"><span class="tile-kicker">Learning</span><h3>Self-paced Catalogue</h3><p>Structured online learning paths for flexible, guided technical upskilling.</p></a>
-          <a class="tile" href="https://portal.skunkworksacademy.com/"><span class="tile-kicker">Operations</span><h3>Learner Portal</h3><p>Access point for learners, instructors, LMS workflows, forms and academic operations.</p></a>
-          <a class="tile" href="https://labs.skunkworksacademy.com/"><span class="tile-kicker">Practice</span><h3>Virtual Labs</h3><p>On-demand lab environments, cloud sandboxes and guided applied exercises.</p></a>
-          <a class="tile" href="https://badging.skunkworksacademy.com/"><span class="tile-kicker">Evidence</span><h3>Badge Hub</h3><p>Credential pathways, digital badges and achievement evidence for employability.</p></a>
-          <a class="tile" href="https://jobs.skunkworksacademy.com/"><span class="tile-kicker">Talent</span><h3>Jobs and Placement</h3><p>Career readiness resources and learner-to-employer pathways.</p></a>
-          <a class="tile" href="https://security.skunkworksacademy.com/"><span class="tile-kicker">Cyber</span><h3>Security Academy</h3><p>Cybersecurity, governance, SOC readiness and secure operations skill tracks.</p></a>
-          <a class="tile" href="https://ibm.skunkworksacademy.com/"><span class="tile-kicker">Enterprise</span><h3>IBM Enablement</h3><p>IBM Power, LinuxONE, automation, cloud, security, data and infrastructure enablement.</p></a>
-          <a class="tile" href="https://media.skunkworksacademy.com/"><span class="tile-kicker">Media</span><h3>Academy Media</h3><p>Campaigns, articles, announcements and market-facing learning content.</p></a>
-        </div>
-      </section>
-      <section class="sk-section sk-section--contrast" aria-labelledby="architecture-title">
-        <div class="sk-container">
-          <p class="sk-eyebrow">Learning architecture</p>
-          <h2 id="architecture-title" class="sk-heading-xl">Built for learners, instructors and delivery operations.</h2>
-          <div class="pathways">
-            <article class="sk-card"><div class="sk-card__body"><h3 class="sk-card__title">For learners</h3><p class="sk-card__text">Clear routes into learning content, labs, badges and job readiness so students know where to start and how to prove progress.</p><div class="sk-tags"><span class="sk-tag">Courses</span><span class="sk-tag">Labs</span><span class="sk-tag">Badges</span><span class="sk-tag">Jobs</span></div></div></article>
-            <article class="sk-card"><div class="sk-card__body"><h3 class="sk-card__title">For the Academy team</h3><p class="sk-card__text">A cleaner operating front page that supports course publishing, instructor routing, partner campaigns and GitHub-backed platform work.</p><div class="sk-tags"><span class="sk-tag">Publishing</span><span class="sk-tag">Delivery</span><span class="sk-tag">Governance</span><span class="sk-tag">Source control</span></div></div></article>
-          </div>
-        </div>
-      </section>
-      <section class="sk-container sk-section" aria-labelledby="process-title">
-        <p class="sk-eyebrow">Operating flow</p>
-        <h2 id="process-title" class="sk-heading-xl">From learning intake to measurable outcomes.</h2>
-        <div class="process-grid">
-          <article class="step"><b>01</b><h3>Discover</h3><p>Visitors land on a clear Academy homepage with direct routes to courses, labs and portal access.</p></article>
-          <article class="step"><b>02</b><h3>Enroll</h3><p>Learners move into the portal, forms and learning catalogue without navigation friction.</p></article>
-          <article class="step"><b>03</b><h3>Practice</h3><p>Labs and projects validate applied capability beyond passive content completion.</p></article>
-          <article class="step"><b>04</b><h3>Evidence</h3><p>Badges, GitHub work and job readiness assets connect training to measurable outcomes.</p></article>
-        </div>
-      </section>
-      <section class="sk-section sk-section--contrast" aria-labelledby="repo-title">
-        <div class="sk-container repo-panel">
-          <div class="repo-layout">
-            <div><p class="sk-eyebrow">Repository intelligence</p><h2 id="repo-title" class="sk-heading-xl">GitHub-backed Academy delivery.</h2><p class="sk-section-lead">This landing page is maintained from the organisation profile repository and links directly to the Academy source structure for maintainers, contributors and platform work.</p></div>
-            <div class="repo-list">
-              <a class="repo-item" href="https://github.com/skunkworks-academy/.github" target="_blank" rel="noopener noreferrer"><b>Current repository</b><span>skunkworks-academy/.github</span></a>
-              <a class="repo-item" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer"><b>GitHub organisation</b><span>Browse Academy repositories, public assets and source-controlled delivery work.</span></a>
-              <a class="repo-item" href="https://skunkworksacademy.com/repositories/"><b>Repository sitemap</b><span>Use the Academy repo map as the operational index for platform content.</span></a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="sk-container sk-section" aria-labelledby="cta-title">
-        <div class="sk-card"><div class="sk-card__body"><p class="sk-eyebrow">Next step</p><h2 id="cta-title" class="sk-heading-xl">Start with the right learning route.</h2><p class="sk-section-lead">Move learners into structured content, practical labs, evidence-backed badges and placement-aligned pathways from one front door.</p><div class="sk-actions"><a class="sk-button" href="https://skunkworksacademy.com/self-paced/">Browse Courses</a><a class="sk-button sk-button--secondary" href="https://portal.skunkworksacademy.com/">Access Portal</a><a class="sk-button sk-button--secondary" href="https://jobs.skunkworksacademy.com/">Explore Jobs</a></div></div></div>
-      </section>
-    </main>
-    <footer class="sk-footer">
-      <div class="sk-container sk-footer__inner">
-        <div>© <span data-sk-year></span> Skunkworks Academy. Dream. Design. Deliver.</div>
-        <div class="footer-links" aria-label="Footer links"><a href="https://skunkworksacademy.com/repositories/">Repositories</a><a href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://portal.skunkworksacademy.com/">Portal</a></div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="top">
+    <nav class="shell nav" data-nav aria-label="Skunkworks Academy navigation">
+      <a class="brand" href="https://skunkworksacademy.com/" aria-label="Skunkworks Academy home">
+        <img class="brand-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" alt="" width="34" height="34" decoding="async" />
+        <span class="brand-text">Skunkworks Academy</span>
+      </a>
+      <button class="menu-toggle" type="button" data-nav-toggle aria-label="Toggle site navigation" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-label">Menu</span>
+      </button>
+      <div class="links" id="primary-navigation" data-nav-links>
+        <a href="https://skunkworksacademy.com/forms/">Forms</a>
+        <a href="https://skunkworksacademy.com/self-paced/">Self-paced</a>
+        <a href="https://portal.skunkworksacademy.com/">Portal</a>
+        <a href="https://labs.skunkworksacademy.com/">Labs</a>
+        <a href="https://security.skunkworksacademy.com/">Security</a>
+        <a href="https://ibm.skunkworksacademy.com/">IBM</a>
+        <a href="https://badge-hub.skunkworksacademy.com/">Badge Hub</a>
+        <a href="https://jobs.skunkworksacademy.com/">Jobs</a>
       </div>
-    </footer>
-  </div>
+    </nav>
+  </header>
+  <main class="shell" id="main">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Unified Academy navigation</p>
+        <h1>One learning ecosystem. Every Academy domain aligned.</h1>
+        <p class="lead">A cohesive, responsive navigation layer for forms, courses, portal access, labs, security, IBM enablement, badge pathways, jobs and future publishing workflows.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://skunkworksacademy.com/forms/">Open Forms</a>
+          <a class="btn" href="https://portal.skunkworksacademy.com/">Open Portal</a>
+          <a class="btn" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer">View GitHub Organisation</a>
+        </div>
+      </div>
+      <aside class="card" aria-label="Platform highlights">
+        <div class="metric"><strong>Unified</strong><span>Theme, head, navigation and metadata</span></div>
+        <div class="metric"><strong>Responsive</strong><span>Mobile-first landing pages</span></div>
+        <div class="metric"><strong>GitHub</strong><span>Organisation and repo structure aware</span></div>
+      </aside>
+    </section>
+    <section class="grid" aria-label="Academy destinations">
+      <a class="tile" href="https://skunkworksacademy.com/forms/"><h2>Forms</h2><p>Career growth assessments, learner intake and training-team response workflows.</p></a>
+      <a class="tile" href="https://skunkworksacademy.com/self-paced/"><h2>Self-paced</h2><p>Structured online learning paths for flexible, guided technical upskilling.</p></a>
+      <a class="tile" href="https://portal.skunkworksacademy.com/"><h2>Portal</h2><p>LMS access for learners, instructors and academy operations.</p></a>
+      <a class="tile" href="https://labs.skunkworksacademy.com/"><h2>Labs</h2><p>On-demand labs, cloud sandboxes and practical exercises.</p></a>
+      <a class="tile" href="https://security.skunkworksacademy.com/"><h2>Security</h2><p>Cybersecurity, governance, SOC readiness and defensive skills.</p></a>
+      <a class="tile" href="https://ibm.skunkworksacademy.com/"><h2>IBM</h2><p>IBM Power, LinuxONE, cloud, security, data and enterprise learning.</p></a>
+      <a class="tile" href="https://badge-hub.skunkworksacademy.com/"><h2>Badge Hub</h2><p>Digital badges, credential pathways and learner evidence.</p></a>
+      <a class="tile" href="https://jobs.skunkworksacademy.com/"><h2>Jobs</h2><p>Career pathways, placement opportunities and talent pipelines.</p></a>
+    </section>
+    <section class="repo-panel" aria-labelledby="repo-title">
+      <p class="eyebrow">Repository intelligence</p>
+      <h2 id="repo-title">GitHub organisation and repo structure</h2>
+      <div class="repo-grid">
+        <a class="repo-item" href="https://github.com/skunkworks-academy/.github" target="_blank" rel="noopener noreferrer"><b>Current repository</b><span>skunkworks-academy/.github</span></a>
+        <a class="repo-item" href="https://github.com/skunkworks-academy" target="_blank" rel="noopener noreferrer"><b>GitHub organisation</b><span>Browse Academy repositories and source structure.</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="shell">© <span data-year></span> Skunkworks Academy. Dream. Design. Deliver.</div></footer>
+  <script>
+    (function(){
+      var nav=document.querySelector('[data-nav]');
+      var toggle=document.querySelector('[data-nav-toggle]');
+      var links=document.querySelector('[data-nav-links]');
+      var year=document.querySelector('[data-year]');
+      if(year) year.textContent=new Date().getFullYear();
+      if(!nav||!toggle||!links) return;
+      function setOpen(open){
+        nav.setAttribute('data-open',String(open));
+        toggle.setAttribute('aria-expanded',String(open));
+      }
+      toggle.addEventListener('click',function(event){
+        event.stopPropagation();
+        setOpen(nav.getAttribute('data-open')!=='true');
+      });
+      links.addEventListener('click',function(event){
+        if(event.target&&event.target.matches('a')) setOpen(false);
+      });
+      document.addEventListener('click',function(event){
+        if(!nav.contains(event.target)) setOpen(false);
+      });
+      document.addEventListener('keydown',function(event){
+        if(event.key==='Escape') setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
