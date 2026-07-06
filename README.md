@@ -1,133 +1,148 @@
 <div align="center">
-  <a href="https://skunkworksacademy.com/">
-    <img src="https://raw.githubusercontent.com/skunkworks-academy/.github/main/images/favicon-white.png" alt="Skunkworks Academy logo icon" width="108" />
-  </a>
 
-  <h1>Skunkworks Academy</h1>
-  <h3>Dream. Design. Deliver.</h3>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:050505,45:0f62fe,100:7c3aed&text=Skunkworks%20Academy&fontAlign=50&fontAlignY=36&fontColor=ffffff&fontSize=48&desc=Dream.%20Design.%20Deliver.&descAlign=50&descAlignY=58&animation=fadeIn" width="100%" alt="Skunkworks Academy banner" />
 
-  <p>
-    <strong>A GitHub-powered technical learning ecosystem for self-paced courses, virtual labs, badges, learner portals, security enablement, IBM tracks, career pathways and instructor-led delivery.</strong>
-  </p>
+<br />
 
-  <p>
-    <a href="https://skunkworksacademy.com/"><img alt="Website" src="https://img.shields.io/badge/website-skunkworksacademy.com-7c3aed?style=for-the-badge"></a>
-    <a href="https://github.com/skunkworks-academy/.github"><img alt="Repository" src="https://img.shields.io/badge/repo-skunkworks--academy%2F.github-111827?style=for-the-badge&logo=github"></a>
-    <a href="https://github.com/skunkworks-academy"><img alt="GitHub organisation" src="https://img.shields.io/badge/GitHub-Organisation-181717?style=for-the-badge&logo=github"></a>
-  </p>
+<img src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" width="104" height="104" alt="Skunkworks Academy logo" />
 
-  <p>
-    <img alt="License" src="https://img.shields.io/github/license/skunkworks-academy/.github?style=flat-square">
-    <img alt="Last commit" src="https://img.shields.io/github/last-commit/skunkworks-academy/.github?style=flat-square">
-    <img alt="Repo size" src="https://img.shields.io/github/repo-size/skunkworks-academy/.github?style=flat-square">
-    <img alt="Issues" src="https://img.shields.io/github/issues/skunkworks-academy/.github?style=flat-square">
-    <img alt="Pull requests" src="https://img.shields.io/github/issues-pr/skunkworks-academy/.github?style=flat-square">
-    <img alt="Contributors" src="https://img.shields.io/github/contributors/skunkworks-academy/.github?style=flat-square">
-    <img alt="Stars" src="https://img.shields.io/github/stars/skunkworks-academy/.github?style=flat-square">
-    <img alt="Forks" src="https://img.shields.io/github/forks/skunkworks-academy/.github?style=flat-square">
-    <img alt="Watchers" src="https://img.shields.io/github/watchers/skunkworks-academy/.github?style=flat-square">
-  </p>
+<br />
+<br />
+
+[![Organization](https://img.shields.io/badge/GitHub-skunkworks--academy-181717?style=for-the-badge&logo=github)](https://github.com/skunkworks-academy)
+[![Website](https://img.shields.io/badge/Website-skunkworksacademy.com-0f62fe?style=for-the-badge&logo=googlechrome&logoColor=white)](https://skunkworksacademy.com/)
+[![Labs](https://img.shields.io/badge/Labs-On--Demand-7c3aed?style=for-the-badge&logo=githubactions&logoColor=white)](https://labs.skunkworksacademy.com/)
+[![Portal](https://img.shields.io/badge/Portal-Learner%20Ecosystem-06b6d4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://portal.skunkworksacademy.com/)
+
+<br />
+
+![GitHub Org's stars](https://img.shields.io/github/stars/skunkworks-academy?affiliations=OWNER%2CCOLLABORATOR&style=flat-square&logo=github&label=Org%20Stars)
+![GitHub followers](https://img.shields.io/github/followers/skunkworks-academy?style=flat-square&logo=github&label=Followers)
+![Profile repo license](https://img.shields.io/github/license/skunkworks-academy/.github?style=flat-square)
+![Profile repo issues](https://img.shields.io/github/issues/skunkworks-academy/.github?style=flat-square)
+![Profile repo last commit](https://img.shields.io/github/last-commit/skunkworks-academy/.github?style=flat-square)
+![Profile repo size](https://img.shields.io/github/repo-size/skunkworks-academy/.github?style=flat-square)
+
+<br />
+
+<img src="https://readme-typing-svg.demolab.com?font=IBM+Plex+Sans&weight=700&size=24&duration=3200&pause=800&color=06B6D4&center=true&vCenter=true&width=900&lines=AI-powered+learning+ecosystems;Enterprise+IT+training+and+certification+pathways;Cloud%2C+cybersecurity%2C+software%2C+data+and+automation+labs;Talent+development+for+Africa+and+global+delivery" alt="Animated Skunkworks Academy focus areas" />
+
 </div>
 
 ---
 
-## What this repository does
+## 🚀 What we are building
 
-This special `.github` repository is the public presentation layer for the **Skunkworks Academy** GitHub organisation. It stores the organisation profile README, shared visual assets, landing-page assets and repository-level documentation used to present the Academy as a coherent technical learning platform.
+**Skunkworks Academy** is a technical learning ecosystem for practical IT training, virtual labs, certification pathways, learner portals, instructor operations, partner delivery, and talent development.
 
-| Area | Purpose | Path / Link |
-|---|---|---|
-| Organisation profile | Public GitHub organisation front page | [`profile/README.md`](profile/README.md) |
-| Academy landing assets | Static web-facing Academy entry page and shared navigation patterns | [`index.html`](index.html) |
-| Brand icon assets | Shared favicon and GitHub profile visuals | [`images/`](images/) |
-| Repository metadata | Central README, workflow and contribution orientation | [`README.md`](README.md) |
-
----
-
-## Academy ecosystem
+We build learning infrastructure that connects:
 
 <table>
-  <tr>
-    <td width="33%">
-      <h3>🎓 Learn</h3>
-      <p>Self-paced pathways, instructor-led training, practical modules, learner guides and structured technical development programmes.</p>
-    </td>
-    <td width="33%">
-      <h3>🧪 Practice</h3>
-      <p>Virtual labs, sandbox environments, GitHub-based assignments, projects and applied technical exercises.</p>
-    </td>
-    <td width="33%">
-      <h3>🏅 Prove</h3>
-      <p>Badges, portfolios, assessment evidence, capstones, readiness records and employability-aligned outputs.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <h3>🛡️ Secure</h3>
-      <p>Cybersecurity, secure coding, identity, cloud governance, compliance and defensive operations enablement.</p>
-    </td>
-    <td width="33%">
-      <h3>🏢 Enable</h3>
-      <p>Enterprise tracks across IBM, Microsoft, Cisco, CompTIA, cloud, automation, data, AI and infrastructure.</p>
-    </td>
-    <td width="33%">
-      <h3>💼 Place</h3>
-      <p>Career pathways, job readiness, talent pipelines, partner delivery capacity and instructor development.</p>
-    </td>
-  </tr>
+<tr>
+<td width="25%" align="center"><b>🎓 Learning</b><br />Self-paced, instructor-led, cohort and enterprise training</td>
+<td width="25%" align="center"><b>🧪 Labs</b><br />Guided cloud, AI, cybersecurity, DevOps and infrastructure labs</td>
+<td width="25%" align="center"><b>🏅 Credentials</b><br />Certification readiness, badges, assessments and exam pathways</td>
+<td width="25%" align="center"><b>💼 Careers</b><br />Jobs, placements, mentors, instructors and professional networks</td>
+</tr>
 </table>
 
 ---
 
-## Primary destinations
+## 🧭 Ecosystem map
 
-| Destination | Description | Link |
-|---|---|---|
-| **Academy Home** | Central public Academy landing page | [skunkworksacademy.com](https://skunkworksacademy.com/) |
-| **Self-paced Catalogue** | Flexible learner pathways and online courses | [Self-paced](https://skunkworksacademy.com/self-paced/) |
-| **Learner Portal** | Student, instructor and operations portal | [Portal](https://portal.skunkworksacademy.com/) |
-| **Labs** | On-demand virtual labs and sandboxes | [Labs](https://labs.skunkworksacademy.com/) |
-| **Badge Hub** | Credential evidence and digital badge pathways | [Badging](https://badging.skunkworksacademy.com/) |
-| **Jobs** | Career readiness, job discovery and placement pathways | [Jobs](https://jobs.skunkworksacademy.com/) |
-| **Security** | Cybersecurity and compliance learning tracks | [Security](https://security.skunkworksacademy.com/) |
-| **IBM Enablement** | IBM Power, LinuxONE, automation, cloud, security and data tracks | [IBM](https://ibm.skunkworksacademy.com/) |
-| **Documentation** | Academy guidance, policies and operating documentation | [Docs](https://docs.skunkworksacademy.com/) |
-| **Blog** | Academy articles, announcements and campaign content | [Blog](https://blog.skunkworksacademy.com/) |
+<table>
+<tr>
+<td width="50%">
+
+### Core platforms
+
+- 🌐 **Academy Home** — [skunkworksacademy.com](https://skunkworksacademy.com/)
+- 🧑‍🎓 **Learner Portal** — [portal.skunkworksacademy.com](https://portal.skunkworksacademy.com/)
+- 🧪 **Labs on Demand** — [labs.skunkworksacademy.com](https://labs.skunkworksacademy.com/)
+- 💼 **Jobs Hub** — [jobs.skunkworksacademy.com](https://jobs.skunkworksacademy.com/)
+- 📚 **Documentation** — [docs.skunkworksacademy.com](https://docs.skunkworksacademy.com/)
+
+</td>
+<td width="50%">
+
+### Strategic capability areas
+
+- 🤖 AI-assisted learning design and automation
+- ☁️ Cloud, DevOps and platform engineering
+- 🔐 Cybersecurity, IAM, governance and compliance
+- 🧩 API, integration and application development
+- 📡 Infrastructure, VoIP, networking and systems operations
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Technical domains
+## 🧰 Technology and delivery stack
 
-<p>
-  <img alt="AI" src="https://img.shields.io/badge/AI%20%26%20Automation-7c3aed?style=for-the-badge">
-  <img alt="Cloud" src="https://img.shields.io/badge/Cloud%20Engineering-06b6d4?style=for-the-badge">
-  <img alt="Cybersecurity" src="https://img.shields.io/badge/Cybersecurity-ef4444?style=for-the-badge">
-  <img alt="DevOps" src="https://img.shields.io/badge/DevOps-22c55e?style=for-the-badge">
-  <img alt="Data" src="https://img.shields.io/badge/Data%20%26%20Analytics-f59e0b?style=for-the-badge">
-  <img alt="IBM" src="https://img.shields.io/badge/IBM%20Power%20%7C%20LinuxONE-0f62fe?style=for-the-badge">
-  <img alt="Networking" src="https://img.shields.io/badge/Networking%20%26%20VoIP-111827?style=for-the-badge">
-  <img alt="Learning Design" src="https://img.shields.io/badge/Learning%20Design-b8563a?style=for-the-badge">
-</p>
+<div align="center">
+
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![IBM](https://img.shields.io/badge/IBM-052FAD?style=for-the-badge&logo=ibm&logoColor=white)
+![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
+![CompTIA](https://img.shields.io/badge/CompTIA-C8202F?style=for-the-badge&logo=comptia&logoColor=white)
+
+</div>
 
 ---
 
-## Delivery model
+## 🏗️ Repository focus areas
 
-```mermaid
-flowchart LR
-  A[Discover] --> B[Enroll]
-  B --> C[Learn]
-  C --> D[Practice in Labs]
-  D --> E[Assess]
-  E --> F[Badge Evidence]
-  F --> G[Portfolio]
-  G --> H[Jobs and Placement]
+<table>
+<tr>
+<td width="33%">
 
-  C --> I[Instructor Support]
-  I --> D
-  E --> J[Reports]
-  J --> F
-```
+### 🎓 Learning engineering
+
+- Course catalogues
+- Curriculum templates
+- Assessment frameworks
+- Instructor guides
+- Learner handbooks
+- Badge and certification paths
+
+</td>
+<td width="33%">
+
+### 🧪 Lab enablement
+
+- Virtual lab landing pages
+- Cloud sandbox workflows
+- Practical exercises
+- Remote lab guidance
+- Validation scripts
+- GitHub Classroom assets
+
+</td>
+<td width="33%">
+
+### ⚙️ Platform operations
+
+- Portal components
+- Shared navigation
+- CI/CD workflows
+- GitHub profile assets
+- Documentation automation
+- Quality and accessibility checks
+
+</td>
+</tr>
+</table>
 
 | Stage | Output |
 |---|---|
@@ -141,39 +156,49 @@ flowchart LR
 
 ---
 
-## Repository role inside the Academy stack
+## 📊 GitHub activity and visual signals
 
-This repository is intentionally small, visible and brand-facing. It should remain focused on the organisation profile and global Academy presentation assets rather than becoming a course-content dump.
+<div align="center">
 
-| Responsibility | Notes |
-|---|---|
-| **Profile README** | Controls what visitors see on the `skunkworks-academy` GitHub organisation page. |
-| **Visual identity** | Stores the shared favicon and logo assets used by public pages and profile docs. |
-| **Landing-page coordination** | Supports the public Academy landing page and navigation alignment. |
-| **Contributor orientation** | Gives maintainers a fast map of the Academy ecosystem and where work belongs. |
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=skunkworks-academy&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" alt="Skunkworks Academy GitHub statistics" />
+<img height="170" src="https://github-readme-streak-stats.herokuapp.com?user=skunkworks-academy&theme=tokyonight&hide_border=true" alt="Skunkworks Academy GitHub contribution streak" />
 
----
+<br />
+<br />
 
-## Recommended repository standards
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=skunkworks-academy&theme=tokyo-night&hide_border=true&radius=16&area=true" width="100%" alt="Skunkworks Academy activity graph" />
 
-- Use clear, descriptive repository names.
-- Keep learning content, lab code and portal code in separate repositories.
-- Add `README.md`, `LICENSE`, `.gitignore` and workflow status badges to every active repo.
-- Use GitHub Issues or Projects for backlog visibility.
-- Protect production branches where deployment is connected to public Academy domains.
-- Keep public READMEs polished because they act as partner, learner and employer-facing collateral.
+</div>
+
+> Some dynamic cards depend on third-party GitHub README image services. If a card is temporarily unavailable, the underlying repositories and links remain accessible.
 
 ---
 
-## Contributor quick start
+## 🌍 Operating model
 
-```bash
-# Clone the organisation profile repository
-git clone https://github.com/skunkworks-academy/.github.git
-cd .github
+```mermaid
+flowchart LR
+    A[Industry Skills Demand] --> B[Curriculum Design]
+    B --> C[Guided Learning Paths]
+    C --> D[Hands-on Labs]
+    D --> E[Assessment and Badge Evidence]
+    E --> F[Certification Readiness]
+    F --> G[Jobs, Projects and Instructor Pipeline]
+    G --> B
+```
 
-# Create a feature branch
-git checkout -b feature/update-profile-readme
+---
+
+## 🔐 Engineering principles
+
+<table>
+<tr>
+<td width="25%" align="center"><b>Security first</b><br />Zero-trust thinking, least privilege and responsible data handling</td>
+<td width="25%" align="center"><b>Automation by default</b><br />Repeatable workflows, validation scripts and CI/CD discipline</td>
+<td width="25%" align="center"><b>Accessible learning</b><br />Structured content, clear navigation and learner-friendly experiences</td>
+<td width="25%" align="center"><b>Evidence-based progress</b><br />Assessments, badges, portfolios and measurable outcomes</td>
+</tr>
+</table>
 
 # Edit profile/README.md or README.md, then commit
 git add README.md profile/README.md
@@ -181,21 +206,32 @@ git commit -m "Update Academy profile README"
 git push -u origin feature/update-profile-readme
 ```
 
+## 🤝 Collaboration
+
+We collaborate with instructors, technologists, mentors, training providers, platform partners, employers and community builders who want to develop practical technology capability.
+
+Good contribution areas include:
+
+- improving course and lab documentation;
+- strengthening portal and learner-experience components;
+- adding validation, testing and accessibility checks;
+- building certification-aligned learning pathways;
+- improving career, job, mentor and instructor workflows.
+
 ---
 
-## Contact and links
-
-| Channel | Link |
-|---|---|
-| Website | [skunkworksacademy.com](https://skunkworksacademy.com/) |
-| GitHub | [github.com/skunkworks-academy](https://github.com/skunkworks-academy) |
-| Training | [training@skunkworks.africa](mailto:training@skunkworks.africa) |
-| Portal | [portal.skunkworksacademy.com](https://portal.skunkworksacademy.com/) |
-| Labs | [labs.skunkworksacademy.com](https://labs.skunkworksacademy.com/) |
-
----
+## 📬 Connect
 
 <div align="center">
-  <strong>Skunkworks Academy</strong><br />
-  Technical learning. Practical labs. Verified skills. Career pathways.
+
+[![Website](https://img.shields.io/badge/Visit-skunkworksacademy.com-0f62fe?style=for-the-badge&logo=googlechrome&logoColor=white)](https://skunkworksacademy.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-skunkworks--academy-181717?style=for-the-badge&logo=github)](https://github.com/skunkworks-academy)
+[![Training](https://img.shields.io/badge/Training-Skunkworks%20Academy-7c3aed?style=for-the-badge&logo=googlescholar&logoColor=white)](https://skunkworksacademy.com/)
+[![Labs](https://img.shields.io/badge/Launch-Labs%20on%20Demand-06b6d4?style=for-the-badge&logo=rocket&logoColor=white)](https://labs.skunkworksacademy.com/)
+
+<br />
+<br />
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:7c3aed,50:0f62fe,100:050505" width="100%" alt="Footer wave" />
+
 </div>
