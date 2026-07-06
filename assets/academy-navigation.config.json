@@ -2,93 +2,27 @@
   "repository": ".github",
   "standard": "skunkworks-academy-global-navigation",
   "version": "v6",
-  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.06.2",
-  "canonicalUiUrl": "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.07.06.2",
-  "canonicalVersion": "2026.07.06.2",
+  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.07.1",
+  "canonicalUiUrl": "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.07.07.1",
+  "canonicalVersion": "2026.07.07.1",
   "globalAssetsBaseUrl": "https://skunkworksacademy.com/assets",
   "brand": "Skunkworks Academy",
   "homeUrl": "https://skunkworksacademy.com/",
   "pages": [
-    {
-      "label": "Home",
-      "domain": "skunkworksacademy.com",
-      "url": "https://skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Plans & Purchases",
-      "domain": "skunkworksacademy.com",
-      "url": "https://skunkworksacademy.com/plans-and-purchases/",
-      "verified": true
-    },
-    {
-      "label": "Secure Checkout",
-      "domain": "portal.skunkworksacademy.com",
-      "url": "https://portal.skunkworksacademy.com/checkout/",
-      "verified": true
-    },
-    {
-      "label": "AI Learning",
-      "domain": "skunkworksacademy.com",
-      "url": "https://skunkworksacademy.com/#new-way-to-learn",
-      "verified": true
-    },
-    {
-      "label": "Self-paced",
-      "domain": "skunkworksacademy.com",
-      "url": "https://skunkworksacademy.com/self-paced/",
-      "verified": true
-    },
-    {
-      "label": "Portal",
-      "domain": "portal.skunkworksacademy.com",
-      "url": "https://portal.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Labs",
-      "domain": "lab.skunkworksacademy.com",
-      "aliases": ["labs.skunkworksacademy.com"],
-      "url": "https://lab.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Forms",
-      "domain": "skunkworksacademy.com",
-      "url": "https://skunkworksacademy.com/forms/",
-      "verified": true
-    },
-    {
-      "label": "Badging",
-      "domain": "badging.skunkworksacademy.com",
-      "url": "https://badging.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Jobs",
-      "domain": "jobs.skunkworksacademy.com",
-      "url": "https://jobs.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Media",
-      "domain": "media.skunkworksacademy.com",
-      "url": "https://media.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "Security",
-      "domain": "security.skunkworksacademy.com",
-      "url": "https://security.skunkworksacademy.com/",
-      "verified": true
-    },
-    {
-      "label": "IBM",
-      "domain": "ibm.skunkworksacademy.com",
-      "url": "https://ibm.skunkworksacademy.com/",
-      "verified": true
-    }
+    { "label": "Home", "domain": "skunkworksacademy.com", "url": "https://skunkworksacademy.com/", "verified": true },
+    { "label": "Plans & Purchases", "domain": "skunkworksacademy.com", "url": "https://skunkworksacademy.com/plans-and-purchases/", "verified": true },
+    { "label": "Secure Checkout", "domain": "portal.skunkworksacademy.com", "url": "https://portal.skunkworksacademy.com/checkout/", "verified": true },
+    { "label": "AI Learning", "domain": "skunkworksacademy.com", "url": "https://skunkworksacademy.com/#new-way-to-learn", "verified": true },
+    { "label": "Self-paced", "domain": "skunkworksacademy.com", "url": "https://skunkworksacademy.com/self-paced/", "verified": true },
+    { "label": "Portal", "domain": "portal.skunkworksacademy.com", "url": "https://portal.skunkworksacademy.com/", "verified": true },
+    { "label": "Labs", "domain": "lab.skunkworksacademy.com", "aliases": ["labs.skunkworksacademy.com"], "url": "https://lab.skunkworksacademy.com/", "verified": true },
+    { "label": "Forms", "domain": "skunkworksacademy.com", "url": "https://skunkworksacademy.com/forms/", "verified": true },
+    { "label": "Badging", "domain": "badging.skunkworksacademy.com", "url": "https://badging.skunkworksacademy.com/", "verified": true },
+    { "label": "Jobs", "domain": "jobs.skunkworksacademy.com", "url": "https://jobs.skunkworksacademy.com/", "verified": true },
+    { "label": "Media", "domain": "media.skunkworksacademy.com", "url": "https://media.skunkworksacademy.com/", "verified": true },
+    { "label": "Security", "domain": "security.skunkworksacademy.com", "url": "https://security.skunkworksacademy.com/", "verified": true },
+    { "label": "IBM", "domain": "ibm.skunkworksacademy.com", "url": "https://ibm.skunkworksacademy.com/", "verified": true }
   ],
-  "generatedOn": "2026-07-06T21:00:00+02:00",
-  "notes": "Public pages should use the central Skunkworks Academy global navigation shell. Top bars must show only the theme-aware logo, Skunkworks Academy text, and an icon-only burger menu. Plans and purchases route to /plans-and-purchases/. Secure checkout routes to portal.skunkworksacademy.com/checkout/. Labs routes must use https://lab.skunkworksacademy.com/ with labs.skunkworksacademy.com treated as an alias only."
+  "generatedOn": "2026-07-07T17:00:00+02:00",
+  "notes": "Public pages must use the central Skunkworks Academy global navigation shell. Top bars show only the theme-aware logo, Skunkworks Academy text, and an icon-only burger menu. Plans and purchases route to /plans-and-purchases/. Secure checkout routes to portal.skunkworksacademy.com/checkout/. Labs routes use https://lab.skunkworksacademy.com/ with labs.skunkworksacademy.com treated as an alias. Do not maintain page-local public headers unless data-sk-preserve-header is set."
 }
