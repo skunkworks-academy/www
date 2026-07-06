@@ -144,6 +144,16 @@ We build learning infrastructure that connects:
 </tr>
 </table>
 
+| Stage | Output |
+|---|---|
+| **Discover** | Learner selects a pathway or Academy domain |
+| **Enroll** | Portal, forms and onboarding workflow activated |
+| **Learn** | Self-paced or instructor-led course delivery |
+| **Practice** | Labs, projects, assignments and applied exercises |
+| **Assess** | Knowledge checks, capstones and evidence review |
+| **Badge** | Credential pathway, achievement evidence and portfolio artefacts |
+| **Place** | Job readiness, employer matching and talent pipeline activation |
+
 ---
 
 ## 📊 GitHub activity and visual signals
@@ -190,7 +200,11 @@ flowchart LR
 </tr>
 </table>
 
----
+# Edit profile/README.md or README.md, then commit
+git add README.md profile/README.md
+git commit -m "Update Academy profile README"
+git push -u origin feature/update-profile-readme
+```
 
 ## 🤝 Collaboration
 
