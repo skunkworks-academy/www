@@ -1,192 +1,223 @@
-# CLD-UF-101 — Claude User Fundamentals
+<div align="center">
 
-![Course](https://img.shields.io/badge/course-CLD--UF--101-b8563a)
-![Level](https://img.shields.io/badge/level-Foundational%20Level%201-2b2723)
-![Format](https://img.shields.io/badge/format-Instructor--led%20%7C%20Self--paced-blue)
-![Duration](https://img.shields.io/badge/duration-3h%2050m%20ILT%20%7C%204--5h%20self--paced-green)
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:050505,45:0f62fe,100:7c3aed&text=Skunkworks%20Academy&fontAlign=50&fontAlignY=36&fontColor=ffffff&fontSize=48&desc=Dream.%20Design.%20Deliver.&descAlign=50&descAlignY=58&animation=fadeIn" width="100%" alt="Skunkworks Academy banner" />
 
-**Claude User Fundamentals** is a foundational course for knowledge workers and business users who need a practical, non-technical foundation in using Claude for everyday work.
+<br />
 
-The course takes learners from first principles — what Claude is and where its limits are — through real workplace use cases, prompting, document analysis, Projects, Memory, safe-use practices, and a final hands-on task.
+<img src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" width="104" height="104" alt="Skunkworks Academy logo" />
 
-This repository now includes both:
+<br />
+<br />
 
-- **Instructor-led edition** — half-day live delivery with instructor facilitation.
-- **Online self-paced edition** — complete asynchronous learner pathway with modules, workbook, prompt library, checks, final assessment, capstone, LMS guidance, and static course entry page.
+[![Organization](https://img.shields.io/badge/GitHub-skunkworks--academy-181717?style=for-the-badge&logo=github)](https://github.com/skunkworks-academy)
+[![Website](https://img.shields.io/badge/Website-skunkworksacademy.com-0f62fe?style=for-the-badge&logo=googlechrome&logoColor=white)](https://skunkworksacademy.com/)
+[![Labs](https://img.shields.io/badge/Labs-On--Demand-7c3aed?style=for-the-badge&logo=githubactions&logoColor=white)](https://labs.skunkworksacademy.com/)
+[![Portal](https://img.shields.io/badge/Portal-Learner%20Ecosystem-06b6d4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://portal.skunkworksacademy.com/)
 
----
+<br />
 
-## Course Snapshot
+![GitHub Org's stars](https://img.shields.io/github/stars/skunkworks-academy?affiliations=OWNER%2CCOLLABORATOR&style=flat-square&logo=github&label=Org%20Stars)
+![GitHub followers](https://img.shields.io/github/followers/skunkworks-academy?style=flat-square&logo=github&label=Followers)
+![Profile repo license](https://img.shields.io/github/license/skunkworks-academy/.github?style=flat-square)
+![Profile repo issues](https://img.shields.io/github/issues/skunkworks-academy/.github?style=flat-square)
+![Profile repo last commit](https://img.shields.io/github/last-commit/skunkworks-academy/.github?style=flat-square)
+![Profile repo size](https://img.shields.io/github/repo-size/skunkworks-academy/.github?style=flat-square)
 
-| Field | Detail |
-|---|---|
-| Course code | CLD-UF-101 |
-| Course title | Claude User Fundamentals |
-| Level | Foundational — Level 1 |
-| Audience | Knowledge workers and business users |
-| Instructor-led duration | Half-day, approximately 3 hours 50 minutes including breaks |
-| Self-paced duration | Approximately 4–5 hours total learner effort |
-| Delivery modes | Instructor-led, in-person, live virtual, or online self-paced |
-| Prerequisites | None; basic computer and internet literacy only |
-| ILT assessment | Knowledge quiz 40% + hands-on lab review 60% |
-| Self-paced assessment | Module checks 20% + final knowledge check 40% + capstone 40% |
-| Passing criteria | 70% combined score and completed practical/capstone activity |
+<br />
+
+<img src="https://readme-typing-svg.demolab.com?font=IBM+Plex+Sans&weight=700&size=24&duration=3200&pause=800&color=06B6D4&center=true&vCenter=true&width=900&lines=AI-powered+learning+ecosystems;Enterprise+IT+training+and+certification+pathways;Cloud%2C+cybersecurity%2C+software%2C+data+and+automation+labs;Talent+development+for+Africa+and+global+delivery" alt="Animated Skunkworks Academy focus areas" />
+
+</div>
 
 ---
 
-## Learning Outcomes
+## 🚀 What we are building
 
-By the end of this course, learners will be able to:
+**Skunkworks Academy** is a technical learning ecosystem for practical IT training, virtual labs, certification pathways, learner portals, instructor operations, partner delivery, and talent development.
 
-1. Explain what Claude is, how it differs from a search engine, and where its limitations are.
-2. Start and manage conversations across web, desktop, and mobile interfaces.
-3. Apply Claude to five core workplace use cases: writing, summarization, brainstorming, analysis, and Q&A.
-4. Write clear prompts that include audience, context, constraints, examples, tone, and output format.
-5. Upload and work with documents, files, screenshots, and structured outputs.
-6. Use Projects, custom instructions, and Memory to support recurring work.
-7. Identify situations where Claude output needs verification or caution.
-8. Complete one real work task using the course methodology.
+We build learning infrastructure that connects:
 
----
-
-## Course Structure
-
-| Unit | Topic | ILT Duration | Self-Paced Duration | Main activity |
-|---:|---|---:|---:|---|
-| 1 | Introduction to Claude | 20 min | 30 min | AI experience reflection and limits check |
-| 2 | Getting Started | 25 min | 30 min | Send a first Claude message about learner role |
-| 3 | Core Use Cases | 40 min | 45 min | Complete one real task using a core use case |
-| 4 | Effective Prompting | 35 min | 45 min | Improve an earlier prompt and compare results |
-| 5 | Working with Documents and Files | 30 min | 40 min | Upload a safe document and ask targeted questions |
-| 6 | Projects and Memory | 25 min | 35 min | Map recurring tasks to context features |
-| 7 | Best Practices and Pitfalls | 25 min | 40 min | Build a personal verification list |
-| 8 | Hands-On Practice / Capstone | 30 min | 60 min | Complete and review a real work task |
+<table>
+<tr>
+<td width="25%" align="center"><b>🎓 Learning</b><br />Self-paced, instructor-led, cohort and enterprise training</td>
+<td width="25%" align="center"><b>🧪 Labs</b><br />Guided cloud, AI, cybersecurity, DevOps and infrastructure labs</td>
+<td width="25%" align="center"><b>🏅 Credentials</b><br />Certification readiness, badges, assessments and exam pathways</td>
+<td width="25%" align="center"><b>💼 Careers</b><br />Jobs, placements, mentors, instructors and professional networks</td>
+</tr>
+</table>
 
 ---
 
-## Online Self-Paced Edition
+## 🧭 Ecosystem map
 
-The self-paced course is available in [`self-paced/`](./self-paced/).
+<table>
+<tr>
+<td width="50%">
 
-Key entry points:
+### Core platforms
 
-- [`self-paced/README.md`](./self-paced/README.md) — self-paced course overview
-- [`self-paced/index.html`](./self-paced/index.html) — static course landing page with browser-based progress tracking
-- [`self-paced/course-map.yml`](./self-paced/course-map.yml) — LMS-friendly course metadata
-- [`self-paced/modules/`](./self-paced/modules/) — full learner module content
-- [`self-paced/resources/learner-workbook.md`](./self-paced/resources/learner-workbook.md) — learner workbook
-- [`self-paced/resources/prompt-library.md`](./self-paced/resources/prompt-library.md) — reusable prompt library
-- [`self-paced/resources/verification-checklist.md`](./self-paced/resources/verification-checklist.md) — responsible-use checklist
-- [`self-paced/assessments/final-knowledge-check.md`](./self-paced/assessments/final-knowledge-check.md) — final quiz
-- [`self-paced/assessments/capstone-project.md`](./self-paced/assessments/capstone-project.md) — capstone project brief
-- [`self-paced/lms/implementation-guide.md`](./self-paced/lms/implementation-guide.md) — LMS deployment guide
+- 🌐 **Academy Home** — [skunkworksacademy.com](https://skunkworksacademy.com/)
+- 🧑‍🎓 **Learner Portal** — [portal.skunkworksacademy.com](https://portal.skunkworksacademy.com/)
+- 🧪 **Labs on Demand** — [labs.skunkworksacademy.com](https://labs.skunkworksacademy.com/)
+- 💼 **Jobs Hub** — [jobs.skunkworksacademy.com](https://jobs.skunkworksacademy.com/)
+- 📚 **Documentation** — [docs.skunkworksacademy.com](https://docs.skunkworksacademy.com/)
+
+</td>
+<td width="50%">
+
+### Strategic capability areas
+
+- 🤖 AI-assisted learning design and automation
+- ☁️ Cloud, DevOps and platform engineering
+- 🔐 Cybersecurity, IAM, governance and compliance
+- 🧩 API, integration and application development
+- 📡 Infrastructure, VoIP, networking and systems operations
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Repository Structure
+## 🧰 Technology and delivery stack
 
-```text
-.
-├── README.md
-├── course.yml
-├── docs/
-│   ├── student-guide.md
-│   ├── instructor-guide.md
-│   └── facilitation-plan.md
-├── activities/
-│   └── hands-on-labs.md
-├── assessments/
-│   ├── quiz.md
-│   └── lab-review-rubric.md
-├── self-paced/
-│   ├── README.md
-│   ├── course-map.yml
-│   ├── index.html
-│   ├── assets/
-│   │   ├── course.css
-│   │   └── course.js
-│   ├── modules/
-│   │   ├── module-01-introduction.md
-│   │   ├── module-02-getting-started.md
-│   │   ├── module-03-core-use-cases.md
-│   │   ├── module-04-effective-prompting.md
-│   │   ├── module-05-documents-files.md
-│   │   ├── module-06-projects-memory.md
-│   │   ├── module-07-best-practices-pitfalls.md
-│   │   └── module-08-capstone-qa.md
-│   ├── resources/
-│   │   ├── prompt-library.md
-│   │   ├── learner-workbook.md
-│   │   ├── verification-checklist.md
-│   │   └── ai-use-policy-template.md
-│   ├── assessments/
-│   │   ├── module-knowledge-checks.md
-│   │   ├── final-knowledge-check.md
-│   │   ├── capstone-project.md
-│   │   └── grading-guide.md
-│   └── lms/
-│       ├── implementation-guide.md
-│       ├── scorm-readme.md
-│       └── imsmanifest.xml
-├── slides/
-│   └── README.md
-├── website/
-│   └── index.html
-└── .github/
-    └── workflows/
-        └── markdown-check.yml
+<div align="center">
+
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![IBM](https://img.shields.io/badge/IBM-052FAD?style=for-the-badge&logo=ibm&logoColor=white)
+![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
+![CompTIA](https://img.shields.io/badge/CompTIA-C8202F?style=for-the-badge&logo=comptia&logoColor=white)
+
+</div>
+
+---
+
+## 🏗️ Repository focus areas
+
+<table>
+<tr>
+<td width="33%">
+
+### 🎓 Learning engineering
+
+- Course catalogues
+- Curriculum templates
+- Assessment frameworks
+- Instructor guides
+- Learner handbooks
+- Badge and certification paths
+
+</td>
+<td width="33%">
+
+### 🧪 Lab enablement
+
+- Virtual lab landing pages
+- Cloud sandbox workflows
+- Practical exercises
+- Remote lab guidance
+- Validation scripts
+- GitHub Classroom assets
+
+</td>
+<td width="33%">
+
+### ⚙️ Platform operations
+
+- Portal components
+- Shared navigation
+- CI/CD workflows
+- GitHub profile assets
+- Documentation automation
+- Quality and accessibility checks
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📊 GitHub activity and visual signals
+
+<div align="center">
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=skunkworks-academy&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" alt="Skunkworks Academy GitHub statistics" />
+<img height="170" src="https://github-readme-streak-stats.herokuapp.com?user=skunkworks-academy&theme=tokyonight&hide_border=true" alt="Skunkworks Academy GitHub contribution streak" />
+
+<br />
+<br />
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=skunkworks-academy&theme=tokyo-night&hide_border=true&radius=16&area=true" width="100%" alt="Skunkworks Academy activity graph" />
+
+</div>
+
+> Some dynamic cards depend on third-party GitHub README image services. If a card is temporarily unavailable, the underlying repositories and links remain accessible.
+
+---
+
+## 🌍 Operating model
+
+```mermaid
+flowchart LR
+    A[Industry Skills Demand] --> B[Curriculum Design]
+    B --> C[Guided Learning Paths]
+    C --> D[Hands-on Labs]
+    D --> E[Assessment and Badge Evidence]
+    E --> F[Certification Readiness]
+    F --> G[Jobs, Projects and Instructor Pipeline]
+    G --> B
 ```
 
 ---
 
-## Assessment Model
+## 🔐 Engineering principles
 
-### Instructor-Led Edition
-
-| Component | Weight | Evidence |
-|---|---:|---|
-| Knowledge quiz | 40% | Short quiz covering Claude concepts, prompting, document/file workflows, Projects/Memory, and safe-use practices |
-| Hands-on lab review | 60% | Instructor-reviewed real task from Unit 8 |
-
-### Self-Paced Edition
-
-| Component | Weight | Evidence |
-|---|---:|---|
-| Module knowledge checks | 20% | Formative checks after each module |
-| Final knowledge check | 40% | 20-question final assessment |
-| Capstone project | 40% | Real or realistic task with prompt, iteration, verification, and workplace application |
-
-Learners pass with **70% or higher combined**, provided the practical/capstone activity is completed and reviewed.
+<table>
+<tr>
+<td width="25%" align="center"><b>Security first</b><br />Zero-trust thinking, least privilege and responsible data handling</td>
+<td width="25%" align="center"><b>Automation by default</b><br />Repeatable workflows, validation scripts and CI/CD discipline</td>
+<td width="25%" align="center"><b>Accessible learning</b><br />Structured content, clear navigation and learner-friendly experiences</td>
+<td width="25%" align="center"><b>Evidence-based progress</b><br />Assessments, badges, portfolios and measurable outcomes</td>
+</tr>
+</table>
 
 ---
 
-## Instructor and LMS Delivery Notes
+## 🤝 Collaboration
 
-The course is designed to be practical and low-friction:
+We collaborate with instructors, technologists, mentors, training providers, platform partners, employers and community builders who want to develop practical technology capability.
 
-- Keep the tone non-technical and workplace-oriented.
-- Use real tasks rather than toy examples.
-- Reinforce iteration: the first response is a draft.
-- Reinforce that Claude augments judgment; it does not replace verification or decision ownership.
-- Defer organization-specific privacy and AI usage rules to the client’s approved policy owner.
-- For self-paced LMS deployment, use the implementation guide in `self-paced/lms/`.
+Good contribution areas include:
 
----
-
-## Pathway
-
-```text
-CLD-UF-101 Claude User Fundamentals
-        ↓
-CLD-DEV-201 Claude for Developers
-```
-
-CLD-UF-101 is sufficient for many non-technical users. Learners who write code or work closely with engineering teams should progress to **CLD-DEV-201: Claude for Developers**.
+- improving course and lab documentation;
+- strengthening portal and learner-experience components;
+- adding validation, testing and accessibility checks;
+- building certification-aligned learning pathways;
+- improving career, job, mentor and instructor workflows.
 
 ---
 
-## Maintainers
+## 📬 Connect
 
-**Skunkworks Academy**  
-Website: https://www.skunkworksacademy.com  
-Training contact: training@skunkworks.africa
+<div align="center">
+
+[![Website](https://img.shields.io/badge/Visit-skunkworksacademy.com-0f62fe?style=for-the-badge&logo=googlechrome&logoColor=white)](https://skunkworksacademy.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-skunkworks--academy-181717?style=for-the-badge&logo=github)](https://github.com/skunkworks-academy)
+[![Training](https://img.shields.io/badge/Training-Skunkworks%20Academy-7c3aed?style=for-the-badge&logo=googlescholar&logoColor=white)](https://skunkworksacademy.com/)
+[![Labs](https://img.shields.io/badge/Launch-Labs%20on%20Demand-06b6d4?style=for-the-badge&logo=rocket&logoColor=white)](https://labs.skunkworksacademy.com/)
+
+<br />
+<br />
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:7c3aed,50:0f62fe,100:050505" width="100%" alt="Footer wave" />
+
+</div>
