@@ -8,7 +8,7 @@
 
   if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
 
-  var version = "2026.07.06";
+  var version = "2026.07.06.2";
   var root = document.documentElement;
   var assetBase = "https://skunkworksacademy.com/assets";
   var logoLight = "https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png";
@@ -21,17 +21,18 @@
 
   var pages = [
     { label: "Home", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/" },
+    { label: "Plans & Purchases", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/plans-and-purchases/" },
+    { label: "Secure Checkout", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/checkout/" },
     { label: "AI Learning", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/#new-way-to-learn" },
     { label: "Self-paced", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/self-paced/" },
     { label: "Portal", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/" },
-    { label: "Labs", domain: "labs.skunkworksacademy.com", url: "https://labs.skunkworksacademy.com/" },
+    { label: "Labs", domain: "lab.skunkworksacademy.com", url: "https://lab.skunkworksacademy.com/" },
+    { label: "Forms", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/forms/" },
     { label: "Badging", domain: "badging.skunkworksacademy.com", url: "https://badging.skunkworksacademy.com/" },
     { label: "Jobs", domain: "jobs.skunkworksacademy.com", url: "https://jobs.skunkworksacademy.com/" },
     { label: "Media", domain: "media.skunkworksacademy.com", url: "https://media.skunkworksacademy.com/" },
     { label: "Security", domain: "security.skunkworksacademy.com", url: "https://security.skunkworksacademy.com/" },
-    { label: "IBM", domain: "ibm.skunkworksacademy.com", url: "https://ibm.skunkworksacademy.com/" },
-    { label: "Plans", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/pricing.index.html#pricing" },
-    { label: "Purchase", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/pricing.index.html#purchasing" }
+    { label: "IBM", domain: "ibm.skunkworksacademy.com", url: "https://ibm.skunkworksacademy.com/" }
   ];
 
   var config = {
@@ -95,7 +96,9 @@
   function isCurrent(page) {
     var current = normalizeUrl(window.location.href);
     var target = normalizeUrl(page.url);
-    return current === target || current.indexOf(target + "/") === 0;
+    if (current === target || current.indexOf(target + "/") === 0) return true;
+    if (page.domain === "lab.skunkworksacademy.com" && window.location.hostname === "labs.skunkworksacademy.com") return true;
+    return false;
   }
 
   function isInsideContent(node) {
@@ -143,7 +146,7 @@
 
     var nav = document.createElement("header");
     nav.className = "swa-global-nav";
-    nav.setAttribute("data-skunkworks-global-header", "canonical-v3-logo-text-burger");
+    nav.setAttribute("data-skunkworks-global-header", "canonical-v4-logo-text-burger-plans-checkout");
 
     var inner = document.createElement("div");
     inner.className = "swa-global-nav__inner";
@@ -183,7 +186,6 @@
     lines.className = "swa-global-nav__toggle-lines";
     lines.setAttribute("aria-hidden", "true");
     lines.innerHTML = "<span></span><span></span><span></span>";
-
     button.appendChild(lines);
 
     var links = document.createElement("nav");
