@@ -1,9 +1,9 @@
 {
   "repository": ".github",
   "standard": "skunkworks-academy-global-navigation",
-  "version": "v4",
-  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.05",
-  "canonicalVersion": "2026.07.05",
+  "version": "v5",
+  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.06.1",
+  "canonicalVersion": "2026.07.06.1",
   "globalAssetsBaseUrl": "https://skunkworksacademy.com/assets",
   "brand": "Skunkworks Academy",
   "homeUrl": "https://skunkworksacademy.com/",
@@ -39,7 +39,7 @@
       "verified": true
     },
     {
-      "label": "Badge Hub",
+      "label": "Badging",
       "domain": "badging.skunkworksacademy.com",
       "url": "https://badging.skunkworksacademy.com/",
       "verified": true
@@ -81,6 +81,6 @@
       "verified": true
     }
   ],
-  "generatedOn": "2026-07-05T18:00:00+02:00",
-  "notes": "Public pages should use the central Skunkworks Academy global navigation shell. The global nav replaces legacy inline page headers and exposes the current verified Academy destinations."
+  "generatedOn": "2026-07-06T21:00:00+02:00",
+  "notes": "Public pages should use the central Skunkworks Academy global navigation shell. Top bars must show only the theme-aware logo, Skunkworks Academy text, and an icon-only burger menu. Badging routes must use https://badging.skunkworksacademy.com/."
 }
