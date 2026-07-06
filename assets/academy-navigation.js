@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.06";
+  var version = "2026.07.06.1";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
 
@@ -17,7 +17,7 @@
   script.defer = true;
   script.src = canonicalUrl;
   script.setAttribute("data-skunkworks-ui", "canonical");
-  script.setAttribute("data-skunkworks-global-nav", "v4");
+  script.setAttribute("data-skunkworks-global-nav", "v5");
 
   (document.head || document.documentElement).appendChild(script);
 })();
