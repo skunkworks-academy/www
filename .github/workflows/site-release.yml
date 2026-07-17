@@ -1,0 +1,120 @@
+name: Site release
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - 'assets/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'CNAME'
+      - '.github/workflows/site-release.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate and audit site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Run dependency-free build validation
+        run: npm run build
+      - name: Verify custom domain file
+        run: test "$(tr -d '\r\n' < CNAME)" = "skunkworksacademy.com"
+
+  lighthouse:
+    name: Lighthouse local production audit
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/skw-http.log 2>&1 &
+          echo $! > /tmp/skw-http.pid
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/skw-http.log
+          exit 1
+      - name: Run Lighthouse
+        run: |
+          npx --yes lighthouse@12.8.2 http://127.0.0.1:4173/ \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --output=json \
+            --output-path=./lighthouse-report.json \
+            --only-categories=performance,accessibility,best-practices,seo
+          node - <<'NODE'
+          const report = require('./lighthouse-report.json');
+          const scores = report.categories;
+          const thresholds = { performance: 0.70, accessibility: 0.90, 'best-practices': 0.90, seo: 0.90 };
+          let failed = false;
+          for (const [category, minimum] of Object.entries(thresholds)) {
+            const score = scores[category].score;
+            console.log(`${category}: ${Math.round(score * 100)}`);
+            if (score < minimum) {
+              console.error(`${category} is below ${Math.round(minimum * 100)}`);
+              failed = true;
+            }
+          }
+          if (failed) process.exit(1);
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+
+  deploy:
+    name: Deploy GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [validate, lighthouse]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  verify-production:
+    name: Verify production domain
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for production and verify HTML
+        run: |
+          for attempt in {1..30}; do
+            response="$(curl --location --fail --silent --show-error --max-time 20 https://www.skunkworksacademy.com/ || true)"
+            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy'; then
+              printf '%s' "$response" | grep -qi 'Unified Academy' && exit 0
+            fi
+            sleep 10
+          done
+          echo 'Production verification failed: expected current landing-page marker was not found.'
+          exit 1
