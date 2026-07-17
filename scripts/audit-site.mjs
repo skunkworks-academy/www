@@ -72,6 +72,10 @@ function auditHtml(file) {
     }
   }
 
+  if (/raw\.githubusercontent\.com\/skunkworks-academy\/\.github\/refs\/heads\/main\/images\/favicon-/i.test(html)) {
+    report(errors, file, 'uses legacy .github-hosted Academy logo; use https://skunkworksacademy.com/images/favicon-black.png and favicon-white.png');
+  }
+
   if (/\bEcosystem\b/i.test(html)) {
     report(warnings, file, 'contains the disallowed brand term “Ecosystem”; replace with “Academy” or omit it');
   }
@@ -79,6 +83,30 @@ function auditHtml(file) {
 
 for (const file of entryPoints) {
   if (extname(file) === '.html') auditHtml(file);
+}
+
+const canonicalUiPath = join(root, 'assets/skunkworks-ui.js');
+if (!existsSync(canonicalUiPath)) {
+  errors.push('Missing canonical navigation runtime: assets/skunkworks-ui.js');
+} else {
+  const runtime = readFileSync(canonicalUiPath, 'utf8');
+  const requiredRuntimeTokens = [
+    '/images/favicon-black.png',
+    '/images/favicon-white.png',
+    'swa-global-nav__brand-logo',
+    'Self-Paced Catalogue',
+    'Learner Portal',
+    'Connections',
+    'Reports',
+    'Publish',
+    'Blog'
+  ];
+  for (const token of requiredRuntimeTokens) {
+    if (!runtime.includes(token)) errors.push(`Canonical navigation runtime is missing required token: ${token}`);
+  }
+  if (/raw\.githubusercontent\.com\/skunkworks-academy\/\.github/i.test(runtime)) {
+    errors.push('Canonical navigation runtime still references legacy .github-hosted logo assets.');
+  }
 }
 
 if (!entryPoints.length) errors.push('No recognised public entry-point HTML files were found.');
@@ -91,4 +119,5 @@ if (errors.length) {
 }
 
 console.log(`Site audit passed for ${entryPoints.length} entry point(s).`);
+console.log('Canonical Academy header assets and destination labels passed.');
 console.log(`Warnings: ${warnings.length}`);
