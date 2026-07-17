@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.17.2";
+  var version = "2026.07.17.3";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
   var pages = [

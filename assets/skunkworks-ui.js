@@ -4,10 +4,11 @@
 
   if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
 
-  var VERSION = "2026.07.17.2";
+  var VERSION = "2026.07.17.3";
   var ASSET_ROOT = "https://skunkworksacademy.com";
   var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
   var LOGO_DARK = ASSET_ROOT + "/images/favicon-white.png?v=" + VERSION;
+  var isPublish = window.location.hostname === "publish.skunkworksacademy.com";
 
   var destinations = [
     { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"] },
@@ -40,11 +41,8 @@
   };
 
   function ready(callback) {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", callback, { once: true });
-    } else {
-      callback();
-    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", callback, { once: true });
+    else callback();
   }
 
   function addStyles() {
@@ -55,18 +53,21 @@
       "body.swa-has-global-nav{padding-top:82px}",
       ".swa-global-nav{--swa-bg:rgba(11,15,20,.94);--swa-panel:#111a24;--swa-text:#e6edf3;--swa-line:#243041;position:fixed!important;inset:0 0 auto 0!important;z-index:9999!important;background:var(--swa-bg)!important;color:var(--swa-text)!important;border-bottom:1px solid var(--swa-line)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}",
       "@media(prefers-color-scheme:light){.swa-global-nav{--swa-bg:rgba(248,250,252,.94);--swa-panel:#fff;--swa-text:#0f172a;--swa-line:#d8e1ed}}",
-      ".swa-global-nav__inner{width:min(1180px,calc(100% - 32px))!important;min-height:72px!important;margin:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important}",
+      ".swa-global-nav__inner{width:min(1180px,calc(100% - 32px))!important;min-height:72px!important;margin:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}",
       ".swa-global-nav__brand{display:inline-flex!important;align-items:center!important;gap:12px!important;min-width:0!important;color:var(--swa-text)!important;text-decoration:none!important;font-weight:800!important;letter-spacing:-.03em!important}",
       ".swa-global-nav__brand-logo{display:block!important;width:40px!important;height:40px!important;box-sizing:border-box!important;object-fit:contain!important;border-radius:10px!important;background:transparent!important;border:1px solid var(--swa-line)!important;padding:6px!important;flex:0 0 auto!important}",
       ".swa-logo-dark{display:block!important}.swa-logo-light{display:none!important}@media(prefers-color-scheme:light){.swa-logo-light{display:block!important}.swa-logo-dark{display:none!important}}",
       ".swa-global-nav__brand-text{display:block!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:var(--swa-text)!important}",
+      ".swa-global-nav__controls{margin-left:auto!important;display:flex!important;align-items:center!important;gap:8px!important}",
+      ".swa-global-nav__action{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:44px!important;padding:0 16px!important;border:1px solid transparent!important;border-radius:999px!important;background:linear-gradient(135deg,#6d28d9,#0891b2)!important;color:#fff!important;text-decoration:none!important;font-size:.9rem!important;font-weight:800!important;cursor:pointer!important}",
+      ".swa-global-nav__action:hover,.swa-global-nav__action:focus{filter:brightness(1.08)!important}",
       ".swa-global-nav__toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:1px solid var(--swa-line)!important;border-radius:999px!important;background:var(--swa-panel)!important;color:var(--swa-text)!important;cursor:pointer!important}",
       ".swa-global-nav__toggle-lines{display:grid!important;gap:5px!important}.swa-global-nav__toggle-lines span{display:block!important;width:22px!important;height:2px!important;border-radius:999px!important;background:currentColor!important}",
       ".swa-global-nav__links{position:absolute!important;top:calc(100% + 10px)!important;right:calc((100vw - min(1180px,calc(100vw - 32px)))/2)!important;width:min(410px,calc(100vw - 32px))!important;max-height:calc(100vh - 96px)!important;overflow:auto!important;display:none!important;grid-template-columns:1fr!important;gap:8px!important;padding:14px!important;border:1px solid var(--swa-line)!important;border-radius:20px!important;background:var(--swa-panel)!important;box-shadow:0 30px 90px rgba(0,0,0,.4)!important}",
       ".swa-global-nav.swa-open .swa-global-nav__links{display:grid!important}",
       ".swa-global-nav__link{display:flex!important;align-items:center!important;min-height:44px!important;padding:11px 14px!important;border:1px solid var(--swa-line)!important;border-radius:14px!important;color:var(--swa-text)!important;background:transparent!important;text-decoration:none!important;font-size:.92rem!important;font-weight:800!important}",
       ".swa-global-nav__link:hover,.swa-global-nav__link:focus,.swa-global-nav__link[aria-current='page']{background:color-mix(in srgb,#0891b2 14%,transparent)!important;border-color:color-mix(in srgb,#0891b2 45%,var(--swa-line))!important}",
-      "@media(max-width:720px){body.swa-has-global-nav{padding-top:74px}.swa-global-nav__inner{width:calc(100% - 20px)!important;min-height:66px!important}.swa-global-nav__links{right:10px!important;width:calc(100% - 20px)!important}}"
+      "@media(max-width:720px){body.swa-has-global-nav{padding-top:74px}.swa-global-nav__inner{width:calc(100% - 20px)!important;min-height:66px!important}.swa-global-nav__links{right:10px!important;width:calc(100% - 20px)!important}.swa-global-nav__action{min-height:40px!important;padding:0 13px!important;font-size:.82rem!important}.swa-global-nav__brand-text{max-width:150px!important}}"
     ].join("\n");
     document.head.appendChild(style);
   }
@@ -78,6 +79,7 @@
   function removeLegacyHeaders() {
     var selectors = [
       "header.top",
+      "header.topbar",
       ".site-header",
       ".main-header",
       ".sk-topbar",
@@ -90,6 +92,12 @@
       Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
         if (node.classList.contains("swa-global-nav") || node.hasAttribute("data-sk-preserve-header")) return;
         if (isInsideContent(node) && !node.matches("header[data-skunkworks-global-header],[data-sk-nav-shell]")) return;
+        if (isPublish && node.matches("header.topbar")) {
+          node.hidden = true;
+          node.setAttribute("aria-hidden", "true");
+          node.style.setProperty("display", "none", "important");
+          return;
+        }
         if (node.parentNode) node.parentNode.removeChild(node);
       });
     });
@@ -121,9 +129,7 @@
     image.height = 40;
     image.decoding = "async";
     image.fetchPriority = "high";
-    image.addEventListener("error", function () {
-      image.style.display = "none";
-    }, { once: true });
+    image.addEventListener("error", function () { image.style.display = "none"; }, { once: true });
     return image;
   }
 
@@ -137,6 +143,7 @@
     var inner = document.createElement("div");
     var brand = document.createElement("a");
     var brandText = document.createElement("span");
+    var controls = document.createElement("div");
     var toggle = document.createElement("button");
     var toggleLines = document.createElement("span");
     var links = document.createElement("nav");
@@ -154,6 +161,17 @@
     brandText.textContent = "Skunkworks Academy";
     brand.appendChild(brandText);
 
+    controls.className = "swa-global-nav__controls";
+    if (isPublish) {
+      var signIn = document.createElement("a");
+      signIn.className = "swa-global-nav__action";
+      signIn.href = "#signin";
+      signIn.textContent = "Sign in";
+      signIn.setAttribute("data-route", "signin");
+      signIn.setAttribute("aria-label", "Sign in to Skunkworks Academy Publish");
+      controls.appendChild(signIn);
+    }
+
     toggle.className = "swa-global-nav__toggle";
     toggle.type = "button";
     toggle.setAttribute("aria-label", "Toggle site navigation");
@@ -163,6 +181,7 @@
     toggleLines.setAttribute("aria-hidden", "true");
     toggleLines.innerHTML = "<span></span><span></span><span></span>";
     toggle.appendChild(toggleLines);
+    controls.appendChild(toggle);
 
     links.className = "swa-global-nav__links";
     links.id = "swa-global-nav-links";
@@ -178,7 +197,7 @@
     });
 
     inner.appendChild(brand);
-    inner.appendChild(toggle);
+    inner.appendChild(controls);
     inner.appendChild(links);
     header.appendChild(inner);
     document.body.insertBefore(header, document.body.firstChild);
