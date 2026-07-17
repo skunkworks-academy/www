@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.17.3";
+  var version = "2026.07.17.4";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
   var pages = [
@@ -27,6 +27,16 @@
     { label: "Blog", url: "https://blog.skunkworksacademy.com/" }
   ];
 
+  function removeRedHatLegacyNavigation() {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+    if (!/^\/redhat(?:\/|$)/i.test(window.location.pathname)) return;
+
+    Array.prototype.slice.call(document.querySelectorAll("body > header, body > nav")).forEach(function (node) {
+      if (node.classList.contains("swa-global-nav") || node.classList.contains("swa-global-nav__links")) return;
+      if (node.parentNode) node.parentNode.removeChild(node);
+    });
+  }
+
   if (typeof window !== "undefined") {
     window.SKUNKWORKS_ACADEMY_NAVIGATION = {
       version: version,
@@ -37,6 +47,8 @@
 
   if (typeof window !== "undefined" && window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
   if (typeof document === "undefined" || document.querySelector(selector)) return;
+
+  removeRedHatLegacyNavigation();
 
   var script = document.createElement("script");
   script.defer = true;
