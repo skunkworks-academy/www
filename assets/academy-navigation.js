@@ -5,9 +5,11 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.17.5";
+  var version = "2026.07.17.6";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
+  var logoLight = "https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-black.png";
+  var logoDark = "https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-white.png";
   var pages = [
     { label: "Home", url: "https://skunkworksacademy.com/" },
     { label: "Plans & Purchases", url: "https://skunkworksacademy.com/plans-and-purchases/" },
@@ -45,6 +47,19 @@
     });
   }
 
+  function ensureCanonicalLogos() {
+    if (typeof document === "undefined") return false;
+    var light = document.querySelector(".swa-global-nav .swa-logo-light");
+    var dark = document.querySelector(".swa-global-nav .swa-logo-dark");
+    if (!light || !dark) return false;
+
+    light.src = logoLight;
+    dark.src = logoDark;
+    light.alt = "";
+    dark.alt = "";
+    return true;
+  }
+
   function ensurePartnerPathwayLinks() {
     if (typeof document === "undefined") return false;
     var links = document.querySelector(".swa-global-nav__links");
@@ -75,6 +90,7 @@
 
   function reconcileNavigation() {
     removeLegacyNavigation();
+    ensureCanonicalLogos();
     ensurePartnerPathwayLinks();
   }
 
@@ -96,6 +112,7 @@
     script.src = canonicalUrl;
     script.setAttribute("data-skunkworks-ui", "canonical");
     script.setAttribute("data-skunkworks-global-nav", "v8");
+    script.addEventListener("load", reconcileNavigation, { once: true });
     (document.head || document.documentElement).appendChild(script);
   }
 
@@ -107,7 +124,7 @@
 
   var observer = new MutationObserver(function () {
     reconcileNavigation();
-    if (document.querySelector(".swa-global-nav") && ensurePartnerPathwayLinks()) {
+    if (document.querySelector(".swa-global-nav") && ensureCanonicalLogos() && ensurePartnerPathwayLinks()) {
       observer.disconnect();
     }
   });
