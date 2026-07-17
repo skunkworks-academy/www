@@ -44,7 +44,7 @@ function auditHtml(file) {
     const target = getAttribute(tag, 'target');
     const rel = getAttribute(tag, 'rel') ?? '';
 
-    if (href?.trim().toLowerCase().startsWith('javascript:')) {
+    if (/^(?:javascript|data|vbscript):/i.test(href?.trim() ?? '')) {
       report(errors, file, `unsafe javascript: link (${href})`);
     }
     if (target === '_blank' && !/\bnoopener\b/i.test(rel)) {
