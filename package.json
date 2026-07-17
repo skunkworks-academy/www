@@ -1,6 +1,6 @@
 {
   "name": "skunkworks-academy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Skunkworks Academy course platform and resources",
   "homepage": "https://skunkworksacademy.com",
@@ -10,10 +10,12 @@
     "self-paced/security/skw-owasp-top10-2025/vulnerable-app"
   ],
   "scripts": {
-    "postinstall": "npm run validate",
-    "validate": "node scripts/validate-self-paced.mjs"
+    "audit": "node scripts/audit-site.mjs",
+    "validate:self-paced": "node scripts/validate-self-paced.mjs",
+    "validate": "npm run audit && npm run validate:self-paced",
+    "build": "npm run validate"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }
