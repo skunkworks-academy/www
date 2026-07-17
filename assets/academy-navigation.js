@@ -1,47 +1,47 @@
 /*
-  Compatibility loader for legacy Skunkworks Academy navigation includes.
+  Compatibility loader for Skunkworks Academy navigation includes.
   Canonical global UI is owned by /assets/skunkworks-ui.js.
 */
 (function () {
   "use strict";
 
-  var version = "2026.07.07.1";
+  var version = "2026.07.17.2";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
   var pages = [
-    { label: "Home", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/", verified: true },
-    { label: "Plans & Purchases", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/plans-and-purchases/", verified: true },
-    { label: "Secure Checkout", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/checkout/", verified: true },
-    { label: "AI Learning", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/#new-way-to-learn", verified: true },
-    { label: "Self-paced", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/self-paced/", verified: true },
-    { label: "Portal", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/", verified: true },
-    { label: "Labs", domain: "lab.skunkworksacademy.com", url: "https://lab.skunkworksacademy.com/", aliases: ["labs.skunkworksacademy.com"], verified: true },
-    { label: "Forms", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/forms/", verified: true },
-    { label: "Badging", domain: "badging.skunkworksacademy.com", url: "https://badging.skunkworksacademy.com/", verified: true },
-    { label: "Jobs", domain: "jobs.skunkworksacademy.com", url: "https://jobs.skunkworksacademy.com/", verified: true },
-    { label: "Media", domain: "media.skunkworksacademy.com", url: "https://media.skunkworksacademy.com/", verified: true },
-    { label: "Security", domain: "security.skunkworksacademy.com", url: "https://security.skunkworksacademy.com/", verified: true },
-    { label: "IBM", domain: "ibm.skunkworksacademy.com", url: "https://ibm.skunkworksacademy.com/", verified: true }
+    { label: "Home", url: "https://skunkworksacademy.com/" },
+    { label: "Plans & Purchases", url: "https://skunkworksacademy.com/plans-and-purchases/" },
+    { label: "Secure Checkout", url: "https://portal.skunkworksacademy.com/checkout/" },
+    { label: "Forms", url: "https://skunkworksacademy.com/forms/" },
+    { label: "Self-Paced Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
+    { label: "Learner Portal", url: "https://portal.skunkworksacademy.com/" },
+    { label: "Labs", url: "https://labs.skunkworksacademy.com/" },
+    { label: "Security", url: "https://security.skunkworksacademy.com/" },
+    { label: "IBM", url: "https://ibm.skunkworksacademy.com/" },
+    { label: "Badging", url: "https://badging.skunkworksacademy.com/" },
+    { label: "Jobs", url: "https://jobs.skunkworksacademy.com/" },
+    { label: "Connections", url: "https://portal.skunkworksacademy.com/connections/" },
+    { label: "Reports", url: "https://portal.skunkworksacademy.com/reports/" },
+    { label: "Docs", url: "https://docs.skunkworksacademy.com/" },
+    { label: "Publish", url: "https://publish.skunkworksacademy.com/" },
+    { label: "Blog", url: "https://blog.skunkworksacademy.com/" }
   ];
 
   if (typeof window !== "undefined") {
     window.SKUNKWORKS_ACADEMY_NAVIGATION = {
       version: version,
       title: "Skunkworks Academy navigation",
-      statusLabel: "Verified domains",
       pages: pages
     };
   }
 
   if (typeof window !== "undefined" && window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
-  if (typeof document === "undefined") return;
-  if (document.querySelector(selector)) return;
+  if (typeof document === "undefined" || document.querySelector(selector)) return;
 
   var script = document.createElement("script");
   script.defer = true;
   script.src = canonicalUrl;
   script.setAttribute("data-skunkworks-ui", "canonical");
-  script.setAttribute("data-skunkworks-global-nav", "v6");
-
+  script.setAttribute("data-skunkworks-global-nav", "v7");
   (document.head || document.documentElement).appendChild(script);
 })();
