@@ -6,7 +6,7 @@
  * sends it to the Training Coordinator. Never place an email API secret here.
  */
 window.PP101_CONFIG = Object.freeze({
-  submissionEndpoint: '',
+  submissionEndpoint: 'https://formspree.io/f/xaqrdvzb',
   coordinatorEmail: 'training@skunkworksacademy.com',
   storageKey: 'skunkworks-pp-101-workbook-v2',
   maximumResponseCharacters: 4000
