@@ -1,67 +1,113 @@
-import { readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { gunzipSync, gzipSync, inflateRawSync } from 'node:zlib';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {join} from 'node:path';
+import {gunzipSync} from 'node:zlib';
+import vm from 'node:vm';
 
-const catalogPath = join(process.cwd(), 'assets/course-catalog.generated.js');
-const source = readFileSync(catalogPath, 'utf8');
-const match = source.match(/const\s+encoded\s*=\s*['"]([A-Za-z0-9+/=]+)['"]/);
+const root = process.cwd();
+const catalogPath = join(root, 'assets/course-catalog.generated.js');
+const upstreamUrl = 'https://raw.githubusercontent.com/skunkworks-academy/course-catalog/74dbd798668a22baee275237252f2594929e2c63/data/generated-courses.cjs';
+const publicFields = ['courseId', 'title', 'deliveryMode', 'category', 'level', 'estimatedEffort', 'courseUrl'];
 
-if (!match) {
-  throw new Error('The generated course catalogue does not contain an encoded payload.');
+const establishedCourses = [
+  ['ART-101', 'Professional Articulation and Executive Communication', 'Self-Paced', 'Professional & Business Skills', 'Foundation to advanced', '36–40 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/professional-articulation'],
+  ['SHP-UPA-101', 'Shopify User Permissions', 'Self-Paced', 'Commerce Administration', 'Beginner to intermediate', '4–6 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/shopify-user-permissions'],
+  ['GHP-DOM-101', 'GitHub Pages Setup', 'Self-Paced', 'Web Deployment', 'Beginner to intermediate', '5–7 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/github-pages-setup'],
+  ['M365-LIC-101', 'Microsoft 365 Licenses', 'Self-Paced', 'Microsoft Technologies', 'Intermediate', '5–8 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/microsoft-365-licenses']
+];
+
+function validatePublicPayload(payload) {
+  if (!payload || !Array.isArray(payload.fields) || !Array.isArray(payload.courses)) return false;
+  if (payload.fields.join('|') !== publicFields.join('|')) return false;
+  if (payload.courses.length !== 180) return false;
+  const deliveryIndex = payload.fields.indexOf('deliveryMode');
+  const ids = new Set();
+  const counts = {SelfPaced: 0, InstructorLed: 0};
+  for (const row of payload.courses) {
+    if (!Array.isArray(row) || row.length !== payload.fields.length) return false;
+    if (!row[0] || ids.has(row[0])) return false;
+    ids.add(row[0]);
+    if (row[deliveryIndex] === 'Self-Paced') counts.SelfPaced += 1;
+    if (row[deliveryIndex] === 'Instructor-led') counts.InstructorLed += 1;
+  }
+  return counts.SelfPaced === 34 && counts.InstructorLed === 146;
 }
 
-const compressed = Buffer.from(match[1], 'base64');
-
-function findDeflateBody(buffer) {
-  if (buffer.length < 18 || buffer[0] !== 0x1f || buffer[1] !== 0x8b || buffer[2] !== 0x08) {
-    throw new Error('The encoded catalogue is not a supported gzip stream.');
+async function readExistingPayload() {
+  try {
+    const source = readFileSync(catalogPath, 'utf8');
+    const sandbox = {window: {}};
+    vm.runInNewContext(source, sandbox, {filename: catalogPath, timeout: 2000});
+    const payload = await sandbox.window.SKUNKWORKS_COURSE_CATALOG_PROMISE;
+    return validatePublicPayload(payload) ? payload : null;
+  } catch {
+    return null;
   }
-
-  const flags = buffer[3];
-  let offset = 10;
-
-  if (flags & 0x04) {
-    const extraLength = buffer.readUInt16LE(offset);
-    offset += 2 + extraLength;
-  }
-  if (flags & 0x08) {
-    while (offset < buffer.length && buffer[offset++] !== 0);
-  }
-  if (flags & 0x10) {
-    while (offset < buffer.length && buffer[offset++] !== 0);
-  }
-  if (flags & 0x02) offset += 2;
-
-  const footerOffset = buffer.length - 8;
-  if (offset >= footerOffset) throw new Error('The gzip stream does not contain a deflate payload.');
-  return buffer.subarray(offset, footerOffset);
 }
 
-let jsonBuffer;
-let recovered = false;
-
-try {
-  jsonBuffer = gunzipSync(compressed);
-} catch (error) {
-  jsonBuffer = inflateRawSync(findDeflateBody(compressed));
-  recovered = true;
-  console.warn(`Recovered catalogue data from a gzip stream with an invalid checksum: ${error.message}`);
+async function fetchUpstreamRegistry() {
+  const response = await fetch(upstreamUrl, {
+    headers: {'User-Agent': 'Skunkworks-Academy-Catalog-Build/1.0'},
+    signal: AbortSignal.timeout(30000)
+  });
+  if (!response.ok) throw new Error(`Upstream catalogue returned HTTP ${response.status}.`);
+  const source = await response.text();
+  const match = source.match(/const\s+encoded\s*=\s*['"]([A-Za-z0-9+/=]+)['"]/);
+  if (!match) throw new Error('Upstream catalogue did not contain an encoded registry.');
+  const registry = JSON.parse(gunzipSync(Buffer.from(match[1], 'base64')).toString('utf8'));
+  if (registry.schema !== 'skunkworks-academy/generated-course-catalog/v1') {
+    throw new Error(`Unexpected upstream schema: ${registry.schema ?? 'missing'}.`);
+  }
+  if (!Array.isArray(registry.fields) || !Array.isArray(registry.courses) || registry.courses.length !== 176) {
+    throw new Error('Upstream registry does not contain the expected 176 courses.');
+  }
+  return registry;
 }
 
-const payload = JSON.parse(jsonBuffer.toString('utf8'));
-if (!Array.isArray(payload.fields) || !Array.isArray(payload.courses)) {
-  throw new Error('The recovered course catalogue payload is malformed.');
+function transformRegistry(registry) {
+  const index = Object.fromEntries(registry.fields.map((field, position) => [field, position]));
+  const required = ['courseId', 'title', 'slug', 'deliveryMode', 'category', 'level', 'estimatedEffort'];
+  for (const field of required) {
+    if (!(field in index)) throw new Error(`Upstream registry is missing ${field}.`);
+  }
+
+  const generatedCourses = registry.courses.map((row) => [
+    row[index.courseId],
+    row[index.title],
+    row[index.deliveryMode],
+    row[index.category],
+    row[index.level],
+    row[index.estimatedEffort],
+    `https://skunkworks-academy.github.io/course-catalog/courses/catalog/${row[index.slug]}`
+  ]);
+
+  const payload = {
+    schema: 'skunkworks-academy/public-course-listing/v2',
+    generatedOn: new Date().toISOString().slice(0, 10),
+    source: {
+      repository: 'skunkworks-academy/course-catalog',
+      commit: '74dbd798668a22baee275237252f2594929e2c63',
+      registry: 'data/generated-courses.cjs'
+    },
+    fields: publicFields,
+    courseCount: 180,
+    courses: [...establishedCourses, ...generatedCourses]
+  };
+
+  if (!validatePublicPayload(payload)) throw new Error('Transformed public catalogue failed validation.');
+  return payload;
 }
 
-const canonicalJson = JSON.stringify(payload);
-const canonicalEncoded = gzipSync(Buffer.from(canonicalJson), { level: 9 }).toString('base64');
-const output = `window.SKUNKWORKS_COURSE_CATALOG_PROMISE = (async () => {\n  const encoded = '${canonicalEncoded}';\n  const compressed = Uint8Array.from(atob(encoded), (character) => character.charCodeAt(0));\n  const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));\n  return JSON.parse(await new Response(stream).text());\n})();\n`;
-
-if (output !== source) {
+function writeBrowserAsset(payload) {
+  const json = JSON.stringify(payload);
+  const output = `window.SKUNKWORKS_COURSE_CATALOG_DATA = ${json};\nwindow.SKUNKWORKS_COURSE_CATALOG_PROMISE = Promise.resolve(window.SKUNKWORKS_COURSE_CATALOG_DATA);\n`;
   writeFileSync(catalogPath, output, 'utf8');
-  console.log(`Course catalogue asset regenerated with a valid gzip checksum (${payload.courses.length} courses).`);
-} else {
-  console.log(`Course catalogue asset is already canonical (${payload.courses.length} courses).`);
+  console.log(`Course catalogue asset generated: ${payload.courses.length} courses (34 Self-Paced, 146 Instructor-led).`);
 }
 
-if (recovered) console.log('The invalid source checksum was repaired successfully.');
+const existing = await readExistingPayload();
+if (existing) {
+  console.log('Course catalogue asset is already valid and complete.');
+} else {
+  console.log('Rebuilding the course catalogue from the immutable upstream registry.');
+  writeBrowserAsset(transformRegistry(await fetchUpstreamRegistry()));
+}
