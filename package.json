@@ -11,8 +11,9 @@
   ],
   "scripts": {
     "audit": "node scripts/audit-site.mjs",
+    "validate:catalog": "node scripts/validate-course-catalog.mjs",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
-    "validate": "npm run audit && npm run validate:self-paced",
+    "validate": "npm run audit && npm run validate:catalog && npm run validate:self-paced",
     "build": "npm run validate"
   },
   "engines": {
