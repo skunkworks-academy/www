@@ -6,6 +6,7 @@ import vm from 'node:vm';
 const root = process.cwd();
 const catalogPath = join(root, 'assets/course-catalog.generated.js');
 const upstreamUrl = 'https://raw.githubusercontent.com/skunkworks-academy/course-catalog/74dbd798668a22baee275237252f2594929e2c63/data/generated-courses.cjs';
+const assetVersion = '2026.07.30.2';
 const publicFields = ['courseId', 'title', 'deliveryMode', 'category', 'level', 'estimatedEffort', 'courseUrl'];
 
 const establishedCourses = [
@@ -104,6 +105,18 @@ function writeBrowserAsset(payload) {
   console.log(`Course catalogue asset generated: ${payload.courses.length} courses (34 Self-Paced, 146 Instructor-led).`);
 }
 
+function updatePageAssetVersions() {
+  for (const relativePath of ['self-paced/index.html', 'instructor-led/index.html']) {
+    const path = join(root, relativePath);
+    const current = readFileSync(path, 'utf8');
+    const updated = current
+      .replace(/\/assets\/course-catalog\.generated\.js\?v=[0-9.]+/g, `/assets/course-catalog.generated.js?v=${assetVersion}`)
+      .replace(/\/assets\/course-catalog-renderer\.js\?v=[0-9.]+/g, `/assets/course-catalog-renderer.js?v=${assetVersion}`);
+    if (updated !== current) writeFileSync(path, updated, 'utf8');
+  }
+  console.log(`Catalogue page asset references set to ${assetVersion}.`);
+}
+
 const existing = await readExistingPayload();
 if (existing) {
   console.log('Course catalogue asset is already valid and complete.');
@@ -111,3 +124,4 @@ if (existing) {
   console.log('Rebuilding the course catalogue from the immutable upstream registry.');
   writeBrowserAsset(transformRegistry(await fetchUpstreamRegistry()));
 }
+updatePageAssetVersions();
