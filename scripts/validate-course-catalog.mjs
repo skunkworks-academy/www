@@ -7,6 +7,7 @@ const errors = [];
 const generatedPath = join(root, 'assets/course-catalog.generated.js');
 const rendererPath = join(root, 'assets/course-catalog-renderer.js');
 const pages = ['self-paced/index.html', 'instructor-led/index.html'];
+const expectedAssetVersion = '2026.07.30.2';
 
 function fail(message) {
   errors.push(message);
@@ -81,6 +82,7 @@ if (existsSync(rendererPath)) {
   const requiredTokens = [
     'loadCatalogPayload',
     'recoverGeneratedPayload',
+    'transformUpstreamRegistry',
     'tokens.every',
     'validatePayload',
     'syncQueryString'
@@ -98,8 +100,8 @@ for (const page of pages) {
   }
   const html = readFileSync(path, 'utf8');
   if (!html.includes('data-course-catalog')) fail(`${page} is missing the catalogue root.`);
-  if (!html.includes('/assets/course-catalog.generated.js?v=2026.07.30.1')) fail(`${page} does not use the current generated catalogue cache key.`);
-  if (!html.includes('/assets/course-catalog-renderer.js?v=2026.07.30.1')) fail(`${page} does not use the current renderer cache key.`);
+  if (!html.includes(`/assets/course-catalog.generated.js?v=${expectedAssetVersion}`)) fail(`${page} does not use the current generated catalogue cache key.`);
+  if (!html.includes(`/assets/course-catalog-renderer.js?v=${expectedAssetVersion}`)) fail(`${page} does not use the current renderer cache key.`);
 }
 
 if (errors.length) {
