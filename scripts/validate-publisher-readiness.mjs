@@ -101,7 +101,7 @@ for (const [file, minimumWords] of contentPages) {
 if (existsSync(resolve(root, 'assets/publisher.js'))) {
   const script = read('assets/publisher.js');
   for (const requirement of [
-    'data-ad-inventory',
+    'dataset.adInventory',
     "inventory !== 'eligible'",
     'ca-pub-9270041066336676',
     'Google-certified CMP',
