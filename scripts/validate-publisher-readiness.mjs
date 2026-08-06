@@ -63,7 +63,7 @@ for (const file of trustPages) {
   if (!html.includes('data-ad-inventory=')) errors.push(`${file} is missing explicit ad-inventory classification.`);
 }
 
-const ineligiblePages = ['privacy.html', 'cookie-policy.html', 'terms.html', 'contact.html'];
+const ineligiblePages = ['privacy.html', 'cookie-policy.html', 'terms.html', 'contact.html', '404.html'];
 for (const file of ineligiblePages) {
   if (!existsSync(resolve(root, file))) continue;
   const html = read(file);
@@ -100,8 +100,25 @@ for (const [file, minimumWords] of contentPages) {
 
 if (existsSync(resolve(root, 'assets/publisher.js'))) {
   const script = read('assets/publisher.js');
-  for (const requirement of ['data-ad-inventory', 'eligible', 'accepted', 'ca-pub-9270041066336676']) {
+  for (const requirement of [
+    'data-ad-inventory',
+    "inventory !== 'eligible'",
+    'ca-pub-9270041066336676',
+    'Google-certified CMP',
+    'Privacy & messaging'
+  ]) {
     if (!script.includes(requirement)) errors.push(`publisher.js is missing required control: ${requirement}`);
+  }
+  if (script.includes('localStorage') || script.includes('TCString')) {
+    errors.push('publisher.js must not invent local consent records or IAB TCF consent strings.');
+  }
+}
+
+for (const file of ['privacy.html', 'cookie-policy.html']) {
+  if (!existsSync(resolve(root, file))) continue;
+  const html = read(file);
+  if (!/certified CMP|Privacy & messaging/i.test(html)) {
+    errors.push(`${file} must explain the certified CMP / Privacy & messaging consent mechanism.`);
   }
 }
 
