@@ -20,7 +20,7 @@
     .partner-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;gap:1rem}.partner-header img{height:40px;width:auto}.partner-header a{color:#fff;text-decoration:none;font-weight:600}.partner-header nav{display:flex;gap:1rem}
     main{max-width:1280px;margin:auto;padding:2rem}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:2rem;align-items:center;margin-bottom:2.5rem}.hero h1{margin:0 0 .75rem;font-size:clamp(2.2rem,5vw,4.8rem);line-height:.95;color:var(--brand)}.hero p{font-size:1.15rem;line-height:1.6;color:var(--muted)}.hero-panel{background:var(--dark);color:#fff;border-radius:1rem;padding:1.5rem}.hero-panel strong{display:block;font-size:1.2rem;margin-bottom:.45rem}.hero-panel p{color:#c6c6c6;font-size:.95rem;margin:.4rem 0 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin:2rem 0 1rem}.section-head h2{margin:0;font-size:2rem}.section-head p{margin:0;color:var(--muted)}
-    .cards{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.card{background:var(--surface);border:1px solid var(--line);border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,.06)}.card-media{height:110px;display:flex;align-items:center;margin-bottom:.8rem}.card img{max-height:94px;max-width:180px;width:auto}.card h3{margin:.2rem 0 .4rem;font-size:1.35rem;color:var(--brand)}.card p{margin:.2rem 0;color:var(--muted);line-height:1.5}.price{font-size:1.35rem!important;font-weight:700;color:var(--text)!important;margin-top:1rem!important}.price small{display:block;color:var(--muted);font-size:.8rem;font-weight:400;margin-top:.15rem}.sku{font-size:.8rem!important}.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:auto;padding-top:1rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;border-radius:999px;padding:.65rem 1rem;text-decoration:none;font-weight:700;border:1px solid var(--line);color:var(--brand)}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.badge{display:inline-flex;width:max-content;background:#defbe6;color:#0e6027;border-radius:999px;padding:.25rem .55rem;font-size:.75rem;font-weight:700;margin-bottom:.55rem}
+    .cards{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.card{background:var(--surface);border:1px solid var(--line);border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,.06)}.card-media{height:110px;display:flex;align-items:center;margin-bottom:.8rem}.card img.cert-logo{display:block;max-height:94px;max-width:180px;width:auto;height:auto;object-fit:contain}.card h3{margin:.2rem 0 .4rem;font-size:1.35rem;color:var(--brand)}.card p{margin:.2rem 0;color:var(--muted);line-height:1.5}.price{font-size:1.35rem!important;font-weight:700;color:var(--text)!important;margin-top:1rem!important}.price small{display:block;color:var(--muted);font-size:.8rem;font-weight:400;margin-top:.15rem}.sku{font-size:.8rem!important}.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:auto;padding-top:1rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;border-radius:999px;padding:.65rem 1rem;text-decoration:none;font-weight:700;border:1px solid var(--line);color:var(--brand)}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.badge{display:inline-flex;width:max-content;background:#defbe6;color:#0e6027;border-radius:999px;padding:.25rem .55rem;font-size:.75rem;font-weight:700;margin-bottom:.55rem}
     .note{margin:2rem 0;padding:1rem 1.25rem;border-left:4px solid var(--brand);background:#edf5ff;color:#262626}.note strong{display:block;margin-bottom:.3rem}
     footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--line);text-align:center;color:#6f6f6f}
     @media(max-width:800px){.partner-header{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:.5rem}}
@@ -37,7 +37,7 @@
     <section class="hero">
       <div>
         <h1>CompTIA certification and exam pathways.</h1>
-        <p>Choose a certification path, then compare current exam-voucher and learning-bundle pricing available through the Skunkworks Academy Shopify catalogue. Prices below are shown in ZAR and use the current product images stored with the corresponding Shopify products.</p>
+        <p>Choose a certification path, then compare current exam-voucher and learning-bundle pricing available through the Skunkworks Academy Shopify catalogue. Prices below are shown in ZAR. Certification marks are served from Skunkworks Academy's GitHub-hosted CompTIA asset library to avoid third-party image hotlink failures.</p>
       </div>
       <aside class="hero-panel">
         <strong>Current Shopify catalogue</strong>
@@ -49,91 +49,91 @@
 
     <section class="cards">
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Plus_A_Certification.svg?v=1769656373" alt="CompTIA A+ certification logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_A_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA A+ certification logo"></div>
         <span class="badge">Exam voucher</span><h3>CompTIA A+</h3><p>Core IT support certification covering hardware, operating systems, networking, troubleshooting and security.</p>
         <p class="price">R3,369.11<small>A+ Voucher</small></p><p class="sku">SKU 810182702940</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/a-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Network.png?v=1783507316" alt="CompTIA Network+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/a_Network_CompCert.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Network+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA Network+</h3><p>Vendor-neutral networking skills for connectivity, operations, troubleshooting and network security.</p>
         <p class="price">R8,170.00<small>Voucher Plus Retake Assurance V9</small></p><p class="sku">SKU 810182702926</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/network-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Security.png?v=1783507260" alt="CompTIA Security+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/a_Cyber_CompCert.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Security+ logo"></div>
         <span class="badge">Complete bundle</span><h3>CompTIA Security+</h3><p>Core cybersecurity certification for threats, architecture, operations, governance and risk.</p>
         <p class="price">R22,490.00<small>Complete Bundle with Retake V7</small></p><p class="sku">SKU 810182702612</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/security-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/CySA.png?v=1783506939" alt="CompTIA CySA+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_CyberDefense_CompCert.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA CySA+ logo"></div>
         <span class="badge">Complete bundle</span><h3>CompTIA CySA+</h3><p>Security analytics, incident detection, vulnerability management and response for defensive cyber roles.</p>
         <p class="price">R21,230.00<small>Complete Bundle with Retake V4</small></p><p class="sku">SKU 810182708126</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/cysa-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Linux.png?v=1783506911" alt="CompTIA Linux+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_Server_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Linux+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA Linux+</h3><p>Linux administration, security, scripting, containers and operations across hybrid environments.</p>
         <p class="price">R8,170.00<small>Voucher Plus Retake Assurance V8</small></p><p class="sku">SKU 810182703374</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/linux-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Data.png?v=1783506957" alt="CompTIA Data+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_DataSys_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Data+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA Data+</h3><p>Data analysis, governance, visualization and evidence-based decision support.</p>
         <p class="price">R5,410.00<small>Voucher Plus Retake Assurance V2</small></p><p class="sku">SKU 810182703244</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/data-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Tech.png?v=1783507111" alt="CompTIA Tech+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_Tech_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Tech+ logo"></div>
         <span class="badge">Learning bundle</span><h3>CompTIA Tech+</h3><p>Foundational computing, infrastructure, software, data and security concepts for early-career learners.</p>
         <p class="price">R5,380.00<small>Complete Learning Bundle with OnDemand Services</small></p><p class="sku">SKU 810182707952</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/tech-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/PenTest.png?v=1783507398" alt="CompTIA PenTest+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_EthicalHacker_CompCert.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA PenTest+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA PenTest+</h3><p>Hands-on penetration testing, vulnerability discovery, exploitation methodology and reporting.</p>
         <p class="price">R9,110.00<small>Voucher Plus Retake Assurance V3</small></p><p class="sku">SKU 810182700205</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/pentest-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Cloud.png?v=1783507185" alt="CompTIA Cloud+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Xpert_CloudNetX_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Cloud+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA Cloud+</h3><p>Cloud architecture, deployment, operations, security and troubleshooting across multi-cloud environments.</p>
         <p class="price">R8,170.00<small>Voucher Plus Retake Assurance V4</small></p><p class="sku">SKU 810182701141</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/cloud-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Project.png?v=1783506888" alt="CompTIA Project+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Pro_DigitalLiteracy_CompCert.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA Project+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA Project+</h3><p>IT project planning, communication, governance, delivery and stakeholder management.</p>
         <p class="price">R8,170.00<small>Voucher Plus Retake Assurance V5</small></p><p class="sku">SKU 810182702445</p>
         <div class="actions"><a class="btn primary" href="https://skunkworksacademy.com/comptia/project-plus.html">View certification</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/DataSys.png?v=1783506825" alt="CompTIA DataSys+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/a1ae86b4c0692848334ede0185d83b6c10dc9cca/comptia/assets/Plus_DataSys_Certification.svg" onerror="this.onerror=null;this.src='Comptia-logo.svg'" alt="CompTIA DataSys+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA DataSys+</h3><p>Database administration, deployment, maintenance, security and operational data management.</p>
         <p class="price">R8,170.00<small>Voucher Plus Retake Assurance V1</small></p><p class="sku">SKU 810182701615</p>
         <div class="actions"><a class="btn" href="mailto:training@skunkworks.africa?subject=CompTIA%20DataSys%2B%20enquiry">Enquire</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/Security.png?v=1783507260" alt="CompTIA SecurityX logo"></div>
+        <div class="card-media"><img class="cert-logo" src="Comptia-logo.svg" alt="CompTIA SecurityX logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA SecurityX</h3><p>Advanced enterprise security architecture and engineering for experienced cybersecurity professionals.</p>
         <p class="price">R11,160.00<small>Voucher Plus Retake Assurance V5</small></p><p class="sku">SKU 810182700915</p>
         <div class="actions"><a class="btn" href="mailto:training@skunkworks.africa?subject=CompTIA%20SecurityX%20enquiry">Enquire</a></div>
       </article>
 
       <article class="card">
-        <div class="card-media"><img src="https://cdn.shopify.com/s/files/1/0746/8079/5356/files/SecAI.png?v=1783507575" alt="CompTIA SecAI+ logo"></div>
+        <div class="card-media"><img class="cert-logo" src="Comptia-logo.svg" alt="CompTIA SecAI+ logo"></div>
         <span class="badge">Voucher + retake</span><h3>CompTIA SecAI+</h3><p>Security and AI-focused credential path for protecting and governing AI-enabled environments.</p>
         <p class="price">R6,120.00<small>Voucher Plus Retake Assurance V1</small></p><p class="sku">SKU 810182709802</p>
         <div class="actions"><a class="btn" href="mailto:training@skunkworks.africa?subject=CompTIA%20SecAI%2B%20enquiry">Enquire</a></div>
