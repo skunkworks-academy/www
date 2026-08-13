@@ -1,8 +1,8 @@
 {
   "name": "skunkworks-academy",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
-  "description": "Skunkworks Academy course platform and resources",
+  "description": "Skunkworks Academy course platform, original technical guides and learning resources",
   "homepage": "https://www.skunkworksacademy.com",
   "license": "Other",
   "workspaces": [
@@ -11,8 +11,11 @@
   ],
   "scripts": {
     "audit": "node scripts/audit-site.mjs",
+    "repair:catalog": "node scripts/repair-course-catalog.mjs",
+    "validate:catalog": "node scripts/validate-course-catalog.mjs",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
-    "validate": "npm run audit && npm run validate:self-paced",
+    "validate:publisher": "node scripts/validate-publisher-readiness.mjs",
+    "validate": "npm run audit && npm run repair:catalog && npm run validate:catalog && npm run validate:self-paced && npm run validate:publisher",
     "build": "npm run validate"
   },
   "engines": {
