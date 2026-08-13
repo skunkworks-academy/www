@@ -35,8 +35,8 @@ function read(file) {
 
 function plainText(html) {
   return html
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script\b[\s\S]*?<\/script(?:\s+[^>]*)?\s*>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style(?:\s+[^>]*)?\s*>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&[a-z0-9#]+;/gi, ' ')
     .replace(/\s+/g, ' ')
