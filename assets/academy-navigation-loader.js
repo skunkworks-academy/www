@@ -5,23 +5,126 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.07.1";
+  var version = "2026.08.14.1";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
   var pages = [
-    { label: "Home", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/", verified: true },
-    { label: "Plans & Purchases", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/plans-and-purchases/", verified: true },
-    { label: "Secure Checkout", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/checkout/", verified: true },
-    { label: "AI Learning", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/#new-way-to-learn", verified: true },
-    { label: "Self-paced", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/self-paced/", verified: true },
-    { label: "Portal", domain: "portal.skunkworksacademy.com", url: "https://portal.skunkworksacademy.com/", verified: true },
-    { label: "Labs", domain: "lab.skunkworksacademy.com", url: "https://lab.skunkworksacademy.com/", aliases: ["labs.skunkworksacademy.com"], verified: true },
-    { label: "Forms", domain: "skunkworksacademy.com", url: "https://skunkworksacademy.com/forms/", verified: true },
-    { label: "Badging", domain: "badging.skunkworksacademy.com", url: "https://badging.skunkworksacademy.com/", verified: true },
-    { label: "Jobs", domain: "jobs.skunkworksacademy.com", url: "https://jobs.skunkworksacademy.com/", verified: true },
-    { label: "Media", domain: "media.skunkworksacademy.com", url: "https://media.skunkworksacademy.com/", verified: true },
-    { label: "Security", domain: "security.skunkworksacademy.com", url: "https://security.skunkworksacademy.com/", verified: true },
-    { label: "IBM", domain: "ibm.skunkworksacademy.com", url: "https://ibm.skunkworksacademy.com/", verified: true }
+    {
+      "label": "Home",
+      "url": "https://skunkworksacademy.com/",
+      "domains": [
+        "skunkworksacademy.com",
+        "www.skunkworksacademy.com"
+      ],
+      "description": "Skunkworks Academy home"
+    },
+    {
+      "label": "Learning catalogue",
+      "url": "https://skunkworksacademy.com/catalogue/",
+      "description": "Self-paced and instructor-led learning"
+    },
+    {
+      "label": "Plans & purchases",
+      "url": "https://skunkworksacademy.com/plans-and-purchases/",
+      "description": "Training plans and purchases"
+    },
+    {
+      "label": "Learner portal",
+      "url": "https://portal.skunkworksacademy.com/",
+      "domains": [
+        "portal.skunkworksacademy.com"
+      ],
+      "description": "Your Academy account and learning portal"
+    },
+    {
+      "label": "Labs",
+      "url": "https://labs.skunkworksacademy.com/",
+      "domains": [
+        "labs.skunkworksacademy.com",
+        "lab.skunkworksacademy.com"
+      ],
+      "description": "Hands-on technical labs"
+    },
+    {
+      "label": "Security",
+      "url": "https://security.skunkworksacademy.com/",
+      "domains": [
+        "security.skunkworksacademy.com"
+      ],
+      "description": "Security learning and services"
+    },
+    {
+      "label": "Microsoft learning",
+      "url": "https://microsoft.skunkworksacademy.com/",
+      "domains": [
+        "microsoft.skunkworksacademy.com"
+      ],
+      "description": "Microsoft training and certification"
+    },
+    {
+      "label": "IBM learning",
+      "url": "https://ibm.skunkworksacademy.com/",
+      "domains": [
+        "ibm.skunkworksacademy.com"
+      ],
+      "description": "IBM enterprise training"
+    },
+    {
+      "label": "Badging",
+      "url": "https://badging.skunkworksacademy.com/",
+      "domains": [
+        "badging.skunkworksacademy.com",
+        "badge-hub.skunkworksacademy.com"
+      ],
+      "description": "Digital credentials and badges"
+    },
+    {
+      "label": "Jobs",
+      "url": "https://jobs.skunkworksacademy.com/",
+      "domains": [
+        "jobs.skunkworksacademy.com"
+      ],
+      "description": "Academy careers and opportunities"
+    },
+    {
+      "label": "Forms",
+      "url": "https://skunkworksacademy.com/forms/",
+      "description": "Academy forms and requests"
+    },
+    {
+      "label": "Connections",
+      "url": "https://portal.skunkworksacademy.com/connections/",
+      "description": "Learning connections"
+    },
+    {
+      "label": "Reports",
+      "url": "https://portal.skunkworksacademy.com/reports/",
+      "description": "Learning reports"
+    },
+    {
+      "label": "Docs",
+      "url": "https://docs.skunkworksacademy.com/",
+      "domains": [
+        "docs.skunkworksacademy.com"
+      ],
+      "description": "Academy documentation"
+    },
+    {
+      "label": "Publish",
+      "url": "https://publish.skunkworksacademy.com/",
+      "domains": [
+        "publish.skunkworksacademy.com"
+      ],
+      "description": "Academy publishing"
+    },
+    {
+      "label": "Blog",
+      "url": "https://blog.skunkworksacademy.com/",
+      "domains": [
+        "blog.skunkworksacademy.com"
+      ],
+      "description": "Academy updates and articles"
+    }
   ];
 
   if (typeof window !== "undefined") {
@@ -41,7 +144,7 @@
   script.defer = true;
   script.src = canonicalUrl;
   script.setAttribute("data-skunkworks-ui", "canonical");
-  script.setAttribute("data-skunkworks-global-nav", "v6");
+  script.setAttribute("data-skunkworks-global-nav", "v9");
 
   (document.head || document.documentElement).appendChild(script);
 })();
