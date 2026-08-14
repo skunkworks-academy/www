@@ -2,9 +2,9 @@
   "repository": ".github",
   "standard": "skunkworks-academy-global-navigation",
   "version": "v9",
-  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.14.1",
-  "canonicalUiUrl": "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.14.1",
-  "canonicalVersion": "2026.08.14.1",
+  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.14.2",
+  "canonicalUiUrl": "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.14.2",
+  "canonicalVersion": "2026.08.14.2",
   "globalAssetsBaseUrl": "https://skunkworksacademy.com/assets",
   "brand": "Skunkworks Academy",
   "homeUrl": "https://skunkworksacademy.com/",
@@ -139,5 +139,10 @@
     }
   ],
   "generatedOn": "2026-08-14T00:00:00+02:00",
-  "notes": "Public Academy surfaces use the central Skunkworks Academy global navigation shell. The compact dark bar contains an accessible hamburger menu, Skunkworks Academy company name, centred Academy icon, destination search and learner-portal sign-in link. Do not maintain page-local public headers unless data-sk-preserve-header is set."
+  "notes": "Public Academy surfaces use the central Skunkworks Academy global navigation shell. The compact dark bar contains an accessible hamburger menu, Skunkworks Academy company name, centred Academy icon, destination search and learner-portal sign-in link. Do not maintain page-local public headers unless data-sk-preserve-header is set.",
+  "accountIntegration": {
+    "global": "SKUNKWORKS_ACADEMY_NAV_ACCOUNT",
+    "event": "skunkworksacademy:account-change",
+    "note": "Interactive applications can provide authenticated sign-in and sign-out actions to the central menu."
+  }
 }
