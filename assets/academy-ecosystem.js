@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.07.07.1";
+  var version = "2026.08.14.1";
 
   function ensureCanonicalUi() {
     if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
@@ -11,7 +11,7 @@
     script.defer = true;
     script.src = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
     script.setAttribute("data-skunkworks-ui", "canonical");
-    script.setAttribute("data-skunkworks-global-nav", "v6");
+    script.setAttribute("data-skunkworks-global-nav", "v9");
     (document.head || document.documentElement).appendChild(script);
   }
 
