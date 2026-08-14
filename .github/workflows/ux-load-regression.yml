@@ -1,0 +1,32 @@
+name: UX and load regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ux-load:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Run route and concurrency test
+        run: node scripts/ux-load-test.mjs
+      - name: Check common 404 entry points
+        run: |
+          test -f index.html
+          test -f catalogue/index.html
+          test -f plans-and-purchases/index.html
+          test -f forms/index.html
+          test -f microsoft/index.html
+          test -f google/index.html
+          test -f redhat/index.html
+          test -f repositories/index.html

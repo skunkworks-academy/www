@@ -1,2 +1,231 @@
-/* Skunkworks Academy Global UI - canonical runtime */
-(function(){"use strict";if(window.SkunkworksAcademy&&window.SkunkworksAcademy.uiLoaded)return;var v="2026.07.07.1",root=document.documentElement,asset="https://skunkworksacademy.com/assets",logoLight="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png",logoDark="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png",pages=[{label:"Home",domain:"skunkworksacademy.com",url:"https://skunkworksacademy.com/",verified:true},{label:"Plans & Purchases",domain:"skunkworksacademy.com",url:"https://skunkworksacademy.com/plans-and-purchases/",verified:true},{label:"Secure Checkout",domain:"portal.skunkworksacademy.com",url:"https://portal.skunkworksacademy.com/checkout/",verified:true},{label:"AI Learning",domain:"skunkworksacademy.com",url:"https://skunkworksacademy.com/#new-way-to-learn",verified:true},{label:"Self-paced",domain:"skunkworksacademy.com",url:"https://skunkworksacademy.com/self-paced/",verified:true},{label:"Portal",domain:"portal.skunkworksacademy.com",url:"https://portal.skunkworksacademy.com/",verified:true},{label:"Labs",domain:"lab.skunkworksacademy.com",url:"https://lab.skunkworksacademy.com/",aliases:["labs.skunkworksacademy.com"],verified:true},{label:"Forms",domain:"skunkworksacademy.com",url:"https://skunkworksacademy.com/forms/",verified:true},{label:"Badging",domain:"badging.skunkworksacademy.com",url:"https://badging.skunkworksacademy.com/",verified:true},{label:"Jobs",domain:"jobs.skunkworksacademy.com",url:"https://jobs.skunkworksacademy.com/",verified:true},{label:"Media",domain:"media.skunkworksacademy.com",url:"https://media.skunkworksacademy.com/",verified:true},{label:"Security",domain:"security.skunkworksacademy.com",url:"https://security.skunkworksacademy.com/",verified:true},{label:"IBM",domain:"ibm.skunkworksacademy.com",url:"https://ibm.skunkworksacademy.com/",verified:true}];window.SkunkworksAcademy=Object.assign(window.SkunkworksAcademy||{},{uiLoaded:true,version:v,navigation:{pages:pages}});window.SKUNKWORKS_ACADEMY_NAVIGATION={version:v,title:"Skunkworks Academy navigation",statusLabel:"Verified domains",pages:pages};function ready(fn){document.readyState==="loading"?document.addEventListener("DOMContentLoaded",fn,{once:true}):fn()}function css(){if(!document.querySelector('link[data-skunkworks-design-system="canonical"]')){var l=document.createElement("link");l.rel="stylesheet";l.href=asset+"/skunkworks-design-system.css?v="+v;l.setAttribute("data-skunkworks-design-system","canonical");document.head.appendChild(l)}if(document.getElementById("swa-global-nav-menu-only-overrides"))return;var s=document.createElement("style");s.id="swa-global-nav-menu-only-overrides";s.textContent=["body.swa-has-global-nav{padding-top:82px}",".swa-global-nav{--swa-nav-bg:rgba(5,5,5,.92);--swa-nav-text:#fff;--swa-nav-line:rgba(255,255,255,.16);--swa-nav-panel:#101010;position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:9999!important;background:var(--swa-nav-bg)!important;color:var(--swa-nav-text)!important;border-bottom:1px solid var(--swa-nav-line)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}","@media(prefers-color-scheme:light){.swa-global-nav{--swa-nav-bg:rgba(255,255,255,.92);--swa-nav-text:#050505;--swa-nav-line:rgba(5,5,5,.16);--swa-nav-panel:#fff}}",".swa-global-nav__inner{width:min(1180px,calc(100% - 32px))!important;min-height:72px!important;margin-inline:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:1rem!important}",".swa-global-nav__brand{display:inline-flex!important;order:0!important;align-items:center!important;gap:.65rem!important;color:var(--swa-nav-text)!important;text-decoration:none!important;font-weight:900!important;letter-spacing:-.03em!important;white-space:nowrap!important;min-width:0!important}",".swa-global-nav__brand img{display:block!important;width:34px!important;height:34px!important;border-radius:.65rem!important;object-fit:contain!important}",".swa-global-nav__brand span{display:inline-block!important;position:static!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;overflow:hidden!important;clip:auto!important;white-space:nowrap!important;border:0!important;text-overflow:ellipsis!important;color:var(--swa-nav-text)!important}",".swa-logo-dark{display:block!important}.swa-logo-light{display:none!important}@media(prefers-color-scheme:light){.swa-logo-light{display:block!important}.swa-logo-dark{display:none!important}}",".swa-global-nav__toggle{display:inline-flex!important;order:1!important;align-items:center!important;justify-content:center!important;border:1px solid var(--swa-nav-line)!important;background:color-mix(in srgb,var(--swa-nav-panel) 72%,transparent)!important;color:var(--swa-nav-text)!important;border-radius:999px!important;min-width:46px!important;min-height:46px!important;padding:.65rem .75rem!important;cursor:pointer!important}",".swa-global-nav__toggle-lines{display:grid!important;gap:5px!important}.swa-global-nav__toggle-lines span{display:block!important;width:22px!important;height:2px!important;border-radius:999px!important;background:currentColor!important}",".swa-global-nav__links{position:absolute!important;top:calc(100% + 10px)!important;right:calc((100vw - min(1180px,calc(100vw - 32px)))/2)!important;left:auto!important;transform:none!important;width:min(410px,calc(100vw - 32px))!important;max-height:calc(100vh - 96px)!important;overflow:auto!important;display:none!important;grid-template-columns:1fr!important;gap:.5rem!important;border:1px solid var(--swa-nav-line)!important;border-radius:1.25rem!important;background:var(--swa-nav-panel)!important;box-shadow:0 30px 90px rgba(0,0,0,.46)!important;padding:.9rem!important}",".swa-global-nav.swa-open .swa-global-nav__links{display:grid!important}",".swa-global-nav__link{justify-content:flex-start!important;min-height:44px!important;border:1px solid var(--swa-nav-line)!important;border-radius:.9rem!important;color:var(--swa-nav-text)!important;background:color-mix(in srgb,var(--swa-nav-panel) 82%,transparent)!important;padding:.75rem .9rem!important;font-size:.92rem!important;text-decoration:none!important;font-weight:800!important}",".swa-global-nav__link:hover,.swa-global-nav__link:focus,.swa-global-nav__link[aria-current='page']{background:rgba(15,98,254,.22)!important;border-color:rgba(127,127,127,.42)!important;color:var(--swa-nav-text)!important}","@media(max-width:720px){body.swa-has-global-nav{padding-top:74px}.swa-global-nav__inner{width:min(100% - 20px,1180px)!important;min-height:66px!important}.swa-global-nav__links{right:10px!important;width:calc(100% - 20px)!important}}"].join("\n");document.head.appendChild(s)}function norm(u){try{var x=new URL(u,window.location.origin);x.hash="";return x.href.replace(/\/$/,"")}catch(e){return String(u||"")}}function current(p){var c=norm(location.href),t=norm(p.url);return c===t||c.indexOf(t+"/")===0||location.hostname===p.domain||(Array.isArray(p.aliases)&&p.aliases.indexOf(location.hostname)!==-1)}function inside(n){return !!(n.closest&&n.closest("main,article,section,aside,.document,.sk-document"))}function removeHeaders(){["header.top",".site-header",".main-header",".sk-topbar","[data-sk-nav-shell]","header[data-skunkworks-global-header]","header.swa-fallback-top","header.fallback-top"].forEach(function(sel){Array.prototype.slice.call(document.querySelectorAll(sel)).forEach(function(n){if(n.classList.contains("swa-global-nav")||n.hasAttribute("data-sk-preserve-header"))return;if(inside(n)&&!n.matches("header[data-skunkworks-global-header],[data-sk-nav-shell]"))return;n.parentNode&&n.parentNode.removeChild(n)})})}function link(p){var a=document.createElement("a");a.className="swa-global-nav__link";a.href=p.url;a.textContent=p.label;a.setAttribute("data-swa-domain",p.domain);a.setAttribute("data-swa-verified",p.verified?"true":"false");if(current(p))a.setAttribute("aria-current","page");return a}function nav(){if(document.body&&document.body.getAttribute("data-sk-global-nav")==="off")return;if(document.querySelector(".swa-global-nav"))return;removeHeaders();var h=document.createElement("header"),inner=document.createElement("div"),b=document.createElement("a"),l=document.createElement("img"),d=document.createElement("img"),txt=document.createElement("span"),btn=document.createElement("button"),lines=document.createElement("span"),links=document.createElement("nav");h.className="swa-global-nav";h.setAttribute("data-skunkworks-global-header","canonical-v6-logo-text-burger");inner.className="swa-global-nav__inner";b.className="swa-global-nav__brand";b.href="https://skunkworksacademy.com/";b.setAttribute("aria-label","Skunkworks Academy home");l.className="swa-logo-light";l.alt="";l.loading="lazy";l.src=logoLight;d.className="swa-logo-dark";d.alt="";d.loading="lazy";d.src=logoDark;txt.textContent="Skunkworks Academy";b.appendChild(l);b.appendChild(d);b.appendChild(txt);btn.className="swa-global-nav__toggle";btn.type="button";btn.setAttribute("aria-label","Toggle site navigation");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","swa-global-nav-links");lines.className="swa-global-nav__toggle-lines";lines.setAttribute("aria-hidden","true");lines.innerHTML="<span></span><span></span><span></span>";btn.appendChild(lines);links.className="swa-global-nav__links";links.id="swa-global-nav-links";links.setAttribute("aria-label","Skunkworks Academy navigation");pages.forEach(function(p){links.appendChild(link(p))});inner.appendChild(b);inner.appendChild(btn);inner.appendChild(links);h.appendChild(inner);document.body.insertBefore(h,document.body.firstChild);document.body.classList.add("swa-has-global-nav");function close(){h.classList.remove("swa-open");btn.setAttribute("aria-expanded","false")}btn.addEventListener("click",function(e){e.stopPropagation();var o=h.classList.toggle("swa-open");btn.setAttribute("aria-expanded",o?"true":"false")});links.addEventListener("click",function(e){if(e.target&&e.target.matches("a"))close()});document.addEventListener("click",function(e){if(!h.contains(e.target))close()});document.addEventListener("keydown",function(e){if(e.key==="Escape")close()})}function legacy(){var n=document.querySelector("[data-sk-nav]"),t=document.querySelector("[data-sk-nav-toggle]");if(!n||!t)return;t.addEventListener("click",function(){var o=n.getAttribute("data-open")==="true";n.setAttribute("data-open",String(!o));t.setAttribute("aria-expanded",String(!o))})}function theme(){var st=localStorage&&localStorage.getItem("skunkworks-theme");if(st)root.setAttribute("data-theme",st);Array.prototype.slice.call(document.querySelectorAll("[data-sk-theme-toggle]")).forEach(function(t){t.addEventListener("click",function(){var c=root.getAttribute("data-theme")||((matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"),n=c==="dark"?"light":"dark";root.setAttribute("data-theme",n);localStorage.setItem("skunkworks-theme",n);t.setAttribute("aria-label","Switch to "+c+" mode")})})}function extras(){Array.prototype.slice.call(document.querySelectorAll("[data-sk-year]")).forEach(function(n){n.textContent=new Date().getFullYear()});var input=document.querySelector("[data-site-search]");if(input){var cards=Array.prototype.slice.call(document.querySelectorAll("[data-search]"));input.addEventListener("input",function(){var q=input.value.trim().toLowerCase();cards.forEach(function(c){var h=(c.textContent+" "+(c.getAttribute("data-search")||"")).toLowerCase();c.style.display=!q||h.indexOf(q)!==-1?"":"none"})})}Array.prototype.slice.call(document.querySelectorAll("form[data-sk-validate]")).forEach(function(f){f.addEventListener("submit",function(e){if(!f.checkValidity()){e.preventDefault();f.classList.add("sk-form--invalid");var x=f.querySelector(":invalid");x&&x.focus()}})})}ready(function(){css();nav();legacy();theme();extras()})})();
+/* Skunkworks Academy Global UI — canonical navigation runtime */
+(function () {
+  "use strict";
+
+  if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
+
+  var VERSION = "2026.07.17.3";
+  var ASSET_ROOT = "https://skunkworksacademy.com";
+  var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
+  var LOGO_DARK = ASSET_ROOT + "/images/favicon-white.png?v=" + VERSION;
+  var isPublish = window.location.hostname === "publish.skunkworksacademy.com";
+
+  var destinations = [
+    { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"] },
+    { label: "Plans & Purchases", url: "https://skunkworksacademy.com/plans-and-purchases/" },
+    { label: "Secure Checkout", url: "https://portal.skunkworksacademy.com/checkout/" },
+    { label: "Forms", url: "https://skunkworksacademy.com/forms/" },
+    { label: "Self-Paced Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
+    { label: "Learner Portal", url: "https://portal.skunkworksacademy.com/", domains: ["portal.skunkworksacademy.com"] },
+    { label: "Labs", url: "https://labs.skunkworksacademy.com/", domains: ["labs.skunkworksacademy.com", "lab.skunkworksacademy.com"] },
+    { label: "Security", url: "https://security.skunkworksacademy.com/", domains: ["security.skunkworksacademy.com"] },
+    { label: "IBM", url: "https://ibm.skunkworksacademy.com/", domains: ["ibm.skunkworksacademy.com"] },
+    { label: "Badging", url: "https://badging.skunkworksacademy.com/", domains: ["badging.skunkworksacademy.com", "badge-hub.skunkworksacademy.com"] },
+    { label: "Jobs", url: "https://jobs.skunkworksacademy.com/", domains: ["jobs.skunkworksacademy.com"] },
+    { label: "Connections", url: "https://portal.skunkworksacademy.com/connections/" },
+    { label: "Reports", url: "https://portal.skunkworksacademy.com/reports/" },
+    { label: "Docs", url: "https://docs.skunkworksacademy.com/", domains: ["docs.skunkworksacademy.com"] },
+    { label: "Publish", url: "https://publish.skunkworksacademy.com/", domains: ["publish.skunkworksacademy.com"] },
+    { label: "Blog", url: "https://blog.skunkworksacademy.com/", domains: ["blog.skunkworksacademy.com"] }
+  ];
+
+  window.SkunkworksAcademy = Object.assign(window.SkunkworksAcademy || {}, {
+    uiLoaded: true,
+    version: VERSION,
+    navigation: { pages: destinations }
+  });
+  window.SKUNKWORKS_ACADEMY_NAVIGATION = {
+    version: VERSION,
+    title: "Skunkworks Academy navigation",
+    pages: destinations
+  };
+
+  function ready(callback) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", callback, { once: true });
+    else callback();
+  }
+
+  function addStyles() {
+    if (document.getElementById("swa-global-nav-canonical-styles")) return;
+    var style = document.createElement("style");
+    style.id = "swa-global-nav-canonical-styles";
+    style.textContent = [
+      "body.swa-has-global-nav{padding-top:82px}",
+      ".swa-global-nav{--swa-bg:rgba(11,15,20,.94);--swa-panel:#111a24;--swa-text:#e6edf3;--swa-line:#243041;position:fixed!important;inset:0 0 auto 0!important;z-index:9999!important;background:var(--swa-bg)!important;color:var(--swa-text)!important;border-bottom:1px solid var(--swa-line)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}",
+      "@media(prefers-color-scheme:light){.swa-global-nav{--swa-bg:rgba(248,250,252,.94);--swa-panel:#fff;--swa-text:#0f172a;--swa-line:#d8e1ed}}",
+      ".swa-global-nav__inner{width:min(1180px,calc(100% - 32px))!important;min-height:72px!important;margin:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}",
+      ".swa-global-nav__brand{display:inline-flex!important;align-items:center!important;gap:12px!important;min-width:0!important;color:var(--swa-text)!important;text-decoration:none!important;font-weight:800!important;letter-spacing:-.03em!important}",
+      ".swa-global-nav__brand-logo{display:block!important;width:40px!important;height:40px!important;box-sizing:border-box!important;object-fit:contain!important;border-radius:10px!important;background:transparent!important;border:1px solid var(--swa-line)!important;padding:6px!important;flex:0 0 auto!important}",
+      ".swa-logo-dark{display:block!important}.swa-logo-light{display:none!important}@media(prefers-color-scheme:light){.swa-logo-light{display:block!important}.swa-logo-dark{display:none!important}}",
+      ".swa-global-nav__brand-text{display:block!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:var(--swa-text)!important}",
+      ".swa-global-nav__controls{margin-left:auto!important;display:flex!important;align-items:center!important;gap:8px!important}",
+      ".swa-global-nav__action{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:44px!important;padding:0 16px!important;border:1px solid transparent!important;border-radius:999px!important;background:linear-gradient(135deg,#6d28d9,#0891b2)!important;color:#fff!important;text-decoration:none!important;font-size:.9rem!important;font-weight:800!important;cursor:pointer!important}",
+      ".swa-global-nav__action:hover,.swa-global-nav__action:focus{filter:brightness(1.08)!important}",
+      ".swa-global-nav__toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:1px solid var(--swa-line)!important;border-radius:999px!important;background:var(--swa-panel)!important;color:var(--swa-text)!important;cursor:pointer!important}",
+      ".swa-global-nav__toggle-lines{display:grid!important;gap:5px!important}.swa-global-nav__toggle-lines span{display:block!important;width:22px!important;height:2px!important;border-radius:999px!important;background:currentColor!important}",
+      ".swa-global-nav__links{position:absolute!important;top:calc(100% + 10px)!important;right:calc((100vw - min(1180px,calc(100vw - 32px)))/2)!important;width:min(410px,calc(100vw - 32px))!important;max-height:calc(100vh - 96px)!important;overflow:auto!important;display:none!important;grid-template-columns:1fr!important;gap:8px!important;padding:14px!important;border:1px solid var(--swa-line)!important;border-radius:20px!important;background:var(--swa-panel)!important;box-shadow:0 30px 90px rgba(0,0,0,.4)!important}",
+      ".swa-global-nav.swa-open .swa-global-nav__links{display:grid!important}",
+      ".swa-global-nav__link{display:flex!important;align-items:center!important;min-height:44px!important;padding:11px 14px!important;border:1px solid var(--swa-line)!important;border-radius:14px!important;color:var(--swa-text)!important;background:transparent!important;text-decoration:none!important;font-size:.92rem!important;font-weight:800!important}",
+      ".swa-global-nav__link:hover,.swa-global-nav__link:focus,.swa-global-nav__link[aria-current='page']{background:color-mix(in srgb,#0891b2 14%,transparent)!important;border-color:color-mix(in srgb,#0891b2 45%,var(--swa-line))!important}",
+      "@media(max-width:720px){body.swa-has-global-nav{padding-top:74px}.swa-global-nav__inner{width:calc(100% - 20px)!important;min-height:66px!important}.swa-global-nav__links{right:10px!important;width:calc(100% - 20px)!important}.swa-global-nav__action{min-height:40px!important;padding:0 13px!important;font-size:.82rem!important}.swa-global-nav__brand-text{max-width:150px!important}}"
+    ].join("\n");
+    document.head.appendChild(style);
+  }
+
+  function isInsideContent(node) {
+    return Boolean(node.closest && node.closest("main,article,section,aside,.document,.sk-document"));
+  }
+
+  function removeLegacyHeaders() {
+    var selectors = [
+      "header.top",
+      "header.topbar",
+      ".site-header",
+      ".main-header",
+      ".sk-topbar",
+      "[data-sk-nav-shell]",
+      "header[data-skunkworks-global-header]",
+      "header.swa-fallback-top",
+      "header.fallback-top"
+    ];
+    selectors.forEach(function (selector) {
+      Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
+        if (node.classList.contains("swa-global-nav") || node.hasAttribute("data-sk-preserve-header")) return;
+        if (isInsideContent(node) && !node.matches("header[data-skunkworks-global-header],[data-sk-nav-shell]")) return;
+        if (isPublish && node.matches("header.topbar")) {
+          node.hidden = true;
+          node.setAttribute("aria-hidden", "true");
+          node.style.setProperty("display", "none", "important");
+          return;
+        }
+        if (node.parentNode) node.parentNode.removeChild(node);
+      });
+    });
+  }
+
+  function normalise(url) {
+    try {
+      var parsed = new URL(url, window.location.origin);
+      parsed.hash = "";
+      return parsed.href.replace(/\/$/, "");
+    } catch (_error) {
+      return String(url || "");
+    }
+  }
+
+  function isCurrent(destination) {
+    var currentUrl = normalise(window.location.href);
+    var targetUrl = normalise(destination.url);
+    if (currentUrl === targetUrl || currentUrl.indexOf(targetUrl + "/") === 0) return true;
+    return Array.isArray(destination.domains) && destination.domains.indexOf(window.location.hostname) !== -1;
+  }
+
+  function createLogo(className, source) {
+    var image = document.createElement("img");
+    image.className = "swa-global-nav__brand-logo " + className;
+    image.src = source;
+    image.alt = "";
+    image.width = 40;
+    image.height = 40;
+    image.decoding = "async";
+    image.fetchPriority = "high";
+    image.addEventListener("error", function () { image.style.display = "none"; }, { once: true });
+    return image;
+  }
+
+  function buildNavigation() {
+    if (!document.body || document.body.getAttribute("data-sk-global-nav") === "off") return;
+    if (document.querySelector(".swa-global-nav")) return;
+
+    removeLegacyHeaders();
+
+    var header = document.createElement("header");
+    var inner = document.createElement("div");
+    var brand = document.createElement("a");
+    var brandText = document.createElement("span");
+    var controls = document.createElement("div");
+    var toggle = document.createElement("button");
+    var toggleLines = document.createElement("span");
+    var links = document.createElement("nav");
+
+    header.className = "swa-global-nav";
+    header.setAttribute("data-skunkworks-global-header", "canonical-v7-theme-logo");
+    inner.className = "swa-global-nav__inner";
+
+    brand.className = "swa-global-nav__brand";
+    brand.href = "https://skunkworksacademy.com/";
+    brand.setAttribute("aria-label", "Skunkworks Academy home");
+    brand.appendChild(createLogo("swa-logo-light", LOGO_LIGHT));
+    brand.appendChild(createLogo("swa-logo-dark", LOGO_DARK));
+    brandText.className = "swa-global-nav__brand-text";
+    brandText.textContent = "Skunkworks Academy";
+    brand.appendChild(brandText);
+
+    controls.className = "swa-global-nav__controls";
+    if (isPublish) {
+      var signIn = document.createElement("a");
+      signIn.className = "swa-global-nav__action";
+      signIn.href = "#signin";
+      signIn.textContent = "Sign in";
+      signIn.setAttribute("data-route", "signin");
+      signIn.setAttribute("aria-label", "Sign in to Skunkworks Academy Publish");
+      controls.appendChild(signIn);
+    }
+
+    toggle.className = "swa-global-nav__toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-label", "Toggle site navigation");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-controls", "swa-global-nav-links");
+    toggleLines.className = "swa-global-nav__toggle-lines";
+    toggleLines.setAttribute("aria-hidden", "true");
+    toggleLines.innerHTML = "<span></span><span></span><span></span>";
+    toggle.appendChild(toggleLines);
+    controls.appendChild(toggle);
+
+    links.className = "swa-global-nav__links";
+    links.id = "swa-global-nav-links";
+    links.setAttribute("aria-label", "Academy destinations");
+
+    destinations.forEach(function (destination) {
+      var link = document.createElement("a");
+      link.className = "swa-global-nav__link";
+      link.href = destination.url;
+      link.textContent = destination.label;
+      if (isCurrent(destination)) link.setAttribute("aria-current", "page");
+      links.appendChild(link);
+    });
+
+    inner.appendChild(brand);
+    inner.appendChild(controls);
+    inner.appendChild(links);
+    header.appendChild(inner);
+    document.body.insertBefore(header, document.body.firstChild);
+    document.body.classList.add("swa-has-global-nav");
+
+    function closeMenu() {
+      header.classList.remove("swa-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var open = header.classList.toggle("swa-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    links.addEventListener("click", function (event) {
+      if (event.target && event.target.matches("a")) closeMenu();
+    });
+    document.addEventListener("click", function (event) {
+      if (!header.contains(event.target)) closeMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
+  }
+
+  ready(function () {
+    addStyles();
+    buildNavigation();
+  });
+})();

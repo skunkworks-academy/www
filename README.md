@@ -201,7 +201,7 @@ flowchart LR
 </table>
 
 # Edit profile/README.md or README.md, then commit
-git add README.md profile/README.md
+```git add README.md profile/README.md
 git commit -m "Update Academy profile README"
 git push -u origin feature/update-profile-readme
 ```
