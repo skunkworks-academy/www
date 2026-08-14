@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { extname, join } from 'node:path';
+import { dirname, extname, join, normalize } from 'node:path';
 
 const root = process.cwd();
 const entryPoints = [
@@ -22,6 +22,10 @@ function getAttribute(tag, name) {
   return match?.[1] ?? null;
 }
 
+function isExternalOrSpecial(value) {
+  return /^(?:https?:|data:|mailto:|tel:|blob:|#|\/\/)/i.test(value);
+}
+
 function auditHtml(file) {
   const fullPath = join(root, file);
   const html = readFileSync(fullPath, 'utf8');
@@ -35,8 +39,9 @@ function auditHtml(file) {
   }
 
   const ids = [...html.matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
-  const duplicates = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
-  for (const id of duplicates) report(errors, file, `duplicate id "${id}"`);
+  for (const id of new Set(ids.filter((value, index) => ids.indexOf(value) !== index))) {
+    report(errors, file, `duplicate id "${id}"`);
+  }
 
   for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
     const tag = match[0];
@@ -45,7 +50,7 @@ function auditHtml(file) {
     const rel = getAttribute(tag, 'rel') ?? '';
 
     if (/^(?:javascript|data|vbscript):/i.test(href?.trim() ?? '')) {
-      report(errors, file, `unsafe javascript: link (${href})`);
+      report(errors, file, `unsafe link scheme (${href})`);
     }
     if (target === '_blank' && !/\bnoopener\b/i.test(rel)) {
       report(errors, file, 'target="_blank" link is missing rel="noopener"');
@@ -58,11 +63,13 @@ function auditHtml(file) {
   for (const match of html.matchAll(/<(?:script|img|link)\b[^>]*>/gi)) {
     const tag = match[0];
     const source = getAttribute(tag, 'src') ?? getAttribute(tag, 'href');
-    if (!source || /^(?:https?:|data:|mailto:|tel:|#|\/\/)/i.test(source)) continue;
+    if (!source || isExternalOrSpecial(source)) continue;
     const clean = source.split(/[?#]/, 1)[0];
     if (!clean || clean.startsWith('/')) continue;
-    const resolved = join(root, file.includes('/') ? file.slice(0, file.lastIndexOf('/')) : '', clean);
-    if (!existsSync(resolved)) report(errors, file, `missing local asset (${source})`);
+    const resolved = normalize(join(root, dirname(file), clean));
+    if (!resolved.startsWith(root) || !existsSync(resolved)) {
+      report(errors, file, `missing local asset (${source})`);
+    }
   }
 
   if (/\bEcosystem\b/i.test(html)) {
@@ -75,7 +82,6 @@ for (const file of entryPoints) {
 }
 
 if (!entryPoints.length) errors.push('No recognised public entry-point HTML files were found.');
-
 for (const warning of warnings) console.warn(`WARNING: ${warning}`);
 
 if (errors.length) {
