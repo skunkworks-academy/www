@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.08.14.1";
+  var version = "2026.08.14.2";
 
   function ensureCanonicalUi() {
     if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
