@@ -119,7 +119,7 @@ jobs:
           for attempt in {1..30}; do
             response="$(curl --location --fail --silent --show-error --max-time 20 https://www.skunkworksacademy.com/ || true)"
             if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy'; then
-              printf '%s' "$response" | grep -qi 'Unified Academy' && exit 0
+              printf '%s' "$response" | grep -qi 'Build practical technology capability' && exit 0
             fi
             sleep 10
           done
