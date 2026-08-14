@@ -1,0 +1,46 @@
+{
+  "version": "2026-07-17",
+  "accessPolicy": "Course content is available only after successful enrollment and learner authentication.",
+  "courses": [
+    {
+      "code": "JSON-UI-101",
+      "slug": "json-course-interface-design",
+      "title": "JSON Course and Self-Paced Course Interface Design",
+      "category": "Application Development",
+      "level": "Intermediate",
+      "delivery": "Self-paced",
+      "href": "/self-paced/json-course-interface-design/",
+      "enrollmentHref": "/course-registration/?course=JSON-UI-101"
+    },
+    {
+      "code": "MDB-SP-101",
+      "slug": "mongodb-self-paced-technical-course",
+      "title": "MongoDB Self-Paced Technical Course",
+      "category": "Data and Databases",
+      "level": "Foundation",
+      "delivery": "Self-paced",
+      "href": "/self-paced/mongodb-self-paced-technical-course/",
+      "enrollmentHref": "/course-registration/?course=MDB-SP-101"
+    },
+    {
+      "code": "EXO-BMM-201",
+      "slug": "microsoft-exchange-online-bulk-mail-management",
+      "title": "Microsoft Exchange Online Bulk Mail Management",
+      "category": "Microsoft 365",
+      "level": "Intermediate",
+      "delivery": "Self-paced",
+      "href": "/self-paced/microsoft-exchange-online-bulk-mail-management/",
+      "enrollmentHref": "/course-registration/?course=EXO-BMM-201"
+    },
+    {
+      "code": "SEC-OWASP-201",
+      "slug": "secure-coding-owasp-top-10",
+      "title": "Secure Coding Best Practices with OWASP Top 10",
+      "category": "Cybersecurity",
+      "level": "Intermediate",
+      "delivery": "Self-paced",
+      "href": "/self-paced/secure-coding-owasp-top-10/",
+      "enrollmentHref": "/course-registration/?course=SEC-OWASP-201"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+name: Apply theme-aware logo assets
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-theme-assets.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Replace legacy logo asset references
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          page = Path('index.html')
+          content = page.read_text(encoding='utf-8')
+          replacements = {
+              'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png':
+                  'https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-white.png',
+              'https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png':
+                  'https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-black.png',
+          }
+          for old, new in replacements.items():
+              content = content.replace(old, new)
+          page.write_text(content, encoding='utf-8')
+          PY
+
+      - name: Verify theme-aware favicon and navigation assets
+        shell: bash
+        run: |
+          grep -F 'favicon-black.png" media="(prefers-color-scheme: light)' index.html
+          grep -F 'favicon-white.png" media="(prefers-color-scheme: dark)' index.html
+          grep -F 'brand__logo logo-light' index.html
+          grep -F 'brand__logo logo-dark' index.html
+          ! grep -F 'skunkworks-academy/.github/refs/heads/main/images/favicon-' index.html
+
+      - name: Commit updated landing page
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html; then
+            echo 'Landing page already uses the requested assets.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'fix: use theme-aware www logo assets'
+          git push

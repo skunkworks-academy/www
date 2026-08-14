@@ -1,666 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-ZA">
 <head>
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
+  <meta charset="utf-8" data-skunkworks-head="mandatory-v1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Red Hat Training & Certification | Skunkworks Academy</title>
+  <meta name="description" content="Explore Red Hat Enterprise Linux, Ansible Automation Platform, OpenShift, cloud-native development and certification preparation through Skunkworks Academy." />
+  <meta name="keywords" content="Red Hat training South Africa, RHCSA, RHCE, OpenShift training, Ansible training, Red Hat certification, RHEL training, Skunkworks Academy" />
+  <meta name="author" content="Skunkworks Academy" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+  <link rel="canonical" href="https://www.skunkworksacademy.com/redhat/" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-black.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-white.png" media="(prefers-color-scheme: dark)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
   <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Hat</title>
-    <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <style>
-        :root {
-            --primary-color: #000;
-            --accent-color: #0f62fe;
-            --hover-color: #0353e9;
-            --bg-color: #f4f4f4;
-            --card-bg: #ffffff;
-            --text-color: #161616;
-            --transition-speed: 0.3s;
-        }
-
-        /* Dark mode variables */
-        [data-theme="dark"] {
-            --bg-color: #161616;
-            --card-bg: #262626;
-            --text-color: #ffffff;
-            --primary-color: #000000;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'IBM Plex Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            transition: background-color var(--transition-speed);
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo:hover {
-            color: var(--accent-color);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Navigation Styles */
-        nav {
-            background-color: var(--primary-color);
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all var(--transition-speed);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        nav ul li a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* Main Content Styles */
-        .welcome-section {
-            text-align: center;
-            background: white;
-            color: grey;
-            padding: 1rem 2rem;
-            /* margin-bottom: 2rem; */
-        }
-
-        .welcome-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .welcome-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            position: relative;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid var(--accent-color);
-            border-radius: 25px;
-            font-size: 1rem;
-            transition: all var(--transition-speed);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        .search-bar:focus {
-            outline: none;
-            box-shadow: 0 0 15px rgba(15, 98, 254, 0.3);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-color);
-        }
-
-        /* Course Grid Styles */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .course-category {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all var(--transition-speed);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .course-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-
-        .course-category a {
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        .course-category h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .course-category i {
-            color: var(--accent-color);
-        }
-
-        .course-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--hover-color));
-            transform: scaleX(0);
-            transition: transform var(--transition-speed);
-            transform-origin: left;
-        }
-
-        .course-category:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color var(--transition-speed);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color var(--transition-speed);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                background-color: var(--primary-color);
-                top: 100%;
-                left: 0;
-                padding: 1rem;
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            .welcome-section h1 {
-                font-size: 2rem;
-            }
-
-            .welcome-section p {
-                font-size: 1rem;
-            }
-
-            .course-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Loading States */
-        .skeleton {
-            background: linear-gradient(90deg, var(--card-bg) 25%, var(--bg-color) 50%, var(--card-bg) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            to {
-                background-position: -200% 0;
-            }
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            transition: transform var(--transition-speed);
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(180deg);
-        }
-
-        .information-on-partner{
-            text-align: center;
-            padding: 0 20% 0 20%;
-        }
-
-        .info-on-partner{
-            margin-bottom: 3%;
-            text-align: justify;
-        }
-
-        .info-on-partnering-with-skunkworks{
-            text-align: justify;
-        }
-
-        .bold-main-headers{
-            font-weight: 400;
-            text-align: center;
-        }
-
-        /* Style for dropdown */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content li {
-    display: block;
-}
-
-.dropdown-content li a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content li a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.banner-pic{
-    height: 150px;;
-}
-
-.resale-list{
-    display: flex;
-    justify-content: space-evenly;
-    /* justify-content: center; */
-    
-}
-
-.resale-list ul li{
-    list-style: circle;
-}
-
-        /* Dropdown specific styles that won't clash with your existing CSS */
-        .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--primary-color);
-    min-width: 200px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 1000;
-    border-radius: 4px;
-    margin-top: 0.5rem;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content li {
-    display: block;
-    width: 100%;
-}
-
-.dropdown-content li a {
-    padding: 0.75rem 1rem;
-    display: block;
-    width: 100%;
-    color: white;
-    transition: all var(--transition-speed);
-}
-
-.dropdown-content li a:hover {
-    background-color: var(--accent-color);
-    transform: translateY(0); /* Override the default nav hover transform */
-}
-
-/* Override any conflicting Bootstrap styles */
-.dropdown-content {
-    border: none;
-    padding: 0.5rem 0;
-    margin: 0;
-    list-style: none;
-}
-
-.dropdown > a::after {
-    content: 'â–¼';
-    font-size: 0.8em;
-    margin-left: 0.5rem;
-}
-
-/* Sticky whatsapp icon and phone icon */
-
-.sticky-element {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  transition: transform 0.3s ease;
-  z-index: 100;
-}
-
-.sticky-hidden {
-  transform: translateY(180%);
-}
-
-.tel-link{
-    text-decoration: none;
-}
-
-    </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Skunkworks Academy" />
+  <meta property="og:title" content="Red Hat Training & Certification | Skunkworks Academy" />
+  <meta property="og:description" content="Build practical skills in Red Hat Enterprise Linux, Ansible automation, OpenShift and cloud-native application delivery." />
+  <meta property="og:url" content="https://www.skunkworksacademy.com/redhat/" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Red Hat Training and Certification","url":"https://www.skunkworksacademy.com/redhat/","description":"Red Hat training, hands-on labs and certification preparation offered through Skunkworks Academy.","provider":{"@type":"EducationalOrganization","name":"Skunkworks Academy","url":"https://www.skunkworksacademy.com/"}}</script>
+  <style>
+    :root{--bg:#050505;--surface:#111;--surface-2:#181818;--text:#f5f5f5;--muted:#b6b6b6;--line:#303030;--red:#ee0000;--red-dark:#a60000;--radius:24px;--shadow:0 24px 70px rgba(0,0,0,.34)}
+    @media(prefers-color-scheme:light){:root{--bg:#f7f7f7;--surface:#fff;--surface-2:#f0f0f0;--text:#151515;--muted:#555;--line:#dedede;--shadow:0 24px 60px rgba(30,30,30,.12)}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 88% 4%,rgba(238,0,0,.16),transparent 28rem),var(--bg);color:var(--text);line-height:1.6}a{color:inherit}.shell{width:min(1180px,calc(100% - 32px));margin-inline:auto}.skip-link{position:fixed;top:10px;left:10px;z-index:200;transform:translateY(-160%);padding:10px 14px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:700}.skip-link:focus{transform:translateY(0)}
+    .hero{padding:92px 0 58px;display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ff8a8a}.hero h1{font-size:clamp(44px,7.5vw,88px);line-height:.94;letter-spacing:-.065em;margin:16px 0 22px}.lead{font-size:clamp(18px,2vw,23px);color:var(--muted);max-width:760px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:700}.btn-primary{background:linear-gradient(135deg,var(--red),var(--red-dark));border-color:transparent;color:#fff}.btn:hover{transform:translateY(-1px)}
+    .hero-card,.card,.path-card,.delivery-card,.cta{border:1px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 94%,white 6%),var(--surface));border-radius:var(--radius);box-shadow:var(--shadow)}.hero-card{padding:28px}.brand-logo{display:block;width:min(300px,90%);max-height:120px;object-fit:contain;margin:0 auto 26px}.metric{padding:15px 0;border-top:1px solid var(--line)}.metric:first-of-type{border-top:0}.metric strong{display:block;font-size:1.05rem}.metric span{color:var(--muted)}
+    .section{padding:54px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}.section-head h2{font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:-.045em;margin:0}.section-head p{max-width:660px;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card,.path-card,.delivery-card{padding:24px}.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:rgba(238,0,0,.13);color:#ff5858;font-weight:800;margin-bottom:18px}.card h3,.path-card h3,.delivery-card h3{margin:0 0 8px;font-size:1.25rem}.card p,.path-card p,.delivery-card p{margin:0;color:var(--muted)}.code{display:inline-flex;margin-top:16px;padding:6px 10px;border-radius:999px;background:var(--surface-2);font-size:.84rem;font-weight:700}.path-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.path-card ul{padding-left:20px;color:var(--muted);margin:16px 0 0}.path-card li+li{margin-top:7px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:step}.step{position:relative;padding:22px;border-top:3px solid var(--red);background:var(--surface);border-radius:0 0 18px 18px}.step::before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;margin-bottom:14px}.step strong{display:block}.step span{color:var(--muted);font-size:.94rem}.delivery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cta{padding:34px;display:flex;align-items:center;justify-content:space-between;gap:28px;background:linear-gradient(135deg,rgba(238,0,0,.18),var(--surface) 48%)}.cta h2{margin:0 0 8px;font-size:clamp(28px,4vw,48px);line-height:1}.cta p{margin:0;color:var(--muted)}footer{margin-top:64px;border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted)}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-row a{color:var(--text)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.steps,.delivery-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.hero{padding-top:66px}.grid,.path-grid,.steps,.delivery-grid{grid-template-columns:1fr}.section-head,.cta{align-items:flex-start;flex-direction:column}.hero h1{font-size:clamp(42px,15vw,64px)}}
+  </style>
   <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04" data-skunkworks-global-nav="v3"></script>
 </head>
-<body>
+<body data-repo="www" data-domain="www.skunkworksacademy.com" data-page="redhat">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-    <header>
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
-  <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed -->
-        <div class="header-content">
-            <a href="..\index.html" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Skunkworks Academy
-            </a>
-            <div class="header-actions">
-                <button class="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div>
+        <span class="eyebrow">Linux · Automation · Containers · Hybrid Cloud</span>
+        <h1 id="hero-title">Build production-ready Red Hat skills.</h1>
+        <p class="lead">Role-based learning for administrators, engineers, developers and platform teams working with Red Hat Enterprise Linux, Ansible Automation Platform, OpenShift and cloud-native application environments.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="../contact.html?interest=red-hat-training">Request a training proposal</a>
+          <a class="btn" href="#certification-paths">Explore certification paths</a>
         </div>
-    </header>
-
-    <nav class="p-4 sticky-top">
-        <div class="header-content">
-            <a href="../index.html" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Skunkworks Academy
-            </a>
-            <div class="header-actions">
-                
-                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div class="d-flex justify-content-center mt-5">
-            <ul>
-                <!-- <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
-                <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
-                <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
-                <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
-                <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
-                <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li> -->
-                <li class="dropdown">
-                    <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Categories</a>
-                    <ul class="dropdown-content">
-                        
-                        <li><a href="adobe/index.html"><i class="fas fa-palette"></i>Adobe</a></li>
-                        <li><a href="ai/index.html"><i class="fas fa-robot"></i>AI</a></li>
-                        <li><a href="app-dev/index.html"><i class="fas fa-code"></i>Application Development</a></li>
-                        <li><a href="automation/index.html"><i class="fas fa-cogs"></i>Automation</a></li>
-                        <li><a href="cloud/index.html"><i class="fas fa-cloud"></i>Cloud</a></li>
-                        <li><a href="security/index.html"><i class="fas fa-shield-alt"></i>Security</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropbtn"><i class="fa-regular fa-handshake"></i>Partners</a>
-                    <ul class="dropdown-content">
-                        
-                        <li><a href="cisco/index.html">Cisco</a></li>
-                        <li><a href="../comptia/index.html">Comptia</a></li>
-                        <li><a href="../github/index.html">Github</a></li>
-                        <li><a href="../google/index.html">Google</a></li>
-                        <li><a href="../HashiCorp/index.html">HashiCorp</a></li>
-                        <li><a href="../ibm/index.html">IBM</a></li>
-                        <li><a href="../microsoft/">Microsoft</a></li>
-                        <li><a href="../paloalto/index.html">Paloalto Networks</a></li>
-                        <li><a href="../redhat/index.html">Red Hat</a></li>
-                        <li><a href="../sage/index.html">Sage</a></li>
-                        <li><a href="../salesforce/index.html">Salesforce</a></li>
-                        <li><a href="../sap/index.html">SAP</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <a href="../contact.html" class="contact-btn btn btn-outline-danger">Contact Us</a>
-        </div>
-    </nav>
-    
-
-    
-    <section class="welcome-section fade-in">
-        <img src="images/Red_Hat_Logo_2019.svg" class="banner-pic my-3" alt="...">
-        <p>Building a better foundation for the future of IT
-        </p>
-    </section>
-    
-    <section class="information-on-partner">
-
-        <div class="info-on-partner my-4">
-        <div class="imgae-for-partner">
-            <img src="" alt="">
-        </div>
-        <h1 class="bold-main-headers mb-4">Red Hat: Leading the Open Source Revolution        </h1>
-        <p>Red Hat is a pioneer in open-source software solutions, providing enterprises with the tools to build, deploy, and scale applications seamlessly. Renowned for its flagship product, Red Hat Enterprise Linux (RHEL), the company offers a comprehensive portfolio that includes container management, hybrid cloud infrastructure, and automation tools. By combining the power of open source with enterprise-grade reliability, Red Hat enables organizations to innovate faster, enhance security, and achieve greater operational efficiency.
-        </p>
-        </div>
-
-        <div class="info-on-partnering-with-skunkworks my-5">
-            
-        <h1 class="bold-main-headers mb-4">Skunkworks Partnering with Red Hat to Provide Training for Red Hat Certifications</h1>
-        <p>Skunkworks has partnered with Red Hat to deliver robust training programs for Red Hat certification exams, such as RHCSA, RHCE, and OpenShift Certifications. Leveraging Skunkworks' dynamic teaching methodologies and Red Hat's expertise in enterprise Linux and open-source solutions, these programs provide learners with hands-on labs and real-world scenarios. These courses empower IT professionals to master Red Hat's technologies while preparing for globally recognized certifications that validate their skills in system administration, automation, and cloud computing.</p>
-        </div>
-
-        </div>
-
+      </div>
+      <aside class="hero-card" aria-label="Red Hat programme overview">
+        <img class="brand-logo" src="images/Red_Hat_Logo_2019.svg" alt="Red Hat" />
+        <div class="metric"><strong>Hands-on delivery</strong><span>Guided labs, command-line practice, troubleshooting and scenario-based exercises.</span></div>
+        <div class="metric"><strong>Flexible formats</strong><span>Instructor-led virtual, onsite classroom, private cohorts and blended learning.</span></div>
+        <div class="metric"><strong>Certification-focused</strong><span>Structured preparation mapped to role outcomes and practical exam objectives.</span></div>
+      </aside>
     </section>
 
-    
-    <div class="d-flex justify-content-center mt-5">
-        <a href="..\contact.html" class="btn btn-outline-dark btn-lg">Contact Us</a>
-</div>
+    <section class="section shell" aria-labelledby="portfolio-title">
+      <div class="section-head"><div><span class="eyebrow">Training portfolio</span><h2 id="portfolio-title">Core Red Hat capability areas</h2></div><p>Programmes can be delivered as individual courses or assembled into role-based academies for enterprise teams, graduates and technical professionals.</p></div>
+      <div class="grid">
+        <article class="card"><div class="icon">RHEL</div><h3>Enterprise Linux administration</h3><p>Linux installation, storage, users, services, networking, SELinux, firewalls, system security, containers and operational troubleshooting.</p><span class="code">RH124 · RH134 · RH199</span></article>
+        <article class="card"><div class="icon">ANS</div><h3>Ansible automation</h3><p>Infrastructure automation, inventories, playbooks, roles, variables, templates, execution environments and repeatable operations.</p><span class="code">RH294 and role-based extensions</span></article>
+        <article class="card"><div class="icon">OCP</div><h3>OpenShift administration</h3><p>Cluster operations, access control, networking, storage, workloads, observability, application lifecycle and platform troubleshooting.</p><span class="code">DO180 · DO280 · advanced tracks</span></article>
+        <article class="card"><div class="icon">DEV</div><h3>Cloud-native development</h3><p>Containers, Kubernetes concepts, application deployment, CI/CD practices, microservices and developer workflows on OpenShift.</p><span class="code">DO188 · DO288 · DevOps pathways</span></article>
+        <article class="card"><div class="icon">SEC</div><h3>Security and hardening</h3><p>Identity, permissions, SELinux policy, secure configuration, patching, audit controls, compliance operations and defence-in-depth.</p><span class="code">RHEL security specialisation</span></article>
+        <article class="card"><div class="icon">CLD</div><h3>Hybrid cloud platforms</h3><p>Operational skills spanning OpenShift, virtualisation, platform services, automation and workload management across hybrid environments.</p><span class="code">OpenShift · Virtualisation · OpenStack</span></article>
+      </div>
+    </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Empowering professionals through cutting-edge technology education since 2024.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/skunkworksacademy/"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <div class="footer-links">
-                    <a href="https://www.skunkworks.africa/about.html"><i class="fas fa-info-circle"></i>About</a>
-                    <a href="https://www.skunkworks.africa/contact.html"><i class="fas fa-envelope"></i>Contact</a>
-                    <a href="https://www.skunkworks.africa/careers.html"><i class="fas fa-briefcase"></i>Careers</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <div class="footer-links">
-                    <a href="https://www.skunkworks.africa/terms.html"><i class="fas fa-file-contract"></i>Terms & Conditions</a>
-                    <a href="/https://www.skunkworks.africa/privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
-                    <a href="/cookie-policy.html"><i class="fas fa-cookie"></i>Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <section class="section shell" id="certification-paths" aria-labelledby="paths-title">
+      <div class="section-head"><div><span class="eyebrow">Certification preparation</span><h2 id="paths-title">Role-based learning paths</h2></div><p>Each path combines prerequisite assessment, instructor guidance, hands-on lab work, revision checkpoints and an exam-readiness review.</p></div>
+      <div class="path-grid">
+        <article class="path-card"><h3>Red Hat Certified System Administrator (RHCSA)</h3><p>Foundation pathway for administrators responsible for core Red Hat Enterprise Linux operations.</p><ul><li>Recommended sequence: RH124 and RH134, or RH199 for experienced Linux administrators</li><li>Practical preparation aligned to the EX200 performance-based exam</li><li>Core administration, storage, services, networking, security and basic containers</li></ul></article>
+        <article class="path-card"><h3>Red Hat Certified Engineer (RHCE)</h3><p>Advanced pathway focused on automating Linux administration and scaling consistent operations.</p><ul><li>Builds on current RHCSA-level capability</li><li>Automation skills commonly developed through RH294</li><li>Playbooks, roles, configuration management and operational automation</li></ul></article>
+        <article class="path-card"><h3>OpenShift Administrator</h3><p>Platform operations pathway for teams managing containerised applications on Red Hat OpenShift.</p><ul><li>Cluster administration and application operations</li><li>Security contexts, networking, persistent storage and access control</li><li>Troubleshooting and preparation for applicable OpenShift administration exams</li></ul></article>
+        <article class="path-card"><h3>OpenShift Developer and DevOps</h3><p>Application delivery pathway for developers and engineers building and operating cloud-native workloads.</p><ul><li>Containers, Kubernetes resources and OpenShift developer workflows</li><li>Builds, deployments, configuration, routes and CI/CD</li><li>Advanced options for microservices, service mesh and application modernisation</li></ul></article>
+      </div>
+    </section>
 
+    <section class="section shell" aria-labelledby="journey-title">
+      <div class="section-head"><div><span class="eyebrow">Learner journey</span><h2 id="journey-title">From skills baseline to exam readiness</h2></div><p>A structured engagement reduces content gaps and ensures training is aligned to operational responsibilities rather than delivered as a generic course.</p></div>
+      <div class="steps">
+        <div class="step"><strong>Assess</strong><span>Identify current Linux, automation, container and platform skills.</span></div>
+        <div class="step"><strong>Plan</strong><span>Select the correct course sequence, delivery format and lab environment.</span></div>
+        <div class="step"><strong>Practise</strong><span>Complete guided labs, troubleshooting scenarios and knowledge checks.</span></div>
+        <div class="step"><strong>Validate</strong><span>Run an exam-readiness review and define the next certification milestone.</span></div>
+      </div>
+    </section>
+
+    <section class="section shell" aria-labelledby="delivery-title">
+      <div class="section-head"><div><span class="eyebrow">Delivery options</span><h2 id="delivery-title">Designed for individuals and enterprise cohorts</h2></div><p>Delivery can be adapted to operational schedules, geographic distribution, internal governance and workforce development targets.</p></div>
+      <div class="delivery-grid">
+        <article class="delivery-card"><h3>Instructor-led virtual</h3><p>Live remote instruction with demonstrations, guided labs and facilitated support.</p></article>
+        <article class="delivery-card"><h3>Onsite classroom</h3><p>Private instructor-led delivery at the client site or an agreed training venue.</p></article>
+        <article class="delivery-card"><h3>Blended programme</h3><p>Self-study preparation, scheduled workshops, labs, coaching and revision sessions.</p></article>
+        <article class="delivery-card"><h3>Enterprise academy</h3><p>Multi-cohort programmes with skills baselines, learning pathways, reporting and certification targets.</p></article>
+      </div>
+    </section>
+
+    <section class="section shell" aria-labelledby="outcomes-title">
+      <div class="section-head"><div><span class="eyebrow">Business outcomes</span><h2 id="outcomes-title">Capability that transfers into operations</h2></div><p>Training is structured to help technical teams improve platform consistency, operational resilience and delivery velocity.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Standardised administration</h3><p>Establish repeatable Linux and platform operating practices across teams and environments.</p></article>
+        <article class="card"><h3>Automation at scale</h3><p>Reduce manual configuration drift and improve repeatability through infrastructure automation.</p></article>
+        <article class="card"><h3>Cloud-native readiness</h3><p>Prepare teams to deploy, secure and operate containerised workloads on OpenShift.</p></article>
+        <article class="card"><h3>Security alignment</h3><p>Embed access control, hardening, auditability and secure operational practices.</p></article>
+        <article class="card"><h3>Workforce mobility</h3><p>Create transparent learning pathways from foundational Linux skills to advanced platform roles.</p></article>
+        <article class="card"><h3>Certification evidence</h3><p>Support role validation through recognised, performance-based Red Hat certification pathways.</p></article>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="cta">
+        <div><h2>Plan your Red Hat training programme.</h2><p>Share your target roles, learner count, current skill level, preferred delivery format and certification objectives.</p></div>
+        <a class="btn btn-primary" href="../contact.html?interest=red-hat-training">Contact Skunkworks Academy</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-row"><span>© 2026 Skunkworks Academy. Dream. Design. Deliver.</span><span><a href="../contact.html">Contact</a> · <a href="../plans-and-purchases/">Plans and purchases</a> · <a href="https://docs.skunkworksacademy.com/">Documentation</a></span></div></footer>
 </body>
 </html>
