@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var version = "2026.08.14.1";
+  var version = "2026.08.14.2";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
   var logoLight = "https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-black.png";
