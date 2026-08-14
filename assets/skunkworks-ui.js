@@ -4,7 +4,7 @@
 
   if (window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) return;
 
-  var VERSION = "2026.08.14.1";
+  var VERSION = "2026.08.14.2";
   var ASSET_ROOT = "https://skunkworksacademy.com";
   var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
   var LOGO_DARK = ASSET_ROOT + "/images/favicon-white.png?v=" + VERSION;
@@ -73,6 +73,7 @@
       ".swa-global-nav__toggle-lines{display:grid!important;gap:6px!important}.swa-global-nav__toggle-lines span{display:block!important;width:29px!important;height:3px!important;border-radius:0!important;background:currentColor!important}",
       ".swa-global-nav__sign-in{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:50px!important;padding:0 8px!important;color:var(--swa-link)!important;background:transparent!important;border:0!important;text-decoration:none!important;font-size:clamp(16px,2vw,25px)!important;font-weight:400!important;letter-spacing:0!important;white-space:nowrap!important}",
       ".swa-global-nav__sign-in:hover,.swa-global-nav__sign-in:focus{color:#c9e7ff!important;text-decoration:underline!important;text-underline-offset:4px!important}",
+      ".swa-global-nav__account-name{max-width:clamp(92px,13vw,180px)!important;overflow:hidden!important;color:var(--swa-muted)!important;font-size:14px!important;font-weight:600!important;text-overflow:ellipsis!important;white-space:nowrap!important}",
       ".swa-global-nav__links,.swa-global-nav__search-panel{position:absolute!important;top:calc(100% + 4px)!important;right:clamp(16px,4vw,56px)!important;width:min(450px,calc(100vw - 32px))!important;max-height:calc(100vh - 104px)!important;overflow:auto!important;display:none!important;padding:20px!important;background:var(--swa-panel)!important;border:1px solid var(--swa-line)!important;border-top:0!important;border-radius:0 0 10px 10px!important;box-shadow:0 22px 48px rgba(0,0,0,.45)!important}",
       ".swa-global-nav.swa-menu-open .swa-global-nav__links{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}",
       ".swa-global-nav.swa-search-open .swa-global-nav__search-panel{display:block!important}",
@@ -91,7 +92,7 @@
       ".swa-global-nav__search-result strong{font-size:15px!important;font-weight:700!important;line-height:1.3!important}.swa-global-nav__search-result span{color:var(--swa-muted)!important;font-size:13px!important;line-height:1.35!important}",
       ".swa-global-nav__search-empty{margin:0!important;padding:12px!important;border:1px solid var(--swa-line)!important;color:var(--swa-muted)!important;font-size:14px!important}",
       "@media(max-width:860px){.swa-global-nav__crest{display:none!important}.swa-global-nav__brand-logo.swa-logo-dark{display:block!important}.swa-global-nav__identity{gap:6px!important}.swa-global-nav__inner{padding:0 18px!important}}",
-      "@media(max-width:620px){body.swa-has-global-nav{padding-top:74px!important}.swa-global-nav{min-height:74px!important}.swa-global-nav__inner{min-height:70px!important;padding:0 10px!important;gap:4px!important}.swa-global-nav__identity{gap:2px!important}.swa-global-nav__search,.swa-global-nav__toggle{width:44px!important;height:44px!important}.swa-global-nav__search svg{width:27px!important;height:27px!important}.swa-global-nav__toggle-lines span{width:25px!important}.swa-global-nav__sign-in{min-height:44px!important;padding:0 6px!important;font-size:17px!important}.swa-global-nav__brand{font-size:20px!important}.swa-global-nav__brand-logo{width:26px!important;height:26px!important}.swa-global-nav__links,.swa-global-nav__search-panel{right:10px!important;width:calc(100vw - 20px)!important;max-height:calc(100vh - 88px)!important}.swa-global-nav.swa-menu-open .swa-global-nav__links{grid-template-columns:1fr!important}}",
+      "@media(max-width:620px){body.swa-has-global-nav{padding-top:74px!important}.swa-global-nav{min-height:74px!important}.swa-global-nav__inner{min-height:70px!important;padding:0 10px!important;gap:4px!important}.swa-global-nav__identity{gap:2px!important}.swa-global-nav__search,.swa-global-nav__toggle{width:44px!important;height:44px!important}.swa-global-nav__search svg{width:27px!important;height:27px!important}.swa-global-nav__toggle-lines span{width:25px!important}.swa-global-nav__sign-in{min-height:44px!important;padding:0 6px!important;font-size:17px!important}.swa-global-nav__account-name{display:none!important}.swa-global-nav__brand{font-size:20px!important}.swa-global-nav__brand-logo{width:26px!important;height:26px!important}.swa-global-nav__links,.swa-global-nav__search-panel{right:10px!important;width:calc(100vw - 20px)!important;max-height:calc(100vh - 88px)!important}.swa-global-nav.swa-menu-open .swa-global-nav__links{grid-template-columns:1fr!important}}",
       "@media(max-width:410px){.swa-global-nav__brand{font-size:17px!important}.swa-global-nav__brand-text{max-width:calc(100vw - 216px)!important}.swa-global-nav__sign-in{font-size:15px!important}.swa-global-nav__brand-logo{display:none!important}}"
     ].join("\n");
     document.head.appendChild(style);
@@ -194,6 +195,7 @@
     var crest = document.createElement("a");
     var controls = document.createElement("div");
     var search = document.createElement("button");
+    var accountName = document.createElement("span");
     var signIn = document.createElement("a");
     var links = document.createElement("nav");
     var linksHeading = document.createElement("p");
@@ -248,6 +250,8 @@
     signIn.href = SIGN_IN_URL;
     signIn.textContent = "Sign in";
     signIn.setAttribute("aria-label", "Sign in to the Skunkworks Academy learner portal");
+    accountName.className = "swa-global-nav__account-name";
+    accountName.hidden = true;
 
     links.className = "swa-global-nav__links";
     links.id = "swa-global-nav-links";
@@ -288,6 +292,7 @@
     identity.appendChild(toggle);
     identity.appendChild(brand);
     controls.appendChild(search);
+    controls.appendChild(accountName);
     controls.appendChild(signIn);
     inner.appendChild(identity);
     inner.appendChild(crest);
@@ -297,6 +302,63 @@
     header.appendChild(inner);
     document.body.insertBefore(header, document.body.firstChild);
     document.body.classList.add("swa-has-global-nav");
+
+    var accountHandler = null;
+
+    function removeAccountHandler() {
+      if (!accountHandler) return;
+      signIn.removeEventListener("click", accountHandler);
+      accountHandler = null;
+    }
+
+    function resetSignIn() {
+      removeAccountHandler();
+      signIn.textContent = "Sign in";
+      signIn.href = SIGN_IN_URL;
+      signIn.removeAttribute("role");
+      signIn.setAttribute("aria-label", "Sign in to the Skunkworks Academy learner portal");
+    }
+
+    function setAccountAction(label, description, action) {
+      resetSignIn();
+      signIn.textContent = label;
+      signIn.href = "#";
+      signIn.setAttribute("role", "button");
+      signIn.setAttribute("aria-label", description);
+      accountHandler = function (event) {
+        event.preventDefault();
+        action();
+      };
+      signIn.addEventListener("click", accountHandler);
+    }
+
+    function applyAccountControl() {
+      var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+      var userName = account && typeof account.userName === "string" ? account.userName.trim() : "";
+
+      accountName.hidden = !userName;
+      accountName.textContent = userName;
+
+      if (!account || typeof account !== "object") {
+        resetSignIn();
+        return;
+      }
+
+      if (account.authenticated && typeof account.signOut === "function") {
+        setAccountAction(account.signOutLabel || "Sign out", "Sign out of Skunkworks Academy", account.signOut);
+        return;
+      }
+
+      if (!account.authenticated && typeof account.signIn === "function") {
+        setAccountAction(account.signInLabel || "Sign in", "Sign in to Skunkworks Academy", account.signIn);
+        return;
+      }
+
+      resetSignIn();
+    }
+
+    applyAccountControl();
+    window.addEventListener("skunkworksacademy:account-change", applyAccountControl);
 
     function renderSearchResults(query) {
       var value = String(query || "").trim().toLowerCase();
