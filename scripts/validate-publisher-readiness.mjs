@@ -112,6 +112,12 @@ if (existsSync(resolve(root, 'assets/publisher.js'))) {
   if (script.includes('localStorage') || script.includes('TCString')) {
     errors.push('publisher.js must not invent local consent records or IAB TCF consent strings.');
   }
+  if (/dataset\.skunkworksAdsense|data-skunkworks-adsense/i.test(script)) {
+    errors.push('publisher.js must not add custom data-* attributes to the Google AdSense loader tag.');
+  }
+  if (!script.includes("src.hostname === 'pagead2.googlesyndication.com'")) {
+    errors.push('publisher.js must detect an existing AdSense loader by its Google script URL rather than a custom script attribute.');
+  }
 }
 
 for (const file of ['privacy.html', 'cookie-policy.html']) {
