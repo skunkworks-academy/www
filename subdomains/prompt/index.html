@@ -1,18 +1,130 @@
-<!doctype html><html lang="en-ZA"><head>
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
-  <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Skunkworks Academy Prompt</title><meta name="description" content="Skunkworks Academy Prompt is the planned prompt library and AI workflow template hub."><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://prompt.skunkworksacademy.com/"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" media="(prefers-color-scheme: light)"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-white.png" media="(prefers-color-scheme: dark)"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-ecosystem.css">  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04" data-skunkworks-global-nav="v3"></script>
-</head><body><header class="site-header">
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
-  <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed --><div class="nav-wrap"><a class="brand" href="https://skunkworksacademy.com/"><img class="brand-logo" src="https://raw.githubusercontent.com/skunkworks-academy/.github/refs/heads/main/images/favicon-black.png" alt="Skunkworks Academy"><span>Skunkworks Academy Prompt</span></a><nav class="main-nav"><a href="https://skunkworksacademy.com/">Main</a><a href="https://portal.skunkworksacademy.com/">Portal</a><a href="https://docs.skunkworksacademy.com/">Docs</a><a class="nav-cta" href="https://skunkworksacademy.com/contact.html">Contact</a></nav></div></header><main><section class="hero"><div class="hero-inner"><div><span class="eyebrow"><i class="fa-solid fa-terminal"></i> Prompt Library</span><h1>Reusable AI prompts, workflows and productivity templates.</h1><p class="lead">This planned subdomain will organise prompt templates, AI workflow patterns, reusable instructions and course-aligned prompt libraries.</p><div class="hero-actions"><a class="button primary" href="https://skunkworksacademy.com/">Back to Academy</a><a class="button secondary" href="https://docs.skunkworksacademy.com/">Open Docs</a></div></div></div></section></main><script src="https://skunkworksacademy.com/assets/academy-ecosystem.js"></script></body></html>
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt | Skunkworks Academy</title>
+  <meta name="description" content="Skunkworks Academy Prompt is the Academy hub for reusable AI prompts, workflow patterns and course-aligned prompt templates.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#03033A">
+  <link rel="canonical" href="https://prompt.skunkworksacademy.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Skunkworks Academy">
+  <meta property="og:title" content="Prompt | Skunkworks Academy">
+  <meta property="og:description" content="Reusable AI prompts, workflow patterns and course-aligned templates from Skunkworks Academy.">
+  <meta property="og:url" content="https://prompt.skunkworksacademy.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #03033A;
+      --blue: #1E6BD0;
+      --orange: #F24208;
+      --paper: #F7F9FC;
+      --muted: #5E6577;
+      --line: #DDE3EC;
+      --white: #FFFFFF;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(3, 3, 58, .10);
+      font-family: "Open Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    main { min-height: 70vh; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(7rem, 13vw, 11rem) 1.25rem clamp(4.5rem, 8vw, 7rem);
+      background:
+        radial-gradient(circle at 86% 10%, rgba(30,107,208,.24), transparent 34%),
+        radial-gradient(circle at 8% 85%, rgba(242,66,8,.14), transparent 30%),
+        linear-gradient(135deg, #03033A 0%, #0A1551 52%, #103D7B 100%);
+      color: white;
+    }
+    .wrap { width: min(1180px, 100%); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .5rem .8rem; border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px; background: rgba(255,255,255,.08);
+      font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(242,66,8,.16); }
+    h1 { margin: 1.4rem 0 1rem; max-width: 940px; font-size: clamp(3rem, 7vw, 6.4rem); line-height: .96; letter-spacing: -.055em; }
+    .lead { max-width: 790px; margin: 0; color: rgba(255,255,255,.80); font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.7; }
+    .actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .8rem 1rem; border-radius: 12px; text-decoration: none; font-weight: 800; transition: transform .18s ease, box-shadow .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--orange); color: white; box-shadow: 0 14px 32px rgba(242,66,8,.27); }
+    .button.secondary { color: white; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.07); }
+    .section { padding: clamp(3.5rem, 8vw, 6.5rem) 1.25rem; }
+    .section h2 { margin: 0 0 .8rem; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.04em; }
+    .section-intro { max-width: 760px; margin: 0 0 2rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .card { min-height: 225px; padding: 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .card-number { display: inline-grid; place-items: center; width: 2.35rem; height: 2.35rem; margin-bottom: 1rem; border-radius: 11px; background: #EEF4FC; color: var(--blue); font-size: .9rem; font-weight: 900; }
+    .card h3 { margin: 0 0 .65rem; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .band { margin-top: 1.3rem; padding: 1.4rem; border-radius: var(--radius); background: var(--ink); color: white; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .band h3 { margin: 0 0 .35rem; font-size: 1.25rem; }
+    .band p { margin: 0; color: rgba(255,255,255,.72); }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .band { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
+  </style>
+  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.2" data-skunkworks-global-shell="2026.08.15.2"></script>
+</head>
+<body>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="prompt-title">
+      <div class="wrap">
+        <span class="eyebrow">Skunkworks Academy Prompt</span>
+        <h1 id="prompt-title">Reusable prompts. Repeatable workflows. Better AI practice.</h1>
+        <p class="lead">A structured home for prompt templates, AI workflow patterns, reusable instructions and course-aligned prompt libraries designed to make AI work more consistent, teachable and practical.</p>
+        <div class="actions">
+          <a class="button primary" href="https://docs.skunkworksacademy.com/">Open Academy docs</a>
+          <a class="button secondary" href="https://catalog.skunkworksacademy.com/">Browse courses</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="prompt-purpose">
+      <div class="wrap">
+        <h2 id="prompt-purpose">Prompt library</h2>
+        <p class="section-intro">The Prompt hub is designed as a reusable knowledge layer for learners, instructors and practitioners who want clear prompt structures rather than isolated one-off examples.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="card-number">01</span>
+            <h3>Prompt templates</h3>
+            <p>Reusable structures for analysis, planning, technical work, research, learning and productivity scenarios.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">02</span>
+            <h3>Workflow patterns</h3>
+            <p>Multi-step prompt sequences that turn complex tasks into repeatable AI-assisted workflows with clearer inputs and outputs.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">03</span>
+            <h3>Course alignment</h3>
+            <p>Prompt examples can be organised around Academy learning paths, labs and practical exercises as the library expands.</p>
+          </article>
+        </div>
+        <div class="band">
+          <div>
+            <h3>Continue into practical learning</h3>
+            <p>Use the Academy catalogue and labs to apply prompt techniques in structured learning environments.</p>
+          </div>
+          <div class="actions" style="margin-top:0">
+            <a class="button primary" href="https://labs.skunkworksacademy.com/">Open labs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
