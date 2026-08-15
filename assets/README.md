@@ -1,64 +1,75 @@
-# Skunkworks Academy assets
+# Skunkworks Academy shared public web shell
 
-Repository: `.github`
+Repository: `www`
 
-This folder contains the shared public web-shell assets for the Skunkworks Academy ecosystem. The goal is one canonical public header across Academy, Portal, Labs, Jobs, Security, IBM, Badging, Media, Forms and self-paced pages.
+This folder contains the canonical public web-shell assets for the Skunkworks Academy ecosystem. The goal is one uniform public header and footer across Academy, Portal, Labs, Jobs, Security, IBM, Microsoft, Badging, Media, Forms, self-paced pages and other public Skunkworks Academy properties.
 
-## Canonical includes
+## Canonical include
 
-Use the compatibility navigation include on public pages:
+Public pages should load the compatibility shell include:
 
 ```html
-<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.07.1" data-skunkworks-global-nav="v6"></script>
+<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1" data-skunkworks-global-nav="v10"></script>
 ```
 
 The compatibility include loads the canonical UI runtime:
 
 ```html
-<script defer src="https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.07.07.1" data-skunkworks-ui="canonical"></script>
+<script defer src="https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.15.1" data-skunkworks-ui="canonical"></script>
+```
+
+It also loads the canonical global footer runtime:
+
+```html
+<script defer src="https://skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.15.1" data-skunkworks-global-footer="canonical"></script>
 ```
 
 The UI runtime injects the canonical design system automatically:
 
 ```html
-<link rel="stylesheet" href="https://skunkworksacademy.com/assets/skunkworks-design-system.css?v=2026.07.07.1" data-skunkworks-design-system="canonical" />
+<link rel="stylesheet" href="https://skunkworksacademy.com/assets/skunkworks-design-system.css?v=2026.08.15.1" data-skunkworks-design-system="canonical" />
 ```
 
 ## Navigation standard
 
-Top bars must show only:
+Top bars must use the canonical Skunkworks Academy global navigation rather than repository-specific public navigation. The current shell provides the theme-aware Academy identity, verified navigation targets, search and account entry points.
 
-- theme-aware Skunkworks icon
-- `Skunkworks Academy` text
-- icon-only burger menu
+The navigation destinations are maintained centrally and include Academy home, catalogue, purchases, portal, labs, security, Microsoft, IBM, badging, jobs, forms, docs, publishing and blog destinations.
 
-The burger menu renders the verified navigation targets from `academy-navigation.config.json` and `verified-domains.json`.
+## Footer standard
 
-## Verified routes
+The canonical footer follows a compact Microsoft-inspired two-row layout and is injected automatically by `academy-navigation.js`.
 
-| Label | Domain | URL |
-| --- | --- | --- |
-| Home | skunkworksacademy.com | https://skunkworksacademy.com/ |
-| Plans & Purchases | skunkworksacademy.com | https://skunkworksacademy.com/plans-and-purchases/ |
-| Secure Checkout | portal.skunkworksacademy.com | https://portal.skunkworksacademy.com/checkout/ |
-| AI Learning | skunkworksacademy.com | https://skunkworksacademy.com/#new-way-to-learn |
-| Self-paced | skunkworksacademy.com | https://skunkworksacademy.com/self-paced/ |
-| Portal | portal.skunkworksacademy.com | https://portal.skunkworksacademy.com/ |
-| Labs | lab.skunkworksacademy.com | https://lab.skunkworksacademy.com/ |
-| Forms | skunkworksacademy.com | https://skunkworksacademy.com/forms/ |
-| Badging | badging.skunkworksacademy.com | https://badging.skunkworksacademy.com/ |
-| Jobs | jobs.skunkworksacademy.com | https://jobs.skunkworksacademy.com/ |
-| Media | media.skunkworksacademy.com | https://media.skunkworksacademy.com/ |
-| Security | security.skunkworksacademy.com | https://security.skunkworksacademy.com/ |
-| IBM | ibm.skunkworksacademy.com | https://ibm.skunkworksacademy.com/ |
+Utility row:
+
+- `English (South Africa)` locale indicator
+- `Your Privacy Choices` link to the Academy cookie/privacy controls
+- `Theme` selector with System, Light and Dark modes
+
+Legal/company row:
+
+- About
+- Blog
+- Contribute
+- Privacy
+- Cookie Policy
+- Terms of Use
+- Editorial Policy
+- Advertising Disclosure
+- Contact
+- dynamic `© Skunkworks Academy <year>` copyright
+
+The footer is responsive, keyboard accessible, theme-aware and uses a single canonical runtime so public Academy properties remain visually consistent. A page-local footer is removed when the canonical shell loads unless the local footer explicitly carries `data-sk-preserve-footer`.
 
 ## Consolidation rules
 
-- `skunkworks-ui.js` is the canonical runtime.
-- `skunkworks-design-system.css` is the canonical style source.
-- `academy-navigation.js` and `academy-navigation-loader.js` are compatibility loaders only.
-- Repositories must not maintain independent public top-menu, logo-switcher, or burger-menu implementations.
-- Local application navigation is allowed only inside authenticated application workspaces or content areas where it is not the public website header.
-- Preserve a page-local header only by adding `data-sk-preserve-header`.
+- `skunkworks-ui.js` is the canonical navigation runtime.
+- `skunkworks-footer.js` is the canonical footer runtime.
+- `skunkworks-design-system.css` is the canonical design-system style source.
+- `academy-navigation.js` and local `academy-navigation-loader.js` files are compatibility loaders only.
+- Repositories must not maintain independent public top-menu, logo-switcher, burger-menu or public legal-footer implementations.
+- Local application navigation and application-specific footers are allowed inside authenticated workspaces when they are not the public website shell.
+- Preserve an intentionally local header with `data-sk-preserve-header`.
+- Preserve an intentionally local footer with `data-sk-preserve-footer`.
 
-Generated on: 2026-07-07 17:00:00 +02:00
+Generated on: 2026-08-15
