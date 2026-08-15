@@ -1,13 +1,16 @@
 /*
   Compatibility loader for Skunkworks Academy navigation includes.
   Canonical global UI is owned by /assets/skunkworks-ui.js.
+  Canonical global footer is owned by /assets/skunkworks-footer.js.
 */
 (function () {
   "use strict";
 
-  var version = "2026.08.14.2";
+  var version = "2026.08.15.1";
   var canonicalUrl = "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=" + version;
+  var footerUrl = "https://skunkworksacademy.com/assets/skunkworks-footer.js?v=" + version;
   var selector = 'script[data-skunkworks-ui="canonical"]';
+  var footerSelector = 'script[data-skunkworks-global-footer="canonical"]';
   var logoLight = "https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-black.png";
   var logoDark = "https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-white.png";
   var pages = [
@@ -185,10 +188,23 @@
     return true;
   }
 
+  function ensureGlobalFooter() {
+    if (typeof document === "undefined") return false;
+    if (document.querySelector(footerSelector) || document.querySelector(".swa-global-footer")) return true;
+
+    var script = document.createElement("script");
+    script.defer = true;
+    script.src = footerUrl;
+    script.setAttribute("data-skunkworks-global-footer", "canonical");
+    (document.head || document.documentElement).appendChild(script);
+    return true;
+  }
+
   function reconcileNavigation() {
     removeLegacyNavigation();
     ensureCanonicalLogos();
     ensurePartnerPathwayLinks();
+    ensureGlobalFooter();
   }
 
   if (typeof window !== "undefined") {
@@ -202,13 +218,14 @@
   if (typeof document === "undefined") return;
 
   removeLegacyNavigation();
+  ensureGlobalFooter();
 
   if (!(window.SkunkworksAcademy && window.SkunkworksAcademy.uiLoaded) && !document.querySelector(selector)) {
     var script = document.createElement("script");
     script.defer = true;
     script.src = canonicalUrl;
     script.setAttribute("data-skunkworks-ui", "canonical");
-    script.setAttribute("data-skunkworks-global-nav", "v9");
+    script.setAttribute("data-skunkworks-global-nav", "v10");
     script.addEventListener("load", reconcileNavigation, { once: true });
     (document.head || document.documentElement).appendChild(script);
   }
@@ -221,7 +238,7 @@
 
   var observer = new MutationObserver(function () {
     reconcileNavigation();
-    if (document.querySelector(".swa-global-nav") && ensureCanonicalLogos() && ensurePartnerPathwayLinks()) {
+    if (document.querySelector(".swa-global-nav") && document.querySelector(".swa-global-footer") && ensureCanonicalLogos() && ensurePartnerPathwayLinks()) {
       observer.disconnect();
     }
   });
