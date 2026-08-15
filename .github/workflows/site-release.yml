@@ -19,7 +19,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-${{ github.ref }}
+  group: site-release-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
