@@ -45,11 +45,13 @@ For generated/static GitHub Pages builds, deployment workflows now either:
 
 Where deployment-time injection is used, the workflow fails if any published HTML page is missing the canonical shell marker. This prevents future page drift.
 
+The apex repository now uses one canonical Pages release pipeline (`site-release.yml`) and a separate validation-only quality workflow. Their concurrency groups are isolated so quality checks cannot cancel an in-flight production release.
+
 ## Rollout matrix
 
 | Repository / surface | Integration method | Result |
 |---|---|---|
-| `www` / `skunkworksacademy.com` | canonical runtime + loader + two Pages deployment enforcement workflows | deployed and verified |
+| `www` / `skunkworksacademy.com` | canonical runtime + loader + release-time all-HTML enforcement + separate quality validation | deployed and verified |
 | `portal` | generated `dist/**/*.html` deployment enforcement | deployed successfully |
 | `labs` | generated Docusaurus `build/**/*.html` enforcement | deployed successfully |
 | `ibm` | staged `_site/**/*.html` enforcement | deployed successfully, including public-domain verification |
@@ -61,16 +63,16 @@ Where deployment-time injection is used, the workflow fails if any published HTM
 | `aacca` | Docusaurus root script integration | deployed successfully |
 | `fksmm` | Docusaurus root script integration | deployed successfully |
 | `brand` | deploy-time all-HTML injection and verification | deployed successfully |
-| `badging` | deploy-time all-HTML injection and verification | deployment workflow hardened |
-| `marketing` | public artifact all-HTML injection and verification | deployment workflow hardened |
+| `badging` | deploy-time all-HTML injection and verification | deployed successfully |
+| `marketing` | public artifact all-HTML injection and verification | deployed successfully |
 | `publish` | deploy-time all-HTML injection and verification | deployed successfully |
 | `dashboard` | corrected Pages artifact path + all-HTML shell enforcement | deployed successfully |
 | `classrooms` | deploy-time all-HTML injection and verification | deployed successfully |
 | `ls1607` | generated Docusaurus HTML enforcement | deployed successfully |
-| `prod-101` | published `site/**/*.html` enforcement | deployment workflow hardened |
-| `lms` | generated Jekyll `_site/**/*.html` enforcement | deployment workflow hardened |
-| `CSES-01` | generated Docusaurus HTML enforcement | deployment workflow hardened |
-| `dpg-610a` | generated Docusaurus HTML enforcement | deployment workflow hardened |
+| `prod-101` | published `site/**/*.html` enforcement | deployed successfully |
+| `lms` | static staging with all-HTML shell enforcement | broken Jekyll path removed; deployment succeeded |
+| `CSES-01` | generated Docusaurus HTML enforcement | deployed successfully |
+| `dpg-610a` | generated Docusaurus HTML enforcement | deployed successfully |
 | `jobs` | existing canonical navigation loader reference | inherits current canonical shell |
 | `security` | existing canonical navigation loader reference | inherits current canonical shell |
 | `microsoft` | existing shared Academy loader/layout integration | inherits current canonical shell |
@@ -92,7 +94,14 @@ Examples such as `faculty` currently declare a custom domain but do not expose a
 
 ## CI/CD verification
 
-Verified successful rollout/deployment runs include the apex website, Portal, Labs, IBM, Learn, Course Catalogue, Docs, Careers, OSINT, AACC/AACC IDR, FKSMM IDR, Brand portal, Publish, Dashboard, Classrooms and LS1607. The Course Catalogue rollout initially exposed an HTML-normalisation edge case; the workflow was corrected to remove arbitrary old `academy-navigation.js` script tags and inject one exact canonical loader into every generated HTML file. The corrected workflow then completed successfully.
+Verified successful rollout/deployment runs include the apex website, Portal, Labs, IBM, Learn, Course Catalogue, Docs, Careers, OSINT, AACC/AACC IDR, FKSMM IDR, Brand portal, Badging, Marketing, Publish, Dashboard, Classrooms, LS1607, PROD-101, LMS, CSES-01 and DPG-610A.
+
+Two pre-existing deployment weaknesses were exposed and corrected during rollout:
+
+- **Course Catalogue:** generated HTML contained inconsistent historical navigation-script URLs. The workflow now removes arbitrary old `academy-navigation.js` script tags and injects one exact canonical loader into every generated HTML file. The corrected deployment completed successfully.
+- **LMS:** the legacy GitHub Pages Jekyll workflow was failing before the shell step because Jekyll attempted to parse Markdown inside a committed `microsoft/node_modules` tree and raised a Liquid syntax error. The workflow now stages the LMS as a static site, excludes `node_modules`, injects the canonical shell into every published HTML page, and deploys successfully.
+
+The apex CI/CD was also consolidated: `site-quality-and-pages.yml` is validation-only, while `site-release.yml` is the sole production Pages release path. Separate concurrency groups prevent one workflow from cancelling the other.
 
 ## Governance standard going forward
 
