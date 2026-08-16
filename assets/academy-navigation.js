@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = '2026.08.15.2';
+  const VERSION = '2026.08.16.1';
   const SHELL_URL = `https://skunkworksacademy.com/assets/skunkworks-shell.js?v=${VERSION}`;
 
   const destinations = Object.freeze({
@@ -29,11 +29,14 @@
     shell: SHELL_URL
   });
 
-  if (window.__SKUNKWORKS_ACADEMY_SHELL_LOADER__) return;
+  if (window.__SKUNKWORKS_ACADEMY_SHELL_LOADER__ === VERSION) return;
   window.__SKUNKWORKS_ACADEMY_SHELL_LOADER__ = VERSION;
 
   const load = () => {
-    if (document.querySelector('script[data-skunkworks-shell-runtime]')) return;
+    const existing = document.querySelector('script[data-skunkworks-shell-runtime]');
+    if (existing?.dataset.skunkworksShellRuntime === VERSION) return;
+    if (existing) existing.remove();
+
     const script = document.createElement('script');
     script.src = SHELL_URL;
     script.defer = true;
