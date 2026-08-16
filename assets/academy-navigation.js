@@ -4,6 +4,17 @@
 
   var VERSION = "2026.08.15.1";
   var ROOT = "https://skunkworksacademy.com/assets/";
+  var TOP_MENU = [
+    { label: "Home", url: "https://skunkworksacademy.com/" },
+    { label: "Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
+    { label: "Labs", url: "https://labs.skunkworksacademy.com/" },
+    { label: "Microsoft", url: "https://microsoft.skunkworksacademy.com/" },
+    { label: "IBM", url: "https://ibm.skunkworksacademy.com/" },
+    { label: "Security", url: "https://security.skunkworksacademy.com/" },
+    { label: "Badging", url: "https://badging.skunkworksacademy.com/" },
+    { label: "Jobs", url: "https://jobs.skunkworksacademy.com/" },
+    { label: "Blog", url: "https://blog.skunkworksacademy.com/" }
+  ];
 
   if (typeof document === "undefined") return;
 
@@ -12,7 +23,8 @@
     compatibility: "v10",
     canonicalUi: ROOT + "skunkworks-ui.js?v=" + VERSION,
     canonicalFooter: ROOT + "skunkworks-footer.js?v=" + VERSION,
-    canonicalDesignSystem: ROOT + "skunkworks-design-system.css?v=" + VERSION
+    canonicalDesignSystem: ROOT + "skunkworks-design-system.css?v=" + VERSION,
+    topMenu: TOP_MENU.slice()
   });
 
   function ensureDesignSystem() {
@@ -45,6 +57,85 @@
     script.setAttribute(attribute, value);
     (document.head || document.documentElement).appendChild(script);
     return script;
+  }
+
+  function ensureTopMenuStyles() {
+    if (document.getElementById("swa-global-top-menu-styles")) return;
+
+    var style = document.createElement("style");
+    style.id = "swa-global-top-menu-styles";
+    style.textContent = [
+      "html body.swa-has-global-nav.swa-has-top-menu{padding-top:128px!important}",
+      ".swa-global-nav.swa-has-top-menu{min-height:128px!important}",
+      ".swa-global-nav__top-menu{display:flex!important;align-items:center!important;min-height:44px!important;width:100%!important;padding:0 clamp(20px,4vw,56px)!important;gap:2px!important;overflow-x:auto!important;overflow-y:hidden!important;background:#1c1c1c!important;border-top:1px solid #484848!important;scrollbar-width:none!important;white-space:nowrap!important}",
+      ".swa-global-nav__top-menu::-webkit-scrollbar{display:none!important}",
+      ".swa-global-nav__top-menu-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:43px!important;padding:0 15px!important;border:0!important;border-bottom:3px solid transparent!important;background:transparent!important;color:#f5f5f5!important;text-decoration:none!important;font-family:Segoe UI,SegoeUI,system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;font-size:14px!important;font-weight:600!important;line-height:1!important;letter-spacing:.005em!important}",
+      ".swa-global-nav__top-menu-link:hover,.swa-global-nav__top-menu-link:focus{background:#303030!important;color:#fff!important;text-decoration:none!important}",
+      ".swa-global-nav__top-menu-link:focus-visible{outline:3px solid #fff!important;outline-offset:-4px!important}",
+      ".swa-global-nav__top-menu-link[aria-current=\"page\"]{border-bottom-color:#2b88d8!important;background:#303030!important;color:#fff!important}",
+      "@media(max-width:980px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}.swa-global-nav.swa-has-top-menu{min-height:84px!important}.swa-global-nav__top-menu{display:none!important}}",
+      "@media(max-width:620px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}.swa-global-nav.swa-has-top-menu{min-height:74px!important}}"
+    ].join("\n");
+    (document.head || document.documentElement).appendChild(style);
+  }
+
+  function normalizeUrl(url) {
+    try {
+      var parsed = new URL(url, window.location.origin);
+      parsed.hash = "";
+      parsed.search = "";
+      return parsed.href.replace(/\/$/, "");
+    } catch (_error) {
+      return String(url || "");
+    }
+  }
+
+  function isCurrentTopDestination(destination) {
+    try {
+      var current = new URL(window.location.href);
+      var target = new URL(destination.url);
+      if (current.hostname === target.hostname) {
+        var targetPath = target.pathname.replace(/\/$/, "") || "/";
+        var currentPath = current.pathname.replace(/\/$/, "") || "/";
+        return targetPath === "/" || currentPath === targetPath || currentPath.indexOf(targetPath + "/") === 0;
+      }
+      return normalizeUrl(window.location.href) === normalizeUrl(destination.url);
+    } catch (_error) {
+      return false;
+    }
+  }
+
+  function ensureTopMenu() {
+    if (!document.body || document.body.getAttribute("data-sk-global-nav") === "off") return false;
+
+    var header = document.querySelector(".swa-global-nav");
+    if (!header) return false;
+
+    var existing = header.querySelector(".swa-global-nav__top-menu");
+    if (existing) {
+      header.classList.add("swa-has-top-menu");
+      document.body.classList.add("swa-has-top-menu");
+      return true;
+    }
+
+    var nav = document.createElement("nav");
+    nav.className = "swa-global-nav__top-menu";
+    nav.setAttribute("aria-label", "Primary Academy navigation");
+    nav.setAttribute("data-skunkworks-top-menu", "canonical");
+
+    TOP_MENU.forEach(function (destination) {
+      var link = document.createElement("a");
+      link.className = "swa-global-nav__top-menu-link";
+      link.href = destination.url;
+      link.textContent = destination.label;
+      if (isCurrentTopDestination(destination)) link.setAttribute("aria-current", "page");
+      nav.appendChild(link);
+    });
+
+    header.appendChild(nav);
+    header.classList.add("swa-has-top-menu");
+    document.body.classList.add("swa-has-top-menu");
+    return true;
   }
 
   function isPreserved(node, kind) {
@@ -108,14 +199,25 @@
     });
   }
 
-  function startChromeGuard() {
+  function refreshCanonicalChrome() {
     removeKnownPublicChrome();
+    ensureTopMenu();
+  }
+
+  function startChromeGuard() {
+    refreshCanonicalChrome();
     if (!document.body || typeof MutationObserver === "undefined") return;
 
     var observer = new MutationObserver(function () {
-      removeKnownPublicChrome();
+      refreshCanonicalChrome();
     });
     observer.observe(document.body, { childList: true, subtree: true });
+
+    window.addEventListener("popstate", function () {
+      var nav = document.querySelector(".swa-global-nav__top-menu");
+      if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
+      ensureTopMenu();
+    });
 
     window.addEventListener("pagehide", function () {
       observer.disconnect();
@@ -123,6 +225,7 @@
   }
 
   ensureDesignSystem();
+  ensureTopMenuStyles();
   ensureRuntime(ROOT + "skunkworks-ui.js?v=" + VERSION, "data-skunkworks-ui", "canonical");
   ensureRuntime(ROOT + "skunkworks-footer.js?v=" + VERSION, "data-skunkworks-global-footer", "canonical");
 
