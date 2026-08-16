@@ -7,7 +7,7 @@
   var VERSION = "2026.08.14.2";
   var ASSET_ROOT = "https://skunkworksacademy.com";
   var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
-  var LOGO_DARK = ASSET_ROOT + "/images/favicon-white.png?v=" + VERSION;
+  var LOGO_DARK = ASSET_ROOT + "/images/logo-white.svg?v=" + VERSION;
   var SIGN_IN_URL = "https://portal.skunkworksacademy.com/";
   var destinations = [
     { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"], description: "Skunkworks Academy home" },
