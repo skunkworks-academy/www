@@ -1,7 +1,8 @@
 /* Compatibility loader for legacy Skunkworks Academy navigation includes. */
 (function () {
   'use strict';
-  var version = '2026.08.15.2';
+
+  var version = '2026.08.16.1';
   var canonicalUrl = 'https://skunkworksacademy.com/assets/academy-navigation.js?v=' + version;
   var selector = 'script[data-skunkworks-global-shell-loader="' + version + '"]';
 
