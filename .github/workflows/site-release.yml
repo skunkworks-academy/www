@@ -6,6 +6,7 @@ on:
       - '**/*.html'
       - 'assets/**'
       - 'scripts/**'
+      - 'docs/accessibility-contrast.md'
       - 'package.json'
       - 'CNAME'
       - '.github/workflows/site-release.yml'
@@ -32,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - name: Run dependency-free build validation
+      - name: Run build, content and WCAG contrast validation
         run: npm run build
       - name: Verify custom domain file
         run: test "$(tr -d '\r\n' < CNAME)" = "skunkworksacademy.com"
@@ -70,10 +71,11 @@ jobs:
           done
           cat /tmp/skw-http.log
           exit 1
-      - name: Verify Lighthouse uses checked-out shell assets
+      - name: Verify Lighthouse uses checked-out shell and accessibility assets
         run: |
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
+          curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-accessibility.css | grep -q 'accessibility contrast contract'
       - name: Collect Lighthouse samples
         run: |
           set -euo pipefail
@@ -85,13 +87,35 @@ jobs:
               --only-categories=performance,accessibility,best-practices,seo \
               --quiet
           done
+      - name: Audit rendered light and dark colour contrast
+        run: |
+          npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/tests/accessibility-contrast.html \
+            --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
+            --output=json \
+            --output-path=./lighthouse-contrast.json \
+            --only-audits=color-contrast \
+            --quiet
+          node - <<'NODE'
+          const report = require('./lighthouse-contrast.json');
+          const audit = report.audits['color-contrast'];
+          if (!audit || audit.score !== 1) {
+            console.error('Rendered WCAG colour-contrast audit failed.');
+            for (const item of audit?.details?.items || []) {
+              console.error(item.node?.selector || item.node?.snippet || JSON.stringify(item));
+            }
+            process.exit(1);
+          }
+          console.log('Rendered light/dark colour-contrast audit passed.');
+          NODE
       - name: Assert median Lighthouse scores
         run: node scripts/assert-lighthouse.mjs lighthouse-report-1.json lighthouse-report-2.json lighthouse-report-3.json
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: lighthouse-reports-${{ github.run_id }}
-          path: lighthouse-report-*.json
+          path: |
+            lighthouse-report-*.json
+            lighthouse-contrast.json
           if-no-files-found: error
           retention-days: 30
 
@@ -114,8 +138,11 @@ jobs:
 
           version = '2026.08.15.1'
           revision = '2026.08.16.1'
+          accessibility_version = '2026.08.16.1'
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
+          accessibility = f'<link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v={accessibility_version}" data-skunkworks-accessibility="wcag-contrast" />'
           shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
+          accessibility_tag = re.compile(r'<link\b[^>]*(?:skunkworks-accessibility\.css|data-skunkworks-accessibility)[^>]*>', re.I)
           pages = []
           fragments = []
 
@@ -130,11 +157,12 @@ jobs:
                   continue
 
               html = shell_tag.sub('', html)
+              html = accessibility_tag.sub('', html)
 
               if re.search(r'</head\s*>', html, re.I):
-                  html = re.sub(r'</head\s*>', f'  {loader}\n</head>', html, count=1, flags=re.I)
+                  html = re.sub(r'</head\s*>', f'  {accessibility}\n  {loader}\n</head>', html, count=1, flags=re.I)
               elif re.search(r'</body\s*>', html, re.I):
-                  html = re.sub(r'</body\s*>', f'  {loader}\n</body>', html, count=1, flags=re.I)
+                  html = re.sub(r'</body\s*>', f'  {accessibility}\n  {loader}\n</body>', html, count=1, flags=re.I)
               else:
                   raise SystemExit(f'Malformed HTML document cannot receive Academy shell: {path}')
 
@@ -145,18 +173,24 @@ jobs:
           duplicate = []
           for path in pages:
               html = path.read_text(encoding='utf-8', errors='ignore')
-              count = html.count('academy-navigation.js')
-              if version not in html or revision not in html or 'data-skunkworks-global-nav="v10"' not in html or count == 0:
-                  missing.append(str(path))
-              if count > 1:
-                  duplicate.append(str(path))
+              shell_count = html.count('academy-navigation.js')
+              accessibility_count = html.count('skunkworks-accessibility.css')
+              if version not in html or revision not in html or 'data-skunkworks-global-nav="v10"' not in html or shell_count == 0:
+                  missing.append(f'{path} (shell)')
+              if accessibility_version not in html or 'data-skunkworks-accessibility="wcag-contrast"' not in html or accessibility_count == 0:
+                  missing.append(f'{path} (accessibility)')
+              if shell_count > 1:
+                  duplicate.append(f'{path} (shell)')
+              if accessibility_count > 1:
+                  duplicate.append(f'{path} (accessibility)')
 
           if missing:
-              raise SystemExit('Missing current Academy global shell: ' + ', '.join(missing))
+              raise SystemExit('Missing current Academy shell/accessibility contract: ' + ', '.join(missing))
           if duplicate:
-              raise SystemExit('Duplicate Academy global shell loaders: ' + ', '.join(duplicate))
+              raise SystemExit('Duplicate Academy shell/accessibility assets: ' + ', '.join(duplicate))
 
           print(f'Normalized Academy global shell {version} / revision {revision} / v10 on {len(pages)} HTML document(s).')
+          print(f'Normalized WCAG contrast stylesheet {accessibility_version} on {len(pages)} HTML document(s).')
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
       - uses: actions/configure-pages@v5
@@ -181,17 +215,20 @@ jobs:
             shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
             ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
             footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
+            accessibility_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?v=2026.08.16.1' || true)"
 
             if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
               && printf '%s' "$response" | grep -q 'rev=2026.08.16.1' \
+              && printf '%s' "$response" | grep -q 'data-skunkworks-accessibility="wcag-contrast"' \
               && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.16.1"' \
               && printf '%s' "$shell" | grep -q 'window.location.origin' \
               && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
               && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
-              && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy'; then
+              && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy' \
+              && printf '%s' "$accessibility_www" | grep -q 'accessibility contrast contract'; then
               exit 0
             fi
             sleep 10
           done
-          echo 'Production verification failed: CORS-safe canonical shell assets were not found on the www origin.'
+          echo 'Production verification failed: canonical shell/accessibility assets were not found on the www origin.'
           exit 1
