@@ -1,7 +1,17 @@
 {
-  "version": "2026-07-17",
+  "version": "2026-08-16",
   "accessPolicy": "Course content is available only after successful enrollment and learner authentication.",
   "courses": [
+    {
+      "code": "SEC-OSINT-201",
+      "slug": "open-source-intelligence-gathering",
+      "title": "Open-Source Intelligence (OSINT) Gathering with Recon-ng and Shodan",
+      "category": "Cybersecurity",
+      "level": "Intermediate",
+      "delivery": "Self-paced",
+      "href": "https://catalog.skunkworksacademy.com/courses/open-source-intelligence-gathering",
+      "enrollmentHref": "https://portal.skunkworksacademy.com/checkout/?courseId=SEC-OSINT-201"
+    },
     {
       "code": "JSON-UI-101",
       "slug": "json-course-interface-design",
