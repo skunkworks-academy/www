@@ -8,7 +8,7 @@
   --sk-a11y-link-light: #0f62fe;
   --sk-a11y-link-dark: #78a9ff;
   --sk-a11y-signal-orange: #c93400;
-  --sk-interactive-text: var(--sk-interactive, #0f62fe);
+  --sk-interactive-text: #0043ce;
   --sk-text-success: #137333;
   --sk-text-warning: #8a4b00;
   --sk-text-danger: #b42318;
@@ -39,35 +39,16 @@
   }
 }
 
-/* Interactive blue is a button/background colour. Use the dedicated text token
-   when the same semantic colour is rendered as foreground text in dark mode. */
-:root[data-theme="dark"] .sk-eyebrow,
-:root[data-theme="dark"] .sk-tag,
-:root[data-theme="dark"] .tile-kicker,
-:root[data-theme="dark"] .level,
-:root[data-theme="dark"] .sk-stat__value,
-:root[data-theme="dark"] .metric strong,
-:root[data-theme="dark"] .stat .number,
-[data-theme="dark"] .sk-eyebrow,
-[data-theme="dark"] .sk-tag,
-[data-theme="dark"] .tile-kicker,
-[data-theme="dark"] .level,
-[data-theme="dark"] .sk-stat__value,
-[data-theme="dark"] .metric strong,
-[data-theme="dark"] .stat .number {
+/* Interactive blue is a button/background colour. Small accent text uses the
+   dedicated foreground token so tags, metrics and eyebrows remain AA-safe. */
+.sk-eyebrow,
+.sk-tag,
+.tile-kicker,
+.level,
+.sk-stat__value,
+.metric strong,
+.stat .number {
   color: var(--sk-interactive-text) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .sk-eyebrow,
-  :root:not([data-theme="light"]) .sk-tag,
-  :root:not([data-theme="light"]) .tile-kicker,
-  :root:not([data-theme="light"]) .level,
-  :root:not([data-theme="light"]) .sk-stat__value,
-  :root:not([data-theme="light"]) .metric strong,
-  :root:not([data-theme="light"]) .stat .number {
-    color: var(--sk-interactive-text) !important;
-  }
 }
 
 /* Inline links must remain identifiable without colour perception alone. */
