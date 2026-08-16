@@ -99,9 +99,9 @@ jobs:
           from pathlib import Path
           import re
 
-          version = '2026.08.16.1'
-          loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}" data-skunkworks-global-shell="{version}"></script>'
-          shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
+          version = '2026.08.15.1'
+          loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}" data-skunkworks-global-nav="v10"></script>'
+          shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
           pages = []
 
           for path in Path('.').rglob('*.html'):
@@ -126,7 +126,7 @@ jobs:
           for path in pages:
               html = path.read_text(encoding='utf-8', errors='ignore')
               count = html.count('academy-navigation.js')
-              if version not in html or count == 0:
+              if version not in html or 'data-skunkworks-global-nav="v10"' not in html or count == 0:
                   missing.append(str(path))
               if count > 1:
                   duplicate.append(str(path))
@@ -136,7 +136,7 @@ jobs:
           if duplicate:
               raise SystemExit('Duplicate Academy global shell loaders: ' + ', '.join(duplicate))
 
-          print(f'Normalized Academy global shell {version} on {len(pages)} HTML page(s).')
+          print(f'Normalized Academy global shell {version} / v10 on {len(pages)} HTML page(s).')
           PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -156,11 +156,11 @@ jobs:
         run: |
           for attempt in {1..30}; do
             response="$(curl --location --fail --silent --show-error --max-time 20 https://www.skunkworksacademy.com/ || true)"
-            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.16.1' || true)"
-            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' && printf '%s' "$response" | grep -qi 'academy-navigation.js' && printf '%s' "$shell" | grep -q '2026.08.16.1'; then
+            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1' || true)"
+            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' && printf '%s' "$response" | grep -qi 'academy-navigation.js' && printf '%s' "$shell" | grep -q 'skunkworks-ui.js' && printf '%s' "$shell" | grep -q 'skunkworks-footer.js' && printf '%s' "$shell" | grep -q 'skunkworks-design-system.css'; then
               exit 0
             fi
             sleep 10
           done
-          echo 'Production verification failed: expected page and global shell markers were not found.'
+          echo 'Production verification failed: expected page and canonical UI/footer/design-system markers were not found.'
           exit 1
