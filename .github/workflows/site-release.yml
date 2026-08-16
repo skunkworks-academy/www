@@ -93,7 +93,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Normalize and verify Academy global shell on every HTML page
+      - name: Normalize and verify Academy global shell on every HTML document
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -103,20 +103,26 @@ jobs:
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}" data-skunkworks-global-nav="v10"></script>'
           shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
           pages = []
+          fragments = []
 
           for path in Path('.').rglob('*.html'):
               if any(part in {'.git', 'node_modules'} for part in path.parts):
                   continue
 
               html = path.read_text(encoding='utf-8', errors='ignore')
+              is_document = bool(re.search(r'<!doctype\s+html|<html\b|<head\b|<body\b', html, re.I))
+              if not is_document:
+                  fragments.append(path)
+                  continue
+
               html = shell_tag.sub('', html)
 
-              if '</head>' in html:
-                  html = html.replace('</head>', f'  {loader}\n</head>', 1)
-              elif '</body>' in html:
-                  html = html.replace('</body>', f'  {loader}\n</body>', 1)
+              if re.search(r'</head\s*>', html, re.I):
+                  html = re.sub(r'</head\s*>', f'  {loader}\n</head>', html, count=1, flags=re.I)
+              elif re.search(r'</body\s*>', html, re.I):
+                  html = re.sub(r'</body\s*>', f'  {loader}\n</body>', html, count=1, flags=re.I)
               else:
-                  raise SystemExit(f'Cannot inject Academy global shell into {path}: no closing head/body tag')
+                  raise SystemExit(f'Malformed HTML document cannot receive Academy shell: {path}')
 
               path.write_text(html, encoding='utf-8')
               pages.append(path)
@@ -136,7 +142,8 @@ jobs:
           if duplicate:
               raise SystemExit('Duplicate Academy global shell loaders: ' + ', '.join(duplicate))
 
-          print(f'Normalized Academy global shell {version} / v10 on {len(pages)} HTML page(s).')
+          print(f'Normalized Academy global shell {version} / v10 on {len(pages)} HTML document(s).')
+          print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
