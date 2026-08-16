@@ -47,7 +47,73 @@
     return script;
   }
 
+  function isPreserved(node, kind) {
+    if (!node || !node.matches) return true;
+    if (kind === "header") {
+      return node.matches('.swa-global-nav,[data-sk-preserve-header],[data-skunkworks-ui="canonical"]');
+    }
+    return node.matches('.swa-global-footer,[data-sk-preserve-footer],[data-skunkworks-global-footer="canonical"]');
+  }
+
+  function removeKnownPublicChrome() {
+    var headerSelectors = [
+      'body > header',
+      'body > nav.navbar',
+      '#__docusaurus > nav.navbar',
+      '#__docusaurus .theme-layout-navbar > nav.navbar',
+      'nav.navbar.navbar--fixed-top',
+      '.site-header',
+      '.main-header',
+      '.sk-topbar',
+      '[data-sk-nav-shell]',
+      'header[data-skunkworks-global-header]'
+    ];
+    var footerSelectors = [
+      'body > footer',
+      '#__docusaurus > footer',
+      '#__docusaurus footer.footer',
+      '.site-footer',
+      '[data-site-footer]'
+    ];
+
+    headerSelectors.forEach(function (selector) {
+      Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
+        if (isPreserved(node, "header")) return;
+        if (node.closest && node.closest('main,article,[data-sk-preserve-header]')) return;
+        if (node.parentNode) node.parentNode.removeChild(node);
+      });
+    });
+
+    footerSelectors.forEach(function (selector) {
+      Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
+        if (isPreserved(node, "footer")) return;
+        if (node.closest && node.closest('[data-sk-preserve-footer]')) return;
+        if (node.parentNode) node.parentNode.removeChild(node);
+      });
+    });
+  }
+
+  function startChromeGuard() {
+    removeKnownPublicChrome();
+    if (!document.body || typeof MutationObserver === "undefined") return;
+
+    var observer = new MutationObserver(function () {
+      removeKnownPublicChrome();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    window.addEventListener("pagehide", function () {
+      observer.disconnect();
+    }, { once: true });
+  }
+
   ensureDesignSystem();
   ensureRuntime(ROOT + "skunkworks-ui.js?v=" + VERSION, "data-skunkworks-ui", "canonical");
   ensureRuntime(ROOT + "skunkworks-footer.js?v=" + VERSION, "data-skunkworks-global-footer", "canonical");
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startChromeGuard, { once: true });
+  } else {
+    startChromeGuard();
+  }
 })();
