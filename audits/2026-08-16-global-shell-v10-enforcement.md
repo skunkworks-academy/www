@@ -81,6 +81,7 @@ Successful GitHub Pages/Actions validation observed during this rollout includes
 | `badging` | 31918885351 | success |
 | `faculty` | 31918539923 | success |
 | `app` | 31918807349 | success |
+| `prompt` | 31919375569 | success |
 | `microsoft` | 31919195971 | success |
 | `media` | 31919213786 | success |
 | `comptia` | 31919222750 | success |
@@ -89,15 +90,15 @@ Additional modified public-site workflows were validated during the rollout, inc
 
 ## Prompt custom-domain exception
 
-The Prompt repository's canonical shell validation and `actions/deploy-pages` deployment succeeded, but custom-domain verification failed because `prompt.skunkworksacademy.com` did not resolve from the GitHub Actions runner.
+The Prompt repository's canonical shell validation, `actions/deploy-pages` deployment and deployed Pages artifact verification now succeed. The custom hostname remains an external DNS/Pages-setting dependency.
 
 Repository state at the time of the rollout:
 
 - checked-in `CNAME`: `prompt.skunkworksacademy.com`;
 - GitHub Pages API: workflow build published at `https://skunkworks-academy.github.io/prompt/` with no active Pages custom-domain setting;
-- previous production verification failure: DNS resolution only; shell validation and Pages deployment jobs succeeded;
+- the earlier production verification failure was DNS resolution only; shell validation and Pages deployment jobs succeeded;
 - remediation tracking: `skunkworks-academy/prompt#1` — **Configure prompt.skunkworksacademy.com custom domain and DNS**;
-- replacement workflow run: `31919375569`, changed to verify the actual deployed Pages artifact and report custom-domain DNS as a non-fatal external warning.
+- replacement workflow run `31919375569` completed successfully and now verifies the actual deployed Pages artifact while reporting custom-domain DNS as a non-fatal external warning.
 
 The Prompt custom hostname therefore remains an external DNS/Pages-configuration dependency; it is not a canonical-shell implementation failure.
 
