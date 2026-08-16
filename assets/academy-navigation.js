@@ -6,8 +6,10 @@
   var REVISION = "2026.08.16.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
-  var PRIMARY_ROOT = isApexAlias ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
+  var isFirstPartyAssetHost = isApexAlias || isLocalPreview;
+  var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
   var TOP_MENU = [
     { label: "Home", url: "https://skunkworksacademy.com/" },
     { label: "Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
@@ -52,7 +54,7 @@
     link.rel = "stylesheet";
     link.href = primaryHref;
     link.setAttribute("data-skunkworks-design-system", "canonical");
-    if (primaryHref !== fallbackHref) {
+    if (!isLocalPreview && primaryHref !== fallbackHref) {
       link.addEventListener("error", function () {
         if (link.href !== fallbackHref) link.href = fallbackHref;
       }, { once: true });
@@ -80,7 +82,7 @@
      * Setting crossorigin="anonymous" turns the request into a CORS-enforced fetch,
      * while GitHub Pages does not emit Access-Control-Allow-Origin for these assets.
      */
-    if (primarySrc !== fallbackSrc) {
+    if (!isLocalPreview && primarySrc !== fallbackSrc) {
       script.addEventListener("error", function () {
         if (script.src === fallbackSrc) return;
         script.src = fallbackSrc;
