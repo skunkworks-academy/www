@@ -3,7 +3,11 @@
   "use strict";
 
   var VERSION = "2026.08.15.1";
-  var ROOT = "https://skunkworksacademy.com/assets/";
+  var REVISION = "2026.08.16.1";
+  var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
+  var host = String(window.location && window.location.hostname || "").toLowerCase();
+  var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
+  var PRIMARY_ROOT = isApexAlias ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
   var TOP_MENU = [
     { label: "Home", url: "https://skunkworksacademy.com/" },
     { label: "Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
@@ -18,43 +22,71 @@
 
   if (typeof document === "undefined") return;
 
+  function assetUrl(root, file) {
+    return root + file + "?v=" + VERSION + "&rev=" + REVISION;
+  }
+
   window.SKUNKWORKS_ACADEMY_SHELL = Object.assign(window.SKUNKWORKS_ACADEMY_SHELL || {}, {
     version: VERSION,
+    revision: REVISION,
     compatibility: "v10",
-    canonicalUi: ROOT + "skunkworks-ui.js?v=" + VERSION,
-    canonicalFooter: ROOT + "skunkworks-footer.js?v=" + VERSION,
-    canonicalDesignSystem: ROOT + "skunkworks-design-system.css?v=" + VERSION,
+    canonicalUi: assetUrl(CANONICAL_ROOT, "skunkworks-ui.js"),
+    canonicalFooter: assetUrl(CANONICAL_ROOT, "skunkworks-footer.js"),
+    canonicalDesignSystem: assetUrl(CANONICAL_ROOT, "skunkworks-design-system.css"),
+    assetRoot: PRIMARY_ROOT,
     topMenu: TOP_MENU.slice()
   });
 
   function ensureDesignSystem() {
     var selector = 'link[data-skunkworks-design-system="canonical"]';
     var existing = document.querySelector(selector);
-    var href = ROOT + "skunkworks-design-system.css?v=" + VERSION;
+    var primaryHref = assetUrl(PRIMARY_ROOT, "skunkworks-design-system.css");
+    var fallbackHref = assetUrl(CANONICAL_ROOT, "skunkworks-design-system.css");
 
     if (existing) {
-      if (existing.getAttribute("href") !== href) existing.setAttribute("href", href);
+      if (existing.getAttribute("href") !== primaryHref) existing.setAttribute("href", primaryHref);
       return existing;
     }
 
     var link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = href;
+    link.href = primaryHref;
     link.setAttribute("data-skunkworks-design-system", "canonical");
+    if (primaryHref !== fallbackHref) {
+      link.addEventListener("error", function () {
+        if (link.href !== fallbackHref) link.href = fallbackHref;
+      }, { once: true });
+    }
     (document.head || document.documentElement).appendChild(link);
     return link;
   }
 
-  function ensureRuntime(src, attribute, value) {
+  function ensureRuntime(file, attribute, value) {
     var selector = 'script[' + attribute + '="' + value + '"]';
     var existing = document.querySelector(selector);
     if (existing) return existing;
 
+    var primarySrc = assetUrl(PRIMARY_ROOT, file);
+    var fallbackSrc = assetUrl(CANONICAL_ROOT, file);
     var script = document.createElement("script");
     script.defer = true;
-    script.src = src;
-    script.crossOrigin = "anonymous";
+    script.src = primarySrc;
+    script.referrerPolicy = "strict-origin-when-cross-origin";
     script.setAttribute(attribute, value);
+
+    /*
+     * IMPORTANT: do not set script.crossOrigin here.
+     * These are classic scripts intentionally shared by multiple Academy origins.
+     * Setting crossorigin="anonymous" turns the request into a CORS-enforced fetch,
+     * while GitHub Pages does not emit Access-Control-Allow-Origin for these assets.
+     */
+    if (primarySrc !== fallbackSrc) {
+      script.addEventListener("error", function () {
+        if (script.src === fallbackSrc) return;
+        script.src = fallbackSrc;
+      });
+    }
+
     (document.head || document.documentElement).appendChild(script);
     return script;
   }
@@ -79,27 +111,14 @@
     (document.head || document.documentElement).appendChild(style);
   }
 
-  function normalizeUrl(url) {
-    try {
-      var parsed = new URL(url, window.location.origin);
-      parsed.hash = "";
-      parsed.search = "";
-      return parsed.href.replace(/\/$/, "");
-    } catch (_error) {
-      return String(url || "");
-    }
-  }
-
   function isCurrentTopDestination(destination) {
     try {
       var current = new URL(window.location.href);
       var target = new URL(destination.url);
-      if (current.hostname === target.hostname) {
-        var targetPath = target.pathname.replace(/\/$/, "") || "/";
-        var currentPath = current.pathname.replace(/\/$/, "") || "/";
-        return targetPath === "/" || currentPath === targetPath || currentPath.indexOf(targetPath + "/") === 0;
-      }
-      return normalizeUrl(window.location.href) === normalizeUrl(destination.url);
+      if (current.hostname !== target.hostname) return false;
+      var targetPath = target.pathname.replace(/\/$/, "") || "/";
+      var currentPath = current.pathname.replace(/\/$/, "") || "/";
+      return targetPath === "/" || currentPath === targetPath || currentPath.indexOf(targetPath + "/") === 0;
     } catch (_error) {
       return false;
     }
@@ -107,7 +126,6 @@
 
   function ensureTopMenu() {
     if (!document.body || document.body.getAttribute("data-sk-global-nav") === "off") return false;
-
     var header = document.querySelector(".swa-global-nav");
     if (!header) return false;
 
@@ -181,9 +199,6 @@
       });
     });
 
-    /* Catch legacy static public mastheads without relying on a repo-specific class.
-     * A direct body header is removed only when it clearly contains navigation/brand chrome.
-     * Content-only document headers remain untouched. */
     Array.prototype.slice.call(document.querySelectorAll('body > header')).forEach(function (node) {
       if (isPreserved(node, "header")) return;
       var hasPublicChrome = Boolean(node.querySelector('nav,.brand,.logo,.nav-toggle,[aria-label*="navigation" i]'));
@@ -226,8 +241,8 @@
 
   ensureDesignSystem();
   ensureTopMenuStyles();
-  ensureRuntime(ROOT + "skunkworks-ui.js?v=" + VERSION, "data-skunkworks-ui", "canonical");
-  ensureRuntime(ROOT + "skunkworks-footer.js?v=" + VERSION, "data-skunkworks-global-footer", "canonical");
+  ensureRuntime("skunkworks-ui.js", "data-skunkworks-ui", "canonical");
+  ensureRuntime("skunkworks-footer.js", "data-skunkworks-global-footer", "canonical");
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", startChromeGuard, { once: true });
