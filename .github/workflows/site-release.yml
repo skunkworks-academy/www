@@ -37,8 +37,12 @@ jobs:
         run: test "$(tr -d '\r\n' < CNAME)" = "skunkworksacademy.com"
       - name: Verify canonical loader is CORS-safe
         run: |
-          if grep -Eq 'script\.crossOrigin\s*=|setAttribute\(["'"']crossorigin' assets/academy-navigation.js; then
+          if grep -Eq 'script\.crossOrigin[[:space:]]*=' assets/academy-navigation.js; then
             echo 'Canonical loader must not force CORS mode on shared classic scripts.'
+            exit 1
+          fi
+          if grep -Eqi 'setAttribute\([^)]*crossorigin' assets/academy-navigation.js; then
+            echo 'Canonical loader must not add a crossorigin attribute to shared classic scripts.'
             exit 1
           fi
           grep -q 'isApexAlias' assets/academy-navigation.js
@@ -180,7 +184,7 @@ jobs:
               && printf '%s' "$response" | grep -q 'rev=2026.08.16.1' \
               && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.16.1"' \
               && printf '%s' "$shell" | grep -q 'window.location.origin' \
-              && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin\s*=' \
+              && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
               && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
               && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy'; then
               exit 0
