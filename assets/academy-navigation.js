@@ -55,6 +55,11 @@
     return node.matches('.swa-global-footer,[data-sk-preserve-footer],[data-skunkworks-global-footer="canonical"]');
   }
 
+  function removeNode(node, kind) {
+    if (!node || isPreserved(node, kind)) return;
+    if (node.parentNode) node.parentNode.removeChild(node);
+  }
+
   function removeKnownPublicChrome() {
     var headerSelectors = [
       'nav.navbar.navbar--fixed-top',
@@ -66,7 +71,8 @@
       '[data-sk-nav-shell]',
       'header[data-skunkworks-global-header]',
       'header.swa-fallback-top',
-      'header.fallback-top'
+      'header.fallback-top',
+      'body > nav.ibm-masthead'
     ];
     var footerSelectors = [
       '#__docusaurus > footer.footer',
@@ -80,15 +86,24 @@
       Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
         if (isPreserved(node, "header")) return;
         if (node.closest && node.closest('main,article,[data-sk-preserve-header]')) return;
-        if (node.parentNode) node.parentNode.removeChild(node);
+        removeNode(node, "header");
       });
+    });
+
+    /* Catch legacy static public mastheads without relying on a repo-specific class.
+     * A direct body header is removed only when it clearly contains navigation/brand chrome.
+     * Content-only document headers remain untouched. */
+    Array.prototype.slice.call(document.querySelectorAll('body > header')).forEach(function (node) {
+      if (isPreserved(node, "header")) return;
+      var hasPublicChrome = Boolean(node.querySelector('nav,.brand,.logo,.nav-toggle,[aria-label*="navigation" i]'));
+      if (hasPublicChrome) removeNode(node, "header");
     });
 
     footerSelectors.forEach(function (selector) {
       Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function (node) {
         if (isPreserved(node, "footer")) return;
         if (node.closest && node.closest('[data-sk-preserve-footer]')) return;
-        if (node.parentNode) node.parentNode.removeChild(node);
+        removeNode(node, "footer");
       });
     });
   }
