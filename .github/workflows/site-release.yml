@@ -26,9 +26,10 @@ jobs:
   validate:
     name: Validate and audit site
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Run dependency-free build validation
@@ -46,15 +47,17 @@ jobs:
             exit 1
           fi
           grep -q 'isApexAlias' assets/academy-navigation.js
+          grep -q 'isLocalPreview' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
 
   lighthouse:
     name: Lighthouse local production audit
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: validate
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Start static server
@@ -67,44 +70,42 @@ jobs:
           done
           cat /tmp/skw-http.log
           exit 1
-      - name: Run Lighthouse
+      - name: Verify Lighthouse uses checked-out shell assets
         run: |
-          npx --yes lighthouse@12.8.2 http://127.0.0.1:4173/ \
-            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
-            --output=json \
-            --output-path=./lighthouse-report.json \
-            --only-categories=performance,accessibility,best-practices,seo
-          node - <<'NODE'
-          const report = require('./lighthouse-report.json');
-          const scores = report.categories;
-          const thresholds = { performance: 0.70, accessibility: 0.90, 'best-practices': 0.90, seo: 0.90 };
-          let failed = false;
-          for (const [category, minimum] of Object.entries(thresholds)) {
-            const score = scores[category].score;
-            console.log(`${category}: ${Math.round(score * 100)}`);
-            if (score < minimum) {
-              console.error(`${category} is below ${Math.round(minimum * 100)}`);
-              failed = true;
-            }
-          }
-          if (failed) process.exit(1);
-          NODE
-      - uses: actions/upload-artifact@v4
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
+          curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
+      - name: Collect Lighthouse samples
+        run: |
+          set -euo pipefail
+          for run in 1 2 3; do
+            npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/ \
+              --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
+              --output=json \
+              --output-path="./lighthouse-report-${run}.json" \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --quiet
+          done
+      - name: Assert median Lighthouse scores
+        run: node scripts/assert-lighthouse.mjs lighthouse-report-1.json lighthouse-report-2.json lighthouse-report-3.json
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: lighthouse-report
-          path: lighthouse-report.json
+          name: lighthouse-reports-${{ github.run_id }}
+          path: lighthouse-report-*.json
+          if-no-files-found: error
+          retention-days: 30
 
   deploy:
     name: Deploy GitHub Pages
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [validate, lighthouse]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Normalize and verify Academy global shell on every HTML document
         run: |
           python3 - <<'PY'
@@ -171,6 +172,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Wait for production and verify CORS-safe shell assets
         run: |
