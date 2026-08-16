@@ -57,23 +57,23 @@
 
   function removeKnownPublicChrome() {
     var headerSelectors = [
-      'body > header',
-      'body > nav.navbar',
+      'nav.navbar.navbar--fixed-top',
       '#__docusaurus > nav.navbar',
       '#__docusaurus .theme-layout-navbar > nav.navbar',
-      'nav.navbar.navbar--fixed-top',
       '.site-header',
       '.main-header',
       '.sk-topbar',
       '[data-sk-nav-shell]',
-      'header[data-skunkworks-global-header]'
+      'header[data-skunkworks-global-header]',
+      'header.swa-fallback-top',
+      'header.fallback-top'
     ];
     var footerSelectors = [
-      'body > footer',
-      '#__docusaurus > footer',
+      '#__docusaurus > footer.footer',
       '#__docusaurus footer.footer',
-      '.site-footer',
-      '[data-site-footer]'
+      '.site-footer[data-site-footer]',
+      'footer[data-skunkworks-global-footer]:not([data-skunkworks-global-footer="canonical"])',
+      '[data-site-footer][data-skunkworks-public-shell]'
     ];
 
     headerSelectors.forEach(function (selector) {
