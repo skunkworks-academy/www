@@ -35,6 +35,14 @@ jobs:
         run: npm run build
       - name: Verify custom domain file
         run: test "$(tr -d '\r\n' < CNAME)" = "skunkworksacademy.com"
+      - name: Verify canonical loader is CORS-safe
+        run: |
+          if grep -Eq 'script\.crossOrigin\s*=|setAttribute\(["'"']crossorigin' assets/academy-navigation.js; then
+            echo 'Canonical loader must not force CORS mode on shared classic scripts.'
+            exit 1
+          fi
+          grep -q 'isApexAlias' assets/academy-navigation.js
+          grep -q 'window.location.origin' assets/academy-navigation.js
 
   lighthouse:
     name: Lighthouse local production audit
@@ -100,7 +108,8 @@ jobs:
           import re
 
           version = '2026.08.15.1'
-          loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}" data-skunkworks-global-nav="v10"></script>'
+          revision = '2026.08.16.1'
+          loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
           shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
           pages = []
           fragments = []
@@ -132,7 +141,7 @@ jobs:
           for path in pages:
               html = path.read_text(encoding='utf-8', errors='ignore')
               count = html.count('academy-navigation.js')
-              if version not in html or 'data-skunkworks-global-nav="v10"' not in html or count == 0:
+              if version not in html or revision not in html or 'data-skunkworks-global-nav="v10"' not in html or count == 0:
                   missing.append(str(path))
               if count > 1:
                   duplicate.append(str(path))
@@ -142,7 +151,7 @@ jobs:
           if duplicate:
               raise SystemExit('Duplicate Academy global shell loaders: ' + ', '.join(duplicate))
 
-          print(f'Normalized Academy global shell {version} / v10 on {len(pages)} HTML document(s).')
+          print(f'Normalized Academy global shell {version} / revision {revision} / v10 on {len(pages)} HTML document(s).')
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
       - uses: actions/configure-pages@v5
@@ -159,15 +168,24 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for production and verify HTML
+      - name: Wait for production and verify CORS-safe shell assets
         run: |
           for attempt in {1..30}; do
-            response="$(curl --location --fail --silent --show-error --max-time 20 https://www.skunkworksacademy.com/ || true)"
-            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1' || true)"
-            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' && printf '%s' "$response" | grep -qi 'academy-navigation.js' && printf '%s' "$shell" | grep -q 'skunkworks-ui.js' && printf '%s' "$shell" | grep -q 'skunkworks-footer.js' && printf '%s' "$shell" | grep -q 'skunkworks-design-system.css'; then
+            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.16.1' || true)"
+            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
+            ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
+            footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
+
+            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
+              && printf '%s' "$response" | grep -q 'rev=2026.08.16.1' \
+              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.16.1"' \
+              && printf '%s' "$shell" | grep -q 'window.location.origin' \
+              && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin\s*=' \
+              && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
+              && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy'; then
               exit 0
             fi
             sleep 10
           done
-          echo 'Production verification failed: expected page and canonical UI/footer/design-system markers were not found.'
+          echo 'Production verification failed: CORS-safe canonical shell assets were not found on the www origin.'
           exit 1
