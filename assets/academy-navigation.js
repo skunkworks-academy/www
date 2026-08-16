@@ -1,50 +1,53 @@
-(() => {
-  'use strict';
+/* Skunkworks Academy public web-shell compatibility include. */
+(function () {
+  "use strict";
 
-  const VERSION = '2026.08.16.1';
-  const SHELL_URL = `https://skunkworksacademy.com/assets/skunkworks-shell.js?v=${VERSION}`;
+  var VERSION = "2026.08.15.1";
+  var ROOT = "https://skunkworksacademy.com/assets/";
 
-  const destinations = Object.freeze({
-    home: 'https://skunkworksacademy.com/',
-    catalogue: 'https://skunkworksacademy.com/catalogue/',
-    selfPaced: 'https://skunkworksacademy.com/self-paced/',
-    instructorLed: 'https://skunkworksacademy.com/instructor-led/',
-    plans: 'https://skunkworksacademy.com/plans-and-purchases/',
-    portal: 'https://portal.skunkworksacademy.com/',
-    labs: 'https://labs.skunkworksacademy.com/',
-    security: 'https://security.skunkworksacademy.com/',
-    microsoft: 'https://microsoft.skunkworksacademy.com/',
-    ibm: 'https://ibm.skunkworksacademy.com/',
-    badging: 'https://badging.skunkworksacademy.com/',
-    jobs: 'https://jobs.skunkworksacademy.com/',
-    forms: 'https://skunkworksacademy.com/forms/',
-    docs: 'https://docs.skunkworksacademy.com/',
-    publish: 'https://publish.skunkworksacademy.com/',
-    blog: 'https://blog.skunkworksacademy.com/'
-  });
+  if (typeof document === "undefined") return;
 
-  window.SKUNKWORKS_ACADEMY_NAVIGATION = Object.freeze({
+  window.SKUNKWORKS_ACADEMY_SHELL = Object.assign(window.SKUNKWORKS_ACADEMY_SHELL || {}, {
     version: VERSION,
-    destinations,
-    shell: SHELL_URL
+    compatibility: "v10",
+    canonicalUi: ROOT + "skunkworks-ui.js?v=" + VERSION,
+    canonicalFooter: ROOT + "skunkworks-footer.js?v=" + VERSION,
+    canonicalDesignSystem: ROOT + "skunkworks-design-system.css?v=" + VERSION
   });
 
-  if (window.__SKUNKWORKS_ACADEMY_SHELL_LOADER__ === VERSION) return;
-  window.__SKUNKWORKS_ACADEMY_SHELL_LOADER__ = VERSION;
+  function ensureDesignSystem() {
+    var selector = 'link[data-skunkworks-design-system="canonical"]';
+    var existing = document.querySelector(selector);
+    var href = ROOT + "skunkworks-design-system.css?v=" + VERSION;
 
-  const load = () => {
-    const existing = document.querySelector('script[data-skunkworks-shell-runtime]');
-    if (existing?.dataset.skunkworksShellRuntime === VERSION) return;
-    if (existing) existing.remove();
+    if (existing) {
+      if (existing.getAttribute("href") !== href) existing.setAttribute("href", href);
+      return existing;
+    }
 
-    const script = document.createElement('script');
-    script.src = SHELL_URL;
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.setAttribute("data-skunkworks-design-system", "canonical");
+    (document.head || document.documentElement).appendChild(link);
+    return link;
+  }
+
+  function ensureRuntime(src, attribute, value) {
+    var selector = 'script[' + attribute + '="' + value + '"]';
+    var existing = document.querySelector(selector);
+    if (existing) return existing;
+
+    var script = document.createElement("script");
     script.defer = true;
-    script.dataset.skunkworksShellRuntime = VERSION;
-    script.crossOrigin = 'anonymous';
-    document.head.appendChild(script);
-  };
+    script.src = src;
+    script.crossOrigin = "anonymous";
+    script.setAttribute(attribute, value);
+    (document.head || document.documentElement).appendChild(script);
+    return script;
+  }
 
-  if (document.head) load();
-  else document.addEventListener('DOMContentLoaded', load, { once: true });
+  ensureDesignSystem();
+  ensureRuntime(ROOT + "skunkworks-ui.js?v=" + VERSION, "data-skunkworks-ui", "canonical");
+  ensureRuntime(ROOT + "skunkworks-footer.js?v=" + VERSION, "data-skunkworks-global-footer", "canonical");
 })();
