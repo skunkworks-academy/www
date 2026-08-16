@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-ZA" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Skunkworks Academy accessibility contrast fixture</title>
+  <link rel="stylesheet" href="/assets/skunkworks-design-system.css" />
+  <link rel="stylesheet" href="/assets/skunkworks-accessibility.css" data-skunkworks-accessibility="wcag-contrast" />
+  <style>
+    body { padding: 2rem; }
+    .fixture-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .fixture-panel { border: 1px solid var(--sk-border-subtle); border-radius: 1rem; background: var(--sk-bg); color: var(--sk-text-primary); padding: 1.5rem; }
+    .fixture-surface { margin-top: 1rem; border: 1px solid var(--sk-border-subtle); border-radius: .75rem; background: var(--sk-layer-01); padding: 1rem; }
+    .fixture-raised { background: var(--sk-layer-02); }
+    .fixture-muted { color: var(--sk-text-muted); }
+    .fixture-secondary { color: var(--sk-text-secondary); }
+    .fixture-semantic { display: grid; gap: .4rem; }
+    .fixture-success { color: var(--sk-text-success); }
+    .fixture-warning { color: var(--sk-text-warning); }
+    .fixture-danger { color: var(--sk-text-danger); }
+    .fixture-info { color: var(--sk-text-info); }
+  </style>
+</head>
+<body data-sk-global-nav="off">
+  <main>
+    <h1>WCAG contrast contract fixture</h1>
+    <p>This page is intentionally no-index and exists so CI can verify computed foreground and background colours in a real browser.</p>
+
+    <div class="fixture-grid">
+      <section class="fixture-panel" data-theme="light" aria-labelledby="light-heading">
+        <h2 id="light-heading">Light theme</h2>
+        <div class="fixture-surface">
+          <p>Primary body text on the standard card surface.</p>
+          <p class="fixture-secondary">Secondary explanatory text on the standard card surface.</p>
+          <p class="fixture-muted">Muted helper text on the standard card surface.</p>
+          <p><a href="#light-heading">Accessible light-theme link</a></p>
+          <p><span class="sk-tag">Interactive foreground token</span></p>
+          <p><a class="sk-button" href="#light-heading">Primary action</a></p>
+          <div class="fixture-semantic" aria-label="Semantic text colours">
+            <span class="fixture-success">Success message</span>
+            <span class="fixture-warning">Warning message</span>
+            <span class="fixture-danger">Error message</span>
+            <span class="fixture-info">Information message</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="fixture-panel" data-theme="dark" aria-labelledby="dark-heading">
+        <h2 id="dark-heading">Dark theme</h2>
+        <div class="fixture-surface">
+          <p>Primary body text on the standard dark card surface.</p>
+          <p class="fixture-secondary">Secondary explanatory text on the standard dark card surface.</p>
+          <p class="fixture-muted">Muted helper text on the standard dark card surface.</p>
+          <p><a href="#dark-heading">Accessible dark-theme link</a></p>
+          <p><span class="sk-tag">Interactive foreground token</span></p>
+          <p><a class="sk-button" href="#dark-heading">Primary action</a></p>
+          <div class="fixture-raised fixture-surface">
+            <p><a href="#dark-heading">Link on raised dark surface</a></p>
+            <p><span class="sk-tag">Interactive text on raised dark surface</span></p>
+          </div>
+          <div class="fixture-semantic" aria-label="Dark semantic text colours">
+            <span class="fixture-success">Success message</span>
+            <span class="fixture-warning">Warning message</span>
+            <span class="fixture-danger">Error message</span>
+            <span class="fixture-info">Information message</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -12,7 +12,8 @@
   "scripts": {
     "audit": "node scripts/audit-site.mjs",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
-    "validate": "npm run audit && npm run validate:self-paced",
+    "validate:contrast": "node scripts/validate-contrast.mjs",
+    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast",
     "build": "npm run validate"
   },
   "engines": {
