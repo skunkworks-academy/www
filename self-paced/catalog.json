@@ -3,16 +3,6 @@
   "accessPolicy": "Course content is available only after successful enrollment and learner authentication.",
   "courses": [
     {
-      "code": "LXD-SLD-201",
-      "slug": "evidence-based-slide-design-digital-learning",
-      "title": "Evidence-Based Slide Design for Digital Learning",
-      "category": "Learning Experience Design",
-      "level": "Intermediate",
-      "delivery": "Self-paced",
-      "href": "/self-paced/evidence-based-slide-design-digital-learning/",
-      "enrollmentHref": "https://portal.skunkworksacademy.com/checkout/?courseId=LXD-SLD-201"
-    },
-    {
       "code": "SEC-OSINT-201",
       "slug": "open-source-intelligence-gathering",
       "title": "Open-Source Intelligence (OSINT) Gathering with Recon-ng and Shodan",
