@@ -6,9 +6,16 @@
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
   var VERSION = "2026.08.20.3";
+  var FORMS_VERSION = "2026.08.20.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png?v=" + VERSION;
   var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png?v=" + VERSION;
+  var FORMS_DESIGN_SYSTEM = PUBLIC_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
+  var FORMS_STYLES = PUBLIC_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
+  var FORMS_GLOBAL_NAV = PUBLIC_ROOT + "assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1";
+  var pathname = String(window.location && window.location.pathname || "/");
+  var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
+
   var SURFACE_SELECTOR = [
     "main",
     "main section",
@@ -30,6 +37,15 @@
     "main [class*='hero']",
     "main [class*='section']",
     ".document",
+    ".document section",
+    ".document article",
+    ".document aside",
+    ".document fieldset",
+    ".document form",
+    ".document table",
+    ".document th",
+    ".document td",
+    ".document div[class]",
     ".document > .cover",
     "section.cover"
   ].join(",");
@@ -58,6 +74,49 @@
       link.setAttribute("data-skunkworks-favicon", "canonical");
       head.appendChild(link);
     });
+  }
+
+  function ensureStylesheet(attribute, value, href) {
+    var head = document.head || document.documentElement;
+    if (!head) return null;
+    var selector = 'link[' + attribute + '="' + value + '"]';
+    var existing = document.querySelector(selector);
+    if (existing) {
+      if (existing.getAttribute("href") !== href) existing.setAttribute("href", href);
+      return existing;
+    }
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.setAttribute(attribute, value);
+    head.appendChild(link);
+    return link;
+  }
+
+  function ensureScript(attribute, value, src) {
+    var head = document.head || document.documentElement;
+    if (!head) return null;
+    var selector = 'script[' + attribute + '="' + value + '"]';
+    var existing = document.querySelector(selector);
+    if (existing) {
+      if (existing.getAttribute("src") !== src) existing.setAttribute("src", src);
+      return existing;
+    }
+    var script = document.createElement("script");
+    script.defer = true;
+    script.src = src;
+    script.referrerPolicy = "strict-origin-when-cross-origin";
+    script.setAttribute(attribute, value);
+    head.appendChild(script);
+    return script;
+  }
+
+  function ensureFormsExperience() {
+    if (!isFormsPage) return;
+    ensureStylesheet("data-skunkworks-design-system", "forms-canonical", FORMS_DESIGN_SYSTEM);
+    ensureStylesheet("data-skunkworks-forms-style", "canonical", FORMS_STYLES);
+    ensureScript("data-skunkworks-global-nav", "forms-canonical", FORMS_GLOBAL_NAV);
+    if (document.body) document.body.setAttribute("data-skunkworks-forms-theme", "canonical");
   }
 
   function parseColour(value) {
@@ -116,6 +175,7 @@
   function refreshSurfaceContracts() {
     scheduled = false;
     ensureCanonicalFavicons();
+    ensureFormsExperience();
     var nodes = document.querySelectorAll(SURFACE_SELECTOR);
     for (var i = 0; i < nodes.length; i += 1) classifySurface(nodes[i]);
   }
@@ -127,6 +187,7 @@
   }
 
   ensureCanonicalFavicons();
+  ensureFormsExperience();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", scheduleRefresh, { once: true });
@@ -136,6 +197,7 @@
 
   window.addEventListener("load", scheduleRefresh, { once: true });
   window.addEventListener("pageshow", scheduleRefresh);
+  window.addEventListener("skunkworksacademy:theme-change", scheduleRefresh);
 
   if (typeof MutationObserver !== "undefined") {
     var observer = new MutationObserver(scheduleRefresh);
@@ -149,8 +211,11 @@
 
   window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT = {
     version: VERSION,
+    formsVersion: FORMS_VERSION,
     faviconLight: FAVICON_LIGHT,
     faviconDark: FAVICON_DARK,
+    formsDesignSystem: FORMS_DESIGN_SYSTEM,
+    formsStyles: FORMS_STYLES,
     refresh: refreshSurfaceContracts
   };
 })();
