@@ -5,7 +5,9 @@
   var VERSION = "2026.08.15.1";
   var REVISION = "2026.08.16.1";
   var RUNTIME_VERSION = "2026.08.20.1";
+  var PAGE_CONTRACT_VERSION = "2026.08.20.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
+  var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
@@ -15,16 +17,6 @@
 
   if (typeof document === "undefined") return;
 
-  /*
-   * Global white-surface contract.
-   * Every public Academy page that loads the shared shell receives a white
-   * document canvas and white content surfaces, regardless of local theme,
-   * OS colour preference or page-specific background tokens.
-   *
-   * Scope is intentionally limited to the page content area so the canonical
-   * global navigation and footer may retain their own design-system surfaces.
-   * Interactive controls and media retain their component-specific styling.
-   */
   var BODY_BACKGROUND_STYLE_ID = "swa-global-white-body-contract";
 
   function installWhiteBodyContract() {
@@ -33,72 +25,70 @@
     var style = document.createElement("style");
     style.id = BODY_BACKGROUND_STYLE_ID;
     style.setAttribute("data-skunkworks-body-background", "white");
-    style.setAttribute("data-skunkworks-content-surfaces", "white");
     style.textContent = [
       "html, body {",
       "  background-color: #ffffff !important;",
       "  background-image: none !important;",
       "}",
-      "body {",
-      "  min-height: 100vh;",
-      "}",
-      "main,",
-      "main section,",
-      "main article,",
-      "main aside,",
-      "main div[class],",
-      "main figure,",
-      "main details,",
-      "main fieldset,",
-      "main [class*='card'],",
-      "main [class*='panel'],",
-      "main [class*='tile'],",
-      "main [class*='box'],",
-      "main [class*='container'],",
-      "main [class*='surface'],",
-      "main [class*='module'],",
-      "main [class*='block'],",
-      "main [class*='resource'],",
-      "main [class*='steps'],",
-      "main [class*='note'],",
-      "main [class*='hero'],",
-      "main [class*='section'] {",
-      "  background-color: #ffffff !important;",
-      "  background-image: none !important;",
-      "}",
-      "main,",
-      "main section,",
-      "main article,",
-      "main aside,",
-      "main div[class],",
-      "main figure,",
-      "main details,",
-      "main fieldset {",
-      "  color: #161616 !important;",
-      "}",
-      "main h1, main h2, main h3, main h4, main h5, main h6 {",
-      "  color: #161616 !important;",
-      "}",
-      "main p, main li, main dt, main dd, main label {",
-      "  color: #3f3f46 !important;",
-      "}",
-      "main a:not(.btn):not(.button):not([class*='button']) {",
-      "  color: #004f9e;",
-      "}",
-      "main .btn.primary,",
-      "main .button--primary,",
-      "main [class*='button--primary'] {",
-      "  color: #ffffff !important;",
-      "}"
+      "body { min-height: 100vh; }"
     ].join("\n");
-
     (document.head || document.documentElement).appendChild(style);
   }
 
+  function installCanonicalFavicons() {
+    var head = document.head || document.documentElement;
+    if (!head || document.querySelector('link[data-skunkworks-favicon="canonical"]')) return;
+
+    Array.prototype.slice.call(document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]'))
+      .forEach(function (node) {
+        if (node.parentNode) node.parentNode.removeChild(node);
+      });
+
+    [
+      { href: PUBLIC_ROOT + "images/favicon-black.png", media: "(prefers-color-scheme: light)" },
+      { href: PUBLIC_ROOT + "images/favicon-white.png", media: "(prefers-color-scheme: dark)" }
+    ].forEach(function (icon) {
+      var link = document.createElement("link");
+      link.rel = "icon";
+      link.type = "image/png";
+      link.href = icon.href;
+      link.media = icon.media;
+      link.setAttribute("data-skunkworks-favicon", "canonical");
+      head.appendChild(link);
+    });
+  }
+
+  function installPageContract() {
+    var head = document.head || document.documentElement;
+    if (!head) return;
+
+    if (!document.querySelector('link[data-skunkworks-page-contract="css"]')) {
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = PUBLIC_ROOT + "assets/academy-page-contract.css?v=" + PAGE_CONTRACT_VERSION;
+      css.setAttribute("data-skunkworks-page-contract", "css");
+      head.appendChild(css);
+    }
+
+    if (!document.querySelector('script[data-skunkworks-page-contract="runtime"]')) {
+      var runtime = document.createElement("script");
+      runtime.defer = true;
+      runtime.src = PUBLIC_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION;
+      runtime.setAttribute("data-skunkworks-page-contract", "runtime");
+      head.appendChild(runtime);
+    }
+  }
+
   installWhiteBodyContract();
+  installCanonicalFavicons();
+  installPageContract();
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", installWhiteBodyContract, { once: true });
+    document.addEventListener("DOMContentLoaded", function () {
+      installWhiteBodyContract();
+      installCanonicalFavicons();
+      installPageContract();
+    }, { once: true });
   }
 
   if (document.querySelector('script[data-skunkworks-global-nav-runtime="v11"]')) return;
@@ -123,8 +113,11 @@
     revision: REVISION,
     runtimeVersion: RUNTIME_VERSION,
     runtime: primarySrc,
+    pageContractVersion: PAGE_CONTRACT_VERSION,
+    pageContractRuntime: PUBLIC_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     bodyBackground: "#ffffff",
-    contentSurface: "#ffffff"
+    faviconLight: PUBLIC_ROOT + "images/favicon-black.png",
+    faviconDark: PUBLIC_ROOT + "images/favicon-white.png"
   };
 
   (document.head || document.documentElement).appendChild(script);
