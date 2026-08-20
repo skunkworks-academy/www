@@ -16,11 +16,14 @@
   if (typeof document === "undefined") return;
 
   /*
-   * Global page-canvas contract.
+   * Global white-surface contract.
    * Every public Academy page that loads the shared shell receives a white
-   * document/body canvas regardless of local theme, OS colour preference or
-   * page-specific background tokens. Individual sections/cards may still use
-   * their own intentional dark or coloured surfaces.
+   * document canvas and white content surfaces, regardless of local theme,
+   * OS colour preference or page-specific background tokens.
+   *
+   * Scope is intentionally limited to the page content area so the canonical
+   * global navigation and footer may retain their own design-system surfaces.
+   * Interactive controls and media retain their component-specific styling.
    */
   var BODY_BACKGROUND_STYLE_ID = "swa-global-white-body-contract";
 
@@ -30,6 +33,7 @@
     var style = document.createElement("style");
     style.id = BODY_BACKGROUND_STYLE_ID;
     style.setAttribute("data-skunkworks-body-background", "white");
+    style.setAttribute("data-skunkworks-content-surfaces", "white");
     style.textContent = [
       "html, body {",
       "  background-color: #ffffff !important;",
@@ -37,6 +41,54 @@
       "}",
       "body {",
       "  min-height: 100vh;",
+      "}",
+      "main,",
+      "main section,",
+      "main article,",
+      "main aside,",
+      "main div[class],",
+      "main figure,",
+      "main details,",
+      "main fieldset,",
+      "main [class*='card'],",
+      "main [class*='panel'],",
+      "main [class*='tile'],",
+      "main [class*='box'],",
+      "main [class*='container'],",
+      "main [class*='surface'],",
+      "main [class*='module'],",
+      "main [class*='block'],",
+      "main [class*='resource'],",
+      "main [class*='steps'],",
+      "main [class*='note'],",
+      "main [class*='hero'],",
+      "main [class*='section'] {",
+      "  background-color: #ffffff !important;",
+      "  background-image: none !important;",
+      "}",
+      "main,",
+      "main section,",
+      "main article,",
+      "main aside,",
+      "main div[class],",
+      "main figure,",
+      "main details,",
+      "main fieldset {",
+      "  color: #161616 !important;",
+      "}",
+      "main h1, main h2, main h3, main h4, main h5, main h6 {",
+      "  color: #161616 !important;",
+      "}",
+      "main p, main li, main dt, main dd, main label {",
+      "  color: #3f3f46 !important;",
+      "}",
+      "main a:not(.btn):not(.button):not([class*='button']) {",
+      "  color: #004f9e;",
+      "}",
+      "main .btn.primary,",
+      "main .button--primary,",
+      "main [class*='button--primary'] {",
+      "  color: #ffffff !important;",
       "}"
     ].join("\n");
 
@@ -71,7 +123,8 @@
     revision: REVISION,
     runtimeVersion: RUNTIME_VERSION,
     runtime: primarySrc,
-    bodyBackground: "#ffffff"
+    bodyBackground: "#ffffff",
+    contentSurface: "#ffffff"
   };
 
   (document.head || document.documentElement).appendChild(script);
