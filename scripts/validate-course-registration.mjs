@@ -1,5 +1,4 @@
 import { readFile } from 'node:fs/promises';
-import * as cheerio from 'cheerio';
 
 const files = [
   'course-registration/index.html',
@@ -15,37 +14,42 @@ function fail(file, message) {
   failures.push(`${file}: ${message}`);
 }
 
+function count(source, pattern) {
+  return (source.match(pattern) || []).length;
+}
+
 for (const file of files) {
   const html = await readFile(file, 'utf8');
-  const $ = cheerio.load(html);
-  const icons = $('link[data-skunkworks-favicon="canonical"]');
+  const canonicalIcons = count(html, /<link\b[^>]*data-skunkworks-favicon\s*=\s*["']canonical["'][^>]*>/gi);
+  const lightIcons = count(html, new RegExp(`<link\\b[^>]*href=["']${requiredFaviconLight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'gi'));
+  const darkIcons = count(html, new RegExp(`<link\\b[^>]*href=["']${requiredFaviconDark.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'gi'));
 
-  if (icons.length !== 4) fail(file, `expected 4 canonical favicon links, found ${icons.length}`);
-  if ($(`link[href="${requiredFaviconLight}"]`).length < 3) fail(file, 'missing default/light favicon variants');
-  if ($(`link[href="${requiredFaviconDark}"]`).length !== 1) fail(file, 'missing dark favicon variant');
-  if ($('meta[name="viewport"]').length !== 1) fail(file, 'missing viewport metadata');
+  if (canonicalIcons !== 4) fail(file, `expected 4 canonical favicon links, found ${canonicalIcons}`);
+  if (lightIcons < 3) fail(file, 'missing default/light favicon variants');
+  if (darkIcons !== 1) fail(file, 'missing dark favicon variant');
+  if (count(html, /<meta\b[^>]*name=["']viewport["'][^>]*>/gi) !== 1) fail(file, 'missing viewport metadata');
   if (/[ÂÃâ][\x80-\xBF]?/.test(html)) fail(file, 'contains likely mojibake/encoding corruption');
 
   if (file.endsWith('/index.html')) {
-    if ($('body.course-registration-page').length !== 1) fail(file, 'missing course-registration page class');
-    if ($('link[data-course-registration-style="canonical"]').length !== 1) fail(file, 'missing canonical registration stylesheet');
-    if ($('script[data-course-registration-runtime="canonical"]').length !== 1) fail(file, 'missing registration interaction runtime');
-    if ($('script[data-skunkworks-global-nav]').length !== 1) fail(file, 'missing global Academy navigation runtime');
-    if ($('#courseRegistrationForm').length !== 1) fail(file, 'missing course registration form');
-    if ($('input[name="_next"]').attr('value') !== 'https://www.skunkworksacademy.com/course-registration/thank-you.html') fail(file, 'registration redirect must use canonical Academy domain');
-    if ($('.cr-fields').length < 4) fail(file, 'expected responsive field groups');
-    if ($('input[required], select[required]').length < 8) fail(file, 'required-field contract is unexpectedly weak');
+    if (!/<body\b[^>]*class=["'][^"']*\bcourse-registration-page\b[^"']*["']/i.test(html)) fail(file, 'missing course-registration page class');
+    if (count(html, /data-course-registration-style=["']canonical["']/gi) !== 1) fail(file, 'missing canonical registration stylesheet');
+    if (count(html, /data-course-registration-runtime=["']canonical["']/gi) !== 1) fail(file, 'missing registration interaction runtime');
+    if (count(html, /<script\b[^>]*data-skunkworks-global-nav[^>]*>/gi) !== 1) fail(file, 'missing global Academy navigation runtime');
+    if (count(html, /id=["']courseRegistrationForm["']/gi) !== 1) fail(file, 'missing course registration form');
+    if (!/<input\b[^>]*name=["']_next["'][^>]*value=["']https:\/\/www\.skunkworksacademy\.com\/course-registration\/thank-you\.html["'][^>]*>/i.test(html)) fail(file, 'registration redirect must use canonical Academy domain');
+    if (count(html, /class=["'][^"']*\bcr-fields\b[^"']*["']/gi) < 4) fail(file, 'expected responsive field groups');
+    if (count(html, /<(?:input|select)\b[^>]*\brequired\b[^>]*>/gi) < 8) fail(file, 'required-field contract is unexpectedly weak');
   }
 
   if (file.endsWith('/thank-you.html')) {
-    if ($('body.registration-confirmation-page').length !== 1) fail(file, 'missing confirmation page class');
-    if ($('#continueCourse').length !== 1 || $('#stayHere').length !== 1) fail(file, 'missing confirmation navigation controls');
-    if ($('meta[name="robots"]').attr('content') !== 'noindex, follow') fail(file, 'confirmation page should not be indexed');
+    if (!/<body\b[^>]*class=["'][^"']*\bregistration-confirmation-page\b[^"']*["']/i.test(html)) fail(file, 'missing confirmation page class');
+    if (count(html, /id=["']continueCourse["']/gi) !== 1 || count(html, /id=["']stayHere["']/gi) !== 1) fail(file, 'missing confirmation navigation controls');
+    if (!/<meta\b[^>]*name=["']robots["'][^>]*content=["']noindex, follow["'][^>]*>/i.test(html)) fail(file, 'confirmation page should not be indexed');
   }
 
   if (file.includes('training-email')) {
     if (!/@media\s+screen\s+and\s+\(max-width:\s*640px\)/i.test(html)) fail(file, 'missing mobile email media query');
-    if ($('table[role="presentation"]').length < 2) fail(file, 'email template is not using presentation-table layout');
+    if (count(html, /<table\b[^>]*role=["']presentation["'][^>]*>/gi) < 2) fail(file, 'email template is not using presentation-table layout');
     if (!/https:\/\/www\.skunkworksacademy\.com\/course-registration\/?/i.test(html)) fail(file, 'email CTA must use canonical registration URL');
   }
 }
