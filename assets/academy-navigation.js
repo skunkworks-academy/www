@@ -3,7 +3,7 @@
   "use strict";
 
   var VERSION = "2026.08.15.1";
-  var REVISION = "2026.08.16.1";
+  var REVISION = "2026.08.20.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
@@ -12,7 +12,7 @@
   var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
   var TOP_MENU = [
     { label: "Home", url: "https://skunkworksacademy.com/" },
-    { label: "Catalogue", url: "https://skunkworksacademy.com/catalogue/" },
+    { label: "Courses", url: "https://skunkworksacademy.com/courses" },
     { label: "Labs", url: "https://labs.skunkworksacademy.com/" },
     { label: "Microsoft", url: "https://microsoft.skunkworksacademy.com/" },
     { label: "IBM", url: "https://ibm.skunkworksacademy.com/" },
@@ -20,6 +20,25 @@
     { label: "Badging", url: "https://badging.skunkworksacademy.com/" },
     { label: "Jobs", url: "https://jobs.skunkworksacademy.com/" },
     { label: "Blog", url: "https://blog.skunkworksacademy.com/" }
+  ];
+
+  var SECTION_BRANDS = [
+    { label: "Connections", hosts: ["portal.skunkworksacademy.com"], paths: ["/connections"] },
+    { label: "Reports", hosts: ["portal.skunkworksacademy.com"], paths: ["/reports"] },
+    { label: "Learner portal", hosts: ["portal.skunkworksacademy.com"] },
+    { label: "Courses", hosts: ["skunkworksacademy.com", "www.skunkworksacademy.com"], paths: ["/courses", "/catalogue"] },
+    { label: "Plans & purchases", hosts: ["skunkworksacademy.com", "www.skunkworksacademy.com"], paths: ["/plans-and-purchases"] },
+    { label: "Forms", hosts: ["skunkworksacademy.com", "www.skunkworksacademy.com"], paths: ["/forms"] },
+    { label: "Labs", hosts: ["labs.skunkworksacademy.com", "lab.skunkworksacademy.com"] },
+    { label: "Security", hosts: ["security.skunkworksacademy.com"] },
+    { label: "Microsoft", hosts: ["microsoft.skunkworksacademy.com"] },
+    { label: "IBM", hosts: ["ibm.skunkworksacademy.com"] },
+    { label: "Badging", hosts: ["badging.skunkworksacademy.com", "badge-hub.skunkworksacademy.com"] },
+    { label: "Jobs", hosts: ["jobs.skunkworksacademy.com"] },
+    { label: "Docs", hosts: ["docs.skunkworksacademy.com"] },
+    { label: "Publish", hosts: ["publish.skunkworksacademy.com"] },
+    { label: "Blog", hosts: ["blog.skunkworksacademy.com"] },
+    { label: "Home", hosts: ["skunkworksacademy.com", "www.skunkworksacademy.com"], paths: ["/"] }
   ];
 
   if (typeof document === "undefined") return;
@@ -113,14 +132,47 @@
     (document.head || document.documentElement).appendChild(style);
   }
 
+  function normalisePath(pathname) {
+    var value = String(pathname || "/").replace(/\/+$/, "");
+    return value || "/";
+  }
+
+  function pathMatches(currentPath, candidatePath) {
+    var targetPath = normalisePath(candidatePath);
+    if (targetPath === "/") return currentPath === "/";
+    return currentPath === targetPath || currentPath.indexOf(targetPath + "/") === 0;
+  }
+
+  function currentSection() {
+    var currentHost = String(window.location && window.location.hostname || "").toLowerCase();
+    var currentPath = normalisePath(window.location && window.location.pathname || "/");
+
+    for (var index = 0; index < SECTION_BRANDS.length; index += 1) {
+      var section = SECTION_BRANDS[index];
+      if (section.hosts.indexOf(currentHost) === -1) continue;
+      if (!section.paths || section.paths.some(function (path) { return pathMatches(currentPath, path); })) return section;
+    }
+
+    return { label: "Home" };
+  }
+
+  function syncBrandText() {
+    var brandText = document.querySelector(".swa-global-nav__brand-text");
+    if (!brandText) return false;
+    var section = currentSection();
+    if (brandText.textContent !== section.label) brandText.textContent = section.label;
+    brandText.setAttribute("data-skunkworks-section-label", section.label);
+    return true;
+  }
+
   function isCurrentTopDestination(destination) {
     try {
       var current = new URL(window.location.href);
       var target = new URL(destination.url);
       if (current.hostname !== target.hostname) return false;
-      var targetPath = target.pathname.replace(/\/$/, "") || "/";
-      var currentPath = current.pathname.replace(/\/$/, "") || "/";
-      return targetPath === "/" || currentPath === targetPath || currentPath.indexOf(targetPath + "/") === 0;
+      var targetPath = normalisePath(target.pathname);
+      var currentPath = normalisePath(current.pathname);
+      return targetPath === "/" ? currentPath === "/" : pathMatches(currentPath, targetPath);
     } catch (_error) {
       return false;
     }
@@ -135,6 +187,7 @@
     if (existing) {
       header.classList.add("swa-has-top-menu");
       document.body.classList.add("swa-has-top-menu");
+      syncBrandText();
       return true;
     }
 
@@ -155,6 +208,7 @@
     header.appendChild(nav);
     header.classList.add("swa-has-top-menu");
     document.body.classList.add("swa-has-top-menu");
+    syncBrandText();
     return true;
   }
 
@@ -219,6 +273,14 @@
   function refreshCanonicalChrome() {
     removeKnownPublicChrome();
     ensureTopMenu();
+    syncBrandText();
+  }
+
+  function refreshRouteState() {
+    var nav = document.querySelector(".swa-global-nav__top-menu");
+    if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
+    ensureTopMenu();
+    syncBrandText();
   }
 
   function startChromeGuard() {
@@ -230,11 +292,8 @@
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener("popstate", function () {
-      var nav = document.querySelector(".swa-global-nav__top-menu");
-      if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
-      ensureTopMenu();
-    });
+    window.addEventListener("popstate", refreshRouteState);
+    window.addEventListener("hashchange", syncBrandText);
 
     window.addEventListener("pagehide", function () {
       observer.disconnect();
