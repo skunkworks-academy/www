@@ -1,7 +1,7 @@
 /*
   Skunkworks Academy accessibility contrast contract.
-  This stylesheet is loaded after page/theme CSS and provides WCAG 2.2 AA-safe
-  foreground tokens for light and dark presentation states.
+  Loaded after page/theme CSS. It provides WCAG 2.2 AA-safe foreground tokens
+  and explicit publisher component foreground/background pairings.
 */
 
 :root {
@@ -14,9 +14,31 @@
   --sk-text-danger: #b42318;
   --sk-text-info: #0043ce;
   --signal-orange: var(--sk-a11y-signal-orange);
+
+  /* Publisher surface/foreground contract — light presentation. */
+  --sk-pub-page-bg: #ffffff;
+  --sk-pub-soft-bg: #f7f9fc;
+  --sk-pub-card-bg: #ffffff;
+  --sk-pub-step-bg: #ffffff;
+  --sk-pub-inverse-bg: #03033a;
+  --sk-pub-border: #d8dee8;
+  --sk-pub-heading: #03033a;
+  --sk-pub-text: #15171a;
+  --sk-pub-muted: #303846;
+  --sk-pub-link: #004f9e;
+  --sk-pub-link-hover: #003a75;
+  --sk-pub-eyebrow: #8f2500;
+  --sk-pub-tag-bg: #eaf2ff;
+  --sk-pub-tag-text: #003a75;
+  --sk-pub-on-inverse: #f7fbff;
+  --sk-pub-on-inverse-muted: #dce6ff;
+  --sk-pub-on-inverse-link: #b9d7ff;
+  --sk-pub-hero-eyebrow: #b9d7ff;
+  --sk-pub-focus: #004f9e;
 }
 
 :root[data-theme="dark"],
+:root[data-swa-theme="dark"],
 [data-theme="dark"] {
   --sk-link: var(--sk-a11y-link-dark) !important;
   --sk-focus: var(--sk-a11y-link-dark) !important;
@@ -25,10 +47,31 @@
   --sk-text-warning: #f1c21b;
   --sk-text-danger: #ff8389;
   --sk-text-info: #78a9ff;
+
+  /* Publisher surface/foreground contract — dark presentation. */
+  --sk-pub-page-bg: #0f1115;
+  --sk-pub-soft-bg: #151922;
+  --sk-pub-card-bg: #191e27;
+  --sk-pub-step-bg: #202631;
+  --sk-pub-inverse-bg: #03033a;
+  --sk-pub-border: #3b4554;
+  --sk-pub-heading: #f8fafc;
+  --sk-pub-text: #f1f5f9;
+  --sk-pub-muted: #cbd5e1;
+  --sk-pub-link: #8ab4ff;
+  --sk-pub-link-hover: #b9d7ff;
+  --sk-pub-eyebrow: #ffb38f;
+  --sk-pub-tag-bg: #102a46;
+  --sk-pub-tag-text: #b9d7ff;
+  --sk-pub-on-inverse: #f7fbff;
+  --sk-pub-on-inverse-muted: #dce6ff;
+  --sk-pub-on-inverse-link: #b9d7ff;
+  --sk-pub-hero-eyebrow: #b9d7ff;
+  --sk-pub-focus: #8ab4ff;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]):not([data-swa-theme="light"]) {
     --sk-link: var(--sk-a11y-link-dark) !important;
     --sk-focus: var(--sk-a11y-link-dark) !important;
     --sk-interactive-text: var(--sk-a11y-link-dark);
@@ -36,6 +79,26 @@
     --sk-text-warning: #f1c21b;
     --sk-text-danger: #ff8389;
     --sk-text-info: #78a9ff;
+
+    --sk-pub-page-bg: #0f1115;
+    --sk-pub-soft-bg: #151922;
+    --sk-pub-card-bg: #191e27;
+    --sk-pub-step-bg: #202631;
+    --sk-pub-inverse-bg: #03033a;
+    --sk-pub-border: #3b4554;
+    --sk-pub-heading: #f8fafc;
+    --sk-pub-text: #f1f5f9;
+    --sk-pub-muted: #cbd5e1;
+    --sk-pub-link: #8ab4ff;
+    --sk-pub-link-hover: #b9d7ff;
+    --sk-pub-eyebrow: #ffb38f;
+    --sk-pub-tag-bg: #102a46;
+    --sk-pub-tag-text: #b9d7ff;
+    --sk-pub-on-inverse: #f7fbff;
+    --sk-pub-on-inverse-muted: #dce6ff;
+    --sk-pub-on-inverse-link: #b9d7ff;
+    --sk-pub-hero-eyebrow: #b9d7ff;
+    --sk-pub-focus: #8ab4ff;
   }
 }
 
@@ -49,6 +112,144 @@
 .metric strong,
 .stat .number {
   color: var(--sk-interactive-text) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Publisher page contrast contract
+   Every foreground below is paired with the surface that actually contains it.
+   This prevents generic design-system or theme colours from producing dark-on-
+   dark or light-on-light combinations in the Academy homepage content.
+   ------------------------------------------------------------------------- */
+
+main .hero {
+  color: var(--sk-pub-on-inverse) !important;
+}
+main .hero h1 {
+  color: #ffffff !important;
+}
+main .hero .lead {
+  color: var(--sk-pub-on-inverse-muted) !important;
+}
+main .hero .eyebrow {
+  color: var(--sk-pub-hero-eyebrow) !important;
+}
+main .hero .btn.inverse {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, .62) !important;
+}
+main .hero .btn.primary {
+  color: #ffffff !important;
+}
+
+main .hero .proof-panel {
+  background: var(--sk-pub-card-bg) !important;
+  border-color: var(--sk-pub-border) !important;
+  color: var(--sk-pub-text) !important;
+}
+main .hero .proof-panel h2,
+main .hero .proof-panel li {
+  color: var(--sk-pub-text) !important;
+}
+
+main .section {
+  background: var(--sk-pub-page-bg) !important;
+  color: var(--sk-pub-text) !important;
+}
+main .section.soft {
+  background: var(--sk-pub-soft-bg) !important;
+}
+
+main .section .section-heading h2,
+main .section .card h3,
+main .section .author-card h2,
+main .section .resource-panel h2 {
+  color: var(--sk-pub-heading) !important;
+}
+
+main .section .section-heading > p:not(.eyebrow),
+main .section .card > p,
+main .section .author-card > p,
+main .section .resource-panel p,
+main .section .steps,
+main .section .steps li {
+  color: var(--sk-pub-muted) !important;
+}
+
+main .section .eyebrow {
+  color: var(--sk-pub-eyebrow) !important;
+}
+
+main .section .card,
+main .section .author-card {
+  background: var(--sk-pub-card-bg) !important;
+  border-color: var(--sk-pub-border) !important;
+  color: var(--sk-pub-text) !important;
+}
+
+main .section .resource-panel {
+  background: var(--sk-pub-soft-bg) !important;
+  border-color: var(--sk-pub-border) !important;
+  color: var(--sk-pub-text) !important;
+}
+
+main .section .steps {
+  background: var(--sk-pub-step-bg) !important;
+  border: 1px solid var(--sk-pub-border) !important;
+}
+
+main .section .tag {
+  background: var(--sk-pub-tag-bg) !important;
+  color: var(--sk-pub-tag-text) !important;
+}
+
+main .section .card-link,
+main .section .author-card > a {
+  color: var(--sk-pub-link) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: .08em !important;
+  text-underline-offset: .16em !important;
+}
+
+main .section .card-link:hover,
+main .section .author-card > a:hover {
+  color: var(--sk-pub-link-hover) !important;
+  text-decoration-thickness: .12em !important;
+}
+
+main .section .card-link:focus-visible,
+main .section .author-card > a:focus-visible,
+main .section .policy-card > a:focus-visible {
+  outline: 3px solid var(--sk-pub-focus) !important;
+  outline-offset: 3px !important;
+}
+
+/* The policy card is deliberately inverse. Its foregrounds therefore use the
+   inverse palette instead of inheriting the surrounding section colours. */
+main .section .policy-card {
+  background: var(--sk-pub-inverse-bg) !important;
+  border-color: rgba(255, 255, 255, .20) !important;
+  color: var(--sk-pub-on-inverse-muted) !important;
+}
+main .section .policy-card h2 {
+  color: var(--sk-pub-on-inverse) !important;
+}
+main .section .policy-card li {
+  color: var(--sk-pub-on-inverse-muted) !important;
+}
+main .section .policy-card > a {
+  color: var(--sk-pub-on-inverse-link) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: .08em !important;
+  text-underline-offset: .16em !important;
+}
+main .section .policy-card > a:hover {
+  color: #ffffff !important;
+}
+
+/* Buttons keep explicit foregrounds because they sit on interactive surfaces,
+   not on the surrounding section background. */
+main .section .btn.primary {
+  color: #ffffff !important;
 }
 
 /* Inline links must remain identifiable without colour perception alone. */

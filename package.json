@@ -16,6 +16,9 @@
     "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast",
     "build": "npm run validate"
   },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  },
   "engines": {
     "node": ">=24"
   }
