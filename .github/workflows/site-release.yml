@@ -12,6 +12,8 @@ on:
       - '.github/workflows/site-release.yml'
   push:
     branches: [main]
+  schedule:
+    - cron: '17 */4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -53,6 +55,7 @@ jobs:
 
   lighthouse:
     name: Lighthouse local production audit
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: validate
@@ -121,15 +124,91 @@ jobs:
 
   deploy:
     name: Deploy GitHub Pages
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: >-
+      always() &&
+      needs.validate.result == 'success' &&
+      (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: [validate, lighthouse]
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout Academy site
+        uses: actions/checkout@v7
+
+      - name: Checkout canonical course catalog source
+        uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/course-catalog
+          ref: main
+          path: .course-catalog
+          persist-credentials: false
+
+      - name: Set up Node.js for course catalog
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Build canonical course catalog
+        working-directory: .course-catalog
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+
+      - name: Mount course-catalog build at /courses
+        shell: bash
+        run: |
+          set -euo pipefail
+          build='.course-catalog/build'
+
+          if [[ ! -f "$build/courses.html" && ! -f "$build/courses/index.html" ]]; then
+            echo 'Course catalog build did not emit the /courses landing route.'
+            find "$build" -maxdepth 2 -type f | sort | head -100
+            exit 1
+          fi
+
+          rm -rf courses courses.html
+
+          if [[ -d "$build/courses" ]]; then
+            cp -R "$build/courses" ./courses
+          else
+            mkdir -p courses
+          fi
+
+          if [[ -f "$build/courses.html" ]]; then
+            cp "$build/courses.html" ./courses.html
+            cp "$build/courses.html" ./courses/index.html
+          elif [[ -f "$build/courses/index.html" ]]; then
+            cp "$build/courses/index.html" ./courses/index.html
+          fi
+
+          for dir in assets img downloads; do
+            if [[ -d "$build/$dir" ]]; then
+              mkdir -p "$dir"
+              cp -R "$build/$dir/." "$dir/"
+            fi
+          done
+
+          if [[ -f "$build/course-manifest.json" ]]; then
+            cp "$build/course-manifest.json" ./course-manifest.json
+            cp "$build/course-manifest.json" ./courses/course-manifest.json
+          fi
+
+          rm -rf .course-catalog
+
+          test -f courses/index.html
+          grep -q 'https://www.skunkworksacademy.com/courses' courses/index.html
+          if grep -R -q 'catalog.skunkworksacademy.com' courses courses.html course-manifest.json 2>/dev/null; then
+            echo 'Legacy catalogue hostname leaked into the /courses deployment.'
+            exit 1
+          fi
+
+          echo 'Mounted skunkworks-academy/course-catalog at /courses.'
+
       - name: Normalize and verify Academy global shell on every HTML document
         run: |
           python3 - <<'PY'
@@ -193,25 +272,32 @@ jobs:
           print(f'Normalized WCAG contrast stylesheet {accessibility_version} on {len(pages)} HTML document(s).')
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
+
       - uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
 
   verify-production:
     name: Verify production domain
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: >-
+      always() &&
+      needs.deploy.result == 'success' &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: deploy
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Wait for production and verify CORS-safe shell assets
+      - name: Wait for production and verify CORS-safe shell assets and /courses
         run: |
           for attempt in {1..30}; do
             response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.16.1' || true)"
+            courses="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/courses' || true)"
             shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
             ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
             footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
@@ -220,15 +306,19 @@ jobs:
             if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
               && printf '%s' "$response" | grep -q 'rev=2026.08.16.1' \
               && printf '%s' "$response" | grep -q 'data-skunkworks-accessibility="wcag-contrast"' \
+              && printf '%s' "$courses" | grep -q 'https://www.skunkworksacademy.com/courses' \
+              && printf '%s' "$courses" | grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' \
+              && ! printf '%s' "$courses" | grep -q 'catalog.skunkworksacademy.com' \
               && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.16.1"' \
               && printf '%s' "$shell" | grep -q 'window.location.origin' \
               && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
               && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
               && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy' \
               && printf '%s' "$accessibility_www" | grep -q 'accessibility contrast contract'; then
+              echo 'Production verification succeeded, including canonical /courses deployment.'
               exit 0
             fi
             sleep 10
           done
-          echo 'Production verification failed: canonical shell/accessibility assets were not found on the www origin.'
+          echo 'Production verification failed: canonical shell/accessibility assets or /courses were not found on the www origin.'
           exit 1
