@@ -1,0 +1,331 @@
+/*
+  Skunkworks Academy forms and document surface contract.
+  Applies only to HTML documents under /forms/ through the repository normalizer.
+
+  Goals:
+  - align operational forms with the canonical Academy design system;
+  - preserve a clean white document surface in light mode;
+  - provide a true inverse dark document surface in dark/system-dark modes;
+  - keep foreground/background contrast deterministic across nested content;
+  - improve narrow-screen usability without harming print layouts.
+*/
+
+:root {
+  --swa-form-page: #ffffff;
+  --swa-form-surface: #ffffff;
+  --swa-form-surface-soft: #f7f9fc;
+  --swa-form-surface-muted: #eef2f7;
+  --swa-form-text: #161616;
+  --swa-form-text-muted: #4b5563;
+  --swa-form-line: #d7dde7;
+  --swa-form-line-strong: #9aa4b2;
+  --swa-form-accent: #0f62fe;
+  --swa-form-accent-hover: #0043ce;
+  --swa-form-input: #ffffff;
+  --swa-form-input-text: #161616;
+  --swa-form-shadow: 0 18px 50px rgba(15, 23, 42, .10);
+}
+
+html,
+body {
+  background-color: var(--swa-form-page) !important;
+  background-image: none !important;
+}
+
+body {
+  min-width: 0;
+  overflow-x: hidden;
+  color: var(--swa-form-text) !important;
+  font-family: var(--sk-font-sans, "IBM Plex Sans", "Segoe UI", Arial, sans-serif) !important;
+  line-height: 1.55;
+}
+
+/* Canonical document surface. */
+.document,
+main,
+.sk-main {
+  color: var(--swa-form-text) !important;
+}
+
+.document {
+  width: min(100%, 1080px) !important;
+  max-width: 1080px !important;
+  margin-inline: auto !important;
+  padding: clamp(1.5rem, 4vw, 4rem) !important;
+  background: var(--swa-form-surface) !important;
+  border: 1px solid var(--swa-form-line) !important;
+  border-top: 6px solid var(--swa-form-accent) !important;
+  border-radius: 0 0 var(--sk-radius-md, 1rem) var(--sk-radius-md, 1rem);
+  box-shadow: var(--swa-form-shadow) !important;
+}
+
+.cover,
+.header,
+.document-header,
+.company-box,
+.box,
+.note,
+.signature-box,
+.card,
+.panel,
+section,
+article,
+aside,
+fieldset,
+table,
+th,
+td {
+  border-color: var(--swa-form-line) !important;
+}
+
+.cover,
+.header,
+.document-header {
+  background: var(--swa-form-surface) !important;
+  color: var(--swa-form-text) !important;
+}
+
+.company-box,
+.box,
+.note,
+.signature-box,
+.card,
+.panel {
+  background: var(--swa-form-surface-soft) !important;
+  color: var(--swa-form-text) !important;
+}
+
+th {
+  background: var(--swa-form-surface-muted) !important;
+  color: var(--swa-form-text) !important;
+}
+
+td {
+  background: var(--swa-form-surface) !important;
+  color: var(--swa-form-text) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand,
+.signature-title,
+strong,
+b,
+legend,
+dt {
+  color: var(--swa-form-text) !important;
+}
+
+p,
+li,
+label,
+small,
+.subtitle,
+.version,
+.company-details,
+.sig-label,
+.footer-note,
+.sk-card__text,
+.sk-card__meta {
+  color: var(--swa-form-text-muted) !important;
+}
+
+a:not(.sk-button):not(.btn):not([role="button"]) {
+  color: var(--swa-form-accent) !important;
+  text-underline-offset: .18em;
+}
+
+a:not(.sk-button):not(.btn):not([role="button"]):hover {
+  color: var(--swa-form-accent-hover) !important;
+}
+
+input,
+textarea,
+select,
+button {
+  max-width: 100%;
+  min-height: 44px;
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  background: var(--swa-form-input) !important;
+  color: var(--swa-form-input-text) !important;
+  border: 1px solid var(--swa-form-line-strong) !important;
+  border-radius: .45rem !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--swa-form-input-text) 56%, transparent) !important;
+  opacity: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--swa-form-accent) 70%, transparent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Tables remain usable on narrow screens. */
+table {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.document table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.document table tbody,
+.document table thead,
+.document table tfoot {
+  min-width: 100%;
+}
+
+.two-col,
+.signature-grid,
+.sk-grid--2 {
+  gap: clamp(1rem, 3vw, 2rem) !important;
+}
+
+/* Theme inversion: dark surfaces always use light foregrounds. */
+html[data-theme="dark"],
+html[data-swa-theme="dark"] {
+  --swa-form-page: #ffffff;
+  --swa-form-surface: #101010;
+  --swa-form-surface-soft: #171717;
+  --swa-form-surface-muted: #222222;
+  --swa-form-text: #ffffff;
+  --swa-form-text-muted: #d1d5db;
+  --swa-form-line: #3f3f46;
+  --swa-form-line-strong: #6b7280;
+  --swa-form-accent: #8ab4ff;
+  --swa-form-accent-hover: #b8d1ff;
+  --swa-form-input: #161616;
+  --swa-form-input-text: #ffffff;
+  --swa-form-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-swa-theme="light"]) {
+    --swa-form-page: #ffffff;
+    --swa-form-surface: #101010;
+    --swa-form-surface-soft: #171717;
+    --swa-form-surface-muted: #222222;
+    --swa-form-text: #ffffff;
+    --swa-form-text-muted: #d1d5db;
+    --swa-form-line: #3f3f46;
+    --swa-form-line-strong: #6b7280;
+    --swa-form-accent: #8ab4ff;
+    --swa-form-accent-hover: #b8d1ff;
+    --swa-form-input: #161616;
+    --swa-form-input-text: #ffffff;
+    --swa-form-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  }
+}
+
+/* Explicit light selection wins over OS dark mode. */
+html[data-theme="light"],
+html[data-swa-theme="light"] {
+  --swa-form-page: #ffffff;
+  --swa-form-surface: #ffffff;
+  --swa-form-surface-soft: #f7f9fc;
+  --swa-form-surface-muted: #eef2f7;
+  --swa-form-text: #161616;
+  --swa-form-text-muted: #4b5563;
+  --swa-form-line: #d7dde7;
+  --swa-form-line-strong: #9aa4b2;
+  --swa-form-accent: #0f62fe;
+  --swa-form-accent-hover: #0043ce;
+  --swa-form-input: #ffffff;
+  --swa-form-input-text: #161616;
+  --swa-form-shadow: 0 18px 50px rgba(15, 23, 42, .10);
+}
+
+/* Mobile and tablet spacing. */
+@media (max-width: 900px) {
+  body {
+    padding-inline: 1rem !important;
+  }
+
+  .document {
+    padding: clamp(1.25rem, 4vw, 2.25rem) !important;
+    border-radius: 0 0 .75rem .75rem;
+  }
+
+  .two-col,
+  .signature-grid,
+  .sk-grid--2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding-inline: .75rem !important;
+  }
+
+  .document {
+    padding: 1.1rem !important;
+  }
+
+  h1 {
+    font-size: clamp(1.45rem, 8vw, 2rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.15rem, 6vw, 1.45rem) !important;
+  }
+
+  th,
+  td {
+    padding: .7rem !important;
+  }
+}
+
+@media print {
+  html,
+  body,
+  .document,
+  .cover,
+  .header,
+  .document-header,
+  .company-box,
+  .box,
+  .note,
+  .signature-box,
+  th,
+  td {
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    padding: 0 !important;
+  }
+
+  .document {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  a {
+    color: #111827 !important;
+  }
+}
