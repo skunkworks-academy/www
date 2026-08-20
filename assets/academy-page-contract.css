@@ -32,6 +32,29 @@ body {
   color: var(--swa-light-text);
 }
 
+/* Document-style forms and handbooks use a white page and cover surface. */
+.document,
+.document > .cover,
+section.cover {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.document > .cover,
+section.cover {
+  color: var(--swa-light-text) !important;
+}
+
+.document > .cover :where(h1, h2, h3, h4, h5, h6, strong, b),
+section.cover :where(h1, h2, h3, h4, h5, h6, strong, b) {
+  color: var(--swa-light-text) !important;
+}
+
+.document > .cover :where(p, span, div, label, small),
+section.cover :where(p, span, div, label, small) {
+  color: var(--swa-light-muted);
+}
+
 /* Runtime-classified content surfaces. Custom properties make nested surfaces
    deterministic: a white card inside a black section resets its own foreground
    contract without fighting selector specificity. */
