@@ -62,16 +62,25 @@ function stripIconLinks(html) {
 }
 
 function stripManagedAssets(html) {
+  const replaceToFixpoint = (input, pattern) => {
+    let previous;
+    let next = input;
+    do {
+      previous = next;
+      next = next.replace(pattern, '');
+    } while (next !== previous);
+    return next;
+  };
+
   let previous;
   let next = html;
   do {
     previous = next;
-    next = next
-      .replace(/<link\b[^>]*(?:academy-page-contract\.css|data-skunkworks-page-contract\s*=\s*["']css["'])[^>]*>\s*/gi, '')
-      .replace(/<script\b[^>]*(?:academy-page-contract\.js|data-skunkworks-page-contract\s*=\s*["']runtime["'])[^>]*>\s*<\/script>\s*/gi, '')
-      .replace(/<link\b[^>]*(?:academy-forms\.css|data-skunkworks-forms-style\s*=\s*["']canonical["'])[^>]*>\s*/gi, '')
-      .replace(/<link\b[^>]*data-skunkworks-design-system\s*=\s*["']forms-canonical["'][^>]*>\s*/gi, '')
-      .replace(/<script\b[^>]*data-skunkworks-global-nav\s*=\s*["']forms-canonical["'][^>]*>\s*<\/script>\s*/gi, '');
+    next = replaceToFixpoint(next, /<link\b[^>]*(?:academy-page-contract\.css|data-skunkworks-page-contract\s*=\s*["']css["'])[^>]*>\s*/gi);
+    next = replaceToFixpoint(next, /<script\b[^>]*(?:academy-page-contract\.js|data-skunkworks-page-contract\s*=\s*["']runtime["'])[^>]*>\s*<\/script>\s*/gi);
+    next = replaceToFixpoint(next, /<link\b[^>]*(?:academy-forms\.css|data-skunkworks-forms-style\s*=\s*["']canonical["'])[^>]*>\s*/gi);
+    next = replaceToFixpoint(next, /<link\b[^>]*data-skunkworks-design-system\s*=\s*["']forms-canonical["'][^>]*>\s*/gi);
+    next = replaceToFixpoint(next, /<script\b[^>]*data-skunkworks-global-nav\s*=\s*["']forms-canonical["'][^>]*>\s*<\/script>\s*/gi);
   } while (next !== previous);
   return next;
 }
