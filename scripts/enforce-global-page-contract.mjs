@@ -53,9 +53,15 @@ function stripIconLinks(html) {
 }
 
 function stripContractAssets(html) {
-  return html
-    .replace(/<link\b[^>]*(?:academy-page-contract\.css|data-skunkworks-page-contract\s*=\s*["']css["'])[^>]*>\s*/gi, '')
-    .replace(/<script\b[^>]*(?:academy-page-contract\.js|data-skunkworks-page-contract\s*=\s*["']runtime["'])[^>]*>\s*<\/script>\s*/gi, '');
+  let previous;
+  let next = html;
+  do {
+    previous = next;
+    next = next
+      .replace(/<link\b[^>]*(?:academy-page-contract\.css|data-skunkworks-page-contract\s*=\s*["']css["'])[^>]*>\s*/gi, '')
+      .replace(/<script\b[^>]*(?:academy-page-contract\.js|data-skunkworks-page-contract\s*=\s*["']runtime["'])[^>]*>\s*<\/script>\s*/gi, '');
+  } while (next !== previous);
+  return next;
 }
 
 function normalize(html, file) {
