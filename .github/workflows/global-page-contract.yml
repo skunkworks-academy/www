@@ -29,7 +29,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: global-page-contract-${{ github.ref }}
@@ -37,12 +37,14 @@ concurrency:
 
 jobs:
   enforce:
-    name: Verify favicon and colour contract enforcement
+    name: Enforce favicon and colour contract
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - name: Checkout Academy site
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
@@ -66,20 +68,6 @@ jobs:
           grep -q 'images/favicon-black.png' assets/academy-page-contract.js
           grep -q 'images/favicon-white.png' assets/academy-page-contract.js
 
-      - name: Exercise normalizer against every HTML document
-        shell: bash
-        run: |
-          set -euo pipefail
-          staging="$(mktemp -d)"
-          tar \
-            --exclude=.git \
-            --exclude=node_modules \
-            --exclude=.course-catalog \
-            -cf - . | tar -xf - -C "$staging"
-
-          node scripts/enforce-global-page-contract.mjs --write "$staging"
-          node scripts/enforce-global-page-contract.mjs --check "$staging"
-
       - name: Verify shared shell dynamically installs the contract
         shell: bash
         run: |
@@ -96,6 +84,49 @@ jobs:
             echo 'Shared shell must remain CORS-safe.'
             exit 1
           fi
+
+      - name: Enforce contract on repository HTML
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/enforce-global-page-contract.mjs --write .
+          node scripts/enforce-global-page-contract.mjs --check .
+
+      - name: Commit automatic contract repairs
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- '*.html'; then
+            echo 'All HTML documents already satisfy the global page contract.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.html'
+          git commit -m 'Enforce global favicon and page colour contract'
+          git push origin HEAD:${GITHUB_REF_NAME}
+
+      - name: Validate pull-request HTML without mutating it
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          staging="$(mktemp -d)"
+          tar \
+            --exclude=.git \
+            --exclude=node_modules \
+            --exclude=.course-catalog \
+            -cf - . | tar -xf - -C "$staging"
+
+          node scripts/enforce-global-page-contract.mjs --write "$staging"
+          node scripts/enforce-global-page-contract.mjs --check "$staging"
+
+          # PRs may contain legacy HTML, but the release normalizer must always
+          # be able to convert every full HTML document into the canonical form.
+          echo 'Pull-request documents are normalizable to the global page contract.'
 
   production-assets:
     name: Verify canonical production assets
