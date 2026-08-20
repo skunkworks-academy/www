@@ -51,6 +51,40 @@
   color: var(--sk-interactive-text) !important;
 }
 
+/* Publisher sections use deliberately stronger foregrounds than the original
+   muted palette. This keeps body copy, small labels and card actions readable
+   at normal text sizes while retaining the Academy colour hierarchy. */
+main .section .section-heading > p:not(.eyebrow),
+main .section .card > p {
+  color: #303846 !important;
+}
+
+main .section .eyebrow {
+  color: #8f2500 !important;
+}
+
+main .section .tag {
+  background: #eaf2ff !important;
+  color: #003a75 !important;
+}
+
+main .section .card-link {
+  color: #004f9e !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: .08em !important;
+  text-underline-offset: .16em !important;
+}
+
+main .section .card-link:hover {
+  color: #003a75 !important;
+  text-decoration-thickness: .12em !important;
+}
+
+main .section .card-link:focus-visible {
+  outline: 3px solid #004f9e !important;
+  outline-offset: 3px !important;
+}
+
 /* Inline links must remain identifiable without colour perception alone. */
 .article a:not(.btn):not(.sk-button),
 .sk-document a:not(.btn):not(.sk-button),
