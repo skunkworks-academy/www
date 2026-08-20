@@ -1,0 +1,104 @@
+/*
+  Skunkworks Academy global page colour contract.
+  Canonical source: https://www.skunkworksacademy.com/assets/academy-page-contract.css
+
+  Rules:
+  - the document canvas is always white;
+  - surface text is dark on light backgrounds;
+  - surface text is light on dark backgrounds;
+  - nested surfaces inherit the nearest surface contract;
+  - interactive controls may retain their own component-specific colours.
+*/
+
+:root {
+  color-scheme: light;
+  --swa-page-bg: #ffffff;
+  --swa-light-text: #161616;
+  --swa-light-muted: #3f3f46;
+  --swa-light-link: #004f9e;
+  --swa-dark-text: #ffffff;
+  --swa-dark-muted: #e5e7eb;
+  --swa-dark-link: #b9d7ff;
+}
+
+html,
+body {
+  background-color: var(--swa-page-bg) !important;
+  background-image: none !important;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--swa-light-text);
+}
+
+/* Document-style forms and handbooks use a white page and cover surface. */
+.document,
+.document > .cover,
+section.cover {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.document > .cover,
+section.cover {
+  color: var(--swa-light-text) !important;
+}
+
+.document > .cover :where(h1, h2, h3, h4, h5, h6, strong, b),
+section.cover :where(h1, h2, h3, h4, h5, h6, strong, b) {
+  color: var(--swa-light-text) !important;
+}
+
+.document > .cover :where(p, span, div, label, small),
+section.cover :where(p, span, div, label, small) {
+  color: var(--swa-light-muted);
+}
+
+/* Runtime-classified content surfaces. Custom properties make nested surfaces
+   deterministic: a white card inside a black section resets its own foreground
+   contract without fighting selector specificity. */
+[data-swa-surface-tone="light"] {
+  --swa-surface-text: var(--swa-light-text);
+  --swa-surface-muted: var(--swa-light-muted);
+  --swa-surface-link: var(--swa-light-link);
+  color: var(--swa-surface-text) !important;
+}
+
+[data-swa-surface-tone="dark"] {
+  --swa-surface-text: var(--swa-dark-text);
+  --swa-surface-muted: var(--swa-dark-muted);
+  --swa-surface-link: var(--swa-dark-link);
+  color: var(--swa-surface-text) !important;
+}
+
+[data-swa-surface-tone] :where(h1, h2, h3, h4, h5, h6, strong, b, dt, legend) {
+  color: var(--swa-surface-text) !important;
+}
+
+[data-swa-surface-tone] :where(p, li, dd, small, figcaption, label, blockquote, cite) {
+  color: var(--swa-surface-muted) !important;
+}
+
+[data-swa-surface-tone] a:not(.btn):not(.button):not([class*="button"]):not([role="button"]) {
+  color: var(--swa-surface-link) !important;
+}
+
+/* Keep text on intentionally coloured interactive controls readable. */
+[data-swa-surface-tone] :where(.btn, .button, [class*="button"], [role="button"]) {
+  isolation: isolate;
+}
+
+/* Explicit authoring escape hatch for components that fully own their palette. */
+[data-swa-contrast="preserve"],
+[data-swa-contrast="preserve"] * {
+  --swa-surface-text: inherit;
+  --swa-surface-muted: inherit;
+  --swa-surface-link: inherit;
+}
+
+@media (forced-colors: active) {
+  [data-swa-surface-tone] {
+    forced-color-adjust: auto;
+  }
+}
