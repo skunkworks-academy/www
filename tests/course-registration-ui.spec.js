@@ -91,7 +91,7 @@ for (const viewport of [
     await expect(page.locator('#courseRegistrationForm')).toBeVisible();
     await expect(page.locator('.cr-button').first()).toBeVisible();
 
-    const targets = await page.locator('.cr-button, .cr-form input:not([type="hidden"]), .cr-form select, .cr-form textarea').evaluateAll((elements) =>
+    const targets = await page.locator('.cr-button, .cr-form input:not([type="hidden"]):not([type="checkbox"]), .cr-form select, .cr-form textarea').evaluateAll((elements) =>
       elements.filter((element) => getComputedStyle(element).display !== 'none').map((element) => ({
         tag: element.tagName,
         id: element.id,
@@ -99,6 +99,9 @@ for (const viewport of [
       })),
     );
     for (const target of targets) expect(target.height, `${target.tag}#${target.id} is too small`).toBeGreaterThanOrEqual(44);
+
+    const consentLabels = await page.locator('.cr-check').evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height));
+    for (const height of consentLabels) expect(height, 'checkbox label touch target is too small').toBeGreaterThanOrEqual(44);
   });
 }
 
@@ -132,13 +135,14 @@ test('explicit light and dark themes keep form text readable', async ({ page }) 
   }
 });
 
-test('confirmation page blocks cross-origin return URLs and lets users cancel redirect', async ({ page }) => {
+test('confirmation page blocks cross-origin return URLs and supports controlled navigation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${baseURL}/course-registration/thank-you.html?return=${encodeURIComponent('https://evil.example/phish')}&redirect=0`, { waitUntil: 'domcontentloaded' });
   await assertNoHorizontalOverflow(page);
   await expect(page.locator('link[data-skunkworks-favicon="canonical"]')).toHaveCount(4);
   await expect(page.locator('#continueCourse')).toHaveAttribute('href', '/self-paced/');
   await expect(page.locator('#redirectMessage')).toContainText('Continue to course');
+  await expect(page.locator('#stayHere')).toBeVisible();
 });
 
 test('email template remains readable without horizontal overflow on mobile', async ({ page }) => {
