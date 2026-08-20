@@ -3,14 +3,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.08.20.1';
+const VERSION = '2026.08.20.2';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
-const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png`;
-const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-white.png`;
+const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png?v=${VERSION}`;
+const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-white.png?v=${VERSION}`;
 const CONTRACT_CSS = `${PUBLIC_ROOT}assets/academy-page-contract.css?v=${VERSION}`;
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
 
 const FAVICON_TAGS = [
+  `<link rel="icon" type="image/png" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
+  `<link rel="shortcut icon" type="image/png" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
   `<link rel="icon" type="image/png" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
   `<link rel="icon" type="image/png" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
 ];
@@ -73,9 +75,10 @@ function count(haystack, needle) {
 
 function validate(html, file) {
   const failures = [];
-  if (count(html, 'data-skunkworks-favicon="canonical"') !== 2) failures.push('canonical favicon pair');
-  if (count(html, FAVICON_LIGHT) !== 1) failures.push('light favicon');
+  if (count(html, 'data-skunkworks-favicon="canonical"') !== 4) failures.push('canonical favicon set');
+  if (count(html, FAVICON_LIGHT) !== 3) failures.push('default/light favicon');
   if (count(html, FAVICON_DARK) !== 1) failures.push('dark favicon');
+  if (count(html, 'rel="shortcut icon"') !== 1) failures.push('shortcut favicon');
   if (count(html, 'data-skunkworks-page-contract="css"') !== 1) failures.push('page-contract CSS');
   if (count(html, 'data-skunkworks-page-contract="runtime"') !== 1) failures.push('page-contract runtime');
   if (count(html, CONTRACT_CSS) !== 1) failures.push('canonical page-contract CSS URL');
