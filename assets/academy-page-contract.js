@@ -5,7 +5,7 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.20.2";
+  var VERSION = "2026.08.20.3";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png?v=" + VERSION;
   var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png?v=" + VERSION;
@@ -44,16 +44,17 @@
       });
 
     [
-      { rel: "icon", href: FAVICON_LIGHT, media: "" },
-      { rel: "shortcut icon", href: FAVICON_LIGHT, media: "" },
-      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)" },
-      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)" }
+      { rel: "icon", href: FAVICON_LIGHT, media: "", sizes: "32x32" },
+      { rel: "shortcut icon", href: FAVICON_LIGHT, media: "", sizes: "" },
+      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)", sizes: "32x32" },
+      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
     ].forEach(function (icon) {
       var link = document.createElement("link");
       link.rel = icon.rel;
       link.type = "image/png";
       link.href = icon.href;
       if (icon.media) link.media = icon.media;
+      if (icon.sizes) link.sizes = icon.sizes;
       link.setAttribute("data-skunkworks-favicon", "canonical");
       head.appendChild(link);
     });
