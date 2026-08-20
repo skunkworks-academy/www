@@ -24,6 +24,7 @@ Scope: `course-registration/` in `skunkworks-academy/www`.
 10. **Confirmation redirect safety** — return URLs are constrained to the same origin. The confirmation page also includes a user-controlled way to cancel automatic redirection.
 11. **Email responsiveness** — the training email retains table-based email compatibility, a 640px stacking breakpoint, full-width mobile buttons and a `prefers-color-scheme: dark` presentation.
 12. **Favicons** — all active HTML documents retain the canonical four-link Academy browser-tab favicon set.
+13. **Global navigation interaction** — Chromium regression coverage now waits for the canonical Academy navigation, opens the mobile menu, verifies `aria-expanded`, checks the menu panel becomes visible, and verifies Escape closes the menu cleanly.
 
 ## Automated regression coverage
 
@@ -47,6 +48,6 @@ Scope: `course-registration/` in `skunkworks-academy/www`.
 - 390 × 844
 - 320 × 568
 
-The browser suite checks horizontal overflow, control target sizes, favicon presence, form validation/focus behaviour, light/dark text contrast, confirmation same-origin redirect protection and mobile email width.
+The browser suite checks horizontal overflow, control target sizes, favicon presence, canonical global navigation rendering and menu interaction, form validation/focus behaviour, light/dark text contrast, confirmation same-origin redirect protection and mobile email width.
 
 The `UX and load regression` workflow installs Chromium with Playwright and runs these tests on push, pull request and manual dispatch.
