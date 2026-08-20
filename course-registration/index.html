@@ -1,578 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-ZA" data-brand="academy">
 <head>
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
-  <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Register for Skunkworks Academy cyber security, cloud, AI, vendor-aligned and corporate training courses." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Course Registration | Skunkworks Academy</title>
+  <meta name="description" content="Register for Skunkworks Academy cybersecurity, cloud, AI, vendor-aligned, self-paced and instructor-led technology training." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://www.skunkworksacademy.com/course-registration/" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" data-skunkworks-favicon="canonical" />
   <link rel="shortcut icon" type="image/png" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" data-skunkworks-favicon="canonical" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.20.3" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <style>
-    :root {
-      --bg: #07111f;
-      --panel: #0d1b2f;
-      --panel-soft: #13253d;
-      --card: #ffffff;
-      --text: #152033;
-      --muted: #5c677d;
-      --brand: #21c55d;
-      --brand-dark: #0f8f44;
-      --accent: #00a8ff;
-      --danger: #c62828;
-      --border: #d9e2ef;
-      --shadow: 0 24px 60px rgba(2, 8, 23, 0.22);
-      --radius: 22px;
-      --max: 1180px;
-    }
 
-    * { box-sizing: border-box; }
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Skunkworks Academy" />
+  <meta property="og:title" content="Course Registration | Skunkworks Academy" />
+  <meta property="og:description" content="Register for practical technology training across cybersecurity, cloud, AI, DevOps and enterprise platforms." />
+  <meta property="og:url" content="https://www.skunkworksacademy.com/course-registration/" />
+  <meta property="og:image" content="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Course Registration | Skunkworks Academy" />
+  <meta name="twitter:description" content="Register for practical technology training with Skunkworks Academy." />
 
-    html { scroll-behavior: smooth; }
+  <link rel="stylesheet" href="/assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1" data-skunkworks-design-system="canonical" />
+  <link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v=2026.08.20.2" data-skunkworks-accessibility="wcag-contrast" />
+  <link rel="stylesheet" href="/assets/academy-page-contract.css?v=2026.08.20.3" data-skunkworks-page-contract="css" />
+  <link rel="stylesheet" href="/assets/course-registration.css?v=2026.08.20.1" data-course-registration-style="canonical" />
 
-    body {
-      margin: 0;
-      font-family: Inter, "IBM Plex Sans", Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(0, 168, 255, 0.24), transparent 34%),
-        radial-gradient(circle at 84% 5%, rgba(33, 197, 93, 0.19), transparent 32%),
-        linear-gradient(180deg, #07111f 0%, #0a1425 45%, #f4f7fb 45%, #f4f7fb 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(7, 17, 31, 0.82);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .logo-dot {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      box-shadow: 0 10px 30px rgba(33, 197, 93, 0.35);
-      display: grid;
-      place-items: center;
-      color: #06111f;
-      font-weight: 900;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-actions a {
-      color: #d7e8ff;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .nav-actions .pill-link {
-      padding: 9px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-    }
-
-    .hero {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 72px 24px 44px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 36px;
-      align-items: center;
-      color: #fff;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(33, 197, 93, 0.12);
-      border: 1px solid rgba(33, 197, 93, 0.42);
-      color: #b9ffd0;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.35rem, 5.6vw, 5rem);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-    }
-
-    .hero p {
-      margin: 22px 0 0;
-      color: #d5e2f5;
-      font-size: 1.12rem;
-      max-width: 66ch;
-    }
-
-    .hero-actions {
-      margin-top: 28px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      min-height: 48px;
-      padding: 13px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 1rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--brand), #65e085);
-      color: #04140d;
-      box-shadow: 0 18px 40px rgba(33, 197, 93, 0.25);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.22);
-    }
-
-    .hero-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card h2 {
-      color: #fff;
-      margin: 0 0 14px;
-      font-size: 1.35rem;
-    }
-
-    .course-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #e9f3ff;
-      font-weight: 700;
-      font-size: 0.88rem;
-    }
-
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 24px 72px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 0.72fr 1.28fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    .info-panel, .form-panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .info-panel {
-      padding: 28px;
-      position: sticky;
-      top: 92px;
-    }
-
-    .info-panel h2, .form-panel h2 {
-      margin-top: 0;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .feature-list li {
-      display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .tick {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(33,197,93,0.13);
-      color: var(--brand-dark);
-      display: inline-grid;
-      place-items: center;
-      font-weight: 900;
-    }
-
-    .mini-card {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 18px;
-      background: #eef8ff;
-      border: 1px solid #cae9ff;
-      color: #16324a;
-    }
-
-    .mini-card strong { display: block; margin-bottom: 4px; }
-
-    .form-panel { overflow: hidden; }
-
-    .form-header {
-      padding: 30px 32px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, #ffffff, #f6fbff);
-    }
-
-    .form-header p { margin: 8px 0 0; color: var(--muted); }
-
-    form { padding: 32px; }
-
-    fieldset {
-      border: 0;
-      padding: 0;
-      margin: 0 0 28px;
-    }
-
-    legend {
-      width: 100%;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .fields {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .field { display: grid; gap: 7px; }
-
-    .field.full { grid-column: 1 / -1; }
-
-    label {
-      font-weight: 800;
-      color: #243149;
-      font-size: 0.95rem;
-    }
-
-    .hint {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.84rem;
-      margin-top: 2px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #cfd8e6;
-      border-radius: 14px;
-      padding: 13px 14px;
-      font: inherit;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    textarea { min-height: 116px; resize: vertical; }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.12);
-    }
-
-    .checkrow {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      margin: 12px 0;
-      color: #334155;
-    }
-
-    .checkrow input { width: 18px; margin-top: 3px; }
-
-    .required { color: var(--danger); }
-
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-top: 8px;
-    }
-
-    .privacy-note {
-      color: var(--muted);
-      font-size: 0.9rem;
-      max-width: 55ch;
-    }
-
-    .status {
-      display: none;
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      font-weight: 700;
-    }
-
-    .status.show { display: block; }
-    .status.error { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
-
-    footer {
-      margin-top: 56px;
-      color: #68758b;
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 920px) {
-      .hero, .grid { grid-template-columns: 1fr; }
-      .info-panel { position: static; }
-    }
-
-    @media (max-width: 640px) {
-      .topbar-inner { align-items: flex-start; flex-direction: column; }
-      .nav-actions { width: 100%; }
-      .hero { padding-top: 44px; }
-      .fields { grid-template-columns: 1fr; }
-      form, .form-header, .info-panel, .hero-card { padding: 22px; }
-      .btn { width: 100%; }
-    }
-  </style>
-  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04" data-skunkworks-global-nav="v3"></script>
-  
-  
-    
-  
-    
-  
-    
-  
-    
-  
-  
-  
-            <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-page-contract.css?v=2026.08.20.3" data-skunkworks-page-contract="css" />
-  <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.08.20.3" data-skunkworks-page-contract="runtime"></script>
+  <script defer src="/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1" data-skunkworks-global-nav="v10"></script>
+  <script defer src="/assets/academy-page-contract.js?v=2026.08.20.3" data-skunkworks-page-contract="runtime"></script>
+  <script defer src="/assets/course-registration.js?v=2026.08.20.1" data-course-registration-runtime="canonical"></script>
 </head>
-<body>
-  <header class="topbar">
-  <!-- Skunkworks Academy global shell: managed -->
-  <meta name="skunkworks:org" content="skunkworks-academy" />
-  <meta name="skunkworks:repo" content=".github" />
-  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
-  <link rel="stylesheet" href="https://skunkworksacademy.com/assets/academy-global.css?v=2026.06.24" data-skunkworks-global-style="v1" />
-  <link rel="sitemap" type="text/html" title="Skunkworks Academy Repository Sitemap" href="https://skunkworksacademy.com/repositories/" data-skunkworks-org-sitemap="v1" />
-  
-  <!-- /Skunkworks Academy global shell: managed -->
-    <div class="topbar-inner">
-      <a class="brand-mark" href="https://www.skunkworksacademy.com" aria-label="Skunkworks Academy home">
-        <span class="logo-dot">S</span>
-        <span>Skunkworks Academy</span>
-      </a>
-      <nav class="nav-actions" aria-label="Page navigation">
-        <a href="#registration">Register</a>
-        <a class="pill-link" href="mailto:training@skunkworksacademy.com">training@skunkworksacademy.com</a>
-      </nav>
-    </div>
-  </header>
+<body class="course-registration-page">
+  <a class="sk-skip-link" href="#registration">Skip to registration form</a>
 
   <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow">June 2026 Intake â€¢ Cyber Security Training</span>
-        <h1>Course Registration</h1>
-        <p>
-          Register for Skunkworks Academy training across cybersecurity, ethical hacking,
-          Microsoft security fundamentals, cloud, AI, DevOps and corporate upskilling pathways.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#registration">Complete Registration</a>
-          <a class="btn btn-secondary" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Enquiry">Ask a Training Advisor</a>
+    <section class="cr-hero" aria-labelledby="registration-heading" data-swa-contrast="preserve">
+      <div class="cr-shell cr-hero__inner">
+        <div>
+          <p class="cr-eyebrow">Technology training registration</p>
+          <h1 id="registration-heading">Build practical technology capability.</h1>
+          <p class="cr-hero__lead">Register for Skunkworks Academy training across cybersecurity, ethical hacking, Microsoft, cloud, AI, DevOps and enterprise technology pathways.</p>
+          <div class="cr-actions" aria-label="Registration page actions">
+            <a class="cr-button" href="#registration">Complete registration</a>
+            <a class="cr-button cr-button--ghost" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Enquiry">Ask a training advisor</a>
+          </div>
         </div>
-      </div>
 
-      <aside class="hero-card" aria-label="Featured course tracks">
-        <h2>Featured Cyber Security Tracks</h2>
-        <p>
-          Select a single course, a full pathway, or request a corporate cohort for your team.
-        </p>
-        <div class="course-chips">
-          <span class="chip">Cisco Ethical Hacker</span>
-          <span class="chip">CompTIA Ethical Hacker Pro</span>
-          <span class="chip">Microsoft SC-900</span>
-          <span class="chip">SOC Analyst Foundations</span>
-          <span class="chip">OWASP Top 10</span>
-          <span class="chip">Corporate Cyber Awareness</span>
-        </div>
-      </aside>
+        <aside class="cr-hero-card" aria-label="Available training formats">
+          <h2>Choose the format that fits</h2>
+          <p>Register as an individual, a team or a private corporate cohort. Delivery can be instructor-led, self-paced, blended or customised.</p>
+          <div class="cr-chips" aria-label="Training options">
+            <span class="cr-chip">Cybersecurity</span>
+            <span class="cr-chip">Microsoft</span>
+            <span class="cr-chip">Cloud</span>
+            <span class="cr-chip">AI</span>
+            <span class="cr-chip">DevOps</span>
+            <span class="cr-chip">Enterprise platforms</span>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section class="wrap" id="registration">
-      <div class="grid">
-        <aside class="info-panel">
-          <h2>What happens after you register?</h2>
-          <ul class="feature-list">
-            <li><span class="tick">âœ“</span><span>Your registration details are emailed directly to the Skunkworks Academy training team.</span></li>
-            <li><span class="tick">âœ“</span><span>A training advisor confirms availability, dates, delivery mode and pricing.</span></li>
-            <li><span class="tick">âœ“</span><span>Corporate learners can request a quotation, invoice and cohort schedule.</span></li>
-            <li><span class="tick">âœ“</span><span>Students receive next steps for enrolment, payment and class access.</span></li>
+    <section class="cr-main" id="registration" aria-labelledby="form-title">
+      <div class="cr-shell cr-grid">
+        <aside class="cr-card cr-info">
+          <h2>What happens next?</h2>
+          <ul class="cr-feature-list">
+            <li><span class="cr-tick" aria-hidden="true">✓</span><span>Your registration is routed to the Skunkworks Academy training team.</span></li>
+            <li><span class="cr-tick" aria-hidden="true">✓</span><span>A training advisor confirms availability, dates, delivery mode and pricing.</span></li>
+            <li><span class="cr-tick" aria-hidden="true">✓</span><span>Corporate learners can request quotations, invoices and private cohort schedules.</span></li>
+            <li><span class="cr-tick" aria-hidden="true">✓</span><span>You receive clear next steps for enrolment, payment and class access.</span></li>
           </ul>
-
-          <div class="mini-card">
+          <div class="cr-note">
             <strong>Privacy note</strong>
-            This form collects only course registration information. Do not submit passwords,
-            card details, ID documents or confidential client information.
+            <p>Submit only course-registration information. Do not send passwords, card details, identity documents or confidential client data.</p>
           </div>
         </aside>
 
-        <section class="form-panel" aria-labelledby="form-title">
-          <div class="form-header">
-            <h2 id="form-title">Student Course Registration Form</h2>
-            <p>Fields marked with <span class="required">*</span> are required. Submissions are sent to <strong>training@skunkworksacademy.com</strong>.</p>
+        <section class="cr-card cr-form-card">
+          <div class="cr-form-header">
+            <h2 id="form-title">Student course registration</h2>
+            <p>Fields marked with <span class="cr-required">*</span> are required. Submissions are sent to <strong>training@skunkworksacademy.com</strong>.</p>
           </div>
 
-          <form id="courseRegistrationForm" action="https://formsubmit.co/training@skunkworksacademy.com" method="POST">
+          <form class="cr-form" id="courseRegistrationForm" action="https://formsubmit.co/training@skunkworksacademy.com" method="POST" novalidate>
             <input type="hidden" name="_subject" value="New Skunkworks Academy Course Registration" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://skunkworks-academy.github.io/.github/course-registration/thank-you.html" />
-            <input type="hidden" name="Registration Source" value="Skunkworks Academy GitHub Course Registration Page" />
+            <input type="hidden" name="_next" value="https://www.skunkworksacademy.com/course-registration/thank-you.html" />
+            <input type="hidden" name="Registration Source" value="Skunkworks Academy Course Registration Page" />
             <input type="hidden" id="registrationTimestamp" name="Registration Timestamp" value="" />
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden />
 
             <fieldset>
-              <legend>1. Student Details</legend>
-              <div class="fields">
-                <div class="field">
-                  <label for="firstName">First name <span class="required">*</span></label>
+              <legend>1. Student details</legend>
+              <div class="cr-fields">
+                <div class="cr-field">
+                  <label for="firstName">First name <span class="cr-required">*</span></label>
                   <input id="firstName" name="First Name" type="text" autocomplete="given-name" required />
                 </div>
-                <div class="field">
-                  <label for="lastName">Last name <span class="required">*</span></label>
+                <div class="cr-field">
+                  <label for="lastName">Last name <span class="cr-required">*</span></label>
                   <input id="lastName" name="Last Name" type="text" autocomplete="family-name" required />
                 </div>
-                <div class="field">
-                  <label for="email">Email address <span class="required">*</span></label>
-                  <input id="email" name="Email" type="email" autocomplete="email" required />
+                <div class="cr-field">
+                  <label for="email">Email address <span class="cr-required">*</span></label>
+                  <input id="email" name="Email" type="email" autocomplete="email" inputmode="email" required />
                 </div>
-                <div class="field">
-                  <label for="phone">Mobile / WhatsApp number <span class="required">*</span></label>
-                  <input id="phone" name="Mobile / WhatsApp" type="tel" autocomplete="tel" placeholder="+27 83 000 0000" required />
+                <div class="cr-field">
+                  <label for="phone">Mobile / WhatsApp number <span class="cr-required">*</span></label>
+                  <input id="phone" name="Mobile / WhatsApp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+27 83 000 0000" required />
                 </div>
-                <div class="field">
-                  <label for="country">Country <span class="required">*</span></label>
+                <div class="cr-field">
+                  <label for="country">Country <span class="cr-required">*</span></label>
                   <input id="country" name="Country" type="text" autocomplete="country-name" value="South Africa" required />
                 </div>
-                <div class="field">
-                  <label for="city">City / Region</label>
+                <div class="cr-field">
+                  <label for="city">City / region</label>
                   <input id="city" name="City / Region" type="text" autocomplete="address-level2" placeholder="Johannesburg" />
                 </div>
               </div>
             </fieldset>
 
             <fieldset>
-              <legend>2. Course Selection</legend>
-              <div class="fields">
-                <div class="field full">
-                  <label for="course">Course / programme <span class="required">*</span></label>
+              <legend>2. Course selection</legend>
+              <div class="cr-fields">
+                <div class="cr-field cr-field--full">
+                  <label for="course">Course / programme <span class="cr-required">*</span></label>
                   <select id="course" name="Course / Programme" required>
                     <option value="">Select a course</option>
                     <option>Cyber Security Pathway - Full Bundle</option>
@@ -580,19 +137,19 @@
                     <option>CompTIA Ethical Hacker Pro</option>
                     <option>Microsoft SC-900T00-A: Security, Compliance, and Identity</option>
                     <option>SOC Analyst Foundations</option>
-                    <option>OWASP Top 10 & Secure Coding</option>
+                    <option>OWASP Top 10 &amp; Secure Coding</option>
                     <option>Corporate Cyber Awareness</option>
-                    <option>AI, Cyber Risk & Zero Trust Awareness</option>
+                    <option>AI, Cyber Risk &amp; Zero Trust Awareness</option>
                     <option>Cloud Security Essentials</option>
                     <option>Other / Custom Training Request</option>
                   </select>
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="intake">Preferred intake</label>
-                  <input id="intake" name="Preferred Intake" type="text" value="June 2026" />
+                  <input id="intake" name="Preferred Intake" type="text" placeholder="Next available or preferred month" />
                 </div>
-                <div class="field">
-                  <label for="delivery">Preferred delivery mode <span class="required">*</span></label>
+                <div class="cr-field">
+                  <label for="delivery">Preferred delivery mode <span class="cr-required">*</span></label>
                   <select id="delivery" name="Preferred Delivery Mode" required>
                     <option value="">Select delivery mode</option>
                     <option>Online instructor-led</option>
@@ -602,7 +159,7 @@
                     <option>Corporate private class</option>
                   </select>
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="experience">Current experience level</label>
                   <select id="experience" name="Current Experience Level">
                     <option>Beginner</option>
@@ -614,7 +171,7 @@
                     <option>Manager / Business Leader</option>
                   </select>
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="learners">Number of learners</label>
                   <input id="learners" name="Number of Learners" type="number" min="1" value="1" />
                 </div>
@@ -622,10 +179,10 @@
             </fieldset>
 
             <fieldset>
-              <legend>3. Organisation & Billing</legend>
-              <div class="fields">
-                <div class="field">
-                  <label for="learnerType">Registration type <span class="required">*</span></label>
+              <legend>3. Organisation &amp; billing</legend>
+              <div class="cr-fields">
+                <div class="cr-field">
+                  <label for="learnerType">Registration type <span class="cr-required">*</span></label>
                   <select id="learnerType" name="Registration Type" required>
                     <option value="">Select registration type</option>
                     <option>Individual learner</option>
@@ -636,19 +193,19 @@
                     <option>University / School / Institution</option>
                   </select>
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="company">Company / institution</label>
                   <input id="company" name="Company / Institution" type="text" autocomplete="organization" />
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="billingName">Billing contact name</label>
                   <input id="billingName" name="Billing Contact Name" type="text" />
                 </div>
-                <div class="field">
+                <div class="cr-field">
                   <label for="billingEmail">Billing email</label>
-                  <input id="billingEmail" name="Billing Email" type="email" />
+                  <input id="billingEmail" name="Billing Email" type="email" inputmode="email" />
                 </div>
-                <div class="field full">
+                <div class="cr-field cr-field--full">
                   <label for="purchasePath">Payment / purchase preference</label>
                   <select id="purchasePath" name="Payment / Purchase Preference">
                     <option>Please send pricing and enrolment steps</option>
@@ -662,13 +219,13 @@
             </fieldset>
 
             <fieldset>
-              <legend>4. Learning Goals</legend>
-              <div class="fields">
-                <div class="field full">
+              <legend>4. Learning goals</legend>
+              <div class="cr-fields">
+                <div class="cr-field cr-field--full">
                   <label for="goals">What do you want to achieve from this training?</label>
-                  <textarea id="goals" name="Learning Goals" placeholder="Example: I want to move into a SOC analyst role, prepare for ethical hacking, upskill my IT team, or build Microsoft security fundamentals."></textarea>
+                  <textarea id="goals" name="Learning Goals" placeholder="For example: move into a SOC role, prepare for ethical hacking, upskill an IT team, or build Microsoft security fundamentals."></textarea>
                 </div>
-                <div class="field full">
+                <div class="cr-field cr-field--full">
                   <label for="notes">Additional notes / special requirements</label>
                   <textarea id="notes" name="Additional Notes" placeholder="Share preferred dates, accessibility needs, team requirements, or questions for the training team."></textarea>
                 </div>
@@ -677,68 +234,31 @@
 
             <fieldset>
               <legend>5. Consent</legend>
-              <label class="checkrow" for="contactConsent">
+              <label class="cr-check" for="contactConsent">
                 <input id="contactConsent" name="Consent to Contact" type="checkbox" value="Yes" required />
-                <span>I consent to Skunkworks Academy contacting me about this course registration, schedule, pricing and enrolment steps. <span class="required">*</span></span>
+                <span>I consent to Skunkworks Academy contacting me about this registration, schedule, pricing and enrolment steps. <span class="cr-required">*</span></span>
               </label>
-              <label class="checkrow" for="privacyConsent">
+              <label class="cr-check" for="privacyConsent">
                 <input id="privacyConsent" name="POPIA / Privacy Consent" type="checkbox" value="Yes" required />
-                <span>I confirm that the information submitted is accurate and may be processed for course registration and training administration purposes. <span class="required">*</span></span>
+                <span>I confirm that the information submitted is accurate and may be processed for course registration and training administration. <span class="cr-required">*</span></span>
               </label>
-              <label class="checkrow" for="marketingConsent">
+              <label class="cr-check" for="marketingConsent">
                 <input id="marketingConsent" name="Marketing Updates Consent" type="checkbox" value="Yes" />
-                <span>I would like to receive occasional updates about Skunkworks Academy courses, badges, events and learning pathways.</span>
+                <span>I would like occasional updates about Skunkworks Academy courses, badges, events and learning pathways.</span>
               </label>
             </fieldset>
 
-            <div class="form-footer">
-              <p class="privacy-note">
-                Submission uses FormSubmit to route registration details to the Skunkworks Academy training mailbox.
-                The training team will confirm your enrolment manually.
-              </p>
-              <button class="btn btn-primary" type="submit">Submit Registration</button>
+            <div class="cr-form-footer">
+              <p class="cr-privacy">Submission uses FormSubmit to route registration details to the Skunkworks Academy training mailbox. The training team confirms enrolment manually.</p>
+              <button class="cr-button" type="submit">Submit registration</button>
             </div>
-            <div class="status error" id="formError" role="alert"></div>
+            <div class="cr-status cr-status--error" id="formError" role="alert" aria-live="assertive"></div>
           </form>
         </section>
       </div>
 
-      <footer>
-        <p>Â© <span id="year"></span> Skunkworks Academy. Dream. Design. Deliver.</p>
-      </footer>
+      <p class="cr-registration-footer">© <span id="year"></span> Skunkworks Academy. Dream. Design. Deliver.</p>
     </section>
   </main>
-
-  <script>
-    const form = document.getElementById('courseRegistrationForm');
-    const errorBox = document.getElementById('formError');
-    const timestamp = document.getElementById('registrationTimestamp');
-    const year = document.getElementById('year');
-
-    year.textContent = new Date().getFullYear();
-
-    form.addEventListener('submit', function (event) {
-      errorBox.className = 'status error';
-      errorBox.textContent = '';
-      timestamp.value = new Date().toISOString();
-
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-
-      if (!email.includes('@') || !email.includes('.')) {
-        event.preventDefault();
-        errorBox.textContent = 'Please enter a valid email address.';
-        errorBox.classList.add('show');
-        return;
-      }
-
-      if (phone.replace(/\D/g, '').length < 8) {
-        event.preventDefault();
-        errorBox.textContent = 'Please enter a valid phone or WhatsApp number.';
-        errorBox.classList.add('show');
-      }
-    });
-  </script>
 </body>
 </html>
-
