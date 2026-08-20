@@ -5,7 +5,7 @@
   var VERSION = "2026.08.15.1";
   var REVISION = "2026.08.16.1";
   var RUNTIME_VERSION = "2026.08.20.1";
-  var PAGE_CONTRACT_VERSION = "2026.08.20.1";
+  var PAGE_CONTRACT_VERSION = "2026.08.20.3";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
@@ -45,14 +45,17 @@
       });
 
     [
-      { href: PUBLIC_ROOT + "images/favicon-black.png", media: "(prefers-color-scheme: light)" },
-      { href: PUBLIC_ROOT + "images/favicon-white.png", media: "(prefers-color-scheme: dark)" }
+      { rel: "icon", href: PUBLIC_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "", sizes: "32x32" },
+      { rel: "shortcut icon", href: PUBLIC_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "", sizes: "" },
+      { rel: "icon", href: PUBLIC_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "(prefers-color-scheme: light)", sizes: "32x32" },
+      { rel: "icon", href: PUBLIC_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
     ].forEach(function (icon) {
       var link = document.createElement("link");
-      link.rel = "icon";
+      link.rel = icon.rel;
       link.type = "image/png";
       link.href = icon.href;
-      link.media = icon.media;
+      if (icon.media) link.media = icon.media;
+      if (icon.sizes) link.sizes = icon.sizes;
       link.setAttribute("data-skunkworks-favicon", "canonical");
       head.appendChild(link);
     });
@@ -116,8 +119,8 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: PUBLIC_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     bodyBackground: "#ffffff",
-    faviconLight: PUBLIC_ROOT + "images/favicon-black.png",
-    faviconDark: PUBLIC_ROOT + "images/favicon-white.png"
+    faviconLight: PUBLIC_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION,
+    faviconDark: PUBLIC_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION
   };
 
   (document.head || document.documentElement).appendChild(script);
