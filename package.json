@@ -13,7 +13,8 @@
     "audit": "node scripts/audit-site.mjs",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
     "validate:contrast": "node scripts/validate-contrast.mjs",
-    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast",
+    "validate:course-registration": "node scripts/validate-course-registration.mjs",
+    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:course-registration",
     "build": "npm run validate"
   },
   "dependencies": {
