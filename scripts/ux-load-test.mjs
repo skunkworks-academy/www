@@ -4,7 +4,19 @@ import { extname, join, normalize } from 'node:path';
 
 const root = process.cwd();
 const port = 4173;
-const routes = ['/', '/catalogue/', '/plans-and-purchases/', '/forms/', '/microsoft/', '/google/', '/redhat/', '/repositories/'];
+const routes = [
+  '/',
+  '/catalogue/',
+  '/plans-and-purchases/',
+  '/forms/',
+  '/course-registration/',
+  '/course-registration/thank-you.html?redirect=0',
+  '/course-registration/skunkworks-academy-cyber-security-training-email.html',
+  '/microsoft/',
+  '/google/',
+  '/redhat/',
+  '/repositories/',
+];
 const mime = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'};
 
 const server = http.createServer(async (req,res) => {
