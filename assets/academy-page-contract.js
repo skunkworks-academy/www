@@ -5,10 +5,10 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.20.1";
+  var VERSION = "2026.08.20.2";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
-  var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png";
-  var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png";
+  var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png?v=" + VERSION;
+  var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png?v=" + VERSION;
   var SURFACE_SELECTOR = [
     "main",
     "main section",
@@ -44,12 +44,13 @@
       });
 
     [
-      { href: FAVICON_LIGHT, media: "" },
-      { href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)" },
-      { href: FAVICON_DARK, media: "(prefers-color-scheme: dark)" }
+      { rel: "icon", href: FAVICON_LIGHT, media: "" },
+      { rel: "shortcut icon", href: FAVICON_LIGHT, media: "" },
+      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)" },
+      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)" }
     ].forEach(function (icon) {
       var link = document.createElement("link");
-      link.rel = "icon";
+      link.rel = icon.rel;
       link.type = "image/png";
       link.href = icon.href;
       if (icon.media) link.media = icon.media;
