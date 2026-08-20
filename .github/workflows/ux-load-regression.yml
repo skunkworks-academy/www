@@ -12,21 +12,39 @@ permissions:
 jobs:
   ux-load:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+
       - name: Run route and concurrency test
         run: node scripts/ux-load-test.mjs
+
       - name: Check common 404 entry points
         run: |
+          set -euo pipefail
           test -f index.html
           test -f catalogue/index.html
           test -f plans-and-purchases/index.html
           test -f forms/index.html
+          test -f course-registration/index.html
+          test -f course-registration/thank-you.html
+          test -f course-registration/skunkworks-academy-cyber-security-training-email.html
           test -f microsoft/index.html
           test -f google/index.html
           test -f redhat/index.html
           test -f repositories/index.html
+
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --package-lock=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run course registration static audit
+        run: npm run validate:course-registration
+
+      - name: Run course registration responsive and interaction tests
+        run: npx playwright test tests/course-registration-ui.spec.js --reporter=line
