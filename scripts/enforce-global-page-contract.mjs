@@ -129,13 +129,28 @@ function count(haystack, needle) {
   return haystack.split(needle).length - 1;
 }
 
+function canonicalFaviconTags(html) {
+  return (html.match(/<link\b[^>]*data-skunkworks-favicon\s*=\s*["']canonical["'][^>]*>/gi) || []);
+}
+
+function tagHasAttributeValue(tag, attribute, value) {
+  const pattern = new RegExp(`\\b${attribute}\\s*=\\s*(["'])${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1`, 'i');
+  return pattern.test(tag);
+}
+
 function validate(html, file) {
   const failures = [];
-  if (count(html, 'data-skunkworks-favicon="canonical"') !== 4) failures.push('canonical favicon set');
-  if (count(html, FAVICON_LIGHT) !== 3) failures.push('default/light favicon');
-  if (count(html, FAVICON_DARK) !== 1) failures.push('dark favicon');
-  if (count(html, 'rel="shortcut icon"') !== 1) failures.push('shortcut favicon');
-  if (count(html, 'sizes="32x32"') < 3) failures.push('32x32 favicon sizing');
+  const faviconTags = canonicalFaviconTags(html);
+  const lightFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'href', FAVICON_LIGHT));
+  const darkFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'href', FAVICON_DARK));
+  const shortcutFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'rel', 'shortcut icon'));
+  const sizedFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'sizes', '32x32'));
+
+  if (faviconTags.length !== 4) failures.push('canonical favicon set');
+  if (lightFaviconTags.length !== 3) failures.push('default/light favicon');
+  if (darkFaviconTags.length !== 1) failures.push('dark favicon');
+  if (shortcutFaviconTags.length !== 1) failures.push('shortcut favicon');
+  if (sizedFaviconTags.length < 3) failures.push('32x32 favicon sizing');
   if (count(html, 'data-skunkworks-page-contract="css"') !== 1) failures.push('page-contract CSS');
   if (count(html, 'data-skunkworks-page-contract="runtime"') !== 1) failures.push('page-contract runtime');
   if (count(html, CONTRACT_CSS) !== 1) failures.push('canonical page-contract CSS URL');
