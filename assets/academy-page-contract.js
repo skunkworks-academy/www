@@ -28,7 +28,10 @@
     "main [class*='module']",
     "main [class*='block']",
     "main [class*='hero']",
-    "main [class*='section']"
+    "main [class*='section']",
+    ".document",
+    ".document > .cover",
+    "section.cover"
   ].join(",");
 
   function ensureCanonicalFavicons() {
@@ -41,6 +44,7 @@
       });
 
     [
+      { href: FAVICON_LIGHT, media: "" },
       { href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)" },
       { href: FAVICON_DARK, media: "(prefers-color-scheme: dark)" }
     ].forEach(function (icon) {
@@ -48,7 +52,7 @@
       link.rel = "icon";
       link.type = "image/png";
       link.href = icon.href;
-      link.media = icon.media;
+      if (icon.media) link.media = icon.media;
       link.setAttribute("data-skunkworks-favicon", "canonical");
       head.appendChild(link);
     });
