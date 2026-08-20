@@ -14,6 +14,41 @@
     : CANONICAL_ROOT;
 
   if (typeof document === "undefined") return;
+
+  /*
+   * Global page-canvas contract.
+   * Every public Academy page that loads the shared shell receives a white
+   * document/body canvas regardless of local theme, OS colour preference or
+   * page-specific background tokens. Individual sections/cards may still use
+   * their own intentional dark or coloured surfaces.
+   */
+  var BODY_BACKGROUND_STYLE_ID = "swa-global-white-body-contract";
+
+  function installWhiteBodyContract() {
+    if (document.getElementById(BODY_BACKGROUND_STYLE_ID)) return;
+
+    var style = document.createElement("style");
+    style.id = BODY_BACKGROUND_STYLE_ID;
+    style.setAttribute("data-skunkworks-body-background", "white");
+    style.textContent = [
+      "html, body {",
+      "  background-color: #ffffff !important;",
+      "  background-image: none !important;",
+      "}",
+      "body {",
+      "  min-height: 100vh;",
+      "}"
+    ].join("\n");
+
+    (document.head || document.documentElement).appendChild(style);
+  }
+
+  installWhiteBodyContract();
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", installWhiteBodyContract, { once: true });
+  }
+
   if (document.querySelector('script[data-skunkworks-global-nav-runtime="v11"]')) return;
 
   var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION;
@@ -35,7 +70,8 @@
     version: VERSION,
     revision: REVISION,
     runtimeVersion: RUNTIME_VERSION,
-    runtime: primarySrc
+    runtime: primarySrc,
+    bodyBackground: "#ffffff"
   };
 
   (document.head || document.documentElement).appendChild(script);
