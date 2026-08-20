@@ -40,7 +40,7 @@ jobs:
 
       - name: Install browser test runtime
         run: |
-          npm install --no-save --package-lock=false @playwright/test@1.55.0
+          npm install --no-save --package-lock=false --legacy-peer-deps @playwright/test@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Run course registration static audit
