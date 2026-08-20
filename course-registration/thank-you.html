@@ -1,120 +1,48 @@
-<!DOCTYPE html>
-<html lang="en-ZA">
+<!doctype html>
+<html lang="en-ZA" data-brand="academy">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Skunkworks Academy course registration confirmation and course return page." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Registration Received | Skunkworks Academy</title>
+  <meta name="description" content="Skunkworks Academy course registration confirmation and course return page." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://www.skunkworksacademy.com/course-registration/thank-you.html" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" data-skunkworks-favicon="canonical" />
   <link rel="shortcut icon" type="image/png" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" data-skunkworks-favicon="canonical" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.20.3" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <style>
-    :root{--bg:#07111f;--card:#fff;--text:#142033;--muted:#5c677d;--brand:#21c55d;--accent:#00a8ff;--border:#d9e2ef;--radius:24px}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Inter,"IBM Plex Sans",Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(circle at 18% 18%,rgba(0,168,255,.25),transparent 34%),radial-gradient(circle at 82% 10%,rgba(33,197,93,.20),transparent 30%),linear-gradient(180deg,#07111f 0%,#0a1425 100%);color:var(--text);padding:28px}.card{width:min(760px,100%);background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(28px,5vw,56px);box-shadow:0 28px 80px rgba(2,8,23,.35);text-align:center}.mark{width:78px;height:78px;display:inline-grid;place-items:center;border-radius:24px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#06111f;font-size:2rem;font-weight:900;margin-bottom:22px}h1{margin:0;font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-.06em}p{margin:18px auto 0;color:var(--muted);max-width:62ch;line-height:1.7;font-size:1.05rem}.actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}a,button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:800;border:0;cursor:pointer;font:inherit}.primary{background:var(--brand);color:#04140d}.secondary{border:1px solid var(--border);color:var(--text);background:#f8fafc}.status{margin-top:18px;padding:14px 16px;border:1px solid #bbf7d0;background:#ecfdf5;color:#065f46;border-radius:16px;font-weight:800}.count{font-weight:900;color:#0f172a}
-  </style>
-  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04" data-skunkworks-global-nav="v3"></script>
-  
-  
-    
-  
-    
-  
-    
-  
-    
-  
-  
-  
-              <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-page-contract.css?v=2026.08.20.3" data-skunkworks-page-contract="css" />
-  <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.08.20.3" data-skunkworks-page-contract="runtime"></script>
+
+  <link rel="stylesheet" href="/assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1" data-skunkworks-design-system="canonical" />
+  <link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v=2026.08.20.2" data-skunkworks-accessibility="wcag-contrast" />
+  <link rel="stylesheet" href="/assets/academy-page-contract.css?v=2026.08.20.3" data-skunkworks-page-contract="css" />
+  <link rel="stylesheet" href="/assets/course-registration.css?v=2026.08.20.1" data-course-registration-style="canonical" />
+
+  <script defer src="/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1" data-skunkworks-global-nav="v10"></script>
+  <script defer src="/assets/academy-page-contract.js?v=2026.08.20.3" data-skunkworks-page-contract="runtime"></script>
+  <script defer src="/assets/course-registration.js?v=2026.08.20.1" data-course-registration-runtime="canonical"></script>
 </head>
-<body>
-  <main class="card">
-    <div class="mark">✓</div>
-    <h1>Registration received</h1>
-    <p>
-      Thank you for registering with Skunkworks Academy. Your course registration details have been submitted to the training team at
-      <strong>training@skunkworksacademy.com</strong>.
-    </p>
-    <p>
-      A training advisor will review your registration and follow up with course availability, dates, pricing, enrolment steps and any required onboarding information.
-    </p>
-    <div class="status" id="unlockStatus">Preparing your course access…</div>
-    <p id="redirectMessage">You will be redirected back to your course shortly.</p>
-    <div class="actions">
-      <a class="primary" id="continueCourse" href="../self-paced/">Continue to course</a>
-      <a class="secondary" href="./index.html">Submit another registration</a>
-      <a class="secondary" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Follow-up">Contact Training Team</a>
-    </div>
+<body class="registration-confirmation-page">
+  <a class="sk-skip-link" href="#confirmation">Skip to confirmation</a>
+
+  <main class="cr-confirmation-shell" id="confirmation">
+    <section class="cr-card cr-confirmation" aria-labelledby="confirmation-heading">
+      <div class="cr-confirmation__mark" aria-hidden="true">✓</div>
+      <h1 id="confirmation-heading">Registration received</h1>
+      <p>Thank you for registering with Skunkworks Academy. Your course registration details have been submitted to the training team at <strong>training@skunkworksacademy.com</strong>.</p>
+      <p>A training advisor will review your registration and follow up with availability, dates, pricing, enrolment steps and any required onboarding information.</p>
+
+      <div class="cr-confirmation__status" id="unlockStatus" role="status" aria-live="polite">Preparing your course access…</div>
+      <p id="redirectMessage" aria-live="polite">Preparing your return destination…</p>
+
+      <div class="cr-actions">
+        <a class="cr-button" id="continueCourse" href="../self-paced/">Continue to course</a>
+        <button class="cr-button cr-button--surface" id="stayHere" type="button">Stay on this page</button>
+        <a class="cr-button cr-button--surface" href="./">Submit another registration</a>
+        <a class="cr-button cr-button--surface" href="mailto:training@skunkworksacademy.com?subject=Course%20Registration%20Follow-up">Contact training team</a>
+      </div>
+    </section>
   </main>
-
-  <script>
-    const COURSE_LABELS = {
-      'SKW-OWASP10-2025': 'OWASP Top 10:2025 Web Application Security'
-    };
-    const COURSE_DEFAULT_RETURN = {
-      'SKW-OWASP10-2025': '/self-paced/security/skw-owasp-top10-2025/'
-    };
-    const params = new URLSearchParams(window.location.search);
-    const course = params.get('course') || '';
-    const unlock = params.get('unlock') === '1';
-    const fallbackReturn = COURSE_DEFAULT_RETURN[course] || '/self-paced/';
-    const requestedReturn = params.get('return') || fallbackReturn;
-    const continueCourse = document.getElementById('continueCourse');
-    const unlockStatus = document.getElementById('unlockStatus');
-    const redirectMessage = document.getElementById('redirectMessage');
-
-    function safeReturnUrl(value) {
-      try {
-        const parsed = new URL(value, window.location.origin);
-        if (parsed.origin !== window.location.origin) return fallbackReturn;
-        return `${parsed.pathname}${parsed.search}${parsed.hash}`;
-      } catch {
-        return fallbackReturn;
-      }
-    }
-
-    const target = safeReturnUrl(requestedReturn);
-    continueCourse.href = target;
-
-    if (unlock && course) {
-      localStorage.setItem(`skwacademy.entitlement.${course}`, 'granted');
-      localStorage.setItem(`skwacademy.registration.${course}.confirmed`, JSON.stringify({ course, returnUrl: target, confirmedAt: new Date().toISOString() }));
-      unlockStatus.textContent = `${COURSE_LABELS[course] || 'Your selected course'} is now unlocked in this browser.`;
-    } else {
-      unlockStatus.textContent = 'Your registration has been received. Course access will be confirmed by the training team.';
-    }
-
-    let seconds = 4;
-    redirectMessage.innerHTML = `Returning you to your course in <span class="count">${seconds}</span> seconds.`;
-    const timer = window.setInterval(() => {
-      seconds -= 1;
-      redirectMessage.innerHTML = `Returning you to your course in <span class="count">${seconds}</span> seconds.`;
-      if (seconds <= 0) {
-        window.clearInterval(timer);
-        window.location.href = target;
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
