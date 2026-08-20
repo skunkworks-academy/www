@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.08.20.2';
+const VERSION = '2026.08.20.3';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
 const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png?v=${VERSION}`;
 const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-white.png?v=${VERSION}`;
@@ -11,14 +11,15 @@ const CONTRACT_CSS = `${PUBLIC_ROOT}assets/academy-page-contract.css?v=${VERSION
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
 
 const FAVICON_TAGS = [
-  `<link rel="icon" type="image/png" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
   `<link rel="shortcut icon" type="image/png" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
-  `<link rel="icon" type="image/png" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
-  `<link rel="icon" type="image/png" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
 ];
 const CSS_TAG = `<link rel="stylesheet" href="${CONTRACT_CSS}" data-skunkworks-page-contract="css" />`;
 const JS_TAG = `<script defer src="${CONTRACT_JS}" data-skunkworks-page-contract="runtime"></script>`;
-const INJECTION = [...FAVICON_TAGS, CSS_TAG, JS_TAG].map((line) => `  ${line}`).join('\n');
+const FAVICON_INJECTION = FAVICON_TAGS.map((line) => `  ${line}`).join('\n');
+const CONTRACT_INJECTION = [CSS_TAG, JS_TAG].map((line) => `  ${line}`).join('\n');
 
 const args = process.argv.slice(2);
 const mode = args.includes('--write') ? 'write' : 'check';
@@ -59,10 +60,19 @@ function stripContractAssets(html) {
 
 function normalize(html, file) {
   let next = stripContractAssets(stripIconLinks(html));
+
+  if (/<\/title\s*>/i.test(next)) {
+    next = next.replace(/<\/title\s*>/i, (match) => `${match}\n${FAVICON_INJECTION}`);
+  } else if (/<head\b[^>]*>/i.test(next)) {
+    next = next.replace(/<head\b[^>]*>/i, (match) => `${match}\n${FAVICON_INJECTION}`);
+  } else {
+    throw new Error(`Malformed HTML document cannot receive canonical favicon: ${file}`);
+  }
+
   if (/<\/head\s*>/i.test(next)) {
-    next = next.replace(/<\/head\s*>/i, `${INJECTION}\n</head>`);
+    next = next.replace(/<\/head\s*>/i, `${CONTRACT_INJECTION}\n</head>`);
   } else if (/<\/body\s*>/i.test(next)) {
-    next = next.replace(/<\/body\s*>/i, `${INJECTION}\n</body>`);
+    next = next.replace(/<\/body\s*>/i, `${CONTRACT_INJECTION}\n</body>`);
   } else {
     throw new Error(`Malformed HTML document cannot receive global page contract: ${file}`);
   }
@@ -79,6 +89,7 @@ function validate(html, file) {
   if (count(html, FAVICON_LIGHT) !== 3) failures.push('default/light favicon');
   if (count(html, FAVICON_DARK) !== 1) failures.push('dark favicon');
   if (count(html, 'rel="shortcut icon"') !== 1) failures.push('shortcut favicon');
+  if (count(html, 'sizes="32x32"') < 3) failures.push('32x32 favicon sizing');
   if (count(html, 'data-skunkworks-page-contract="css"') !== 1) failures.push('page-contract CSS');
   if (count(html, 'data-skunkworks-page-contract="runtime"') !== 1) failures.push('page-contract runtime');
   if (count(html, CONTRACT_CSS) !== 1) failures.push('canonical page-contract CSS URL');
