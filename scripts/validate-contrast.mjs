@@ -39,7 +39,11 @@ function rootTokens(source) {
 }
 
 function darkTokens(source) {
-  return declarations(findBlock(source, /:root\[data-theme=["']dark["']\]\s*,\s*\[data-theme=["']dark["']\]\s*\{/i));
+  // A dark-theme declaration can be part of a selector list. Do not require an
+  // exact two-selector sequence: the accessibility contract also supports
+  // data-swa-theme and may add further equivalent selectors over time.
+  const selector = /:root\[(?:data-theme|data-swa-theme)\s*=\s*["']dark["']\][^{]*\{/i;
+  return declarations(findBlock(source, selector));
 }
 
 const accessibilityRoot = rootTokens(css.accessibility);
