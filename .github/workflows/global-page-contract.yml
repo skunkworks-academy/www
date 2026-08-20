@@ -7,6 +7,8 @@ on:
       - 'assets/academy-navigation.js'
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
+      - 'assets/academy-forms.css'
+      - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
@@ -19,6 +21,8 @@ on:
       - 'assets/academy-navigation.js'
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
+      - 'assets/academy-forms.css'
+      - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
@@ -37,7 +41,7 @@ concurrency:
 
 jobs:
   enforce:
-    name: Enforce favicon and colour contract
+    name: Enforce favicon, design and colour contract
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -59,6 +63,9 @@ jobs:
           test -s images/favicon-white.png
           test -s assets/academy-page-contract.css
           test -s assets/academy-page-contract.js
+          test -s assets/academy-forms.css
+          test -s assets/skunkworks-design-system.css
+          test -s assets/academy-navigation.js
           test -s scripts/enforce-global-page-contract.mjs
 
           grep -q 'background-color: var(--swa-page-bg) !important' assets/academy-page-contract.css
@@ -67,6 +74,14 @@ jobs:
           grep -q 'luminance(background) <= 0.42 ? "dark" : "light"' assets/academy-page-contract.js
           grep -q 'images/favicon-black.png' assets/academy-page-contract.js
           grep -q 'images/favicon-white.png' assets/academy-page-contract.js
+
+          grep -q -- '--swa-form-surface: #ffffff' assets/academy-forms.css
+          grep -q -- '--swa-form-text: #161616' assets/academy-forms.css
+          grep -q 'html\[data-theme="dark"\]' assets/academy-forms.css
+          grep -q -- '--swa-form-surface: #101010' assets/academy-forms.css
+          grep -q -- '--swa-form-text: #ffffff' assets/academy-forms.css
+          grep -q 'prefers-color-scheme: dark' assets/academy-forms.css
+          grep -q 'grid-template-columns: 1fr !important' assets/academy-forms.css
 
       - name: Verify shared shell dynamically installs the contract
         shell: bash
@@ -92,6 +107,21 @@ jobs:
           set -euo pipefail
           node scripts/enforce-global-page-contract.mjs --write .
           node scripts/enforce-global-page-contract.mjs --check .
+
+      - name: Verify every forms HTML document uses Academy design and theme assets
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t forms < <(find forms -maxdepth 1 -type f -name '*.html' -print | sort)
+          test "${#forms[@]}" -gt 0
+          for file in "${forms[@]}"; do
+            grep -q 'data-skunkworks-favicon="canonical"' "$file"
+            grep -q 'data-skunkworks-design-system="forms-canonical"' "$file"
+            grep -q 'data-skunkworks-forms-style="canonical"' "$file"
+            grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
+            grep -q 'academy-page-contract.js?v=2026.08.20.3' "$file"
+          done
 
       - name: Commit automatic contract repairs
         if: github.event_name != 'pull_request'
@@ -124,9 +154,14 @@ jobs:
           node scripts/enforce-global-page-contract.mjs --write "$staging"
           node scripts/enforce-global-page-contract.mjs --check "$staging"
 
-          # PRs may contain legacy HTML, but the release normalizer must always
-          # be able to convert every full HTML document into the canonical form.
-          echo 'Pull-request documents are normalizable to the global page contract.'
+          mapfile -t forms < <(find "$staging/forms" -maxdepth 1 -type f -name '*.html' -print | sort)
+          for file in "${forms[@]}"; do
+            grep -q 'data-skunkworks-design-system="forms-canonical"' "$file"
+            grep -q 'data-skunkworks-forms-style="canonical"' "$file"
+            grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
+          done
+
+          echo 'Pull-request documents are normalizable to the global page and forms design contracts.'
 
   production-assets:
     name: Verify canonical production assets
@@ -142,5 +177,6 @@ jobs:
           base='https://www.skunkworksacademy.com'
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png" >/dev/null
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png" >/dev/null
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy global page colour contract'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.20.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.20.3" | grep -q 'Skunkworks Academy global page colour contract'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.20.3" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'
