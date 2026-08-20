@@ -105,6 +105,28 @@ for (const viewport of [
   });
 }
 
+test('canonical Academy navigation renders and its menu is operable', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${baseURL}/course-registration/`, { waitUntil: 'domcontentloaded' });
+
+  const nav = page.locator('.swa-global-nav');
+  const toggle = page.locator('.swa-global-nav__toggle');
+  const links = page.locator('.swa-global-nav__links');
+
+  await expect(nav).toBeVisible({ timeout: 8000 });
+  await expect(toggle).toBeVisible();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+
+  await toggle.click();
+  await expect(nav).toHaveClass(/swa-menu-open/);
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(links).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await expect(nav).not.toHaveClass(/swa-menu-open/);
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+});
+
 test('registration form exposes accessible validation feedback', async ({ page }) => {
   await page.goto(`${baseURL}/course-registration/`, { waitUntil: 'domcontentloaded' });
   await page.fill('#email', 'not-an-email');
