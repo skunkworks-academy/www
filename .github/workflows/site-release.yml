@@ -52,6 +52,8 @@ jobs:
           grep -q 'isApexAlias' assets/academy-navigation.js
           grep -q 'isLocalPreview' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
+          grep -q 'installBrandTheme' assets/academy-navigation.js
+          grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
 
   lighthouse:
     name: Lighthouse local production audit
@@ -77,6 +79,8 @@ jobs:
       - name: Verify Lighthouse uses checked-out shell and accessibility assets
         run: |
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'installBrandTheme'
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q 'canonical brand theme'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-accessibility.css | grep -q 'accessibility contrast contract'
       - name: Collect Lighthouse samples
@@ -194,7 +198,7 @@ jobs:
           done
 
           if [[ -f "$build/course-manifest.json" ]]; then
-            cp "$build/course-manifest.json" ./course-manifest.json
+            cp "$build/course-manifest.json ./course-manifest.json"
             cp "$build/course-manifest.json" ./courses/course-manifest.json
           fi
 
@@ -215,8 +219,8 @@ jobs:
           from pathlib import Path
           import re
 
-          version = '2026.08.15.1'
-          revision = '2026.08.16.1'
+          version = '2026.08.22.2'
+          revision = '2026.08.22.2'
           accessibility_version = '2026.08.16.1'
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
           accessibility = f'<link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v={accessibility_version}" data-skunkworks-accessibility="wcag-contrast" />'
@@ -296,29 +300,33 @@ jobs:
       - name: Wait for production and verify CORS-safe shell assets and /courses
         run: |
           for attempt in {1..30}; do
-            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.16.1' || true)"
+            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.22.2' || true)"
             courses="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/courses' || true)"
-            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
-            ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
-            footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.15.1&rev=2026.08.16.1' || true)"
+            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.22.2&rev=2026.08.22.2' || true)"
+            theme="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.08.22.2' || true)"
+            ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.20.1' || true)"
+            footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.20.1' || true)"
             accessibility_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?v=2026.08.16.1' || true)"
 
             if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
-              && printf '%s' "$response" | grep -q 'rev=2026.08.16.1' \
+              && printf '%s' "$response" | grep -q 'rev=2026.08.22.2' \
               && printf '%s' "$response" | grep -q 'data-skunkworks-accessibility="wcag-contrast"' \
               && printf '%s' "$courses" | grep -q 'https://www.skunkworksacademy.com/courses' \
               && printf '%s' "$courses" | grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' \
               && ! printf '%s' "$courses" | grep -q 'catalog.skunkworksacademy.com' \
-              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.16.1"' \
+              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.22.2"' \
+              && printf '%s' "$shell" | grep -q 'bodyBackground: "theme-owned"' \
               && printf '%s' "$shell" | grep -q 'window.location.origin' \
               && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
+              && printf '%s' "$theme" | grep -q -- '--sw-skunk-blue: #1e6bd0' \
+              && printf '%s' "$theme" | grep -q -- '--sw-signal-orange: #f24208' \
               && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
               && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy' \
               && printf '%s' "$accessibility_www" | grep -q 'accessibility contrast contract'; then
-              echo 'Production verification succeeded, including canonical /courses deployment.'
+              echo 'Production verification succeeded, including canonical theme shell and /courses deployment.'
               exit 0
             fi
             sleep 10
           done
-          echo 'Production verification failed: canonical shell/accessibility assets or /courses were not found on the www origin.'
+          echo 'Production verification failed: canonical theme/shell/accessibility assets or /courses were not found on the www origin.'
           exit 1
