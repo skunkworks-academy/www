@@ -7,6 +7,7 @@ on:
       - 'assets/academy-navigation.js'
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
+      - 'assets/academy-brand-theme.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
@@ -21,6 +22,7 @@ on:
       - 'assets/academy-navigation.js'
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
+      - 'assets/academy-brand-theme.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
@@ -41,7 +43,7 @@ concurrency:
 
 jobs:
   enforce:
-    name: Enforce favicon, design and colour contract
+    name: Enforce favicon, brand and colour contract
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -63,15 +65,28 @@ jobs:
           test -s images/favicon-white.png
           test -s assets/academy-page-contract.css
           test -s assets/academy-page-contract.js
+          test -s assets/academy-brand-theme.css
           test -s assets/academy-forms.css
           test -s assets/skunkworks-design-system.css
           test -s assets/academy-navigation.js
           test -s scripts/enforce-global-page-contract.mjs
 
-          grep -q 'background-color: var(--swa-page-bg) !important' assets/academy-page-contract.css
+          grep -q -- '--swa-ink-navy: #03033a' assets/academy-page-contract.css
           grep -q 'data-swa-surface-tone="light"' assets/academy-page-contract.css
           grep -q 'data-swa-surface-tone="dark"' assets/academy-page-contract.css
+          ! grep -q 'background-color: #ffffff !important' assets/academy-navigation.js
+          ! grep -q 'html, body.*background-color' assets/academy-page-contract.css
+
+          grep -q -- '--sw-ink-navy: #03033a' assets/academy-brand-theme.css
+          grep -q -- '--sw-skunk-blue: #1e6bd0' assets/academy-brand-theme.css
+          grep -q -- '--sw-signal-orange: #f24208' assets/academy-brand-theme.css
+          grep -q -- '--sw-off-white: #f7f9fc' assets/academy-brand-theme.css
+          grep -q -- '--sw-graphite: #15171a' assets/academy-brand-theme.css
+          grep -q -- '--sw-steel-gray: #d8dee8' assets/academy-brand-theme.css
+          grep -q -- '--sw-slate-text: #5a6472' assets/academy-brand-theme.css
+
           grep -q 'luminance(background) <= 0.42 ? "dark" : "light"' assets/academy-page-contract.js
+          grep -q 'VERSION = "2026.08.22.1"' assets/academy-page-contract.js
           grep -q 'images/favicon-black.png' assets/academy-page-contract.js
           grep -q 'images/favicon-white.png' assets/academy-page-contract.js
 
@@ -83,17 +98,21 @@ jobs:
           grep -q 'prefers-color-scheme: dark' assets/academy-forms.css
           grep -q 'grid-template-columns: 1fr !important' assets/academy-forms.css
 
-      - name: Verify shared shell dynamically installs the contract
+      - name: Verify shared shell preserves page themes
         shell: bash
         run: |
           set -euo pipefail
           grep -q 'installCanonicalFavicons' assets/academy-navigation.js
           grep -q 'installPageContract' assets/academy-navigation.js
+          grep -q 'installBrandTheme' assets/academy-navigation.js
+          grep -q 'applyDeclaredTheme' assets/academy-navigation.js
           grep -q 'academy-page-contract.css' assets/academy-navigation.js
           grep -q 'academy-page-contract.js' assets/academy-navigation.js
-          grep -q 'background-color: #ffffff !important' assets/academy-navigation.js
-          grep -q 'VERSION = "2026.08.15.1"' assets/academy-navigation.js
-          grep -q 'REVISION = "2026.08.16.1"' assets/academy-navigation.js
+          grep -q 'academy-brand-theme.css' assets/academy-navigation.js
+          grep -q 'VERSION = "2026.08.22.2"' assets/academy-navigation.js
+          grep -q 'REVISION = "2026.08.22.2"' assets/academy-navigation.js
+          grep -q 'BRAND_THEME_VERSION = "2026.08.22.2"' assets/academy-navigation.js
+          grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
           if grep -Eq 'script\.crossOrigin[[:space:]]*=' assets/academy-navigation.js; then
             echo 'Shared shell must remain CORS-safe.'
@@ -120,7 +139,9 @@ jobs:
             grep -q 'data-skunkworks-design-system="forms-canonical"' "$file"
             grep -q 'data-skunkworks-forms-style="canonical"' "$file"
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
-            grep -q 'academy-page-contract.js?v=2026.08.20.3' "$file"
+            grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
+            grep -q 'academy-page-contract.js?v=2026.08.22.1' "$file"
+            grep -q 'academy-brand-theme.css?v=2026.08.22.2' "$file"
           done
 
       - name: Commit automatic contract repairs
@@ -136,7 +157,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- '*.html'
-          git commit -m 'Enforce global favicon and page colour contract'
+          git commit -m 'Enforce canonical Academy brand and page colour contract'
           git push origin HEAD:${GITHUB_REF_NAME}
 
       - name: Validate pull-request HTML without mutating it
@@ -159,9 +180,10 @@ jobs:
             grep -q 'data-skunkworks-design-system="forms-canonical"' "$file"
             grep -q 'data-skunkworks-forms-style="canonical"' "$file"
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
+            grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
           done
 
-          echo 'Pull-request documents are normalizable to the global page and forms design contracts.'
+          echo 'Pull-request documents are normalizable to the canonical Academy brand and contrast contracts.'
 
   production-assets:
     name: Verify canonical production assets
@@ -177,6 +199,7 @@ jobs:
           base='https://www.skunkworksacademy.com'
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png" >/dev/null
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png" >/dev/null
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.20.3" | grep -q 'Skunkworks Academy global page colour contract'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.20.3" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.22.1" | grep -q 'Skunkworks Academy global page colour and contrast contract'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.22.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.08.22.2" | grep -q 'Skunkworks Academy canonical brand theme'
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'
