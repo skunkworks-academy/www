@@ -1,42 +1,48 @@
 /*
-  Skunkworks Academy global page colour contract.
+  Skunkworks Academy global page colour and contrast contract.
   Canonical source: https://www.skunkworksacademy.com/assets/academy-page-contract.css
 
-  Rules:
-  - the document canvas is always white;
-  - surface text is dark on light backgrounds;
-  - surface text is light on dark backgrounds;
+  Design principles:
+  - preserve each page's authored background and theme;
+  - use canonical Skunkworks Academy brand colours for semantic fallbacks;
+  - correct foreground contrast only on runtime-classified surfaces;
   - nested surfaces inherit the nearest surface contract;
-  - interactive controls may retain their own component-specific colours.
+  - interactive controls retain their component-specific palettes.
 */
 
 :root {
-  color-scheme: light;
-  --swa-page-bg: #ffffff;
-  --swa-light-text: #161616;
-  --swa-light-muted: #3f3f46;
-  --swa-light-link: #004f9e;
-  --swa-dark-text: #ffffff;
-  --swa-dark-muted: #e5e7eb;
-  --swa-dark-link: #b9d7ff;
+  --swa-ink-navy: #03033a;
+  --swa-skunk-blue: #1e6bd0;
+  --swa-skunk-blue-hover: #1756a9;
+  --swa-signal-orange: #f24208;
+  --swa-white: #ffffff;
+  --swa-off-white: #f7f9fc;
+  --swa-graphite: #15171a;
+  --swa-steel-gray: #d8dee8;
+  --swa-slate-text: #5a6472;
+  --swa-blue-on-dark: #8fbaff;
+  --swa-dark-canvas: #05050b;
+  --swa-dark-surface: #11111c;
+  --swa-dark-text: #f4f6fa;
+  --swa-dark-muted: #c8d1df;
+
+  --swa-light-text: var(--swa-graphite);
+  --swa-light-muted: var(--swa-slate-text);
+  --swa-light-link: #1756a9;
+  --swa-dark-link: var(--swa-blue-on-dark);
 }
 
-html,
-body {
-  background-color: var(--swa-page-bg) !important;
-  background-image: none !important;
-}
+/*
+  IMPORTANT: this contract intentionally does not set html/body background,
+  background-image, or body foreground. The former white-body override caused
+  dark pages and authored gradients to render with mismatched foregrounds.
+*/
 
-body {
-  min-height: 100vh;
-  color: var(--swa-light-text);
-}
-
-/* Document-style forms and handbooks use a white page and cover surface. */
+/* Document-style forms and handbooks intentionally use a light paper surface. */
 .document,
 .document > .cover,
 section.cover {
-  background-color: #ffffff !important;
+  background-color: var(--swa-white) !important;
   background-image: none !important;
 }
 
@@ -55,9 +61,7 @@ section.cover :where(p, span, div, label, small) {
   color: var(--swa-light-muted);
 }
 
-/* Runtime-classified content surfaces. Custom properties make nested surfaces
-   deterministic: a white card inside a black section resets its own foreground
-   contract without fighting selector specificity. */
+/* Runtime-classified content surfaces. */
 [data-swa-surface-tone="light"] {
   --swa-surface-text: var(--swa-light-text);
   --swa-surface-muted: var(--swa-light-muted);
@@ -84,7 +88,7 @@ section.cover :where(p, span, div, label, small) {
   color: var(--swa-surface-link) !important;
 }
 
-/* Keep text on intentionally coloured interactive controls readable. */
+/* Interactive controls own their fill colour; keep their text isolated. */
 [data-swa-surface-tone] :where(.btn, .button, [class*="button"], [role="button"]) {
   isolation: isolate;
 }
@@ -95,6 +99,12 @@ section.cover :where(p, span, div, label, small) {
   --swa-surface-text: inherit;
   --swa-surface-muted: inherit;
   --swa-surface-link: inherit;
+}
+
+/* Consistent visible keyboard focus using the approved Signal Orange accent. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--swa-signal-orange);
+  outline-offset: 3px;
 }
 
 @media (forced-colors: active) {

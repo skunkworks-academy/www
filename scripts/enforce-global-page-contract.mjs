@@ -3,16 +3,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.08.20.3';
+const VERSION = '2026.08.22.1';
+const THEME_VERSION = '2026.08.22.2';
 const FORMS_VERSION = '2026.08.20.1';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
 const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png?v=${VERSION}`;
 const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-white.png?v=${VERSION}`;
 const CONTRACT_CSS = `${PUBLIC_ROOT}assets/academy-page-contract.css?v=${VERSION}`;
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
+const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}`;
 const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1`;
 const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
-const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1`;
+const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.08.22.2&rev=2026.08.22.2`;
 
 const FAVICON_TAGS = [
   `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
@@ -78,6 +80,7 @@ function stripManagedAssets(html) {
     previous = next;
     next = replaceToFixpoint(next, /<link\b[^>]*(?:academy-page-contract\.css|data-skunkworks-page-contract\s*=\s*["']css["'])[^>]*>\s*/gi);
     next = replaceToFixpoint(next, /<script\b[^>]*(?:academy-page-contract\.js|data-skunkworks-page-contract\s*=\s*["']runtime["'])[^>]*>\s*<\/script>\s*/gi);
+    next = replaceToFixpoint(next, /<link\b[^>]*(?:academy-brand-theme\.css|data-skunkworks-brand-theme\s*=\s*["']canonical["'])[^>]*>\s*/gi);
     next = replaceToFixpoint(next, /<link\b[^>]*(?:academy-forms\.css|data-skunkworks-forms-style\s*=\s*["']canonical["'])[^>]*>\s*/gi);
     next = replaceToFixpoint(next, /<link\b[^>]*data-skunkworks-design-system\s*=\s*["']forms-canonical["'][^>]*>\s*/gi);
     next = replaceToFixpoint(next, /<script\b[^>]*data-skunkworks-global-nav\s*=\s*["']forms-canonical["'][^>]*>\s*<\/script>\s*/gi);
@@ -99,6 +102,7 @@ function managedInjection(file) {
     lines.push(`<script defer src="${GLOBAL_NAV}" data-skunkworks-global-nav="forms-canonical"></script>`);
   }
 
+  lines.push(`<link rel="stylesheet" href="${BRAND_THEME}" data-skunkworks-brand-theme="canonical" />`);
   lines.push(`<script defer src="${CONTRACT_JS}" data-skunkworks-page-contract="runtime"></script>`);
   return lines.map((line) => `  ${line}`).join('\n');
 }
@@ -153,8 +157,10 @@ function validate(html, file) {
   if (sizedFaviconTags.length < 3) failures.push('32x32 favicon sizing');
   if (count(html, 'data-skunkworks-page-contract="css"') !== 1) failures.push('page-contract CSS');
   if (count(html, 'data-skunkworks-page-contract="runtime"') !== 1) failures.push('page-contract runtime');
+  if (count(html, 'data-skunkworks-brand-theme="canonical"') !== 1) failures.push('canonical brand theme');
   if (count(html, CONTRACT_CSS) !== 1) failures.push('canonical page-contract CSS URL');
   if (count(html, CONTRACT_JS) !== 1) failures.push('canonical page-contract runtime URL');
+  if (count(html, BRAND_THEME) !== 1) failures.push('canonical brand-theme URL');
 
   if (isFormsDocument(file)) {
     if (count(html, 'data-skunkworks-design-system="forms-canonical"') !== 1) failures.push('forms design system');
@@ -173,6 +179,7 @@ const assetChecks = [
   path.join(root, 'images', 'favicon-white.png'),
   path.join(root, 'assets', 'academy-page-contract.css'),
   path.join(root, 'assets', 'academy-page-contract.js'),
+  path.join(root, 'assets', 'academy-brand-theme.css'),
   path.join(root, 'assets', 'academy-forms.css'),
   path.join(root, 'assets', 'skunkworks-design-system.css'),
   path.join(root, 'assets', 'academy-navigation.js'),
@@ -211,9 +218,12 @@ for (const file of files) {
 }
 
 console.log(`Global page contract ${mode === 'write' ? 'applied to' : 'verified on'} ${documents} HTML document(s).`);
+console.log(`Canonical Academy brand theme ${mode === 'write' ? 'applied to' : 'verified on'} ${documents} HTML document(s).`);
 console.log(`Academy forms design/theme contract ${mode === 'write' ? 'applied to' : 'verified on'} ${formsDocuments} /forms/ HTML document(s).`);
 if (mode === 'write') console.log(`Updated ${changed} document(s).`);
 console.log(`Skipped ${fragments} non-document HTML fragment(s).`);
 console.log(`Canonical favicons: ${FAVICON_LIGHT} / ${FAVICON_DARK}`);
-console.log('Body contract: white canvas. Surface contract: dark text on light backgrounds, light text on dark backgrounds.');
+console.log(`Brand theme: ${BRAND_THEME}`);
+console.log('Canvas contract: page-owned. Contrast contract: dark text on light surfaces, light text on dark surfaces.');
+console.log('Brand contract: Ink Navy + Graphite neutrals, Skunk Blue actions, Signal Orange restrained accents/focus.');
 console.log('Forms contract: canonical Academy design system, global shell, responsive layout, and inverse light/dark document colours.');

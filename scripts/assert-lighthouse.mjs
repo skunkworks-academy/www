@@ -31,6 +31,19 @@ const metricIds = [
   'total-blocking-time',
 ];
 
+function printCategoryFailures(report, category) {
+  const refs = report.categories?.[category]?.auditRefs ?? [];
+  const failures = refs
+    .filter((ref) => (ref.weight ?? 0) > 0)
+    .map((ref) => ({ref, audit: report.audits?.[ref.id]}))
+    .filter(({audit}) => audit && audit.scoreDisplayMode !== 'notApplicable' && (audit.score ?? 0) < 1);
+
+  for (const {ref, audit} of failures) {
+    const detail = audit.errorMessage || audit.explanation || audit.displayValue || '';
+    console.error(`  - ${ref.id}: score=${audit.score ?? 'null'} weight=${ref.weight} ${audit.title || ''}${detail ? ` — ${detail}` : ''}`);
+  }
+}
+
 let failed = false;
 for (const [category, minimum] of Object.entries(thresholds)) {
   const samples = reports.map((report) => report.categories[category]?.score ?? 0);
@@ -38,6 +51,10 @@ for (const [category, minimum] of Object.entries(thresholds)) {
   console.log(`${category}: median ${Math.round(score * 100)} from [${samples.map((value) => Math.round(value * 100)).join(', ')}]`);
   if (score < minimum) {
     console.error(`${category} median is below ${Math.round(minimum * 100)}`);
+    reports.forEach((report, index) => {
+      console.error(`Sample ${index + 1} ${category} audit failures:`);
+      printCategoryFailures(report, category);
+    });
     failed = true;
   }
 }
