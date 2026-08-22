@@ -5,14 +5,14 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.20.3";
+  var VERSION = "2026.08.22.1";
   var FORMS_VERSION = "2026.08.20.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png?v=" + VERSION;
   var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png?v=" + VERSION;
   var FORMS_DESIGN_SYSTEM = PUBLIC_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
   var FORMS_STYLES = PUBLIC_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
-  var FORMS_GLOBAL_NAV = PUBLIC_ROOT + "assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1";
+  var FORMS_GLOBAL_NAV = PUBLIC_ROOT + "assets/academy-navigation.js?v=2026.08.22.1&rev=2026.08.22.1";
   var pathname = String(window.location && window.location.pathname || "/");
   var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
 
