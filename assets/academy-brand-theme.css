@@ -1,6 +1,6 @@
 /*
   Skunkworks Academy canonical brand theme
-  Version: 2026.08.22.1
+  Version: 2026.08.22.2
 
   Source palette:
   Ink Navy      #03033A
@@ -64,9 +64,32 @@
   --sk-shadow: 0 18px 48px rgba(3, 3, 58, .10);
   --sk-shadow-strong: 0 30px 90px rgba(3, 3, 58, .18);
 
-  /* Legacy bridge used by older Academy pages */
+  /* Common legacy token bridge used across jobs, security, IBM, media, etc. */
+  --bg: var(--sw-white);
+  --surface: var(--sw-white);
+  --surface-2: var(--sw-off-white);
+  --surface2: var(--sw-off-white);
+  --surface-3: #edf1f7;
+  --surface3: #edf1f7;
+  --panel: var(--sw-white);
+  --panel-2: var(--sw-off-white);
+  --text: var(--sw-graphite);
+  --text-soft: #343a43;
+  --muted: var(--sw-slate-text);
+  --subtle: #687385;
+  --soft: var(--sw-off-white);
+  --line: var(--sw-steel-gray);
+  --line-strong: #8b95a5;
+  --accent: var(--sw-skunk-blue);
+  --accent-2: var(--sw-ink-navy);
+  --accent2: var(--sw-ink-navy);
+  --primary: var(--sw-skunk-blue);
   --primary-color: var(--sw-skunk-blue);
   --accent-color: var(--sw-skunk-blue);
+  --link: #1756a9;
+  --focus: var(--sw-signal-orange);
+  --amber: var(--sw-signal-orange);
+  --warning: var(--sw-signal-orange);
   --bg-color: var(--sw-white);
   --card-bg: var(--sw-white);
   --text-color: var(--sw-graphite);
@@ -74,6 +97,21 @@
   --border-color: var(--sw-steel-gray);
   --stat-number: var(--sw-skunk-blue);
   --stat-label: var(--sw-slate-text);
+
+  /* Labs namespace bridge. */
+  --labs-bg: var(--sw-white);
+  --labs-bg-soft: var(--sw-off-white);
+  --labs-surface: var(--sw-white);
+  --labs-surface-2: var(--sw-off-white);
+  --labs-card: rgba(255, 255, 255, .94);
+  --labs-text: var(--sw-graphite);
+  --labs-muted: var(--sw-slate-text);
+  --labs-line: rgba(90, 100, 114, .24);
+  --labs-blue: var(--sw-skunk-blue);
+  --labs-cyan: var(--sw-skunk-blue);
+  --labs-violet: var(--sw-ink-navy);
+  --labs-amber: var(--sw-signal-orange);
+  --labs-focus: 0 0 0 4px rgba(242, 66, 8, .24);
 }
 
 :root[data-theme="dark"],
@@ -99,6 +137,44 @@
   --sk-shadow-sm: 0 8px 24px rgba(0, 0, 0, .28);
   --sk-shadow: 0 20px 60px rgba(0, 0, 0, .36);
   --sk-shadow-strong: 0 30px 90px rgba(0, 0, 0, .48);
+
+  /* Common dark legacy bridge. */
+  --bg: var(--sw-dark-canvas);
+  --surface: var(--sw-dark-surface);
+  --surface-2: #171728;
+  --surface2: #171728;
+  --surface-3: #23233a;
+  --surface3: #23233a;
+  --panel: var(--sw-dark-surface);
+  --panel-2: #171728;
+  --text: var(--sw-dark-text);
+  --text-soft: #e5e9f0;
+  --muted: var(--sw-dark-muted);
+  --subtle: #aeb9c9;
+  --soft: #171728;
+  --line: rgba(216, 222, 232, .20);
+  --line-strong: rgba(216, 222, 232, .38);
+  --accent: var(--sw-skunk-blue);
+  --accent-2: var(--sw-ink-navy);
+  --accent2: var(--sw-ink-navy);
+  --primary: var(--sw-skunk-blue);
+  --link: var(--sw-blue-on-dark);
+  --focus: var(--sw-signal-orange);
+  --amber: var(--sw-signal-orange);
+
+  /* Labs dark bridge. */
+  --labs-bg: var(--sw-dark-canvas);
+  --labs-bg-soft: var(--sw-ink-navy);
+  --labs-surface: var(--sw-dark-surface);
+  --labs-surface-2: #171728;
+  --labs-card: rgba(17, 17, 28, .90);
+  --labs-text: var(--sw-dark-text);
+  --labs-muted: var(--sw-dark-muted);
+  --labs-line: rgba(216, 222, 232, .20);
+  --labs-blue: var(--sw-skunk-blue);
+  --labs-cyan: var(--sw-blue-on-dark);
+  --labs-violet: var(--sw-ink-navy);
+  --labs-amber: var(--sw-signal-orange);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -121,6 +197,42 @@
     --sk-focus: var(--sw-signal-orange);
     --sk-border-subtle: rgba(216, 222, 232, .18);
     --sk-border-strong: rgba(216, 222, 232, .34);
+
+    --bg: var(--sw-dark-canvas);
+    --surface: var(--sw-dark-surface);
+    --surface-2: #171728;
+    --surface2: #171728;
+    --surface-3: #23233a;
+    --surface3: #23233a;
+    --panel: var(--sw-dark-surface);
+    --panel-2: #171728;
+    --text: var(--sw-dark-text);
+    --text-soft: #e5e9f0;
+    --muted: var(--sw-dark-muted);
+    --subtle: #aeb9c9;
+    --soft: #171728;
+    --line: rgba(216, 222, 232, .20);
+    --line-strong: rgba(216, 222, 232, .38);
+    --accent: var(--sw-skunk-blue);
+    --accent-2: var(--sw-ink-navy);
+    --accent2: var(--sw-ink-navy);
+    --primary: var(--sw-skunk-blue);
+    --link: var(--sw-blue-on-dark);
+    --focus: var(--sw-signal-orange);
+    --amber: var(--sw-signal-orange);
+
+    --labs-bg: var(--sw-dark-canvas);
+    --labs-bg-soft: var(--sw-ink-navy);
+    --labs-surface: var(--sw-dark-surface);
+    --labs-surface-2: #171728;
+    --labs-card: rgba(17, 17, 28, .90);
+    --labs-text: var(--sw-dark-text);
+    --labs-muted: var(--sw-dark-muted);
+    --labs-line: rgba(216, 222, 232, .20);
+    --labs-blue: var(--sw-skunk-blue);
+    --labs-cyan: var(--sw-blue-on-dark);
+    --labs-violet: var(--sw-ink-navy);
+    --labs-amber: var(--sw-signal-orange);
   }
 }
 
@@ -163,6 +275,12 @@
 .cta-primary:hover {
   background-color: var(--sw-skunk-blue-hover);
   border-color: var(--sw-skunk-blue-hover);
+}
+
+/* Legacy gradient buttons become canonical blue rather than purple/cyan or red/orange. */
+.btn.primary,
+.button.primary {
+  background-image: linear-gradient(135deg, var(--sw-skunk-blue), var(--sw-skunk-blue-hover));
 }
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
