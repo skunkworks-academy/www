@@ -6,7 +6,7 @@ The canonical Academy shell now loads the theme-conformance layer after the desi
 
 Use the existing public-shell compatibility include:
 
-    <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.22.2&rev=2026.08.22.2" data-skunkworks-global-nav="v10"></script>
+    <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.23.1&rev=2026.08.23.1" data-skunkworks-global-nav="v10"></script>
 
 No additional stylesheet is required for a public property using the canonical shell.
 
@@ -31,7 +31,7 @@ Use the following markers on new public content:
 | Informational callout | data-sk-component="notice" |
 | Article/content region | data-sk-component="prose" |
 
-Equivalent .sk-* and .swa-* component classes are supported for existing static content.
+Equivalent `.sk-*` and `.swa-*` component classes are supported for existing static content.
 
 ## Guardrail
 
