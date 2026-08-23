@@ -72,7 +72,7 @@ for (const token of [
 }
 
 requireText('shell', 'THEME_CONFORMANCE_VERSION = "' + VERSION + '"', 'the conformance asset version');
-requireText('shell', 'function installThemeConformance()', 'the conformance loader');
+requireText('shell', 'function installThemeConformance(', 'the conformance loader');
 requireText('shell', 'academy-theme-conformance.css', 'the conformance stylesheet reference');
 requireText('shell', 'data-skunkworks-theme-conformance', 'the conformance marker');
 requireText('shell', 'installThemeConformance(true)', 'deterministic conformance stylesheet ordering');
