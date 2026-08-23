@@ -104,12 +104,13 @@
   }
 
   function initialiseCatalogue() {
+    const form = document.querySelector('.cisco-catalogue__controls');
     const search = document.getElementById('cisco-course-search');
     const subject = document.getElementById('cisco-subject-filter');
     const summary = document.getElementById('cisco-catalogue-summary');
     const results = document.getElementById('cisco-course-results');
     const more = document.getElementById('cisco-catalogue-more');
-    if (!search || !subject || !summary || !results || !more) return;
+    if (!form || !search || !subject || !summary || !results || !more) return;
 
     [...new Set(OFFERINGS.map((offering) => offering.subject))]
       .sort((a, b) => a.localeCompare(b))
@@ -161,6 +162,7 @@
       render();
     }
 
+    form.addEventListener('submit', (event) => event.preventDefault());
     search.addEventListener('input', resetAndRender);
     subject.addEventListener('change', resetAndRender);
     more.addEventListener('click', () => {
