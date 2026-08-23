@@ -7,6 +7,7 @@
   var RUNTIME_VERSION = "2026.08.20.1";
   var PAGE_CONTRACT_VERSION = "2026.08.22.1";
   var BRAND_THEME_VERSION = "2026.08.22.2";
+  var THEME_CONFORMANCE_VERSION = "2026.08.23.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
@@ -101,10 +102,28 @@
     return link;
   }
 
+  function installThemeConformance(moveToEnd) {
+    var head = document.head || document.documentElement;
+    if (!head) return null;
+
+    var href = PUBLIC_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION;
+    var link = document.querySelector('link[data-skunkworks-theme-conformance="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.setAttribute("data-skunkworks-theme-conformance", "canonical");
+      head.appendChild(link);
+    }
+    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+    if (moveToEnd && link.parentNode === head) head.appendChild(link);
+    return link;
+  }
+
   applyDeclaredTheme();
   installCanonicalFavicons();
   installPageContract();
   installBrandTheme(false);
+  installThemeConformance(false);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
@@ -112,11 +131,13 @@
       installCanonicalFavicons();
       installPageContract();
       installBrandTheme(true);
+      installThemeConformance(true);
     }, { once: true });
   }
 
   if (document.querySelector('script[data-skunkworks-global-nav-runtime="v11"]')) {
     installBrandTheme(true);
+    installThemeConformance(true);
     return;
   }
 
@@ -131,8 +152,9 @@
 
   script.addEventListener("load", function () {
     /* academy-navigation-v11 injects the shared design system. Move the brand
-       theme after it so canonical token overrides win deterministically. */
+       bridge and conformance layer after it so token overrides win deterministically. */
     installBrandTheme(true);
+    installThemeConformance(true);
   });
 
   if (!isLocalPreview && primarySrc !== fallbackSrc) {
@@ -150,6 +172,8 @@
     pageContractRuntime: PUBLIC_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
     brandTheme: PUBLIC_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION,
+    themeConformanceVersion: THEME_CONFORMANCE_VERSION,
+    themeConformance: PUBLIC_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     bodyBackground: "theme-owned",
     faviconLight: PUBLIC_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION,
     faviconDark: PUBLIC_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION
