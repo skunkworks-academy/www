@@ -13,6 +13,7 @@
     "audit": "node scripts/audit-site.mjs",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
     "validate:contrast": "node scripts/validate-contrast.mjs",
+    "audit:theme": "node scripts/audit-theme-governance.mjs",
     "validate:theme": "node scripts/validate-theme-conformance.mjs",
     "validate:cisco": "node scripts/validate-cisco-page.mjs",
     "validate:course-registration": "node scripts/validate-course-registration.mjs",
