@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 /*
   Validates the shared Academy theme layer rather than attempting to police
-  every page's authored layout. Public HTML is normalised by the existing
-  global page contract; this gate ensures that contract has a complete,
-  accessible, page-safe theme layer to load.
+  every page's authored layout. Public HTML is normalised by the global page
+  contract; this gate ensures that the shared Academy foundation, light/dark
+  modes and component layer remain complete and accessible.
 */
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.argv[2] || '.');
-const VERSION = '2026.08.23.1';
+const VERSION = '2026.08.23.2';
 
 const files = {
   shell: 'assets/academy-navigation.js',
@@ -45,18 +45,19 @@ requireText('conformance', '--swa-control-height:', 'the control-height token');
 requireText('conformance', '--swa-action:', 'the semantic action token');
 requireText('conformance', '--swa-focus:', 'the focus token');
 requireText('conformance', ':root[data-theme="dark"]', 'the explicit dark-theme contract');
+requireText('conformance', ':root[data-swa-theme="dark"]', 'the footer dark-theme contract');
 requireText('conformance', '@media (prefers-color-scheme: dark)', 'the OS dark-theme fallback');
 requireText('conformance', '@media (prefers-reduced-motion: reduce)', 'the reduced-motion contract');
+requireText('conformance', 'Academy-wide foundation', 'the global page foundation');
+requireText('conformance', 'body:not([data-swa-theme-scope="isolated"])', 'the governed body selector');
+requireText('conformance', '--bg: var(--sk-bg) !important', 'the legacy background token bridge');
+requireText('conformance', ':where(.card, .panel, .tile, .surface, .box', 'the legacy content-surface bridge');
+requireText('conformance', 'data-swa-theme-scope="isolated"', 'the documented isolated-app escape hatch');
 requireText('conformance', '[data-sk-component="button"]', 'the opt-in button component selector');
 requireText('conformance', '[data-sk-component="card"]', 'the opt-in card component selector');
 requireText('conformance', '[data-sk-component="field"]', 'the opt-in field component selector');
 requireText('conformance', '[data-sk-component="notice"]', 'the opt-in notice component selector');
 requireText('conformance', '[data-sk-component="prose"]', 'the opt-in prose component selector');
-
-const pageCanvasReset = /(?:^|[}\n])\s*(?:html\s*,\s*body|html|body)\s*\{[^}]*\bbackground(?:-color)?\s*:/im;
-if (pageCanvasReset.test(source.conformance || '')) {
-  fail(files.conformance + ' must not take ownership of the page canvas; use semantic surfaces only.');
-}
 
 for (const token of [
   '--sw-ink-navy: #03033a',
@@ -84,4 +85,4 @@ if (failures.length) {
 }
 
 console.log('Theme conformance validation passed (v' + VERSION + ').');
-console.log('Validated canonical tokens, light/dark semantic surfaces, opt-in components, motion handling, and the global-shell loader.');
+console.log('Validated the Academy-wide canvas, token bridge, light/dark modes, common components, motion handling, and global-shell loader.');
