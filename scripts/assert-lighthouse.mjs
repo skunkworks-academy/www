@@ -31,14 +31,28 @@ const metricIds = [
   'total-blocking-time',
 ];
 
-function printCategoryFailures(report, category) {
+/* Chromium can occasionally evict the main document response before
+   Lighthouse's charset gatherer reads it. That is a collection failure, not
+   a site best-practices failure, so isolate only this documented condition. */
+const transientGathererError = /Protocol error \(Network\.getResponseBody\): Request content was evicted from inspector cache/i;
+
+function categoryFailures(report, category) {
   const refs = report.categories?.[category]?.auditRefs ?? [];
-  const failures = refs
+  return refs
     .filter((ref) => (ref.weight ?? 0) > 0)
     .map((ref) => ({ref, audit: report.audits?.[ref.id]}))
     .filter(({audit}) => audit && audit.scoreDisplayMode !== 'notApplicable' && (audit.score ?? 0) < 1);
+}
 
-  for (const {ref, audit} of failures) {
+function hasOnlyTransientGathererFailures(report, category) {
+  const failures = categoryFailures(report, category);
+  return failures.length > 0 && failures.every(({audit}) => (
+    audit.score == null && transientGathererError.test(audit.errorMessage || '')
+  ));
+}
+
+function printCategoryFailures(report, category) {
+  for (const {ref, audit} of categoryFailures(report, category)) {
     const detail = audit.errorMessage || audit.explanation || audit.displayValue || '';
     console.error(`  - ${ref.id}: score=${audit.score ?? 'null'} weight=${ref.weight} ${audit.title || ''}${detail ? ` — ${detail}` : ''}`);
   }
@@ -46,9 +60,24 @@ function printCategoryFailures(report, category) {
 
 let failed = false;
 for (const [category, minimum] of Object.entries(thresholds)) {
-  const samples = reports.map((report) => report.categories[category]?.score ?? 0);
+  const transientSamples = [];
+  const samples = reports.flatMap((report, index) => {
+    if (hasOnlyTransientGathererFailures(report, category)) {
+      transientSamples.push(index + 1);
+      return [];
+    }
+    return [report.categories[category]?.score ?? 0];
+  });
+
+  if (!samples.length) {
+    console.error(`${category} has no valid Lighthouse samples after transient gatherer failures.`);
+    failed = true;
+    continue;
+  }
+
   const score = median(samples);
-  console.log(`${category}: median ${Math.round(score * 100)} from [${samples.map((value) => Math.round(value * 100)).join(', ')}]`);
+  const excluded = transientSamples.length ? `; excluded transient samples: ${transientSamples.join(', ')}` : '';
+  console.log(`${category}: median ${Math.round(score * 100)} from [${samples.map((value) => Math.round(value * 100)).join(', ')}]${excluded}`);
   if (score < minimum) {
     console.error(`${category} median is below ${Math.round(minimum * 100)}`);
     reports.forEach((report, index) => {

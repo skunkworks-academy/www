@@ -1,0 +1,46 @@
+name: Theme conformance
+
+on:
+  pull_request:
+    paths:
+      - 'assets/academy-navigation.js'
+      - 'assets/academy-brand-theme.css'
+      - 'assets/skunkworks-design-system.css'
+      - 'assets/academy-theme-conformance.css'
+      - 'scripts/validate-theme-conformance.mjs'
+      - 'THEME_CONFORMANCE.md'
+      - '.github/workflows/theme-conformance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/academy-navigation.js'
+      - 'assets/academy-brand-theme.css'
+      - 'assets/skunkworks-design-system.css'
+      - 'assets/academy-theme-conformance.css'
+      - 'scripts/validate-theme-conformance.mjs'
+      - 'THEME_CONFORMANCE.md'
+      - '.github/workflows/theme-conformance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: theme-conformance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate shared Academy theme
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Validate theme conformance contract
+        run: node scripts/validate-theme-conformance.mjs
