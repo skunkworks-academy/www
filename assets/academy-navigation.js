@@ -2,8 +2,8 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.22.2";
-  var REVISION = "2026.08.22.2";
+  var VERSION = "2026.08.23.1";
+  var REVISION = "2026.08.23.1";
   var RUNTIME_VERSION = "2026.08.20.1";
   var PAGE_CONTRACT_VERSION = "2026.08.22.1";
   var BRAND_THEME_VERSION = "2026.08.22.2";

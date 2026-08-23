@@ -138,7 +138,7 @@
   font-family: var(--swa-font-sans);
 }
 
-:where(.sk-prose, .swa-prose, [data-sk-component="prose"]) :is(a:not(.sk-button):not(.swa-button)) {
+:where(.sk-prose, .swa-prose, [data-sk-component="prose"]) :is(a:not(.sk-button):not(.swa-button):not([data-sk-component="button"])) {
   color: var(--swa-link);
   text-decoration-thickness: .08em;
   text-underline-offset: .14em;
