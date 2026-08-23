@@ -115,7 +115,9 @@ body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-ma
   color: var(--sk-text-primary) !important;
 }
 
-body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.hero, [class~="hero"]) {
+/* Legacy hero normalisation deliberately excludes the canonical component.
+   .sk-hero owns its dark surface, typography and CTA contrast as one unit. */
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.hero, [class~="hero"]):not(.sk-hero):not([data-sk-component="hero"]) {
   background: var(--sk-bg-gradient) !important;
   border-color: var(--sk-border-subtle);
 }
@@ -133,6 +135,32 @@ body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-ma
 body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.btn:not(.primary), .button:not(.primary), .sk-button--secondary, .swa-button--secondary, [data-sk-component="button"][data-variant="secondary"]) {
   background: var(--sk-layer-01) !important;
   color: var(--sk-interactive) !important;
+}
+
+/* Canonical hero CTAs use the component palette, not the light-surface
+   normalisation above. Keep this rule here because this stylesheet is loaded
+   after the design system on legacy pages. */
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) [data-sk-component="hero"] :where(.sk-button, [data-sk-component="button"]) {
+  border-color: var(--sk-border-inverse) !important;
+  background: transparent !important;
+  color: var(--sk-text-inverse) !important;
+}
+
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) [data-sk-component="hero"] :where(.sk-button--primary, [data-sk-component="button"][data-variant="primary"]) {
+  border-color: var(--sk-interactive) !important;
+  background: var(--sk-interactive) !important;
+  color: var(--sk-text-on-color) !important;
+}
+
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) [data-sk-component="hero"] :where(.sk-button--primary, [data-sk-component="button"][data-variant="primary"]):hover {
+  border-color: var(--sk-interactive-hover) !important;
+  background: var(--sk-interactive-hover) !important;
+}
+
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) [data-sk-component="hero"] :where(.sk-button--secondary, [data-sk-component="button"][data-variant="secondary"]):hover {
+  border-color: #fff !important;
+  background: color-mix(in srgb, #fff 12%, transparent) !important;
+  color: #fff !important;
 }
 
 body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea) {
