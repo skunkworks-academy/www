@@ -6,8 +6,8 @@ const files = [
   'course-registration/skunkworks-academy-cyber-security-training-email.html',
 ];
 
-const requiredFaviconLight = 'https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.20.3';
-const requiredFaviconDark = 'https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.20.3';
+const requiredFaviconLight = 'https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.22.1';
+const requiredFaviconDark = 'https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.22.1';
 const failures = [];
 
 function fail(file, message) {
