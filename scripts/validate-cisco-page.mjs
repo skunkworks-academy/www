@@ -16,24 +16,35 @@ if (!existsSync(catalogueFile)) failures.push('Missing cisco/catalogue.js.');
 const html = existsSync(page) ? readFileSync(page, 'utf8') : '';
 const css = existsSync(stylesheet) ? readFileSync(stylesheet, 'utf8') : '';
 const catalogue = existsSync(catalogueFile) ? readFileSync(catalogueFile, 'utf8') : '';
+const cssCode = css.replace(/\/\*[\s\S]*?\*\//g, '');
 
 function requireText(text, value, label) {
   if (!text.includes(value)) failures.push(`Missing ${label}.`);
 }
 
-requireText(html, '<title>Cisco Networking Academy Courses | Skunkworks Academy</title>', 'descriptive title');
-requireText(html, 'name="description"', 'meta description');
-requireText(html, 'rel="canonical" href="https://www.skunkworksacademy.com/cisco/"', 'canonical URL');
-requireText(html, 'href="cisco.css"', 'local scoped stylesheet');
-requireText(html, 'src="catalogue.js"', 'current course catalogue runtime');
-requireText(html, 'academy-navigation.js?v=2026.08.23.1', 'current Academy shell');
-requireText(html, 'data-skunkworks-global-nav="v10"', 'current Academy shell marker');
-requireText(html, '<main id="cisco-main"', 'main landmark');
-requireText(html, 'Skip to Cisco learning content', 'skip link');
-requireText(html, 'data-sk-component="card"', 'Academy card component');
-requireText(html, 'Cisco and Cisco Networking Academy are trademarks of Cisco Systems, Inc.', 'trademark clarification');
-requireText(html, 'Browse 89 offerings', 'current offering count');
-requireText(html, 'id="cisco-course-results"', 'course catalogue results landmark');
+function requirePattern(text, pattern, label) {
+  if (!pattern.test(text)) failures.push(`Missing ${label}.`);
+}
+
+function requireCss(value, label) {
+  if (!cssCode.includes(value)) failures.push(`Missing ${label}.`);
+}
+
+requirePattern(html, /<title>\s*Cisco Networking Academy Courses \| Skunkworks Academy\s*<\/title>/i, 'descriptive title');
+requirePattern(html, /<meta\b(?=[^>]*\bname="description")(?=[^>]*\bcontent="[^"\r\n]*\S[^"\r\n]*")[^>]*>/i, 'non-empty meta description');
+requirePattern(html, /<link\b(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/www\.skunkworksacademy\.com\/cisco\/")[^>]*>/i, 'canonical URL');
+requirePattern(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="cisco\.css")[^>]*>/i, 'local scoped stylesheet');
+requirePattern(html, /<script\b(?=[^>]*\bsrc="catalogue\.js")[^>]*><\/script>/i, 'current course catalogue runtime');
+requirePattern(html, /<script\b(?=[^>]*academy-navigation\.js\?v=2026\.08\.23\.1)(?=[^>]*\bdata-skunkworks-global-nav="v10")[^>]*><\/script>/i, 'current Academy shell');
+requirePattern(html, /<main\b(?=[^>]*\bid="cisco-main")[^>]*>/i, 'main landmark');
+requirePattern(html, /<a\b(?=[^>]*\bclass="cisco-skip-link")(?=[^>]*\bhref="#cisco-main")[^>]*>Skip to Cisco learning content<\/a>/i, 'skip link');
+requirePattern(html, /data-sk-component="card"/i, 'Academy card component');
+requirePattern(html, /Cisco and Cisco Networking Academy are trademarks of Cisco Systems, Inc\./i, 'trademark clarification');
+requirePattern(html, />Browse 89 offerings</i, 'current offering count');
+requirePattern(html, /<div\b(?=[^>]*\bid="cisco-course-results")(?=[^>]*\bclass="cisco-catalogue__results")[^>]*><\/div>/i, 'course catalogue results landmark');
+if (/<div\b(?=[^>]*\bid="cisco-course-results")(?=[^>]*\baria-live=)[^>]*>/i.test(html)) {
+  failures.push('The course results container must not be an ARIA live region; the summary provides result updates.');
+}
 
 const titles = [...catalogue.matchAll(/\btitle:\s*'([^']+)'/g)].map((match) => match[1]);
 if (titles.length !== 89) failures.push(`Expected 89 current Cisco Networking Academy offerings; found ${titles.length}.`);
@@ -64,11 +75,13 @@ for (const legacyReference of [
   'Search courses...',
   '2024-'
 ]) {
-  if (html.includes(legacyReference)) failures.push(`Legacy Cisco page reference remains: ${legacyReference}`);
+  if ([html, css, catalogue].some((asset) => asset.includes(legacyReference))) {
+    failures.push(`Legacy Cisco page reference remains: ${legacyReference}`);
+  }
 }
 
 for (const requiredCss of ['.cisco-page', '.cisco-catalogue__results', '.cisco-course-card', '@media (max-width: 840px)', '@media (prefers-reduced-motion: reduce)']) {
-  requireText(css, requiredCss, `Cisco CSS contract ${requiredCss}`);
+  requireCss(requiredCss, `Cisco CSS contract ${requiredCss}`);
 }
 
 if (failures.length) {
