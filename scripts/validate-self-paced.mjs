@@ -95,6 +95,21 @@ const requiredContent = [
     description: 'enrollment-gated access notice is present'
   },
   {
+    file: 'self-paced/index.html',
+    text: '--bg:var(--sk-bg,#f7f9fc)',
+    description: 'catalogue canvas uses the canonical Academy theme token'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: ':root[data-swa-theme="dark"] body.self-paced-page',
+    description: 'catalogue supports the shared explicit dark-theme state'
+  },
+  {
+    file: 'self-paced/index.html',
+    text: ':root:not([data-theme="light"]):not([data-swa-theme="light"]) body.self-paced-page',
+    description: 'catalogue retains the system dark-theme fallback'
+  },
+  {
     file: 'self-paced/claude/cld-uf-101/index.html',
     text: 'CLD-UF-101 | Claude User Fundamentals | Skunkworks Academy',
     description: 'legacy Claude course page title is present'
