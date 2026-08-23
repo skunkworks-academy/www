@@ -53,7 +53,7 @@ requireText('conformance', '[data-sk-component="field"]', 'the opt-in field comp
 requireText('conformance', '[data-sk-component="notice"]', 'the opt-in notice component selector');
 requireText('conformance', '[data-sk-component="prose"]', 'the opt-in prose component selector');
 
-const pageCanvasReset = /(?:^|[}\n])\s*(?:html\s*,\s*)?body\s*\{[^}]*\bbackground(?:-color)?\s*:/im;
+const pageCanvasReset = /(?:^|[}\n])\s*(?:html\s*,\s*body|html|body)\s*\{[^}]*\bbackground(?:-color)?\s*:/im;
 if (pageCanvasReset.test(source.conformance || '')) {
   fail(files.conformance + ' must not take ownership of the page canvas; use semantic surfaces only.');
 }
