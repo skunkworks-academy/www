@@ -1,19 +1,29 @@
 /* Cisco technology learning page — scoped to avoid competing with the Academy shell. */
 .cisco-page {
-  --cisco-canvas: #f7f9fc;
-  --cisco-surface: #ffffff;
-  --cisco-surface-muted: #edf3fb;
-  --cisco-ink: #10233d;
-  --cisco-muted: #52647c;
-  --cisco-line: #cfdae8;
-  --cisco-accent: #1e6bd0;
-  --cisco-accent-deep: #124e9f;
-  --cisco-highlight: #c93400;
-  --cisco-shadow: 0 1.25rem 3.5rem rgba(15, 42, 76, .12);
+  color-scheme: light;
+  --cisco-canvas: light-dark(#f7f9fc, #09101d);
+  --cisco-surface: light-dark(#ffffff, #111c2b);
+  --cisco-surface-muted: light-dark(#edf3fb, #0c1725);
+  --cisco-ink: light-dark(#10233d, #edf5ff);
+  --cisco-muted: light-dark(#52647c, #afc0d5);
+  --cisco-line: light-dark(#cfdae8, #2a3e56);
+  --cisco-accent: light-dark(#1e6bd0, #72b0ff);
+  --cisco-accent-deep: light-dark(#124e9f, #b6d8ff);
+  --cisco-highlight: light-dark(#c93400, #ff9b7b);
+  --cisco-hero-start: light-dark(#e7f1ff, #10243c);
+  --cisco-hero-end: light-dark(#f2f7ff, #0c1d31);
+  --cisco-shadow-colour: light-dark(rgba(15, 42, 76, .12), rgba(0, 0, 0, .24));
+  --cisco-status-surface: light-dark(#e8f7ed, #113b25);
+  --cisco-status-text: light-dark(#176338, #b8f4ca);
+  --cisco-beta-surface: light-dark(#fff0e9, #4d2412);
+  --cisco-beta-text: light-dark(#963000, #ffd2be);
+  --cisco-inverse-surface: light-dark(#10233d, #06111f);
+  --cisco-primary-label: light-dark(#ffffff, #06111f);
+
   background: var(--cisco-canvas);
   color: var(--cisco-ink);
   font-family: var(--swa-font-sans, var(--sk-font-sans, system-ui, sans-serif));
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .cisco-page *, .cisco-page *::before, .cisco-page *::after { box-sizing: border-box; }
@@ -36,7 +46,7 @@
 }
 .cisco-skip-link:focus { transform: translateY(0); }
 
-.cisco-hero { background: linear-gradient(135deg, #e7f1ff 0%, var(--cisco-canvas) 51%, #f2f7ff 100%); padding: clamp(3.5rem, 8vw, 7.75rem) 0 clamp(4rem, 8vw, 7rem); }
+.cisco-hero { background: linear-gradient(135deg, var(--cisco-hero-start) 0%, var(--cisco-canvas) 51%, var(--cisco-hero-end) 100%); padding: clamp(3.5rem, 8vw, 7.75rem) 0 clamp(4rem, 8vw, 7rem); }
 .cisco-hero__grid { align-items: center; display: grid; gap: clamp(2rem, 5vw, 5.5rem); grid-template-columns: minmax(0, 1.22fr) minmax(17rem, .78fr); }
 .cisco-hero__copy { max-width: 46rem; }
 .cisco-eyebrow { color: var(--cisco-accent-deep); font-size: .78rem; font-weight: 800; letter-spacing: .12em; margin-bottom: 1rem; text-transform: uppercase; }
@@ -44,12 +54,12 @@
 .cisco-lead { color: var(--cisco-muted); font-size: clamp(1.05rem, 2vw, 1.32rem); line-height: 1.58; max-width: 42rem; }
 .cisco-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .cisco-button { border-radius: .5rem; font-weight: 750; min-height: 3rem; padding-inline: 1.1rem; }
-.cisco-button--primary { background: var(--cisco-accent); border-color: var(--cisco-accent); }
+.cisco-button--primary { background: var(--cisco-accent); border-color: var(--cisco-accent); color: var(--cisco-primary-label); }
 .cisco-button--primary:hover { background: var(--cisco-accent-deep); border-color: var(--cisco-accent-deep); }
 .cisco-button--secondary { background: transparent; border-color: var(--cisco-line); color: var(--cisco-accent-deep); }
 .cisco-button--secondary:hover { background: var(--cisco-surface); border-color: var(--cisco-accent); color: var(--cisco-accent-deep); }
 
-.cisco-hero__panel { background: var(--cisco-surface); border-color: rgba(30, 107, 208, .22); border-radius: 1.1rem; box-shadow: var(--cisco-shadow); padding: clamp(1.35rem, 3.5vw, 2.2rem); }
+.cisco-hero__panel { background: var(--cisco-surface); border-color: rgba(30, 107, 208, .22); border-radius: 1.1rem; box-shadow: 0 1.25rem 3.5rem var(--cisco-shadow-colour); padding: clamp(1.35rem, 3.5vw, 2.2rem); }
 .cisco-panel__label { color: var(--cisco-muted); font-size: .86rem; font-weight: 700; margin-bottom: 1.15rem; }
 .cisco-feature-list { list-style: none; margin: 0; padding: 0; }
 .cisco-feature-list li { align-items: flex-start; border-top: 1px solid var(--cisco-line); display: grid; gap: .9rem; grid-template-columns: 2rem 1fr; padding: 1rem 0; }
@@ -77,8 +87,8 @@
 .cisco-course-card__metadata { align-items: center; display: flex; flex-wrap: wrap; gap: .38rem; margin-top: auto; }
 .cisco-course-card__metadata span { border-radius: 999px; font-size: .72rem; font-weight: 730; line-height: 1.2; padding: .31rem .55rem; }
 .cisco-course-card__subject { background: var(--cisco-surface-muted); color: var(--cisco-accent-deep); }
-.cisco-course-card__status { background: #e8f7ed; color: #176338; }
-.cisco-course-card__beta { background: #fff0e9; color: #963000; }
+.cisco-course-card__status { background: var(--cisco-status-surface); color: var(--cisco-status-text); }
+.cisco-course-card__beta { background: var(--cisco-beta-surface); color: var(--cisco-beta-text); }
 .cisco-catalogue__more { display: flex; margin: 1.2rem auto 0; }
 .cisco-catalogue__empty, .cisco-catalogue__fallback { color: var(--cisco-muted); grid-column: 1 / -1; line-height: 1.55; margin: 0; padding: 1.25rem; }
 
@@ -94,7 +104,7 @@
 .cisco-plan__steps > div { align-items: baseline; border-bottom: 1px solid var(--cisco-line); display: grid; gap: .9rem; grid-template-columns: 2rem 1fr; padding-bottom: 1.25rem; }
 .cisco-plan__steps span { color: var(--cisco-highlight); font-size: .75rem; font-weight: 800; }
 .cisco-plan__steps p { font-size: 1.05rem; font-weight: 650; line-height: 1.35; margin-bottom: 0; }
-.cisco-plan__cta { background: var(--cisco-ink); border: 0; border-radius: 1.1rem; color: #fff; padding: clamp(1.5rem, 4vw, 3rem); }
+.cisco-plan__cta { background: var(--cisco-inverse-surface); border: 0; border-radius: 1.1rem; color: #fff; padding: clamp(1.5rem, 4vw, 3rem); }
 .cisco-plan__cta .cisco-eyebrow { color: #a9d1ff; }
 .cisco-plan__cta h2 { max-width: 35rem; }
 .cisco-plan__cta > p:not(.cisco-eyebrow) { color: #d9e5f3; line-height: 1.62; margin: 1.35rem 0 1.7rem; max-width: 39rem; }
@@ -122,42 +132,8 @@
   .cisco-skip-link { transition: none; }
 }
 
-:root[data-theme="dark"] .cisco-page {
-  --cisco-canvas: #09101d;
-  --cisco-surface: #111c2b;
-  --cisco-surface-muted: #0c1725;
-  --cisco-ink: #edf5ff;
-  --cisco-muted: #afc0d5;
-  --cisco-line: #2a3e56;
-  --cisco-accent: #72b0ff;
-  --cisco-accent-deep: #b6d8ff;
-  --cisco-highlight: #ff9b7b;
-  --cisco-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, .24);
-}
-:root[data-theme="dark"] .cisco-hero { background: linear-gradient(135deg, #10243c 0%, var(--cisco-canvas) 54%, #0c1d31 100%); }
-:root[data-theme="dark"] .cisco-button--primary { color: #06111f; }
-:root[data-theme="dark"] .cisco-button--secondary { color: var(--cisco-accent-deep); }
-:root[data-theme="dark"] .cisco-plan__cta { background: #06111f; }
-:root[data-theme="dark"] .cisco-course-card__status { background: #113b25; color: #b8f4ca; }
-:root[data-theme="dark"] .cisco-course-card__beta { background: #4d2412; color: #ffd2be; }
+:root[data-theme="dark"] .cisco-page { color-scheme: dark; }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .cisco-page {
-    --cisco-canvas: #09101d;
-    --cisco-surface: #111c2b;
-    --cisco-surface-muted: #0c1725;
-    --cisco-ink: #edf5ff;
-    --cisco-muted: #afc0d5;
-    --cisco-line: #2a3e56;
-    --cisco-accent: #72b0ff;
-    --cisco-accent-deep: #b6d8ff;
-    --cisco-highlight: #ff9b7b;
-    --cisco-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, .24);
-  }
-  :root:not([data-theme="light"]) .cisco-hero { background: linear-gradient(135deg, #10243c 0%, var(--cisco-canvas) 54%, #0c1d31 100%); }
-  :root:not([data-theme="light"]) .cisco-button--primary { color: #06111f; }
-  :root:not([data-theme="light"]) .cisco-button--secondary { color: var(--cisco-accent-deep); }
-  :root:not([data-theme="light"]) .cisco-plan__cta { background: #06111f; }
-  :root:not([data-theme="light"]) .cisco-course-card__status { background: #113b25; color: #b8f4ca; }
-  :root:not([data-theme="light"]) .cisco-course-card__beta { background: #4d2412; color: #ffd2be; }
+  :root:not([data-theme="light"]) .cisco-page { color-scheme: dark; }
 }
