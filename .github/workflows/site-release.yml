@@ -219,8 +219,8 @@ jobs:
           from pathlib import Path
           import re
 
-          version = '2026.08.22.2'
-          revision = '2026.08.22.2'
+          version = '2026.08.23.1'
+          revision = '2026.08.23.1'
           accessibility_version = '2026.08.16.1'
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
           accessibility = f'<link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v={accessibility_version}" data-skunkworks-accessibility="wcag-contrast" />'
@@ -300,21 +300,21 @@ jobs:
       - name: Wait for production and verify CORS-safe shell assets and /courses
         run: |
           for attempt in {1..30}; do
-            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.22.2' || true)"
+            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.23.1' || true)"
             courses="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/courses' || true)"
-            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.22.2&rev=2026.08.22.2' || true)"
+            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.23.1&rev=2026.08.23.1' || true)"
             theme="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.08.22.2' || true)"
             ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.20.1' || true)"
             footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.20.1' || true)"
             accessibility_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?v=2026.08.16.1' || true)"
 
             if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
-              && printf '%s' "$response" | grep -q 'rev=2026.08.22.2' \
+              && printf '%s' "$response" | grep -q 'rev=2026.08.23.1' \
               && printf '%s' "$response" | grep -q 'data-skunkworks-accessibility="wcag-contrast"' \
               && printf '%s' "$courses" | grep -q 'https://www.skunkworksacademy.com/courses' \
               && printf '%s' "$courses" | grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' \
               && ! printf '%s' "$courses" | grep -q 'catalog.skunkworksacademy.com' \
-              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.22.2"' \
+              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.23.1"' \
               && printf '%s' "$shell" | grep -q 'bodyBackground: "theme-owned"' \
               && printf '%s' "$shell" | grep -q 'window.location.origin' \
               && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
