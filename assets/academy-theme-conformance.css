@@ -3,8 +3,8 @@
   Version: 2026.08.23.2
 
   Loaded by the canonical Academy shell after the design system and brand
-  bridge. This layer standardises the Academy canvas, semantic tokens and
-  reusable components across every public document.
+  bridge. This layer standardises semantic tokens and reusable components
+  across every public document without taking ownership of the page canvas.
 */
 
 :root {
@@ -59,19 +59,15 @@
 
 /* Academy-wide foundation
    -------------------------------------------------------------------------
-   Every public page receives the same canvas, typography, colour tokens and
-   common content surfaces. Legacy pages may retain their layout and content,
-   but cannot replace the Academy palette through local CSS variables.
+   Every public page receives the same typography, colour-token bridge and
+   common content-surface contract. The page canvas remains owned by the page
+   or canonical design-system layer so conformance cannot flatten intentional
+   page-level backgrounds, gradients or application shells.
 
    A deliberately explicit escape hatch is available only for self-contained
    embedded applications: data-swa-theme-scope="isolated". The governance
    audit requires a reason for every use of that escape hatch. */
-html {
-  background: var(--sk-bg);
-}
-
 body:not([data-swa-theme-scope="isolated"]) {
-  background: var(--sk-bg-gradient) !important;
   color: var(--sk-text-primary) !important;
   font-family: var(--swa-font-sans) !important;
   text-rendering: optimizeLegibility;
