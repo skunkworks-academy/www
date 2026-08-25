@@ -8,9 +8,11 @@
   var PAGE_CONTRACT_VERSION = "2026.08.25.1";
   var BRAND_THEME_VERSION = "2026.08.22.2";
   var THEME_CONFORMANCE_VERSION = "2026.08.23.2";
+  var LEARN_THEME_VERSION = "2026.08.25.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
+  var pathname = String(window.location && window.location.pathname || "/").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
   var ORIGIN_ROOT = (isApexAlias || isLocalPreview)
@@ -122,11 +124,59 @@
     return link;
   }
 
+  function isLearnSurface() {
+    if (host === "microsoft.skunkworksacademy.com" || host === "ibm.skunkworksacademy.com" || host === "security.skunkworksacademy.com") {
+      return true;
+    }
+
+    if (!(isApexAlias || isLocalPreview)) return false;
+
+    return [
+      "/learn",
+      "/courses",
+      "/learning-paths",
+      "/self-paced",
+      "/instructor-led",
+      "/comptia",
+      "/cisco"
+    ].some(function (prefix) {
+      return pathname === prefix || pathname.indexOf(prefix + "/") === 0 || pathname.indexOf(prefix + ".html") === 0;
+    });
+  }
+
+  function markLearnSurface() {
+    if (!isLearnSurface() || !document.body) return;
+    document.body.classList.add("swa-learn-page");
+    document.body.setAttribute("data-swa-section", "learn");
+  }
+
+  function installLearnTheme(moveToEnd) {
+    if (!isLearnSurface()) return null;
+
+    var head = document.head || document.documentElement;
+    if (!head) return null;
+
+    markLearnSurface();
+
+    var href = PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION;
+    var link = document.querySelector('link[data-skunkworks-learn-theme="v1"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.setAttribute("data-skunkworks-learn-theme", "v1");
+      head.appendChild(link);
+    }
+    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+    if (moveToEnd && link.parentNode === head) head.appendChild(link);
+    return link;
+  }
+
   applyDeclaredTheme();
   installCanonicalFavicons();
   installPageContract();
   installBrandTheme(false);
   installThemeConformance(false);
+  installLearnTheme(false);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
@@ -135,12 +185,16 @@
       installPageContract();
       installBrandTheme(true);
       installThemeConformance(true);
+      installLearnTheme(true);
     }, { once: true });
+  } else {
+    markLearnSurface();
   }
 
   if (document.querySelector('script[data-skunkworks-global-nav-runtime="v11"]')) {
     installBrandTheme(true);
     installThemeConformance(true);
+    installLearnTheme(true);
     return;
   }
 
@@ -154,10 +208,11 @@
   script.setAttribute("data-skunkworks-global-nav-version", RUNTIME_VERSION);
 
   script.addEventListener("load", function () {
-    /* academy-navigation-v11 injects the shared design system. Move the brand
-       bridge and conformance layer after it so token overrides win deterministically. */
+    /* academy-navigation-v11 injects the shared design system. Move the brand,
+       conformance and Learn layers after it so specialised tokens win deterministically. */
     installBrandTheme(true);
     installThemeConformance(true);
+    installLearnTheme(true);
   });
 
   if (!isLocalPreview && primarySrc !== fallbackSrc) {
@@ -177,6 +232,9 @@
     brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
+    learnThemeVersion: LEARN_THEME_VERSION,
+    learnTheme: PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
+    learnSurface: isLearnSurface(),
     bodyBackground: "theme-owned",
     faviconLight: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION,
     faviconDark: ORIGIN_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION
