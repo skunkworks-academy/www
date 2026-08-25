@@ -25,15 +25,24 @@
     /* Scope the catalogue to the shared Academy theme tokens. The global
        footer can express the preference as data-theme or data-swa-theme, so
        support both contracts and keep the catalogue canvas in sync. */
-    body.self-paced-page{color-scheme:light;--bg:var(--sk-bg,#f7f9fc);--panel:var(--sk-layer-01,#fff);--text:var(--sk-text-primary,#15171a);--muted:var(--sk-text-secondary,#5a6472);--line:var(--sk-border-subtle,#d8dee8);--accent:var(--sk-interactive,#1e6bd0);--accent2:var(--sw-ink-navy,#03033a);--warning:var(--sk-focus,#f24208);--shadow:var(--sk-shadow,0 18px 48px rgba(3,3,58,.10));background:radial-gradient(circle at top left,color-mix(in srgb,var(--accent) 20%,transparent),transparent 32rem),radial-gradient(circle at top right,color-mix(in srgb,var(--accent2) 16%,transparent),transparent 30rem),var(--bg);color:var(--text)}
-    :root[data-theme="dark"] body.self-paced-page,:root[data-swa-theme="dark"] body.self-paced-page{color-scheme:dark}
-    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-swa-theme="light"]) body.self-paced-page{color-scheme:dark}}
+    body.self-paced-page{color-scheme:light;--bg:var(--sk-bg,#f7f9fc);--panel:var(--sk-layer-01,#fff);--text:var(--sk-text-primary,#15171a);--muted:var(--sk-text-secondary,#5a6472);--line:var(--sk-border-subtle,#d8dee8);--accent:var(--sk-interactive,#1e6bd0);--accent2:var(--sw-ink-navy,#03033a);--warning:var(--sk-focus,#f24208);--shadow:var(--sk-shadow,0 18px 48px rgba(3,3,58,.10));--eyebrow-text:var(--sk-interactive,#1e6bd0);--eyebrow-bg:color-mix(in srgb,var(--panel) 92%,var(--sk-interactive,#1e6bd0) 8%);--eyebrow-border:color-mix(in srgb,var(--sk-interactive,#1e6bd0) 38%,var(--line));background:radial-gradient(circle at top left,color-mix(in srgb,var(--accent) 20%,transparent),transparent 32rem),radial-gradient(circle at top right,color-mix(in srgb,var(--accent2) 16%,transparent),transparent 30rem),var(--bg);color:var(--text)}
+    :root[data-theme="dark"] body.self-paced-page,:root[data-swa-theme="dark"] body.self-paced-page{color-scheme:dark;--eyebrow-text:#fff;--eyebrow-bg:color-mix(in srgb,var(--panel) 88%,var(--sk-interactive,#1e6bd0) 12%);--eyebrow-border:color-mix(in srgb,var(--sk-interactive,#1e6bd0) 58%,var(--line))}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-swa-theme="light"]) body.self-paced-page{color-scheme:dark;--eyebrow-text:#fff;--eyebrow-bg:color-mix(in srgb,var(--panel) 88%,var(--sk-interactive,#1e6bd0) 12%);--eyebrow-border:color-mix(in srgb,var(--sk-interactive,#1e6bd0) 58%,var(--line))}}
     body.self-paced-page #main{color:var(--text)}
     body.self-paced-page #main :is(h1,h2,h3){color:var(--text)!important}
     body.self-paced-page #main .hero{color:var(--text)!important}
     body.self-paced-page #main .lead{color:var(--muted)!important}
     body.self-paced-page #main .metric strong{color:var(--accent)!important}
     body.self-paced-page #main .legacy a{color:var(--accent)!important}
+
+    /* Hero eyebrow: stronger light-theme contrast plus restrained motion.
+       Skunk Blue (#1E6BD0 fallback) on the Academy off-white canvas exceeds
+       WCAG AA contrast for normal text, while dark mode switches to white. */
+    body.self-paced-page #main .hero .eyebrow{display:inline-flex;align-items:center;gap:.55rem;width:max-content;max-width:100%;margin:0 0 14px;padding:7px 11px;border:1px solid var(--eyebrow-border);border-radius:999px;background:var(--eyebrow-bg);color:var(--eyebrow-text)!important;font-size:12px;font-weight:900;line-height:1.1;letter-spacing:.18em;text-shadow:none;box-shadow:0 8px 24px color-mix(in srgb,var(--sk-interactive,#1e6bd0) 14%,transparent);animation:swaEyebrowFloat 4.6s ease-in-out infinite,swaEyebrowGlow 3.6s ease-in-out infinite;will-change:transform,box-shadow}
+    body.self-paced-page #main .hero .eyebrow::before{content:"";flex:0 0 auto;width:.48rem;height:.48rem;border-radius:50%;background:var(--sk-interactive,#1e6bd0);box-shadow:0 0 0 4px color-mix(in srgb,var(--sk-interactive,#1e6bd0) 14%,transparent)}
+    @keyframes swaEyebrowFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-4px,0)}}
+    @keyframes swaEyebrowGlow{0%,100%{box-shadow:0 8px 24px color-mix(in srgb,var(--sk-interactive,#1e6bd0) 12%,transparent)}50%{box-shadow:0 12px 30px color-mix(in srgb,var(--sk-interactive,#1e6bd0) 24%,transparent)}}
+    @media(prefers-reduced-motion:reduce){body.self-paced-page #main .hero .eyebrow{animation:none;transform:none;will-change:auto}}
   </style>
   
   
