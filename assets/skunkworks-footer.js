@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.20.1";
+  var VERSION = "2026.08.25.1";
   var ROOT_URL = "https://skunkworksacademy.com";
   var STORAGE_KEY = "swa-theme";
 
@@ -33,11 +33,16 @@
       ".swa-global-footer a:hover{text-decoration:underline!important;text-underline-offset:3px!important}",
       ".swa-global-footer a:focus-visible,.swa-global-footer button:focus-visible,.swa-global-footer summary:focus-visible{outline:2px solid var(--swa-footer-focus)!important;outline-offset:3px!important}",
       ".swa-global-footer__social.bottom-social{width:100%!important;margin:0 0 30px!important;padding:0 0 28px!important;border-bottom:1px solid var(--swa-footer-line)!important}",
-      ".swa-global-footer__social .container{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:12px 18px!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}",
-      ".swa-global-footer__social-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-height:54px!important;min-width:min(340px,100%)!important;padding:10px 14px!important;border:1px solid var(--swa-footer-line)!important;border-radius:4px!important;background:transparent!important;color:var(--swa-footer-text)!important;text-decoration:none!important;font-weight:600!important;line-height:1.3!important}",
+      ".swa-global-footer__social .container{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))!important;align-items:stretch!important;gap:12px!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}",
+      ".swa-global-footer__social-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-height:54px!important;min-width:0!important;padding:10px 14px!important;border:1px solid var(--swa-footer-line)!important;border-radius:4px!important;background:transparent!important;color:var(--swa-footer-text)!important;text-decoration:none!important;font-weight:600!important;line-height:1.3!important}",
       ".swa-global-footer__social-link:hover{background:var(--swa-footer-hover)!important;text-decoration:none!important}",
       ".swa-global-footer__social-link span{min-width:0!important;white-space:normal!important}",
-      ".swa-global-footer__linkedin-icon{display:block!important;width:32px!important;height:32px!important;flex:0 0 32px!important;fill:#0a66c2!important}",
+      ".swa-global-footer__social-icon{display:block!important;width:30px!important;height:30px!important;flex:0 0 30px!important;fill:currentColor!important}",
+      ".swa-global-footer__social-link[data-platform=\"linkedin\"] .swa-global-footer__social-icon{color:#0a66c2!important}",
+      ".swa-global-footer__social-link[data-platform=\"youtube\"] .swa-global-footer__social-icon{color:#ff0033!important}",
+      ".swa-global-footer__social-link[data-platform=\"facebook\"] .swa-global-footer__social-icon{color:#1877f2!important}",
+      ".swa-global-footer__social-link[data-platform=\"instagram\"] .swa-global-footer__social-icon{color:#c13584!important}",
+      ".swa-global-footer__social-link[data-platform=\"blog\"] .swa-global-footer__social-icon,.swa-global-footer__social-link[data-platform=\"forms\"] .swa-global-footer__social-icon{color:#1e6bd0!important}",
       ".swa-global-footer__utility{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:16px 34px!important;min-height:34px!important;margin:0 0 30px!important}",
       ".swa-global-footer__utility-item{display:inline-flex!important;align-items:center!important;gap:9px!important;min-height:32px!important;padding:2px 0!important;color:var(--swa-footer-text)!important;white-space:nowrap!important}",
       ".swa-global-footer__icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:18px!important;height:18px!important;flex:0 0 18px!important;color:currentColor!important}",
@@ -59,8 +64,8 @@
       "html[data-swa-theme=\"dark\"] .swa-global-footer,html[data-theme=\"dark\"] .swa-global-footer{--swa-footer-bg:#202020;--swa-footer-text:#f5f5f5;--swa-footer-muted:#c8c8c8;--swa-footer-hover:#343434;--swa-footer-line:#3c3c3c;--swa-footer-focus:#75b6e7}",
       "html[data-swa-theme=\"dark\"] .swa-global-footer__theme-menu,html[data-theme=\"dark\"] .swa-global-footer__theme-menu{background:#2b2b2b!important;color:#f5f5f5!important;border-color:#555!important}",
       "html[data-swa-theme=\"dark\"] .swa-global-footer__theme-option:hover,html[data-swa-theme=\"dark\"] .swa-global-footer__theme-option[aria-pressed=\"true\"],html[data-theme=\"dark\"] .swa-global-footer__theme-option:hover,html[data-theme=\"dark\"] .swa-global-footer__theme-option[aria-pressed=\"true\"]{background:#3a3a3a!important}",
-      "@media(max-width:900px){.swa-global-footer{padding:28px 24px 24px!important}.swa-global-footer__social .container{align-items:stretch!important}.swa-global-footer__social-link{flex:1 1 300px!important}.swa-global-footer__utility{margin-bottom:24px!important}.swa-global-footer__legal{justify-content:flex-start!important;gap:12px 24px!important}}",
-      "@media(max-width:560px){.swa-global-footer{padding:24px 18px!important}.swa-global-footer__social.bottom-social{margin-bottom:22px!important;padding-bottom:22px!important}.swa-global-footer__social .container{display:grid!important;grid-template-columns:1fr!important}.swa-global-footer__social-link{width:100%!important;min-width:0!important}.swa-global-footer__utility{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-bottom:22px!important}.swa-global-footer__legal{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px 18px!important}.swa-global-footer__legal li:last-child{grid-column:1/-1!important;margin-top:8px!important}.swa-global-footer__legal a,.swa-global-footer__copyright{white-space:normal!important}}",
+      "@media(max-width:900px){.swa-global-footer{padding:28px 24px 24px!important}.swa-global-footer__utility{margin-bottom:24px!important}.swa-global-footer__legal{justify-content:flex-start!important;gap:12px 24px!important}}",
+      "@media(max-width:560px){.swa-global-footer{padding:24px 18px!important}.swa-global-footer__social.bottom-social{margin-bottom:22px!important;padding-bottom:22px!important}.swa-global-footer__social .container{grid-template-columns:1fr!important}.swa-global-footer__social-link{width:100%!important}.swa-global-footer__utility{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-bottom:22px!important}.swa-global-footer__legal{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px 18px!important}.swa-global-footer__legal li:last-child{grid-column:1/-1!important;margin-top:8px!important}.swa-global-footer__legal a,.swa-global-footer__copyright{white-space:normal!important}}",
       "@media(prefers-reduced-motion:reduce){.swa-global-footer *{scroll-behavior:auto!important;transition:none!important}}"
     ].join("\n");
     document.head.appendChild(style);
@@ -138,32 +143,46 @@
     return link;
   }
 
-  function linkedInIcon() {
+  function socialIcon(platform) {
     var namespace = "http://www.w3.org/2000/svg";
     var svg = document.createElementNS(namespace, "svg");
     var path = document.createElementNS(namespace, "path");
-    svg.classList.add("swa-global-footer__linkedin-icon");
+    var paths = {
+      linkedin: "M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z",
+      youtube: "M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.49 3.55 12 3.55 12 3.55s-7.49 0-9.37.5A3.02 3.02 0 0 0 .5 6.19 31.66 31.66 0 0 0 0 12a31.66 31.66 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.13 2.14c1.88.5 9.37.5 9.37.5s7.49 0 9.37-.5a3.02 3.02 0 0 0 2.13-2.14A31.66 31.66 0 0 0 24 12a31.66 31.66 0 0 0-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z",
+      facebook: "M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.03 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z",
+      instagram: "M12 2.16c3.2 0 3.58.01 4.85.07 3.27.15 4.8 1.7 4.95 4.95.06 1.27.07 1.65.07 4.82s-.01 3.55-.07 4.82c-.15 3.25-1.68 4.8-4.95 4.95-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07C3.88 21.62 2.35 20.07 2.2 16.82 2.14 15.55 2.13 15.17 2.13 12s.01-3.55.07-4.82C2.35 3.93 3.88 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 2.68.27.27 2.68.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.37 2.61 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.37-.2 6.78-2.61 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.68 21.32.27 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 12 8a4 4 0 0 1 0 8Zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0Z",
+      blog: "M4 3h11a5 5 0 0 1 5 5v13H9a5 5 0 0 1-5-5V3Zm3 4v2h9V7H7Zm0 5v2h9v-2H7Zm0 5v2h6v-2H7Z",
+      forms: "M6 2h9l5 5v15H6V2Zm8 2v5h5M9 12h8v2H9v-2Zm0 4h8v2H9v-2Zm-2-4h1v2H7v-2Zm0 4h1v2H7v-2Z"
+    };
+
+    svg.classList.add("swa-global-footer__social-icon");
     svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("width", "32");
-    svg.setAttribute("height", "32");
+    svg.setAttribute("width", "30");
+    svg.setAttribute("height", "30");
     svg.setAttribute("aria-hidden", "true");
     svg.setAttribute("focusable", "false");
-    path.setAttribute("d", "M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z");
+    path.setAttribute("d", paths[platform] || paths.blog);
     svg.appendChild(path);
     return svg;
   }
 
-  function socialFollowLink(href, label) {
+  function socialFollowLink(href, label, platform, openNewTab) {
     var link = document.createElement("a");
     var text = document.createElement("span");
     link.className = "swa-global-footer__social-link";
     link.href = href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.setAttribute("aria-label", label + " on LinkedIn (opens in a new tab)");
+    link.setAttribute("data-platform", platform);
+    if (openNewTab) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.setAttribute("aria-label", label + " (opens in a new tab)");
+    } else {
+      link.setAttribute("aria-label", label);
+    }
     text.textContent = label;
     link.appendChild(text);
-    link.appendChild(linkedInIcon());
+    link.appendChild(socialIcon(platform));
     return link;
   }
 
@@ -181,11 +200,16 @@
 
     var social = document.createElement("section");
     social.className = "swa-global-footer__social bottom-social";
-    social.setAttribute("aria-label", "Follow Skunkworks on LinkedIn");
+    social.setAttribute("aria-label", "Skunkworks Academy channels and social links");
     var socialContainer = document.createElement("div");
     socialContainer.className = "container";
-    socialContainer.appendChild(socialFollowLink("https://www.linkedin.com/company/skunkworksacademy", "Follow Skunkworks Academy"));
-    socialContainer.appendChild(socialFollowLink("https://www.linkedin.com/company/skunkworks-africa", "Follow Skunkworks Africa"));
+    socialContainer.appendChild(socialFollowLink("https://www.linkedin.com/company/skunkworksacademy", "LinkedIn · Skunkworks Academy", "linkedin", true));
+    socialContainer.appendChild(socialFollowLink("https://www.linkedin.com/company/skunkworks-africa", "LinkedIn · Skunkworks Africa", "linkedin", true));
+    socialContainer.appendChild(socialFollowLink("https://www.youtube.com/@SkunkworksAcademy", "YouTube", "youtube", true));
+    socialContainer.appendChild(socialFollowLink("https://blog.skunkworksacademy.com/", "Blog & Articles", "blog", false));
+    socialContainer.appendChild(socialFollowLink("https://www.facebook.com/SkunkworksAcademy/", "Facebook", "facebook", true));
+    socialContainer.appendChild(socialFollowLink("https://www.instagram.com/skunkworks.academy/", "Instagram", "instagram", true));
+    socialContainer.appendChild(socialFollowLink("https://www.skunkworksacademy.com/forms/", "Forms", "forms", false));
     social.appendChild(socialContainer);
     footer.appendChild(social);
 
