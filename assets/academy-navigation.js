@@ -2,8 +2,8 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.25.1";
-  var REVISION = "2026.08.25.1";
+  var VERSION = "2026.08.25.2";
+  var REVISION = "2026.08.25.2";
   var RUNTIME_VERSION = "2026.08.20.1";
   var PAGE_CONTRACT_VERSION = "2026.08.25.1";
   var BRAND_THEME_VERSION = "2026.08.22.2";
@@ -23,6 +23,28 @@
     : CANONICAL_ROOT;
 
   if (typeof document === "undefined") return;
+
+  function isLearnSurface() {
+    if ([
+      "microsoft.skunkworksacademy.com",
+      "ibm.skunkworksacademy.com",
+      "security.skunkworksacademy.com"
+    ].indexOf(host) !== -1) return true;
+
+    if (!(isApexAlias || isLocalPreview)) return false;
+    return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)(?:\/|$)/.test(pathname);
+  }
+
+  function isLearnLandingSurface() {
+    if ([
+      "microsoft.skunkworksacademy.com",
+      "ibm.skunkworksacademy.com",
+      "security.skunkworksacademy.com"
+    ].indexOf(host) !== -1) return pathname === "/" || pathname === "";
+
+    if (!(isApexAlias || isLocalPreview)) return false;
+    return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)\/?$/.test(pathname);
+  }
 
   function installCanonicalFavicons() {
     var head = document.head || document.documentElement;
