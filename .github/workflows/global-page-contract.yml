@@ -8,11 +8,15 @@ on:
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
+      - 'assets/academy-theme-conformance.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
+      - 'scripts/audit-theme-governance.mjs'
+      - 'THEME_CONFORMANCE.md'
+      - 'package.json'
       - '.github/workflows/global-page-contract.yml'
       - '.github/workflows/site-release.yml'
   push:
@@ -23,11 +27,15 @@ on:
       - 'assets/academy-page-contract.css'
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
+      - 'assets/academy-theme-conformance.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
+      - 'scripts/audit-theme-governance.mjs'
+      - 'THEME_CONFORMANCE.md'
+      - 'package.json'
       - '.github/workflows/global-page-contract.yml'
       - '.github/workflows/site-release.yml'
   schedule:
@@ -66,10 +74,12 @@ jobs:
           test -s assets/academy-page-contract.css
           test -s assets/academy-page-contract.js
           test -s assets/academy-brand-theme.css
+          test -s assets/academy-theme-conformance.css
           test -s assets/academy-forms.css
           test -s assets/skunkworks-design-system.css
           test -s assets/academy-navigation.js
           test -s scripts/enforce-global-page-contract.mjs
+          test -s scripts/audit-theme-governance.mjs
 
           grep -q -- '--swa-ink-navy: #03033a' assets/academy-page-contract.css
           grep -q 'data-swa-surface-tone="light"' assets/academy-page-contract.css
@@ -84,6 +94,10 @@ jobs:
           grep -q -- '--sw-graphite: #15171a' assets/academy-brand-theme.css
           grep -q -- '--sw-steel-gray: #d8dee8' assets/academy-brand-theme.css
           grep -q -- '--sw-slate-text: #5a6472' assets/academy-brand-theme.css
+
+          grep -q 'Version: 2026.08.23.2' assets/academy-theme-conformance.css
+          grep -q 'Academy-wide foundation' assets/academy-theme-conformance.css
+          grep -q 'body:not(\[data-swa-theme-scope="isolated"\])' assets/academy-theme-conformance.css
 
           grep -q 'luminance(background) <= 0.42 ? "dark" : "light"' assets/academy-page-contract.js
           grep -q 'VERSION = "2026.08.22.1"' assets/academy-page-contract.js
@@ -112,6 +126,7 @@ jobs:
           grep -q 'VERSION = "2026.08.23.1"' assets/academy-navigation.js
           grep -q 'REVISION = "2026.08.23.1"' assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.08.22.2"' assets/academy-navigation.js
+          grep -q 'THEME_CONFORMANCE_VERSION = "2026.08.23.2"' assets/academy-navigation.js
           grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
           if grep -Eq 'script\.crossOrigin[[:space:]]*=' assets/academy-navigation.js; then
@@ -126,6 +141,7 @@ jobs:
           set -euo pipefail
           node scripts/enforce-global-page-contract.mjs --write .
           node scripts/enforce-global-page-contract.mjs --check .
+          node scripts/audit-theme-governance.mjs --report "$RUNNER_TEMP/academy-theme-audit.json"
 
       - name: Verify every forms HTML document uses Academy design and theme assets
         if: github.event_name != 'pull_request'
@@ -140,6 +156,7 @@ jobs:
             grep -q 'data-skunkworks-forms-style="canonical"' "$file"
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
             grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
+            grep -q 'data-skunkworks-theme-conformance="canonical"' "$file"
             grep -q 'academy-page-contract.js?v=2026.08.22.1' "$file"
             grep -q 'academy-brand-theme.css?v=2026.08.22.2' "$file"
           done
@@ -160,6 +177,15 @@ jobs:
           git commit -m 'Enforce canonical Academy brand and page colour contract'
           git push origin HEAD:${GITHUB_REF_NAME}
 
+      - name: Publish Academy theme audit
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: academy-theme-governance-${{ github.run_id }}
+          path: ${{ runner.temp }}/academy-theme-audit.json
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Validate pull-request HTML without mutating it
         if: github.event_name == 'pull_request'
         shell: bash
@@ -174,6 +200,7 @@ jobs:
 
           node scripts/enforce-global-page-contract.mjs --write "$staging"
           node scripts/enforce-global-page-contract.mjs --check "$staging"
+          node scripts/audit-theme-governance.mjs "$staging" --report "$RUNNER_TEMP/academy-theme-audit.json"
 
           mapfile -t forms < <(find "$staging/forms" -maxdepth 1 -type f -name '*.html' -print | sort)
           for file in "${forms[@]}"; do
@@ -181,9 +208,10 @@ jobs:
             grep -q 'data-skunkworks-forms-style="canonical"' "$file"
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
             grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
+            grep -q 'data-skunkworks-theme-conformance="canonical"' "$file"
           done
 
-          echo 'Pull-request documents are normalizable to the canonical Academy brand and contrast contracts.'
+          echo 'Pull-request documents are normalizable to the canonical Academy-wide theme and contrast contracts.'
 
   production-assets:
     name: Verify canonical production assets
@@ -202,4 +230,5 @@ jobs:
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.22.1" | grep -q 'Skunkworks Academy global page colour and contrast contract'
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.22.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.08.22.2" | grep -q 'Skunkworks Academy canonical brand theme'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?v=2026.08.23.2" | grep -q 'Academy-wide foundation'
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'

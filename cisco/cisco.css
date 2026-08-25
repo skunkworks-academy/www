@@ -1,0 +1,140 @@
+/* Cisco technology learning page — scoped to avoid competing with the Academy shell. */
+.cisco-page {
+  color-scheme: light;
+  --cisco-canvas: light-dark(#f7f9fc, #09101d);
+  --cisco-surface: light-dark(#ffffff, #111c2b);
+  --cisco-surface-muted: light-dark(#edf3fb, #0c1725);
+  --cisco-ink: light-dark(#10233d, #edf5ff);
+  --cisco-muted: light-dark(#52647c, #afc0d5);
+  --cisco-line: light-dark(#cfdae8, #2a3e56);
+  --cisco-accent: light-dark(#1e6bd0, #72b0ff);
+  --cisco-accent-deep: light-dark(#124e9f, #b6d8ff);
+  --cisco-highlight: light-dark(#c93400, #ff9b7b);
+  --cisco-hero-start: light-dark(#e7f1ff, #10243c);
+  --cisco-hero-end: light-dark(#f2f7ff, #0c1d31);
+  --cisco-shadow-colour: light-dark(rgba(15, 42, 76, .12), rgba(0, 0, 0, .24));
+  --cisco-status-surface: light-dark(#e8f7ed, #113b25);
+  --cisco-status-text: light-dark(#176338, #b8f4ca);
+  --cisco-beta-surface: light-dark(#fff0e9, #4d2412);
+  --cisco-beta-text: light-dark(#963000, #ffd2be);
+  --cisco-inverse-surface: light-dark(#10233d, #06111f);
+  --cisco-primary-label: light-dark(#ffffff, #06111f);
+
+  background: var(--cisco-canvas);
+  color: var(--cisco-ink);
+  font-family: var(--swa-font-sans, var(--sk-font-sans, system-ui, sans-serif));
+  overflow-x: clip;
+}
+
+.cisco-page *, .cisco-page *::before, .cisco-page *::after { box-sizing: border-box; }
+.cisco-page :is(h1, h2, h3, p) { margin-top: 0; }
+.cisco-page a { color: inherit; }
+.cisco-shell { margin-inline: auto; width: min(100% - 2rem, var(--swa-content-max, 75rem)); }
+
+.cisco-skip-link {
+  background: var(--cisco-ink);
+  border-radius: .5rem;
+  color: #fff;
+  left: 1rem;
+  padding: .7rem 1rem;
+  position: fixed;
+  text-decoration: none;
+  top: 1rem;
+  transform: translateY(-200%);
+  transition: transform 160ms ease;
+  z-index: 100;
+}
+.cisco-skip-link:focus { transform: translateY(0); }
+
+.cisco-hero { background: linear-gradient(135deg, var(--cisco-hero-start) 0%, var(--cisco-canvas) 51%, var(--cisco-hero-end) 100%); padding: clamp(3.5rem, 8vw, 7.75rem) 0 clamp(4rem, 8vw, 7rem); }
+.cisco-hero__grid { align-items: center; display: grid; gap: clamp(2rem, 5vw, 5.5rem); grid-template-columns: minmax(0, 1.22fr) minmax(17rem, .78fr); }
+.cisco-hero__copy { max-width: 46rem; }
+.cisco-eyebrow { color: var(--cisco-accent-deep); font-size: .78rem; font-weight: 800; letter-spacing: .12em; margin-bottom: 1rem; text-transform: uppercase; }
+.cisco-hero h1 { font-size: clamp(2.7rem, 5.9vw, 5.55rem); letter-spacing: -.061em; line-height: .98; margin-bottom: 1.55rem; max-width: 50rem; }
+.cisco-lead { color: var(--cisco-muted); font-size: clamp(1.05rem, 2vw, 1.32rem); line-height: 1.58; max-width: 42rem; }
+.cisco-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.cisco-button { border-radius: .5rem; font-weight: 750; min-height: 3rem; padding-inline: 1.1rem; }
+.cisco-button--primary { background: var(--cisco-accent); border-color: var(--cisco-accent); color: var(--cisco-primary-label); }
+.cisco-button--primary:hover { background: var(--cisco-accent-deep); border-color: var(--cisco-accent-deep); }
+.cisco-button--secondary { background: transparent; border-color: var(--cisco-line); color: var(--cisco-accent-deep); }
+.cisco-button--secondary:hover { background: var(--cisco-surface); border-color: var(--cisco-accent); color: var(--cisco-accent-deep); }
+
+.cisco-hero__panel { background: var(--cisco-surface); border-color: rgba(30, 107, 208, .22); border-radius: 1.1rem; box-shadow: 0 1.25rem 3.5rem var(--cisco-shadow-colour); padding: clamp(1.35rem, 3.5vw, 2.2rem); }
+.cisco-panel__label { color: var(--cisco-muted); font-size: .86rem; font-weight: 700; margin-bottom: 1.15rem; }
+.cisco-feature-list { list-style: none; margin: 0; padding: 0; }
+.cisco-feature-list li { align-items: flex-start; border-top: 1px solid var(--cisco-line); display: grid; gap: .9rem; grid-template-columns: 2rem 1fr; padding: 1rem 0; }
+.cisco-feature-list li:last-child { padding-bottom: 0; }
+.cisco-feature-list__number { color: var(--cisco-highlight); font-size: .72rem; font-weight: 800; padding-top: .17rem; }
+.cisco-feature-list strong { display: block; font-size: 1rem; margin-bottom: .25rem; }
+.cisco-feature-list small { color: var(--cisco-muted); display: block; font-size: .87rem; line-height: 1.45; }
+
+.cisco-section { padding: clamp(3.75rem, 7vw, 6.5rem) 0; }
+.cisco-section--surface { background: var(--cisco-surface-muted); }
+.cisco-section-heading { align-items: end; display: grid; gap: 2rem; grid-template-columns: minmax(0, 1.2fr) minmax(16rem, .8fr); margin-bottom: 2.25rem; }
+.cisco-section-heading h2, .cisco-delivery h2, .cisco-plan__cta h2 { font-size: clamp(2rem, 3.8vw, 3.5rem); letter-spacing: -.045em; line-height: 1.04; margin-bottom: 0; }
+.cisco-section-heading > p { color: var(--cisco-muted); line-height: 1.6; margin-bottom: .2rem; }
+
+.cisco-catalogue { scroll-margin-top: 5rem; }
+.cisco-catalogue__notice { background: var(--cisco-surface-muted); border-color: var(--cisco-accent); border-radius: .75rem; line-height: 1.58; margin: 0 0 1.4rem; }
+.cisco-catalogue__controls { align-items: end; display: grid; gap: 1rem; grid-template-columns: minmax(0, 1.25fr) minmax(15rem, .75fr); }
+.cisco-catalogue__field { color: var(--cisco-muted); display: grid; font-size: .85rem; font-weight: 720; gap: .43rem; }
+.cisco-catalogue__field :is(input, select) { background: var(--cisco-surface); border: 1px solid var(--cisco-line); border-radius: .5rem; color: var(--cisco-ink); font: inherit; min-height: 3rem; padding: .7rem .85rem; width: 100%; }
+.cisco-catalogue__field :is(input, select):focus-visible { outline: 3px solid var(--swa-focus, var(--cisco-accent)); outline-offset: 2px; }
+.cisco-catalogue__summary { color: var(--cisco-muted); font-size: .9rem; margin: 1.25rem 0 .8rem; }
+.cisco-catalogue__results { display: grid; gap: .85rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cisco-course-card { border-color: var(--cisco-line); box-shadow: none; display: grid; gap: 1rem; min-height: 9.25rem; padding: 1.15rem; }
+.cisco-course-card__title { font-size: 1.02rem; letter-spacing: -.018em; line-height: 1.24; margin-bottom: 0; }
+.cisco-course-card__metadata { align-items: center; display: flex; flex-wrap: wrap; gap: .38rem; margin-top: auto; }
+.cisco-course-card__metadata span { border-radius: 999px; font-size: .72rem; font-weight: 730; line-height: 1.2; padding: .31rem .55rem; }
+.cisco-course-card__subject { background: var(--cisco-surface-muted); color: var(--cisco-accent-deep); }
+.cisco-course-card__status { background: var(--cisco-status-surface); color: var(--cisco-status-text); }
+.cisco-course-card__beta { background: var(--cisco-beta-surface); color: var(--cisco-beta-text); }
+.cisco-catalogue__more { display: flex; margin: 1.2rem auto 0; }
+.cisco-catalogue__more[hidden] { display: none; }
+.cisco-catalogue__empty, .cisco-catalogue__fallback { color: var(--cisco-muted); grid-column: 1 / -1; line-height: 1.55; margin: 0; padding: 1.25rem; }
+
+.cisco-delivery { align-items: start; display: grid; gap: clamp(2.25rem, 6vw, 6rem); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.cisco-delivery__lead { color: var(--cisco-muted); font-size: 1.07rem; line-height: 1.62; margin-top: 1.25rem; max-width: 35rem; }
+.cisco-delivery__options { display: grid; gap: 1rem; }
+.cisco-delivery__options article { border-left: .22rem solid var(--cisco-accent); padding: .28rem 0 .28rem 1rem; }
+.cisco-delivery__options h3 { font-size: 1.1rem; margin-bottom: .32rem; }
+.cisco-delivery__options p { color: var(--cisco-muted); line-height: 1.52; margin-bottom: 0; }
+
+.cisco-plan { align-items: stretch; display: grid; gap: clamp(2rem, 5vw, 5rem); grid-template-columns: minmax(0, .72fr) minmax(19rem, 1.28fr); }
+.cisco-plan__steps { align-content: center; display: grid; gap: 1.25rem; }
+.cisco-plan__steps > div { align-items: baseline; border-bottom: 1px solid var(--cisco-line); display: grid; gap: .9rem; grid-template-columns: 2rem 1fr; padding-bottom: 1.25rem; }
+.cisco-plan__steps span { color: var(--cisco-highlight); font-size: .75rem; font-weight: 800; }
+.cisco-plan__steps p { font-size: 1.05rem; font-weight: 650; line-height: 1.35; margin-bottom: 0; }
+.cisco-plan__cta { background: var(--cisco-inverse-surface); border: 0; border-radius: 1.1rem; color: #fff; padding: clamp(1.5rem, 4vw, 3rem); }
+.cisco-plan__cta .cisco-eyebrow { color: #a9d1ff; }
+.cisco-plan__cta h2 { max-width: 35rem; }
+.cisco-plan__cta > p:not(.cisco-eyebrow) { color: #d9e5f3; line-height: 1.62; margin: 1.35rem 0 1.7rem; max-width: 39rem; }
+.cisco-plan__cta .cisco-button--primary { background: #fff; border-color: #fff; color: var(--cisco-accent-deep); }
+.cisco-plan__cta .cisco-button--primary:hover { background: #ddecff; border-color: #ddecff; color: var(--cisco-ink); }
+.cisco-trademark { color: var(--cisco-muted); font-size: .75rem; line-height: 1.5; padding-bottom: 2.4rem; }
+
+@media (max-width: 840px) {
+  .cisco-hero__grid, .cisco-section-heading, .cisco-delivery, .cisco-plan { grid-template-columns: 1fr; }
+  .cisco-hero__panel { max-width: 38rem; }
+  .cisco-section-heading { gap: .85rem; }
+  .cisco-catalogue__results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 540px) {
+  .cisco-shell { width: min(100% - 1.25rem, var(--swa-content-max, 75rem)); }
+  .cisco-hero { padding-top: 3.35rem; }
+  .cisco-catalogue__controls, .cisco-catalogue__results { grid-template-columns: 1fr; }
+  .cisco-course-card { min-height: 0; }
+  .cisco-actions { align-items: stretch; flex-direction: column; }
+  .cisco-actions .cisco-button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cisco-skip-link { transition: none; }
+}
+
+:root[data-theme="dark"] .cisco-page { color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cisco-page { color-scheme: dark; }
+}
