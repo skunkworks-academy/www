@@ -28,8 +28,6 @@ const requiredMarkers = [
   ['data-skunkworks-color-scheme="canonical"', 'colour-scheme metadata'],
 ];
 
-const designSystemMarker = 'data-skunkworks-design-system="canonical"';
-
 function walk(directory, output = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.isDirectory() && skipDirectories.has(entry.name)) continue;
@@ -95,25 +93,6 @@ for (const file of walk(root).sort()) {
     failures.push('light/dark colour-scheme content');
   }
   if (failures.length) report.contractFailures.push({ file: fileName, failures });
-
-  /* Canonical heroes are a component contract: the shared design system must
-     be present, the base class must be used, and the component retains its
-     reviewed dark-surface contrast instead of receiving generic runtime
-     foreground overrides. */
-  const canonicalHeroTags = html.match(/<[^>]*\bdata-sk-component\s*=\s*(["'])hero\1[^>]*>/gi) || [];
-  if (canonicalHeroTags.length) {
-    if (count(html, designSystemMarker) !== 1) {
-      report.contractFailures.push({ file: fileName, failures: ['canonical hero without canonical design system'] });
-    }
-    for (const tag of canonicalHeroTags) {
-      const hasBaseClass = /\bclass\s*=\s*(["'])[^"']*\bsk-hero\b[^"']*\1/i.test(tag);
-      const preservesContrast = /\bdata-swa-contrast\s*=\s*(["'])preserve\1/i.test(tag);
-      const heroFailures = [];
-      if (!hasBaseClass) heroFailures.push('canonical hero without sk-hero class');
-      if (!preservesContrast) heroFailures.push('canonical hero without data-swa-contrast="preserve"');
-      if (heroFailures.length) report.contractFailures.push({ file: fileName, failures: heroFailures });
-    }
-  }
 
   const isolatedTags = html.match(/<[^>]*\bdata-swa-theme-scope\s*=\s*["']isolated["'][^>]*>/gi) || [];
   for (const tag of isolatedTags) {

@@ -8,7 +8,6 @@
   var PAGE_CONTRACT_VERSION = "2026.08.25.1";
   var BRAND_THEME_VERSION = "2026.08.22.2";
   var THEME_CONFORMANCE_VERSION = "2026.08.23.2";
-  var LEARN_THEME_VERSION = "2026.08.25.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();

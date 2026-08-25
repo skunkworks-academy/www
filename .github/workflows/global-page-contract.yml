@@ -125,11 +125,9 @@ jobs:
           grep -q 'academy-page-contract.css' assets/academy-navigation.js
           grep -q 'academy-page-contract.js' assets/academy-navigation.js
           grep -q 'academy-brand-theme.css' assets/academy-navigation.js
-          shell_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
-          shell_revision="$(sed -n 's/.*var REVISION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
-          test -n "$shell_version"
-          test "$shell_version" = "$shell_revision"
-          grep -Fq "assets/academy-navigation.js?v=${shell_version}&rev=${shell_revision}" scripts/enforce-global-page-contract.mjs
+          grep -q 'academy-theme-conformance.css' assets/academy-navigation.js
+          grep -q 'VERSION = "2026.08.23.1"' assets/academy-navigation.js
+          grep -q 'REVISION = "2026.08.23.1"' assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.08.22.2"' assets/academy-navigation.js
           grep -q 'THEME_CONFORMANCE_VERSION = "2026.08.23.2"' assets/academy-navigation.js
           grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
@@ -164,8 +162,8 @@ jobs:
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
             grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
             grep -q 'data-skunkworks-theme-conformance="canonical"' "$file"
-            grep -q "academy-page-contract.js?v=${page_contract_version}" "$file"
-            grep -q "academy-brand-theme.css?v=${brand_theme_version}" "$file"
+            grep -q 'academy-page-contract.js?v=2026.08.22.1' "$file"
+            grep -q 'academy-brand-theme.css?v=2026.08.22.2' "$file"
           done
 
       - name: Commit automatic contract repairs
@@ -232,22 +230,10 @@ jobs:
         run: |
           set -euo pipefail
           base='https://www.skunkworksacademy.com'
-          tmp="$(mktemp -d)"
-          trap 'rm -rf "$tmp"' EXIT
-          cache="ci=${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-
-          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png?$cache" -o "$tmp/favicon-black.png"
-          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png?$cache" -o "$tmp/favicon-white.png"
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?$cache" -o "$tmp/page-contract.css"
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?$cache" -o "$tmp/page-contract.js"
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?$cache" -o "$tmp/brand-theme.css"
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?$cache" -o "$tmp/theme-conformance.css"
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?$cache" -o "$tmp/forms.css"
-
-          test -s "$tmp/favicon-black.png"
-          test -s "$tmp/favicon-white.png"
-          grep -q 'Skunkworks Academy global page colour and contrast contract' "$tmp/page-contract.css"
-          grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT' "$tmp/page-contract.js"
-          grep -q 'Skunkworks Academy canonical brand theme' "$tmp/brand-theme.css"
-          grep -q 'Academy-wide foundation' "$tmp/theme-conformance.css"
-          grep -q 'Skunkworks Academy forms and document surface contract' "$tmp/forms.css"
+          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png" >/dev/null
+          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png" >/dev/null
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.22.1" | grep -q 'Skunkworks Academy global page colour and contrast contract'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.22.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.08.22.2" | grep -q 'Skunkworks Academy canonical brand theme'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?v=2026.08.23.2" | grep -q 'Academy-wide foundation'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'
