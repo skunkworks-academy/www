@@ -22,6 +22,8 @@ function requireText(source, fragment, label) {
 const learnPage = read('learn/index.html');
 const learnCss = read('assets/academy-learn.css');
 const shell = read('assets/academy-navigation.js');
+const learnSitemap = read('learn-sitemap.xml');
+const robots = read('robots.txt');
 
 for (const file of [
   'learning-paths/index.html',
@@ -35,7 +37,14 @@ for (const file of [
 
 requireText(learnPage, '<link rel="canonical" href="https://www.skunkworksacademy.com/learn/"', 'Learn canonical URL');
 requireText(learnPage, 'name="robots" content="index, follow', 'indexable robots metadata');
+requireText(learnPage, 'name="googlebot" content="index, follow', 'Google indexing metadata');
+requireText(learnPage, 'name="bingbot" content="index, follow', 'Bing indexing metadata');
+requireText(learnPage, 'hreflang="en-ZA"', 'regional hreflang metadata');
+requireText(learnPage, 'hreflang="x-default"', 'default hreflang metadata');
+requireText(learnPage, 'property="og:title"', 'Open Graph title metadata');
+requireText(learnPage, 'name="twitter:card"', 'Twitter card metadata');
 requireText(learnPage, '"@type": "CollectionPage"', 'CollectionPage structured data');
+requireText(learnPage, '"@type": "BreadcrumbList"', 'Breadcrumb structured data');
 requireText(learnPage, '"@type": "ItemList"', 'learning destination ItemList structured data');
 requireText(learnPage, 'data-swa-section="learn"', 'Learn section marker');
 requireText(learnPage, 'Build practical technology capability — not just course completion.', 'canonical Learn hero message');
@@ -53,6 +62,19 @@ for (const destination of [
 ]) {
   requireText(learnPage, destination, `Learn destination ${destination}`);
 }
+
+for (const indexableUrl of [
+  'https://www.skunkworksacademy.com/learn/',
+  'https://www.skunkworksacademy.com/courses',
+  'https://www.skunkworksacademy.com/learning-paths/',
+  'https://www.skunkworksacademy.com/self-paced/',
+  'https://www.skunkworksacademy.com/instructor-led/',
+  'https://www.skunkworksacademy.com/comptia/',
+  'https://www.skunkworksacademy.com/cisco/',
+]) {
+  requireText(learnSitemap, `<loc>${indexableUrl}</loc>`, `Learn sitemap URL ${indexableUrl}`);
+}
+requireText(robots, 'Sitemap: https://www.skunkworksacademy.com/learn-sitemap.xml', 'Learn sitemap discovery in robots.txt');
 
 requireText(learnCss, 'body[data-swa-section="learn"]', 'shared Learn scope');
 requireText(learnCss, '.swa-learn-heading--float', 'floating Learn heading component');
@@ -81,4 +103,4 @@ if (failures.length) {
 }
 
 console.log('Learn section validation passed.');
-console.log('Validated SEO/indexability, shared Learn styling, motion accessibility, navigation destinations and route coverage.');
+console.log('Validated SEO/indexability, crawler discovery, structured data, shared Learn styling, motion accessibility, navigation destinations and route coverage.');
