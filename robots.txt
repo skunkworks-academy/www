@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://skunkworksacademy.com/sitemap.xml
+Sitemap: https://www.skunkworksacademy.com/learn-sitemap.xml
