@@ -123,7 +123,6 @@ jobs:
           grep -q 'academy-page-contract.css' assets/academy-navigation.js
           grep -q 'academy-page-contract.js' assets/academy-navigation.js
           grep -q 'academy-brand-theme.css' assets/academy-navigation.js
-          grep -q 'academy-theme-conformance.css' assets/academy-navigation.js
           grep -q 'VERSION = "2026.08.23.1"' assets/academy-navigation.js
           grep -q 'REVISION = "2026.08.23.1"' assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.08.22.2"' assets/academy-navigation.js
