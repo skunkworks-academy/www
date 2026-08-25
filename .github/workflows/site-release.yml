@@ -219,8 +219,17 @@ jobs:
           from pathlib import Path
           import re
 
-          version = '2026.08.23.1'
-          revision = '2026.08.23.1'
+          navigation_source = Path('assets/academy-navigation.js').read_text(encoding='utf-8', errors='ignore')
+          version_match = re.search(r'var VERSION = "([^"]+)";', navigation_source)
+          revision_match = re.search(r'var REVISION = "([^"]+)";', navigation_source)
+          if not version_match or not revision_match:
+              raise SystemExit('Unable to resolve current Academy shell VERSION/REVISION from assets/academy-navigation.js')
+
+          version = version_match.group(1)
+          revision = revision_match.group(1)
+          if version != revision:
+              raise SystemExit(f'Academy shell VERSION/REVISION drift: {version} != {revision}')
+
           accessibility_version = '2026.08.16.1'
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
           accessibility = f'<link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v={accessibility_version}" data-skunkworks-accessibility="wcag-contrast" />'
@@ -297,36 +306,69 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Wait for production and verify CORS-safe shell assets and /courses
-        run: |
-          for attempt in {1..30}; do
-            response="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/?shell-rev=2026.08.23.1' || true)"
-            courses="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/courses' || true)"
-            shell="$(curl --location --fail --silent --show-error --max-time 20 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.23.1&rev=2026.08.23.1' || true)"
-            theme="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.08.22.2' || true)"
-            ui_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.20.1' || true)"
-            footer_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=2026.08.20.1' || true)"
-            accessibility_www="$(curl --location --fail --silent --show-error --max-time 20 'https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?v=2026.08.16.1' || true)"
+      - name: Checkout expected production contract
+        uses: actions/checkout@v7
 
-            if printf '%s' "$response" | grep -qi '<title>Skunkworks Academy' \
-              && printf '%s' "$response" | grep -q 'rev=2026.08.23.1' \
-              && printf '%s' "$response" | grep -q 'data-skunkworks-accessibility="wcag-contrast"' \
-              && printf '%s' "$courses" | grep -q 'https://www.skunkworksacademy.com/courses' \
-              && printf '%s' "$courses" | grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' \
-              && ! printf '%s' "$courses" | grep -q 'catalog.skunkworksacademy.com' \
-              && printf '%s' "$shell" | grep -q 'REVISION = "2026.08.23.1"' \
-              && printf '%s' "$shell" | grep -q 'bodyBackground: "theme-owned"' \
-              && printf '%s' "$shell" | grep -q 'window.location.origin' \
-              && ! printf '%s' "$shell" | grep -Eq 'script\.crossOrigin[[:space:]]*=' \
-              && printf '%s' "$theme" | grep -q -- '--sw-skunk-blue: #1e6bd0' \
-              && printf '%s' "$theme" | grep -q -- '--sw-signal-orange: #f24208' \
-              && printf '%s' "$ui_www" | grep -q 'Skunkworks Academy Global UI' \
-              && printf '%s' "$footer_www" | grep -q 'Skunkworks Academy' \
-              && printf '%s' "$accessibility_www" | grep -q 'accessibility contrast contract'; then
-              echo 'Production verification succeeded, including canonical theme shell and /courses deployment.'
+      - name: Wait for production and verify CORS-safe shell assets and /courses
+        shell: bash
+        run: |
+          set -euo pipefail
+          shell_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
+          shell_revision="$(sed -n 's/.*var REVISION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
+          test -n "$shell_version"
+          test "$shell_version" = "$shell_revision"
+
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+
+          for attempt in {1..30}; do
+            cache="ci=${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
+            : > "$tmp/home.html"
+            : > "$tmp/courses.html"
+            : > "$tmp/shell.js"
+            : > "$tmp/theme.css"
+            : > "$tmp/ui.js"
+            : > "$tmp/footer.js"
+            : > "$tmp/accessibility.css"
+
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/?shell-rev=${shell_revision}&${cache}" -o "$tmp/home.html" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/courses?${cache}" -o "$tmp/courses.html" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://skunkworksacademy.com/assets/academy-navigation.js?v=${shell_version}&rev=${shell_revision}&${cache}" -o "$tmp/shell.js" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/academy-brand-theme.css?${cache}" -o "$tmp/theme.css" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-ui.js?${cache}" -o "$tmp/ui.js" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-footer.js?${cache}" -o "$tmp/footer.js" || true
+            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?${cache}" -o "$tmp/accessibility.css" || true
+
+            if [[ -s "$tmp/home.html" \
+              && -s "$tmp/courses.html" \
+              && -s "$tmp/shell.js" \
+              && -s "$tmp/theme.css" \
+              && -s "$tmp/ui.js" \
+              && -s "$tmp/footer.js" \
+              && -s "$tmp/accessibility.css" ]] \
+              && grep -qi '<title>Skunkworks Academy' "$tmp/home.html" \
+              && grep -q "rev=${shell_revision}" "$tmp/home.html" \
+              && grep -q 'data-skunkworks-accessibility="wcag-contrast"' "$tmp/home.html" \
+              && grep -q 'https://www.skunkworksacademy.com/courses' "$tmp/courses.html" \
+              && grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' "$tmp/courses.html" \
+              && ! grep -q 'catalog.skunkworksacademy.com' "$tmp/courses.html" \
+              && grep -Fq "var VERSION = \"${shell_version}\";" "$tmp/shell.js" \
+              && grep -Fq "var REVISION = \"${shell_revision}\";" "$tmp/shell.js" \
+              && grep -q 'bodyBackground: "theme-owned"' "$tmp/shell.js" \
+              && grep -q 'window.location.origin' "$tmp/shell.js" \
+              && ! grep -Eq 'script\.crossOrigin[[:space:]]*=' "$tmp/shell.js" \
+              && grep -q -- '--sw-skunk-blue: #1e6bd0' "$tmp/theme.css" \
+              && grep -q -- '--sw-signal-orange: #f24208' "$tmp/theme.css" \
+              && grep -q 'Skunkworks Academy Global UI' "$tmp/ui.js" \
+              && grep -q 'Skunkworks Academy' "$tmp/footer.js" \
+              && grep -q 'accessibility contrast contract' "$tmp/accessibility.css"; then
+              echo "Production verification succeeded on attempt ${attempt}, including shell ${shell_version} and /courses deployment."
               exit 0
             fi
+
+            echo "Production verification attempt ${attempt}/30 has not converged yet; retrying in 10 seconds."
             sleep 10
           done
-          echo 'Production verification failed: canonical theme/shell/accessibility assets or /courses were not found on the www origin.'
+
+          echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1

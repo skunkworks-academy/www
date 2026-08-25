@@ -1,0 +1,279 @@
+/*
+  Skunkworks Academy Learn section visual system
+  Version: 2026.08.25.2
+
+  Loaded by the canonical Academy shell only for Learn destinations:
+  /learn, /courses, /learning-paths, /self-paced, /instructor-led, /comptia,
+  /cisco, and the Microsoft, IBM and Security learning properties.
+*/
+
+body[data-swa-section="learn"] {
+  --swa-learn-max: min(1200px, calc(100% - 32px));
+  --swa-learn-hero-bg: var(--sw-ink-navy, #03033a);
+  --swa-learn-hero-text: #ffffff;
+  --swa-learn-hero-muted: #d8e3f2;
+  --swa-learn-accent: var(--sw-skunk-blue, #1e6bd0);
+  --swa-learn-accent-hover: var(--sk-interactive-hover, #1557ad);
+  --swa-learn-signal: var(--sw-signal-orange, #f24208);
+  --swa-learn-canvas: var(--sk-bg, #f7f9fc);
+  --swa-learn-panel: var(--sk-layer-01, #ffffff);
+  --swa-learn-panel-alt: var(--sk-layer-02, #f1f4f8);
+  --swa-learn-text: var(--sk-text-primary, #15171a);
+  --swa-learn-muted: var(--sk-text-secondary, #5a6472);
+  --swa-learn-border: var(--sk-border-subtle, #d8dee8);
+  background: var(--swa-learn-canvas) !important;
+  color: var(--swa-learn-text) !important;
+}
+
+body[data-swa-section="learn"] :where(main, [role="main"], .main-wrapper) {
+  color: var(--swa-learn-text);
+}
+
+body[data-swa-section="learn"] :where(.shell, .sk-shell, .section-shell, .swa-hub__section, .container) {
+  max-width: 1200px;
+}
+
+/* One shared Learn hero treatment across legacy static pages, Docusaurus and
+   vendor subdomains. The canonical shell remains responsible for navigation. */
+body[data-swa-section="learn"] :where(
+  [data-swa-learn-hero],
+  .hero,
+  .heroBanner,
+  .swa-hub__hero,
+  .sk-hero
+) {
+  background:
+    radial-gradient(circle at 14% 15%, color-mix(in srgb, var(--swa-learn-accent) 34%, transparent), transparent 30rem),
+    radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--swa-learn-signal) 10%, transparent), transparent 24rem),
+    var(--swa-learn-hero-bg) !important;
+  border-color: color-mix(in srgb, #ffffff 18%, transparent) !important;
+  color: var(--swa-learn-hero-text) !important;
+}
+
+body[data-swa-section="learn"] :where(
+  [data-swa-learn-hero],
+  .hero,
+  .heroBanner,
+  .swa-hub__hero,
+  .sk-hero
+) :where(h1, h2, h3, strong) {
+  color: var(--swa-learn-hero-text) !important;
+}
+
+body[data-swa-section="learn"] :where(
+  [data-swa-learn-hero],
+  .hero,
+  .heroBanner,
+  .swa-hub__hero,
+  .sk-hero
+) :where(p, .lead, .hero-lede, .swa-hub__lead, .muted) {
+  color: var(--swa-learn-hero-muted) !important;
+}
+
+body[data-swa-section="learn"] :where(
+  [data-swa-learn-hero],
+  .hero,
+  .heroBanner,
+  .swa-hub__hero,
+  .sk-hero
+) :where(.eyebrow, .swa-hub__eyebrow, .kicker) {
+  color: #9fc3f2 !important;
+  font-weight: 800 !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+}
+
+body[data-swa-section="learn"] :where(
+  [data-swa-learn-hero],
+  .hero,
+  .heroBanner,
+  .swa-hub__hero,
+  .sk-hero
+) h1 {
+  font-family: var(--sk-font-display, Inter, system-ui, sans-serif) !important;
+  font-size: clamp(2.8rem, 7vw, 5.8rem) !important;
+  font-weight: 850 !important;
+  letter-spacing: -.055em !important;
+  line-height: .96 !important;
+  max-width: 1000px;
+  text-wrap: balance;
+}
+
+/* Subtle floating emphasis derived from the Academy hero concept. */
+body[data-swa-section="learn"] .swa-learn-heading--float {
+  position: relative;
+  animation: swaLearnFloatY 4s ease-in-out infinite, swaLearnGlowPulse 6s ease-in-out infinite;
+  will-change: transform, text-shadow;
+}
+
+@keyframes swaLearnFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes swaLearnGlowPulse {
+  0%, 100% { text-shadow: 0 8px 24px rgba(0, 0, 0, .28); }
+  50% {
+    text-shadow:
+      0 0 22px color-mix(in srgb, var(--swa-learn-accent) 48%, transparent),
+      0 12px 32px rgba(0, 0, 0, .42);
+  }
+}
+
+/* Shared surface language for every Learn landing destination. */
+body[data-swa-section="learn"] :where(
+  .card,
+  .courseCard,
+  .panel,
+  .tile,
+  .swa-hub__card,
+  .filters,
+  .accessGate,
+  .knowledgeCheck,
+  [data-sk-component="card"]
+) {
+  background: var(--swa-learn-panel) !important;
+  border: 1px solid var(--swa-learn-border) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 16px 42px rgba(3, 3, 58, .08) !important;
+  color: var(--swa-learn-text) !important;
+}
+
+body[data-swa-section="learn"] :where(
+  .card,
+  .courseCard,
+  .panel,
+  .tile,
+  .swa-hub__card,
+  [data-sk-component="card"]
+) :where(p, li, span:not(.tag):not(.pill):not(.kicker)) {
+  color: var(--swa-learn-muted) !important;
+}
+
+body[data-swa-section="learn"] :where(
+  .btn,
+  .button,
+  .heroButton,
+  .cardButton,
+  .swa-hub__button,
+  .sk-button,
+  [data-sk-component="button"]
+) {
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+  min-height: 44px;
+  text-decoration: none !important;
+}
+
+body[data-swa-section="learn"] :where(
+  .btn.primary,
+  .button.primary,
+  .button-primary,
+  .heroButtonPrimary,
+  .cardButtonPrimary,
+  .swa-hub__button--primary,
+  .sk-button--primary,
+  [data-sk-component="button"][data-variant="primary"]
+) {
+  background: var(--swa-learn-accent) !important;
+  border-color: var(--swa-learn-accent) !important;
+  color: #ffffff !important;
+}
+
+body[data-swa-section="learn"] :where(
+  .btn.primary,
+  .button.primary,
+  .button-primary,
+  .heroButtonPrimary,
+  .cardButtonPrimary,
+  .swa-hub__button--primary,
+  .sk-button--primary,
+  [data-sk-component="button"][data-variant="primary"]
+):hover {
+  background: var(--swa-learn-accent-hover) !important;
+  border-color: var(--swa-learn-accent-hover) !important;
+}
+
+body[data-swa-section="learn"] :where(input, select, textarea) {
+  border: 1px solid var(--swa-learn-border) !important;
+  border-radius: 10px !important;
+  min-height: 44px;
+}
+
+body[data-swa-section="learn"] :where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--swa-learn-accent) !important;
+  outline-offset: 3px !important;
+}
+
+body[data-swa-section="learn"] :where(.tag, .pill, .strip span) {
+  background: var(--swa-learn-panel-alt) !important;
+  border-color: var(--swa-learn-border) !important;
+  color: var(--swa-learn-muted) !important;
+}
+
+body[data-swa-section="learn"] :where(.section, .catalogSection, .swa-hub__section) h2 {
+  color: var(--swa-learn-text) !important;
+  font-family: var(--sk-font-display, Inter, system-ui, sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.6rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.045em !important;
+  line-height: 1.02 !important;
+  text-wrap: balance;
+}
+
+body[data-swa-section="learn"] .swa-learn-subnav {
+  align-items: center;
+  background: color-mix(in srgb, var(--swa-learn-panel) 94%, transparent);
+  border: 1px solid var(--swa-learn-border);
+  border-radius: 999px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 24px auto 0;
+  max-width: 1200px;
+  padding: 7px;
+}
+
+body[data-swa-section="learn"] .swa-learn-subnav a {
+  border-radius: 999px;
+  color: var(--swa-learn-muted) !important;
+  font-size: .9rem;
+  font-weight: 750;
+  padding: 8px 12px;
+  text-decoration: none !important;
+}
+
+body[data-swa-section="learn"] .swa-learn-subnav a:hover,
+body[data-swa-section="learn"] .swa-learn-subnav a[aria-current="page"] {
+  background: var(--swa-learn-accent);
+  color: #ffffff !important;
+}
+
+@media (max-width: 760px) {
+  body[data-swa-section="learn"] {
+    --swa-learn-max: min(100% - 24px, 1200px);
+  }
+
+  body[data-swa-section="learn"] :where(
+    [data-swa-learn-hero],
+    .hero,
+    .heroBanner,
+    .swa-hub__hero,
+    .sk-hero
+  ) h1 {
+    font-size: clamp(2.4rem, 12vw, 4rem) !important;
+  }
+
+  body[data-swa-section="learn"] .swa-learn-subnav {
+    border-radius: 16px;
+    margin-inline: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-swa-section="learn"] .swa-learn-heading--float {
+    animation: none;
+    transform: none;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, .28);
+  }
+}
