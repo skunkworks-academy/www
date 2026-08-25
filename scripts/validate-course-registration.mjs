@@ -6,8 +6,14 @@ const files = [
   'course-registration/skunkworks-academy-cyber-security-training-email.html',
 ];
 
-const requiredFaviconLight = 'https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.22.1';
-const requiredFaviconDark = 'https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.22.1';
+const pageContractRuntime = await readFile('assets/academy-page-contract.js', 'utf8');
+const pageContractVersionMatch = pageContractRuntime.match(/var VERSION = "([^"]+)";/);
+if (!pageContractVersionMatch) {
+  throw new Error('Unable to resolve Academy page-contract VERSION from assets/academy-page-contract.js');
+}
+const pageContractVersion = pageContractVersionMatch[1];
+const requiredFaviconLight = `https://www.skunkworksacademy.com/images/favicon-black.png?v=${pageContractVersion}`;
+const requiredFaviconDark = `https://www.skunkworksacademy.com/images/favicon-white.png?v=${pageContractVersion}`;
 const failures = [];
 
 function fail(file, message) {
@@ -25,8 +31,8 @@ for (const file of files) {
   const darkIcons = count(html, new RegExp(`<link\\b[^>]*href=["']${requiredFaviconDark.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'gi'));
 
   if (canonicalIcons !== 4) fail(file, `expected 4 canonical favicon links, found ${canonicalIcons}`);
-  if (lightIcons < 3) fail(file, 'missing default/light favicon variants');
-  if (darkIcons !== 1) fail(file, 'missing dark favicon variant');
+  if (lightIcons < 3) fail(file, `missing default/light favicon variants for page-contract ${pageContractVersion}`);
+  if (darkIcons !== 1) fail(file, `missing dark favicon variant for page-contract ${pageContractVersion}`);
   if (count(html, /<meta\b[^>]*name=["']viewport["'][^>]*>/gi) !== 1) fail(file, 'missing viewport metadata');
   if (/[ÂÃâ][\x80-\xBF]?/.test(html)) fail(file, 'contains likely mojibake/encoding corruption');
 
@@ -68,5 +74,5 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Course registration audit passed for ${files.length} active HTML files.`);
+console.log(`Course registration audit passed for ${files.length} active HTML files using page-contract ${pageContractVersion}.`);
 console.log('Validated canonical favicons, responsive layout hooks, Academy shell integration, theme schemas, form UX and safe confirmation navigation.');
