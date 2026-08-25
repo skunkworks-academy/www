@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Skunkworks Academy | Practical Technology Guides, Labs and Learning Paths</title>
   <meta name="color-scheme" content="light dark" data-skunkworks-color-scheme="canonical" />
-  <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.22.1" data-skunkworks-favicon="canonical" />
-  <link rel="shortcut icon" type="image/png" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.22.1" data-skunkworks-favicon="canonical" />
-  <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-black.png?v=2026.08.22.1" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />
-  <link rel="icon" type="image/png" sizes="32x32" href="https://www.skunkworksacademy.com/images/favicon-white.png?v=2026.08.22.1" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-black.png?v=2026.08.25.1" data-skunkworks-favicon="canonical" />
+  <link rel="shortcut icon" type="image/png" href="/images/favicon-black.png?v=2026.08.25.1" data-skunkworks-favicon="canonical" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-black.png?v=2026.08.25.1" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-white.png?v=2026.08.25.1" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />
   <meta name="description" content="Original practitioner-led guides, hands-on labs and implementation-ready learning paths for cloud, cybersecurity, AI, APIs and enterprise platforms." />
   <meta name="author" content="Skunkworks Academy" />
   <meta name="publisher" content="Skunkworks Academy" />
@@ -16,11 +16,23 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="google-adsense-account" content="ca-pub-9270041066336676" />
   <link rel="canonical" href="https://www.skunkworksacademy.com/" />
-  
-  
+
+  <!-- Reserve the canonical shell before first paint. The navigation runtime
+       uses the same dimensions, so adding the real fixed header cannot shift
+       the page after Lighthouse has already painted the hero. -->
+  <style data-swa-shell-critical="2026.08.25.1">
+    body.swa-has-global-nav.swa-has-top-menu{padding-top:128px!important}
+    @media(max-width:980px){body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}}
+    @media(max-width:620px){body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}}
+  </style>
+
   <link rel="stylesheet" href="/assets/publisher.css" />
-  <link rel="stylesheet" href="/assets/skunkworks-design-system.css?v=2026.08.23.1" data-skunkworks-design-system="canonical" />
+  <link rel="stylesheet" href="/assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1" data-skunkworks-design-system="canonical" />
   <link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v=2026.08.20.2" data-skunkworks-accessibility="wcag-contrast" />
+  <link rel="stylesheet" href="/assets/academy-page-contract.css?v=2026.08.25.1" data-skunkworks-page-contract="css" />
+  <link rel="stylesheet" href="/assets/academy-brand-theme.css?v=2026.08.22.2" data-skunkworks-brand-theme="canonical" />
+  <link rel="stylesheet" href="/assets/academy-theme-conformance.css?v=2026.08.23.2" data-skunkworks-theme-conformance="canonical" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Skunkworks Academy" />
   <meta property="og:title" content="Skunkworks Academy | Practical Technology Capability" />
@@ -38,25 +50,10 @@
     "sameAs": ["https://github.com/skunkworks-academy"]
   }
   </script>
-  <script defer src="https://www.skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1&rev=2026.08.16.1" data-skunkworks-global-nav="v10"></script>
-  
-  
-    
-  
-    
-  
-    
-  
-    
-  
-  
-  
-                                                <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-page-contract.css?v=2026.08.22.1" data-skunkworks-page-contract="css" />
-  <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.08.22.2" data-skunkworks-brand-theme="canonical" />
-  <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-theme-conformance.css?v=2026.08.23.2" data-skunkworks-theme-conformance="canonical" />
-  <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.08.22.1" data-skunkworks-page-contract="runtime"></script>
+  <script defer src="/assets/academy-navigation.js?v=2026.08.25.1&rev=2026.08.25.1" data-skunkworks-global-nav="v10"></script>
+  <script defer src="/assets/academy-page-contract.js?v=2026.08.25.1" data-skunkworks-page-contract="runtime"></script>
 </head>
-<body data-ad-inventory="eligible">
+<body data-ad-inventory="eligible" class="swa-has-global-nav swa-has-top-menu">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <main id="main">
