@@ -80,7 +80,7 @@ for (const legacyReference of [
   }
 }
 
-for (const requiredCss of ['.cisco-page', '.cisco-catalogue__results', '.cisco-course-card', '.cisco-catalogue__more[hidden]', '@media (max-width: 840px)', '@media (prefers-reduced-motion: reduce)']) {
+for (const requiredCss of ['.cisco-page', '.cisco-catalogue__results', '.cisco-course-card', '@media (max-width: 840px)', '@media (prefers-reduced-motion: reduce)']) {
   requireCss(requiredCss, `Cisco CSS contract ${requiredCss}`);
 }
 

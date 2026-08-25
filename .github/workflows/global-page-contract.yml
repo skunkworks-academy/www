@@ -100,7 +100,9 @@ jobs:
           grep -q 'body:not(\[data-swa-theme-scope="isolated"\])' assets/academy-theme-conformance.css
 
           grep -q 'luminance(background) <= 0.42 ? "dark" : "light"' assets/academy-page-contract.js
-          grep -q 'VERSION = "2026.08.22.1"' assets/academy-page-contract.js
+          page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
+          test -n "$page_contract_version"
+          grep -Fq "const VERSION = '$page_contract_version';" scripts/enforce-global-page-contract.mjs
           grep -q 'images/favicon-black.png' assets/academy-page-contract.js
           grep -q 'images/favicon-white.png' assets/academy-page-contract.js
 
@@ -149,6 +151,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
+          brand_theme_version="$(sed -n 's/.*var BRAND_THEME_VERSION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
           mapfile -t forms < <(find forms -maxdepth 1 -type f -name '*.html' -print | sort)
           test "${#forms[@]}" -gt 0
           for file in "${forms[@]}"; do
