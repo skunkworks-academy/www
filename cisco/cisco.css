@@ -90,7 +90,6 @@
 .cisco-course-card__status { background: var(--cisco-status-surface); color: var(--cisco-status-text); }
 .cisco-course-card__beta { background: var(--cisco-beta-surface); color: var(--cisco-beta-text); }
 .cisco-catalogue__more { display: flex; margin: 1.2rem auto 0; }
-.cisco-catalogue__more[hidden] { display: none; }
 .cisco-catalogue__empty, .cisco-catalogue__fallback { color: var(--cisco-muted); grid-column: 1 / -1; line-height: 1.55; margin: 0; padding: 1.25rem; }
 
 .cisco-delivery { align-items: start; display: grid; gap: clamp(2.25rem, 6vw, 6rem); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
