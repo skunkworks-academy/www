@@ -93,6 +93,49 @@ section.cover :where(p, span, div, label, small) {
   isolation: isolate;
 }
 
+/*
+  Global native-selection contract.
+
+  Mobile Safari and embedded iOS browsers are especially sensitive to inherited
+  font sizing, intrinsic select widths and appearance overrides. Keep native
+  picker behaviour while guaranteeing readable selected text, a full-width
+  tappable control and a stable 16px mobile font size that avoids viewport zoom.
+*/
+:where(main, [role="main"], .site-main, .document) :where(label, .sk-field, .swa-field, [data-sk-component="field"]) {
+  min-inline-size: 0;
+}
+
+:where(main, [role="main"], .site-main, .document) :where(select, input[type="search"], input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"]) {
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 2.75rem;
+  line-height: 1.25;
+}
+
+:where(main, [role="main"], .site-main, .document) select {
+  -webkit-appearance: menulist;
+  appearance: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:where(main, [role="main"], .site-main, .document) select option,
+:where(main, [role="main"], .site-main, .document) select optgroup {
+  background-color: var(--sk-layer-01, var(--swa-white));
+  color: var(--sk-text-primary, var(--swa-light-text));
+}
+
+:root[data-theme="dark"] :where(main, [role="main"], .site-main, .document) select option,
+:root[data-theme="dark"] :where(main, [role="main"], .site-main, .document) select optgroup,
+[data-theme="dark"] :where(main, [role="main"], .site-main, .document) select option,
+[data-theme="dark"] :where(main, [role="main"], .site-main, .document) select optgroup {
+  background-color: var(--sk-layer-01, var(--swa-dark-surface));
+  color: var(--sk-text-primary, var(--swa-dark-text));
+}
+
 /* Explicit authoring escape hatch for components that fully own their palette. */
 [data-swa-contrast="preserve"],
 [data-swa-contrast="preserve"] * {
@@ -105,6 +148,13 @@ section.cover :where(p, span, div, label, small) {
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 3px solid var(--swa-signal-orange);
   outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  :where(main, [role="main"], .site-main, .document) :where(select, input[type="search"], input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"]) {
+    min-block-size: 3rem;
+    font-size: 16px !important;
+  }
 }
 
 @media (forced-colors: active) {
