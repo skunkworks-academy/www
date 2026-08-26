@@ -11,11 +11,13 @@ This gate reconciles the Skunkworks Academy CompTIA catalogue against the connec
 
 ### HIGH — currency contract mismatch
 
-The connected Shopify store reports base currency `USD`, while `comptia/index.html` explicitly states that catalogue prices are shown in ZAR. The numeric values currently match, which strongly suggests a unit/currency configuration mismatch rather than an FX conversion.
+The connected Shopify store reports base currency `USD`, while `comptia/index.html` explicitly states that catalogue prices are shown in ZAR. A live Shopify Admin GraphQL check of `ProductVariant.contextualPricing(context: { country: ZA })` also resolves the featured CompTIA variants as `USD`, not ZAR.
+
+At the same time, public storefront checks can render some of those same products in ZAR. This means the buyer-facing market/currency behaviour is not consistent enough to use a generic Admin price as the Merchant Center source of truth.
 
 Examples:
 
-| SKU | Academy catalogue | Shopify |
+| SKU | Academy catalogue | Shopify Admin / ZA contextual pricing |
 | --- | ---: | ---: |
 | `810182702612` Security+ | `R22,490.00` | `22490.00 USD` |
 | `810182702926` Network+ | `R8,170.00` | `8170.00 USD` |
@@ -24,7 +26,7 @@ Examples:
 
 **Risk:** Merchant Center landing-page price/currency mismatch, incorrect checkout values, invalid ROAS, and possible product disapproval.
 
-**Required remediation:** establish one authoritative customer-facing currency/market contract, then make Shopify, Academy landing pages, GA4 ecommerce parameters and Merchant Center feed currency agree.
+**Required remediation:** establish one authoritative South Africa market pricing source. Make Shopify Markets/contextual pricing, Academy landing pages, GA4 ecommerce parameters and Merchant Center feed currency agree. Do not derive the feed currency from storefront text or the Shopify base-currency field alone.
 
 ### HIGH — duplicate active SKU with conflicting price
 
@@ -56,6 +58,7 @@ Several individual CompTIA certification pages still send their primary purchase
 Merchant Center publication remains disabled until all of the following are true:
 
 - [ ] authoritative South African catalogue currency is confirmed;
+- [ ] Shopify Markets/contextual price resolves the intended South Africa value and currency consistently;
 - [ ] Shopify and Academy currency/value semantics agree;
 - [ ] every Merchant Center SKU is unique within the target market;
 - [ ] every product has exactly one canonical Skunkworks-owned landing URL;
@@ -70,7 +73,7 @@ Merchant Center publication remains disabled until all of the following are true
 
 | Finding | Severity | Confidence |
 | --- | --- | --- |
-| Shopify base currency vs Academy ZAR mismatch | HIGH | High |
+| South Africa market/admin currency vs Academy ZAR mismatch | HIGH | High |
 | Duplicate active A+ SKU with conflicting price | HIGH | High |
 | External CompTIA.org purchase CTA breaks owned funnel | HIGH | High |
 
