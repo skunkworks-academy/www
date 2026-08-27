@@ -141,7 +141,7 @@ jobs:
           grep -q 'PAGE_CONTRACT_VERSION = "2026.08.27.1"' assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.08.27.1"' assets/academy-navigation.js
           grep -q 'THEME_CONFORMANCE_VERSION = "2026.08.27.1"' assets/academy-navigation.js
-          grep -q 'LEARN_THEME_VERSION = "2026.08.25.2"' assets/academy-navigation.js
+          grep -q 'LEARN_THEME_VERSION = "2026.08.25.1"' assets/academy-navigation.js
           grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
           if grep -Eq 'script\.crossOrigin[[:space:]]*=' assets/academy-navigation.js; then
