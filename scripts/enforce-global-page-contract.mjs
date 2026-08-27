@@ -3,9 +3,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.08.25.1';
-const THEME_VERSION = '2026.08.22.2';
-const THEME_CONFORMANCE_VERSION = '2026.08.23.2';
+const VERSION = '2026.08.27.1';
+const THEME_VERSION = '2026.08.27.1';
+const THEME_CONFORMANCE_VERSION = '2026.08.27.1';
 const FORMS_VERSION = '2026.08.20.1';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
 const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png?v=${VERSION}`;
@@ -16,7 +16,7 @@ const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERS
 const THEME_CONFORMANCE = `${PUBLIC_ROOT}assets/academy-theme-conformance.css?v=${THEME_CONFORMANCE_VERSION}`;
 const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1`;
 const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
-const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.08.25.2&rev=2026.08.25.2`;
+const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.08.27.1&rev=2026.08.27.1`;
 
 const FAVICON_TAGS = [
   `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
