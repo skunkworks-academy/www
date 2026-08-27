@@ -11,6 +11,7 @@ import path from 'node:path';
 
 const root = path.resolve(process.argv[2] || '.');
 const VERSION = '2026.08.27.1';
+const PAGE_CONTRACT_VERSION = '2026.08.25.1';
 
 const files = {
   shell: 'assets/academy-navigation.js',
@@ -82,7 +83,7 @@ requireText('pageContractShim', 'Do not add new rules here', 'the no-new-rules g
 
 requireText('shell', 'BRAND_THEME_VERSION = "' + VERSION + '"', 'the consolidated brand asset version');
 requireText('shell', 'THEME_CONFORMANCE_VERSION = "' + VERSION + '"', 'the compatibility conformance asset version');
-requireText('shell', 'PAGE_CONTRACT_VERSION = "' + VERSION + '"', 'the page-contract cache version');
+requireText('shell', 'PAGE_CONTRACT_VERSION = "' + PAGE_CONTRACT_VERSION + '"', 'the page-contract cache version');
 requireText('shell', 'academy-brand-theme.css', 'the consolidated theme stylesheet reference');
 requireText('shell', 'academy-theme-conformance.css', 'the compatibility stylesheet reference');
 requireText('shell', 'data-skunkworks-theme-conformance', 'the historical conformance marker');
@@ -93,5 +94,5 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Theme conformance validation passed (v' + VERSION + ').');
+console.log('Theme conformance validation passed (v' + VERSION + '; page contract ' + PAGE_CONTRACT_VERSION + ').');
 console.log('Validated the consolidated Academy palette, typography, light/dark modes, common components, runtime surface contrast, shell styling and compatibility shims.');
