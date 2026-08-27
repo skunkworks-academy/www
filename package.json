@@ -18,7 +18,8 @@
     "validate:learn": "node scripts/validate-learn-section.mjs",
     "validate:cisco": "node scripts/validate-cisco-page.mjs",
     "validate:course-registration": "node scripts/validate-course-registration.mjs",
-    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration",
+    "validate:comptia-analytics": "node scripts/validate-comptia-analytics.mjs",
+    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration && npm run validate:comptia-analytics",
     "build": "npm run validate"
   },
   "dependencies": {
