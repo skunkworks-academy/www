@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.08.27.1';
+const VERSION = '2026.08.25.1';
 const THEME_VERSION = '2026.08.27.1';
 const THEME_CONFORMANCE_VERSION = '2026.08.27.1';
 const FORMS_VERSION = '2026.08.20.1';
