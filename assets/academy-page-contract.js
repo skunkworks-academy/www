@@ -5,7 +5,7 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.27.1";
+  var VERSION = "2026.08.25.1";
   var FORMS_VERSION = "2026.08.20.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
