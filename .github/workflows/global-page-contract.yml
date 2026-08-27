@@ -9,12 +9,15 @@ on:
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
       - 'assets/academy-theme-conformance.css'
+      - 'assets/academy-learn.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
       - 'scripts/audit-theme-governance.mjs'
+      - 'scripts/validate-theme-conformance.mjs'
+      - 'scripts/validate-learn-section.mjs'
       - 'THEME_CONFORMANCE.md'
       - 'package.json'
       - '.github/workflows/global-page-contract.yml'
@@ -28,12 +31,15 @@ on:
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
       - 'assets/academy-theme-conformance.css'
+      - 'assets/academy-learn.css'
       - 'assets/academy-forms.css'
       - 'assets/skunkworks-design-system.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
       - 'scripts/enforce-global-page-contract.mjs'
       - 'scripts/audit-theme-governance.mjs'
+      - 'scripts/validate-theme-conformance.mjs'
+      - 'scripts/validate-learn-section.mjs'
       - 'THEME_CONFORMANCE.md'
       - 'package.json'
       - '.github/workflows/global-page-contract.yml'
@@ -75,18 +81,15 @@ jobs:
           test -s assets/academy-page-contract.js
           test -s assets/academy-brand-theme.css
           test -s assets/academy-theme-conformance.css
+          test -s assets/academy-learn.css
           test -s assets/academy-forms.css
           test -s assets/skunkworks-design-system.css
           test -s assets/academy-navigation.js
           test -s scripts/enforce-global-page-contract.mjs
           test -s scripts/audit-theme-governance.mjs
 
-          grep -q -- '--swa-ink-navy: #03033a' assets/academy-page-contract.css
-          grep -q 'data-swa-surface-tone="light"' assets/academy-page-contract.css
-          grep -q 'data-swa-surface-tone="dark"' assets/academy-page-contract.css
-          ! grep -q 'background-color: #ffffff !important' assets/academy-navigation.js
-          ! grep -q 'html, body.*background-color' assets/academy-page-contract.css
-
+          # The brand theme is the single authored visual contract. Historical
+          # CSS entry points remain compatibility shims only.
           grep -q -- '--sw-ink-navy: #03033a' assets/academy-brand-theme.css
           grep -q -- '--sw-skunk-blue: #1e6bd0' assets/academy-brand-theme.css
           grep -q -- '--sw-signal-orange: #f24208' assets/academy-brand-theme.css
@@ -94,10 +97,17 @@ jobs:
           grep -q -- '--sw-graphite: #15171a' assets/academy-brand-theme.css
           grep -q -- '--sw-steel-gray: #d8dee8' assets/academy-brand-theme.css
           grep -q -- '--sw-slate-text: #5a6472' assets/academy-brand-theme.css
+          grep -q 'data-swa-surface-tone="light"' assets/academy-brand-theme.css
+          grep -q 'data-swa-surface-tone="dark"' assets/academy-brand-theme.css
+          grep -q 'Academy-wide foundation' assets/academy-brand-theme.css
+          grep -q 'body:not(\[data-swa-theme-scope="isolated"\])' assets/academy-brand-theme.css
 
-          grep -q 'Version: 2026.08.23.2' assets/academy-theme-conformance.css
-          grep -q 'Academy-wide foundation' assets/academy-theme-conformance.css
-          grep -q 'body:not(\[data-swa-theme-scope="isolated"\])' assets/academy-theme-conformance.css
+          grep -q 'compatibility entry point' assets/academy-page-contract.css
+          grep -q 'Do not add new rules here' assets/academy-page-contract.css
+          grep -q 'compatibility entry point' assets/academy-theme-conformance.css
+          grep -q 'Do not add new rules here' assets/academy-theme-conformance.css
+          ! grep -q 'background-color: #ffffff !important' assets/academy-navigation.js
+          ! grep -q 'html, body.*background-color' assets/academy-page-contract.css
 
           grep -q 'luminance(background) <= 0.42 ? "dark" : "light"' assets/academy-page-contract.js
           page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
@@ -126,10 +136,12 @@ jobs:
           grep -q 'academy-page-contract.js' assets/academy-navigation.js
           grep -q 'academy-brand-theme.css' assets/academy-navigation.js
           grep -q 'academy-theme-conformance.css' assets/academy-navigation.js
-          grep -q 'VERSION = "2026.08.23.1"' assets/academy-navigation.js
-          grep -q 'REVISION = "2026.08.23.1"' assets/academy-navigation.js
-          grep -q 'BRAND_THEME_VERSION = "2026.08.22.2"' assets/academy-navigation.js
-          grep -q 'THEME_CONFORMANCE_VERSION = "2026.08.23.2"' assets/academy-navigation.js
+          grep -q 'VERSION = "2026.08.27.1"' assets/academy-navigation.js
+          grep -q 'REVISION = "2026.08.27.1"' assets/academy-navigation.js
+          grep -q 'PAGE_CONTRACT_VERSION = "2026.08.27.1"' assets/academy-navigation.js
+          grep -q 'BRAND_THEME_VERSION = "2026.08.27.1"' assets/academy-navigation.js
+          grep -q 'THEME_CONFORMANCE_VERSION = "2026.08.27.1"' assets/academy-navigation.js
+          grep -q 'LEARN_THEME_VERSION = "2026.08.25.2"' assets/academy-navigation.js
           grep -q 'bodyBackground: "theme-owned"' assets/academy-navigation.js
           grep -q 'window.location.origin' assets/academy-navigation.js
           if grep -Eq 'script\.crossOrigin[[:space:]]*=' assets/academy-navigation.js; then
@@ -153,6 +165,7 @@ jobs:
           set -euo pipefail
           page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
           brand_theme_version="$(sed -n 's/.*var BRAND_THEME_VERSION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
+          theme_conformance_version="$(sed -n 's/.*var THEME_CONFORMANCE_VERSION = "\([^"]*\)";.*/\1/p' assets/academy-navigation.js)"
           mapfile -t forms < <(find forms -maxdepth 1 -type f -name '*.html' -print | sort)
           test "${#forms[@]}" -gt 0
           for file in "${forms[@]}"; do
@@ -162,8 +175,9 @@ jobs:
             grep -q 'data-skunkworks-global-nav="forms-canonical"' "$file"
             grep -q 'data-skunkworks-brand-theme="canonical"' "$file"
             grep -q 'data-skunkworks-theme-conformance="canonical"' "$file"
-            grep -q 'academy-page-contract.js?v=2026.08.22.1' "$file"
-            grep -q 'academy-brand-theme.css?v=2026.08.22.2' "$file"
+            grep -q "academy-page-contract.js?v=${page_contract_version}" "$file"
+            grep -q "academy-brand-theme.css?v=${brand_theme_version}" "$file"
+            grep -q "academy-theme-conformance.css?v=${theme_conformance_version}" "$file"
           done
 
       - name: Commit automatic contract repairs
@@ -232,8 +246,8 @@ jobs:
           base='https://www.skunkworksacademy.com'
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png" >/dev/null
           curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png" >/dev/null
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.22.1" | grep -q 'Skunkworks Academy global page colour and contrast contract'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.22.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.08.22.2" | grep -q 'Skunkworks Academy canonical brand theme'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?v=2026.08.23.2" | grep -q 'Academy-wide foundation'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.08.27.1" | grep -q 'compatibility entry point'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.08.27.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.08.27.1" | grep -q 'single authored source'
+          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?v=2026.08.27.1" | grep -q 'compatibility entry point'
           curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'
