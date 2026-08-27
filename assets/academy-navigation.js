@@ -2,12 +2,12 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.25.2";
-  var REVISION = "2026.08.25.2";
+  var VERSION = "2026.08.27.1";
+  var REVISION = "2026.08.27.1";
   var RUNTIME_VERSION = "2026.08.20.1";
-  var PAGE_CONTRACT_VERSION = "2026.08.25.1";
-  var BRAND_THEME_VERSION = "2026.08.22.2";
-  var THEME_CONFORMANCE_VERSION = "2026.08.23.2";
+  var PAGE_CONTRACT_VERSION = "2026.08.27.1";
+  var BRAND_THEME_VERSION = "2026.08.27.1";
+  var THEME_CONFORMANCE_VERSION = "2026.08.27.1";
   var LEARN_THEME_VERSION = "2026.08.25.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
@@ -32,18 +32,7 @@
     ].indexOf(host) !== -1) return true;
 
     if (!(isApexAlias || isLocalPreview)) return false;
-    return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)(?:\/|$)/.test(pathname);
-  }
-
-  function isLearnLandingSurface() {
-    if ([
-      "microsoft.skunkworksacademy.com",
-      "ibm.skunkworksacademy.com",
-      "security.skunkworksacademy.com"
-    ].indexOf(host) !== -1) return pathname === "/" || pathname === "";
-
-    if (!(isApexAlias || isLocalPreview)) return false;
-    return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)\/?$/.test(pathname);
+    return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)(?:\/|\.html|$)/.test(pathname);
   }
 
   function installCanonicalFavicons() {
@@ -81,25 +70,36 @@
     var hasDark = /(^|\s)dark(\s|$)/.test(declared);
     var hasLight = /(^|\s)light(\s|$)/.test(declared);
 
-    /* Respect pages that explicitly declare a single visual mode. Pages that
-       support both modes continue to follow the user's OS preference. */
     if (hasDark && !hasLight) root.setAttribute("data-theme", "dark");
     if (hasLight && !hasDark) root.setAttribute("data-theme", "light");
+  }
+
+  function ensureStylesheet(selector, attribute, value, href, moveToEnd) {
+    var head = document.head || document.documentElement;
+    if (!head) return null;
+    var link = document.querySelector(selector);
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.setAttribute(attribute, value);
+      head.appendChild(link);
+    }
+    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+    if (moveToEnd && link.parentNode === head) head.appendChild(link);
+    return link;
   }
 
   function installPageContract() {
     var head = document.head || document.documentElement;
     if (!head) return;
 
-    var cssHref = ORIGIN_ROOT + "assets/academy-page-contract.css?v=" + PAGE_CONTRACT_VERSION;
-    var css = document.querySelector('link[data-skunkworks-page-contract="css"]');
-    if (!css) {
-      css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.setAttribute("data-skunkworks-page-contract", "css");
-      head.appendChild(css);
-    }
-    if (css.getAttribute("href") !== cssHref) css.setAttribute("href", cssHref);
+    ensureStylesheet(
+      'link[data-skunkworks-page-contract="css"]',
+      "data-skunkworks-page-contract",
+      "css",
+      ORIGIN_ROOT + "assets/academy-page-contract.css?v=" + PAGE_CONTRACT_VERSION,
+      false
+    );
 
     var runtimeSrc = ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION;
     var runtime = document.querySelector('script[data-skunkworks-page-contract="runtime"]');
@@ -113,57 +113,25 @@
   }
 
   function installBrandTheme(moveToEnd) {
-    var head = document.head || document.documentElement;
-    if (!head) return null;
-
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION;
-    var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.setAttribute("data-skunkworks-brand-theme", "canonical");
-      head.appendChild(link);
-    }
-    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
-    if (moveToEnd && link.parentNode === head) head.appendChild(link);
-    return link;
+    return ensureStylesheet(
+      'link[data-skunkworks-brand-theme="canonical"]',
+      "data-skunkworks-brand-theme",
+      "canonical",
+      ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION,
+      moveToEnd
+    );
   }
 
   function installThemeConformance(moveToEnd) {
-    var head = document.head || document.documentElement;
-    if (!head) return null;
-
-    var href = ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION;
-    var link = document.querySelector('link[data-skunkworks-theme-conformance="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.setAttribute("data-skunkworks-theme-conformance", "canonical");
-      head.appendChild(link);
-    }
-    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
-    if (moveToEnd && link.parentNode === head) head.appendChild(link);
-    return link;
-  }
-
-  function isLearnSurface() {
-    if (host === "microsoft.skunkworksacademy.com" || host === "ibm.skunkworksacademy.com" || host === "security.skunkworksacademy.com") {
-      return true;
-    }
-
-    if (!(isApexAlias || isLocalPreview)) return false;
-
-    return [
-      "/learn",
-      "/courses",
-      "/learning-paths",
-      "/self-paced",
-      "/instructor-led",
-      "/comptia",
-      "/cisco"
-    ].some(function (prefix) {
-      return pathname === prefix || pathname.indexOf(prefix + "/") === 0 || pathname.indexOf(prefix + ".html") === 0;
-    });
+    /* Compatibility marker retained for historical normalized HTML. The rules
+       themselves now live in academy-brand-theme.css. */
+    return ensureStylesheet(
+      'link[data-skunkworks-theme-conformance="canonical"]',
+      "data-skunkworks-theme-conformance",
+      "canonical",
+      ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
+      moveToEnd
+    );
   }
 
   function markLearnSurface() {
@@ -174,23 +142,14 @@
 
   function installLearnTheme(moveToEnd) {
     if (!isLearnSurface()) return null;
-
-    var head = document.head || document.documentElement;
-    if (!head) return null;
-
     markLearnSurface();
-
-    var href = PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION;
-    var link = document.querySelector('link[data-skunkworks-learn-theme="v1"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.setAttribute("data-skunkworks-learn-theme", "v1");
-      head.appendChild(link);
-    }
-    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
-    if (moveToEnd && link.parentNode === head) head.appendChild(link);
-    return link;
+    return ensureStylesheet(
+      'link[data-skunkworks-learn-theme="v1"]',
+      "data-skunkworks-learn-theme",
+      "v1",
+      PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
+      moveToEnd
+    );
   }
 
   applyDeclaredTheme();
@@ -230,8 +189,8 @@
   script.setAttribute("data-skunkworks-global-nav-version", RUNTIME_VERSION);
 
   script.addEventListener("load", function () {
-    /* academy-navigation-v11 injects the shared design system. Move the brand,
-       conformance and Learn layers after it so specialised tokens win deterministically. */
+    /* v11 injects the shared design system. Keep the canonical Academy brand
+       layer last so public properties resolve to one deterministic palette. */
     installBrandTheme(true);
     installThemeConformance(true);
     installLearnTheme(true);
