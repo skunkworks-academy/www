@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skunkworks Academy Intelligent Learning Portal</title>
+  <meta name="description" content="A role-based learning orchestration layer that unifies official vendor training, Skunkworks content, labs, instructors and AI coaching into one governed learner experience." />
+  <meta name="skunkworks:repo" content="www" />
+  <meta name="skunkworks:repo-sitemap" content="https://skunkworksacademy.com/repositories/" />
+  <link rel="stylesheet" href="/assets/academy-global.css?v=2026.06.24" />
+  <link rel="stylesheet" href="./portal.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.30.0/lib/msal-browser.min.js"></script>
+  <script defer src="./portal-auth.js"></script>
+  <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04" data-skunkworks-global-nav="v3"></script>
+</head>
+<body>
+  <main>
+    <section class="hero section">
+      <div class="hero-copy">
+        <p class="eyebrow">Skunkworks Academy Intelligent Learning Portal</p>
+        <h1>One platform. One learner profile. One AI companion. Multiple vendor ecosystems.</h1>
+        <p class="hero-lede">An enterprise orchestration layer that connects official vendor learning, Skunkworks-developed content, labs, assessments and instructor services into a single personalised learner experience.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <button class="button primary" type="button" data-login-button>Sign in with Microsoft</button>
+          <a class="button" href="#lifecycle">Explore the lifecycle</a>
+          <a class="button" href="#governance">View governance model</a>
+        </div>
+      </div>
+      <aside class="hero-panel auth-panel" aria-label="Microsoft sign-in and learner profile">
+        <div class="auth-topline">
+          <span class="panel-label">Learner identity</span>
+          <span class="auth-status" data-auth-status>Signed out</span>
+        </div>
+        <h2>Start with the learner, then build the path.</h2>
+        <p data-auth-message>Sign in with a personal, school or work Microsoft account to create your approved learner profile for this experience.</p>
+        <div class="profile-card" data-profile-card hidden>
+          <div class="avatar" data-profile-avatar>SA</div>
+          <div>
+            <strong data-profile-name>Signed-in learner</strong>
+            <span data-profile-email>Microsoft account connected</span>
+          </div>
+        </div>
+        <dl class="profile-details" data-profile-details hidden>
+          <div>
+            <dt>Account type</dt>
+            <dd data-profile-type>Microsoft account</dd>
+          </div>
+          <div>
+            <dt>Tenant</dt>
+            <dd data-profile-tenant>Common authority</dd>
+          </div>
+          <div>
+            <dt>Job title</dt>
+            <dd data-profile-job>Not provided</dd>
+          </div>
+          <div>
+            <dt>Organisation</dt>
+            <dd data-profile-organisation>Not provided</dd>
+          </div>
+        </dl>
+        <div class="auth-actions">
+          <button class="button primary" type="button" data-login-button>Connect account</button>
+          <button class="button" type="button" data-refresh-profile hidden>Refresh profile</button>
+          <button class="button quiet" type="button" data-logout-button hidden>Sign out</button>
+        </div>
+        <div class="setup-warning" data-setup-warning hidden>
+          <strong>App registration setup needed.</strong>
+          <span>Add this page URL as a SPA redirect URI in the Skunkworks Academy Portal app registration before production sign-in.</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section profile-workspace" id="learner-profile" data-learner-workspace hidden>
+      <div class="section-heading compact">
+        <p class="eyebrow">Your learner workspace</p>
+        <h2>Persistent profile ready for orchestration.</h2>
+        <p>The portal uses approved Microsoft account details to initialise the learner profile. Skills, goals, evidence and interventions can then be governed inside the enterprise learning model.</p>
+      </div>
+      <div class="workspace-grid">
+        <article>
+          <h3>Identity foundation</h3>
+          <p data-workspace-identity>Microsoft identity connected.</p>
+        </article>
+        <article>
+          <h3>Profile status</h3>
+          <p data-workspace-status>Profile created in this browser session.</p>
+        </article>
+        <article>
+          <h3>Next orchestration step</h3>
+          <p>Capture role outcomes, technology environment, current skills, risk profile and required evidence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section problem" id="problem">
+      <div class="section-heading">
+        <p class="eyebrow">The problem</p>
+        <h2>Training is built around vendors, but jobs are built around roles.</h2>
+      </div>
+      <div class="problem-layout">
+        <div class="vendor-stack" aria-label="Separate vendor ecosystems feeding into a learner role">
+          <span>IBM</span>
+          <span>Microsoft</span>
+          <span>Cisco</span>
+          <span>CompTIA</span>
+          <span>Automation</span>
+        </div>
+        <div class="role-core">
+          <strong>Real learner role</strong>
+          <p>Needs blended skills across products, policies, operations and outcomes.</p>
+        </div>
+        <div class="issue-list">
+          <article><strong>You pay twice.</strong><span>Overlapping vendor courses waste time and budget.</span></article>
+          <article><strong>Gaps appear.</strong><span>People learn products in isolation, not how they work together.</span></article>
+          <article><strong>Training is generic.</strong><span>Courses rarely understand the learner's actual environment.</span></article>
+          <article><strong>Tools go unused.</strong><span>Low skills lead to low adoption after technology investment.</span></article>
+          <article><strong>Readiness is unclear.</strong><span>Managers need evidence, not only completion percentages.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proposition" id="overview">
+      <div class="section-heading compact">
+        <p class="eyebrow">Solution overview</p>
+        <h2>A subscription learning space for every active learner.</h2>
+        <p>Each learner receives a persistent profile and governed AI companion. The profile remembers approved skills evidence, goals, progress and interventions within enterprise data boundaries.</p>
+      </div>
+      <div class="feature-grid">
+        <article>
+          <span class="icon">01</span>
+          <h3>Persistent learner profile</h3>
+          <p>A skills graph tracks capability over time and connects role outcomes to evidence.</p>
+        </article>
+        <article>
+          <span class="icon">02</span>
+          <h3>Personal AI learning coach</h3>
+          <p>The companion guides, coaches, researches and escalates within approved sources and rules.</p>
+        </article>
+        <article>
+          <span class="icon">03</span>
+          <h3>Role-based multi-vendor path</h3>
+          <p>The learner sees one route across vendor courses, labs, assessments and Skunkworks content.</p>
+        </article>
+        <article>
+          <span class="icon">04</span>
+          <h3>Evidence for managers</h3>
+          <p>Managers see readiness signals, skill evidence and intervention needs instead of flat attendance data.</p>
+        </article>
+        <article>
+          <span class="icon">05</span>
+          <h3>Adaptive planning</h3>
+          <p>The plan refreshes as goals, risks, progress or technology environments change.</p>
+        </article>
+        <article>
+          <span class="icon">06</span>
+          <h3>Human delivery network</h3>
+          <p>Instructors, SMEs and assessors remain part of the delivery model for quality and assurance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section lifecycle" id="lifecycle">
+      <div class="section-heading">
+        <p class="eyebrow">Eight-step lifecycle</p>
+        <h2>From role context to measurable readiness.</h2>
+      </div>
+      <ol class="timeline">
+        <li><strong>Capture role and outcomes.</strong><span>Define the job, required capabilities, business context and target outcomes.</span></li>
+        <li><strong>Build the learner profile.</strong><span>Create or update the approved skills graph using current skills and evidence.</span></li>
+        <li><strong>Read the environment.</strong><span>Consider technology stack, policies, compliance needs, risk and learner preferences.</span></li>
+        <li><strong>Map outcomes to competencies.</strong><span>Translate job outcomes into teachable, assessable skill requirements.</span></li>
+        <li><strong>Select approved assets.</strong><span>Combine official vendor training, Skunkworks modules, labs, projects and assessments.</span></li>
+        <li><strong>Sequence the blended path.</strong><span>Arrange theory, practice, assessment and coaching in a logical learning route.</span></li>
+        <li><strong>Coach and intervene.</strong><span>The AI companion supports momentum while humans step in when risk, confidence or complexity requires it.</span></li>
+        <li><strong>Evidence and re-plan.</strong><span>Progress data, assessment evidence and manager signals refresh the path continuously.</span></li>
+      </ol>
+    </section>
+
+    <section class="section companion" id="companion">
+      <div class="section-heading compact">
+        <p class="eyebrow">Agentic AI capability</p>
+        <h2>The AI companion: six roles in one governed agent.</h2>
+        <p>It does not simply recommend a list of courses. It plans, guides and coaches inside approved content, policy and data boundaries.</p>
+      </div>
+      <div class="companion-map" aria-label="Six AI companion roles">
+        <div class="companion-core">AI learning<br />companion</div>
+        <article><strong>Guide</strong><span>Navigates the right sequence and resources.</span></article>
+        <article><strong>Coach</strong><span>Builds habits, reflection and learning momentum.</span></article>
+        <article><strong>Instructor</strong><span>Explains concepts and adapts explanations.</span></article>
+        <article><strong>Learning partner</strong><span>Works through labs, scenarios and problem solving.</span></article>
+        <article><strong>Researcher</strong><span>Finds approved, current sources and connects evidence.</span></article>
+        <article><strong>Path architect</strong><span>Builds and refreshes the role-based curriculum.</span></article>
+      </div>
+      <p class="guardrail-strip">Human escalation when confidence, risk or complexity requires it.</p>
+    </section>
+
+    <section class="section ecosystem" id="ecosystem">
+      <div class="section-heading">
+        <p class="eyebrow">Content and delivery ecosystem</p>
+        <h2>Skunkworks can source and deliver the learning so customers do not coordinate multiple providers.</h2>
+      </div>
+      <div class="ecosystem-grid">
+        <article>
+          <h3>Official vendor learning</h3>
+          <ul>
+            <li>Accredited courses</li>
+            <li>Certification pathways</li>
+            <li>Vendor labs and exams</li>
+            <li>Authorised resale where applicable</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Skunkworks courseware</h3>
+          <ul>
+            <li>Original role-based modules</li>
+            <li>Custom enterprise content</li>
+            <li>Microlearning and assessments</li>
+            <li>Scenario and lab development</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Human delivery network</h3>
+          <ul>
+            <li>Online instructor-led training</li>
+            <li>Classroom and hybrid delivery</li>
+            <li>Coaching and SME sessions</li>
+            <li>Assessment and readiness review</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Partner ecosystem</h3>
+          <ul>
+            <li>Local training providers</li>
+            <li>Specialist instructors</li>
+            <li>Technology and lab partners</li>
+            <li>Overflow and outsourced delivery</li>
+          </ul>
+        </article>
+      </div>
+      <p class="principle">Core principle: the learner sees one coherent experience while Skunkworks manages suppliers, rights, instructors and delivery workflows behind the scenes.</p>
+    </section>
+
+    <section class="section governance" id="governance">
+      <div class="section-heading compact">
+        <p class="eyebrow">Governed enterprise AI</p>
+        <h2>The portal is an enterprise orchestration layer, not an ungoverned chatbot.</h2>
+        <p>The agent operates under enterprise guardrails, approved sources, permissions and human escalation rules. This protects training quality, security, intellectual property and responsible AI governance.</p>
+      </div>
+      <div class="architecture-grid">
+        <div class="architecture-row">
+          <span>Experience</span>
+          <strong>Learner portal</strong>
+          <strong>AI companion</strong>
+          <strong>Admin and manager views</strong>
+          <strong>Mobile-responsive access</strong>
+        </div>
+        <div class="architecture-row">
+          <span>Application</span>
+          <strong>Learning orchestration API</strong>
+          <strong>Workflow and notifications</strong>
+          <strong>Content and assessment services</strong>
+          <strong>Integration services</strong>
+        </div>
+        <div class="architecture-row">
+          <span>AI and knowledge</span>
+          <strong>Enterprise LLM endpoint</strong>
+          <strong>Retrieval and grounding</strong>
+          <strong>Prompt and policy guardrails</strong>
+          <strong>Skills graph recommendations</strong>
+        </div>
+        <div class="architecture-row">
+          <span>Data and analytics</span>
+          <strong>Learner profile store</strong>
+          <strong>Content metadata and rights</strong>
+          <strong>Audit and telemetry</strong>
+          <strong>Power BI / Fabric analytics</strong>
+        </div>
+        <div class="architecture-row">
+          <span>Security and platform</span>
+          <strong>Entra ID SSO and MFA</strong>
+          <strong>Role-based access control</strong>
+          <strong>Tenant isolation</strong>
+          <strong>Azure operations and monitoring</strong>
+        </div>
+      </div>
+      <div class="identity-note">
+        <strong>Microsoft-centric reference pattern.</strong>
+        <span>Designed for Entra ID, Microsoft Graph, SAML or OpenID Connect integration using customer-approved tenant settings and security workshops.</span>
+      </div>
+    </section>
+
+    <section class="section bottom-line">
+      <div>
+        <p class="eyebrow">Bottom line</p>
+        <h2>Human + AI learning orchestration.</h2>
+      </div>
+      <p>The portal adds to official training; it does not replace it. It organises and personalises accredited vendor courses while respecting proprietary material, certification rules, rights and commercial terms for each content source.</p>
+    </section>
+  </main>
+</body>
+</html>

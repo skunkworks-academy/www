@@ -1,0 +1,497 @@
+﻿[
+    {
+        "fullName":  "skunkworks-academy/.github",
+        "name":  ".github",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T07:18:31Z",
+        "url":  "https://github.com/skunkworks-academy/.github",
+        "description":  "This repository contains the resources and documentation for the Skunkworks Academy."
+    },
+    {
+        "fullName":  "skunkworks-academy/8G",
+        "name":  "8G",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-12-18T19:46:07Z",
+        "url":  "https://github.com/skunkworks-academy/8G",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/aap-demo",
+        "name":  "aap-demo",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:10:18Z",
+        "url":  "https://github.com/skunkworks-academy/aap-demo",
+        "description":  "Local cluster infrastructure fo Ansible Automation Platform deployment, powered by OpenShift Local. Deploy AAP in minutes on macOS, Linux, or Windows."
+    },
+    {
+        "fullName":  "skunkworks-academy/academy-portal",
+        "name":  "academy-portal",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:55:16Z",
+        "url":  "https://github.com/skunkworks-academy/academy-portal",
+        "description":  "Learner, instructor and admin portal for Skunkworks Academy."
+    },
+    {
+        "fullName":  "skunkworks-academy/academy-validation",
+        "name":  "academy-validation",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:55:28Z",
+        "url":  "https://github.com/skunkworks-academy/academy-validation",
+        "description":  "Cross-site validation scripts for Skunkworks Academy repositories and domains."
+    },
+    {
+        "fullName":  "skunkworks-academy/app",
+        "name":  "app",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2024-12-08T10:05:28Z",
+        "url":  "https://github.com/skunkworks-academy/app",
+        "description":  "Skunkworks GitHub App"
+    },
+    {
+        "fullName":  "skunkworks-academy/asterisk",
+        "name":  "asterisk",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-02-20T10:42:24Z",
+        "url":  "https://github.com/skunkworks-academy/asterisk",
+        "description":  "Asterisk running with ARI enabled."
+    },
+    {
+        "fullName":  "skunkworks-academy/AZ-040T00-Automating-Administration-with-PowerShell",
+        "name":  "AZ-040T00-Automating-Administration-with-PowerShell",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2025-08-19T16:18:06Z",
+        "url":  "https://github.com/skunkworks-academy/AZ-040T00-Automating-Administration-with-PowerShell",
+        "description":  "Power"
+    },
+    {
+        "fullName":  "skunkworks-academy/AZ-104-MicrosoftAzureAdministrator",
+        "name":  "AZ-104-MicrosoftAzureAdministrator",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:41:36Z",
+        "url":  "https://github.com/skunkworks-academy/AZ-104-MicrosoftAzureAdministrator",
+        "description":  "AZ-104 Microsoft Azure Administrator"
+    },
+    {
+        "fullName":  "skunkworks-academy/AZ500-AzureSecurityTechnologies",
+        "name":  "AZ500-AzureSecurityTechnologies",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:42:24Z",
+        "url":  "https://github.com/skunkworks-academy/AZ500-AzureSecurityTechnologies",
+        "description":  "Microsoft Azure Security Technologies"
+    },
+    {
+        "fullName":  "skunkworks-academy/azure-devops",
+        "name":  "azure-devops",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2024-10-08T11:16:14Z",
+        "url":  "https://github.com/skunkworks-academy/azure-devops",
+        "description":  "Microsoft Azure DevOps Learning Roadmap repo"
+    },
+    {
+        "fullName":  "skunkworks-academy/badging",
+        "name":  "badging",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T02:16:01Z",
+        "url":  "https://github.com/skunkworks-academy/badging",
+        "description":  "Config files for my GitHub profile."
+    },
+    {
+        "fullName":  "skunkworks-academy/Classrooms",
+        "name":  "Classrooms",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-08-10T20:51:21Z",
+        "url":  "https://github.com/skunkworks-academy/Classrooms",
+        "description":  "Classrooms for Skunkworks Academy\u0027s Members, Students and Customers"
+    },
+    {
+        "fullName":  "skunkworks-academy/cld-uf-101",
+        "name":  "cld-uf-101",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-20T01:49:06Z",
+        "url":  "https://github.com/skunkworks-academy/cld-uf-101",
+        "description":  "CLD-UF-101 (Claude ┬╖ User Fundamentals ┬╖ Level 1)"
+    },
+    {
+        "fullName":  "skunkworks-academy/CO.LAB",
+        "name":  "CO.LAB",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:11:32Z",
+        "url":  "https://github.com/skunkworks-academy/CO.LAB",
+        "description":  "An open source repository for the learning materials that are used by the CO.LAB program."
+    },
+    {
+        "fullName":  "skunkworks-academy/CompTIA",
+        "name":  "CompTIA",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-01-28T10:45:02Z",
+        "url":  "https://github.com/skunkworks-academy/CompTIA",
+        "description":  "CompTIA learning materials repo"
+    },
+    {
+        "fullName":  "skunkworks-academy/cp4ba-labs",
+        "name":  "cp4ba-labs",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:00:31Z",
+        "url":  "https://github.com/skunkworks-academy/cp4ba-labs",
+        "description":  "Labs for the different capabilities in IBM Cloud Pak for Business Automation"
+    },
+    {
+        "fullName":  "skunkworks-academy/CSES-01",
+        "name":  "CSES-01",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-17T11:06:08Z",
+        "url":  "https://github.com/skunkworks-academy/CSES-01",
+        "description":  "Cloud Security Envisioning \u0026 Strategy Workshop for Microsoft CSP\u0027s"
+    },
+    {
+        "fullName":  "skunkworks-academy/dashboard",
+        "name":  "dashboard",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-02-02T19:27:09Z",
+        "url":  "https://github.com/skunkworks-academy/dashboard",
+        "description":  "a retro-style terminal-based dashboard for your academy that combines practicality with nostalgia."
+    },
+    {
+        "fullName":  "skunkworks-academy/DataVault-EDW-Training",
+        "name":  "DataVault-EDW-Training",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-05-22T23:04:16Z",
+        "url":  "https://github.com/skunkworks-academy/DataVault-EDW-Training",
+        "description":  "Unleashing the Power of Unified Data"
+    },
+    {
+        "fullName":  "skunkworks-academy/db2-summit-lab",
+        "name":  "db2-summit-lab",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:55:26Z",
+        "url":  "https://github.com/skunkworks-academy/db2-summit-lab",
+        "description":  "Documentation for running the Db2 labs"
+    },
+    {
+        "fullName":  "skunkworks-academy/DockSec",
+        "name":  "DockSec",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:04:01Z",
+        "url":  "https://github.com/skunkworks-academy/DockSec",
+        "description":  "AI-powered Docker security scanner that explains vulnerabilities in plain English. An OWASP Lab Project."
+    },
+    {
+        "fullName":  "skunkworks-academy/DonkAI",
+        "name":  "DonkAI",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:03:23Z",
+        "url":  "https://github.com/skunkworks-academy/DonkAI",
+        "description":  "DonkAI is a hands-on lab for the OWASP Top 10 for LLM Applications (2025) - no real LLM required."
+    },
+    {
+        "fullName":  "skunkworks-academy/dp-300-database-administrator",
+        "name":  "dp-300-database-administrator",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:44:08Z",
+        "url":  "https://github.com/skunkworks-academy/dp-300-database-administrator",
+        "description":  "Repository for lab exercises and instructions for Microsoft DP-300 learning content"
+    },
+    {
+        "fullName":  "skunkworks-academy/faculty",
+        "name":  "faculty",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-01-28T07:58:02Z",
+        "url":  "https://github.com/skunkworks-academy/faculty",
+        "description":  "Organisation faculty members"
+    },
+    {
+        "fullName":  "skunkworks-academy/financial-literacy",
+        "name":  "financial-literacy",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-10-08T03:16:37Z",
+        "url":  "https://github.com/skunkworks-academy/financial-literacy",
+        "description":  "Why Financial Literacy Is a Must-Have Skill for the Next Generation"
+    },
+    {
+        "fullName":  "skunkworks-academy/ibm",
+        "name":  "ibm",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-21T03:42:19Z",
+        "url":  "https://github.com/skunkworks-academy/ibm",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/instructors",
+        "name":  "instructors",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-08-12T14:46:52Z",
+        "url":  "https://github.com/skunkworks-academy/instructors",
+        "description":  "This repository likely serves as a directory or profile hub for instructors affiliated with Skunkworks Academy. "
+    },
+    {
+        "fullName":  "skunkworks-academy/jobs",
+        "name":  "jobs",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T02:14:06Z",
+        "url":  "https://github.com/skunkworks-academy/jobs",
+        "description":  "50-job-site list for South Africa with only the names and URLs"
+    },
+    {
+        "fullName":  "skunkworks-academy/labs",
+        "name":  "labs",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T07:21:32Z",
+        "url":  "https://github.com/skunkworks-academy/labs",
+        "description":  "Lab booking and rental"
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-access-gateway",
+        "name":  "labs-access-gateway",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:54:42Z",
+        "url":  "https://github.com/skunkworks-academy/labs-access-gateway",
+        "description":  "Browser-based SSH, RDP, noVNC and Guacamole access layer for labs."
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-booking",
+        "name":  "labs-booking",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:54:51Z",
+        "url":  "https://github.com/skunkworks-academy/labs-booking",
+        "description":  "Booking, cohort scheduling and seat-management workflows for Skunkworks Academy Labs."
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-catalog",
+        "name":  "labs-catalog",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:54:06Z",
+        "url":  "https://github.com/skunkworks-academy/labs-catalog",
+        "description":  "Canonical catalogue, schemas and metadata for Skunkworks Academy Labs."
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-evidence",
+        "name":  "labs-evidence",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:55:05Z",
+        "url":  "https://github.com/skunkworks-academy/labs-evidence",
+        "description":  "Evidence capture, assessment rubrics and badge mappings for Skunkworks Academy Labs."
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-guides",
+        "name":  "labs-guides",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T07:37:40Z",
+        "url":  "https://github.com/skunkworks-academy/labs-guides",
+        "description":  "Learner-facing guided lab instructions and templates."
+    },
+    {
+        "fullName":  "skunkworks-academy/labs-provisioning",
+        "name":  "labs-provisioning",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:54:30Z",
+        "url":  "https://github.com/skunkworks-academy/labs-provisioning",
+        "description":  "Infrastructure-as-code and lifecycle automation for Skunkworks Academy lab environments."
+    },
+    {
+        "fullName":  "skunkworks-academy/lms",
+        "name":  "lms",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-02-20T10:43:49Z",
+        "url":  "https://github.com/skunkworks-academy/lms",
+        "description":  "This repository houses a collection of roadmaps and resources for Cloud, Cybersecurity, and AI Mastery"
+    },
+    {
+        "fullName":  "skunkworks-academy/maximo-labs",
+        "name":  "maximo-labs",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:49:52Z",
+        "url":  "https://github.com/skunkworks-academy/maximo-labs",
+        "description":  "This is an MkDocs web site to open source the documentation for IBM Maximo Hands On Labs.  This will enable multiple contributors including partners and customer to help submit issues and maintain the documentation of the Hands On Lab"
+    },
+    {
+        "fullName":  "skunkworks-academy/MCT-User-Guide",
+        "name":  "MCT-User-Guide",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:45:44Z",
+        "url":  "https://github.com/skunkworks-academy/MCT-User-Guide",
+        "description":  "GitHub User Guide for MCTs"
+    },
+    {
+        "fullName":  "skunkworks-academy/media",
+        "name":  "media",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T02:17:05Z",
+        "url":  "https://github.com/skunkworks-academy/media",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/Microsoft",
+        "name":  "Microsoft",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-02-20T10:46:48Z",
+        "url":  "https://github.com/skunkworks-academy/Microsoft",
+        "description":  "Microsoft Training"
+    },
+    {
+        "fullName":  "skunkworks-academy/ms-102",
+        "name":  "ms-102",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-12-18T23:14:50Z",
+        "url":  "https://github.com/skunkworks-academy/ms-102",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/mslearn-github",
+        "name":  "mslearn-github",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:47:08Z",
+        "url":  "https://github.com/skunkworks-academy/mslearn-github",
+        "description":  "This repository hosts content related to GitHub content on Microsoft Learn."
+    },
+    {
+        "fullName":  "skunkworks-academy/partner",
+        "name":  "partner",
+        "visibility":  "private",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T06:21:13Z",
+        "url":  "https://github.com/skunkworks-academy/partner",
+        "description":  "Skunkworks Academy Partner Portal"
+    },
+    {
+        "fullName":  "skunkworks-academy/PL-300-Microsoft-Power-BI-Data-Analyst",
+        "name":  "PL-300-Microsoft-Power-BI-Data-Analyst",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:42:50Z",
+        "url":  "https://github.com/skunkworks-academy/PL-300-Microsoft-Power-BI-Data-Analyst",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/PL-900-Microsoft-Power-Platform-Fundamentals",
+        "name":  "PL-900-Microsoft-Power-Platform-Fundamentals",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:40:48Z",
+        "url":  "https://github.com/skunkworks-academy/PL-900-Microsoft-Power-Platform-Fundamentals",
+        "description":  "PL-900 Introduction to Microsoft Power Platform"
+    },
+    {
+        "fullName":  "skunkworks-academy/portal",
+        "name":  "portal",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T04:55:54Z",
+        "url":  "https://github.com/skunkworks-academy/portal",
+        "description":  ""
+    },
+    {
+        "fullName":  "skunkworks-academy/python",
+        "name":  "python",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-05-21T20:20:26Z",
+        "url":  "https://github.com/skunkworks-academy/python",
+        "description":  "Python course for "
+    },
+    {
+        "fullName":  "skunkworks-academy/security",
+        "name":  "security",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-21T03:39:34Z",
+        "url":  "https://github.com/skunkworks-academy/security",
+        "description":  "fully responsive HTML page you can drop straight into a lab, LMS, GitHub Pages, or internal portal. ItΓÇÖs designed for security professionals: fast scanning, categorized cards, mobile-friendly, and searchable.  No frameworks required. Pure HTML + CSS + a touch of vanilla JS."
+    },
+    {
+        "fullName":  "skunkworks-academy/TeamGuide",
+        "name":  "TeamGuide",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-04-16T02:54:47Z",
+        "url":  "https://github.com/skunkworks-academy/TeamGuide",
+        "description":  "A comprehensive guide for team onboarding, content creation, and implementing effective learning strategies."
+    },
+    {
+        "fullName":  "skunkworks-academy/udemy",
+        "name":  "udemy",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2025-10-27T16:35:54Z",
+        "url":  "https://github.com/skunkworks-academy/udemy",
+        "description":  "Udemy courses and affiliate marketing assets"
+    },
+    {
+        "fullName":  "skunkworks-academy/watsonx-genai-lab",
+        "name":  "watsonx-genai-lab",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T07:51:11Z",
+        "url":  "https://github.com/skunkworks-academy/watsonx-genai-lab",
+        "description":  "watsonx genai lab"
+    },
+    {
+        "fullName":  "skunkworks-academy/webspherelab",
+        "name":  "webspherelab",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:01:36Z",
+        "url":  "https://github.com/skunkworks-academy/webspherelab",
+        "description":  "WebSphere Troubleshooting and Performance Lab"
+    },
+    {
+        "fullName":  "skunkworks-academy/www",
+        "name":  "www",
+        "visibility":  "public",
+        "isFork":  "False",
+        "updatedAt":  "2026-06-24T02:37:38Z",
+        "url":  "https://github.com/skunkworks-academy/www",
+        "description":  "Skunkworks Academy - Website and learning catalog"
+    },
+    {
+        "fullName":  "skunkworks-academy/www-project-eks-goat",
+        "name":  "www-project-eks-goat",
+        "visibility":  "public",
+        "isFork":  "True",
+        "updatedAt":  "2026-06-24T08:04:39Z",
+        "url":  "https://github.com/skunkworks-academy/www-project-eks-goat",
+        "description":  "OWASP EKS Goat is a deliberately vulnerable EKS cluster environment to explore AWS cloud-native security through hands-on attack and defense labs with walkthrough."
+    }
+]
