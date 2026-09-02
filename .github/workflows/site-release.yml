@@ -213,6 +213,9 @@ jobs:
 
           echo 'Mounted skunkworks-academy/course-catalog at /courses.'
 
+      - name: Apply publisher indexing and AdSense policy
+        run: npm run publisher:apply
+
       - name: Normalize and verify Academy global shell on every HTML document
         run: |
           python3 - <<'PY'
@@ -372,3 +375,4 @@ jobs:
 
           echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1
+

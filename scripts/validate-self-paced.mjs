@@ -116,7 +116,7 @@ const requiredContent = [
   },
   {
     file: 'self-paced/claude/cld-uf-101/index.html',
-    text: 'https://skunkworksacademy.com/favicon.ico',
+    text: 'https://www.skunkworksacademy.com/favicon.ico',
     description: 'legacy Claude course uses the main Skunkworks Academy favicon'
   },
   {
@@ -176,3 +176,4 @@ if (errors.length) {
 
 console.log('Self-paced catalog validation passed.');
 console.log(`Validated ${new Set(requiredFiles).size} files, ${catalog?.courses?.length || 0} catalog courses and ${requiredContent.length} content checks.`);
+

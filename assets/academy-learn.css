@@ -508,3 +508,31 @@ body.swa-learn-page .scoreBanner {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Shared Learn navigation and motion contract. */
+body[data-swa-section="learn"] {
+  --swa-learn-heading-offset: 0;
+}
+
+.swa-learn-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+.swa-learn-heading--float {
+  animation: swaLearnFloatY 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes swaLearnFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swa-learn-heading--float {
+    animation: none;
+  }
+}
