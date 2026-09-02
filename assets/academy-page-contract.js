@@ -5,14 +5,20 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.22.1";
+  var VERSION = "2026.08.25.1";
   var FORMS_VERSION = "2026.08.20.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
-  var FAVICON_LIGHT = PUBLIC_ROOT + "images/favicon-black.png?v=" + VERSION;
-  var FAVICON_DARK = PUBLIC_ROOT + "images/favicon-white.png?v=" + VERSION;
-  var FORMS_DESIGN_SYSTEM = PUBLIC_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
-  var FORMS_STYLES = PUBLIC_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
-  var FORMS_GLOBAL_NAV = PUBLIC_ROOT + "assets/academy-navigation.js?v=2026.08.22.1&rev=2026.08.22.1";
+  var host = String(window.location && window.location.hostname || "").toLowerCase();
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
+  var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
+  var ASSET_ROOT = (isApexAlias || isLocalPreview)
+    ? window.location.origin.replace(/\/$/, "") + "/"
+    : PUBLIC_ROOT;
+  var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-black.png?v=" + VERSION;
+  var FAVICON_DARK = ASSET_ROOT + "images/favicon-white.png?v=" + VERSION;
+  var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
+  var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
+  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.08.27.1&rev=2026.08.27.1";
   var pathname = String(window.location && window.location.pathname || "/");
   var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
 
@@ -50,21 +56,40 @@
     "section.cover"
   ].join(",");
 
+  function faviconSpec() {
+    return [
+      { rel: "icon", href: FAVICON_LIGHT, media: "", sizes: "32x32" },
+      { rel: "shortcut icon", href: FAVICON_LIGHT, media: "", sizes: "" },
+      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)", sizes: "32x32" },
+      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
+    ];
+  }
+
+  function canonicalFaviconsAreCurrent() {
+    var expected = faviconSpec();
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('link[data-skunkworks-favicon="canonical"]'));
+    if (nodes.length !== expected.length) return false;
+
+    return expected.every(function (icon) {
+      return nodes.some(function (node) {
+        return node.getAttribute("rel") === icon.rel &&
+          node.getAttribute("href") === icon.href &&
+          (node.getAttribute("media") || "") === icon.media &&
+          (node.getAttribute("sizes") || "") === icon.sizes;
+      });
+    });
+  }
+
   function ensureCanonicalFavicons() {
     var head = document.head || document.documentElement;
-    if (!head) return;
+    if (!head || canonicalFaviconsAreCurrent()) return;
 
     Array.prototype.slice.call(document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]'))
       .forEach(function (node) {
         if (node.parentNode) node.parentNode.removeChild(node);
       });
 
-    [
-      { rel: "icon", href: FAVICON_LIGHT, media: "", sizes: "32x32" },
-      { rel: "shortcut icon", href: FAVICON_LIGHT, media: "", sizes: "" },
-      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)", sizes: "32x32" },
-      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
-    ].forEach(function (icon) {
+    faviconSpec().forEach(function (icon) {
       var link = document.createElement("link");
       link.rel = icon.rel;
       link.type = "image/png";
@@ -167,8 +192,12 @@
 
     var background = effectiveBackground(element);
     var tone = luminance(background) <= 0.42 ? "dark" : "light";
-    element.setAttribute("data-swa-surface-tone", tone);
-    element.setAttribute("data-swa-auto-contrast", "true");
+    if (element.getAttribute("data-swa-surface-tone") !== tone) {
+      element.setAttribute("data-swa-surface-tone", tone);
+    }
+    if (element.getAttribute("data-swa-auto-contrast") !== "true") {
+      element.setAttribute("data-swa-auto-contrast", "true");
+    }
   }
 
   var scheduled = false;
@@ -200,8 +229,9 @@
   window.addEventListener("skunkworksacademy:theme-change", scheduleRefresh);
 
   if (typeof MutationObserver !== "undefined") {
+    var observerRoot = document.body || document.documentElement;
     var observer = new MutationObserver(scheduleRefresh);
-    observer.observe(document.documentElement, {
+    observer.observe(observerRoot, {
       childList: true,
       subtree: true,
       attributes: true,

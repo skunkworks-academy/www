@@ -11,12 +11,17 @@
   ],
   "scripts": {
     "audit": "node scripts/audit-site.mjs",
+    "publisher:apply": "node scripts/apply-publisher-policy.mjs",
+    "publisher:check": "node scripts/apply-publisher-policy.mjs --check",
     "validate:self-paced": "node scripts/validate-self-paced.mjs",
     "validate:contrast": "node scripts/validate-contrast.mjs",
+    "audit:theme": "node scripts/audit-theme-governance.mjs",
     "validate:theme": "node scripts/validate-theme-conformance.mjs",
+    "validate:learn": "node scripts/validate-learn-section.mjs",
     "validate:cisco": "node scripts/validate-cisco-page.mjs",
     "validate:course-registration": "node scripts/validate-course-registration.mjs",
-    "validate": "npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:cisco && npm run validate:course-registration",
+    "validate:comptia-analytics": "node scripts/validate-comptia-analytics.mjs",
+    "validate": "npm run publisher:check && npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration && npm run validate:comptia-analytics",
     "build": "npm run validate"
   },
   "dependencies": {

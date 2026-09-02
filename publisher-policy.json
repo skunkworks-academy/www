@@ -1,0 +1,26 @@
+{
+  "canonicalOrigin": "https://www.skunkworksacademy.com",
+  "publisherId": "ca-pub-9270041066336676",
+  "lastModified": "2026-09-02",
+  "indexablePages": [
+    "index.html",
+    "about.html",
+    "authors/raydo-matthee.html",
+    "guides/index.html",
+    "guides/ai-enabled-learning-path.html",
+    "guides/cloud-certification-roadmap.html",
+    "guides/learning-readiness-canvas.html",
+    "guides/zero-trust-lab-controls.html",
+    "learn/index.html",
+    "instructor-led/index.html",
+    "self-paced/index.html"
+  ],
+  "adsenseEligiblePages": [
+    "index.html",
+    "guides/ai-enabled-learning-path.html",
+    "guides/cloud-certification-roadmap.html",
+    "guides/learning-readiness-canvas.html",
+    "guides/zero-trust-lab-controls.html"
+  ]
+}
+
