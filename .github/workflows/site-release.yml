@@ -80,7 +80,7 @@ jobs:
         run: |
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'installBrandTheme'
-          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q 'canonical brand theme'
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q -- '--swa-theme-contract-version'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-accessibility.css | grep -q 'accessibility contrast contract'
       - name: Collect Lighthouse samples
@@ -375,4 +375,5 @@ jobs:
 
           echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1
+
 
