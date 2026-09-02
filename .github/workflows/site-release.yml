@@ -80,7 +80,7 @@ jobs:
         run: |
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'installBrandTheme'
-          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q 'canonical brand theme'
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q -- '--swa-theme-contract-version'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-accessibility.css | grep -q 'accessibility contrast contract'
       - name: Collect Lighthouse samples
@@ -89,6 +89,7 @@ jobs:
           for run in 1 2 3; do
             npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/ \
               --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
+              --blocked-url-patterns='*googlesyndication.com*' \
               --output=json \
               --output-path="./lighthouse-report-${run}.json" \
               --only-categories=performance,accessibility,best-practices,seo \
@@ -212,6 +213,9 @@ jobs:
           fi
 
           echo 'Mounted skunkworks-academy/course-catalog at /courses.'
+
+      - name: Apply publisher indexing and AdSense policy
+        run: npm run publisher:apply
 
       - name: Normalize and verify Academy global shell on every HTML document
         run: |
@@ -372,3 +376,6 @@ jobs:
 
           echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1
+
+
+

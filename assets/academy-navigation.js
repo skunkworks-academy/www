@@ -2,13 +2,13 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.25.2";
-  var REVISION = "2026.08.25.2";
+  var VERSION = "2026.08.27.1";
+  var REVISION = "2026.08.27.1";
   var RUNTIME_VERSION = "2026.08.20.1";
   var PAGE_CONTRACT_VERSION = "2026.08.25.1";
-  var BRAND_THEME_VERSION = "2026.08.22.2";
-  var THEME_CONFORMANCE_VERSION = "2026.08.23.2";
-  var LEARN_THEME_VERSION = "2026.08.25.2";
+  var BRAND_THEME_VERSION = "2026.08.27.1";
+  var THEME_CONFORMANCE_VERSION = "2026.08.27.1";
+  var LEARN_THEME_VERSION = "2026.08.25.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
@@ -146,82 +146,51 @@
     return link;
   }
 
+  function isLearnSurface() {
+    if (host === "microsoft.skunkworksacademy.com" || host === "ibm.skunkworksacademy.com" || host === "security.skunkworksacademy.com") {
+      return true;
+    }
+
+    if (!(isApexAlias || isLocalPreview)) return false;
+
+    return [
+      "/learn",
+      "/courses",
+      "/learning-paths",
+      "/self-paced",
+      "/instructor-led",
+      "/comptia",
+      "/cisco"
+    ].some(function (prefix) {
+      return pathname === prefix || pathname.indexOf(prefix + "/") === 0 || pathname.indexOf(prefix + ".html") === 0;
+    });
+  }
+
+  function markLearnSurface() {
+    if (!isLearnSurface() || !document.body) return;
+    document.body.classList.add("swa-learn-page");
+    document.body.setAttribute("data-swa-section", "learn");
+  }
+
   function installLearnTheme(moveToEnd) {
     if (!isLearnSurface()) return null;
+
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION;
-    var link = document.querySelector('link[data-skunkworks-learn-theme="canonical"]');
+    markLearnSurface();
+
+    var href = PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION;
+    var link = document.querySelector('link[data-skunkworks-learn-theme="v1"]');
     if (!link) {
       link = document.createElement("link");
       link.rel = "stylesheet";
-      link.setAttribute("data-skunkworks-learn-theme", "canonical");
+      link.setAttribute("data-skunkworks-learn-theme", "v1");
       head.appendChild(link);
     }
     if (link.getAttribute("href") !== href) link.setAttribute("href", href);
     if (moveToEnd && link.parentNode === head) head.appendChild(link);
     return link;
-  }
-
-  function learnLinks() {
-    return [
-      ["Learn overview", "https://www.skunkworksacademy.com/learn/", "learn"],
-      ["All courses", "https://www.skunkworksacademy.com/courses", "courses"],
-      ["Learning paths", "https://www.skunkworksacademy.com/learning-paths/", "learning-paths"],
-      ["Self-paced", "https://www.skunkworksacademy.com/self-paced/", "self-paced"],
-      ["Instructor-led", "https://www.skunkworksacademy.com/instructor-led/", "instructor-led"],
-      ["Microsoft", "https://microsoft.skunkworksacademy.com/", "microsoft"],
-      ["IBM", "https://ibm.skunkworksacademy.com/", "ibm"],
-      ["CompTIA", "https://www.skunkworksacademy.com/comptia/", "comptia"],
-      ["Cisco", "https://www.skunkworksacademy.com/cisco/", "cisco"],
-      ["Security", "https://security.skunkworksacademy.com/", "security"]
-    ];
-  }
-
-  function currentLearnKey() {
-    if (host === "microsoft.skunkworksacademy.com") return "microsoft";
-    if (host === "ibm.skunkworksacademy.com") return "ibm";
-    if (host === "security.skunkworksacademy.com") return "security";
-    var match = pathname.match(/^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)(?:\/|$)/);
-    return match ? match[1] : "";
-  }
-
-  function markLearnSurface() {
-    if (!isLearnSurface() || !document.body) return;
-    document.body.setAttribute("data-swa-section", "learn");
-
-    var main = document.querySelector("main, [role=main], .main-wrapper");
-    if (!main) return;
-
-    var hero = main.querySelector("[data-sk-component=hero], .sk-hero, .hero, .heroBanner, .swa-hub__hero");
-    if (hero) {
-      hero.setAttribute("data-swa-learn-hero", "true");
-      if (isLearnLandingSurface()) {
-        var heading = hero.querySelector("h1");
-        if (heading) heading.classList.add("swa-learn-heading--float");
-      }
-    }
-
-    if (!isLearnLandingSurface() || main.querySelector(".swa-learn-subnav")) return;
-
-    var nav = document.createElement("nav");
-    nav.className = "swa-learn-subnav";
-    nav.setAttribute("aria-label", "Learn section navigation");
-    var current = currentLearnKey();
-    learnLinks().forEach(function (item) {
-      var anchor = document.createElement("a");
-      anchor.href = item[1];
-      anchor.textContent = item[0];
-      if (item[2] === current) anchor.setAttribute("aria-current", "page");
-      nav.appendChild(anchor);
-    });
-
-    if (hero && hero.parentNode === main) {
-      hero.insertAdjacentElement("afterend", nav);
-    } else {
-      main.insertBefore(nav, main.firstChild);
-    }
   }
 
   applyDeclaredTheme();
@@ -239,7 +208,6 @@
       installBrandTheme(true);
       installThemeConformance(true);
       installLearnTheme(true);
-      markLearnSurface();
     }, { once: true });
   } else {
     markLearnSurface();
@@ -249,7 +217,6 @@
     installBrandTheme(true);
     installThemeConformance(true);
     installLearnTheme(true);
-    markLearnSurface();
     return;
   }
 
@@ -264,11 +231,10 @@
 
   script.addEventListener("load", function () {
     /* academy-navigation-v11 injects the shared design system. Move the brand,
-       conformance and Learn layers after it so canonical overrides win. */
+       conformance and Learn layers after it so specialised tokens win deterministically. */
     installBrandTheme(true);
     installThemeConformance(true);
     installLearnTheme(true);
-    markLearnSurface();
   });
 
   if (!isLocalPreview && primarySrc !== fallbackSrc) {
@@ -289,7 +255,7 @@
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,
-    learnTheme: ORIGIN_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
+    learnTheme: PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
     learnSurface: isLearnSurface(),
     bodyBackground: "theme-owned",
     faviconLight: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION,
@@ -298,3 +264,4 @@
 
   (document.head || document.documentElement).appendChild(script);
 })();
+
