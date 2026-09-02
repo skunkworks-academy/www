@@ -46,7 +46,9 @@
   }
 }
 
-body.swa-learn-page {
+/* Support both the runtime class and the declarative section marker. */
+body.swa-learn-page,
+body[data-swa-section="learn"] {
   margin: 0;
   background:
     radial-gradient(circle at 10% 0, color-mix(in srgb, var(--swa-learn-blue) 11%, transparent), transparent 34rem),
@@ -57,21 +59,25 @@ body.swa-learn-page {
   line-height: 1.6;
 }
 
-body.swa-learn-page :is(h1, h2) {
+body.swa-learn-page :is(h1, h2),
+body[data-swa-section="learn"] :is(h1, h2) {
   font-family: Inter, "Arial Black", "Segoe UI", sans-serif;
   text-wrap: balance;
 }
 
-body.swa-learn-page :is(h1, h2, h3) {
+body.swa-learn-page :is(h1, h2, h3),
+body[data-swa-section="learn"] :is(h1, h2, h3) {
   color: inherit;
 }
 
-body.swa-learn-page :is(.shell, .sk-shell, .cisco-shell, .swa-hub) {
+body.swa-learn-page :is(.shell, .sk-shell, .cisco-shell, .swa-hub),
+body[data-swa-section="learn"] :is(.shell, .sk-shell, .cisco-shell, .swa-hub) {
   width: min(var(--swa-learn-shell), calc(100% - 32px));
   margin-inline: auto;
 }
 
-body.swa-learn-page :is(.eyebrow, .cisco-eyebrow, .swa-hub__eyebrow, .kicker, .panel-kicker) {
+body.swa-learn-page :is(.eyebrow, .cisco-eyebrow, .swa-hub__eyebrow, .kicker, .panel-kicker),
+body[data-swa-section="learn"] :is(.eyebrow, .cisco-eyebrow, .swa-hub__eyebrow, .kicker, .panel-kicker) {
   color: var(--swa-learn-blue) !important;
   font-size: 12px;
   font-weight: 800;
@@ -79,8 +85,48 @@ body.swa-learn-page :is(.eyebrow, .cisco-eyebrow, .swa-hub__eyebrow, .kicker, .p
   text-transform: uppercase;
 }
 
-/* One visual rhythm for the Learn hero statements while preserving page structure. */
+/* Shared Learn sub-navigation for catalogue and vendor-learning surfaces. */
+.swa-learn-subnav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(var(--swa-learn-shell), calc(100% - 32px));
+  margin: 16px auto 0;
+  padding: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--swa-learn-steel);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--swa-learn-surface) 94%, transparent);
+  box-shadow: var(--swa-learn-shadow);
+  scrollbar-width: thin;
+}
+
+.swa-learn-subnav a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: var(--swa-learn-slate);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.swa-learn-subnav a:hover,
+.swa-learn-subnav a[aria-current="page"] {
+  background: color-mix(in srgb, var(--swa-learn-blue) 12%, var(--swa-learn-surface));
+  color: var(--swa-learn-blue);
+}
+
+.swa-learn-subnav a:focus-visible {
+  outline: 3px solid var(--swa-learn-focus);
+  outline-offset: 2px;
+}
+
+/* One visual rhythm for Learn hero statements while preserving page structure. */
 body.swa-learn-page :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1),
+body[data-swa-section="learn"] :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1),
 .heroBanner h1 {
   letter-spacing: -.055em;
   line-height: .96;
@@ -90,13 +136,37 @@ body.swa-learn-page :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1),
   will-change: transform, text-shadow;
 }
 
-body.swa-learn-page :is(.lead, .hero-lede, .cisco-lead, .swa-hub__lead) {
+/* Reusable floating heading component. Keep motion subtle and optional. */
+.swa-learn-heading--float {
+  display: inline-block;
+  animation:
+    swaLearnFloatY 4.8s ease-in-out infinite,
+    swaLearnGlow 7.2s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform, text-shadow;
+}
+
+body.swa-learn-page :is(.lead, .hero-lede, .cisco-lead, .swa-hub__lead),
+body[data-swa-section="learn"] :is(.lead, .hero-lede, .cisco-lead, .swa-hub__lead) {
   line-height: 1.55;
 }
 
 /* Shared component geometry. Vendor pages keep their content and unique details,
    while cards, actions and controls follow the Academy Learn system. */
 body.swa-learn-page :is(
+  .card,
+  .tile,
+  .course,
+  .panel,
+  .hero-panel,
+  .offering-card,
+  .reference-card,
+  .cisco-hero__panel,
+  .cisco-delivery__options article,
+  .cisco-plan__cta,
+  .swa-hub__card
+),
+body[data-swa-section="learn"] :is(
   .card,
   .tile,
   .course,
@@ -122,12 +192,25 @@ body.swa-learn-page :is(
   .reference-card[href],
   .swa-hub__card[href]
 ):hover,
+body[data-swa-section="learn"] :is(
+  .card[href],
+  .tile[href],
+  .offering-card[href],
+  .reference-card[href],
+  .swa-hub__card[href]
+):hover,
 .courseCard:hover {
   transform: translateY(-3px);
   box-shadow: var(--swa-learn-shadow-strong);
 }
 
 body.swa-learn-page :is(
+  .btn,
+  .button,
+  .cisco-button,
+  .swa-hub__button
+),
+body[data-swa-section="learn"] :is(
   .btn,
   .button,
   .cisco-button,
@@ -149,6 +232,13 @@ body.swa-learn-page :is(
   .cisco-button--primary,
   .swa-hub__button--primary
 ),
+body[data-swa-section="learn"] :is(
+  .btn.primary,
+  .primary.btn,
+  .button-primary,
+  .cisco-button--primary,
+  .swa-hub__button--primary
+),
 .heroButtonPrimary,
 .cardButtonPrimary {
   border-color: var(--swa-learn-blue) !important;
@@ -163,6 +253,13 @@ body.swa-learn-page :is(
   .cisco-button--primary,
   .swa-hub__button--primary
 ):hover,
+body[data-swa-section="learn"] :is(
+  .btn.primary,
+  .primary.btn,
+  .button-primary,
+  .cisco-button--primary,
+  .swa-hub__button--primary
+):hover,
 .heroButtonPrimary:hover,
 .cardButtonPrimary:hover {
   border-color: #1759ad !important;
@@ -171,23 +268,27 @@ body.swa-learn-page :is(
 }
 
 body.swa-learn-page :is(a, button, input, select, textarea):focus-visible,
+body[data-swa-section="learn"] :is(a, button, input, select, textarea):focus-visible,
 .courseCard a:focus-visible {
   outline: 3px solid var(--swa-learn-focus) !important;
   outline-offset: 3px;
 }
 
-body.swa-learn-page :is(input, select, textarea) {
+body.swa-learn-page :is(input, select, textarea),
+body[data-swa-section="learn"] :is(input, select, textarea) {
   border-radius: 12px;
   border-color: var(--swa-learn-steel);
 }
 
-body.swa-learn-page :is(input, select, textarea):focus {
+body.swa-learn-page :is(input, select, textarea):focus,
+body[data-swa-section="learn"] :is(input, select, textarea):focus {
   border-color: var(--swa-learn-blue) !important;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--swa-learn-blue) 18%, transparent);
 }
 
 /* Context bars remain useful on vendor pages, but visually defer to the shared shell. */
-body.swa-learn-page .partner-header {
+body.swa-learn-page .partner-header,
+body[data-swa-section="learn"] .partner-header {
   border-bottom: 1px solid var(--swa-learn-steel);
   background: var(--swa-learn-ink) !important;
   color: #fff !important;
@@ -196,7 +297,10 @@ body.swa-learn-page .partner-header {
 
 body.swa-learn-page .notice,
 body.swa-learn-page .cisco-catalogue__notice,
-body.swa-learn-page .scoreBanner {
+body.swa-learn-page .scoreBanner,
+body[data-swa-section="learn"] .notice,
+body[data-swa-section="learn"] .cisco-catalogue__notice,
+body[data-swa-section="learn"] .scoreBanner {
   border-left-color: var(--swa-learn-orange) !important;
 }
 
@@ -460,6 +564,11 @@ body.swa-learn-page .scoreBanner {
   50% { transform: translateY(-8px); }
 }
 
+@keyframes swaLearnFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 @keyframes swaLearnGlow {
   0%, 100% { text-shadow: 0 8px 24px rgba(0, 0, 0, .18); }
   50% {
@@ -480,7 +589,9 @@ body.swa-learn-page .scoreBanner {
 
 @media (max-width: 640px) {
   body.swa-learn-page :is(.shell, .sk-shell, .cisco-shell, .swa-hub),
-  .swa-learn-hub {
+  body[data-swa-section="learn"] :is(.shell, .sk-shell, .cisco-shell, .swa-hub),
+  .swa-learn-hub,
+  .swa-learn-subnav {
     width: min(100% - 24px, var(--swa-learn-shell));
   }
   .swa-learn-hub { padding-top: 26px; }
@@ -489,22 +600,54 @@ body.swa-learn-page .scoreBanner {
   .swa-learn-hub__steps { grid-template-columns: 1fr; }
   .swa-learn-hub__actions { display: grid; }
   .swa-learn-hub__button { width: 100%; }
+  .swa-learn-subnav { border-radius: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   body.swa-learn-page :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1),
+  body[data-swa-section="learn"] :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1),
   .heroBanner h1,
-  .swa-learn-hub h1 {
+  .swa-learn-hub h1,
+  .swa-learn-heading--float {
     animation: none !important;
     transform: none !important;
     text-shadow: 0 4px 16px rgba(0, 0, 0, .20);
   }
   body.swa-learn-page *,
+  body[data-swa-section="learn"] *,
   .courseCard,
   .swa-learn-hub * {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Shared Learn navigation and motion contract. */
+body[data-swa-section="learn"] {
+  --swa-learn-heading-offset: 0;
+}
+
+.swa-learn-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+.swa-learn-heading--float {
+  animation: swaLearnFloatY 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes swaLearnFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swa-learn-heading--float {
+    animation: none;
   }
 }

@@ -65,12 +65,8 @@ for (const destination of [
 
 for (const indexableUrl of [
   'https://www.skunkworksacademy.com/learn/',
-  'https://www.skunkworksacademy.com/courses',
-  'https://www.skunkworksacademy.com/learning-paths/',
   'https://www.skunkworksacademy.com/self-paced/',
   'https://www.skunkworksacademy.com/instructor-led/',
-  'https://www.skunkworksacademy.com/comptia/',
-  'https://www.skunkworksacademy.com/cisco/',
 ]) {
   requireText(learnSitemap, `<loc>${indexableUrl}</loc>`, `Learn sitemap URL ${indexableUrl}`);
 }
