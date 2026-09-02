@@ -106,4 +106,3 @@ if (failures.length) {
 
 console.log('Learn section validation passed.');
 console.log('Validated SEO/indexability, crawler discovery, structured data, deployed Learn styling, motion accessibility, navigation destinations and route coverage.');
-
