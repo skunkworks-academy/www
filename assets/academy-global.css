@@ -1,0 +1,101 @@
+﻿:root {
+  --skw-bg: #050505;
+  --skw-panel: #101010;
+  --skw-text: #f5f5f5;
+  --skw-muted: #a3a3a3;
+  --skw-line: #2a2a2a;
+  --skw-accent: #7c3aed;
+  --skw-accent-2: #06b6d4;
+  --skw-radius: 24px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --skw-bg: #f8fafc;
+    --skw-panel: #ffffff;
+    --skw-text: #050505;
+    --skw-muted: #475569;
+    --skw-line: #dbe3ef;
+  }
+}
+
+body {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(124,58,237,.18), transparent 34rem),
+    radial-gradient(circle at top right, rgba(6,182,212,.16), transparent 32rem),
+    var(--skw-bg);
+  color: var(--skw-text);
+}
+
+.skw-global-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  border-bottom: 1px solid var(--skw-line);
+  background: color-mix(in srgb, var(--skw-bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.skw-global-nav-inner {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 72px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.skw-global-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--skw-text);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.skw-global-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.skw-global-links a {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--skw-line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--skw-muted);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.skw-global-links a:hover {
+  color: var(--skw-text);
+  border-color: var(--skw-accent-2);
+}
+
+.skw-global-links .primary {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(135deg, var(--skw-accent), var(--skw-accent-2));
+}
+
+@media (max-width: 820px) {
+  .skw-global-nav-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 14px;
+  }
+
+  .skw-global-links {
+    justify-content: flex-start;
+  }
+}

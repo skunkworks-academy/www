@@ -18,7 +18,7 @@
   var FAVICON_DARK = ASSET_ROOT + "images/favicon-white.png?v=" + VERSION;
   var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
   var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
-  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.08.25.1&rev=2026.08.25.1";
+  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.08.27.1&rev=2026.08.27.1";
   var pathname = String(window.location && window.location.pathname || "/");
   var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
 

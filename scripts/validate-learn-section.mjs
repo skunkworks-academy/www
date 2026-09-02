@@ -22,6 +22,8 @@ function requireText(source, fragment, label) {
 const learnPage = read('learn/index.html');
 const learnCss = read('assets/academy-learn.css');
 const shell = read('assets/academy-navigation.js');
+const learnSitemap = read('learn-sitemap.xml');
+const robots = read('robots.txt');
 
 for (const file of [
   'learning-paths/index.html',
@@ -35,7 +37,14 @@ for (const file of [
 
 requireText(learnPage, '<link rel="canonical" href="https://www.skunkworksacademy.com/learn/"', 'Learn canonical URL');
 requireText(learnPage, 'name="robots" content="index, follow', 'indexable robots metadata');
+requireText(learnPage, 'name="googlebot" content="index, follow', 'Google indexing metadata');
+requireText(learnPage, 'name="bingbot" content="index, follow', 'Bing indexing metadata');
+requireText(learnPage, 'hreflang="en-ZA"', 'regional hreflang metadata');
+requireText(learnPage, 'hreflang="x-default"', 'default hreflang metadata');
+requireText(learnPage, 'property="og:title"', 'Open Graph title metadata');
+requireText(learnPage, 'name="twitter:card"', 'Twitter card metadata');
 requireText(learnPage, '"@type": "CollectionPage"', 'CollectionPage structured data');
+requireText(learnPage, '"@type": "BreadcrumbList"', 'Breadcrumb structured data');
 requireText(learnPage, '"@type": "ItemList"', 'learning destination ItemList structured data');
 requireText(learnPage, 'data-swa-section="learn"', 'Learn section marker');
 requireText(learnPage, 'Build practical technology capability — not just course completion.', 'canonical Learn hero message');
@@ -54,16 +63,31 @@ for (const destination of [
   requireText(learnPage, destination, `Learn destination ${destination}`);
 }
 
-requireText(learnCss, 'body[data-swa-section="learn"]', 'shared Learn scope');
-requireText(learnCss, '.swa-learn-heading--float', 'floating Learn heading component');
-requireText(learnCss, '@keyframes swaLearnFloatY', 'floating heading animation');
-requireText(learnCss, '@media (prefers-reduced-motion: reduce)', 'reduced-motion accessibility contract');
-requireText(learnCss, '.swa-learn-subnav', 'shared Learn sub-navigation styling');
+for (const indexableUrl of [
+  'https://www.skunkworksacademy.com/learn/',
+  'https://www.skunkworksacademy.com/self-paced/',
+  'https://www.skunkworksacademy.com/instructor-led/',
+]) {
+  requireText(learnSitemap, `<loc>${indexableUrl}</loc>`, `Learn sitemap URL ${indexableUrl}`);
+}
+requireText(robots, 'Sitemap: https://www.skunkworksacademy.com/learn-sitemap.xml', 'Learn sitemap discovery in robots.txt');
 
-requireText(shell, 'LEARN_THEME_VERSION = "2026.08.25.2"', 'Learn theme version');
+/* Validate the deployed Learn theme contract rather than phantom selector names.
+   The runtime marks Learn pages with both the swa-learn-page class and
+   data-swa-section="learn"; academy-learn.css intentionally scopes against the class. */
+requireText(learnCss, 'body.swa-learn-page', 'shared Learn CSS scope');
+requireText(learnCss, 'body.swa-learn-page :is(.hero h1, .cisco-hero h1, .swa-hub__hero h1)', 'shared floating Learn heading styling');
+requireText(learnCss, '@keyframes swaLearnFloat', 'floating heading animation');
+requireText(learnCss, '@keyframes swaLearnGlow', 'floating heading glow animation');
+requireText(learnCss, '@media (prefers-reduced-motion: reduce)', 'reduced-motion accessibility contract');
+requireText(learnCss, '.swa-learn-hub__actions', 'Learn navigation/action styling');
+
+requireText(shell, 'var LEARN_THEME_VERSION = "2026.08.25.1"', 'deployed Learn theme version');
 requireText(shell, 'function isLearnSurface()', 'Learn route classifier');
 requireText(shell, 'function installLearnTheme(', 'Learn theme loader');
 requireText(shell, 'function markLearnSurface()', 'Learn runtime marker');
+requireText(shell, 'document.body.setAttribute("data-swa-section", "learn")', 'Learn data-section runtime marker');
+requireText(shell, 'document.body.classList.add("swa-learn-page")', 'Learn class runtime marker');
 requireText(shell, 'academy-learn.css', 'Learn stylesheet reference');
 requireText(shell, 'microsoft.skunkworksacademy.com', 'Microsoft Learn property classification');
 requireText(shell, 'ibm.skunkworksacademy.com', 'IBM Learn property classification');
@@ -81,4 +105,5 @@ if (failures.length) {
 }
 
 console.log('Learn section validation passed.');
-console.log('Validated SEO/indexability, shared Learn styling, motion accessibility, navigation destinations and route coverage.');
+console.log('Validated SEO/indexability, crawler discovery, structured data, deployed Learn styling, motion accessibility, navigation destinations and route coverage.');
+

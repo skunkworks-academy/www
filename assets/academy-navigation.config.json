@@ -1,148 +1,80 @@
 {
-  "repository": ".github",
-  "standard": "skunkworks-academy-global-navigation",
-  "version": "v9",
-  "canonicalNavigationUrl": "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.14.2",
-  "canonicalUiUrl": "https://skunkworksacademy.com/assets/skunkworks-ui.js?v=2026.08.14.2",
-  "canonicalVersion": "2026.08.14.2",
-  "globalAssetsBaseUrl": "https://skunkworksacademy.com/assets",
-  "brand": "Skunkworks Academy",
-  "homeUrl": "https://skunkworksacademy.com/",
-  "signInUrl": "https://portal.skunkworksacademy.com/",
-  "layout": {
-    "style": "compact-dark-reference",
-    "controls": [
-      "menu",
-      "brand",
-      "centred-logo",
-      "search",
-      "sign-in"
-    ],
-    "accent": "#0f6cbd"
-  },
-  "pages": [
-    {
-      "label": "Home",
-      "url": "https://skunkworksacademy.com/",
-      "domains": [
-        "skunkworksacademy.com",
-        "www.skunkworksacademy.com"
-      ],
-      "description": "Skunkworks Academy home"
-    },
-    {
-      "label": "Learning catalogue",
-      "url": "https://skunkworksacademy.com/catalogue/",
-      "description": "Self-paced and instructor-led learning"
-    },
-    {
-      "label": "Plans & purchases",
-      "url": "https://skunkworksacademy.com/plans-and-purchases/",
-      "description": "Training plans and purchases"
-    },
-    {
-      "label": "Learner portal",
-      "url": "https://portal.skunkworksacademy.com/",
-      "domains": [
-        "portal.skunkworksacademy.com"
-      ],
-      "description": "Your Academy account and learning portal"
-    },
-    {
-      "label": "Labs",
-      "url": "https://labs.skunkworksacademy.com/",
-      "domains": [
-        "labs.skunkworksacademy.com",
-        "lab.skunkworksacademy.com"
-      ],
-      "description": "Hands-on technical labs"
-    },
-    {
-      "label": "Security",
-      "url": "https://security.skunkworksacademy.com/",
-      "domains": [
-        "security.skunkworksacademy.com"
-      ],
-      "description": "Security learning and services"
-    },
-    {
-      "label": "Microsoft learning",
-      "url": "https://microsoft.skunkworksacademy.com/",
-      "domains": [
-        "microsoft.skunkworksacademy.com"
-      ],
-      "description": "Microsoft training and certification"
-    },
-    {
-      "label": "IBM learning",
-      "url": "https://ibm.skunkworksacademy.com/",
-      "domains": [
-        "ibm.skunkworksacademy.com"
-      ],
-      "description": "IBM enterprise training"
-    },
-    {
-      "label": "Badging",
-      "url": "https://badging.skunkworksacademy.com/",
-      "domains": [
-        "badging.skunkworksacademy.com",
-        "badge-hub.skunkworksacademy.com"
-      ],
-      "description": "Digital credentials and badges"
-    },
-    {
-      "label": "Jobs",
-      "url": "https://jobs.skunkworksacademy.com/",
-      "domains": [
-        "jobs.skunkworksacademy.com"
-      ],
-      "description": "Academy careers and opportunities"
-    },
-    {
-      "label": "Forms",
-      "url": "https://skunkworksacademy.com/forms/",
-      "description": "Academy forms and requests"
-    },
-    {
-      "label": "Connections",
-      "url": "https://portal.skunkworksacademy.com/connections/",
-      "description": "Learning connections"
-    },
-    {
-      "label": "Reports",
-      "url": "https://portal.skunkworksacademy.com/reports/",
-      "description": "Learning reports"
-    },
-    {
-      "label": "Docs",
-      "url": "https://docs.skunkworksacademy.com/",
-      "domains": [
-        "docs.skunkworksacademy.com"
-      ],
-      "description": "Academy documentation"
-    },
-    {
-      "label": "Publish",
-      "url": "https://publish.skunkworksacademy.com/",
-      "domains": [
-        "publish.skunkworksacademy.com"
-      ],
-      "description": "Academy publishing"
-    },
-    {
-      "label": "Blog",
-      "url": "https://blog.skunkworksacademy.com/",
-      "domains": [
-        "blog.skunkworksacademy.com"
-      ],
-      "description": "Academy updates and articles"
-    }
-  ],
-  "generatedOn": "2026-08-14T00:00:00+02:00",
-  "notes": "Public Academy surfaces use the central Skunkworks Academy global navigation shell. The compact dark bar contains an accessible hamburger menu, Skunkworks Academy company name, centred Academy icon, destination search and learner-portal sign-in link. Do not maintain page-local public headers unless data-sk-preserve-header is set.",
-  "accountIntegration": {
-    "global": "SKUNKWORKS_ACADEMY_NAV_ACCOUNT",
-    "event": "skunkworksacademy:account-change",
-    "note": "Interactive applications can provide authenticated sign-in and sign-out actions to the central menu."
-  }
+    "repository":  "www",
+    "standard":  "skunkworks-academy-global-navigation",
+    "version":  "v3",
+    "dropdownTitle":  "Pages",
+    "dropdownStatusLabel":  "Verified domains",
+    "canonicalNavigationUrl":  "https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.07.04",
+    "canonicalVersion":  "2026.07.04",
+    "globalAssetsBaseUrl":  "https://skunkworksacademy.com/assets",
+    "pages":  [
+                  {
+                      "label":  "Jobs",
+                      "domain":  "jobs.skunkworksacademy.com",
+                      "url":  "https://jobs.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Security",
+                      "domain":  "security.skunkworksacademy.com",
+                      "url":  "https://security.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Home",
+                      "domain":  "skunkworksacademy.com",
+                      "url":  "https://skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "IBM",
+                      "domain":  "ibm.skunkworksacademy.com",
+                      "url":  "https://ibm.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Portal",
+                      "domain":  "portal.skunkworksacademy.com",
+                      "url":  "https://portal.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Labs",
+                      "domain":  "labs.skunkworksacademy.com",
+                      "url":  "https://labs.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Badging",
+                      "domain":  "badging.skunkworksacademy.com",
+                      "url":  "https://badging.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Media",
+                      "domain":  "media.skunkworksacademy.com",
+                      "url":  "https://media.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "App",
+                      "domain":  "app.skunkworksacademy.com",
+                      "url":  "https://app.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Learn",
+                      "domain":  "learn.skunkworksacademy.com",
+                      "url":  "https://learn.skunkworksacademy.com/",
+                      "verified":  true
+                  },
+                  {
+                      "label":  "Prompt",
+                      "domain":  "prompt.skunkworksacademy.com",
+                      "url":  "https://prompt.skunkworksacademy.com/",
+                      "verified":  true
+                  }
+              ],
+    "generatedOn":  "2026-07-04T21:33:13.8236763Z",
+    "notes":  "Public pages should use the central Skunkworks Academy global navigation shell. The burger dropdown must expose the verified domains listed in pages."
 }
