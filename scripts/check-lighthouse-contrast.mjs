@@ -14,7 +14,11 @@ import { readFile } from 'node:fs/promises';
 const reportPath = process.argv[2] || './lighthouse-contrast.json';
 
 /**
- * Calculate relative luminance (WCAG)
+ * Calculate the WCAG relative luminance of an RGB color.
+ * @param {number} r - The red channel value from 0 to 255.
+ * @param {number} g - The green channel value from 0 to 255.
+ * @param {number} b - The blue channel value from 0 to 255.
+ * @return {number} The relative luminance value.
  */
 function relativeLuminance(r, g, b) {
   const [rs, gs, bs] = [r, g, b].map(v => {
@@ -25,7 +29,10 @@ function relativeLuminance(r, g, b) {
 }
 
 /**
- * Calculate contrast ratio (WCAG)
+ * Calculates the WCAG contrast ratio between two RGB colors.
+ * @param {number[]} rgb1 - The first color as an RGB channel array.
+ * @param {number[]} rgb2 - The second color as an RGB channel array.
+ * @return {string} The contrast ratio formatted to two decimal places.
  */
 function contrastRatio(rgb1, rgb2) {
   const lum1 = relativeLuminance(...rgb1);
@@ -36,7 +43,9 @@ function contrastRatio(rgb1, rgb2) {
 }
 
 /**
- * Parse rgb/rgba string to [r, g, b]
+ * Parses an RGB or RGBA color string into its red, green, and blue channels.
+ * @param {string} rgbStr - The RGB or RGBA color string.
+ * @return {number[]|null} The color channels as [red, green, blue], or null if parsing fails.
  */
 function parseRgb(rgbStr) {
   const match = rgbStr.match(/rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
@@ -44,7 +53,9 @@ function parseRgb(rgbStr) {
 }
 
 /**
- * Parse hex color to [r, g, b]
+ * Parses a six-digit hexadecimal color into its red, green, and blue channels.
+ * @param {string} hex - The hexadecimal color in `#RRGGBB` format.
+ * @return {[number, number, number] | null} The RGB channels, or `null` for an invalid color.
  */
 function parseHex(hex) {
   if (!hex || !/^#[0-9a-f]{6}$/i.test(hex)) return null;
@@ -60,7 +71,11 @@ function rgbToString(rgb) {
 }
 
 /**
- * Suggest corrected colors with better contrast
+ * Suggests a foreground color adjustment to improve contrast against a background.
+ * @param {number[]} fgRgb - The current foreground color as RGB channel values.
+ * @param {number[]} bgRgb - The background color as RGB channel values.
+ * @param {boolean} [isLight=true] - Whether the background uses a light theme.
+ * @returns {{current: number, suggested: number, direction: string, targetColor: string}} Contrast values, adjustment direction, and target foreground color.
  */
 function suggestFix(fgRgb, bgRgb, isLight = true) {
   const currentRatio = contrastRatio(fgRgb, bgRgb);
@@ -78,7 +93,7 @@ function suggestFix(fgRgb, bgRgb, isLight = true) {
 }
 
 /**
- * Main validation function
+ * Validates the Lighthouse color-contrast audit report and reports any failing elements.
  */
 async function validateContrast() {
   try {
