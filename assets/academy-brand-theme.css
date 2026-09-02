@@ -1,8 +1,14 @@
 /*
-  Skunkworks Academy canonical brand theme
-  Version: 2026.08.22.2
+  Skunkworks Academy canonical brand + theme contract
+  Version: 2026.08.27.1
 
-  Source palette:
+  This is the single authored source for the Academy public colour system,
+  typography, theme conformance, common component rules and runtime-classified
+  foreground/background contrast. Legacy CSS entry points remain as tiny
+  compatibility shims so historical pages do not break while duplicate theme
+  implementations are retired.
+
+  Canonical palette (Skunkworks Academy Brand Kit):
   Ink Navy      #03033A
   Skunk Blue    #1E6BD0
   Signal Orange #F24208
@@ -11,13 +17,14 @@
   Graphite      #15171A
   Steel Gray    #D8DEE8
   Slate Text    #5A6472
-
-  This file is intentionally loaded after the shared design system so legacy
-  pages inherit the current brand palette without requiring page-by-page CSS
-  rewrites. It remaps semantic tokens rather than flattening authored layouts.
 */
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Open+Sans:wght@400;600;700;800&display=swap");
+
 :root {
+  --swa-theme-contract-version: "2026.08.27.1";
+
+  /* Canonical brand tokens. */
   --sw-ink-navy: #03033a;
   --sw-skunk-blue: #1e6bd0;
   --sw-skunk-blue-hover: #1756a9;
@@ -33,7 +40,12 @@
   --sw-dark-text: #f4f6fa;
   --sw-dark-muted: #c8d1df;
 
-  /* Shared design-system bridge */
+  /* Typography: Brand Kit display + body/UI + technical stack. */
+  --sk-font-display: "Inter", "Arial Black", "Segoe UI", sans-serif;
+  --sk-font-sans: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sk-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  /* Canonical design-system bridge. */
   --sk-brand-black: var(--sw-ink-navy);
   --sk-brand-ink: var(--sw-graphite);
   --sk-brand-blue: var(--sw-skunk-blue);
@@ -64,7 +76,29 @@
   --sk-shadow: 0 18px 48px rgba(3, 3, 58, .10);
   --sk-shadow-strong: 0 30px 90px rgba(3, 3, 58, .18);
 
-  /* Common legacy token bridge used across jobs, security, IBM, media, etc. */
+  /* Academy-wide semantic component contract. */
+  --swa-font-sans: var(--sk-font-sans);
+  --swa-font-display: var(--sk-font-display);
+  --swa-font-mono: var(--sk-font-mono);
+  --swa-content-max: var(--sk-container, 1200px);
+  --swa-control-height: 2.75rem;
+  --swa-radius-control: var(--sk-radius-sm, .5rem);
+  --swa-radius-surface: var(--sk-radius-md, 1rem);
+  --swa-space-control-x: var(--sk-space-05, 1rem);
+  --swa-space-control-y: var(--sk-space-03, .5rem);
+  --swa-surface: var(--sk-layer-01);
+  --swa-surface-raised: var(--sk-layer-02);
+  --swa-text: var(--sk-text-primary);
+  --swa-text-muted: var(--sk-text-secondary);
+  --swa-border: var(--sk-border-subtle);
+  --swa-action: var(--sk-interactive);
+  --swa-action-hover: var(--sk-interactive-hover);
+  --swa-action-text: var(--sk-text-on-color);
+  --swa-link: var(--sk-link);
+  --swa-focus: var(--sk-focus);
+  --swa-shadow: var(--sk-shadow);
+
+  /* Common legacy variable bridge used by older pages. */
   --bg: var(--sw-white);
   --surface: var(--sw-white);
   --surface-2: var(--sw-off-white);
@@ -98,6 +132,49 @@
   --stat-number: var(--sw-skunk-blue);
   --stat-label: var(--sw-slate-text);
 
+  /* Legacy shared-page namespaces retained while pages migrate to --sk-* tokens. */
+  --brand-blue: var(--sw-skunk-blue);
+  --brand-blue-2: var(--sw-skunk-blue-hover);
+  --hub-bg: var(--sw-off-white);
+  --hub-card: var(--sw-white);
+  --hub-text: var(--sw-graphite);
+  --hub-muted: var(--sw-slate-text);
+  --hub-line: var(--sw-steel-gray);
+  --hub-accent: var(--sw-skunk-blue);
+  --hub-accent-strong: var(--sw-skunk-blue-hover);
+  --hub-hero-bg: var(--sw-white);
+  --hub-hero-text: var(--sw-graphite);
+  --hub-hero-muted: var(--sw-slate-text);
+  --hub-hero-eyebrow: var(--sw-skunk-blue);
+  --hub-hero-line: var(--sw-steel-gray);
+
+  --cr-page: var(--sw-white);
+  --cr-surface: var(--sw-white);
+  --cr-surface-soft: var(--sw-off-white);
+  --cr-surface-raised: #edf1f7;
+  --cr-text: var(--sw-graphite);
+  --cr-muted: var(--sw-slate-text);
+  --cr-border: var(--sw-steel-gray);
+  --cr-border-strong: #8b95a5;
+  --cr-accent: var(--sw-skunk-blue);
+  --cr-accent-hover: var(--sw-skunk-blue-hover);
+  --cr-accent-text: var(--sw-white);
+  --cr-inverse: var(--sw-ink-navy);
+  --cr-inverse-text: var(--sw-white);
+
+  --swa-form-page: var(--sw-white);
+  --swa-form-surface: var(--sw-white);
+  --swa-form-surface-soft: var(--sw-off-white);
+  --swa-form-surface-muted: #edf1f7;
+  --swa-form-text: var(--sw-graphite);
+  --swa-form-text-muted: var(--sw-slate-text);
+  --swa-form-line: var(--sw-steel-gray);
+  --swa-form-line-strong: #8b95a5;
+  --swa-form-accent: var(--sw-skunk-blue);
+  --swa-form-accent-hover: var(--sw-skunk-blue-hover);
+  --swa-form-input: var(--sw-white);
+  --swa-form-input-text: var(--sw-graphite);
+
   /* Labs namespace bridge. */
   --labs-bg: var(--sw-white);
   --labs-bg-soft: var(--sw-off-white);
@@ -115,7 +192,9 @@
 }
 
 :root[data-theme="dark"],
-[data-theme="dark"] {
+:root[data-swa-theme="dark"],
+[data-theme="dark"],
+[data-swa-theme="dark"] {
   color-scheme: dark;
   --sk-bg: var(--sw-dark-canvas);
   --sk-bg-gradient:
@@ -138,7 +217,6 @@
   --sk-shadow: 0 20px 60px rgba(0, 0, 0, .36);
   --sk-shadow-strong: 0 30px 90px rgba(0, 0, 0, .48);
 
-  /* Common dark legacy bridge. */
   --bg: var(--sw-dark-canvas);
   --surface: var(--sw-dark-surface);
   --surface-2: #171728;
@@ -162,7 +240,46 @@
   --focus: var(--sw-signal-orange);
   --amber: var(--sw-signal-orange);
 
-  /* Labs dark bridge. */
+  --hub-bg: var(--sw-dark-canvas);
+  --hub-card: var(--sw-dark-surface);
+  --hub-text: var(--sw-dark-text);
+  --hub-muted: var(--sw-dark-muted);
+  --hub-line: rgba(216, 222, 232, .20);
+  --hub-accent: var(--sw-blue-on-dark);
+  --hub-accent-strong: #b9d7ff;
+  --hub-hero-bg: var(--sw-ink-navy);
+  --hub-hero-text: var(--sw-white);
+  --hub-hero-muted: var(--sw-dark-muted);
+  --hub-hero-eyebrow: var(--sw-blue-on-dark);
+  --hub-hero-line: rgba(216, 222, 232, .20);
+
+  --cr-page: var(--sw-dark-canvas);
+  --cr-surface: var(--sw-dark-surface);
+  --cr-surface-soft: #171728;
+  --cr-surface-raised: #23233a;
+  --cr-text: var(--sw-dark-text);
+  --cr-muted: var(--sw-dark-muted);
+  --cr-border: rgba(216, 222, 232, .20);
+  --cr-border-strong: rgba(216, 222, 232, .38);
+  --cr-accent: var(--sw-blue-on-dark);
+  --cr-accent-hover: #b9d7ff;
+  --cr-accent-text: var(--sw-graphite);
+  --cr-inverse: var(--sw-ink-navy);
+  --cr-inverse-text: var(--sw-white);
+
+  --swa-form-page: var(--sw-dark-canvas);
+  --swa-form-surface: var(--sw-dark-surface);
+  --swa-form-surface-soft: #171728;
+  --swa-form-surface-muted: #23233a;
+  --swa-form-text: var(--sw-dark-text);
+  --swa-form-text-muted: var(--sw-dark-muted);
+  --swa-form-line: rgba(216, 222, 232, .20);
+  --swa-form-line-strong: rgba(216, 222, 232, .38);
+  --swa-form-accent: var(--sw-blue-on-dark);
+  --swa-form-accent-hover: #b9d7ff;
+  --swa-form-input: var(--sw-dark-surface);
+  --swa-form-input-text: var(--sw-dark-text);
+
   --labs-bg: var(--sw-dark-canvas);
   --labs-bg-soft: var(--sw-ink-navy);
   --labs-surface: var(--sw-dark-surface);
@@ -178,7 +295,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]):not([data-swa-theme="light"]) {
     color-scheme: dark;
     --sk-bg: var(--sw-dark-canvas);
     --sk-bg-gradient:
@@ -221,6 +338,44 @@
     --focus: var(--sw-signal-orange);
     --amber: var(--sw-signal-orange);
 
+    --hub-bg: var(--sw-dark-canvas);
+    --hub-card: var(--sw-dark-surface);
+    --hub-text: var(--sw-dark-text);
+    --hub-muted: var(--sw-dark-muted);
+    --hub-line: rgba(216, 222, 232, .20);
+    --hub-accent: var(--sw-blue-on-dark);
+    --hub-accent-strong: #b9d7ff;
+    --hub-hero-bg: var(--sw-ink-navy);
+    --hub-hero-text: var(--sw-white);
+    --hub-hero-muted: var(--sw-dark-muted);
+    --hub-hero-eyebrow: var(--sw-blue-on-dark);
+    --hub-hero-line: rgba(216, 222, 232, .20);
+
+    --cr-page: var(--sw-dark-canvas);
+    --cr-surface: var(--sw-dark-surface);
+    --cr-surface-soft: #171728;
+    --cr-surface-raised: #23233a;
+    --cr-text: var(--sw-dark-text);
+    --cr-muted: var(--sw-dark-muted);
+    --cr-border: rgba(216, 222, 232, .20);
+    --cr-border-strong: rgba(216, 222, 232, .38);
+    --cr-accent: var(--sw-blue-on-dark);
+    --cr-accent-hover: #b9d7ff;
+    --cr-accent-text: var(--sw-graphite);
+
+    --swa-form-page: var(--sw-dark-canvas);
+    --swa-form-surface: var(--sw-dark-surface);
+    --swa-form-surface-soft: #171728;
+    --swa-form-surface-muted: #23233a;
+    --swa-form-text: var(--sw-dark-text);
+    --swa-form-text-muted: var(--sw-dark-muted);
+    --swa-form-line: rgba(216, 222, 232, .20);
+    --swa-form-line-strong: rgba(216, 222, 232, .38);
+    --swa-form-accent: var(--sw-blue-on-dark);
+    --swa-form-accent-hover: #b9d7ff;
+    --swa-form-input: var(--sw-dark-surface);
+    --swa-form-input-text: var(--sw-dark-text);
+
     --labs-bg: var(--sw-dark-canvas);
     --labs-bg-soft: var(--sw-ink-navy);
     --labs-surface: var(--sw-dark-surface);
@@ -236,58 +391,252 @@
   }
 }
 
-/* Shared shell: neutral surfaces, blue active states, restrained orange focus. */
-.swa-global-nav,
-.sk-site-header {
-  border-color: var(--sk-border-subtle);
+/* Academy-wide foundation ------------------------------------------------- */
+html { background: var(--sk-bg); }
+body:not([data-swa-theme-scope="isolated"]) {
+  background: var(--sk-bg-gradient) !important;
+  color: var(--sk-text-primary) !important;
+  font-family: var(--swa-font-sans) !important;
+  text-rendering: optimizeLegibility;
+  --bg: var(--sk-bg) !important;
+  --panel: var(--sk-layer-01) !important;
+  --surface: var(--sk-layer-01) !important;
+  --surface-2: var(--sk-layer-02) !important;
+  --surface2: var(--sk-layer-02) !important;
+  --surface-3: var(--sk-layer-03) !important;
+  --surface3: var(--sk-layer-03) !important;
+  --text: var(--sk-text-primary) !important;
+  --text-color: var(--sk-text-primary) !important;
+  --muted: var(--sk-text-secondary) !important;
+  --muted-color: var(--sk-text-secondary) !important;
+  --line: var(--sk-border-subtle) !important;
+  --border-color: var(--sk-border-subtle) !important;
+  --accent: var(--sk-interactive) !important;
+  --accent2: var(--sk-brand-ink) !important;
+  --primary: var(--sk-interactive) !important;
+  --link: var(--sk-link) !important;
+  --focus: var(--sk-focus) !important;
+  --warning: var(--sk-focus) !important;
+  --shadow: var(--sk-shadow) !important;
 }
 
-.swa-global-nav__link:hover,
-.swa-global-nav__link:focus,
-.swa-global-nav__link[aria-current="page"],
-.sk-nav a:hover,
-.sk-nav a[aria-current="page"] {
-  background: color-mix(in srgb, var(--sw-skunk-blue) 10%, transparent);
-  border-color: color-mix(in srgb, var(--sw-skunk-blue) 26%, var(--sk-border-subtle));
+body:not([data-swa-theme-scope="isolated"]) :where(h1, h2),
+.swa-global-nav__brand-text {
+  font-family: var(--swa-font-display) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) {
+  color: var(--sk-text-primary);
+  font-family: var(--swa-font-sans);
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(a:not(.btn):not(.button):not(.sk-button):not(.swa-button):not([data-sk-component="button"])) {
+  color: var(--sk-link) !important;
+  text-decoration-thickness: .08em;
+  text-underline-offset: .14em;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.card, .panel, .tile, .surface, .box, [data-sk-component="card"]) {
+  background: var(--sk-layer-01) !important;
+  border-color: var(--sk-border-subtle) !important;
+  box-shadow: var(--sk-shadow-sm) !important;
+  color: var(--sk-text-primary) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.btn, .button, .sk-button, .swa-button, [data-sk-component="button"]) {
+  border-color: var(--sk-interactive) !important;
+  font-family: var(--swa-font-sans) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.btn.primary, .button.primary, .sk-button--primary, .swa-button--primary, [data-sk-component="button"][data-variant="primary"]) {
+  background: var(--sk-interactive) !important;
+  color: var(--sk-text-on-color) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(.btn:not(.primary), .button:not(.primary), .sk-button--secondary, .swa-button--secondary, [data-sk-component="button"][data-variant="secondary"]) {
+  background: var(--sk-layer-01) !important;
+  color: var(--sk-interactive) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea) {
+  background: var(--sk-layer-01) !important;
+  border-color: var(--sk-border-subtle) !important;
+  color: var(--sk-text-primary) !important;
+  font-family: var(--swa-font-sans) !important;
+}
+body:not([data-swa-theme-scope="isolated"]) :where(main, [role="main"], .site-main) :where(input, select, textarea)::placeholder {
+  color: var(--sk-text-muted) !important;
+  opacity: 1;
 }
 
-.sk-hero {
-  background:
-    radial-gradient(circle at 82% 12%, rgba(30, 107, 208, .30), transparent 30rem),
-    linear-gradient(135deg, var(--sw-ink-navy), #0b174d 62%, var(--sw-ink-navy));
+/* Shared opt-in components. */
+:where(.sk-button, .swa-button, [data-sk-component="button"]) {
+  align-items: center;
+  border: 1px solid var(--swa-action);
+  border-radius: var(--swa-radius-control);
+  box-sizing: border-box;
+  display: inline-flex;
+  font: 700 .9375rem/1.2 var(--swa-font-sans);
+  gap: var(--sk-space-03, .5rem);
+  justify-content: center;
+  min-height: var(--swa-control-height);
+  padding: var(--swa-space-control-y) var(--swa-space-control-x);
+  text-decoration: none;
+  transition: background-color var(--sk-transition, 160ms ease), border-color var(--sk-transition, 160ms ease), box-shadow var(--sk-transition, 160ms ease), color var(--sk-transition, 160ms ease), transform var(--sk-transition, 160ms ease);
+}
+:where(.sk-button--primary, .swa-button--primary, [data-sk-component="button"][data-variant="primary"]) {
+  background: var(--swa-action);
+  color: var(--swa-action-text);
+}
+:where(.sk-button--primary, .swa-button--primary, [data-sk-component="button"][data-variant="primary"]):hover {
+  background: var(--swa-action-hover);
+  border-color: var(--swa-action-hover);
+  color: var(--swa-action-text);
+  text-decoration: none;
+}
+:where(.sk-button--secondary, .swa-button--secondary, [data-sk-component="button"][data-variant="secondary"]) {
+  background: var(--swa-surface);
+  color: var(--swa-action);
+}
+:where(.sk-card, .swa-card, [data-sk-component="card"]) {
+  background: var(--swa-surface);
+  border: 1px solid var(--swa-border);
+  border-radius: var(--swa-radius-surface);
+  box-shadow: var(--swa-shadow);
+  color: var(--swa-text);
+}
+:where(.sk-field, .swa-field, [data-sk-component="field"]) :is(input, select, textarea) {
+  background: var(--swa-surface);
+  border: 1px solid var(--swa-border);
+  border-radius: var(--swa-radius-control);
+  box-sizing: border-box;
+  color: var(--swa-text);
+  font: 400 1rem/1.45 var(--swa-font-sans);
+  min-height: var(--swa-control-height);
+  padding: var(--swa-space-control-y) var(--swa-space-control-x);
+  width: 100%;
+}
+:where(.sk-field, .swa-field, [data-sk-component="field"]) :is(input, select, textarea)::placeholder {
+  color: var(--swa-text-muted);
+  opacity: 1;
+}
+:where(.sk-button, .swa-button, [data-sk-component="button"], .sk-field, .swa-field, [data-sk-component="field"]) :focus-visible,
+:where(.sk-button, .swa-button, [data-sk-component="button"]):focus-visible {
+  outline: 3px solid var(--swa-focus);
+  outline-offset: 3px;
+}
+:where(.sk-notice, .swa-notice, [data-sk-component="notice"]) {
+  border-inline-start: .25rem solid var(--swa-action);
+  color: var(--swa-text);
+  padding: var(--sk-space-05, 1rem);
+}
+:where(.sk-prose, .swa-prose, [data-sk-component="prose"]) {
+  color: var(--swa-text);
+  font-family: var(--swa-font-sans);
 }
 
-/* Primary actions stay Skunk Blue. Orange is reserved for emphasis/focus. */
+/* Runtime page contrast contract ----------------------------------------- */
+.document,
+.document > .cover,
+section.cover {
+  background-color: var(--sw-white) !important;
+  background-image: none !important;
+}
+.document > .cover,
+section.cover { color: var(--sw-graphite) !important; }
+.document > .cover :where(h1, h2, h3, h4, h5, h6, strong, b),
+section.cover :where(h1, h2, h3, h4, h5, h6, strong, b) { color: var(--sw-graphite) !important; }
+.document > .cover :where(p, span, div, label, small),
+section.cover :where(p, span, div, label, small) { color: var(--sw-slate-text); }
+
+[data-swa-surface-tone="light"] {
+  --swa-surface-text: var(--sw-graphite);
+  --swa-surface-muted: var(--sw-slate-text);
+  --swa-surface-link: #1756a9;
+  color: var(--swa-surface-text) !important;
+}
+[data-swa-surface-tone="dark"] {
+  --swa-surface-text: var(--sw-dark-text);
+  --swa-surface-muted: var(--sw-dark-muted);
+  --swa-surface-link: var(--sw-blue-on-dark);
+  color: var(--swa-surface-text) !important;
+}
+[data-swa-surface-tone] :where(h1, h2, h3, h4, h5, h6, strong, b, dt, legend) { color: var(--swa-surface-text) !important; }
+[data-swa-surface-tone] :where(p, li, dd, small, figcaption, label, blockquote, cite) { color: var(--swa-surface-muted) !important; }
+[data-swa-surface-tone] a:not(.btn):not(.button):not([class*="button"]):not([role="button"]) { color: var(--swa-surface-link) !important; }
+[data-swa-surface-tone] :where(.btn, .button, [class*="button"], [role="button"]) { isolation: isolate; }
+[data-swa-contrast="preserve"],
+[data-swa-contrast="preserve"] * {
+  --swa-surface-text: inherit;
+  --swa-surface-muted: inherit;
+  --swa-surface-link: inherit;
+}
+
+/* Shared shell/footer: force the public chrome back onto Academy identity
+   even though older runtime JS still carries Microsoft-reference fallback CSS. */
+.swa-global-nav {
+  --swa-bg: var(--sw-ink-navy) !important;
+  --swa-panel: #0b174d !important;
+  --swa-panel-strong: #13235d !important;
+  --swa-text: var(--sw-white) !important;
+  --swa-muted: #d3dded !important;
+  --swa-line: rgba(216, 222, 232, .28) !important;
+  --swa-accent: var(--sw-skunk-blue) !important;
+  --swa-link: var(--sw-blue-on-dark) !important;
+  background: var(--sw-ink-navy) !important;
+  font-family: var(--swa-font-sans) !important;
+}
+.swa-global-nav__brand { font-family: var(--swa-font-display) !important; }
+.swa-global-nav::after { background: var(--sw-skunk-blue) !important; }
+
+.swa-global-footer {
+  --swa-footer-bg: var(--sw-off-white) !important;
+  --swa-footer-text: var(--sw-graphite) !important;
+  --swa-footer-muted: var(--sw-slate-text) !important;
+  --swa-footer-hover: #e9eef6 !important;
+  --swa-footer-line: var(--sw-steel-gray) !important;
+  --swa-footer-focus: var(--sw-signal-orange) !important;
+  background: var(--sw-off-white) !important;
+  font-family: var(--swa-font-sans) !important;
+}
+html[data-swa-theme="dark"] .swa-global-footer,
+html[data-theme="dark"] .swa-global-footer {
+  --swa-footer-bg: var(--sw-ink-navy) !important;
+  --swa-footer-text: var(--sw-white) !important;
+  --swa-footer-muted: var(--sw-dark-muted) !important;
+  --swa-footer-hover: #13235d !important;
+  --swa-footer-line: rgba(216, 222, 232, .22) !important;
+  background: var(--sw-ink-navy) !important;
+}
+
+/* Primary actions stay blue. Signal Orange is reserved for focus, alerts and
+   restrained editorial emphasis. */
 .sk-button--primary,
 .btn.primary,
 .button.primary,
 .primary-button,
 .cta-primary {
-  background-color: var(--sw-skunk-blue);
-  border-color: var(--sw-skunk-blue);
-  color: var(--sw-white);
+  background-color: var(--sw-skunk-blue) !important;
+  border-color: var(--sw-skunk-blue) !important;
+  color: var(--sw-white) !important;
 }
-
 .sk-button--primary:hover,
 .btn.primary:hover,
 .button.primary:hover,
 .primary-button:hover,
 .cta-primary:hover {
-  background-color: var(--sw-skunk-blue-hover);
-  border-color: var(--sw-skunk-blue-hover);
+  background-color: var(--sw-skunk-blue-hover) !important;
+  border-color: var(--sw-skunk-blue-hover) !important;
 }
-
-/* Legacy gradient buttons become canonical blue rather than purple/cyan or red/orange. */
 .btn.primary,
-.button.primary {
-  background-image: linear-gradient(135deg, var(--sw-skunk-blue), var(--sw-skunk-blue-hover));
-}
+.button.primary { background-image: linear-gradient(135deg, var(--sw-skunk-blue), var(--sw-skunk-blue-hover)) !important; }
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline-color: var(--sw-signal-orange);
+  outline: 3px solid var(--sw-signal-orange);
+  outline-offset: 3px;
 }
-
 ::selection {
   background: color-mix(in srgb, var(--sw-skunk-blue) 28%, transparent);
   color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.sk-button, .swa-button, [data-sk-component="button"]) { transition: none; }
+}
+@media (forced-colors: active) {
+  [data-swa-surface-tone] { forced-color-adjust: auto; }
+  :focus-visible { outline: 3px solid CanvasText !important; outline-offset: 3px !important; }
 }
