@@ -82,7 +82,7 @@ requireText(learnCss, '@keyframes swaLearnGlow', 'floating heading glow animatio
 requireText(learnCss, '@media (prefers-reduced-motion: reduce)', 'reduced-motion accessibility contract');
 requireText(learnCss, '.swa-learn-hub__actions', 'Learn navigation/action styling');
 
-requireText(shell, 'var LEARN_THEME_VERSION = "2026.08.25.2"', 'deployed Learn theme version');
+requireText(shell, 'var LEARN_THEME_VERSION = "2026.08.25.1"', 'deployed Learn theme version');
 requireText(shell, 'function isLearnSurface()', 'Learn route classifier');
 requireText(shell, 'function installLearnTheme(', 'Learn theme loader');
 requireText(shell, 'function markLearnSurface()', 'Learn runtime marker');
