@@ -89,6 +89,7 @@ jobs:
           for run in 1 2 3; do
             npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/ \
               --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
+              --blocked-url-patterns='*googlesyndication.com*' \
               --output=json \
               --output-path="./lighthouse-report-${run}.json" \
               --only-categories=performance,accessibility,best-practices,seo \
@@ -375,5 +376,6 @@ jobs:
 
           echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1
+
 
 
