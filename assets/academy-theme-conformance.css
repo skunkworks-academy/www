@@ -8,8 +8,6 @@
   because historical HTML documents still reference the
   data-skunkworks-theme-conformance contract marker.
 
-  Keep this file limited to compatibility imports and last-mile conformance
-  patches that must load after the canonical brand theme.
+  Do not add new rules here. Add them to academy-brand-theme.css or load a
+  page-specific stylesheet after this compatibility entry point.
 */
-
-@import url("/assets/hero-contrast-fix.css?v=2026.09.04.1");
