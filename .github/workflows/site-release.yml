@@ -191,10 +191,12 @@ jobs:
             cp "$build/courses/index.html" ./courses/index.html
           fi
 
+          # Keep Docusaurus assets inside /courses. Copying them into the Academy
+          # root replaces the www application's hashed bundles and crashes the course UI.
           for dir in assets img downloads; do
             if [[ -d "$build/$dir" ]]; then
-              mkdir -p "$dir"
-              cp -R "$build/$dir/." "$dir/"
+              mkdir -p "courses/$dir"
+              cp -R "$build/$dir/." "courses/$dir/"
             fi
           done
 
@@ -203,10 +205,31 @@ jobs:
             cp "$build/course-manifest.json" ./courses/course-manifest.json
           fi
 
+          # The catalog is built with root-relative asset URLs, but is mounted under
+          # /courses in the Academy site. Scope those URLs to the mounted output.
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              '="/assets/': '="/courses/assets/',
+              '="/img/': '="/courses/img/',
+              '="/downloads/': '="/courses/downloads/',
+              '="/course-manifest.json"': '="/courses/course-manifest.json"',
+          }
+
+          for path in Path('courses').rglob('*.html'):
+              html = path.read_text(encoding='utf-8')
+              for source, target in replacements.items():
+                  html = html.replace(source, target)
+              path.write_text(html, encoding='utf-8')
+          PY
+
           rm -rf .course-catalog
 
           test -f courses/index.html
+          test -d courses/assets
           grep -q 'https://www.skunkworksacademy.com/courses' courses/index.html
+          grep -R -q '/courses/assets/' courses --include='*.html'
           if grep -R -q 'catalog.skunkworksacademy.com' courses courses.html course-manifest.json 2>/dev/null; then
             echo 'Legacy catalogue hostname leaked into the /courses deployment.'
             exit 1
