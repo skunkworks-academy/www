@@ -230,7 +230,8 @@ jobs:
           test -d courses/assets
           grep -q 'https://www.skunkworksacademy.com/courses' courses/index.html
           grep -R -q '/courses/assets/' courses --include='*.html'
-          if grep -R -q 'catalog.skunkworksacademy.com' courses courses.html course-manifest.json 2>/dev/null; then
+          if grep -R -q 'catalog.skunkworksacademy.com' courses --include='*.html' 2>/dev/null \
+            || grep -q 'catalog.skunkworksacademy.com' courses.html course-manifest.json 2>/dev/null; then
             echo 'Legacy catalogue hostname leaked into the /courses deployment.'
             exit 1
           fi
