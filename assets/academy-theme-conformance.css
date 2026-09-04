@@ -1,12 +1,15 @@
 /*
   Skunkworks Academy theme conformance compatibility entry point.
-  Version: 2026.08.27.1
+  Version: 2026.08.27.2
 
   The authored conformance rules were consolidated into
   /assets/academy-brand-theme.css to remove competing token definitions and
-  cascade-order dependencies. This file intentionally remains as a zero-rule
-  compatibility asset because historical HTML documents still reference the
+  cascade-order dependencies. This file remains as the compatibility asset
+  because historical HTML documents still reference the
   data-skunkworks-theme-conformance contract marker.
 
-  Do not add new rules here. Add them to academy-brand-theme.css.
+  Keep this file limited to compatibility imports and last-mile conformance
+  patches that must load after the canonical brand theme.
 */
+
+@import url("/assets/hero-contrast-fix.css?v=2026.09.04.1");
