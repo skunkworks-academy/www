@@ -4,6 +4,19 @@ Repository: www
 
 This folder contains repository-local asset configuration for the Skunkworks Academy public web shell.
 
+## Stylesheet architecture
+
+The public site intentionally uses eight stylesheets in this directory:
+
+- `academy-brand-theme.css` — the canonical core: design tokens, common components, light/dark theme, accessibility safeguards and homepage hero contrast.
+- `academy-ecosystem.css` and `academy-global.css` — legacy subdomain snapshot and legacy global-shell layouts.
+- `academy-hub.css` and `academy-learn.css` — scoped hub and learning-section components.
+- `academy-forms.css`, `course-registration.css` and `publisher.css` — specialised document, registration and editorial layouts.
+
+Do not recreate retired global stylesheets. Add shared rules to
+`academy-brand-theme.css`; keep page-specific rules in the relevant scoped
+stylesheet.
+
 Canonical global navigation:
 
 ``html

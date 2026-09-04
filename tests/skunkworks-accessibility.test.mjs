@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const css = await readFile('assets/skunkworks-accessibility.css', 'utf8');
+const core = await readFile('assets/academy-brand-theme.css', 'utf8');
+const css = core.slice(core.indexOf('/* WCAG contrast and publisher surface safeguards. */'));
 
 function findBlock(source, selectorPattern) {
   const match = selectorPattern.exec(source);

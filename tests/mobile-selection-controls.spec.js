@@ -4,7 +4,6 @@ const { join } = require('node:path');
 const root = process.cwd();
 const contractStyles = [
   join(root, 'assets', 'academy-brand-theme.css'),
-  join(root, 'assets', 'academy-page-contract.css'),
 ];
 const governedInputTypes = ['search', 'text', 'email', 'tel', 'url', 'number'];
 

@@ -189,7 +189,7 @@ async function validateContrast() {
    - https://webaim.org/resources/contrastchecker/
    
 4. For semantic text colors, never lower thresholds:
-   - Update the CSS variable in assets/skunkworks-accessibility.css
+   - Update the CSS variable in assets/academy-brand-theme.css
    - Ensure all theme variants (light/dark) pass independently
    
 5. Re-run Lighthouse audit to confirm:

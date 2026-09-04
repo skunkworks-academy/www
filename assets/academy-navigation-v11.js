@@ -167,7 +167,7 @@
     compatibility: "v11",
     canonicalUi: assetUrl(CANONICAL_ROOT, "skunkworks-ui.js"),
     canonicalFooter: assetUrl(CANONICAL_ROOT, "skunkworks-footer.js"),
-    canonicalDesignSystem: assetUrl(CANONICAL_ROOT, "skunkworks-design-system.css"),
+    canonicalTheme: assetUrl(CANONICAL_ROOT, "academy-brand-theme.css"),
     assetRoot: PRIMARY_ROOT,
     topMenu: TOP_MENU.slice(),
     menuGroups: GLOBAL_NAV_GROUPS.map(function (group) {
@@ -175,11 +175,11 @@
     })
   });
 
-  function ensureDesignSystem() {
-    var selector = 'link[data-skunkworks-design-system="canonical"]';
+  function ensureAcademyTheme() {
+    var selector = 'link[data-skunkworks-brand-theme="canonical"]';
     var existing = document.querySelector(selector);
-    var primaryHref = assetUrl(PRIMARY_ROOT, "skunkworks-design-system.css");
-    var fallbackHref = assetUrl(CANONICAL_ROOT, "skunkworks-design-system.css");
+    var primaryHref = assetUrl(PRIMARY_ROOT, "academy-brand-theme.css");
+    var fallbackHref = assetUrl(CANONICAL_ROOT, "academy-brand-theme.css");
     if (existing) {
       if (existing.getAttribute("href") !== primaryHref) existing.setAttribute("href", primaryHref);
       return existing;
@@ -187,7 +187,7 @@
     var link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = primaryHref;
-    link.setAttribute("data-skunkworks-design-system", "canonical");
+    link.setAttribute("data-skunkworks-brand-theme", "canonical");
     if (!isLocalPreview && primaryHref !== fallbackHref) {
       link.addEventListener("error", function () { if (link.href !== fallbackHref) link.href = fallbackHref; }, { once: true });
     }
@@ -525,7 +525,7 @@
     window.addEventListener("pagehide", function () { observer.disconnect(); }, { once: true });
   }
 
-  ensureDesignSystem();
+  ensureAcademyTheme();
   ensureTopMenuStyles();
   ensureRuntime("skunkworks-ui.js", "data-skunkworks-ui", "canonical");
   ensureRuntime("skunkworks-footer.js", "data-skunkworks-global-footer", "canonical");
