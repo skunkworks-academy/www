@@ -2,23 +2,20 @@
 /*
   Validates the consolidated Skunkworks Academy public theme contract.
   The brand theme is now the single authored source for palette, typography,
-  conformance and runtime surface-contrast CSS. Historical conformance and
-  page-contract stylesheets remain compatibility entry points only.
+  conformance and runtime surface-contrast CSS, including the base design
+  system, WCAG safeguards and homepage hero contrast contract.
 */
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.argv[2] || '.');
-const VERSION = '2026.08.27.1';
-const PAGE_CONTRACT_VERSION = '2026.08.25.1';
+const VERSION = '2026.09.04.2';
+const PAGE_CONTRACT_VERSION = '2026.09.04.2';
 
 const files = {
   shell: 'assets/academy-navigation.js',
   brand: 'assets/academy-brand-theme.css',
-  design: 'assets/skunkworks-design-system.css',
-  conformanceShim: 'assets/academy-theme-conformance.css',
-  pageContractShim: 'assets/academy-page-contract.css',
 };
 
 const source = {};
@@ -71,22 +68,13 @@ requireText('brand', '[data-swa-surface-tone="dark"]', 'the dark runtime surface
 requireText('brand', '.swa-global-nav {', 'the canonical shell brand override');
 requireText('brand', '.swa-global-footer {', 'the canonical footer brand override');
 
-requireText('design', '--sk-bg:', 'the base design-system background token');
-requireText('design', '--sk-text-primary:', 'the base design-system text token');
-requireText('design', '--sk-interactive:', 'the base design-system action token');
-requireText('design', '--sk-focus:', 'the base design-system focus token');
-
-requireText('conformanceShim', 'compatibility entry point', 'the compatibility-shim declaration');
-requireText('conformanceShim', 'Do not add new rules here', 'the no-new-rules guardrail');
-requireText('pageContractShim', 'compatibility entry point', 'the page-contract compatibility declaration');
-requireText('pageContractShim', 'Do not add new rules here', 'the no-new-rules guardrail');
+requireText('brand', 'Base design-system primitives', 'the base design-system layer');
+requireText('brand', 'WCAG contrast and publisher surface safeguards', 'the accessibility layer');
+requireText('brand', 'Homepage split-hero contrast contract', 'the homepage hero layer');
 
 requireText('shell', 'BRAND_THEME_VERSION = "' + VERSION + '"', 'the consolidated brand asset version');
-requireText('shell', 'THEME_CONFORMANCE_VERSION = "' + VERSION + '"', 'the compatibility conformance asset version');
 requireText('shell', 'PAGE_CONTRACT_VERSION = "' + PAGE_CONTRACT_VERSION + '"', 'the page-contract cache version');
 requireText('shell', 'academy-brand-theme.css', 'the consolidated theme stylesheet reference');
-requireText('shell', 'academy-theme-conformance.css', 'the compatibility stylesheet reference');
-requireText('shell', 'data-skunkworks-theme-conformance', 'the historical conformance marker');
 
 if (failures.length) {
   console.error('Theme conformance validation failed:\n');
@@ -95,4 +83,4 @@ if (failures.length) {
 }
 
 console.log('Theme conformance validation passed (v' + VERSION + '; page contract ' + PAGE_CONTRACT_VERSION + ').');
-console.log('Validated the consolidated Academy palette, typography, light/dark modes, common components, runtime surface contrast, shell styling and compatibility shims.');
+console.log('Validated the consolidated Academy palette, typography, base design system, WCAG safeguards, light/dark modes, common components, runtime surface contrast and shell styling.');

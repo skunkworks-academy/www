@@ -33,8 +33,7 @@ The button/background interaction token `--sk-interactive` must not be assumed s
 `npm run validate:contrast` reads the actual CSS custom properties from:
 
 - `assets/publisher.css`
-- `assets/skunkworks-design-system.css`
-- `assets/skunkworks-accessibility.css`
+- `assets/academy-brand-theme.css` (base design system and accessibility safeguards)
 
 It calculates WCAG relative luminance and contrast ratios for approved foreground/background pairs. The build fails when a protected pair drops below its threshold.
 

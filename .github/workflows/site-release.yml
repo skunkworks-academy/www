@@ -76,13 +76,13 @@ jobs:
           done
           cat /tmp/skw-http.log
           exit 1
-      - name: Verify Lighthouse uses checked-out shell and accessibility assets
+      - name: Verify Lighthouse uses the checked-out consolidated theme
         run: |
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'isLocalPreview'
           curl --fail --silent http://127.0.0.1:4173/assets/academy-navigation.js | grep -q 'installBrandTheme'
           curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q -- '--swa-theme-contract-version'
           curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-ui.js | grep -q 'logo-white.svg'
-          curl --fail --silent http://127.0.0.1:4173/assets/skunkworks-accessibility.css | grep -q 'accessibility contrast contract'
+          curl --fail --silent http://127.0.0.1:4173/assets/academy-brand-theme.css | grep -q 'WCAG contrast and publisher surface safeguards'
       - name: Collect Lighthouse samples
         run: |
           set -euo pipefail
@@ -234,11 +234,8 @@ jobs:
           if version != revision:
               raise SystemExit(f'Academy shell VERSION/REVISION drift: {version} != {revision}')
 
-          accessibility_version = '2026.08.16.1'
           loader = f'<script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v={version}&rev={revision}" data-skunkworks-global-nav="v10"></script>'
-          accessibility = f'<link rel="stylesheet" href="/assets/skunkworks-accessibility.css?v={accessibility_version}" data-skunkworks-accessibility="wcag-contrast" />'
           shell_tag = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
-          accessibility_tag = re.compile(r'<link\b[^>]*(?:skunkworks-accessibility\.css|data-skunkworks-accessibility)[^>]*>', re.I)
           pages = []
           fragments = []
 
@@ -253,12 +250,11 @@ jobs:
                   continue
 
               html = shell_tag.sub('', html)
-              html = accessibility_tag.sub('', html)
 
               if re.search(r'</head\s*>', html, re.I):
-                  html = re.sub(r'</head\s*>', f'  {accessibility}\n  {loader}\n</head>', html, count=1, flags=re.I)
+                  html = re.sub(r'</head\s*>', f'  {loader}\n</head>', html, count=1, flags=re.I)
               elif re.search(r'</body\s*>', html, re.I):
-                  html = re.sub(r'</body\s*>', f'  {accessibility}\n  {loader}\n</body>', html, count=1, flags=re.I)
+                  html = re.sub(r'</body\s*>', f'  {loader}\n</body>', html, count=1, flags=re.I)
               else:
                   raise SystemExit(f'Malformed HTML document cannot receive Academy shell: {path}')
 
@@ -270,23 +266,18 @@ jobs:
           for path in pages:
               html = path.read_text(encoding='utf-8', errors='ignore')
               shell_count = html.count('academy-navigation.js')
-              accessibility_count = html.count('skunkworks-accessibility.css')
               if version not in html or revision not in html or 'data-skunkworks-global-nav="v10"' not in html or shell_count == 0:
                   missing.append(f'{path} (shell)')
-              if accessibility_version not in html or 'data-skunkworks-accessibility="wcag-contrast"' not in html or accessibility_count == 0:
-                  missing.append(f'{path} (accessibility)')
               if shell_count > 1:
                   duplicate.append(f'{path} (shell)')
-              if accessibility_count > 1:
-                  duplicate.append(f'{path} (accessibility)')
 
           if missing:
-              raise SystemExit('Missing current Academy shell/accessibility contract: ' + ', '.join(missing))
+              raise SystemExit('Missing current Academy shell contract: ' + ', '.join(missing))
           if duplicate:
               raise SystemExit('Duplicate Academy shell/accessibility assets: ' + ', '.join(duplicate))
 
           print(f'Normalized Academy global shell {version} / revision {revision} / v10 on {len(pages)} HTML document(s).')
-          print(f'Normalized WCAG contrast stylesheet {accessibility_version} on {len(pages)} HTML document(s).')
+          print(f'WCAG contrast safeguards are delivered by the consolidated Academy theme on {len(pages)} HTML document(s).')
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
 
@@ -333,7 +324,6 @@ jobs:
             : > "$tmp/theme.css"
             : > "$tmp/ui.js"
             : > "$tmp/footer.js"
-            : > "$tmp/accessibility.css"
 
             curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/?shell-rev=${shell_revision}&${cache}" -o "$tmp/home.html" || true
             curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/courses?${cache}" -o "$tmp/courses.html" || true
@@ -341,18 +331,15 @@ jobs:
             curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/academy-brand-theme.css?${cache}" -o "$tmp/theme.css" || true
             curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-ui.js?${cache}" -o "$tmp/ui.js" || true
             curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-footer.js?${cache}" -o "$tmp/footer.js" || true
-            curl --location --fail --silent --show-error --max-time 20 "https://www.skunkworksacademy.com/assets/skunkworks-accessibility.css?${cache}" -o "$tmp/accessibility.css" || true
 
             if [[ -s "$tmp/home.html" \
               && -s "$tmp/courses.html" \
               && -s "$tmp/shell.js" \
               && -s "$tmp/theme.css" \
               && -s "$tmp/ui.js" \
-              && -s "$tmp/footer.js" \
-              && -s "$tmp/accessibility.css" ]] \
+              && -s "$tmp/footer.js" ]] \
               && grep -qi '<title>Skunkworks Academy' "$tmp/home.html" \
               && grep -q "rev=${shell_revision}" "$tmp/home.html" \
-              && grep -q 'data-skunkworks-accessibility="wcag-contrast"' "$tmp/home.html" \
               && grep -q 'https://www.skunkworksacademy.com/courses' "$tmp/courses.html" \
               && grep -Eqi 'Skunkworks Academy Courses|Course Catalog|Learning Formats and Training Delivery' "$tmp/courses.html" \
               && ! grep -q 'catalog.skunkworksacademy.com' "$tmp/courses.html" \
@@ -365,7 +352,7 @@ jobs:
               && grep -q -- '--sw-signal-orange: #f24208' "$tmp/theme.css" \
               && grep -q 'Skunkworks Academy Global UI' "$tmp/ui.js" \
               && grep -q 'Skunkworks Academy' "$tmp/footer.js" \
-              && grep -q 'accessibility contrast contract' "$tmp/accessibility.css"; then
+              && grep -q 'WCAG contrast and publisher surface safeguards' "$tmp/theme.css"; then
               echo "Production verification succeeded on attempt ${attempt}, including shell ${shell_version} and /courses deployment."
               exit 0
             fi
@@ -374,8 +361,7 @@ jobs:
             sleep 10
           done
 
-          echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
+          echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell assets or /courses were not found on the www origin."
           exit 1
-
 
 
