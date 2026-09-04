@@ -1,0 +1,86 @@
+/*
+  Skunkworks Academy hero contrast fix
+  Scope: homepage split hero only.
+  Purpose: prevent low-contrast dark text inheritance on the dark hero surface.
+*/
+
+.sk-hero .sk-hero__inner--split {
+  --sk-hero-surface: #050816;
+  --sk-hero-surface-strong: #0f172a;
+  --sk-hero-text: #ffffff;
+  --sk-hero-muted: #dbeafe;
+  --sk-hero-soft: #bfdbfe;
+  --sk-hero-accent: #60a5fa;
+  --sk-hero-border: rgba(147, 197, 253, 0.34);
+
+  color: var(--sk-hero-text) !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-hero__content,
+.sk-hero .sk-hero__inner--split .sk-hero__aside {
+  color: var(--sk-hero-text) !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-eyebrow {
+  color: var(--sk-hero-accent) !important;
+  opacity: 1 !important;
+}
+
+.sk-hero .sk-hero__inner--split h1,
+.sk-hero .sk-hero__inner--split h2,
+.sk-hero .sk-hero__inner--split .sk-hero__aside h2 {
+  color: var(--sk-hero-text) !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.36);
+}
+
+.sk-hero .sk-hero__inner--split .sk-hero__lead,
+.sk-hero .sk-hero__inner--split .sk-hero__list,
+.sk-hero .sk-hero__inner--split .sk-hero__list li {
+  color: var(--sk-hero-muted) !important;
+  opacity: 0.96 !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-hero__aside {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(17, 24, 39, 0.9)) !important;
+  border-color: var(--sk-hero-border) !important;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-hero__list li::before {
+  background: #2f8cff !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-button--primary {
+  background: #1f7ae0 !important;
+  border-color: #1f7ae0 !important;
+  color: #ffffff !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-button--primary:hover,
+.sk-hero .sk-hero__inner--split .sk-button--primary:focus-visible {
+  background: #2f8cff !important;
+  border-color: #2f8cff !important;
+  color: #ffffff !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-button--secondary {
+  background: #ffffff !important;
+  border-color: rgba(147, 197, 253, 0.78) !important;
+  color: #145fc2 !important;
+}
+
+.sk-hero .sk-hero__inner--split .sk-button--secondary:hover,
+.sk-hero .sk-hero__inner--split .sk-button--secondary:focus-visible {
+  background: #eff6ff !important;
+  color: #0f4fa8 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  .sk-hero .sk-hero__inner--split {
+    color: var(--sk-hero-text) !important;
+  }
+}
