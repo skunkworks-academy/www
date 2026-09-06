@@ -42,7 +42,7 @@ if (payload) {
   }
 
   if (Array.isArray(payload.fields) && Array.isArray(payload.courses)) {
-    if (payload.courses.length !== 180) fail(`Expected 180 courses, found ${payload.courses.length}.`);
+    if (payload.courses.length !== 183) fail(`Expected 183 courses, found ${payload.courses.length}.`);
     if (payload.courseCount !== payload.courses.length) fail('courseCount does not match the course array length.');
 
     const deliveryIndex = payload.fields.indexOf('deliveryMode');
@@ -72,7 +72,7 @@ if (payload) {
       counts.set(mode, (counts.get(mode) ?? 0) + 1);
     }
 
-    if (counts.get('Self-Paced') !== 34) fail(`Expected 34 Self-Paced courses, found ${counts.get('Self-Paced') ?? 0}.`);
+    if (counts.get('Self-Paced') !== 37) fail(`Expected 37 Self-Paced courses, found ${counts.get('Self-Paced') ?? 0}.`);
     if (counts.get('Instructor-led') !== 146) fail(`Expected 146 Instructor-led courses, found ${counts.get('Instructor-led') ?? 0}.`);
   }
 }

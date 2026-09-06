@@ -11,6 +11,9 @@ const publicFields = ['courseId', 'title', 'deliveryMode', 'category', 'level', 
 
 const establishedCourses = [
   ['ART-101', 'Professional Articulation and Executive Communication', 'Self-Paced', 'Professional & Business Skills', 'Foundation to advanced', '36–40 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/professional-articulation'],
+  ['AFF-FND-101', 'Affiliate Marketing Foundations: Platforms, Offers and Trust', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner', '6–8 hours', 'https://www.skunkworksacademy.com/courses/affiliate-marketing-foundations'],
+  ['AFF-TLF-201', 'Affiliate Traffic, Lead Capture and Email Foundations', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner to intermediate', '8–10 hours', 'https://www.skunkworksacademy.com/courses/affiliate-traffic-and-list-building'],
+  ['AFF-OPS-301', 'Affiliate Campaign Operations, Measurement and Compliance', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Intermediate', '10–12 hours', 'https://www.skunkworksacademy.com/courses/affiliate-campaign-operations-and-compliance'],
   ['SHP-UPA-101', 'Shopify User Permissions', 'Self-Paced', 'Commerce Administration', 'Beginner to intermediate', '4–6 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/shopify-user-permissions'],
   ['GHP-DOM-101', 'GitHub Pages Setup', 'Self-Paced', 'Web Deployment', 'Beginner to intermediate', '5–7 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/github-pages-setup'],
   ['M365-LIC-101', 'Microsoft 365 Licenses', 'Self-Paced', 'Microsoft Technologies', 'Intermediate', '5–8 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/microsoft-365-licenses']
@@ -19,7 +22,7 @@ const establishedCourses = [
 function validatePublicPayload(payload) {
   if (!payload || !Array.isArray(payload.fields) || !Array.isArray(payload.courses)) return false;
   if (payload.fields.join('|') !== publicFields.join('|')) return false;
-  if (payload.courses.length !== 180) return false;
+  if (payload.courses.length !== 183) return false;
   const deliveryIndex = payload.fields.indexOf('deliveryMode');
   const ids = new Set();
   const counts = {SelfPaced: 0, InstructorLed: 0};
@@ -30,7 +33,7 @@ function validatePublicPayload(payload) {
     if (row[deliveryIndex] === 'Self-Paced') counts.SelfPaced += 1;
     if (row[deliveryIndex] === 'Instructor-led') counts.InstructorLed += 1;
   }
-  return counts.SelfPaced === 34 && counts.InstructorLed === 146;
+  return counts.SelfPaced === 37 && counts.InstructorLed === 146;
 }
 
 async function readExistingPayload() {
@@ -90,7 +93,7 @@ function transformRegistry(registry) {
       registry: 'data/generated-courses.cjs'
     },
     fields: publicFields,
-    courseCount: 180,
+    courseCount: 183,
     courses: [...establishedCourses, ...generatedCourses]
   };
 
@@ -102,7 +105,7 @@ function writeBrowserAsset(payload) {
   const json = JSON.stringify(payload);
   const output = `window.SKUNKWORKS_COURSE_CATALOG_DATA = ${json};\nwindow.SKUNKWORKS_COURSE_CATALOG_PROMISE = Promise.resolve(window.SKUNKWORKS_COURSE_CATALOG_DATA);\n`;
   writeFileSync(catalogPath, output, 'utf8');
-  console.log(`Course catalogue asset generated: ${payload.courses.length} courses (34 Self-Paced, 146 Instructor-led).`);
+  console.log(`Course catalogue asset generated: ${payload.courses.length} courses (37 Self-Paced, 146 Instructor-led).`);
 }
 
 function updatePageAssetVersions() {
