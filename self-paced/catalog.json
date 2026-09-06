@@ -3,6 +3,36 @@
   "accessPolicy": "Course content is available only after successful enrollment and learner authentication.",
   "courses": [
     {
+      "code": "AFF-FND-101",
+      "slug": "affiliate-marketing-foundations",
+      "title": "Affiliate Marketing Foundations: Platforms, Offers and Trust",
+      "category": "Digital Commerce and Affiliate Marketing",
+      "level": "Beginner",
+      "delivery": "Self-paced",
+      "href": "/courses/affiliate-marketing-foundations",
+      "enrollmentHref": "https://portal.skunkworksacademy.com/checkout/?courseId=AFF-FND-101"
+    },
+    {
+      "code": "AFF-TLF-201",
+      "slug": "affiliate-traffic-and-list-building",
+      "title": "Affiliate Traffic, Lead Capture and Email Foundations",
+      "category": "Digital Commerce and Affiliate Marketing",
+      "level": "Beginner to intermediate",
+      "delivery": "Self-paced",
+      "href": "/courses/affiliate-traffic-and-list-building",
+      "enrollmentHref": "https://portal.skunkworksacademy.com/checkout/?courseId=AFF-TLF-201"
+    },
+    {
+      "code": "AFF-OPS-301",
+      "slug": "affiliate-campaign-operations-and-compliance",
+      "title": "Affiliate Campaign Operations, Measurement and Compliance",
+      "category": "Digital Commerce and Affiliate Marketing",
+      "level": "Intermediate",
+      "delivery": "Self-paced",
+      "href": "/courses/affiliate-campaign-operations-and-compliance",
+      "enrollmentHref": "https://portal.skunkworksacademy.com/checkout/?courseId=AFF-OPS-301"
+    },
+    {
       "code": "LXD-SLD-201",
       "slug": "evidence-based-slide-design-digital-learning",
       "title": "Evidence-Based Slide Design for Digital Learning",
