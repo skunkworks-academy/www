@@ -86,6 +86,19 @@
     if (hasLight && !hasDark) root.setAttribute("data-theme", "light");
   }
 
+  function applyIndependentThemeScope() {
+    if (isApexAlias || isLocalPreview || !document.body) return;
+    if (document.body.getAttribute("data-swa-theme-scope") === "isolated") return;
+
+    /* Cross-property pages can keep their own content palette while still
+       consuming the canonical Academy header/footer. Explicit contrast
+       preservation is the signal that the page owns its foreground/surface
+       pairings and must not inherit the global OS dark palette. */
+    if (document.querySelector('main[data-swa-contrast="preserve"]')) {
+      document.body.setAttribute("data-swa-theme-scope", "isolated");
+    }
+  }
+
   function installPageContract() {
     var head = document.head || document.documentElement;
     if (!head) return;
@@ -166,6 +179,7 @@
   }
 
   applyDeclaredTheme();
+  applyIndependentThemeScope();
   installCanonicalFavicons();
   installPageContract();
   installBrandTheme(false);
@@ -174,6 +188,7 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       applyDeclaredTheme();
+      applyIndependentThemeScope();
       installCanonicalFavicons();
       installPageContract();
       installBrandTheme(true);
