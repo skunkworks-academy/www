@@ -66,7 +66,7 @@ jobs:
           if [[ -f academy-platform-contract.json && -f scripts/validate-platform-contract.mjs ]]; then
             node scripts/validate-platform-contract.mjs
           fi
-          if grep -R -n -E '<meta[^>]+http-equiv=["'"'']Content-Security-Policy-Report-Only["'"'']' .             --include='*.html' --exclude-dir=node_modules --exclude-dir=.git; then
+          if grep -R -n 'Content-Security-Policy-Report-Only' . --include='*.html' --exclude-dir=node_modules --exclude-dir=.git; then
             echo 'CSP Report-Only cannot be delivered by meta; use an HTTP response header.'
             exit 1
           fi
@@ -86,7 +86,13 @@ jobs:
       - name: Accessibility audit
         shell: bash
         run: |
-          npx --yes lighthouse@13.4.1             "http://127.0.0.1:${{ inputs.preview-port }}${{ inputs.accessibility-path }}"             --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage"             --only-categories=accessibility             --output=json             --output-path=/tmp/academy-accessibility.json             --quiet
+          npx --yes lighthouse@13.4.1 \
+            "http://127.0.0.1:${{ inputs.preview-port }}${{ inputs.accessibility-path }}" \
+            --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
+            --only-categories=accessibility \
+            --output=json \
+            --output-path=/tmp/academy-accessibility.json \
+            --quiet
           node - <<'NODE'
           const report = require('/tmp/academy-accessibility.json');
           const score = report.categories?.accessibility?.score ?? 0;
