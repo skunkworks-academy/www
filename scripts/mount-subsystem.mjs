@@ -14,12 +14,32 @@ function readArgs(argv) {
 }
 
 const args = readArgs(process.argv);
+
+function safeRelative(value, label, { allowEmpty = false } = {}) {
+  const raw = String(value ?? "");
+  if (!raw && allowEmpty) return "";
+  if (!raw) throw new Error(`${label} is required`);
+  if (path.isAbsolute(raw) || raw.includes("\\")) {
+    throw new Error(`${label} must be a forward-slash relative path`);
+  }
+
+  const normalized = raw.replace(/^\/+|\/+$/g, "");
+  const segments = normalized.split("/");
+  const validSegment = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+  if (!segments.length || segments.some(segment => segment === "." || segment === ".." || !validSegment.test(segment))) {
+    throw new Error(`${label} must be a relative path without dot/traversal segments`);
+  }
+  return normalized;
+}
+
 const source = path.resolve(args.source || "");
-const mount = String(args.mount || "").replace(/^\/+|\/+$/g, "");
-const landing = args.landing || `${mount}.html`;
-const manifest = args.manifest || "";
+const mount = safeRelative(args.mount, "mount");
+const landing = safeRelative(args.landing || `${mount}.html`, "landing");
+const manifest = safeRelative(args.manifest || "", "manifest", { allowEmpty: true });
 const assetDirs = String(args["asset-dirs"] || "assets,img,downloads")
-  .split(",").map(v => v.trim()).filter(Boolean);
+  .split(",")
+  .map(value => safeRelative(value.trim(), "asset directory"))
+  .filter(Boolean);
 
 if (!args.source || !mount) {
   throw new Error("Usage: node scripts/mount-subsystem.mjs --source <build> --mount <route> [--landing route.html] [--manifest file]");
@@ -74,6 +94,10 @@ function walk(dir) {
   }
 }
 walk(targetMount);
+const rootLanding = path.resolve(landing);
+if (fs.existsSync(rootLanding) && !htmlFiles.includes(rootLanding)) {
+  htmlFiles.push(rootLanding);
+}
 
 for (const file of htmlFiles) {
   let html = fs.readFileSync(file, "utf8");
