@@ -2,8 +2,7 @@ import { readFile } from 'node:fs/promises';
 
 const files = {
   publisher: 'assets/publisher.css',
-  design: 'assets/skunkworks-design-system.css',
-  accessibility: 'assets/skunkworks-accessibility.css',
+  theme: 'assets/academy-brand-theme.css',
 };
 
 const css = Object.fromEntries(
@@ -35,22 +34,30 @@ function declarations(block) {
 }
 
 function rootTokens(source) {
-  return declarations(findBlock(source, /:root\s*\{/i));
+  const tokens = {};
+  for (const match of source.matchAll(/:root\s*\{/gi)) {
+    Object.assign(tokens, declarations(findBlock(source.slice(match.index), /:root\s*\{/i)));
+  }
+  return tokens;
 }
 
 function darkTokens(source) {
   // A dark-theme declaration can be part of a selector list. Do not require an
   // exact two-selector sequence: the accessibility contract also supports
   // data-swa-theme and may add further equivalent selectors over time.
-  const selector = /:root\[(?:data-theme|data-swa-theme)\s*=\s*["']dark["']\][^{]*\{/i;
-  return declarations(findBlock(source, selector));
+  const tokens = {};
+  const selector = /:root\[(?:data-theme|data-swa-theme)\s*=\s*["']dark["']\][^{]*\{/gi;
+  for (const match of source.matchAll(selector)) {
+    Object.assign(tokens, declarations(findBlock(source.slice(match.index), /:root\[(?:data-theme|data-swa-theme)\s*=\s*["']dark["']\][^{]*\{/i)));
+  }
+  return tokens;
 }
 
-const accessibilityRoot = rootTokens(css.accessibility);
-const accessibilityDark = darkTokens(css.accessibility);
-const publisher = { ...rootTokens(css.publisher), ...accessibilityRoot };
-const designLight = { ...rootTokens(css.design), ...accessibilityRoot };
-const designDark = { ...designLight, ...darkTokens(css.design), ...accessibilityDark };
+const themeLight = rootTokens(css.theme);
+const themeDark = { ...themeLight, ...darkTokens(css.theme) };
+const publisher = { ...rootTokens(css.publisher), ...themeLight };
+const designLight = themeLight;
+const designDark = themeDark;
 
 function resolve(value, tokens, stack = []) {
   if (!value) throw new Error('Missing colour value');
@@ -167,4 +174,4 @@ if (failed) {
   process.exit(1);
 }
 
-console.log('\nWCAG contrast contract passed for publisher, light design-system and dark design-system states.');
+console.log('\nWCAG contrast contract passed for publisher, light core-theme and dark core-theme states.');
