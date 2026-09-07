@@ -1,4 +1,60 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { PNG } = require('pngjs');
+const visualBaseline = JSON.parse(fs.readFileSync(new URL('./platform-visual-baseline.json', import.meta.url), 'utf8'));
+
+function pixelLuma(png, x, y) {
+  const offset = (y * png.width + x) * 4;
+  const r = png.data[offset];
+  const g = png.data[offset + 1];
+  const b = png.data[offset + 2];
+  return Math.round(0.2126 * r + 0.7152 * g + 0.0722 * b);
+}
+
+function screenshotFingerprint(buffer) {
+  const png = PNG.sync.read(buffer);
+  let bits = 0n;
+  for (let gy = 0; gy < 8; gy++) {
+    const y = Math.min(png.height - 1, Math.floor((gy + 0.5) * png.height / 8));
+    const row = [];
+    for (let gx = 0; gx < 9; gx++) {
+      const x = Math.min(png.width - 1, Math.floor((gx + 0.5) * png.width / 9));
+      row.push(pixelLuma(png, x, y));
+    }
+    for (let gx = 0; gx < 8; gx++) {
+      bits = (bits << 1n) | (row[gx] > row[gx + 1] ? 1n : 0n);
+    }
+  }
+
+  const samples = [];
+  for (let gy = 0; gy < 8; gy++) {
+    const y = Math.min(png.height - 1, Math.floor((gy + 0.5) * png.height / 8));
+    for (let gx = 0; gx < 8; gx++) {
+      const x = Math.min(png.width - 1, Math.floor((gx + 0.5) * png.width / 8));
+      samples.push(pixelLuma(png, x, y));
+    }
+  }
+
+  return {
+    width: png.width,
+    height: png.height,
+    dhash: bits.toString(16).padStart(16, '0'),
+    avgLuma: samples.reduce((sum, value) => sum + value, 0) / samples.length,
+  };
+}
+
+function hammingHex(a, b) {
+  let value = BigInt('0x' + a) ^ BigInt('0x' + b);
+  let count = 0;
+  while (value) {
+    count += Number(value & 1n);
+    value >>= 1n;
+  }
+  return count;
+}
 
 const LOCAL_ORIGIN = 'http://127.0.0.1:4173';
 const academyHosts = new Set(['skunkworksacademy.com', 'www.skunkworksacademy.com']);
@@ -74,10 +130,36 @@ for (const [surface, path] of surfaces) {
         `${surface} has missing Academy CSS/JS/image assets`
       ).toEqual([]);
 
-      await page.screenshot({
-        path: testInfo.outputPath(`${surface}-${viewportName}.png`),
+      const screenshotPath = testInfo.outputPath(`${surface}-${viewportName}.png`);
+      const screenshot = await page.screenshot({
+        path: screenshotPath,
         fullPage: true,
       });
+
+      const key = `${surface}-${viewportName}`;
+      const approved = visualBaseline.cases[key];
+      expect(approved, `missing approved visual baseline for ${key}`).toBeTruthy();
+
+      const current = screenshotFingerprint(screenshot);
+      expect(current.width, `${key} screenshot width drifted`).toBe(approved.width);
+
+      const heightDelta = Math.abs(current.height - approved.height) / approved.height;
+      expect(
+        heightDelta,
+        `${key} page-height drift ${(heightDelta * 100).toFixed(1)}% exceeds approved tolerance`
+      ).toBeLessThanOrEqual(visualBaseline.maxHeightRatioDelta);
+
+      const hashDistance = hammingHex(current.dhash, approved.dhash);
+      expect(
+        hashDistance,
+        `${key} perceptual screenshot distance ${hashDistance} exceeds approved tolerance`
+      ).toBeLessThanOrEqual(visualBaseline.maxDHashDistance);
+
+      const lumaDelta = Math.abs(current.avgLuma - approved.avgLuma);
+      expect(
+        lumaDelta,
+        `${key} average luminance drift ${lumaDelta.toFixed(1)} exceeds approved tolerance`
+      ).toBeLessThanOrEqual(visualBaseline.maxAverageLumaDelta);
     });
   }
 }
