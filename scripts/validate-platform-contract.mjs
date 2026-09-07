@@ -18,8 +18,13 @@ if (contract.schemaVersion !== 1) throw new Error("Unsupported platform contract
 if (!/^www\.skunkworksacademy\.com$/i.test(contract.canonicalHost)) {
   throw new Error(`Unsupported canonical host for www: ${contract.canonicalHost}`);
 }
-if (!Number.isFinite(Date.parse(contract.buildTimestamp))) {
-  throw new Error("buildTimestamp must be an ISO-8601 timestamp");
+const isoTimestamp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+if (
+  !isoTimestamp.test(contract.buildTimestamp) ||
+  !Number.isFinite(Date.parse(contract.buildTimestamp)) ||
+  new Date(contract.buildTimestamp).toISOString() !== contract.buildTimestamp
+) {
+  throw new Error("buildTimestamp must match Date.prototype.toISOString() format");
 }
 
 const shellSource = fs.readFileSync("assets/academy-navigation.js", "utf8");
