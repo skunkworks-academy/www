@@ -19,10 +19,10 @@ on:
         type: number
         required: false
         default: 4180
-      preview-directory:
+      site-directory:
         type: string
         required: false
-        default: '.'
+        default: '_site'
       accessibility-path:
         type: string
         required: false
@@ -40,6 +40,8 @@ jobs:
         working-directory: ${{ inputs.working-directory }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v7
         with:
@@ -67,9 +69,12 @@ jobs:
       - name: Platform contract and CSP mode validation
         shell: bash
         run: |
-          if [[ -f academy-platform-contract.json && -f scripts/validate-platform-contract.mjs ]]; then
-            node scripts/validate-platform-contract.mjs
-          fi
+          test -f academy-platform-contract.json
+          test -f scripts/validate-platform-contract.mjs
+          test -f scripts/verify-composed-site.mjs
+          node scripts/validate-platform-contract.mjs
+          test -d "${{ inputs.site-directory }}"
+          test -f "${{ inputs.site-directory }}/index.html"
           if grep -R -n 'Content-Security-Policy-Report-Only' . --include='*.html' --exclude-dir=node_modules --exclude-dir=.git; then
             echo 'CSP Report-Only cannot be delivered by meta; use an HTTP response header.'
             exit 1
@@ -78,7 +83,7 @@ jobs:
       - name: Start local preview
         shell: bash
         run: |
-          python3 -m http.server ${{ inputs.preview-port }} --bind 127.0.0.1 --directory "${{ inputs.preview-directory }}" > /tmp/academy-reusable-http.log 2>&1 &
+          python3 -m http.server ${{ inputs.preview-port }} --bind 127.0.0.1 --directory "${{ inputs.site-directory }}" > /tmp/academy-reusable-http.log 2>&1 &
           echo $! > /tmp/academy-reusable-http.pid
           for attempt in {1..30}; do
             curl --fail --silent "http://127.0.0.1:${{ inputs.preview-port }}/" >/dev/null && exit 0
@@ -109,7 +114,4 @@ jobs:
 
       - name: Local route and asset conformance
         shell: bash
-        run: |
-          if [[ -f scripts/verify-composed-site.mjs ]]; then
-            node scripts/verify-composed-site.mjs --base-url "http://127.0.0.1:${{ inputs.preview-port }}/"
-          fi
+        run: node scripts/verify-composed-site.mjs --base-url "http://127.0.0.1:${{ inputs.preview-port }}/"
