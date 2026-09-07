@@ -35,6 +35,22 @@ async function get(url, context) {
   return response;
 }
 
+function assertAssetContentType(response, url) {
+  const pathname = new URL(url).pathname.toLowerCase();
+  const contentType = (response.headers.get("content-type") || "").toLowerCase();
+
+  if (pathname.endsWith(".css") && !contentType.startsWith("text/css")) {
+    throw new Error(`CSS asset returned unexpected Content-Type ${contentType || "<missing>"} for ${url}`);
+  }
+
+  if (
+    pathname.endsWith(".js") &&
+    !/^(?:text|application)\/(?:javascript|x-javascript)(?:;|$)/i.test(contentType)
+  ) {
+    throw new Error(`JavaScript asset returned unexpected Content-Type ${contentType || "<missing>"} for ${url}`);
+  }
+}
+
 const failures = [];
 let checkedAssets = 0;
 
@@ -56,7 +72,8 @@ for (const route of routes) {
       if (!academyHosts.has(resolved.hostname)) continue;
 
       const localUrl = new URL(resolved.pathname + resolved.search, baseUrl);
-      await get(localUrl, `asset referenced by ${route}`);
+      const assetResponse = await get(localUrl, `asset referenced by ${route}`);
+      assertAssetContentType(assetResponse, localUrl);
       checkedAssets += 1;
     }
   } catch (error) {
