@@ -37,6 +37,8 @@ jobs:
           node-version: 24
       - name: Run build, content and WCAG contrast validation
         run: npm run build
+      - name: Validate Academy platform contract
+        run: node scripts/validate-platform-contract.mjs
       - name: Verify custom domain file
         run: test "$(tr -d '\r\n' < CNAME)" = "skunkworksacademy.com"
       - name: Verify canonical loader is CORS-safe
@@ -164,79 +166,30 @@ jobs:
           npm install --no-audit --no-fund
           npm run build
 
-      - name: Mount course-catalog build at /courses
+      - name: Mount course-catalog build with isolated subsystem assets
         shell: bash
         run: |
           set -euo pipefail
-          build='.course-catalog/build'
-
-          if [[ ! -f "$build/courses.html" && ! -f "$build/courses/index.html" ]]; then
-            echo 'Course catalog build did not emit the /courses landing route.'
-            find "$build" -maxdepth 2 -type f | sort | head -100
-            exit 1
-          fi
-
-          rm -rf courses courses.html
-
-          if [[ -d "$build/courses" ]]; then
-            cp -R "$build/courses" ./courses
-          else
-            mkdir -p courses
-          fi
-
-          if [[ -f "$build/courses.html" ]]; then
-            cp "$build/courses.html" ./courses.html
-            cp "$build/courses.html" ./courses/index.html
-          elif [[ -f "$build/courses/index.html" ]]; then
-            cp "$build/courses/index.html" ./courses/index.html
-          fi
-
-          # Keep Docusaurus assets inside /courses. Copying them into the Academy
-          # root replaces the www application's hashed bundles and crashes the course UI.
-          for dir in assets img downloads; do
-            if [[ -d "$build/$dir" ]]; then
-              mkdir -p "courses/$dir"
-              cp -R "$build/$dir/." "courses/$dir/"
-            fi
-          done
-
-          if [[ -f "$build/course-manifest.json" ]]; then
-            cp "$build/course-manifest.json" ./course-manifest.json
-            cp "$build/course-manifest.json" ./courses/course-manifest.json
-          fi
-
-          # The catalog is built with root-relative asset URLs, but is mounted under
-          # /courses in the Academy site. Scope those URLs to the mounted output.
-          python3 - <<'PY'
-          from pathlib import Path
-
-          replacements = {
-              '="/assets/': '="/courses/assets/',
-              '="/img/': '="/courses/img/',
-              '="/downloads/': '="/courses/downloads/',
-              '="/course-manifest.json"': '="/courses/course-manifest.json"',
-          }
-
-          for path in Path('courses').rglob('*.html'):
-              html = path.read_text(encoding='utf-8')
-              for source, target in replacements.items():
-                  html = html.replace(source, target)
-              path.write_text(html, encoding='utf-8')
-          PY
-
-          rm -rf .course-catalog
+          node scripts/mount-subsystem.mjs \
+            --source .course-catalog/build \
+            --mount courses \
+            --landing courses.html \
+            --manifest course-manifest.json \
+            --asset-dirs assets,img,downloads
 
           test -f courses/index.html
           test -d courses/assets
           grep -q 'https://www.skunkworksacademy.com/courses' courses/index.html
           grep -R -q '/courses/assets/' courses --include='*.html'
+
           if grep -R -q 'catalog.skunkworksacademy.com' courses --include='*.html' 2>/dev/null \
             || grep -q 'catalog.skunkworksacademy.com' courses.html course-manifest.json 2>/dev/null; then
             echo 'Legacy catalogue hostname leaked into the /courses deployment.'
             exit 1
           fi
 
-          echo 'Mounted skunkworks-academy/course-catalog at /courses.'
+          rm -rf .course-catalog
+          echo 'Mounted skunkworks-academy/course-catalog at /courses using the generic isolated subsystem contract.'
 
       - name: Apply publisher indexing and AdSense policy
         run: npm run publisher:apply
@@ -314,11 +267,45 @@ jobs:
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
           PY
 
+      - name: Stage final Pages artifact in _site
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='node_modules/' \
+            --exclude='.course-catalog/' \
+            --exclude='_site/' \
+            --exclude='test-results/' \
+            ./ _site/
+          node scripts/stamp-platform-contract.mjs academy-platform-contract.json _site/academy-platform-contract.json
+
+      - name: Start final composed _site
+        shell: bash
+        run: |
+          python3 -m http.server 4174 --bind 127.0.0.1 --directory _site > /tmp/skw-composed-http.log 2>&1 &
+          echo $! > /tmp/skw-composed-http.pid
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4174/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/skw-composed-http.log
+          exit 1
+
+      - name: Verify final composed routes and referenced CSS/JS
+        run: >-
+          node scripts/verify-composed-site.mjs
+          --base-url http://127.0.0.1:4174/
+          --routes /,/courses/,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy
         id: deployment
