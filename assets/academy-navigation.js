@@ -86,6 +86,21 @@
     if (hasLight && !hasDark) root.setAttribute("data-theme", "light");
   }
 
+  function installPageContract() {
+    var head = document.head || document.documentElement;
+    if (!head) return;
+
+    var runtimeSrc = ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION;
+    var runtime = document.querySelector('script[data-skunkworks-page-contract="runtime"]');
+    if (!runtime) {
+      runtime = document.createElement("script");
+      runtime.defer = true;
+      runtime.setAttribute("data-skunkworks-page-contract", "runtime");
+      head.appendChild(runtime);
+    }
+    if (runtime.getAttribute("src") !== runtimeSrc) runtime.setAttribute("src", runtimeSrc);
+  }
+
   function installBrandTheme(moveToEnd) {
     var head = document.head || document.documentElement;
     if (!head) return null;
@@ -152,6 +167,7 @@
 
   applyDeclaredTheme();
   installCanonicalFavicons();
+  installPageContract();
   installBrandTheme(false);
   installLearnTheme(false);
 
@@ -159,6 +175,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       applyDeclaredTheme();
       installCanonicalFavicons();
+      installPageContract();
       installBrandTheme(true);
       installLearnTheme(true);
     }, { once: true });
