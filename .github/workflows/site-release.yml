@@ -388,5 +388,8 @@ jobs:
           echo "Production verification failed after 30 attempts for shell ${shell_version}: canonical theme/shell/accessibility assets or /courses were not found on the www origin."
           exit 1
 
-
-
+      - name: Production representative-route asset smoke gate
+        run: >-
+          node scripts/verify-composed-site.mjs
+          --base-url https://www.skunkworksacademy.com/
+          --routes /,/courses/,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
