@@ -1,9 +1,8 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
-import { createRequire } from 'node:module';
+import pngjs from 'pngjs';
 
-const require = createRequire(import.meta.url);
-const { PNG } = require('pngjs');
+const { PNG } = pngjs;
 const visualBaseline = JSON.parse(fs.readFileSync(new URL('./platform-visual-baseline.json', import.meta.url), 'utf8'));
 
 function pixelLuma(png, x, y) {
