@@ -1360,6 +1360,11 @@ html[data-theme="dark"] .swa-global-footer {
   color: var(--sk-interactive-text) !important;
 }
 
+/* Dark Academy hero surfaces keep a light accent foreground. */
+.sk-hero .sk-eyebrow {
+  color: #a5f3fc !important;
+}
+
 /* Fallback for missing interactive-text variable */
 @supports not (color: var(--sk-interactive-text)) {
   .sk-eyebrow,
