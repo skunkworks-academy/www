@@ -5,5 +5,5 @@
   WCAG contrast safeguards were consolidated into academy-brand-theme.css.
   This URL remains public because the deployment contract and historical pages
   still reference it. Do not add new authored rules here.
-*/
+  Do not add new rules here.\n*/
 @import url("./academy-brand-theme.css?v=2026.09.04.2");
