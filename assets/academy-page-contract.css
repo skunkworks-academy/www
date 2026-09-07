@@ -4,5 +4,5 @@
 
   Page-contract presentation rules are consolidated into academy-brand-theme.css.
   The JavaScript runtime remains in academy-page-contract.js.
-*/
+  Do not add new rules here.\n*/
 @import url("./academy-brand-theme.css?v=2026.09.04.2");
