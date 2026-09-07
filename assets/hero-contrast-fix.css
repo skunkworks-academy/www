@@ -4,5 +4,5 @@
 
   The split-hero contrast rules are now part of academy-brand-theme.css.
   Keep this alias until all historical documents have migrated.
-*/
+  Do not add new rules here.\n*/
 @import url("./academy-brand-theme.css?v=2026.09.04.2");
