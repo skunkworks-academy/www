@@ -21,14 +21,22 @@ for (const route of routes) {
 
     await expect(page.locator("body")).toBeVisible();
     await expect(page.locator(".swa-global-nav")).toBeVisible();
-    await expect(page.locator('link[data-skunkworks-favicon="canonical"]').first()).toHaveCount(1);
-    await expect(page.locator('link[data-skunkworks-brand-theme="canonical"]').first()).toHaveCount(1);
 
-    const canonical = page.locator('link[rel="canonical"]').first();
-    if (await canonical.count()) {
-      const href = await canonical.getAttribute("href");
-      expect(href).toMatch(/^https:\/\/(?:www\.)?skunkworksacademy\.com\//);
-    }
+    const favicons = page.locator('link[data-skunkworks-favicon="canonical"]');
+    const faviconCount = await favicons.count();
+    expect(faviconCount, `missing canonical favicon set on ${route}`).toBeGreaterThan(0);
+    const faviconKeys = await favicons.evaluateAll(nodes =>
+      nodes.map(node => `${node.getAttribute("href") || ""}|${node.getAttribute("media") || ""}|${node.getAttribute("rel") || ""}`)
+    );
+    expect(new Set(faviconKeys).size, `duplicate canonical favicon entries on ${route}`).toBe(faviconKeys.length);
+
+    const theme = page.locator('link[data-skunkworks-brand-theme="canonical"]');
+    await expect(theme).toHaveCount(1);
+
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveCount(1);
+    const href = await canonical.getAttribute("href");
+    expect(href).toMatch(/^https:\/\/(?:www\.)?skunkworksacademy\.com\//);
 
     const authLeak = await page.evaluate(() => {
       const keys = [];
@@ -44,10 +52,15 @@ for (const route of routes) {
 test("Cisco catalogue search remains functional", async ({ page }) => {
   await page.goto(baseURL + "/cisco/", { waitUntil: "networkidle" });
   const search = page.locator("#cisco-course-search");
+  const results = page.locator("#cisco-course-results");
   await expect(search).toBeVisible();
+  await expect(results).toBeVisible();
+
+  const before = await results.innerText();
   await search.fill("network");
   await expect(search).toHaveValue("network");
-  await expect(page.locator("#cisco-course-results")).toBeVisible();
+  await expect.poll(async () => results.innerText()).not.toBe(before);
+  await expect(results).toContainText(/network/i);
 });
 
 test("responsive shell fits mobile viewport", async ({ page }) => {
