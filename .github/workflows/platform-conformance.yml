@@ -36,10 +36,9 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install repository and Playwright dependencies
+      - name: Install Playwright test runner
         run: |
-          npm install --no-audit --no-fund
-          npm install --no-save --no-audit --no-fund @playwright/test@1.55.0
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps @playwright/test@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Validate platform contract
