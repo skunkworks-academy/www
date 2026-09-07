@@ -16,6 +16,7 @@ const PAGE_CONTRACT_VERSION = '2026.09.04.2';
 const files = {
   shell: 'assets/academy-navigation.js',
   brand: 'assets/academy-brand-theme.css',
+  pageContract: 'assets/academy-page-contract.js',
 };
 
 const source = {};
@@ -75,6 +76,9 @@ requireText('brand', 'Homepage split-hero contrast contract', 'the homepage hero
 requireText('shell', 'BRAND_THEME_VERSION = "' + VERSION + '"', 'the consolidated brand asset version');
 requireText('shell', 'PAGE_CONTRACT_VERSION = "' + PAGE_CONTRACT_VERSION + '"', 'the page-contract cache version');
 requireText('shell', 'academy-brand-theme.css', 'the consolidated theme stylesheet reference');
+requireText('shell', 'applyIndependentThemeScope()', 'the cross-property theme isolation bootstrap');
+requireText('shell', 'main[data-swa-contrast="preserve"]', 'the independent content contrast signal');
+requireText('pageContract', 'element.closest(\'[data-swa-theme-scope="isolated"]\')', 'the isolated surface-classification guard');
 
 if (failures.length) {
   console.error('Theme conformance validation failed:\n');
