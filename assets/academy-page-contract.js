@@ -5,7 +5,7 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.25.1";
+  var VERSION = "2026.09.04.2";
   var FORMS_VERSION = "2026.08.20.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
@@ -16,9 +16,8 @@
     : PUBLIC_ROOT;
   var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-black.png?v=" + VERSION;
   var FAVICON_DARK = ASSET_ROOT + "images/favicon-white.png?v=" + VERSION;
-  var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
   var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
-  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.08.27.1&rev=2026.08.27.1";
+  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.09.04.2&rev=2026.09.04.2";
   var pathname = String(window.location && window.location.pathname || "/");
   var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
 
@@ -138,7 +137,6 @@
 
   function ensureFormsExperience() {
     if (!isFormsPage) return;
-    ensureStylesheet("data-skunkworks-design-system", "forms-canonical", FORMS_DESIGN_SYSTEM);
     ensureStylesheet("data-skunkworks-forms-style", "canonical", FORMS_STYLES);
     ensureScript("data-skunkworks-global-nav", "forms-canonical", FORMS_GLOBAL_NAV);
     if (document.body) document.body.setAttribute("data-skunkworks-forms-theme", "canonical");
@@ -244,7 +242,6 @@
     formsVersion: FORMS_VERSION,
     faviconLight: FAVICON_LIGHT,
     faviconDark: FAVICON_DARK,
-    formsDesignSystem: FORMS_DESIGN_SYSTEM,
     formsStyles: FORMS_STYLES,
     refresh: refreshSurfaceContracts
   };
