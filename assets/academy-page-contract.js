@@ -186,6 +186,7 @@
 
   function classifySurface(element) {
     if (!element || element.closest('[data-swa-contrast="preserve"]')) return;
+    if (element.closest('[data-swa-theme-scope="isolated"]')) return;
     if (element.closest('.swa-global-nav, .swa-global-footer, .site-footer, footer')) return;
 
     var background = effectiveBackground(element);
@@ -233,7 +234,7 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["class", "style", "data-theme", "data-swa-theme", "data-swa-surface", "data-swa-contrast"]
+      attributeFilter: ["class", "style", "data-theme", "data-swa-theme", "data-swa-surface", "data-swa-contrast", "data-swa-theme-scope"]
     });
   }
 
