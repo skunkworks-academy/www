@@ -1,0 +1,7 @@
+/*
+  Skunkworks Academy public design-system compatibility alias.
+  Canonical implementation: /assets/academy-brand-theme.css
+  Do not remove this URL until all external and tracked compatibility consumers
+  have migrated to the canonical Academy theme contract.
+*/
+@import url("./academy-brand-theme.css?v=2026.09.04.2");
