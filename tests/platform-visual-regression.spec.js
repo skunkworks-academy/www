@@ -30,6 +30,8 @@ for (const [surface, path] of surfaces) {
       // Canonical Academy pages intentionally use absolute production URLs for
       // shared assets. During PR visual verification, route those URLs back to
       // the checked-out branch so the screenshots exercise the proposed code.
+      await page.route(/https:\/\/(?:snap\.licdn\.com|px\.ads\.linkedin\.com|www\.googletagmanager\.com|www\.google-analytics\.com|connect\.facebook\.net|bat\.bing\.com)\//i, route => route.abort());
+
       await page.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/.*$/i, async route => {
         const requested = new URL(route.request().url());
         const localUrl = LOCAL_ORIGIN + requested.pathname + requested.search;
@@ -49,8 +51,11 @@ for (const [surface, path] of surfaces) {
 
       await page.setViewportSize(viewport);
       const response = await page.goto(`${LOCAL_ORIGIN}${path}`, {
-        waitUntil: 'networkidle',
+        waitUntil: 'domcontentloaded',
+        timeout: 20_000,
       });
+      await page.evaluate(() => document.fonts?.ready);
+      await page.waitForTimeout(250);
 
       expect(response, `${path} did not return a response`).not.toBeNull();
       expect(response.status(), `${path} returned HTTP ${response.status()}`).toBeLessThan(400);
