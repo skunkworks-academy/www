@@ -14,7 +14,7 @@ on:
       artifact-path:
         type: string
         required: false
-        default: '.'
+        default: '_site'
       canonical-url:
         type: string
         required: true
@@ -32,6 +32,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ inputs.node-version }}
@@ -45,8 +48,14 @@ jobs:
             npm install --no-audit --no-fund
           fi
 
-      - name: Build
+      - name: Build and stage final artifact
         run: ${{ inputs.build-command }}
+
+      - name: Require staged Pages artifact
+        shell: bash
+        run: |
+          test -d "${{ inputs.artifact-path }}"
+          test -f "${{ inputs.artifact-path }}/index.html"
 
       - uses: actions/configure-pages@v5
 
