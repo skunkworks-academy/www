@@ -1,6 +1,9 @@
 name: Platform visual regression
 
 on:
+  push:
+    branches:
+      - chore/consolidate-academy-styles
   pull_request:
     paths:
       - '**/*.html'
