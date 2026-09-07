@@ -9,6 +9,7 @@ on:
       - '**/*.html'
       - 'assets/**'
       - 'tests/platform-visual-regression.spec.js'
+      - 'tests/platform-visual-baseline.json'
       - '.github/workflows/platform-visual-regression.yml'
   workflow_dispatch:
 
@@ -28,7 +29,7 @@ jobs:
 
       - name: Install Playwright test runner
         run: |
-          npm install --no-save --no-audit --no-fund --legacy-peer-deps @playwright/test@1.55.0
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --workspaces=false @playwright/test@1.55.0 pngjs@7.0.0
           npx playwright install --with-deps chromium
 
       - name: Start branch preview
