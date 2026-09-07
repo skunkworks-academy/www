@@ -714,9 +714,49 @@ nav {
 }
 
 @media (max-width: 768px) {
+    /* Prevent legacy Bootstrap/flex helpers from creating a wider mobile canvas. */
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    .header-content,
+    nav,
+    nav ul,
+    .d-flex,
+    .resale-list,
+    .course-cont,
+    .learning-paths,
+    .information-on-partner,
+    .skwpartnership {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .d-flex,
+    .resale-list {
+        flex-wrap: wrap !important;
+    }
+
+    nav ul,
+    .d-flex {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     /* Navigation Adjustments */
     nav {
         padding: 0.5rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+
+    nav > .header-content,
+    nav > .d-flex {
+        width: 100%;
+        flex: 1 1 auto;
     }
 
     nav ul {
