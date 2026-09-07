@@ -1,3 +1,6 @@
+import http from "node:http";
+import https from "node:https";
+
 function readArgs(argv) {
   const out = {};
   for (let i = 2; i < argv.length; i++) {
@@ -29,8 +32,59 @@ function extractAssets(html) {
   return [...refs];
 }
 
+function request(url, redirects = 0) {
+  return new Promise((resolve, reject) => {
+    const target = url instanceof URL ? url : new URL(url);
+    const transport = target.protocol === "https:" ? https : http;
+
+    const req = transport.get(target, {
+      headers: {
+        "user-agent": "skunkworks-academy-composite-verifier/1.0",
+        "accept": "*/*"
+      }
+    }, response => {
+      const status = response.statusCode || 0;
+      const location = response.headers.location;
+
+      if (status >= 300 && status < 400 && location) {
+        response.resume();
+        if (redirects >= 5) {
+          reject(new Error(`Too many redirects for ${target}`));
+          return;
+        }
+        resolve(request(new URL(location, target), redirects + 1));
+        return;
+      }
+
+      const chunks = [];
+      response.on("data", chunk => chunks.push(chunk));
+      response.on("end", () => {
+        const body = Buffer.concat(chunks);
+        resolve({
+          ok: status >= 200 && status < 300,
+          status,
+          headers: {
+            get(name) {
+              const value = response.headers[String(name).toLowerCase()];
+              return Array.isArray(value) ? value.join(", ") : (value || "");
+            }
+          },
+          async text() {
+            return body.toString("utf8");
+          }
+        });
+      });
+    });
+
+    req.setTimeout(15000, () => {
+      req.destroy(new Error(`HTTP request timed out for ${target}`));
+    });
+    req.on("error", reject);
+  });
+}
+
 async function get(url, context) {
-  const response = await fetch(url, { redirect: "follow" });
+  const response = await request(url);
   if (!response.ok) throw new Error(`${context}: HTTP ${response.status} for ${url}`);
   return response;
 }
