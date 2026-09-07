@@ -32,6 +32,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -65,9 +67,27 @@ jobs:
     needs: validate
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 24
+      - name: Prepare branch-local Lighthouse fixture
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          let html = fs.readFileSync('index.html', 'utf8');
+          html = html.replace(
+            /https:\/\/(?:www\.)?skunkworksacademy\.com\/(?=(?:assets|images)\/)/g,
+            'http://127.0.0.1:4173/'
+          );
+          fs.writeFileSync('lighthouse-local.html', html);
+          NODE
+          grep -q '<link rel="canonical" href="https://www.skunkworksacademy.com/' lighthouse-local.html
+          if grep -Eq 'https://(www\.)?skunkworksacademy\.com/(assets|images)/' lighthouse-local.html; then
+            echo 'Lighthouse fixture still references production Academy assets.'
+            exit 1
+          fi
       - name: Start static server
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/skw-http.log 2>&1 &
@@ -89,7 +109,7 @@ jobs:
         run: |
           set -euo pipefail
           for run in 1 2 3; do
-            npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/ \
+            npx --yes lighthouse@13.4.1 http://127.0.0.1:4173/lighthouse-local.html \
               --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" \
               --blocked-url-patterns='*googlesyndication.com*' \
               --output=json \
@@ -145,6 +165,8 @@ jobs:
     steps:
       - name: Checkout Academy site
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Checkout canonical course catalog source
         uses: actions/checkout@v7
@@ -323,6 +345,8 @@ jobs:
     steps:
       - name: Checkout expected production contract
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Wait for production and verify CORS-safe shell assets and /courses
         shell: bash
