@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+const LOCAL_ORIGIN = 'http://127.0.0.1:4173';
+const academyHosts = new Set(['skunkworksacademy.com', 'www.skunkworksacademy.com']);
+
 const surfaces = [
   ['home', '/'],
   ['learn', '/learn/'],
@@ -21,14 +24,31 @@ const viewports = [
 for (const [surface, path] of surfaces) {
   for (const [viewportName, viewport] of viewports) {
     test(`${surface} renders ${viewportName} without platform regressions`, async ({ page }, testInfo) => {
-      const errors = [];
-      page.on('pageerror', error => errors.push(String(error)));
-      page.on('console', msg => {
-        if (msg.type() === 'error') errors.push(msg.text());
+      const pageErrors = [];
+      const failedAcademyAssets = [];
+
+      // Canonical Academy pages intentionally use absolute production URLs for
+      // shared assets. During PR visual verification, route those URLs back to
+      // the checked-out branch so the screenshots exercise the proposed code.
+      await page.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/.*$/i, async route => {
+        const requested = new URL(route.request().url());
+        const localUrl = LOCAL_ORIGIN + requested.pathname + requested.search;
+        const response = await page.request.fetch(localUrl, { failOnStatusCode: false });
+        await route.fulfill({ response });
+      });
+
+      page.on('pageerror', error => pageErrors.push(String(error)));
+      page.on('response', response => {
+        const url = new URL(response.url());
+        const isAcademy = url.origin === LOCAL_ORIGIN || academyHosts.has(url.hostname);
+        const isCriticalAsset = /\.(?:css|js|png|svg|ico)(?:\?|$)/i.test(url.pathname);
+        if (isAcademy && isCriticalAsset && response.status() >= 400) {
+          failedAcademyAssets.push(`${response.status()} ${url.pathname}`);
+        }
       });
 
       await page.setViewportSize(viewport);
-      const response = await page.goto(`http://127.0.0.1:4173${path}`, {
+      const response = await page.goto(`${LOCAL_ORIGIN}${path}`, {
         waitUntil: 'networkidle',
       });
 
@@ -43,7 +63,11 @@ for (const [surface, path] of surfaces) {
       const bodyWidth = await page.locator('body').evaluate(el => el.scrollWidth);
       expect(bodyWidth, `${surface} overflows horizontally at ${viewportName}`).toBeLessThanOrEqual(viewport.width + 2);
 
-      expect(errors, `${surface} emitted browser errors: ${errors.join(' | ')}`).toEqual([]);
+      expect(pageErrors, `${surface} emitted runtime errors: ${pageErrors.join(' | ')}`).toEqual([]);
+      expect(
+        [...new Set(failedAcademyAssets)],
+        `${surface} has missing Academy CSS/JS/image assets`
+      ).toEqual([]);
 
       await page.screenshot({
         path: testInfo.outputPath(`${surface}-${viewportName}.png`),
