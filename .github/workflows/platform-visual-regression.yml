@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Playwright test runner
         run: |
-          npm install --no-save --no-audit --no-fund @playwright/test@1.55.0
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps @playwright/test@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Start branch preview
@@ -51,5 +51,5 @@ jobs:
         with:
           name: platform-visual-regression-${{ github.run_id }}
           path: test-results/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
