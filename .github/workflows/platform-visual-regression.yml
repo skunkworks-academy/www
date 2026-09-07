@@ -8,7 +8,7 @@ on:
     paths:
       - '**/*.html'
       - 'assets/**'
-      - 'tests/platform-visual-regression.spec.js'
+      - 'tests/platform-visual-regression.spec.cjs'
       - 'tests/platform-visual-baseline.json'
       - '.github/workflows/platform-visual-regression.yml'
   workflow_dispatch:
@@ -44,7 +44,7 @@ jobs:
           exit 1
 
       - name: Run platform render matrix
-        run: npx playwright test tests/platform-visual-regression.spec.js --reporter=line
+        run: npx playwright test tests/platform-visual-regression.spec.cjs --reporter=line
 
       - name: Upload desktop/mobile evidence
         if: always()
