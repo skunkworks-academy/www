@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.09.08.2";
+  var VERSION = "2026.09.08.4";
   var ROOT_URL = "https://skunkworksacademy.com";
   var STORAGE_KEY = "swa-theme";
 
@@ -33,8 +33,8 @@
       ".swa-global-footer a:hover{text-decoration:underline!important;text-underline-offset:3px!important}",
       ".swa-global-footer a:focus-visible,.swa-global-footer button:focus-visible,.swa-global-footer summary:focus-visible{outline:2px solid var(--swa-footer-focus)!important;outline-offset:3px!important}",
       ".swa-global-footer__social.bottom-social{width:100%!important;margin:0 0 30px!important;padding:0 0 28px!important;border-bottom:1px solid var(--swa-footer-line)!important}",
-      ".swa-global-footer__social .container{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))!important;align-items:stretch!important;gap:12px!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}",
-      ".swa-global-footer__social-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-height:54px!important;min-width:0!important;padding:10px 14px!important;border:1px solid var(--swa-footer-line)!important;border-radius:4px!important;background:transparent!important;color:var(--swa-footer-text)!important;text-decoration:none!important;font-weight:600!important;line-height:1.3!important}",
+      ".swa-global-footer__social .container{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))!important;align-items:stretch!important;gap:12px!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}",
+      ".swa-global-footer__social-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-height:54px!important;min-width:0!important;padding:10px 14px!important;border:1px solid var(--swa-footer-line)!important;border-radius:4px!important;background:transparent!important;color:var(--swa-footer-text)!important;text-decoration:none!important;font-weight:400!important;line-height:1.3!important}",
       ".swa-global-footer__social-link:hover{background:var(--swa-footer-hover)!important;text-decoration:none!important}",
       ".swa-global-footer__social-link span{min-width:0!important;white-space:normal!important}",
       ".swa-global-footer__social-icon{display:block!important;width:30px!important;height:30px!important;flex:0 0 30px!important;fill:currentColor!important}",
@@ -93,13 +93,13 @@
 
   function applyTheme(mode) {
     var root = document.documentElement;
-    var wasManaged = root.getAttribute("data-swa-theme-managed") === "true";
+    var systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     root.setAttribute("data-swa-theme", mode);
 
     if (mode === "system") {
-      if (wasManaged) root.removeAttribute("data-theme");
-      root.removeAttribute("data-swa-theme-managed");
+      root.setAttribute("data-theme", systemDark ? "dark" : "light");
+      root.setAttribute("data-swa-theme-managed", "true");
       root.style.colorScheme = "light dark";
     } else {
       root.setAttribute("data-theme", mode);
@@ -123,6 +123,7 @@
     link.href = href;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", label + " (opens in a new tab)");
     link.appendChild(document.createTextNode(label));
     var mark = document.createElement("span");
     mark.className = "swa-global-footer__external";
@@ -245,8 +246,15 @@
         saveTheme(item[0]);
         applyTheme(item[0]);
         theme.removeAttribute("open");
+        theme.querySelector("summary").focus();
       });
       themeMenu.appendChild(button);
+    });
+    theme.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        theme.removeAttribute("open");
+        theme.querySelector("summary").focus();
+      }
     });
     theme.appendChild(themeMenu);
     utility.appendChild(theme);
@@ -283,6 +291,14 @@
     document.body.appendChild(footer);
 
     applyTheme(getSavedTheme());
+    if (window.matchMedia) {
+      var preference = window.matchMedia("(prefers-color-scheme: dark)");
+      var syncSystemTheme = function () {
+        if (getSavedTheme() === "system") applyTheme("system");
+      };
+      if (preference.addEventListener) preference.addEventListener("change", syncSystemTheme);
+      else if (preference.addListener) preference.addListener(syncSystemTheme);
+    }
   }
 
   ready(createFooter);

@@ -630,6 +630,26 @@ html[data-theme="dark"] .swa-global-footer {
   color: #ffffff !important;
 }
 
+/* Shared footer: compact channel cards and generous separation, as in the
+   Academy reference. Keep these refinements in the global brand layer. */
+@media (min-width: 1200px) {
+  .swa-global-footer .swa-global-footer__social .container {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+}
+.swa-global-footer__theme summary,
+.swa-global-footer__theme-option,
+.swa-global-footer__utility a {
+  min-height: 44px !important;
+}
+.swa-global-footer__social-link span {
+  overflow-wrap: anywhere !important;
+}
+.swa-global-footer__theme-menu {
+  background: var(--swa-footer-bg) !important;
+  color: var(--swa-footer-text) !important;
+}
+
 /* Primary actions stay blue. Signal Orange is reserved for focus, alerts and
    restrained editorial emphasis. */
 .sk-button--primary,
