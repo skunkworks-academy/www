@@ -294,7 +294,7 @@
     if (window.matchMedia) {
       var preference = window.matchMedia("(prefers-color-scheme: dark)");
       var syncSystemTheme = function () {
-        if (getSavedTheme() === "system") applyTheme("system");
+        if (document.documentElement.getAttribute("data-swa-theme") === "system") applyTheme("system");
       };
       if (preference.addEventListener) preference.addEventListener("change", syncSystemTheme);
       else if (preference.addListener) preference.addListener(syncSystemTheme);

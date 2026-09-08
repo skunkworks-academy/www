@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-for (const route of ['/', '/learn/', '/forms/', '/authors/']) {
+for (const route of ['/', '/learn/', '/forms/', '/authors/', '/privacy.html', '/cookie-policy.html', '/terms.html']) {
   for (const width of [320, 768, 1440]) {
     test(`footer ${route} at ${width}px`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width, height: 900 });
@@ -20,6 +20,9 @@ for (const route of ['/', '/learn/', '/forms/', '/authors/']) {
       const footer = page.locator('.swa-global-footer');
       await expect(footer).toHaveCount(1);
       await expect(footer.locator('a')).toHaveCount(17);
+      await expect(page.locator('body > footer')).toHaveCount(1);
+      await expect(page.locator('link[data-skunkworks-brand-theme="canonical"]')).toHaveAttribute('href', /rev=2026\.09\.08\.4/);
+      await expect(page.locator('script[data-skunkworks-global-footer="canonical"]')).toHaveAttribute('src', /rev=2026\.09\.08\.4/);
       await expect(footer).toHaveCSS('background-color', 'rgb(255, 255, 255)');
       await expect(page.locator('.swa-global-nav')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
       const bounds = await footer.evaluate(el => ({ width: el.clientWidth, scroll: el.scrollWidth }));
@@ -47,3 +50,18 @@ for (const route of ['/', '/learn/', '/forms/', '/authors/']) {
   }
 }
 
+
+test('explicit theme survives blocked storage and OS changes', async ({ page }) => {
+  await page.addInitScript(() => {
+    Storage.prototype.setItem = function () { throw new DOMException('Blocked', 'SecurityError'); };
+  });
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.goto('http://127.0.0.1:4175/privacy.html');
+  const footer = page.locator('.swa-global-footer');
+  await footer.locator('summary').click();
+  await footer.getByRole('button', { name: 'Dark', exact: true }).click();
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await page.emulateMedia({ colorScheme: 'light' });
+  await expect(footer).toHaveCSS('background-color', 'rgb(0, 0, 0)');
+  await expect(page.locator('html')).toHaveAttribute('data-swa-theme', 'dark');
+});
