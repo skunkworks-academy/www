@@ -1,6 +1,6 @@
 /*
   Skunkworks Academy canonical brand + theme contract
-  Version: 2026.09.08.1
+  Version: 2026.09.08.2
 
   This is the single authored source for the Academy public colour system,
   typography, theme conformance, common component rules and runtime-classified
@@ -22,7 +22,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Open+Sans:wght@400;600;700;800&display=swap");
 
 :root {
-  --swa-theme-contract-version: "2026.09.08.1";
+  --swa-theme-contract-version: "2026.09.08.2";
 
   /* Canonical brand tokens. */
   --sw-ink-navy: #03033a;
@@ -602,23 +602,32 @@ section.cover :where(p, span, div, label, small) { color: var(--sw-slate-text); 
 }
 
 .swa-global-footer {
-  --swa-footer-bg: var(--sw-off-white) !important;
-  --swa-footer-text: var(--sw-graphite) !important;
-  --swa-footer-muted: var(--sw-slate-text) !important;
-  --swa-footer-hover: #e9eef6 !important;
-  --swa-footer-line: var(--sw-steel-gray) !important;
-  --swa-footer-focus: var(--sw-signal-orange) !important;
-  background: var(--sw-off-white) !important;
+  --swa-footer-bg: #ffffff !important;
+  --swa-footer-text: #000000 !important;
+  --swa-footer-muted: #404040 !important;
+  --swa-footer-hover: #f2f2f2 !important;
+  --swa-footer-line: #d0d0d0 !important;
+  --swa-footer-focus: #000000 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
   font-family: var(--swa-font-sans) !important;
+}
+.swa-global-footer__social-icon,
+.swa-global-footer__privacy-mark,
+.swa-global-footer__privacy-mark::before,
+.swa-global-footer__privacy-mark::after {
+  color: currentColor !important;
 }
 html[data-swa-theme="dark"] .swa-global-footer,
 html[data-theme="dark"] .swa-global-footer {
-  --swa-footer-bg: var(--sw-ink-navy) !important;
-  --swa-footer-text: var(--sw-white) !important;
-  --swa-footer-muted: var(--sw-dark-muted) !important;
-  --swa-footer-hover: #13235d !important;
-  --swa-footer-line: rgba(216, 222, 232, .22) !important;
-  background: var(--sw-ink-navy) !important;
+  --swa-footer-bg: #000000 !important;
+  --swa-footer-text: #ffffff !important;
+  --swa-footer-muted: #d9d9d9 !important;
+  --swa-footer-hover: #1a1a1a !important;
+  --swa-footer-line: rgba(255, 255, 255, .28) !important;
+  --swa-footer-focus: #ffffff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
 }
 
 /* Primary actions stay blue. Signal Orange is reserved for focus, alerts and
