@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const baseURL = "http://127.0.0.1:4175";
 const routes = [
-  "/", "/courses/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
+  "/", "/authors/", "/courses/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
   "/course-registration/", "/forms/", "/self-paced/", "/slides/"
 ];
 
@@ -146,4 +146,51 @@ test("global footer is monochrome in light and dark modes", async ({ page }) => 
   expect(dark.background).toBe("rgb(0, 0, 0)");
   expect(dark.color).toBe("rgb(255, 255, 255)");
   if (dark.iconColor) expect(dark.iconColor).toBe("rgb(255, 255, 255)");
+});
+
+
+test("hub cards keep readable foreground/background contrast", async ({ page }) => {
+  await page.goto(baseURL + "/authors/", { waitUntil: "networkidle" });
+  await page.evaluate(() => localStorage.setItem("swa-theme", "dark"));
+  await page.reload({ waitUntil: "networkidle" });
+
+  const hub = page.locator(".swa-hub");
+  const hero = page.locator(".swa-hub__hero");
+  const card = page.locator(".swa-hub__card").first();
+  const heading = card.locator("h3");
+  const copy = card.locator("p");
+
+  await expect(hub).toHaveAttribute("data-swa-contrast", "preserve");
+  await expect(hero).toBeVisible();
+  await expect(card).toBeVisible();
+
+  const values = await card.evaluate((element) => {
+    const heading = element.querySelector("h3");
+    const copy = element.querySelector("p");
+    return {
+      cardBackground: getComputedStyle(element).backgroundColor,
+      cardColor: getComputedStyle(element).color,
+      headingColor: heading ? getComputedStyle(heading).color : "",
+      copyColor: copy ? getComputedStyle(copy).color : "",
+    };
+  });
+
+  expect(values.cardBackground).toBe("rgb(255, 255, 255)");
+  expect(values.cardColor).toBe("rgb(23, 32, 51)");
+  expect(values.headingColor).toBe("rgb(23, 32, 51)");
+  expect(values.copyColor).toBe("rgb(63, 75, 95)");
+
+  const heroValues = await hero.evaluate((element) => {
+    const heading = element.querySelector("h1");
+    const lead = element.querySelector(".swa-hub__lead");
+    return {
+      background: getComputedStyle(element).backgroundColor,
+      headingColor: heading ? getComputedStyle(heading).color : "",
+      leadColor: lead ? getComputedStyle(lead).color : "",
+    };
+  });
+
+  expect(heroValues.background).toBe("rgb(255, 255, 255)");
+  expect(heroValues.headingColor).toBe("rgb(23, 32, 51)");
+  expect(heroValues.leadColor).toBe("rgb(63, 75, 95)");
 });
