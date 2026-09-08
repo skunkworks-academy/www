@@ -194,3 +194,39 @@ test("hub cards keep readable foreground/background contrast", async ({ page }) 
   expect(heroValues.headingColor).toBe("rgb(23, 32, 51)");
   expect(heroValues.leadColor).toBe("rgb(63, 75, 95)");
 });
+
+
+test("global header typography stays compact", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(baseURL + "/authors/", { waitUntil: "networkidle" });
+
+  const brand = page.locator(".swa-global-nav__brand");
+  const signIn = page.locator(".swa-global-nav__sign-in");
+  await expect(brand).toBeVisible();
+  await expect(signIn).toBeVisible();
+
+  const desktop = await page.evaluate(() => {
+    const brand = document.querySelector(".swa-global-nav__brand");
+    const signIn = document.querySelector(".swa-global-nav__sign-in");
+    return {
+      brand: brand ? parseFloat(getComputedStyle(brand).fontSize) : 0,
+      signIn: signIn ? parseFloat(getComputedStyle(signIn).fontSize) : 0,
+    };
+  });
+
+  expect(desktop.brand).toBeLessThanOrEqual(28);
+  expect(desktop.signIn).toBeLessThanOrEqual(20);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobile = await page.evaluate(() => {
+    const brand = document.querySelector(".swa-global-nav__brand");
+    const signIn = document.querySelector(".swa-global-nav__sign-in");
+    return {
+      brand: brand ? parseFloat(getComputedStyle(brand).fontSize) : 0,
+      signIn: signIn ? parseFloat(getComputedStyle(signIn).fontSize) : 0,
+    };
+  });
+
+  expect(mobile.brand).toBeLessThanOrEqual(18);
+  expect(mobile.signIn).toBeLessThanOrEqual(16);
+});

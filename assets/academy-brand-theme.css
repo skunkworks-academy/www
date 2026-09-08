@@ -1,6 +1,6 @@
 /*
   Skunkworks Academy canonical brand + theme contract
-  Version: 2026.09.08.2
+  Version: 2026.09.08.3
 
   This is the single authored source for the Academy public colour system,
   typography, theme conformance, common component rules and runtime-classified
@@ -22,7 +22,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Open+Sans:wght@400;600;700;800&display=swap");
 
 :root {
-  --swa-theme-contract-version: "2026.09.08.2";
+  --swa-theme-contract-version: "2026.09.08.3";
 
   /* Canonical brand tokens. */
   --sw-ink-navy: #03033a;
