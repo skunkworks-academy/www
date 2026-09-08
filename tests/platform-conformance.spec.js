@@ -109,8 +109,9 @@ test("mobile Academy navigation is strictly monochrome", async ({ page }) => {
 
 test("global footer is monochrome in light and dark modes", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.addInitScript(() => localStorage.setItem("swa-theme", "light"));
   await page.goto(baseURL + "/courses/", { waitUntil: "networkidle" });
+  await page.evaluate(() => localStorage.setItem("swa-theme", "light"));
+  await page.reload({ waitUntil: "networkidle" });
 
   const footer = page.locator(".swa-global-footer");
   await expect(footer).toHaveCount(1);
