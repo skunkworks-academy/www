@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.argv[2] || '.');
-const VERSION = '2026.09.08.2';
+const VERSION = '2026.09.08.3';
 const PAGE_CONTRACT_VERSION = '2026.09.07.1';
 
 const files = {
