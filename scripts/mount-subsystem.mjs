@@ -105,6 +105,25 @@ for (const file of htmlFiles) {
   fs.writeFileSync(file, html);
 }
 
+/* Webpack/Docusaurus runtimes can calculate lazy-loaded chunk URLs from a
+   root public path even after HTML references have been mounted below a
+   subsystem route. Rewrite only runtime bundles, where the public-path
+   assignment is authoritative, so dynamically imported chunks remain inside
+   /<mount>/assets instead of leaking back to /assets. */
+const jsRoot = path.join(targetMount, "assets", "js");
+if (fs.existsSync(jsRoot)) {
+  for (const entry of fs.readdirSync(jsRoot, { withFileTypes: true })) {
+    if (!entry.isFile() || !/^runtime~.*\.js$/i.test(entry.name)) continue;
+    const runtimeFile = path.join(jsRoot, entry.name);
+    let runtime = fs.readFileSync(runtimeFile, "utf8");
+    runtime = runtime.replace(/([A-Za-z_$][\w$]*\.p=)"\/"(?=[,;])/g, '$1"/${mount}/"');
+    fs.writeFileSync(runtimeFile, runtime);
+    if (/([A-Za-z_$][\w$]*\.p=)"\/"(?=[,;])/.test(runtime)) {
+      throw new Error(`${runtimeFile} still exposes a root webpack public path; lazy chunks must stay below /${mount}/`);
+    }
+  }
+}
+
 const index = path.join(targetMount, "index.html");
 if (!fs.existsSync(index)) throw new Error(`Mounted subsystem did not produce /${mount}/index.html`);
 
