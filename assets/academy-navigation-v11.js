@@ -2,8 +2,8 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.09.08.1";
-  var REVISION = "2026.09.08.1";
+  var VERSION = "2026.09.08.2";
+  var REVISION = "2026.09.08.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";

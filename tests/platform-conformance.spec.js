@@ -105,3 +105,45 @@ test("mobile Academy navigation is strictly monochrome", async ({ page }) => {
   expect(chrome.dividerBackground).toBe("rgb(255, 255, 255)");
   expect(chrome.signInColor).toBe("rgb(255, 255, 255)");
 });
+
+
+test("global footer is monochrome in light and dark modes", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(baseURL + "/courses/", { waitUntil: "networkidle" });
+  await page.evaluate(() => localStorage.setItem("swa-theme", "light"));
+  await page.reload({ waitUntil: "networkidle" });
+
+  const footer = page.locator(".swa-global-footer");
+  await expect(footer).toHaveCount(1);
+
+  const light = await footer.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const icon = element.querySelector(".swa-global-footer__social-icon");
+    return {
+      background: style.backgroundColor,
+      color: style.color,
+      iconColor: icon ? getComputedStyle(icon).color : "",
+    };
+  });
+
+  expect(light.background).toBe("rgb(255, 255, 255)");
+  expect(light.color).toBe("rgb(0, 0, 0)");
+  if (light.iconColor) expect(light.iconColor).toBe("rgb(0, 0, 0)");
+
+  await page.evaluate(() => localStorage.setItem("swa-theme", "dark"));
+  await page.reload({ waitUntil: "networkidle" });
+
+  const dark = await page.locator(".swa-global-footer").evaluate((element) => {
+    const style = getComputedStyle(element);
+    const icon = element.querySelector(".swa-global-footer__social-icon");
+    return {
+      background: style.backgroundColor,
+      color: style.color,
+      iconColor: icon ? getComputedStyle(icon).color : "",
+    };
+  });
+
+  expect(dark.background).toBe("rgb(0, 0, 0)");
+  expect(dark.color).toBe("rgb(255, 255, 255)");
+  if (dark.iconColor) expect(dark.iconColor).toBe("rgb(255, 255, 255)");
+});
