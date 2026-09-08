@@ -14,7 +14,7 @@ const CONTRACT_CSS = `${PUBLIC_ROOT}assets/academy-page-contract.css?v=${VERSION
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
 const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}`;
 const THEME_CONFORMANCE = `${PUBLIC_ROOT}assets/academy-theme-conformance.css?v=${THEME_CONFORMANCE_VERSION}`;
-const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1`;
+const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.09.08.2&rev=2026.09.08.2`;
 const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
 const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.09.08.2&rev=2026.09.08.2`;
 
