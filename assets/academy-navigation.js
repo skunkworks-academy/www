@@ -2,12 +2,12 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.27.1";
-  var REVISION = "2026.08.27.1";
-  var RUNTIME_VERSION = "2026.08.20.1";
-  var PAGE_CONTRACT_VERSION = "2026.08.25.1";
-  var BRAND_THEME_VERSION = "2026.08.27.1";
-  var THEME_CONFORMANCE_VERSION = "2026.08.27.1";
+  var VERSION = "2026.09.08.1";
+  var REVISION = "2026.09.08.1";
+  var RUNTIME_VERSION = "2026.09.08.1";
+  var PAGE_CONTRACT_VERSION = "2026.09.07.1";
+  var BRAND_THEME_VERSION = "2026.09.08.1";
+  var THEME_CONFORMANCE_VERSION = "2026.09.08.1";
   var LEARN_THEME_VERSION = "2026.08.25.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
