@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const baseURL = "http://127.0.0.1:4175";
 const routes = [
-  "/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
+  "/", "/courses/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
   "/course-registration/", "/forms/", "/self-paced/", "/slides/"
 ];
 
@@ -69,4 +69,39 @@ test("responsive shell fits mobile viewport", async ({ page }) => {
   const width = await page.locator("body").evaluate(el => el.scrollWidth);
   expect(width).toBeLessThanOrEqual(392);
   await expect(page.locator(".swa-global-nav")).toBeVisible();
+});
+
+
+test("mobile Academy navigation is strictly monochrome", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(baseURL + "/courses/", { waitUntil: "networkidle" });
+
+  const nav = page.locator(".swa-global-nav");
+  const toggle = page.locator(".swa-global-nav__toggle");
+  const drawer = page.locator(".swa-global-nav__links");
+  const signIn = page.locator(".swa-global-nav__sign-in");
+
+  await expect(nav).toBeVisible();
+  await expect(toggle).toBeVisible();
+  await toggle.click();
+  await expect(nav).toHaveClass(/swa-menu-open/);
+  await expect(drawer).toBeVisible();
+
+  const chrome = await nav.evaluate((element) => {
+    const navStyle = getComputedStyle(element);
+    const dividerStyle = getComputedStyle(element, "::after");
+    const drawerNode = element.querySelector(".swa-global-nav__links");
+    const signInNode = element.querySelector(".swa-global-nav__sign-in");
+    return {
+      navBackground: navStyle.backgroundColor,
+      dividerBackground: dividerStyle.backgroundColor,
+      drawerBackground: drawerNode ? getComputedStyle(drawerNode).backgroundColor : "",
+      signInColor: signInNode ? getComputedStyle(signInNode).color : "",
+    };
+  });
+
+  expect(chrome.navBackground).toBe("rgb(0, 0, 0)");
+  expect(chrome.drawerBackground).toBe("rgb(0, 0, 0)");
+  expect(chrome.dividerBackground).toBe("rgb(255, 255, 255)");
+  expect(chrome.signInColor).toBe("rgb(255, 255, 255)");
 });
