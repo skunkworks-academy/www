@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "property": "www",
+  "runtimeClass": "static-pages-composite",
+  "canonicalHost": "www.skunkworksacademy.com",
+  "shellVersion": "2026.09.08.3",
+  "themeVersion": "2026.09.08.3",
+  "identityMode": "public-anonymous",
+  "analyticsVersion": "publisher-policy-2026-09-02",
+  "cspMode": "not-enforced-github-pages",
+  "deploymentWorkflowGeneration": "academy-pages-v2",
+  "buildTimestamp": "2026-09-08T00:32:00.000Z"
+}

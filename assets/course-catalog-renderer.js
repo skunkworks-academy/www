@@ -6,6 +6,9 @@
   const PAKO_URL = 'https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js';
   const PUBLIC_FIELDS = ['courseId', 'title', 'deliveryMode', 'category', 'level', 'estimatedEffort', 'courseUrl'];
   const ESTABLISHED_COURSES = [
+    ['AFF-FND-101', 'Affiliate Marketing Foundations: Platforms, Offers and Trust', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner', '6–8 hours', 'https://www.skunkworksacademy.com/courses/affiliate-marketing-foundations'],
+    ['AFF-TLF-201', 'Affiliate Traffic, Lead Capture and Email Foundations', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner to intermediate', '8–10 hours', 'https://www.skunkworksacademy.com/courses/affiliate-traffic-and-list-building'],
+    ['AFF-OPS-301', 'Affiliate Campaign Operations, Measurement and Compliance', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Intermediate', '10–12 hours', 'https://www.skunkworksacademy.com/courses/affiliate-campaign-operations-and-compliance'],
     ['ART-101', 'Professional Articulation and Executive Communication', 'Self-Paced', 'Professional & Business Skills', 'Foundation to advanced', '36–40 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/professional-articulation'],
     ['SHP-UPA-101', 'Shopify User Permissions', 'Self-Paced', 'Commerce Administration', 'Beginner to intermediate', '4–6 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/shopify-user-permissions'],
     ['GHP-DOM-101', 'GitHub Pages Setup', 'Self-Paced', 'Web Deployment', 'Beginner to intermediate', '5–7 hours', 'https://skunkworks-academy.github.io/course-catalog/courses/github-pages-setup'],
@@ -75,8 +78,8 @@
     for (const field of PUBLIC_FIELDS) {
       if (!payload.fields.includes(field)) throw new TypeError(`Course catalogue payload is missing ${field}.`);
     }
-    if (payload.courses.length !== 180) {
-      throw new TypeError(`Course catalogue expected 180 courses but received ${payload.courses.length}.`);
+    if (payload.courses.length !== 183) {
+      throw new TypeError(`Course catalogue expected 183 courses but received ${payload.courses.length}.`);
     }
     return payload;
   }
@@ -181,7 +184,7 @@
     return validatePayload({
       schema: 'skunkworks-academy/public-course-listing/v2',
       fields: PUBLIC_FIELDS,
-      courseCount: 180,
+      courseCount: 183,
       courses: [...ESTABLISHED_COURSES, ...generated]
     });
   }

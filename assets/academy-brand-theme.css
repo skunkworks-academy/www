@@ -1,6 +1,6 @@
 /*
   Skunkworks Academy canonical brand + theme contract
-  Version: 2026.08.27.1
+  Version: 2026.09.08.3
 
   This is the single authored source for the Academy public colour system,
   typography, theme conformance, common component rules and runtime-classified
@@ -22,7 +22,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Open+Sans:wght@400;600;700;800&display=swap");
 
 :root {
-  --swa-theme-contract-version: "2026.08.27.1";
+  --swa-theme-contract-version: "2026.09.08.3";
 
   /* Canonical brand tokens. */
   --sw-ink-navy: #03033a;
@@ -565,41 +565,69 @@ section.cover :where(p, span, div, label, small) { color: var(--sw-slate-text); 
   --swa-surface-link: inherit;
 }
 
-/* Shared shell/footer: force the public chrome back onto Academy identity
-   even though older runtime JS still carries Microsoft-reference fallback CSS. */
+/* Shared shell/footer: keep Academy chrome strictly monochrome.
+   Brand blue remains available to page content and CTAs, but never fills the
+   global header, menu drawer, search panel or shell divider. */
 .swa-global-nav {
-  --swa-bg: var(--sw-ink-navy) !important;
-  --swa-panel: #0b174d !important;
-  --swa-panel-strong: #13235d !important;
-  --swa-text: var(--sw-white) !important;
-  --swa-muted: #d3dded !important;
-  --swa-line: rgba(216, 222, 232, .28) !important;
-  --swa-accent: var(--sw-skunk-blue) !important;
-  --swa-link: var(--sw-blue-on-dark) !important;
-  background: var(--sw-ink-navy) !important;
+  --swa-bg: #000000 !important;
+  --swa-panel: #000000 !important;
+  --swa-panel-strong: #1a1a1a !important;
+  --swa-text: #ffffff !important;
+  --swa-muted: #d9d9d9 !important;
+  --swa-line: rgba(255, 255, 255, .28) !important;
+  --swa-accent: #ffffff !important;
+  --swa-link: #ffffff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
   font-family: var(--swa-font-sans) !important;
 }
 .swa-global-nav__brand { font-family: var(--swa-font-display) !important; }
-.swa-global-nav::after { background: var(--sw-skunk-blue) !important; }
+.swa-global-nav::after {
+  height: 1px !important;
+  background: #ffffff !important;
+  opacity: .32 !important;
+}
+.swa-global-nav__sign-in,
+.swa-global-nav__sign-in:hover,
+.swa-global-nav__sign-in:focus {
+  color: #ffffff !important;
+}
+.swa-global-nav__search:hover,
+.swa-global-nav__search:focus,
+.swa-global-nav__toggle:hover,
+.swa-global-nav__toggle:focus,
+.swa-global-nav__toggle[aria-expanded="true"] {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
 
 .swa-global-footer {
-  --swa-footer-bg: var(--sw-off-white) !important;
-  --swa-footer-text: var(--sw-graphite) !important;
-  --swa-footer-muted: var(--sw-slate-text) !important;
-  --swa-footer-hover: #e9eef6 !important;
-  --swa-footer-line: var(--sw-steel-gray) !important;
-  --swa-footer-focus: var(--sw-signal-orange) !important;
-  background: var(--sw-off-white) !important;
+  --swa-footer-bg: #ffffff !important;
+  --swa-footer-text: #000000 !important;
+  --swa-footer-muted: #404040 !important;
+  --swa-footer-hover: #f2f2f2 !important;
+  --swa-footer-line: #d0d0d0 !important;
+  --swa-footer-focus: #000000 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
   font-family: var(--swa-font-sans) !important;
+}
+.swa-global-footer__social-icon,
+.swa-global-footer__privacy-mark,
+.swa-global-footer__privacy-mark::before,
+.swa-global-footer__privacy-mark::after {
+  color: currentColor !important;
 }
 html[data-swa-theme="dark"] .swa-global-footer,
 html[data-theme="dark"] .swa-global-footer {
-  --swa-footer-bg: var(--sw-ink-navy) !important;
-  --swa-footer-text: var(--sw-white) !important;
-  --swa-footer-muted: var(--sw-dark-muted) !important;
-  --swa-footer-hover: #13235d !important;
-  --swa-footer-line: rgba(216, 222, 232, .22) !important;
-  background: var(--sw-ink-navy) !important;
+  --swa-footer-bg: #000000 !important;
+  --swa-footer-text: #ffffff !important;
+  --swa-footer-muted: #d9d9d9 !important;
+  --swa-footer-hover: #1a1a1a !important;
+  --swa-footer-line: rgba(255, 255, 255, .28) !important;
+  --swa-footer-focus: #ffffff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
 }
 
 /* Primary actions stay blue. Signal Orange is reserved for focus, alerts and

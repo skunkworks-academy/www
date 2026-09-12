@@ -10,8 +10,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.argv[2] || '.');
-const VERSION = '2026.08.27.1';
-const PAGE_CONTRACT_VERSION = '2026.08.25.1';
+const VERSION = '2026.09.08.3';
+const PAGE_CONTRACT_VERSION = '2026.09.07.1';
 
 const files = {
   shell: 'assets/academy-navigation.js',
@@ -70,6 +70,14 @@ requireText('brand', '[data-swa-surface-tone="light"]', 'the light runtime surfa
 requireText('brand', '[data-swa-surface-tone="dark"]', 'the dark runtime surface contract');
 requireText('brand', '.swa-global-nav {', 'the canonical shell brand override');
 requireText('brand', '.swa-global-footer {', 'the canonical footer brand override');
+requireText('brand', '--swa-footer-bg: #ffffff !important', 'the light monochrome footer background');
+requireText('brand', '--swa-footer-text: #000000 !important', 'the light monochrome footer text');
+requireText('brand', '--swa-footer-bg: #000000 !important', 'the dark monochrome footer background');
+requireText('brand', '--swa-footer-text: #ffffff !important', 'the dark monochrome footer text');
+requireText('brand', '--swa-bg: #000000 !important', 'the monochrome global-navigation background');
+requireText('brand', '--swa-panel: #000000 !important', 'the monochrome mobile drawer surface');
+requireText('brand', '--swa-accent: #ffffff !important', 'the monochrome shell divider');
+requireText('brand', '--swa-link: #ffffff !important', 'the monochrome shell link treatment');
 
 requireText('design', '--sk-bg:', 'the base design-system background token');
 requireText('design', '--sk-text-primary:', 'the base design-system text token');

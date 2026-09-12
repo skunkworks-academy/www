@@ -5,8 +5,8 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.08.25.1";
-  var FORMS_VERSION = "2026.08.20.1";
+  var VERSION = "2026.09.07.1";
+  var FORMS_VERSION = "2026.09.07.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
@@ -16,9 +16,9 @@
     : PUBLIC_ROOT;
   var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-black.png?v=" + VERSION;
   var FAVICON_DARK = ASSET_ROOT + "images/favicon-white.png?v=" + VERSION;
-  var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.08.20.1&rev=2026.08.20.1";
+  var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.09.08.3&rev=2026.09.08.3";
   var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
-  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.08.27.1&rev=2026.08.27.1";
+  var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3";
   var pathname = String(window.location && window.location.pathname || "/");
   var isFormsPage = /^\/forms(?:\/|$)/i.test(pathname);
 
