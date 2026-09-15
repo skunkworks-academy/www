@@ -73,6 +73,9 @@ for (const route of routes) {
 
       const localUrl = new URL(resolved.pathname + resolved.search, baseUrl);
       const assetResponse = await get(localUrl, `asset referenced by ${route}`);
+      // Drain each response before opening the next request. Unread bodies can
+      // leave the HTTP parser paused when the preview server closes its socket.
+      await assetResponse.arrayBuffer();
       assertAssetContentType(assetResponse, localUrl);
       checkedAssets += 1;
     }

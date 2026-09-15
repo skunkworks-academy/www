@@ -5,6 +5,16 @@
   const ADSENSE_SRC = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`;
   const localHosts = new Set(['localhost', '127.0.0.1', '[::1]']);
 
+  // Publisher and legal pages share the canonical Academy shell. The loader
+  // removes legacy chrome and guards against duplicate runtime installation.
+  if (!document.querySelector('script[data-skunkworks-global-nav]')) {
+    const shell = document.createElement('script');
+    shell.defer = true;
+    shell.src = '/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.4';
+    shell.setAttribute('data-skunkworks-global-nav', 'v10');
+    document.head.appendChild(shell);
+  }
+
   const navToggle = document.querySelector('[data-nav-toggle]');
   const nav = document.querySelector('[data-primary-nav]');
   navToggle?.addEventListener('click', () => {

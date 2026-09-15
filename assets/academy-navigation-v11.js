@@ -158,7 +158,8 @@
   if (typeof document === "undefined") return;
 
   function assetUrl(root, file) {
-    return root + file + "?v=" + VERSION + "&rev=" + REVISION;
+    var revision = file === "skunkworks-footer.js" ? "2026.09.08.4" : REVISION;
+    return root + file + "?v=" + VERSION + "&rev=" + revision;
   }
 
   window.SKUNKWORKS_ACADEMY_SHELL = Object.assign(window.SKUNKWORKS_ACADEMY_SHELL || {}, {

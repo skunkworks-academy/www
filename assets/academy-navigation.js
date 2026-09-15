@@ -6,6 +6,7 @@
   var REVISION = "2026.09.08.3";
   var RUNTIME_VERSION = "2026.09.08.3";
   var PAGE_CONTRACT_VERSION = "2026.09.07.1";
+  var FOOTER_REVISION = "2026.09.08.4";
   var BRAND_THEME_VERSION = "2026.09.08.3";
   var THEME_CONFORMANCE_VERSION = "2026.09.08.3";
   var LEARN_THEME_VERSION = "2026.08.25.1";
@@ -116,7 +117,7 @@
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION;
+    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION;
     var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
     if (!link) {
       link = document.createElement("link");
@@ -220,8 +221,8 @@
     return;
   }
 
-  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION;
-  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION;
+  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
+  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
   var script = document.createElement("script");
   script.defer = true;
   script.src = primarySrc;
@@ -251,7 +252,7 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
-    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION,
+    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,
