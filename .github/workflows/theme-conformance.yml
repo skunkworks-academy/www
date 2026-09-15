@@ -5,8 +5,6 @@ on:
     paths:
       - 'assets/academy-navigation.js'
       - 'assets/academy-brand-theme.css'
-      - 'assets/skunkworks-design-system.css'
-      - 'assets/academy-theme-conformance.css'
       - 'scripts/validate-theme-conformance.mjs'
       - 'THEME_CONFORMANCE.md'
       - '.github/workflows/theme-conformance.yml'
@@ -15,8 +13,6 @@ on:
     paths:
       - 'assets/academy-navigation.js'
       - 'assets/academy-brand-theme.css'
-      - 'assets/skunkworks-design-system.css'
-      - 'assets/academy-theme-conformance.css'
       - 'scripts/validate-theme-conformance.mjs'
       - 'THEME_CONFORMANCE.md'
       - '.github/workflows/theme-conformance.yml'

@@ -1,0 +1,10 @@
+{
+  "name": "skunkworksacademy-assessment-ai",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-08",
+  "routes": [{ "pattern": "api.skunkworksacademy.com/v1/assessment/chat", "custom_domain": true }],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://www.skunkworksacademy.com",
+    "OPENAI_MODEL": "gpt-5"
+  }
+}

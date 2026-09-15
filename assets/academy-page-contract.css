@@ -1,11 +1,8 @@
 /*
-  Skunkworks Academy page-contrast compatibility entry point.
-  Version: 2026.08.27.1
+  Skunkworks Academy page-contract CSS compatibility entry point.
+  Version: 2026.09.04.2
 
-  Runtime-classified surface contrast rules are now authored in
-  /assets/academy-brand-theme.css alongside the canonical colour and component
-  tokens. This file remains intentionally rule-free so existing HTML contract
-  markers and historical direct references continue to resolve without a 404.
-
-  Do not add new rules here. Add them to academy-brand-theme.css.
-*/
+  Page-contract presentation rules are consolidated into academy-brand-theme.css.
+  The JavaScript runtime remains in academy-page-contract.js.
+  Do not add new rules here.\n*/
+@import url("./academy-brand-theme.css?v=2026.09.04.2");

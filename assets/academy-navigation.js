@@ -2,12 +2,13 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.08.27.1";
-  var REVISION = "2026.08.27.1";
-  var RUNTIME_VERSION = "2026.08.20.1";
-  var PAGE_CONTRACT_VERSION = "2026.08.25.1";
-  var BRAND_THEME_VERSION = "2026.08.27.1";
-  var THEME_CONFORMANCE_VERSION = "2026.08.27.1";
+  var VERSION = "2026.09.08.3";
+  var REVISION = "2026.09.08.3";
+  var RUNTIME_VERSION = "2026.09.08.3";
+  var PAGE_CONTRACT_VERSION = "2026.09.07.1";
+  var FOOTER_REVISION = "2026.09.08.4";
+  var BRAND_THEME_VERSION = "2026.09.08.3";
+  var THEME_CONFORMANCE_VERSION = "2026.09.08.3";
   var LEARN_THEME_VERSION = "2026.08.25.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
@@ -87,19 +88,22 @@
     if (hasLight && !hasDark) root.setAttribute("data-theme", "light");
   }
 
+  function applyIndependentThemeScope() {
+    if (isApexAlias || isLocalPreview || !document.body) return;
+    if (document.body.getAttribute("data-swa-theme-scope") === "isolated") return;
+
+    /* Cross-property pages can keep their own content palette while still
+       consuming the canonical Academy header/footer. Explicit contrast
+       preservation is the signal that the page owns its foreground/surface
+       pairings and must not inherit the global OS dark palette. */
+    if (document.querySelector('main[data-swa-contrast="preserve"]')) {
+      document.body.setAttribute("data-swa-theme-scope", "isolated");
+    }
+  }
+
   function installPageContract() {
     var head = document.head || document.documentElement;
     if (!head) return;
-
-    var cssHref = ORIGIN_ROOT + "assets/academy-page-contract.css?v=" + PAGE_CONTRACT_VERSION;
-    var css = document.querySelector('link[data-skunkworks-page-contract="css"]');
-    if (!css) {
-      css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.setAttribute("data-skunkworks-page-contract", "css");
-      head.appendChild(css);
-    }
-    if (css.getAttribute("href") !== cssHref) css.setAttribute("href", cssHref);
 
     var runtimeSrc = ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION;
     var runtime = document.querySelector('script[data-skunkworks-page-contract="runtime"]');
@@ -116,29 +120,12 @@
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION;
+    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION;
     var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
     if (!link) {
       link = document.createElement("link");
       link.rel = "stylesheet";
       link.setAttribute("data-skunkworks-brand-theme", "canonical");
-      head.appendChild(link);
-    }
-    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
-    if (moveToEnd && link.parentNode === head) head.appendChild(link);
-    return link;
-  }
-
-  function installThemeConformance(moveToEnd) {
-    var head = document.head || document.documentElement;
-    if (!head) return null;
-
-    var href = ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION;
-    var link = document.querySelector('link[data-skunkworks-theme-conformance="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.setAttribute("data-skunkworks-theme-conformance", "canonical");
       head.appendChild(link);
     }
     if (link.getAttribute("href") !== href) link.setAttribute("href", href);
@@ -194,19 +181,19 @@
   }
 
   applyDeclaredTheme();
+  applyIndependentThemeScope();
   installCanonicalFavicons();
   installPageContract();
   installBrandTheme(false);
-  installThemeConformance(false);
   installLearnTheme(false);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       applyDeclaredTheme();
+      applyIndependentThemeScope();
       installCanonicalFavicons();
       installPageContract();
       installBrandTheme(true);
-      installThemeConformance(true);
       installLearnTheme(true);
     }, { once: true });
   } else {
@@ -215,13 +202,12 @@
 
   if (document.querySelector('script[data-skunkworks-global-nav-runtime="v11"]')) {
     installBrandTheme(true);
-    installThemeConformance(true);
     installLearnTheme(true);
     return;
   }
 
-  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION;
-  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION;
+  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
+  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
   var script = document.createElement("script");
   script.defer = true;
   script.src = primarySrc;
@@ -230,10 +216,9 @@
   script.setAttribute("data-skunkworks-global-nav-version", RUNTIME_VERSION);
 
   script.addEventListener("load", function () {
-    /* academy-navigation-v11 injects the shared design system. Move the brand,
-       conformance and Learn layers after it so specialised tokens win deterministically. */
+    /* academy-navigation-v11 injects the consolidated Academy theme. Move the
+       Learn layer after it so specialised tokens win deterministically. */
     installBrandTheme(true);
-    installThemeConformance(true);
     installLearnTheme(true);
   });
 
@@ -251,7 +236,7 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
-    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION,
+    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,
@@ -264,4 +249,3 @@
 
   (document.head || document.documentElement).appendChild(script);
 })();
-
