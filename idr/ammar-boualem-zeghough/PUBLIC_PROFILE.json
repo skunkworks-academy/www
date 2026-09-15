@@ -1,0 +1,37 @@
+{
+  "name": "Ammar Boualem Zeghough",
+  "respondent_id": 49,
+  "age": 30,
+  "current_role": "Graphic Designer",
+  "github": "https://github.com/zeghoughdz-ship-it",
+  "linkedin": "https://www.linkedin.com/in/ammar-boualem-zeghough-89981a219/",
+  "portfolio": "https://www.tasmeemme.com/zeghoughomario",
+  "interests": [
+    "Programming",
+    "Cybersecurity",
+    "Application & web development",
+    "AI programming"
+  ],
+  "short_term_goal": "Acquire new technical skills",
+  "medium_term_goal": "Become a subject-matter expert in a specific technology",
+  "long_term_goal": "Become a subject-matter expert with the depth to create new technical solutions",
+  "learning_now": "6-10 hours per week",
+  "learning_additional": "11-15 additional hours per week",
+  "learning_preference": "Instructor-led learning",
+  "work_preference": "Flexible",
+  "collaboration": "Comfortable working independently or collaboratively",
+  "leadership": "Previous management experience in a private firm serving advertising, printing, secretarial and computer-work clients",
+  "strengths": [
+    "Broad practical IT aptitude and quick learning",
+    "Hands-on interest in electronics repair and development",
+    "Management and small-business operating experience",
+    "Creative design background that can transfer into front-end and product work"
+  ],
+  "development_needs": [
+    "Programming fundamentals and software engineering",
+    "Web application development",
+    "Cybersecurity foundations and practical defensive skills",
+    "Applied AI programming",
+    "Portfolio evidence and demonstrable projects"
+  ]
+}
