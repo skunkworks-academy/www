@@ -138,7 +138,6 @@
 
   function ensureFormsExperience() {
     if (!isFormsPage) return;
-    ensureStylesheet("data-skunkworks-design-system", "forms-canonical", FORMS_DESIGN_SYSTEM);
     ensureStylesheet("data-skunkworks-forms-style", "canonical", FORMS_STYLES);
     ensureScript("data-skunkworks-global-nav", "forms-canonical", FORMS_GLOBAL_NAV);
     if (document.body) document.body.setAttribute("data-skunkworks-forms-theme", "canonical");
@@ -188,6 +187,7 @@
 
   function classifySurface(element) {
     if (!element || element.closest('[data-swa-contrast="preserve"]')) return;
+    if (element.closest('[data-swa-theme-scope="isolated"]')) return;
     if (element.closest('.swa-global-nav, .swa-global-footer, .site-footer, footer')) return;
 
     var background = effectiveBackground(element);
@@ -235,7 +235,7 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["class", "style", "data-theme", "data-swa-theme", "data-swa-surface", "data-swa-contrast"]
+      attributeFilter: ["class", "style", "data-theme", "data-swa-theme", "data-swa-surface", "data-swa-contrast", "data-swa-theme-scope"]
     });
   }
 
@@ -244,7 +244,6 @@
     formsVersion: FORMS_VERSION,
     faviconLight: FAVICON_LIGHT,
     faviconDark: FAVICON_DARK,
-    formsDesignSystem: FORMS_DESIGN_SYSTEM,
     formsStyles: FORMS_STYLES,
     refresh: refreshSurfaceContracts
   };
