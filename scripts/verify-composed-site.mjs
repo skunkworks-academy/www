@@ -71,6 +71,9 @@ function request(url, redirects = 0) {
           },
           async text() {
             return body.toString("utf8");
+          },
+          async arrayBuffer() {
+            return body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength);
           }
         });
       });
