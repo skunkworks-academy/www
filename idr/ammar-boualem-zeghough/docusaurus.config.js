@@ -1,7 +1,7 @@
 const config = {
   title: 'Ammar Boualem Zeghough IDR',
   tagline: 'Individual Development Roadmap',
-  favicon: 'https://www.skunkworksacademy.com/favicon.ico',
+  favicon: 'images/favicon-search.png',
   url: 'https://www.skunkworksacademy.com',
   baseUrl: '/idr/ammar-boualem-zeghough/',
   trailingSlash: true,
