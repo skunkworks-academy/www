@@ -69,6 +69,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -s favicon.ico
+          test -s images/favicon-search.png
+          test -s images/favicon-search-dark.png
           test -s images/favicon-black.png
           test -s images/favicon-white.png
           test -s assets/academy-page-contract.js
@@ -100,8 +103,8 @@ jobs:
           page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
           test -n "$page_contract_version"
           grep -Fq "const VERSION = '$page_contract_version';" scripts/enforce-global-page-contract.mjs
-          grep -q 'images/favicon-black.png' assets/academy-page-contract.js
-          grep -q 'images/favicon-white.png' assets/academy-page-contract.js
+          grep -q 'images/favicon-search.png' assets/academy-page-contract.js
+          grep -q 'images/favicon-search-dark.png' assets/academy-page-contract.js
 
           grep -q -- '--swa-form-surface: #ffffff' assets/academy-forms.css
           grep -q -- '--swa-form-text: #161616' assets/academy-forms.css

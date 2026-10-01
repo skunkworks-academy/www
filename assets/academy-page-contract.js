@@ -14,8 +14,8 @@
   var ASSET_ROOT = (isApexAlias || isLocalPreview)
     ? window.location.origin.replace(/\/$/, "") + "/"
     : PUBLIC_ROOT;
-  var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-black.png?v=" + VERSION;
-  var FAVICON_DARK = ASSET_ROOT + "images/favicon-white.png?v=" + VERSION;
+  var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-search.png";
+  var FAVICON_DARK = ASSET_ROOT + "images/favicon-search-dark.png";
   var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.09.08.3&rev=2026.09.08.3";
   var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
   var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3";
@@ -58,10 +58,10 @@
 
   function faviconSpec() {
     return [
-      { rel: "icon", href: FAVICON_LIGHT, media: "", sizes: "32x32" },
+      { rel: "icon", href: FAVICON_LIGHT, media: "", sizes: "96x96" },
       { rel: "shortcut icon", href: FAVICON_LIGHT, media: "", sizes: "" },
-      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)", sizes: "32x32" },
-      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
+      { rel: "icon", href: FAVICON_LIGHT, media: "(prefers-color-scheme: light)", sizes: "96x96" },
+      { rel: "icon", href: FAVICON_DARK, media: "(prefers-color-scheme: dark)", sizes: "96x96" }
     ];
   }
 

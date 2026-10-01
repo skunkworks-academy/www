@@ -57,10 +57,10 @@
       });
 
     [
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "", sizes: "32x32" },
-      { rel: "shortcut icon", href: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "", sizes: "" },
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION, media: "(prefers-color-scheme: light)", sizes: "32x32" },
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION, media: "(prefers-color-scheme: dark)", sizes: "32x32" }
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "", sizes: "96x96" },
+      { rel: "shortcut icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "", sizes: "" },
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "(prefers-color-scheme: light)", sizes: "96x96" },
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search-dark.png", media: "(prefers-color-scheme: dark)", sizes: "96x96" }
     ].forEach(function (icon) {
       var link = document.createElement("link");
       link.rel = icon.rel;
@@ -243,8 +243,8 @@
     learnTheme: PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
     learnSurface: isLearnSurface(),
     bodyBackground: "theme-owned",
-    faviconLight: ORIGIN_ROOT + "images/favicon-black.png?v=" + PAGE_CONTRACT_VERSION,
-    faviconDark: ORIGIN_ROOT + "images/favicon-white.png?v=" + PAGE_CONTRACT_VERSION
+    faviconLight: ORIGIN_ROOT + "images/favicon-search.png",
+    faviconDark: ORIGIN_ROOT + "images/favicon-search-dark.png"
   };
 
   (document.head || document.documentElement).appendChild(script);

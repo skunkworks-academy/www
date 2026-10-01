@@ -8,8 +8,8 @@ const THEME_VERSION = '2026.09.08.3';
 const THEME_CONFORMANCE_VERSION = '2026.09.08.3';
 const FORMS_VERSION = '2026.09.07.1';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
-const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-black.png?v=${VERSION}`;
-const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-white.png?v=${VERSION}`;
+const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-search.png`;
+const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-search-dark.png`;
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
 const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}`;
 const THEME_CONFORMANCE = `${PUBLIC_ROOT}assets/academy-theme-conformance.css?v=${THEME_CONFORMANCE_VERSION}`;
@@ -18,10 +18,10 @@ const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
 const GLOBAL_NAV = `${PUBLIC_ROOT}assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3`;
 
 const FAVICON_TAGS = [
-  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="96x96" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
   `<link rel="shortcut icon" type="image/png" href="${FAVICON_LIGHT}" data-skunkworks-favicon="canonical" />`,
-  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
-  `<link rel="icon" type="image/png" sizes="32x32" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="96x96" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
+  `<link rel="icon" type="image/png" sizes="96x96" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
 ];
 const FAVICON_INJECTION = FAVICON_TAGS.map((line) => `  ${line}`).join('\n');
 const COLOR_SCHEME = '<meta name="color-scheme" content="light dark" data-skunkworks-color-scheme="canonical" />';
@@ -145,13 +145,13 @@ function validate(html, file) {
   const lightFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'href', FAVICON_LIGHT));
   const darkFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'href', FAVICON_DARK));
   const shortcutFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'rel', 'shortcut icon'));
-  const sizedFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'sizes', '32x32'));
+  const sizedFaviconTags = faviconTags.filter((tag) => tagHasAttributeValue(tag, 'sizes', '96x96'));
 
   if (faviconTags.length !== 4) failures.push('canonical favicon set');
   if (lightFaviconTags.length !== 3) failures.push('default/light favicon');
   if (darkFaviconTags.length !== 1) failures.push('dark favicon');
   if (shortcutFaviconTags.length !== 1) failures.push('shortcut favicon');
-  if (sizedFaviconTags.length < 3) failures.push('32x32 favicon sizing');
+  if (sizedFaviconTags.length < 3) failures.push('96x96 favicon sizing');
   if (count(html, 'data-skunkworks-page-contract="runtime"') !== 1) failures.push('page-contract runtime');
   if (count(html, 'data-skunkworks-brand-theme="canonical"') !== 1) failures.push('canonical brand theme');
   if (count(html, 'data-skunkworks-color-scheme="canonical"') !== 1) failures.push('canonical colour-scheme metadata');
@@ -170,8 +170,8 @@ function validate(html, file) {
 }
 
 const assetChecks = [
-  path.join(root, 'images', 'favicon-black.png'),
-  path.join(root, 'images', 'favicon-white.png'),
+  path.join(root, 'images', 'favicon-search.png'),
+  path.join(root, 'images', 'favicon-search-dark.png'),
   path.join(root, 'assets', 'academy-page-contract.js'),
   path.join(root, 'assets', 'academy-brand-theme.css'),
   path.join(root, 'assets', 'academy-forms.css'),
