@@ -369,6 +369,21 @@ jobs:
           tmp="$(mktemp -d)"
           trap 'rm -rf "$tmp"' EXIT
 
+          # Fail fast on custom-domain TLS problems. Retrying content checks cannot
+          # repair an expired certificate and only hides the actual release blocker.
+          cert_file="$tmp/www-cert.pem"
+          if ! timeout 15 openssl s_client -connect www.skunkworksacademy.com:443 -servername www.skunkworksacademy.com -showcerts </dev/null 2>/dev/null \
+            | openssl x509 -outform PEM > "$cert_file"; then
+            echo "Unable to retrieve the production TLS certificate for www.skunkworksacademy.com."
+            exit 1
+          fi
+          echo "Production TLS certificate:"
+          openssl x509 -in "$cert_file" -noout -subject -issuer -dates
+          if ! openssl x509 -in "$cert_file" -checkend 0 -noout; then
+            echo "Production TLS certificate is expired. Renew/fix the GitHub Pages custom-domain certificate before release verification can pass."
+            exit 1
+          fi
+
           for attempt in {1..30}; do
             cache="ci=${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
             : > "$tmp/home.html"
@@ -395,6 +410,7 @@ jobs:
               && -s "$tmp/footer.js" \
               && -s "$tmp/accessibility.css" ]] \
               && grep -qi '<title>Skunkworks Academy' "$tmp/home.html" \
+              && grep -q 'G-NWBW8HWEDR' "$tmp/home.html" \
               && grep -q "rev=${shell_revision}" "$tmp/home.html" \
               && grep -q 'data-skunkworks-accessibility="wcag-contrast"' "$tmp/home.html" \
               && grep -q 'https://www.skunkworksacademy.com/courses' "$tmp/courses.html" \
