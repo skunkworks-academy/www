@@ -1,0 +1,56 @@
+name: Platform visual regression
+
+on:
+  push:
+    branches:
+      - chore/consolidate-academy-styles-v2
+  pull_request:
+    paths:
+      - '**/*.html'
+      - 'assets/**'
+      - 'tests/platform-visual-regression.spec.cjs'
+      - 'tests/platform-visual-baseline.json'
+      - '.github/workflows/platform-visual-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  representative-surfaces:
+    name: Desktop/mobile representative surfaces
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Playwright test runner
+        run: |
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --workspaces=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start branch preview
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/academy-visual-http.log 2>&1 &
+          echo $! > /tmp/academy-visual-http.pid
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/academy-visual-http.log
+          exit 1
+
+      - name: Run platform render matrix
+        run: npx playwright test tests/platform-visual-regression.spec.cjs --reporter=line
+
+      - name: Upload desktop/mobile evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: platform-visual-regression-${{ github.run_id }}
+          path: test-results/
+          if-no-files-found: warn
+          retention-days: 30

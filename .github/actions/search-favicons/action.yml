@@ -1,0 +1,15 @@
+name: Academy search favicons
+description: Install and verify stable Academy favicon assets and HTML declarations in a Pages artifact.
+inputs:
+  artifact-path:
+    description: Directory containing the built website to publish.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Apply and verify search favicon contract
+      shell: bash
+      env:
+        ACADEMY_FAVICON_ACTION_PATH: ${{ github.action_path }}
+        ACADEMY_FAVICON_ARTIFACT_PATH: ${{ inputs.artifact-path }}
+      run: python3 "$ACADEMY_FAVICON_ACTION_PATH/apply.py" --root "$ACADEMY_FAVICON_ARTIFACT_PATH"

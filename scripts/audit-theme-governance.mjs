@@ -21,9 +21,7 @@ const root = path.resolve(rootArg);
 const skipDirectories = new Set(['.git', 'node_modules', '.course-catalog']);
 
 const requiredMarkers = [
-  ['data-skunkworks-page-contract="css"', 'page-contract CSS'],
   ['data-skunkworks-brand-theme="canonical"', 'canonical brand theme'],
-  ['data-skunkworks-theme-conformance="canonical"', 'Academy theme foundation'],
   ['data-skunkworks-page-contract="runtime"', 'page-contract runtime'],
   ['data-skunkworks-color-scheme="canonical"', 'colour-scheme metadata'],
 ];

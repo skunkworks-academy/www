@@ -222,6 +222,40 @@ body {
 
 .swa-hub__card p { margin: 0; }
 
+/* Hub contrast lock: these pages intentionally use light content surfaces even
+   when the global Academy shell is in dark mode. Keep every card foreground
+   explicitly paired with its white background so later theme/auto-contrast
+   layers cannot produce light text on white cards. */
+.swa-hub .swa-hub__hero,
+.swa-hub .swa-hub__card,
+.swa-hub .swa-hub__note {
+  background-color: #ffffff !important;
+  color: #172033 !important;
+}
+.swa-hub .swa-hub__hero :is(h1, h2, h3, strong),
+.swa-hub .swa-hub__section h2,
+.swa-hub .swa-hub__card :is(h3, strong) {
+  color: #172033 !important;
+}
+.swa-hub .swa-hub__hero :is(.swa-hub__lead, p:not(.swa-hub__eyebrow)),
+.swa-hub .swa-hub__section-intro,
+.swa-hub .swa-hub__card p,
+.swa-hub .swa-hub__note {
+  color: #3f4b5f !important;
+}
+.swa-hub .swa-hub__card span,
+.swa-hub .swa-hub__eyebrow {
+  color: #0b5597 !important;
+}
+.swa-hub .swa-hub__button:not(.swa-hub__button--primary) {
+  background: #ffffff !important;
+  color: #172033 !important;
+}
+.swa-hub .swa-hub__button--primary {
+  background: #0f6cbd !important;
+  color: #ffffff !important;
+}
+
 .swa-hub__card span {
   align-self: end;
   color: #0b5597 !important;

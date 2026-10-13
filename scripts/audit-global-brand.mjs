@@ -10,7 +10,7 @@ import path from "node:path";
 const root = process.cwd();
 const ignored = new Set([".git", "node_modules", "dist", "build", ".next"]);
 const allowedCss = new Set([
-  "/assets/skunkworks-design-system.css",
+  "/assets/academy-brand-theme.css",
   "/faculty/assets/css/skunkworks-design-system.css"
 ]);
 
@@ -42,10 +42,10 @@ async function auditFile(file) {
   const text = await readFile(file, "utf8");
   const relative = rel(file);
 
-  if (relative === "assets/skunkworks-design-system.css" || relative === "assets/skunkworks-ui.js") return;
+  if (relative === "assets/academy-brand-theme.css" || relative === "assets/skunkworks-ui.js") return;
 
   if (relative.endsWith(".html")) {
-    if (/<style[\s>]/i.test(text)) add(file, "inline-style", "Move page-level CSS into /assets/skunkworks-design-system.css.");
+    if (/<style[\s>]/i.test(text)) add(file, "inline-style", "Move page-level CSS into /assets/academy-brand-theme.css or a scoped feature stylesheet.");
     if (/data-brand=/i.test(text)) add(file, "deprecated-data-brand", "Use data-format and data-theme instead of data-brand.");
 
     const links = [...text.matchAll(/<link[^>]+rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)];
