@@ -397,6 +397,60 @@
   <script defer src="https://www.skunkworksacademy.com/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3" data-skunkworks-global-nav="forms-canonical"></script>
   <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical" />
   <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.09.07.1" data-skunkworks-page-contract="runtime"></script>
+
+  <!-- Page-local accessibility repairs: load after Academy theme styles. -->
+  <style id="career-assessment-contrast-fix">
+    body[data-ad-inventory="ineligible"] { background:#f7f9fc; color:#15171a; }
+    body[data-ad-inventory="ineligible"] .hero { color:#fff; background:#03033a; border-radius:0 0 24px 24px; padding-inline:clamp(16px,3vw,32px); }
+    body[data-ad-inventory="ineligible"] .hero h1,
+    body[data-ad-inventory="ineligible"] .hero h2,
+    body[data-ad-inventory="ineligible"] .hero .lead,
+    body[data-ad-inventory="ineligible"] .hero .signal-list li { color:#fff; }
+    body[data-ad-inventory="ineligible"] .hero .eyebrow { color:#bed8ff; }
+    body[data-ad-inventory="ineligible"] .hero-card { background:#151735; border:1px solid #536085; box-shadow:none; }
+    body[data-ad-inventory="ineligible"] .hero-card p { color:#e5e7eb; }
+    body[data-ad-inventory="ineligible"] .main-content,
+    body[data-ad-inventory="ineligible"] .main-content .panel,
+    body[data-ad-inventory="ineligible"] .main-content .panel-inner,
+    body[data-ad-inventory="ineligible"] .main-content .form-frame-header,
+    body[data-ad-inventory="ineligible"] .main-content .fallback { color:#15171a; }
+    body[data-ad-inventory="ineligible"] .main-content .panel { background:#fff; border:1px solid #d8dee8; box-shadow:0 8px 30px rgba(3,3,58,.07); }
+    body[data-ad-inventory="ineligible"] .main-content .panel h2,
+    body[data-ad-inventory="ineligible"] .main-content .panel h3,
+    body[data-ad-inventory="ineligible"] .main-content .panel strong,
+    body[data-ad-inventory="ineligible"] .main-content .panel p,
+    body[data-ad-inventory="ineligible"] .main-content .panel li,
+    body[data-ad-inventory="ineligible"] .main-content .panel span { color:#15171a; }
+    body[data-ad-inventory="ineligible"] .main-content .status-card { background:#f1f5f9; border:1px solid #c7d2df; }
+    body[data-ad-inventory="ineligible"] .main-content .status-card span { color:#334155; overflow-wrap:anywhere; }
+    body[data-ad-inventory="ineligible"] .main-content .process li { background:#f7f9fc; border-color:#cbd5e1; }
+    body[data-ad-inventory="ineligible"] .main-content .process li strong,
+    body[data-ad-inventory="ineligible"] .main-content .process li span { color:#15171a; }
+    body[data-ad-inventory="ineligible"] .main-content .assessment-card { display:grid; gap:5px; padding:16px; border:1px solid #cbd5e1; border-radius:14px; background:#f7f9fc; color:#15171a; text-decoration:none; }
+    body[data-ad-inventory="ineligible"] .main-content .assessment-card span { color:#334155; }
+    body[data-ad-inventory="ineligible"] .main-content .assessment-card .assessment-card__cta { color:#155bb5; font-weight:700; }
+    body[data-ad-inventory="ineligible"] .main-content .assessment-card:hover { border-color:#1e6bd0; }
+    body[data-ad-inventory="ineligible"] .main-content .notice { background:#fff8e8; border-color:#d4a017; color:#513600; }
+    body[data-ad-inventory="ineligible"] .main-content .notice strong { color:#513600; }
+    body[data-ad-inventory="ineligible"] .main-content .ops code { color:#1e40af; }
+    body[data-ad-inventory="ineligible"] .btn.primary { background:#1e6bd0; color:#fff !important; border:2px solid #1e6bd0 !important; }
+    body[data-ad-inventory="ineligible"] .btn.secondary { color:#fff; border:2px solid #cbd5e1; }
+    body[data-ad-inventory="ineligible"] .main-content .btn { color:#15171a; }
+    body[data-ad-inventory="ineligible"] a:focus-visible { outline:3px solid #f24208; outline-offset:3px; }
+    body[data-ad-inventory="ineligible"] .form-frame-header .eyebrow { color:#155bb5 !important; }
+    body[data-ad-inventory="ineligible"] .form-access { padding:20px 26px; background:#eff6ff; border-block:1px solid #bfdbfe; }
+    body[data-ad-inventory="ineligible"] .form-access p { color:#1e3a5f; margin-bottom:12px; }
+    body[data-ad-inventory="ineligible"] .form-access .btn { width:auto; }
+    body[data-ad-inventory="ineligible"] .form-status-note { border-left:4px solid #b45309; padding:10px 14px; background:#fffbeb; color:#713f12 !important; margin-top:16px; }
+    body[data-ad-inventory="ineligible"] iframe { min-height:900px; background:#fff; }
+    @media(max-width:700px) {
+      body[data-ad-inventory="ineligible"] .hero { padding:32px 18px; }
+      body[data-ad-inventory="ineligible"] .form-access { padding:20px; }
+      body[data-ad-inventory="ineligible"] .form-access .btn { width:100%; }
+      body[data-ad-inventory="ineligible"] iframe { min-height:900px; }
+      body[data-ad-inventory="ineligible"] .main-content { padding-top:24px; }
+    }
+  </style>
 </head>
 <body data-ad-inventory="ineligible">
   <main>
@@ -416,7 +470,7 @@
 
       <aside class="hero-card" aria-label="Assessment response workflow">
         <h2>Response workflow</h2>
-        <p>Use the embedded Microsoft Form below for controlled capture, reporting and follow-up.</p>
+        <p>Use the Microsoft Forms assessment to submit your learner onboarding information.</p>
         <ul class="signal-list">
           <li><span class="tick">1</span><span>Responses are submitted through Microsoft Forms.</span></li>
           <li><span class="tick">2</span><span>Training operations can review and export responses in Excel.</span></li>
@@ -465,7 +519,7 @@
           <div class="form-frame-header">
             <p class="eyebrow" style="color:#2563eb;margin-bottom:10px;">Microsoft Forms Embed</p>
             <h2 id="form-title">Complete the full Career Growth and Learning Assessment</h2>
-            <p>Use the four AI-guided assessments above for focused discovery, or complete this full Microsoft Form for controlled capture, pathway mapping and training-team follow-up.</p>
+            <p>Use the four AI-guided assessments above for focused discovery, or complete the full Microsoft Form for pathway mapping and training-team follow-up.</p>
             <div class="meta-grid">
               <div class="status-card"><strong>Destination</strong><span>training@skunkworksacademy.com</span></div>
               <div class="status-card"><strong>Reporting</strong><span>Excel response workbook</span></div>
@@ -473,7 +527,12 @@
             </div>
           </div>
 
-          <iframe
+          <div class="form-access">
+            <p><strong>Start here:</strong> Open the official onboarding assessment directly in Microsoft Forms. The embedded view is provided below for convenience.</p>
+            <a class="btn primary" href="https://forms.cloud.microsoft/r/QNJTXN6VDF?origin=lprLink" target="_blank" rel="noopener noreferrer">Complete onboarding assessment ↗</a>
+            <p class="form-status-note">If Microsoft Forms says “not accepting responses”, the form owner must enable <strong>Accept responses</strong> in Microsoft Forms settings. Website styling cannot override this Microsoft 365 restriction.</p>
+          </div>
+          <iframe loading="lazy"
             title="Career Growth and Learning Assessment Microsoft Form"
             src="https://forms.cloud.microsoft/r/QNJTXN6VDF?embed=true"
             allowfullscreen
