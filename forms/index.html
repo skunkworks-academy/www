@@ -418,7 +418,7 @@
     body[data-ad-inventory="ineligible"] .main-content .panel span { color:#15171a; }
     body[data-ad-inventory="ineligible"] .main-content .status-card { background:#f1f5f9; border:1px solid #c7d2df; }
     body[data-ad-inventory="ineligible"] .main-content .status-card span { color:#334155; overflow-wrap:anywhere; }
-    body[data-ad-inventory="ineligible"] .main-content .process li { background:#f7f9fc; border-color:#cbd5e1; }
+    body[data-ad-inventory="ineligible"] .main-content .process li { background:#f7f9fc !important; border-color:#cbd5e1 !important; }
     body[data-ad-inventory="ineligible"] .main-content .process li strong,
     body[data-ad-inventory="ineligible"] .main-content .process li span { color:#15171a; }
     body[data-ad-inventory="ineligible"] .main-content .assessment-card { display:grid; gap:5px; padding:16px; border:1px solid #cbd5e1; border-radius:14px; background:#f7f9fc; color:#15171a; text-decoration:none; }
@@ -450,6 +450,29 @@
   <script defer src="https://www.skunkworksacademy.com/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3" data-skunkworks-global-nav="forms-canonical"></script>
   <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical" />
   <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.09.07.1" data-skunkworks-page-contract="runtime"></script>
+
+  <style id="career-assessment-final-overrides">
+    /* Override externally loaded legacy Academy surface rules in BOTH theme modes. */
+    html body[data-ad-inventory="ineligible"] #assessment-form,
+    html body[data-ad-inventory="ineligible"] #assessment-form .layout { color:#15171a !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel-inner,
+    html body[data-ad-inventory="ineligible"] #assessment-form .form-frame-header,
+    html body[data-ad-inventory="ineligible"] #assessment-form .fallback { background:#fff !important; color:#15171a !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel h2,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel h3,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel p,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel li,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel strong,
+    html body[data-ad-inventory="ineligible"] #assessment-form .panel span { color:#15171a !important; opacity:1 !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .assessment-card,
+    html body[data-ad-inventory="ineligible"] #assessment-form .status-card { background:#f7f9fc !important; border:1px solid #cbd5e1 !important; color:#15171a !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .assessment-card .assessment-card__cta { color:#155bb5 !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .form-access { background:#eff6ff !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .form-access p { color:#1e3a5f !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .form-status-note { color:#713f12 !important; background:#fffbeb !important; }
+    html body[data-ad-inventory="ineligible"] #assessment-form .btn.primary { color:#fff !important; background:#1e6bd0 !important; }
+  </style>
 </head>
 <body data-ad-inventory="ineligible">
   <main>
@@ -547,20 +570,8 @@
         </section>
       </div>
 
-      <section class="panel ops" aria-labelledby="automation-title">
-        <div class="panel-inner">
-          <h2 id="automation-title">Excel and email routing requirement</h2>
-          <p>
-            Configure the Microsoft 365 owner account for this form so each submission is captured in the response Excel workbook and emailed to
-            <a href="mailto:training@skunkworksacademy.com"><code>training@skunkworksacademy.com</code></a>.
-          </p>
-          <ol class="process">
-            <li><strong>Excel capture</strong><span>Open the form in Microsoft Forms, go to Responses, and use the Excel response workbook for reporting.</span></li>
-            <li><strong>Email notification</strong><span>Create a Power Automate flow: When a new response is submitted → Get response details → Send an email to training@skunkworksacademy.com.</span></li>
-            <li><strong>Test submission</strong><span>Submit one internal test response from this page and verify the Excel row and training mailbox notification.</span></li>
-          </ol>
-        </div>
-      </section>
+      <!-- Operational Microsoft 365 setup steps belong in the administrator handbook, not the learner-facing assessment. -->
+
 
     </section>
   </main>
