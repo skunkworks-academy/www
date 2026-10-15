@@ -472,6 +472,44 @@
   <script defer src="https://www.skunkworksacademy.com/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3" data-skunkworks-global-nav="forms-canonical"></script>
   <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical" />
   <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.09.07.1" data-skunkworks-page-contract="runtime"></script>
+
+  <style id="career-assessment-dark-theme-v2">
+    /* This override MUST load after shared Academy styles. */
+    @media (prefers-color-scheme: dark) {
+      html body[data-ad-inventory="ineligible"] { background:#05070f !important; color:#f5f7ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form,
+      html body[data-ad-inventory="ineligible"] #assessment-form .layout { background:transparent !important; color:#f5f7ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel-inner,
+      html body[data-ad-inventory="ineligible"] #assessment-form .form-frame-header,
+      html body[data-ad-inventory="ineligible"] #assessment-form .fallback { background:#151923 !important; border-color:#394253 !important; color:#f5f7ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel h2,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel h3,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel strong,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel p,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel li,
+      html body[data-ad-inventory="ineligible"] #assessment-form .panel span { color:#f1f5f9 !important; opacity:1 !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .assessment-card,
+      html body[data-ad-inventory="ineligible"] #assessment-form .status-card,
+      html body[data-ad-inventory="ineligible"] #assessment-form .process li { background:#222938 !important; border:1px solid #536075 !important; color:#f5f7ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .assessment-card span,
+      html body[data-ad-inventory="ineligible"] #assessment-form .status-card span { color:#dce5f3 !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .assessment-card .assessment-card__cta { color:#8fc1ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .notice { background:#302719 !important; color:#ffe5ae !important; border-color:#a67c3a !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .form-access { background:#182943 !important; border-color:#42618a !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .form-access p { color:#e7f0ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .form-status-note { background:#302719 !important; color:#ffe5ae !important; border-color:#ffbb53 !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .form-frame-header .eyebrow { color:#8fc1ff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .btn.primary { background:#1e6bd0 !important; color:#fff !important; }
+      html body[data-ad-inventory="ineligible"] #assessment-form .ops code { background:#222938 !important; color:#bbd7ff !important; }
+    }
+    /* Respect Academy's explicitly selected dark mode when OS preference is light. */
+    html[data-theme="dark"] body[data-ad-inventory="ineligible"] #assessment-form .panel,
+    body[data-theme="dark"][data-ad-inventory="ineligible"] #assessment-form .panel { background:#151923 !important; color:#f5f7ff !important; }
+    html[data-theme="dark"] body[data-ad-inventory="ineligible"] #assessment-form .panel p,
+    html[data-theme="dark"] body[data-ad-inventory="ineligible"] #assessment-form .panel strong,
+    html[data-theme="dark"] body[data-ad-inventory="ineligible"] #assessment-form .panel span { color:#f1f5f9 !important; }
+  </style>
 </head>
 <body data-ad-inventory="ineligible">
   <main>
