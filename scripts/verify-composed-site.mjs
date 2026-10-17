@@ -62,7 +62,7 @@ for (const route of routes) {
 
     if (!/<html\b/i.test(html)) throw new Error(`route ${route} did not return an HTML document`);
     if (route === "/courses/professional-articulation") {
-      for (const expected of ["Raptor consonant precision", "Triceratops number clarity", "Start recording", "The Articulation Expedition"]) {
+      for (const expected of ["Raptor consonant precision", "Triceratops number clarity", "Start recording", "The Articulation Expedition", "Listen to a model delivery", "Listening comprehension checkpoint", "Mark challenge completed"]) {
         if (!html.includes(expected)) throw new Error(`ART-101 interactive content missing: ${expected}`);
       }
       if (html.includes("Checking learner access")) throw new Error("ART-101 unexpectedly enrolment-gated");
