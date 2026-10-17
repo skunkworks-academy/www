@@ -61,6 +61,13 @@ for (const route of routes) {
     const html = await response.text();
 
     if (!/<html\b/i.test(html)) throw new Error(`route ${route} did not return an HTML document`);
+    if (route === "/courses/professional-articulation") {
+      for (const expected of ["Raptor consonant precision", "Triceratops number clarity", "Start recording", "The Articulation Expedition"]) {
+        if (!html.includes(expected)) throw new Error(`ART-101 interactive content missing: ${expected}`);
+      }
+      if (html.includes("Checking learner access")) throw new Error("ART-101 unexpectedly enrolment-gated");
+    }
+
 
     const assets = extractAssets(html);
     if (route.startsWith("/courses") && !assets.some(ref => ref.includes("/courses/assets/"))) {
