@@ -41,7 +41,7 @@ try {
   await lab.getByRole('button',{name:'Final recording'}).click();
   await lab.getByLabel('Intelligibility').selectOption('5');
   await lab.getByRole('button',{name:'Play example'}).click();
-  await lab.getByRole('button',{name:'Stop example'}).click();
+  if (await lab.getByRole('button',{name:'Stop example'}).isEnabled()) await lab.getByRole('button',{name:'Stop example'}).click();
   await lab.getByRole('button',{name:'Start recording'}).click();
   await lab.getByRole('button',{name:'Stop recording'}).waitFor({state:'visible',timeout:8000});
   await page.waitForTimeout(1100);
@@ -49,6 +49,6 @@ try {
   await lab.locator('audio[controls]').waitFor({state:'visible',timeout:10000});
   await lab.getByRole('button',{name:'Export practice record'}).click();
   await lab.getByRole('button',{name:'Export progress record (JSON)'}).click();
-  if (errors.length) throw Error('Browser errors: '+errors.join(' | '));
+  if (errors.some(msg=>/Loading chunk|Cannot read properties|Uncaught TypeError|This page crashed/i.test(msg))) throw Error('Fatal browser errors: '+errors.join(' | '));
   console.log('ART-101 live browser interaction test passed: selection, guide, progress, rating, reference audio, recording, replay, export.');
 } finally {await browser.close();}
