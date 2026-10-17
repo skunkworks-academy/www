@@ -2,6 +2,7 @@ import {chromium} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 
+// After the Docusaurus navbar fix, validate the full rendered controls.
 const lazyChunk='assets/js/17896441.89204aaf.js';
 if (fs.existsSync(lazyChunk)) {
  const source=fs.readFileSync(lazyChunk,'utf8');
