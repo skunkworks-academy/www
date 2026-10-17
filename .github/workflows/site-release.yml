@@ -154,6 +154,54 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  art101-browser:
+    name: ART-101 interaction and hydration test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: validate
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/course-catalog
+          ref: main
+          path: .course-catalog
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Build course catalogue
+        working-directory: .course-catalog
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Mount ART-101 course and route
+        run: |
+          node scripts/mount-subsystem.mjs --source .course-catalog/build --mount courses --landing courses.html --manifest course-manifest.json --asset-dirs assets,img,downloads
+          test -s courses/professional-articulation.html
+          mkdir -p courses/professional-articulation
+          cp courses/professional-articulation.html courses/professional-articulation/index.html
+          # Compatibility for Docusaurus lazy chunks with root webpack publicPath.
+          # Retain canonical isolated /courses/assets and expose hashed chunks
+          # at /assets/{js,css} until upstream build uses a scoped base URL.
+          for dir in js css; do
+            if test -d "courses/assets/$dir"; then
+              mkdir -p "assets/$dir"
+              cp -a "courses/assets/$dir/." "assets/$dir/"
+            fi
+          done
+
+      - name: Test real browser controls
+        run: |
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          node scripts/test-art101-interactions.mjs
+
   deploy:
     name: Deploy GitHub Pages
     if: >-
@@ -204,12 +252,62 @@ jobs:
             --manifest course-manifest.json \
             --asset-dirs assets,img,downloads
 
+          # The Docusaurus runtime contains a root /assets/ webpack public path.
+          # HTML asset tags are rewritten by mount-subsystem, but dynamic JS
+          # chunks must also resolve under the isolated /courses/assets mount.
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = 'courses/assets';
+          let count = 0;
+          function scan(dir) {
+            for (const item of fs.readdirSync(dir, {withFileTypes:true})) {
+              const full = path.join(dir,item.name);
+              if (item.isDirectory()) scan(full);
+              else if (item.isFile() && full.endsWith('.js')) {
+                const source = fs.readFileSync(full,'utf8');
+                const updated = source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
+                if (updated !== source) {fs.writeFileSync(full,updated);count++;}
+              }
+            }
+          }
+          scan(root);
+          console.log('Rebased dynamic webpack asset paths in',count,'bundles');
+          if (count === 0) throw Error('No webpack asset paths rewritten; inspect generated publicPath');
+          NODE
+
+          # Compatibility for Docusaurus lazy chunks with root webpack publicPath.
+          # Retain canonical isolated /courses/assets and expose hashed chunks
+          # at /assets/{js,css} until upstream build uses a scoped base URL.
+          for dir in js css; do
+            if test -d "courses/assets/$dir"; then
+              mkdir -p "assets/$dir"
+              cp -a "courses/assets/$dir/." "assets/$dir/"
+            fi
+          done
           # Docusaurus emits /courses/professional-articulation.html while
           # users navigate to the extensionless public URL. GitHub Pages and
           # local Python hosting must both resolve the direct route.
           test -s courses/professional-articulation.html
           mkdir -p courses/professional-articulation
           cp courses/professional-articulation.html courses/professional-articulation/index.html
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          function scan(dir) {
+            for (const item of fs.readdirSync(dir,{withFileTypes:true})) {
+              const full=path.join(dir,item.name);
+              if(item.isDirectory()) scan(full);
+              else if(item.isFile()&&full.endsWith('.js')){
+                const source=fs.readFileSync(full,'utf8');
+                const updated=source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
+                if(updated!==source) fs.writeFileSync(full,updated);
+              }
+            }
+          }
+          scan('courses/assets');
+          NODE
+
           test -s courses/professional-articulation/index.html
 
           test -f courses/index.html
@@ -225,6 +323,21 @@ jobs:
 
           rm -rf .course-catalog
           echo 'Mounted skunkworks-academy/course-catalog at /courses using the generic isolated subsystem contract.'
+
+      - name: Verify ART-101 controls respond in a real browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for attempt in {1..25}; do
+            if curl -fsS http://127.0.0.1:4175/courses/professional-articulation >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-art101-interactions.mjs
 
       - name: Apply publisher indexing and AdSense policy
         run: npm run publisher:apply
