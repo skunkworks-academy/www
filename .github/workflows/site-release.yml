@@ -468,7 +468,7 @@ jobs:
               if 'digital-platform-courses' in path.parts:
                   if 'skunkworks-ui.js' not in html or 'skunkworks-footer.js' not in html:
                       raise SystemExit(f'Missing Academy canonical chrome on course page: {path}')
-                  if re.search(r'academy-navigation\\.js', html, re.I):
+                  if 'academy-navigation.js' in html:
                       raise SystemExit(f'Legacy shell leaked into Docusaurus course page: {path}')
                   course_pages.append(path)
                   continue
