@@ -19,7 +19,8 @@ try {
   });
   await page.goto('http://127.0.0.1:4175/courses/professional-articulation',{waitUntil:'networkidle',timeout:45000});
   const lab=page.locator('section[aria-labelledby="dino-lab-heading"]');
-  await lab.getByRole('button',{name:/Triceratops number clarity/}).click();
+  console.log('ART101 diagnostics:', JSON.stringify({url:page.url(),title:await page.title(),labCount:await lab.count(),body:(await page.locator('body').innerText()).slice(0,800),errors}));
+  await lab.getByRole('button',{name:/Triceratops number clarity/}).click({timeout:6000});
   await page.waitForTimeout(400);
   if (!(await lab.locator('#art101-active-challenge h3').innerText()).includes('Triceratops')) { const scripts=await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.src)); const status=await page.evaluate(()=>({ready:document.readyState,path:location.pathname,webpack:!!window.webpackChunkdocusaurus})); throw Error('challenge click did not update prompt; scripts='+JSON.stringify(scripts)+'; state='+JSON.stringify(status)+'; browser errors='+JSON.stringify(errors)); }
   await lab.getByRole('button',{name:'Show delivery guide'}).click();
