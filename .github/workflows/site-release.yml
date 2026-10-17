@@ -204,6 +204,14 @@ jobs:
             --manifest course-manifest.json \
             --asset-dirs assets,img,downloads
 
+          # Docusaurus emits /courses/professional-articulation.html while
+          # users navigate to the extensionless public URL. GitHub Pages and
+          # local Python hosting must both resolve the direct route.
+          test -s courses/professional-articulation.html
+          mkdir -p courses/professional-articulation
+          cp courses/professional-articulation.html courses/professional-articulation/index.html
+          test -s courses/professional-articulation/index.html
+
           test -f courses/index.html
           test -d courses/assets
           grep -q 'https://www.skunkworksacademy.com/courses' courses/index.html
