@@ -73,8 +73,10 @@ async function checkWorkbook(page,slug,path,full){
  await book.getByRole('button',{name:'Save my notes'}).click();
  assert((await book.locator('.workbookStatus').textContent())?.length>3,'Save produced no feedback '+slug+path);
  await book.getByRole('button',{name:'Copy blank evidence template'}).click();
- const msg=await book.locator('.workbookStatus').textContent();
- assert((msg||'').includes('copied')||(msg||'').includes('Clipboard access was blocked'),'Copy produced no result '+slug+path);
+ await page.waitForFunction(()=>{
+   const msg=document.querySelector('#page-workbook .workbookStatus')?.textContent||'';
+   return msg.includes('copied')||msg.includes('Clipboard access was blocked');
+ },null,{timeout:7000});
  if(full){
    await page.reload({waitUntil:'domcontentloaded'});
    const b=page.locator('#page-workbook');await b.waitFor();
