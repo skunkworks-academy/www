@@ -24,6 +24,12 @@
     : CANONICAL_ROOT;
 
   if (typeof document === "undefined") return;
+  // Docusaurus controls its own React-managed document layout. The legacy
+  // global navigation MutationObserver removes/reparents its chrome and can
+  // crash hydrated exercises. Keep the Academy CSS/theme, but do not install
+  // the DOM-mutating legacy shell on course-catalog routes.
+  if (/^\\/courses(?:\\/|$)/.test(pathname)) return;
+
 
   function isLearnSurface() {
     if ([
