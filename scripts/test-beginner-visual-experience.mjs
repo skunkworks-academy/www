@@ -3,7 +3,7 @@ import {chromium} from 'playwright';
 
 /**
  * Real Chromium conformance checks against the final Academy-composed site.
- * Every one of the five courses has 15 independent learning pages. Test each
+ * Every one of the five courses has 16 independent learning pages. Test each
  * page at mobile and desktop widths, not only the introductory pages.
  */
 const origin=process.env.SKW_STUDIO_TEST_ORIGIN || 'http://127.0.0.1:4178';
@@ -11,8 +11,8 @@ const slugs=['ai','cyber','it-support','microsoft-productivity','cloud'];
 const modules=Array.from({length:6},(_,i)=>'/modules/'+String(i+1).padStart(2,'0')+'/');
 const labs=Array.from({length:3},(_,i)=>'/labs/lab-'+String(i+1).padStart(2,'0')+'/');
 const paths=['/','/course-guide/',...modules,...labs,
-  '/assessment/knowledge-check/','/assessment/capstone/','/assessment/rubric/','/references/'];
-if(paths.length!==15)throw Error('A course no longer has the required 15 pages');
+  '/assessment/knowledge-check/','/assessment/capstone/','/assessment/rubric/','/references/','/assessment/completion/'];
+if(paths.length!==16)throw Error('A course no longer has the required 16 pages');
 const browser=await chromium.launch({headless:true});
 let checked=0,actions=0,assessments=0;
 function assert(ok,message){if(!ok)throw Error(message)}
@@ -136,6 +136,22 @@ try {
     assert(response?.ok(),route+' returned HTTP '+response?.status());
     await page.locator('.swa-global-nav').waitFor({timeout:20000});
     await page.locator('.swa-global-footer').waitFor({timeout:20000});
+    if(path==='/assessment/completion/'){
+      const end=page.locator('#course-completion');
+      await end.waitFor({timeout:20000});
+      assert(await page.locator('.swa-global-nav').count()===1,'Missing Academy header on completion '+route);
+      assert(await page.locator('.swa-global-footer').count()===1,'Missing Academy footer on completion '+route);
+      assert(await page.locator('#learning-studio').count()===0,'The finished course should not append another learning drill '+route);
+      assert(await page.locator('#page-workbook').count()===0,'The finished course should not append another workbook '+route);
+      assert(await page.locator('.pagination-nav__link--next').count()===0,'Completion must not navigate into another course '+route);
+      assert(await end.locator('a[href*="/beginner/"]').count()>0,'Missing return to beginners catalogue '+route);
+      const portal=end.locator('a[href*="portal.skunkworksacademy.com/?certificate="]').first();
+      assert(await portal.count()===1,'Missing verified awards portal link '+route);
+      assert((await portal.getAttribute('href'))?.includes('certificate=SKW-BEG-'),'Incorrect certificate portal course ID '+route);
+      assert((await page.locator('body').evaluate(el=>el.scrollWidth))<=viewport.width+2,'Horizontal overflow on completion '+route);
+      if(errors.length)throw Error(route+' runtime errors: '+errors.join(' | '));
+      actions+=6;checked++;continue;
+    }
     await page.locator('#learning-studio').waitFor({timeout:20000});
     await page.locator('#page-workbook').waitFor({timeout:20000});
     const links=page.locator('.learningPageJumps a');
@@ -171,4 +187,4 @@ try {
   await context.close();
  }
 } finally {await browser.close();}
-console.log('Beginner interactive conformance passed: '+checked+' live-style page loads (75 pages × mobile and desktop), '+actions+' user actions, '+assessments+' graded-formative quiz attempts, Academy global chrome, local persistence and responsive diagrams.');
+console.log('Beginner interactive conformance passed: '+checked+' live-style page loads (80 pages × mobile and desktop), '+actions+' user actions, '+assessments+' graded-formative quiz attempts, Academy global chrome, local persistence and responsive diagrams.');
