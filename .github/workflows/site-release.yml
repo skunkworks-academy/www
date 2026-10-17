@@ -207,9 +207,10 @@ jobs:
     if: >-
       always() &&
       needs.validate.result == 'success' &&
+      needs.art101-browser.result == 'success' &&
       (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
-    needs: [validate, lighthouse]
+    needs: [validate, lighthouse, art101-browser]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     environment:
