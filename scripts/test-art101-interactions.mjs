@@ -21,7 +21,7 @@ try {
   const lab=page.locator('section[aria-labelledby="dino-lab-heading"]');
   await lab.getByRole('button',{name:/Triceratops number clarity/}).click();
   await page.waitForTimeout(400);
-  if (!(await lab.locator('#art101-active-challenge h3').innerText()).includes('Triceratops')) throw Error('challenge click did not update prompt');
+  if (!(await lab.locator('#art101-active-challenge h3').innerText()).includes('Triceratops')) { const scripts=await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.src)); const status=await page.evaluate(()=>({ready:document.readyState,path:location.pathname,webpack:!!window.webpackChunkdocusaurus})); throw Error('challenge click did not update prompt; scripts='+JSON.stringify(scripts)+'; state='+JSON.stringify(status)+'; browser errors='+JSON.stringify(errors)); }
   await lab.getByRole('button',{name:'Show delivery guide'}).click();
   if (!(await lab.getByRole('button',{name:'Hide delivery guide'}).isVisible())) throw Error('guide not expanded');
   await lab.getByRole('button',{name:'Mark challenge completed'}).click();
