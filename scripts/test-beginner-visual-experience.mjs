@@ -3,7 +3,7 @@ import {chromium} from 'playwright';
 
 /**
  * Real Chromium conformance checks against the final Academy-composed site.
- * Every one of the five courses has 15 independent learning pages. Test each
+ * Every one of the five courses has 16 pages, including a terminal completion page. Test each
  * page at mobile and desktop widths, not only the introductory pages.
  */
 const origin=process.env.SKW_STUDIO_TEST_ORIGIN || 'http://127.0.0.1:4178';
@@ -11,8 +11,8 @@ const slugs=['ai','cyber','it-support','microsoft-productivity','cloud'];
 const modules=Array.from({length:6},(_,i)=>'/modules/'+String(i+1).padStart(2,'0')+'/');
 const labs=Array.from({length:3},(_,i)=>'/labs/lab-'+String(i+1).padStart(2,'0')+'/');
 const paths=['/','/course-guide/',...modules,...labs,
-  '/assessment/knowledge-check/','/assessment/capstone/','/assessment/rubric/','/references/'];
-if(paths.length!==15)throw Error('A course no longer has the required 15 pages');
+  '/assessment/knowledge-check/','/assessment/capstone/','/assessment/rubric/','/references/','/assessment/completion/'];
+if(paths.length!==16)throw Error('A course must have 15 learning pages plus one final completion page');
 const browser=await chromium.launch({headless:true});
 let checked=0,actions=0,assessments=0;
 function assert(ok,message){if(!ok)throw Error(message)}
@@ -136,10 +136,13 @@ try {
     assert(response?.ok(),route+' returned HTTP '+response?.status());
     await page.locator('.swa-global-nav').waitFor({timeout:20000});
     await page.locator('.swa-global-footer').waitFor({timeout:20000});
-    await page.locator('#learning-studio').waitFor({timeout:20000});
-    await page.locator('#page-workbook').waitFor({timeout:20000});
+    const isConclusion=path==='/assessment/completion/';
+    if(!isConclusion){
+     await page.locator('#learning-studio').waitFor({timeout:20000});
+     await page.locator('#page-workbook').waitFor({timeout:20000});
+    }
     const links=page.locator('.learningPageJumps a');
-    assert(await links.count()===2,'Missing page interaction shortcut links '+route);
+    assert(await links.count()===(isConclusion?0:2),'Incorrect course page interactive shortcuts '+route);
     const sameOrigin=await page.evaluate(()=>{
      const nav=document.querySelectorAll('.swa-global-nav').length;
      const footer=document.querySelectorAll('.swa-global-footer').length;
@@ -150,6 +153,19 @@ try {
     assert(sameOrigin.nav===1&&sameOrigin.footer===1&&sameOrigin.brandVisible,route+' global Academy header/footer invalid '+JSON.stringify(sameOrigin));
     assert(sameOrigin.legacy===0,route+' loads mutation-heavy legacy navigation');
     assert(sameOrigin.width<=sameOrigin.screen+2,route+' horizontal page overflow '+JSON.stringify(sameOrigin));
+    if(isConclusion){
+      const end=page.locator('#course-completion');
+      assert(await hasVisible(end),'Course terminal completion panel missing '+route);
+      assert(await page.locator('#learning-studio').count()===0,'Completion screen incorrectly renders new practice activities '+route);
+      assert(await page.locator('#page-workbook').count()===0,'Completion screen incorrectly renders a practice workbook '+route);
+      assert(await page.locator('.pagination-nav__link--next').count()===0,'End of course forwards into another course '+route);
+      assert(await end.getByText('Certificate of Course Completion & digital badge').isVisible(),'Certificate and badge panel missing '+route);
+      assert((await end.getByRole('link',{name:'View my verified awards in the Academy Portal'}).getAttribute('href'))?.includes('certificate='),'No valid portal certificate link '+route);
+      await end.getByRole('link',{name:'Back to all beginner courses'}).click();
+      await page.waitForURL(/\/digital-platform-courses\/beginner\/?$/,{timeout:10000});
+      assert(await page.locator('.courseGrid .courseCard').count()===5,'Return to beginner catalogue failed '+route);
+      actions+=6;
+    }else{
     await links.first().click();
     assert(await page.evaluate(()=>location.hash)==='#learning-studio','Practice shortcut not working '+route);
     await links.last().click();
@@ -164,6 +180,7 @@ try {
       const details=page.locator('details summary').first();
       if(await details.count()){await details.click();assert(await details.evaluate(el=>el.parentElement?.hasAttribute('open')),'Module self-check did not expand '+route);actions++;}
     }
+    }
     assert(errors.length===0,route+' JavaScript error(s): '+errors.join(' | '));
     checked++;
    }
@@ -171,4 +188,4 @@ try {
   await context.close();
  }
 } finally {await browser.close();}
-console.log('Beginner interactive conformance passed: '+checked+' live-style page loads (75 pages × mobile and desktop), '+actions+' user actions, '+assessments+' graded-formative quiz attempts, Academy global chrome, local persistence and responsive diagrams.');
+console.log('Beginner interactive conformance passed: '+checked+' live-style page loads (80 pages × mobile and desktop), '+actions+' user actions, '+assessments+' graded-formative quiz attempts, Academy global chrome, local persistence and responsive diagrams.');
