@@ -27,6 +27,8 @@ try {
        if(!response?.ok())throw Error(route+' returned HTTP '+response?.status());
        await page.locator('.swa-global-nav').waitFor({timeout:18000});
        await page.locator('.swa-global-footer').waitFor({timeout:18000});
+       await page.locator('.studioHeroArt').scrollIntoViewIfNeeded();
+       await page.waitForFunction(()=>{const img=document.querySelector('.studioHeroArt');return img instanceof HTMLImageElement && img.complete && img.naturalWidth>0;},{timeout:12000});
        const state=await page.evaluate(()=>{
          const nav=document.querySelectorAll('.swa-global-nav').length;
          const footer=document.querySelectorAll('.swa-global-footer').length;
