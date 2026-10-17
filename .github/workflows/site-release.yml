@@ -183,6 +183,16 @@ jobs:
           test -s courses/professional-articulation.html
           mkdir -p courses/professional-articulation
           cp courses/professional-articulation.html courses/professional-articulation/index.html
+          # Compatibility for Docusaurus lazy chunks with root webpack publicPath.
+          # Retain canonical isolated /courses/assets and expose hashed chunks
+          # at /assets/{js,css} until upstream build uses a scoped base URL.
+          for dir in js css; do
+            if test -d "courses/assets/$dir"; then
+              mkdir -p "assets/$dir"
+              cp -a "courses/assets/$dir/." "assets/$dir/"
+            fi
+          done
+
       - name: Test real browser controls
         run: |
           npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
@@ -266,6 +276,15 @@ jobs:
           if (count === 0) throw Error('No webpack asset paths rewritten; inspect generated publicPath');
           NODE
 
+          # Compatibility for Docusaurus lazy chunks with root webpack publicPath.
+          # Retain canonical isolated /courses/assets and expose hashed chunks
+          # at /assets/{js,css} until upstream build uses a scoped base URL.
+          for dir in js css; do
+            if test -d "courses/assets/$dir"; then
+              mkdir -p "assets/$dir"
+              cp -a "courses/assets/$dir/." "assets/$dir/"
+            fi
+          done
           # Docusaurus emits /courses/professional-articulation.html while
           # users navigate to the extensionless public URL. GitHub Pages and
           # local Python hosting must both resolve the direct route.
