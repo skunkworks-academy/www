@@ -472,6 +472,13 @@
 
   function removeNode(node, kind) {
     if (!node || isPreserved(node, kind)) return;
+    // Docusaurus owns these nodes through React. Removing its navbar/footer
+    // leaves React refs null and crashes the hydrated course controls.
+    // Preserve DOM identity and hide only visual duplicate framework chrome.
+    if (node.closest && node.closest('#__docusaurus')) {
+      node.style.setProperty('display', 'none', 'important');
+      return;
+    }
     if (node.parentNode) node.parentNode.removeChild(node);
   }
 
