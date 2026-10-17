@@ -226,6 +226,21 @@ jobs:
           rm -rf .course-catalog
           echo 'Mounted skunkworks-academy/course-catalog at /courses using the generic isolated subsystem contract.'
 
+      - name: Verify ART-101 controls respond in a real browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for attempt in {1..25}; do
+            if curl -fsS http://127.0.0.1:4175/courses/professional-articulation >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-art101-interactions.mjs
+
       - name: Apply publisher indexing and AdSense policy
         run: npm run publisher:apply
 
