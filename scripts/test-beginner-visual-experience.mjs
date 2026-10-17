@@ -163,6 +163,7 @@ try {
       assert((await end.getByRole('link',{name:'View my verified awards in the Academy Portal'}).getAttribute('href'))?.includes('certificate='),'No valid portal certificate link '+route);
       await end.getByRole('link',{name:'Back to all beginner courses'}).click();
       await page.waitForURL(/\/digital-platform-courses\/beginner\/?$/,{timeout:10000});
+      await page.locator('.courseGrid .courseCard').first().waitFor({timeout:15000});
       assert(await page.locator('.courseGrid .courseCard').count()===5,'Return to beginner catalogue failed '+route);
       actions+=6;
     }else{
