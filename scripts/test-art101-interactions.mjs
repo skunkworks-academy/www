@@ -1,5 +1,13 @@
 import {chromium} from 'playwright';
+import fs from 'node:fs';
+import path from 'node:path';
 
+const lazyChunk='assets/js/17896441.89204aaf.js';
+if (fs.existsSync(lazyChunk)) {
+ const source=fs.readFileSync(lazyChunk,'utf8');
+ const matches=[...source.matchAll(/clientHeight/g)].slice(0,8).map(m=>source.slice(Math.max(0,m.index-230),m.index+180));
+ console.log('ART101 chunk clientHeight contexts:',JSON.stringify(matches));
+}
 const browser = await chromium.launch({headless:true,args:['--no-sandbox']});
 const page = await browser.newPage({viewport:{width:390,height:844},permissions:['microphone']});
 const errors=[];
