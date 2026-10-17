@@ -242,12 +242,53 @@ jobs:
             --manifest course-manifest.json \
             --asset-dirs assets,img,downloads
 
+          # The Docusaurus runtime contains a root /assets/ webpack public path.
+          # HTML asset tags are rewritten by mount-subsystem, but dynamic JS
+          # chunks must also resolve under the isolated /courses/assets mount.
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = 'courses/assets';
+          let count = 0;
+          function scan(dir) {
+            for (const item of fs.readdirSync(dir, {withFileTypes:true})) {
+              const full = path.join(dir,item.name);
+              if (item.isDirectory()) scan(full);
+              else if (item.isFile() && full.endsWith('.js')) {
+                const source = fs.readFileSync(full,'utf8');
+                const updated = source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/');
+                if (updated !== source) {fs.writeFileSync(full,updated);count++;}
+              }
+            }
+          }
+          scan(root);
+          console.log('Rebased dynamic webpack asset paths in',count,'bundles');
+          if (count === 0) throw Error('No webpack asset paths rewritten; inspect generated publicPath');
+          NODE
+
           # Docusaurus emits /courses/professional-articulation.html while
           # users navigate to the extensionless public URL. GitHub Pages and
           # local Python hosting must both resolve the direct route.
           test -s courses/professional-articulation.html
           mkdir -p courses/professional-articulation
           cp courses/professional-articulation.html courses/professional-articulation/index.html
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          function scan(dir) {
+            for (const item of fs.readdirSync(dir,{withFileTypes:true})) {
+              const full=path.join(dir,item.name);
+              if(item.isDirectory()) scan(full);
+              else if(item.isFile()&&full.endsWith('.js')){
+                const source=fs.readFileSync(full,'utf8');
+                const updated=source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/');
+                if(updated!==source) fs.writeFileSync(full,updated);
+              }
+            }
+          }
+          scan('courses/assets');
+          NODE
+
           test -s courses/professional-articulation/index.html
 
           test -f courses/index.html
