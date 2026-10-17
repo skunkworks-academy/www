@@ -266,7 +266,7 @@ jobs:
               if (item.isDirectory()) scan(full);
               else if (item.isFile() && full.endsWith('.js')) {
                 const source = fs.readFileSync(full,'utf8');
-                const updated = source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
+                const updated = source.replaceAll('"/assets/', '"/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
                 if (updated !== source) {fs.writeFileSync(full,updated);count++;}
               }
             }
@@ -300,7 +300,7 @@ jobs:
               if(item.isDirectory()) scan(full);
               else if(item.isFile()&&full.endsWith('.js')){
                 const source=fs.readFileSync(full,'utf8');
-                const updated=source.replace(/(?<!\\/courses)\\/assets\\//g,'/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
+                const updated=source.replaceAll('"/assets/', '"/courses/assets/').replaceAll('.p="/"','.p="/courses/"');
                 if(updated!==source) fs.writeFileSync(full,updated);
               }
             }
