@@ -226,10 +226,22 @@ jobs:
         run: |
           set -euo pipefail
           base='https://www.skunkworksacademy.com'
-          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-black.png" >/dev/null
-          curl --location --fail --silent --show-error --max-time 20 "$base/images/favicon-white.png" >/dev/null
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.css?v=2026.09.07.1" | grep -q 'compatibility entry point'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-page-contract.js?v=2026.09.07.1" | grep -q 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-brand-theme.css?v=2026.09.08.3" | grep -q 'single authored source'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-theme-conformance.css?v=2026.09.08.3" | grep -q 'compatibility entry point'
-          curl --location --fail --silent --show-error --max-time 20 "$base/assets/academy-forms.css?v=2026.08.20.1" | grep -q 'Skunkworks Academy forms and document surface contract'
+          staging="$(mktemp -d)"
+          trap 'rm -rf "$staging"' EXIT
+          check_asset() {
+            local path="$1"
+            local expected="${2:-}"
+            local filename="$staging/$(basename "${path%%\?*}")"
+            curl --location --fail --silent --show-error --retry 2 --max-time 20 "$base/$path" -o "$filename"
+            test -s "$filename"
+            if [[ -n "$expected" ]]; then
+              grep -Fq -- "$expected" "$filename"
+            fi
+          }
+          check_asset 'images/favicon-black.png'
+          check_asset 'images/favicon-white.png'
+          check_asset 'assets/academy-page-contract.css?v=2026.09.07.1' 'compatibility entry point'
+          check_asset 'assets/academy-page-contract.js?v=2026.09.07.1' 'SKUNKWORKS_ACADEMY_PAGE_CONTRACT'
+          check_asset 'assets/academy-brand-theme.css?v=2026.09.08.3' 'single authored source'
+          check_asset 'assets/academy-theme-conformance.css?v=2026.09.08.3' 'compatibility entry point'
+          check_asset 'assets/academy-forms.css?v=2026.08.20.1' 'Skunkworks Academy forms and document surface contract'
