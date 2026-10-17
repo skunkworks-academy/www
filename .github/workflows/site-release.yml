@@ -154,6 +154,44 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  art101-browser:
+    name: ART-101 interaction and hydration test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: validate
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/course-catalog
+          ref: main
+          path: .course-catalog
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Build course catalogue
+        working-directory: .course-catalog
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Mount ART-101 course and route
+        run: |
+          node scripts/mount-subsystem.mjs --source .course-catalog/build --mount courses --landing courses.html --manifest course-manifest.json --asset-dirs assets,img,downloads
+          test -s courses/professional-articulation.html
+          mkdir -p courses/professional-articulation
+          cp courses/professional-articulation.html courses/professional-articulation/index.html
+      - name: Test real browser controls
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          node scripts/test-art101-interactions.mjs
+
   deploy:
     name: Deploy GitHub Pages
     if: >-
