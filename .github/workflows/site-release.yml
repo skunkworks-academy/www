@@ -326,7 +326,7 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4174/
-          --routes /,/courses/,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
 
       - uses: actions/configure-pages@v5
 
@@ -441,4 +441,4 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url https://www.skunkworksacademy.com/
-          --routes /,/courses/,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
