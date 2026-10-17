@@ -408,6 +408,21 @@ jobs:
           rm -rf .digital-platform-courses
           echo "Beginner courses mounted at /digital-platform-courses and /beginner/ aliases"
 
+      - name: Browser-test Academy beginner lessons and global chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4179 --bind 127.0.0.1 > /tmp/skw-studio-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for attempt in {1..25}; do
+            if curl -fsS http://127.0.0.1:4179/digital-platform-courses/beginner/ai/ >/dev/null; then break; fi
+            sleep 1
+          done
+          SKW_STUDIO_TEST_ORIGIN=http://127.0.0.1:4179 node scripts/test-beginner-visual-experience.mjs
+
       - name: Apply publisher indexing and AdSense policy
         run: npm run publisher:apply
 
@@ -435,6 +450,7 @@ jobs:
           accessibility_tag = re.compile(r'<link\b[^>]*(?:skunkworks-accessibility\.css|data-skunkworks-accessibility)[^>]*>', re.I)
           pages = []
           fragments = []
+          course_pages = []
 
           for path in Path('.').rglob('*.html'):
               if any(part in {'.git', 'node_modules'} for part in path.parts):
@@ -444,6 +460,17 @@ jobs:
               is_document = bool(re.search(r'<!doctype\s+html|<html\b|<head\b|<body\b', html, re.I))
               if not is_document:
                   fragments.append(path)
+                  continue
+
+              # The Docusaurus course app owns its React document. The legacy
+              # academy-navigation loader mutates HTML and can break hydration.
+              # Use the same canonical UI and footer scripts directly instead.
+              if 'digital-platform-courses' in path.parts:
+                  if 'skunkworks-ui.js' not in html or 'skunkworks-footer.js' not in html:
+                      raise SystemExit(f'Missing Academy canonical chrome on course page: {path}')
+                  if re.search(r'academy-navigation\\.js', html, re.I):
+                      raise SystemExit(f'Legacy shell leaked into Docusaurus course page: {path}')
+                  course_pages.append(path)
                   continue
 
               html = shell_tag.sub('', html)
@@ -482,6 +509,7 @@ jobs:
           print(f'Normalized Academy global shell {version} / revision {revision} / v10 on {len(pages)} HTML document(s).')
           print(f'Normalized WCAG contrast stylesheet {accessibility_version} on {len(pages)} HTML document(s).')
           print(f'Skipped {len(fragments)} non-document HTML fragment(s).')
+          print(f'Preserved {len(course_pages)} Docusaurus course documents without the legacy DOM-mutating shell.')
           PY
 
       - name: Stage final Pages artifact in _site
