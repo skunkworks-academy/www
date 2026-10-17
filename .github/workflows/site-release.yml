@@ -235,6 +235,7 @@ jobs:
         run: |
           set -euo pipefail
           node scripts/mount-digital-courses.mjs
+          node scripts/verify-beginner-chrome.mjs
           python3 -m http.server 4178 --bind 127.0.0.1 > /tmp/skw-beginner-http.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" || true' EXIT
@@ -405,6 +406,7 @@ jobs:
             SKW_CANONICAL_SITE_URL=https://www.skunkworksacademy.com npm run build
           )
           node scripts/mount-digital-courses.mjs
+          node scripts/verify-beginner-chrome.mjs
           rm -rf .digital-platform-courses
           echo "Beginner courses mounted at /digital-platform-courses and /beginner/ aliases"
 

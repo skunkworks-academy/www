@@ -28,7 +28,7 @@
   // global navigation MutationObserver removes/reparents its chrome and can
   // crash hydrated exercises. Keep the Academy CSS/theme, but do not install
   // the DOM-mutating legacy shell on course-catalog routes.
-  if (pathname === "/courses" || pathname.startsWith("/courses/")) return;
+  if (pathname === "/courses" || pathname.startsWith("/courses/") || pathname.startsWith("/digital-platform-courses/")) return;
 
 
   function isLearnSurface() {
