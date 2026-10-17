@@ -202,15 +202,60 @@ jobs:
           trap 'kill "$server_pid" || true' EXIT
           node scripts/test-art101-interactions.mjs
 
+  beginner_courses:
+    name: Validate Academy-domain beginner course composition
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout Academy website
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Checkout source courseware
+        uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/digital-platform-courses
+          ref: main
+          path: .digital-platform-courses
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Validate and compile Docusaurus against Academy domain
+        working-directory: .digital-platform-courses
+        env:
+          SKW_CANONICAL_SITE_URL: https://www.skunkworksacademy.com
+        run: |
+          npm ci --no-audit --no-fund
+          npm run validate:beginner
+          npm run typecheck
+          npm run build
+      - name: Compose and verify course routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/mount-digital-courses.mjs
+          python3 -m http.server 4178 --bind 127.0.0.1 > /tmp/skw-beginner-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for attempt in {1..25}; do
+            if curl --fail --silent http://127.0.0.1:4178/digital-platform-courses/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/verify-composed-site.mjs \
+            --base-url http://127.0.0.1:4178/ \
+            --routes /beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+
   deploy:
     name: Deploy GitHub Pages
     if: >-
       always() &&
       needs.validate.result == 'success' &&
       needs.art101-browser.result == 'success' &&
+      needs.beginner_courses.result == 'success' &&
       (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
-    needs: [validate, lighthouse, art101-browser]
+    needs: [validate, lighthouse, art101-browser, beginner_courses]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     environment:
@@ -228,6 +273,14 @@ jobs:
           repository: skunkworks-academy/course-catalog
           ref: main
           path: .course-catalog
+          persist-credentials: false
+
+      - name: Checkout beginner course source
+        uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/digital-platform-courses
+          ref: main
+          path: .digital-platform-courses
           persist-credentials: false
 
       - name: Set up Node.js for course catalog
@@ -340,6 +393,21 @@ jobs:
           done
           node scripts/test-art101-interactions.mjs
 
+      - name: Build and mount five beginner courses on Academy origin
+        shell: bash
+        run: |
+          set -euo pipefail
+          (
+            cd .digital-platform-courses
+            npm ci --no-audit --no-fund
+            npm run validate:beginner
+            npm run typecheck
+            SKW_CANONICAL_SITE_URL=https://www.skunkworksacademy.com npm run build
+          )
+          node scripts/mount-digital-courses.mjs
+          rm -rf .digital-platform-courses
+          echo "Beginner courses mounted at /digital-platform-courses and /beginner/ aliases"
+
       - name: Apply publisher indexing and AdSense policy
         run: npm run publisher:apply
 
@@ -427,6 +495,7 @@ jobs:
             --exclude='.github/' \
             --exclude='node_modules/' \
             --exclude='.course-catalog/' \
+            --exclude='.digital-platform-courses/' \
             --exclude='_site/' \
             --exclude='test-results/' \
             ./ _site/
@@ -448,7 +517,7 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4174/
-          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
 
       - uses: actions/configure-pages@v5
 
@@ -563,4 +632,4 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url https://www.skunkworksacademy.com/
-          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
