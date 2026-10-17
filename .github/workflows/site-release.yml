@@ -246,6 +246,22 @@ jobs:
             --base-url http://127.0.0.1:4178/ \
             --routes /beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
 
+      - name: Pre-merge real-browser course smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4178 --bind 127.0.0.1 > /tmp/skw-course-browser.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:4178/digital-platform-courses/beginner/ai/ >/dev/null; then break; fi
+            sleep 1
+          done
+          SKW_STUDIO_TEST_ORIGIN=http://127.0.0.1:4178 node scripts/test-beginner-visual-experience.mjs
+
+
   deploy:
     name: Deploy GitHub Pages
     if: >-
