@@ -53,6 +53,7 @@ function assertAssetContentType(response, url) {
 
 const failures = [];
 let checkedAssets = 0;
+const verifiedAssetUrls = new Set();
 
 for (const route of routes) {
   try {
@@ -79,8 +80,13 @@ for (const route of routes) {
       if (!academyHosts.has(resolved.hostname)) continue;
 
       const localUrl = new URL(resolved.pathname + resolved.search, baseUrl);
+      if (verifiedAssetUrls.has(localUrl.href)) continue;
       const assetResponse = await get(localUrl, `asset referenced by ${route}`);
       assertAssetContentType(assetResponse, localUrl);
+      // Finish each response body before reusing the connection. Undici in
+      // Node.js 24 can assert if many repeated fetch streams stay unread.
+      await assetResponse.arrayBuffer();
+      verifiedAssetUrls.add(localUrl.href);
       checkedAssets += 1;
     }
   } catch (error) {
