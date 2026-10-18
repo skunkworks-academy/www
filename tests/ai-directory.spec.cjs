@@ -22,7 +22,7 @@ test('AI catalogue filters and URL state are keyboard accessible', async ({page}
   await page.locator('#ai-category').selectOption('AI Security');
   await expect(page.locator('.ai-course-card')).toHaveCount(1);
   await expect(page.locator('.ai-course-card').first()).toContainText('AI Security Specialist');
-  await expect(page).toHaveURL(/category=AI%20Security/);
+  expect(new URL(page.url()).searchParams.get('category')).toBe('AI Security');
   await page.locator('#ai-reset').click();
   await page.locator('#ai-search').fill('Claude');
   await expect(page.locator('.ai-course-card')).toHaveCount(1);
