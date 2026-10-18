@@ -21,9 +21,11 @@
     "validate:cisco": "node scripts/validate-cisco-page.mjs",
     "validate:course-registration": "node scripts/validate-course-registration.mjs",
     "validate:comptia-analytics": "node scripts/validate-comptia-analytics.mjs",
-    "validate": "npm run publisher:check && npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration && npm run validate:comptia-analytics && npm run validate:analytics",
+    "validate": "npm run publisher:check && npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration && npm run validate:comptia-analytics && npm run validate:analytics && npm run validate:ai-catalog",
     "build": "npm run validate",
-    "validate:analytics": "node scripts/validate-google-analytics.mjs"
+    "validate:analytics": "node scripts/validate-google-analytics.mjs",
+    "validate:ai-catalog": "node scripts/validate-ai-catalog.mjs",
+    "sync:ai-catalog": "node scripts/sync-ai-catalog.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12"
