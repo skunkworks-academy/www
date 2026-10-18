@@ -1,0 +1,172 @@
+[
+  {
+    "id": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "title": "Affiliate Marketing Fundamentals",
+    "level": "Foundation",
+    "hours": 4,
+    "learningOutcomes": [
+      "Map the merchant, publisher and customer relationship",
+      "Calculate clicks, leads, sales and approved commissions",
+      "Compare offers for credibility and fit",
+      "Prepare disclosure and privacy checks"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/affiliate-marketing-fundamentals/"
+  },
+  {
+    "id": "DGDG-102",
+    "slug": "niche-audience-research",
+    "title": "Niche & Audience Research",
+    "level": "Foundation",
+    "hours": 6,
+    "learningOutcomes": [
+      "Define a niche, ICP and persona",
+      "Collect traceable research evidence",
+      "Translate pain points into value statements",
+      "Design a controlled demand validation test"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/niche-audience-research/"
+  },
+  {
+    "id": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "title": "Affiliate Tracking & Attribution",
+    "level": "Foundation",
+    "hours": 6,
+    "learningOutcomes": [
+      "Specify consistent event names and UTMs",
+      "Compare attribution models and limitations",
+      "Calculate and reconcile campaign metrics",
+      "Apply minimal-data and access control practices"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/affiliate-tracking-attribution/"
+  },
+  {
+    "id": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "title": "Lead Generation & Social Media",
+    "level": "Practitioner",
+    "hours": 8,
+    "learningOutcomes": [
+      "Select channels from customer evidence",
+      "Build an accessible content schedule",
+      "Qualify leads with minimal data",
+      "Optimise for quality rather than count alone"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/lead-generation-social-media/"
+  },
+  {
+    "id": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "title": "Landing Pages & Sales Funnels",
+    "level": "Practitioner",
+    "hours": 8,
+    "learningOutcomes": [
+      "Map funnel stages and buyer objections",
+      "Write a credible page hierarchy",
+      "Specify accessible, consent-aware forms",
+      "Define meaningful tests and guardrails"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/landing-pages-sales-funnels/"
+  },
+  {
+    "id": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "title": "Email Marketing & AI Automation",
+    "level": "Practitioner",
+    "hours": 8,
+    "learningOutcomes": [
+      "Document lawful purpose and suppression logic",
+      "Segment a five-step nurture sequence",
+      "Design reliable CRM workflow controls",
+      "Review AI-generated messages for integrity"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/email-marketing-ai-automation/"
+  },
+  {
+    "id": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "title": "Paid Advertising & Traffic",
+    "level": "Practitioner",
+    "hours": 8,
+    "learningOutcomes": [
+      "Set outcome-aligned campaign objectives",
+      "Choose relevant targeting and exclusions",
+      "Forecast CPL and CAC scenarios",
+      "Apply spend, brand and approval controls"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/paid-advertising-traffic/"
+  },
+  {
+    "id": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "title": "SEO & Content Marketing",
+    "level": "Practitioner",
+    "hours": 8,
+    "learningOutcomes": [
+      "Group audience questions by intent",
+      "Plan technical and on-page structure",
+      "Verify AI-assisted editorial output",
+      "Measure organic demand and content decay"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/seo-content-marketing/"
+  },
+  {
+    "id": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "title": "Marketing Analytics & Conversion",
+    "level": "Advanced",
+    "hours": 8,
+    "learningOutcomes": [
+      "Define traceable KPIs and event lineage",
+      "Analyse cohorts and funnel losses",
+      "Design bounded experiments",
+      "Translate evidence into accountable actions"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/marketing-analytics-optimisation/"
+  },
+  {
+    "id": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "title": "Digital Growth Capstone Project",
+    "level": "Advanced",
+    "hours": 12,
+    "learningOutcomes": [
+      "Create a campaign charter and audience rationale",
+      "Integrate conversion, measurement and nurture artefacts",
+      "Model risk and performance under uncertainty",
+      "Present a traceable improvement portfolio"
+    ],
+    "lessons": 4,
+    "lab": true,
+    "assessmentQuestions": 8,
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/digital-growth-capstone/"
+  }
+]
