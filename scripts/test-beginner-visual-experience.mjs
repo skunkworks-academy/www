@@ -160,7 +160,8 @@ try {
       assert(await page.locator('#page-workbook').count()===0,'Completion screen incorrectly renders a practice workbook '+route);
       assert(await page.locator('.pagination-nav__link--next').count()===0,'End of course forwards into another course '+route);
       assert(await end.getByText('Certificate of Course Completion & digital badge').isVisible(),'Certificate and badge panel missing '+route);
-      assert((await end.getByRole('link',{name:'View my verified awards in the Academy Portal'}).getAttribute('href'))?.includes('certificate='),'No valid portal certificate link '+route);
+      const awardLink=await end.getByRole('link',{name:'View my verified awards in the Academy Portal'}).getAttribute('href');
+      assert(awardLink?.includes('portal.skunkworksacademy.com/?certificate=SKW-BEG-'),'Invalid certificate portal course ID '+route);
       await end.getByRole('link',{name:'Back to all beginner courses'}).click();
       await page.waitForURL(/\/digital-platform-courses\/beginner\/?$/,{timeout:10000});
       await page.locator('.courseGrid .courseCard').first().waitFor({timeout:15000});
