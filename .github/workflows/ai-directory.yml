@@ -1,0 +1,59 @@
+name: AI directory functional tests
+
+on:
+  pull_request:
+    paths:
+      - 'ai/**'
+      - 'tests/ai-directory.spec.cjs'
+      - 'scripts/validate-ai-catalog.mjs'
+      - 'scripts/sync-ai-catalog.mjs'
+      - 'package.json'
+      - '.github/workflows/ai-directory.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/**'
+      - 'tests/ai-directory.spec.cjs'
+      - 'scripts/validate-ai-catalog.mjs'
+      - 'scripts/sync-ai-catalog.mjs'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ai-directory:
+    name: AI catalogue static + desktop/mobile interaction checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Validate review governance and local catalogue files
+        run: npm run validate:ai-catalog
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --workspaces=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start checked-out static site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/ai-directory-server.log 2>&1 &
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4173/ai/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/ai-directory-server.log
+          exit 1
+      - name: Run AI directory desktop/mobile tests
+        run: npx playwright test tests/ai-directory.spec.cjs --reporter=line
+      - name: Upload browser test evidence
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-directory-test-evidence
+          path: test-results/
+          if-no-files-found: warn
+          retention-days: 14
