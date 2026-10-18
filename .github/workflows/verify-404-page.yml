@@ -1,0 +1,46 @@
+name: Verify Academy 404 Recovery Page
+on:
+  push:
+    branches: [main]
+    paths:
+      - '404.html'
+      - '.github/workflows/verify-404-page.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate recovery page structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          page=Path('404.html').read_text()
+          for value in ('<title>Page Not Found (404)', 'name="robots" content="noindex,follow"', 'id="main"', '/occupational-skills/', '/courses/', 'jobs.skunkworksacademy.com/', 'mailto:training@skunkworks.africa', '#03033a', '#1e6bd0', '#f24208'):
+              assert value in page, f"Required 404 recovery feature missing: {value}"
+          print('404 page content, routes, accessibility and brand tokens verified.')
+          PY
+      - name: Verify custom-domain published 404 and missing URL fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..25}; do
+            status="$(curl -L -s --max-time 15 -w '%{http_code}' -o /tmp/academy-404-live.html 'https://www.skunkworksacademy.com/404.html' || true)"
+            missing="$(curl -L -s --max-time 15 -w '%{http_code}' -o /tmp/academy-missing-live.html 'https://www.skunkworksacademy.com/this-page-does-not-exist-trades-20261018' || true)"
+            if [[ "$status" = "200" ]] \
+              && [[ "$missing" = "404" ]] \
+              && grep -q 'This page has moved or doesn' /tmp/academy-404-live.html \
+              && grep -q 'This page has moved or doesn' /tmp/academy-missing-live.html; then
+              echo '404.html is publicly accessible and the platform serves the branded recovery page for missing URLs.'
+              exit 0
+            fi
+            echo "404 validation not converged ($attempt/25): direct=$status unknown=$missing"
+            sleep 10
+          done
+          echo 'Public 404 recovery page could not be verified on the custom domain.'
+          exit 1
