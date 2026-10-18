@@ -45,7 +45,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Net commission calculator",
+    "labDeliverable": "Ethical offer evaluation and disclosure"
   },
   {
     "id": "DGDG-102",
@@ -93,7 +95,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Audience research canvas",
+    "labDeliverable": "ICP and niche scoring"
   },
   {
     "id": "DGDG-103",
@@ -141,7 +145,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "UTM and attribution explorer",
+    "labDeliverable": "Tracking reconciliation model"
   },
   {
     "id": "DGDG-104",
@@ -189,7 +195,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Lead quality workbench",
+    "labDeliverable": "30-day content and lead handoff"
   },
   {
     "id": "DGDG-105",
@@ -237,7 +245,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Funnel and page builder",
+    "labDeliverable": "Responsive wireframe and experiment"
   },
   {
     "id": "DGDG-106",
@@ -285,7 +295,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Nurture workflow simulator",
+    "labDeliverable": "Five-message approved sequence"
   },
   {
     "id": "DGDG-107",
@@ -333,7 +345,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Budget sensitivity calculator",
+    "labDeliverable": "Controlled R6,000 media plan"
   },
   {
     "id": "DGDG-108",
@@ -381,7 +395,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Topic map builder",
+    "labDeliverable": "Evidence-backed SEO brief"
   },
   {
     "id": "DGDG-109",
@@ -429,7 +445,9 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "KPI dashboard",
+    "labDeliverable": "Reproducible analytics decision memo"
   },
   {
     "id": "DGDG-110",
@@ -477,6 +495,8 @@
         "fallback": "worked example and printable worksheet",
         "assessmentEvidence": "student reflection and lab artefact, separately verified"
       }
-    ]
+    ],
+    "flagship": "Campaign readiness simulator",
+    "labDeliverable": "Complete simulated campaign portfolio"
   }
 ]
