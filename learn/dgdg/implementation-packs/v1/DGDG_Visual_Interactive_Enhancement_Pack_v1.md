@@ -48,72 +48,72 @@ Adopt existing Academy **Ink Navy #03033A, Skunk Blue #1E6BD0, Signal Orange #F2
 ## 4. Exact course-level plans
 ### DGDG-101 — Affiliate Marketing Fundamentals
 - **Visual:** Referral value exchange — Merchant → Publisher → Buyer → Approved sale.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Net commission calculator.
 - **Module interactions:** 1. Affiliate roles and value exchange: relationship-explorer; 2. Customer journey and conversion math: commission-calculator; 3. Offer evaluation and product integrity: offer-scorecard; 4. Promotion ethics and disclosures: disclosure-decision.
-- **Applied lab:** undefined.
+- **Applied lab:** Ethical offer evaluation and disclosure.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-102 — Niche & Audience Research
 - **Visual:** Audience fit and validation — Market niche → Ideal customer → Buyer jobs → Demand test.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Audience research canvas.
 - **Module interactions:** 1. Niches, ICPs and personas: persona-builder; 2. Market research with source controls: source-review; 3. Value propositions and buyer jobs: value-proposition-builder; 4. Small-scale demand experiments: experiment-planner.
-- **Applied lab:** undefined.
+- **Applied lab:** ICP and niche scoring.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-103 — Affiliate Tracking & Attribution
 - **Visual:** Observable customer touchpoints — Source → UTM visit → Lead event → Approved ledger.
-- **Flagship practice:** undefined.
+- **Flagship practice:** UTM and attribution explorer.
 - **Module interactions:** 1. Events and URL taxonomy: utm-builder; 2. Attribution models: attribution-toggle; 3. Reconciliation and ratios: funnel-calculator; 4. Consent, security and access: data-minimisation-check.
-- **Applied lab:** undefined.
+- **Applied lab:** Tracking reconciliation model.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-104 — Lead Generation & Social Media
 - **Visual:** A qualified lead's journey — Channel → Content → Enquiry → Qualified lead.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Lead quality workbench.
 - **Module interactions:** 1. Channel and audience selection: channel-fit-matrix; 2. Editorial planning and proof: content-calendar; 3. Lead forms, permission and routing: lead-routing-simulator; 4. Channel quality scorecards: lead-quality-calculator.
-- **Applied lab:** undefined.
+- **Applied lab:** 30-day content and lead handoff.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-105 — Landing Pages & Sales Funnels
 - **Visual:** An accessible conversion journey — Discover → Evaluate → Enquire → Confirm.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Funnel and page builder.
 - **Module interactions:** 1. Mapping the conversion journey: funnel-hotspots; 2. Page structure and trust signals: landing-anatomy; 3. Usable and lawful forms: form-accessibility-audit; 4. Evidence-led optimisation: ab-test-planner.
-- **Applied lab:** undefined.
+- **Applied lab:** Responsive wireframe and experiment.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-106 — Email Marketing & AI Automation
 - **Visual:** Permission-aware automation — Purpose → Eligibility → Nurture → Exit/opt-out.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Nurture workflow simulator.
 - **Module interactions:** 1. List provenance and permitted purpose: consent-decision; 2. Lifecycle design and frequency: nurture-sequence-builder; 3. Automation and reliability: workflow-retry-simulator; 4. Responsible AI copy and analytics: claim-review.
-- **Applied lab:** undefined.
+- **Applied lab:** Five-message approved sequence.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-107 — Paid Advertising & Traffic
 - **Visual:** Controlled paid acquisition — Budget → Targeting → Creative → Qualified lead.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Budget sensitivity calculator.
 - **Module interactions:** 1. Spend and acquisition economics: cpl-cac-simulator; 2. Keywords, audience and exclusions: keyword-grouping; 3. Creative and destination alignment: ad-landing-match; 4. Campaign controls and release gates: launch-controls.
-- **Applied lab:** undefined.
+- **Applied lab:** Controlled R6,000 media plan.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-108 — SEO & Content Marketing
 - **Visual:** A useful topic cluster — Search intent → Hub page → Guides → Enquiry.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Topic map builder.
 - **Module interactions:** 1. Intent and topic clusters: intent-sort; 2. On-page content architecture: metadata-builder; 3. Fact-checking and editorial governance: source-verification; 4. Content distribution and maintenance: content-maintenance-audit.
-- **Applied lab:** undefined.
+- **Applied lab:** Evidence-backed SEO brief.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-109 — Marketing Analytics & Conversion
 - **Visual:** Metrics to decisions — Events → Cohorts → Analysis → Decision.
-- **Flagship practice:** undefined.
+- **Flagship practice:** KPI dashboard.
 - **Module interactions:** 1. Metric definitions and data governance: kpi-tree; 2. Cohort funnels and lag: cohort-comparison; 3. Tests, uncertainty and safety metrics: experiment-design; 4. Executive decisions and improvement: decision-memo.
-- **Applied lab:** undefined.
+- **Applied lab:** Reproducible analytics decision memo.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 ### DGDG-110 — Digital Growth Capstone Project
 - **Visual:** End-to-end campaign delivery — Charter → Acquire → Measure → Improve.
-- **Flagship practice:** undefined.
+- **Flagship practice:** Campaign readiness simulator.
 - **Module interactions:** 1. Campaign scope and charter: charter-builder; 2. Integration architecture: system-architecture-explorer; 3. Scenario modelling and controls: risk-simulator; 4. Portfolio defence and reflection: portfolio-readiness.
-- **Applied lab:** undefined.
+- **Applied lab:** Complete simulated campaign portfolio.
 - **Required supporting evidence:** worked numbers/sample, feedback explanation, exportable notes/checklist; never live personal/customer data.
 
 The companion **`dgdg-lesson-visual-map.json` contains all 40 exact page paths**, lesson titles, visual focus, interaction type and text-equivalent requirement. The **`dgdg-course-features.json` covers all ten course-level visuals and features**.
