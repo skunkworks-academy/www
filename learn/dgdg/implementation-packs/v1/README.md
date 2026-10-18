@@ -16,3 +16,6 @@ Open `prototype/index.html` using a local static HTTP server, e.g. `python3 -m h
 This is a specification and **reference implementation**, not the 40 live lesson upgrades. Copy vetted styles, SVGs and component methods to `learn/dgdg/assets/` on a separate integration branch, connect each page according to the 40-lesson manifest, run accessibility review and site release tests, then merge after curriculum approval.
 
 **Important:** Do not expose browser grades as verified LMS evidence; no ISO certification or earnings promises.
+
+## Validate this pack
+Run `node tests/validate-pack.mjs` from this directory. This checks 10 individual SVG concepts, all 40 lesson mappings, referenced assets, keyboard tab controls and the no-JavaScript content fallback. It does not replace a real-browser WCAG or SME audit.
