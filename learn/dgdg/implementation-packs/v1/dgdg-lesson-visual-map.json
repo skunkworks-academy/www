@@ -1,0 +1,722 @@
+[
+  {
+    "courseId": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-marketing-fundamentals/lesson-01/",
+    "lessonTitle": "Affiliate roles and value exchange",
+    "visualAsset": "diagrams/dgdg-101.svg",
+    "visualFocus": "Merchant",
+    "widgetId": "relationship-explorer",
+    "visualAlt": "Diagram of referral value exchange, highlighting stage 1: Merchant.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-marketing-fundamentals/lesson-02/",
+    "lessonTitle": "Customer journey and conversion math",
+    "visualAsset": "diagrams/dgdg-101.svg",
+    "visualFocus": "Publisher",
+    "widgetId": "commission-calculator",
+    "visualAlt": "Diagram of referral value exchange, highlighting stage 2: Publisher.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-marketing-fundamentals/lesson-03/",
+    "lessonTitle": "Offer evaluation and product integrity",
+    "visualAsset": "diagrams/dgdg-101.svg",
+    "visualFocus": "Buyer",
+    "widgetId": "offer-scorecard",
+    "visualAlt": "Diagram of referral value exchange, highlighting stage 3: Buyer.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-marketing-fundamentals/lesson-04/",
+    "lessonTitle": "Promotion ethics and disclosures",
+    "visualAsset": "diagrams/dgdg-101.svg",
+    "visualFocus": "Approved sale",
+    "widgetId": "disclosure-decision",
+    "visualAlt": "Diagram of referral value exchange, highlighting stage 4: Approved sale.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-102",
+    "slug": "niche-audience-research",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/niche-audience-research/lesson-01/",
+    "lessonTitle": "Niches, ICPs and personas",
+    "visualAsset": "diagrams/dgdg-102.svg",
+    "visualFocus": "Market niche",
+    "widgetId": "persona-builder",
+    "visualAlt": "Diagram of audience fit and validation, highlighting stage 1: Market niche.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-102",
+    "slug": "niche-audience-research",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/niche-audience-research/lesson-02/",
+    "lessonTitle": "Market research with source controls",
+    "visualAsset": "diagrams/dgdg-102.svg",
+    "visualFocus": "Ideal customer",
+    "widgetId": "source-review",
+    "visualAlt": "Diagram of audience fit and validation, highlighting stage 2: Ideal customer.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-102",
+    "slug": "niche-audience-research",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/niche-audience-research/lesson-03/",
+    "lessonTitle": "Value propositions and buyer jobs",
+    "visualAsset": "diagrams/dgdg-102.svg",
+    "visualFocus": "Buyer jobs",
+    "widgetId": "value-proposition-builder",
+    "visualAlt": "Diagram of audience fit and validation, highlighting stage 3: Buyer jobs.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-102",
+    "slug": "niche-audience-research",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/niche-audience-research/lesson-04/",
+    "lessonTitle": "Small-scale demand experiments",
+    "visualAsset": "diagrams/dgdg-102.svg",
+    "visualFocus": "Demand test",
+    "widgetId": "experiment-planner",
+    "visualAlt": "Diagram of audience fit and validation, highlighting stage 4: Demand test.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-tracking-attribution/lesson-01/",
+    "lessonTitle": "Events and URL taxonomy",
+    "visualAsset": "diagrams/dgdg-103.svg",
+    "visualFocus": "Source",
+    "widgetId": "utm-builder",
+    "visualAlt": "Diagram of observable customer touchpoints, highlighting stage 1: Source.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-tracking-attribution/lesson-02/",
+    "lessonTitle": "Attribution models",
+    "visualAsset": "diagrams/dgdg-103.svg",
+    "visualFocus": "UTM visit",
+    "widgetId": "attribution-toggle",
+    "visualAlt": "Diagram of observable customer touchpoints, highlighting stage 2: UTM visit.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-tracking-attribution/lesson-03/",
+    "lessonTitle": "Reconciliation and ratios",
+    "visualAsset": "diagrams/dgdg-103.svg",
+    "visualFocus": "Lead event",
+    "widgetId": "funnel-calculator",
+    "visualAlt": "Diagram of observable customer touchpoints, highlighting stage 3: Lead event.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/affiliate-tracking-attribution/lesson-04/",
+    "lessonTitle": "Consent, security and access",
+    "visualAsset": "diagrams/dgdg-103.svg",
+    "visualFocus": "Approved ledger",
+    "widgetId": "data-minimisation-check",
+    "visualAlt": "Diagram of observable customer touchpoints, highlighting stage 4: Approved ledger.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/lead-generation-social-media/lesson-01/",
+    "lessonTitle": "Channel and audience selection",
+    "visualAsset": "diagrams/dgdg-104.svg",
+    "visualFocus": "Channel",
+    "widgetId": "channel-fit-matrix",
+    "visualAlt": "Diagram of a qualified lead's journey, highlighting stage 1: Channel.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/lead-generation-social-media/lesson-02/",
+    "lessonTitle": "Editorial planning and proof",
+    "visualAsset": "diagrams/dgdg-104.svg",
+    "visualFocus": "Content",
+    "widgetId": "content-calendar",
+    "visualAlt": "Diagram of a qualified lead's journey, highlighting stage 2: Content.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/lead-generation-social-media/lesson-03/",
+    "lessonTitle": "Lead forms, permission and routing",
+    "visualAsset": "diagrams/dgdg-104.svg",
+    "visualFocus": "Enquiry",
+    "widgetId": "lead-routing-simulator",
+    "visualAlt": "Diagram of a qualified lead's journey, highlighting stage 3: Enquiry.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/lead-generation-social-media/lesson-04/",
+    "lessonTitle": "Channel quality scorecards",
+    "visualAsset": "diagrams/dgdg-104.svg",
+    "visualFocus": "Qualified lead",
+    "widgetId": "lead-quality-calculator",
+    "visualAlt": "Diagram of a qualified lead's journey, highlighting stage 4: Qualified lead.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/landing-pages-sales-funnels/lesson-01/",
+    "lessonTitle": "Mapping the conversion journey",
+    "visualAsset": "diagrams/dgdg-105.svg",
+    "visualFocus": "Discover",
+    "widgetId": "funnel-hotspots",
+    "visualAlt": "Diagram of an accessible conversion journey, highlighting stage 1: Discover.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/landing-pages-sales-funnels/lesson-02/",
+    "lessonTitle": "Page structure and trust signals",
+    "visualAsset": "diagrams/dgdg-105.svg",
+    "visualFocus": "Evaluate",
+    "widgetId": "landing-anatomy",
+    "visualAlt": "Diagram of an accessible conversion journey, highlighting stage 2: Evaluate.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/landing-pages-sales-funnels/lesson-03/",
+    "lessonTitle": "Usable and lawful forms",
+    "visualAsset": "diagrams/dgdg-105.svg",
+    "visualFocus": "Enquire",
+    "widgetId": "form-accessibility-audit",
+    "visualAlt": "Diagram of an accessible conversion journey, highlighting stage 3: Enquire.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/landing-pages-sales-funnels/lesson-04/",
+    "lessonTitle": "Evidence-led optimisation",
+    "visualAsset": "diagrams/dgdg-105.svg",
+    "visualFocus": "Confirm",
+    "widgetId": "ab-test-planner",
+    "visualAlt": "Diagram of an accessible conversion journey, highlighting stage 4: Confirm.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/email-marketing-ai-automation/lesson-01/",
+    "lessonTitle": "List provenance and permitted purpose",
+    "visualAsset": "diagrams/dgdg-106.svg",
+    "visualFocus": "Purpose",
+    "widgetId": "consent-decision",
+    "visualAlt": "Diagram of permission-aware automation, highlighting stage 1: Purpose.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/email-marketing-ai-automation/lesson-02/",
+    "lessonTitle": "Lifecycle design and frequency",
+    "visualAsset": "diagrams/dgdg-106.svg",
+    "visualFocus": "Eligibility",
+    "widgetId": "nurture-sequence-builder",
+    "visualAlt": "Diagram of permission-aware automation, highlighting stage 2: Eligibility.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/email-marketing-ai-automation/lesson-03/",
+    "lessonTitle": "Automation and reliability",
+    "visualAsset": "diagrams/dgdg-106.svg",
+    "visualFocus": "Nurture",
+    "widgetId": "workflow-retry-simulator",
+    "visualAlt": "Diagram of permission-aware automation, highlighting stage 3: Nurture.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/email-marketing-ai-automation/lesson-04/",
+    "lessonTitle": "Responsible AI copy and analytics",
+    "visualAsset": "diagrams/dgdg-106.svg",
+    "visualFocus": "Exit/opt-out",
+    "widgetId": "claim-review",
+    "visualAlt": "Diagram of permission-aware automation, highlighting stage 4: Exit/opt-out.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/paid-advertising-traffic/lesson-01/",
+    "lessonTitle": "Spend and acquisition economics",
+    "visualAsset": "diagrams/dgdg-107.svg",
+    "visualFocus": "Budget",
+    "widgetId": "cpl-cac-simulator",
+    "visualAlt": "Diagram of controlled paid acquisition, highlighting stage 1: Budget.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/paid-advertising-traffic/lesson-02/",
+    "lessonTitle": "Keywords, audience and exclusions",
+    "visualAsset": "diagrams/dgdg-107.svg",
+    "visualFocus": "Targeting",
+    "widgetId": "keyword-grouping",
+    "visualAlt": "Diagram of controlled paid acquisition, highlighting stage 2: Targeting.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/paid-advertising-traffic/lesson-03/",
+    "lessonTitle": "Creative and destination alignment",
+    "visualAsset": "diagrams/dgdg-107.svg",
+    "visualFocus": "Creative",
+    "widgetId": "ad-landing-match",
+    "visualAlt": "Diagram of controlled paid acquisition, highlighting stage 3: Creative.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/paid-advertising-traffic/lesson-04/",
+    "lessonTitle": "Campaign controls and release gates",
+    "visualAsset": "diagrams/dgdg-107.svg",
+    "visualFocus": "Qualified lead",
+    "widgetId": "launch-controls",
+    "visualAlt": "Diagram of controlled paid acquisition, highlighting stage 4: Qualified lead.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/seo-content-marketing/lesson-01/",
+    "lessonTitle": "Intent and topic clusters",
+    "visualAsset": "diagrams/dgdg-108.svg",
+    "visualFocus": "Search intent",
+    "widgetId": "intent-sort",
+    "visualAlt": "Diagram of a useful topic cluster, highlighting stage 1: Search intent.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/seo-content-marketing/lesson-02/",
+    "lessonTitle": "On-page content architecture",
+    "visualAsset": "diagrams/dgdg-108.svg",
+    "visualFocus": "Hub page",
+    "widgetId": "metadata-builder",
+    "visualAlt": "Diagram of a useful topic cluster, highlighting stage 2: Hub page.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/seo-content-marketing/lesson-03/",
+    "lessonTitle": "Fact-checking and editorial governance",
+    "visualAsset": "diagrams/dgdg-108.svg",
+    "visualFocus": "Guides",
+    "widgetId": "source-verification",
+    "visualAlt": "Diagram of a useful topic cluster, highlighting stage 3: Guides.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/seo-content-marketing/lesson-04/",
+    "lessonTitle": "Content distribution and maintenance",
+    "visualAsset": "diagrams/dgdg-108.svg",
+    "visualFocus": "Enquiry",
+    "widgetId": "content-maintenance-audit",
+    "visualAlt": "Diagram of a useful topic cluster, highlighting stage 4: Enquiry.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/marketing-analytics-optimisation/lesson-01/",
+    "lessonTitle": "Metric definitions and data governance",
+    "visualAsset": "diagrams/dgdg-109.svg",
+    "visualFocus": "Events",
+    "widgetId": "kpi-tree",
+    "visualAlt": "Diagram of metrics to decisions, highlighting stage 1: Events.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/marketing-analytics-optimisation/lesson-02/",
+    "lessonTitle": "Cohort funnels and lag",
+    "visualAsset": "diagrams/dgdg-109.svg",
+    "visualFocus": "Cohorts",
+    "widgetId": "cohort-comparison",
+    "visualAlt": "Diagram of metrics to decisions, highlighting stage 2: Cohorts.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/marketing-analytics-optimisation/lesson-03/",
+    "lessonTitle": "Tests, uncertainty and safety metrics",
+    "visualAsset": "diagrams/dgdg-109.svg",
+    "visualFocus": "Analysis",
+    "widgetId": "experiment-design",
+    "visualAlt": "Diagram of metrics to decisions, highlighting stage 3: Analysis.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/marketing-analytics-optimisation/lesson-04/",
+    "lessonTitle": "Executive decisions and improvement",
+    "visualAsset": "diagrams/dgdg-109.svg",
+    "visualFocus": "Decision",
+    "widgetId": "decision-memo",
+    "visualAlt": "Diagram of metrics to decisions, highlighting stage 4: Decision.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "lesson": 1,
+    "sourceUrl": "/learn/dgdg/courses/digital-growth-capstone/lesson-01/",
+    "lessonTitle": "Campaign scope and charter",
+    "visualAsset": "diagrams/dgdg-110.svg",
+    "visualFocus": "Charter",
+    "widgetId": "charter-builder",
+    "visualAlt": "Diagram of end-to-end campaign delivery, highlighting stage 1: Charter.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "lesson": 2,
+    "sourceUrl": "/learn/dgdg/courses/digital-growth-capstone/lesson-02/",
+    "lessonTitle": "Integration architecture",
+    "visualAsset": "diagrams/dgdg-110.svg",
+    "visualFocus": "Acquire",
+    "widgetId": "system-architecture-explorer",
+    "visualAlt": "Diagram of end-to-end campaign delivery, highlighting stage 2: Acquire.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "lesson": 3,
+    "sourceUrl": "/learn/dgdg/courses/digital-growth-capstone/lesson-03/",
+    "lessonTitle": "Scenario modelling and controls",
+    "visualAsset": "diagrams/dgdg-110.svg",
+    "visualFocus": "Measure",
+    "widgetId": "risk-simulator",
+    "visualAlt": "Diagram of end-to-end campaign delivery, highlighting stage 3: Measure.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  },
+  {
+    "courseId": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "lesson": 4,
+    "sourceUrl": "/learn/dgdg/courses/digital-growth-capstone/lesson-04/",
+    "lessonTitle": "Portfolio defence and reflection",
+    "visualAsset": "diagrams/dgdg-110.svg",
+    "visualFocus": "Improve",
+    "widgetId": "portfolio-readiness",
+    "visualAlt": "Diagram of end-to-end campaign delivery, highlighting stage 4: Improve.",
+    "experience": [
+      "Observe labelled diagram",
+      "Try the activity",
+      "Explain decision and alternative",
+      "Export or print worksheet"
+    ],
+    "notes": "Use simulated data. Include screen-reader text equivalent and a no-JS path."
+  }
+]

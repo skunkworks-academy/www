@@ -1,0 +1,502 @@
+[
+  {
+    "id": "DGDG-101",
+    "slug": "affiliate-marketing-fundamentals",
+    "title": "Affiliate Marketing Fundamentals",
+    "diagram": "diagrams/dgdg-101.svg",
+    "diagramTitle": "Referral value exchange",
+    "nodes": [
+      "Merchant",
+      "Publisher",
+      "Buyer",
+      "Approved sale"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/affiliate-marketing-fundamentals/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Affiliate roles and value exchange",
+        "activity": "relationship-explorer",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Customer journey and conversion math",
+        "activity": "commission-calculator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Offer evaluation and product integrity",
+        "activity": "offer-scorecard",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Promotion ethics and disclosures",
+        "activity": "disclosure-decision",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Net commission calculator",
+    "labDeliverable": "Ethical offer evaluation and disclosure"
+  },
+  {
+    "id": "DGDG-102",
+    "slug": "niche-audience-research",
+    "title": "Niche & Audience Research",
+    "diagram": "diagrams/dgdg-102.svg",
+    "diagramTitle": "Audience fit and validation",
+    "nodes": [
+      "Market niche",
+      "Ideal customer",
+      "Buyer jobs",
+      "Demand test"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/niche-audience-research/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Niches, ICPs and personas",
+        "activity": "persona-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Market research with source controls",
+        "activity": "source-review",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Value propositions and buyer jobs",
+        "activity": "value-proposition-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Small-scale demand experiments",
+        "activity": "experiment-planner",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Audience research canvas",
+    "labDeliverable": "ICP and niche scoring"
+  },
+  {
+    "id": "DGDG-103",
+    "slug": "affiliate-tracking-attribution",
+    "title": "Affiliate Tracking & Attribution",
+    "diagram": "diagrams/dgdg-103.svg",
+    "diagramTitle": "Observable customer touchpoints",
+    "nodes": [
+      "Source",
+      "UTM visit",
+      "Lead event",
+      "Approved ledger"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/affiliate-tracking-attribution/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Events and URL taxonomy",
+        "activity": "utm-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Attribution models",
+        "activity": "attribution-toggle",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Reconciliation and ratios",
+        "activity": "funnel-calculator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Consent, security and access",
+        "activity": "data-minimisation-check",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "UTM and attribution explorer",
+    "labDeliverable": "Tracking reconciliation model"
+  },
+  {
+    "id": "DGDG-104",
+    "slug": "lead-generation-social-media",
+    "title": "Lead Generation & Social Media",
+    "diagram": "diagrams/dgdg-104.svg",
+    "diagramTitle": "A qualified lead's journey",
+    "nodes": [
+      "Channel",
+      "Content",
+      "Enquiry",
+      "Qualified lead"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/lead-generation-social-media/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Channel and audience selection",
+        "activity": "channel-fit-matrix",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Editorial planning and proof",
+        "activity": "content-calendar",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Lead forms, permission and routing",
+        "activity": "lead-routing-simulator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Channel quality scorecards",
+        "activity": "lead-quality-calculator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Lead quality workbench",
+    "labDeliverable": "30-day content and lead handoff"
+  },
+  {
+    "id": "DGDG-105",
+    "slug": "landing-pages-sales-funnels",
+    "title": "Landing Pages & Sales Funnels",
+    "diagram": "diagrams/dgdg-105.svg",
+    "diagramTitle": "An accessible conversion journey",
+    "nodes": [
+      "Discover",
+      "Evaluate",
+      "Enquire",
+      "Confirm"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/landing-pages-sales-funnels/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Mapping the conversion journey",
+        "activity": "funnel-hotspots",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Page structure and trust signals",
+        "activity": "landing-anatomy",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Usable and lawful forms",
+        "activity": "form-accessibility-audit",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Evidence-led optimisation",
+        "activity": "ab-test-planner",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Funnel and page builder",
+    "labDeliverable": "Responsive wireframe and experiment"
+  },
+  {
+    "id": "DGDG-106",
+    "slug": "email-marketing-ai-automation",
+    "title": "Email Marketing & AI Automation",
+    "diagram": "diagrams/dgdg-106.svg",
+    "diagramTitle": "Permission-aware automation",
+    "nodes": [
+      "Purpose",
+      "Eligibility",
+      "Nurture",
+      "Exit/opt-out"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/email-marketing-ai-automation/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "List provenance and permitted purpose",
+        "activity": "consent-decision",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Lifecycle design and frequency",
+        "activity": "nurture-sequence-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Automation and reliability",
+        "activity": "workflow-retry-simulator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Responsible AI copy and analytics",
+        "activity": "claim-review",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Nurture workflow simulator",
+    "labDeliverable": "Five-message approved sequence"
+  },
+  {
+    "id": "DGDG-107",
+    "slug": "paid-advertising-traffic",
+    "title": "Paid Advertising & Traffic",
+    "diagram": "diagrams/dgdg-107.svg",
+    "diagramTitle": "Controlled paid acquisition",
+    "nodes": [
+      "Budget",
+      "Targeting",
+      "Creative",
+      "Qualified lead"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/paid-advertising-traffic/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Spend and acquisition economics",
+        "activity": "cpl-cac-simulator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Keywords, audience and exclusions",
+        "activity": "keyword-grouping",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Creative and destination alignment",
+        "activity": "ad-landing-match",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Campaign controls and release gates",
+        "activity": "launch-controls",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Budget sensitivity calculator",
+    "labDeliverable": "Controlled R6,000 media plan"
+  },
+  {
+    "id": "DGDG-108",
+    "slug": "seo-content-marketing",
+    "title": "SEO & Content Marketing",
+    "diagram": "diagrams/dgdg-108.svg",
+    "diagramTitle": "A useful topic cluster",
+    "nodes": [
+      "Search intent",
+      "Hub page",
+      "Guides",
+      "Enquiry"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/seo-content-marketing/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Intent and topic clusters",
+        "activity": "intent-sort",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "On-page content architecture",
+        "activity": "metadata-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Fact-checking and editorial governance",
+        "activity": "source-verification",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Content distribution and maintenance",
+        "activity": "content-maintenance-audit",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Topic map builder",
+    "labDeliverable": "Evidence-backed SEO brief"
+  },
+  {
+    "id": "DGDG-109",
+    "slug": "marketing-analytics-optimisation",
+    "title": "Marketing Analytics & Conversion",
+    "diagram": "diagrams/dgdg-109.svg",
+    "diagramTitle": "Metrics to decisions",
+    "nodes": [
+      "Events",
+      "Cohorts",
+      "Analysis",
+      "Decision"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/marketing-analytics-optimisation/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Metric definitions and data governance",
+        "activity": "kpi-tree",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Cohort funnels and lag",
+        "activity": "cohort-comparison",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Tests, uncertainty and safety metrics",
+        "activity": "experiment-design",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Executive decisions and improvement",
+        "activity": "decision-memo",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "KPI dashboard",
+    "labDeliverable": "Reproducible analytics decision memo"
+  },
+  {
+    "id": "DGDG-110",
+    "slug": "digital-growth-capstone",
+    "title": "Digital Growth Capstone Project",
+    "diagram": "diagrams/dgdg-110.svg",
+    "diagramTitle": "End-to-end campaign delivery",
+    "nodes": [
+      "Charter",
+      "Acquire",
+      "Measure",
+      "Improve"
+    ],
+    "canonical": "https://www.skunkworksacademy.com/learn/dgdg/courses/digital-growth-capstone/",
+    "lessons": [
+      {
+        "number": 1,
+        "title": "Campaign scope and charter",
+        "activity": "charter-builder",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 2,
+        "title": "Integration architecture",
+        "activity": "system-architecture-explorer",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 3,
+        "title": "Scenario modelling and controls",
+        "activity": "risk-simulator",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      },
+      {
+        "number": 4,
+        "title": "Portfolio defence and reflection",
+        "activity": "portfolio-readiness",
+        "interactionTiming": "after worked example",
+        "fallback": "worked example and printable worksheet",
+        "assessmentEvidence": "student reflection and lab artefact, separately verified"
+      }
+    ],
+    "flagship": "Campaign readiness simulator",
+    "labDeliverable": "Complete simulated campaign portfolio"
+  }
+]

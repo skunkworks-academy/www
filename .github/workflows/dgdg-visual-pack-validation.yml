@@ -1,0 +1,31 @@
+name: DGDG Visual Enhancement Pack Validation
+on:
+  pull_request:
+    paths:
+      - 'learn/dgdg/implementation-packs/v1/**'
+      - '.github/workflows/dgdg-visual-pack-validation.yml'
+  workflow_dispatch:
+jobs:
+  pack-validation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Validate JavaScript syntax
+        run: node --check learn/dgdg/implementation-packs/v1/prototype/interactive.js
+      - name: Validate manifests and no-JS fallback
+        run: node learn/dgdg/implementation-packs/v1/tests/validate-pack.mjs
+      - name: Validate instructional SVG XML
+        run: |
+          python3 - <<'PY'
+          import glob
+          import xml.etree.ElementTree as ET
+          files = glob.glob('learn/dgdg/implementation-packs/v1/prototype/diagrams/*.svg')
+          assert len(files) == 10, f'Expected 10 diagrams, got {len(files)}'
+          for path in files:
+              root = ET.parse(path).getroot()
+              assert root.tag.endswith('svg'), path
+          print(f'PASS: {len(files)} valid SVG XML documents')
+          PY
