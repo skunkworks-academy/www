@@ -1,0 +1,122 @@
+[
+  {
+    "code": "FIN-101",
+    "title": "Introduction to FinTech",
+    "duration_hours": 6,
+    "audience": "Career changers",
+    "track": "Foundations",
+    "url": "/fintech/courses/fin-101-introduction-to-fintech/"
+  },
+  {
+    "code": "FIN-102",
+    "title": "Digital Banking Fundamentals",
+    "duration_hours": 8,
+    "audience": "Banking operations",
+    "track": "Banking",
+    "url": "/fintech/courses/fin-102-digital-banking-fundamentals/"
+  },
+  {
+    "code": "FIN-103",
+    "title": "Digital Payments and Payment Gateways",
+    "duration_hours": 8,
+    "audience": "Payments teams",
+    "track": "Payments",
+    "url": "/fintech/courses/fin-103-digital-payments-and-payment-gateways/"
+  },
+  {
+    "code": "FIN-104",
+    "title": "Open Banking and Financial APIs",
+    "duration_hours": 10,
+    "audience": "Developers",
+    "track": "Engineering",
+    "url": "/fintech/courses/fin-104-open-banking-and-financial-apis/"
+  },
+  {
+    "code": "FIN-105",
+    "title": "Blockchain and Digital Assets",
+    "duration_hours": 8,
+    "audience": "Product teams",
+    "track": "Emerging technology",
+    "url": "/fintech/courses/fin-105-blockchain-and-digital-assets/"
+  },
+  {
+    "code": "FIN-106",
+    "title": "AI in Banking and Financial Services",
+    "duration_hours": 10,
+    "audience": "AI and banking teams",
+    "track": "AI",
+    "url": "/fintech/courses/fin-106-ai-in-banking-and-financial-services/"
+  },
+  {
+    "code": "FIN-107",
+    "title": "Robotic Process Automation in Finance",
+    "duration_hours": 8,
+    "audience": "Automation specialists",
+    "track": "Automation",
+    "url": "/fintech/courses/fin-107-robotic-process-automation-in-finance/"
+  },
+  {
+    "code": "FIN-108",
+    "title": "FinTech Cybersecurity Fundamentals",
+    "duration_hours": 8,
+    "audience": "Security teams",
+    "track": "Security",
+    "url": "/fintech/courses/fin-108-fintech-cybersecurity-fundamentals/"
+  },
+  {
+    "code": "FIN-109",
+    "title": "Fraud Detection and Transaction Monitoring",
+    "duration_hours": 10,
+    "audience": "Fraud analysts",
+    "track": "Compliance",
+    "url": "/fintech/courses/fin-109-fraud-detection-and-transaction-monitoring/"
+  },
+  {
+    "code": "FIN-110",
+    "title": "KYC AML and Financial Crime Compliance",
+    "duration_hours": 10,
+    "audience": "Compliance analysts",
+    "track": "Compliance",
+    "url": "/fintech/courses/fin-110-kyc-aml-and-financial-crime-compliance/"
+  },
+  {
+    "code": "FIN-111",
+    "title": "Financial Data Analytics",
+    "duration_hours": 8,
+    "audience": "Data analysts",
+    "track": "Data",
+    "url": "/fintech/courses/fin-111-financial-data-analytics/"
+  },
+  {
+    "code": "FIN-112",
+    "title": "Digital Lending and Credit Scoring",
+    "duration_hours": 8,
+    "audience": "Credit analysts",
+    "track": "Banking",
+    "url": "/fintech/courses/fin-112-digital-lending-and-credit-scoring/"
+  },
+  {
+    "code": "FIN-113",
+    "title": "InsurTech Fundamentals",
+    "duration_hours": 6,
+    "audience": "Insurance teams",
+    "track": "Insurance",
+    "url": "/fintech/courses/fin-113-insurtech-fundamentals/"
+  },
+  {
+    "code": "FIN-114",
+    "title": "RegTech and Regulatory Compliance Automation",
+    "duration_hours": 8,
+    "audience": "Compliance teams",
+    "track": "Compliance",
+    "url": "/fintech/courses/fin-114-regtech-and-regulatory-compliance-automation/"
+  },
+  {
+    "code": "FIN-115",
+    "title": "Building FinTech Applications and Integrations",
+    "duration_hours": 12,
+    "audience": "Developers and architects",
+    "track": "Engineering",
+    "url": "/fintech/courses/fin-115-building-fintech-applications-and-integrations/"
+  }
+]
