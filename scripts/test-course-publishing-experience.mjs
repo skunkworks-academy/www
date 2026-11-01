@@ -11,7 +11,16 @@ import axe from 'axe-core';
 
 const origin = process.env.SKW_COURSE_TEST_ORIGIN || 'http://127.0.0.1:4174';
 const manifest = JSON.parse(fs.readFileSync('course-manifest.json', 'utf8'));
-const courses = manifest.courses;
+const lessonSlugs = [
+  'deployment-model', 'actions-deployment', 'custom-domain-dns',
+  'https-security', 'troubleshooting', 'operations', 'capstone'
+];
+const modules = lessonSlugs.map((slug, index) => ({
+  courseId: 'GHP-DOM-101',
+  path: '/courses/github-pages-setup/module-' + String(index + 1).padStart(2, '0') + '-' + slug,
+  module: true
+}));
+const courses = [...manifest.courses, ...modules];
 const problems = [];
 const browser = await chromium.launch({headless: true});
 const configurations = [
@@ -76,6 +85,21 @@ try {
           throw new Error('Canonical course URL incorrect: ' + result.canonical);
         }
         if (!result.courseLink) throw new Error('The global header does not link to the Academy course catalogue.');
+        if (course.module) {
+          const navigation = page.locator('nav[aria-label="GitHub Pages Setup module navigation"]');
+          await navigation.first().waitFor({state: 'visible', timeout: 5000});
+          if (await page.locator('img[src*="ghp-dom-101"]').count() < 1) {
+            throw new Error('Illustrated module is missing the expected visual learning aid.');
+          }
+          const imageState = await page.locator('img[src*="ghp-dom-101"]').first().evaluate(image => ({
+            loaded: image.complete && image.naturalWidth > 0,
+            hasAlt: Boolean(image.getAttribute('alt'))
+          }));
+          if (!imageState.loaded || !imageState.hasAlt) {
+            throw new Error('Illustrated module image failed to load or lacks accessible alternative text.');
+          }
+        }
+
 
         if (course.courseId === 'ART-101') {
           if (await page.locator('a[href*="portal.skunkworksacademy.com"]').count() < 1) {
