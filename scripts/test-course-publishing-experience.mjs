@@ -6,6 +6,7 @@
  * Requires playwright and axe-core, installed by the workflow.
  */
 import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import axe from 'axe-core';
 
@@ -129,11 +130,17 @@ try {
             if (!await page.locator('article details').first().evaluate(el => el.open)) throw new Error('Retrieval feedback is not keyboard operable.');
             if (!await page.locator('article table').count()) throw new Error('Module is missing its native worked-example visual.');
           } else {
-            if (!await page.getByText('Independent subject review is pending.', {exact: false}).count()) throw new Error('Missing public pilot disclosure.');
+            if (!await page.getByText('Independent subject review is pending.', {exact: false}).first().isVisible()) throw new Error('Missing public pilot disclosure.');
             const download = page.locator('article a[href*="course-pack"][href$=".zip"]').first();
             const href = await download.getAttribute('href');
             const response = await page.request.get(new URL(href, origin).href);
-            if (!response.ok() || (await response.body()).subarray(0, 2).toString() !== 'PK') throw new Error('Course pack is not a downloadable ZIP.');
+            if (!response.ok()) throw new Error('Course pack download failed.');
+            // Python is already required by the publishing workflow. Test the
+            // central directory and CRCs, not only the ZIP signature bytes.
+            const archive = spawnSync('python3', ['-c',
+              'import io,sys,zipfile; z=zipfile.ZipFile(io.BytesIO(sys.stdin.buffer.read())); assert z.namelist() and z.testzip() is None'
+            ], {input: await response.body(), timeout: 15000});
+            if (archive.status !== 0) throw new Error('Course pack is not a valid, nonempty ZIP.');
           }
         } else if (course.courseId === 'ART-101') {
           if (await page.locator('a[href*="portal.skunkworksacademy.com"]').count() < 1) {
@@ -151,7 +158,7 @@ try {
         await page.addScriptTag({content: axe.source});
         const audit = await page.evaluate(async publicPilot =>
           window.axe.run(document, {runOnly: publicPilot
-            ? {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']}
+            ? {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']}
             : {type: 'rule', values: ['color-contrast']}}), course.contentAccess === 'public'
         );
         if (audit.violations.length) {
