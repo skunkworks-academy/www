@@ -23,9 +23,11 @@ test("Landing route has exactly one canonical, clear metadata and real plugin CT
   assert.match(html, /<meta name="viewport"/);
   assert.match(html, /<meta name="description" content="[^"]{80,}"/);
   assert.equal((html.match(/<link rel="canonical"/g) || []).length, 1);
-  assert.ok(html.includes('href="' + route + '"'), "Canonical route mismatch");
+  assert.equal(/<link rel="canonical" href="([^"]+)"/.exec(html)?.[1], route, "Canonical route mismatch");
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  assert.ok(html.includes('href="' + pluginUrl + '"'), "CTA must use verified plugin link");
+  const ctas = [...html.matchAll(/<a class="[^"]*ald-btn--primary[^"]*" href="([^"]+)"/g)];
+  assert.equal(ctas.length, 2);
+  for (const cta of ctas) assert.equal(cta[1], pluginUrl);
   assert.match(html, /\bPrivate plugin\b/);
   assert.match(html, /\bAccess is limited to authorised users\b/);
   assert.match(html, /does not independently edit GitHub repositories/i);
@@ -51,8 +53,8 @@ test("Global Academy shell, footer, sitemap and navigation are integrated", () =
   assert.ok(hasExpectedRoute, "Global navigation/search destination missing");
   assert.ok(publisherPolicy.indexablePages.includes("plugins/academy-learning-design/index.html"), "Publisher policy must own indexable page");
   assert.equal(publisherPolicy.lastModifiedOverrides["plugins/academy-learning-design/index.html"],"2026-11-01");
-  assert.ok(sitemap.includes('<loc>' + route + '</loc>'), "Sitemap missing plugin route");
-  assert.equal(sitemap.split('<loc>' + route + '</loc>').length - 1, 1);
+  const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  assert.equal(locations.filter(location => location === route).length, 1);
   assert.ok(html.includes('href="/privacy.html"'));
   assert.ok(html.includes('href="/terms.html"'));
   assert.ok(fs.existsSync(file("privacy.html")));
@@ -105,4 +107,11 @@ test("JSON-LD is valid and identifies the current plugin version", () => {
   assert.ok(script, "Structured data missing");
   const data = JSON.parse(script[1]);
   assert.ok(data["@graph"].some(entry => entry["@type"] === "SoftwareApplication" && entry.url === pluginUrl && entry.softwareVersion === "0.1.1"));
+});
+
+test("Hero and CTA retain explicit accessible surface pairs", () => {
+  assert.match(css, /\.ald-hero \{[^}]*background-color:#03033a/);
+  for (const match of html.matchAll(/<a class="([^"]*ald-btn[^"]*)"/g)) {
+    assert.ok(match[1].split(/\s+/).includes("sk-button"));
+  }
 });

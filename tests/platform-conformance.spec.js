@@ -1,6 +1,17 @@
 import { test, expect } from "@playwright/test";
 
-const baseURL = "http://127.0.0.1:4175";
+const baseURL = new URL(process.env.SKW_TEST_ORIGIN || "http://127.0.0.1:4175").origin;
+
+async function useStagedAssets(context) {
+  if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(baseURL).hostname)) return;
+  await context.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/assets\//, async route => {
+    const requested = new URL(route.request().url());
+    const response = await context.request.get(baseURL + requested.pathname + requested.search);
+    await route.fulfill({ response });
+  });
+}
+
+test.beforeEach(async ({ context }) => useStagedAssets(context));
 const routes = [
   "/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
   "/course-registration/", "/forms/", "/self-paced/", "/slides/", "/plugins/academy-learning-design/"
@@ -73,8 +84,10 @@ test("responsive shell fits mobile viewport", async ({ page }) => {
 
 
 test("Learning Design plugin page provides accessible visual and functional controls in both themes", async ({ browser }) => {
+  for (const width of [390, 1440]) {
   for (const theme of ["light", "dark"]) {
-    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: theme });
+    const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: theme });
+    await useStagedAssets(context);
     const page = await context.newPage();
     try {
       await page.goto(baseURL + "/plugins/academy-learning-design/", { waitUntil: "domcontentloaded" });
@@ -90,9 +103,14 @@ test("Learning Design plugin page provides accessible visual and functional cont
         viewportWidth: document.documentElement.clientWidth
       }));
       expect(dimensions.scrollWidth, "Unexpected horizontal overflow in " + theme).toBeLessThanOrEqual(dimensions.viewportWidth + 2);
-      const ratio = await page.locator(".ald-card").first().evaluate(card => {
-        const fg = getComputedStyle(card.querySelector("p")).color;
-        const bg = getComputedStyle(card).backgroundColor;
+      await expect(page.locator(".ald-hero")).toHaveAttribute("data-swa-surface-tone", "dark");
+      for (const selector of [".ald-card", ".ald-btn", ".ald-hero h1", ".ald-hero__lead"]) {
+      for (const element of await page.locator(selector).all()) {
+      const ratio = await element.evaluate(card => {
+        const fg = getComputedStyle(card.querySelector("p") || card).color;
+        let surface = card;
+        while (surface.parentElement && getComputedStyle(surface).backgroundColor === "rgba(0, 0, 0, 0)") surface = surface.parentElement;
+        const bg = getComputedStyle(surface).backgroundColor;
         const rgb = value => (value.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
         const luminance = value => {
           const channels = rgb(value).map(channel => {
@@ -104,11 +122,14 @@ test("Learning Design plugin page provides accessible visual and functional cont
         const values = [luminance(fg), luminance(bg)].sort((a,b) => b-a);
         return (values[0] + 0.05) / (values[1] + 0.05);
       });
-      expect(ratio, "Card text must meet WCAG 2.2 AA contrast in " + theme).toBeGreaterThanOrEqual(4.5);
+      expect(ratio, selector + " text contrast in " + theme + " at " + width + "px").toBeGreaterThanOrEqual(4.5);
+      }
+      }
       await page.locator("#ald-copy-prompt").click();
       await expect(page.locator("#ald-copy-status")).toContainText(/copied|unavailable|blocked/i);
     } finally {
       await context.close();
     }
+  }
   }
 });
