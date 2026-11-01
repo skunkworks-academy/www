@@ -85,6 +85,27 @@ function learnSitemapXml() {
   ].join('\n'));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
+// Once a course catalog is composed, retain its canonical sitemap entries.
+function composedCourseSitemapEntries() {
+  if (!fs.existsSync(path.join(root, 'courses', 'index.html'))
+      || !fs.existsSync(path.join(root, 'course-manifest.json'))) return [];
+  const current = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  const entries = [];
+  const seen = new Set();
+  for (const match of current.matchAll(/<url\b[^>]*>[\s\S]*?<\/url>/gi)) {
+    const loc = /<loc>([^<]+)<\/loc>/i.exec(match[0])?.[1];
+    if (!loc) continue;
+    const value = new URL(loc);
+    if (value.origin !== policy.canonicalOrigin
+        || (value.pathname !== '/courses' && !value.pathname.startsWith('/courses/'))) continue;
+    if (seen.has(loc)) throw new Error('Duplicate course sitemap URL: ' + loc);
+    seen.add(loc);
+    entries.push(match[0].trim());
+  }
+  if (!entries.length) throw new Error('Published courses exist but the composed sitemap lacks course URLs.');
+  return entries;
+}
+
 function sitemapXml() {
   const urls = policy.indexablePages.map(normalizePath).map((relativePath) => [
     '  <url>',
@@ -92,7 +113,7 @@ function sitemapXml() {
     `    <lastmod>${policy.lastModifiedOverrides?.[relativePath] || policy.lastModified}</lastmod>`,
     '  </url>',
   ].join('\n'));
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...urls, ...composedCourseSitemapEntries()].join('\n')}\n</urlset>\n`;
 }
 
 for (const relativePath of adEligible) {
@@ -117,7 +138,12 @@ let changed = 0;
 for (const file of files) {
   const relativePath = normalizePath(path.relative(root, file));
   const source = fs.readFileSync(file, 'utf8');
-  const output = transformHtml(source, relativePath);
+  // The Docusaurus course generator owns these canonical URLs, robots rules
+  // and framework HTML. Rewriting them here breaks deep links and hydration.
+  const composed = fs.existsSync(path.join(root, 'courses', 'index.html'))
+    && fs.existsSync(path.join(root, 'course-manifest.json'));
+  const ownedByCourse = relativePath === 'courses.html' || relativePath.startsWith('courses/');
+  const output = composed && ownedByCourse ? source : transformHtml(source, relativePath);
   if (source !== output) {
     fs.writeFileSync(file, output, 'utf8');
     changed += 1;

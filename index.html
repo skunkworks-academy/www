@@ -20,14 +20,29 @@
   <!-- Reserve the canonical shell before first paint. The navigation runtime
        uses the same dimensions, so adding the real fixed header cannot shift
        the page after Lighthouse has already painted the hero. -->
-  <style data-swa-shell-critical="2026.08.25.1">
+  <style data-swa-shell-critical="2026.11.01.1">
+    /* The fixed Academy navigation is injected asynchronously. Its geometry
+       must exist before the first paint, otherwise unstyled header markup
+       briefly enters document flow and shifts the entire main content. */
     body.swa-has-global-nav.swa-has-top-menu{padding-top:128px!important}
-    @media(max-width:980px){body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}}
-    @media(max-width:620px){body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}}
+    .swa-global-nav{position:fixed!important;inset:0 0 auto!important;z-index:2147483000!important;width:100%!important;min-height:128px!important;background:#000!important}
+    .swa-global-nav__inner{min-height:84px!important}
+    .swa-global-nav__top-menu{min-height:44px!important}
+    .swa-global-nav__links,.swa-global-nav__search-panel{display:none!important}
+    @media(max-width:980px){
+      body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}
+      .swa-global-nav{min-height:84px!important}
+      .swa-global-nav__top-menu{display:none!important}
+    }
+    @media(max-width:620px){
+      body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}
+      .swa-global-nav{min-height:74px!important}
+      .swa-global-nav__inner{min-height:70px!important}
+    }
   </style>
 
   <link rel="stylesheet" href="/assets/publisher.css" />
-  <link rel="stylesheet" href="/assets/academy-partnerships.css?v=2026.10.13.1" />
+  <link rel="stylesheet" href="/assets/academy-partnerships.css?v=2026.11.01.1" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Skunkworks Academy" />
   <meta property="og:title" content="Skunkworks Academy | Practical Technology Capability" />
@@ -55,7 +70,7 @@
   </script>
   <script defer src="/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3" data-skunkworks-global-nav="v10"></script>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270041066336676" crossorigin="anonymous"></script>
-                                                                                                                                                                                <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical" />
+                                                                                                                                                                                      <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical" />
   <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.09.07.1" data-skunkworks-page-contract="runtime"></script>
 </head>
 <body data-ad-inventory="eligible" class="swa-has-global-nav swa-has-top-menu">
@@ -115,6 +130,12 @@
             <a class="swa-partner swa-partner--summary" href="/partners/#red-hat">
               <div class="swa-partner__art"><img src="/assets/partners/red-hat-ready-partner-2026.png" alt="Red Hat Partner Program tier 2026: Ready" width="800" height="800" loading="lazy" decoding="async" /></div>
               <div class="swa-partner__body"><h3>Red Hat</h3><p class="swa-partner__status">Ready Partner · 2026</p><span class="swa-partner__link">Partnership details <span aria-hidden="true">→</span></span></div>
+            </a>
+          </li>
+          <li>
+            <a class="swa-partner swa-partner--summary" href="/partners/#cisco-netacad">
+              <div class="swa-partner__art swa-partner__art--netacad"><img src="/assets/partners/cisco-networking-academy.svg" alt="Cisco Networking Academy" width="156" height="96" loading="lazy" decoding="async" /></div>
+              <div class="swa-partner__body"><h3>Cisco Networking Academy</h3><p class="swa-partner__status">Networking Academy member</p><span class="swa-partner__link">Membership details <span aria-hidden="true">→</span></span></div>
             </a>
           </li>
           <li>

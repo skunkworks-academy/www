@@ -23,7 +23,7 @@ body.swa-partners-page[data-ad-inventory] {
 
 .swa-partnerships__grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
   margin: 0;
   padding: 0;
@@ -116,3 +116,27 @@ main .swa-partnerships .swa-partner .swa-partner__link {
   .swa-partner__art { height: 200px; }
   .swa-partnerships .swa-partner { scroll-margin-top: 110px; }
 }
+
+/* Official NetAcad SVG stays intact on white in both themes. */
+.swa-partner__art--netacad img {
+  width: 156px;
+  height: 96px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: none;
+}
+.swa-netacad-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  max-width: 100%;
+}
+.swa-netacad-mark img { width: 156px; height: auto; filter: none; }
+.swa-netacad-mark:focus-visible { outline: 3px solid #1e6bd0; outline-offset: 4px; }
+.swa-netacad-trademark { font-size: .875rem; line-height: 1.6; margin: 24px 0; }
+.swa-netacad-skip { position: absolute; left: -10000px; }
+.swa-netacad-skip:focus { position: fixed; left: 1rem; top: 1rem; z-index: 10000; padding: 1rem; background: #fff; color: #172033; }
