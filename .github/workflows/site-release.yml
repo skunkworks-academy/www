@@ -392,8 +392,10 @@ jobs:
             exit 1
           fi
 
+          node scripts/publish-course-contract.mjs \
+            --source-sitemap .course-catalog/build/sitemap.xml
           rm -rf .course-catalog
-          echo 'Mounted skunkworks-academy/course-catalog at /courses using the generic isolated subsystem contract.'
+          echo 'Mounted skunkworks-academy/course-catalog and integrated its canonical sitemap/routes.'
 
       - name: Verify ART-101 controls respond in a real browser
         shell: bash
@@ -547,6 +549,9 @@ jobs:
             ./ _site/
           node scripts/stamp-platform-contract.mjs academy-platform-contract.json _site/academy-platform-contract.json
 
+      - name: Enforce course publication against final Pages artifact
+        run: node scripts/publish-course-contract.mjs --verify --root _site
+
       - name: Start final composed _site
         shell: bash
         run: |
@@ -564,6 +569,11 @@ jobs:
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4174/
           --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+
+      - name: Browser-verify each published course in light/dark and mobile/desktop
+        env:
+          SKW_COURSE_TEST_ORIGIN: http://127.0.0.1:4174
+        run: node scripts/test-course-publishing-experience.mjs
 
       - uses: actions/configure-pages@v5
 
