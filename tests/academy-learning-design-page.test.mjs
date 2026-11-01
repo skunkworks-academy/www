@@ -37,7 +37,18 @@ test("Global Academy shell, footer, sitemap and navigation are integrated", () =
   assert.ok(html.includes('/assets/academy-navigation.js'), "Global navigation script missing");
   assert.ok(loader.includes("academy-navigation-v11.js"), "Global shell must load the shared runtime");
   assert.ok(navRuntime.includes("skunkworks-footer.js"), "Shared runtime must install canonical Academy footer");
-  assert.ok(nav.includes(route), "Global navigation/search destination missing");
+  const expectedRoute = new URL(route);
+  const expectedOriginAndPath = expectedRoute.origin + expectedRoute.pathname;
+  const navUrls = [...nav.matchAll(/https:\/\/[^\s"'`)<]+/g)].map(m => m[0]);
+  const hasExpectedRoute = navUrls.some((raw) => {
+    try {
+      const parsed = new URL(raw);
+      return (parsed.origin + parsed.pathname) === expectedOriginAndPath;
+    } catch {
+      return false;
+    }
+  });
+  assert.ok(hasExpectedRoute, "Global navigation/search destination missing");
   assert.ok(publisherPolicy.indexablePages.includes("plugins/academy-learning-design/index.html"), "Publisher policy must own indexable page");
   assert.equal(publisherPolicy.lastModifiedOverrides["plugins/academy-learning-design/index.html"],"2026-11-01");
   assert.ok(sitemap.includes('<loc>' + route + '</loc>'), "Sitemap missing plugin route");
