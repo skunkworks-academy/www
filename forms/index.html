@@ -370,6 +370,14 @@
     }
 
     @media (max-width: 700px) {
+      /* CSS Grid's default 1fr min-content size forced the Forms hero
+         beyond the 390px viewport. Keep both columns shrinkable. */
+      .hero, .layout, .meta-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero > *, .layout > *, .meta-grid > * {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
       .hero { padding-top: 48px; }
       .panel-inner,
       .form-frame-header,
