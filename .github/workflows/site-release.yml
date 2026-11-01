@@ -28,7 +28,7 @@ concurrency:
 jobs:
   validate:
     name: Validate and audit site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
@@ -62,7 +62,7 @@ jobs:
   lighthouse:
     name: Lighthouse local production audit
     if: github.event_name != 'schedule'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: validate
     steps:
@@ -156,7 +156,7 @@ jobs:
 
   art101-browser:
     name: ART-101 interaction and hydration test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: validate
     steps:
@@ -195,7 +195,7 @@ jobs:
 
       - name: Test real browser controls
         run: |
-          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
           python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
           server_pid=$!
@@ -204,7 +204,7 @@ jobs:
 
   beginner_courses:
     name: Validate Academy-domain beginner course composition
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 18
     steps:
       - name: Checkout Academy website
@@ -251,7 +251,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
           python3 -m http.server 4178 --bind 127.0.0.1 > /tmp/skw-course-browser.log 2>&1 &
           server_pid=$!
@@ -273,7 +273,7 @@ jobs:
       (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: [validate, lighthouse, art101-browser, beginner_courses]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     environment:
       name: github-pages
@@ -392,14 +392,16 @@ jobs:
             exit 1
           fi
 
+          node scripts/publish-course-contract.mjs \
+            --source-sitemap .course-catalog/build/sitemap.xml
           rm -rf .course-catalog
-          echo 'Mounted skunkworks-academy/course-catalog at /courses using the generic isolated subsystem contract.'
+          echo 'Mounted skunkworks-academy/course-catalog and integrated its canonical sitemap/routes.'
 
       - name: Verify ART-101 controls respond in a real browser
         shell: bash
         run: |
           set -euo pipefail
-          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
           python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/art101-http.log 2>&1 &
           server_pid=$!
@@ -430,7 +432,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1
+          npm install --no-save --no-package-lock --legacy-peer-deps playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
           python3 -m http.server 4179 --bind 127.0.0.1 > /tmp/skw-studio-http.log 2>&1 &
           server_pid=$!
@@ -547,6 +549,9 @@ jobs:
             ./ _site/
           node scripts/stamp-platform-contract.mjs academy-platform-contract.json _site/academy-platform-contract.json
 
+      - name: Enforce course publication against final Pages artifact
+        run: node scripts/publish-course-contract.mjs --verify --root _site
+
       - name: Start final composed _site
         shell: bash
         run: |
@@ -564,6 +569,21 @@ jobs:
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4174/
           --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+
+      - name: Browser-verify each published course in light/dark and mobile/desktop
+        env:
+          SKW_COURSE_TEST_ORIGIN: http://127.0.0.1:4174
+        run: node scripts/test-course-publishing-experience.mjs
+
+      - name: Install course release browser and accessibility tools
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund --legacy-peer-deps --workspaces=false playwright@1.56.1 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+
+      - name: Block Pages artifact unless every course passes browser quality
+        env:
+          SKW_COURSE_TEST_ORIGIN: http://127.0.0.1:4174
+        run: node scripts/test-course-publishing-experience.mjs
 
       - uses: actions/configure-pages@v5
 
@@ -586,7 +606,7 @@ jobs:
       needs.deploy.result == 'success' &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Checkout expected production contract
