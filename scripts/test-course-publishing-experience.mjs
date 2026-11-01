@@ -64,7 +64,7 @@ try {
       })
     );
     for (const course of courses) {
-      const label = course.courseId + ' (' + theme + '/' + viewport.width + 'px)';
+      const label = course.courseId + ' ' + course.path + ' (' + theme + '/' + viewport.width + 'px)';
       try {
         const response = await page.goto(origin + course.path, {waitUntil: 'domcontentloaded', timeout: 20000});
         if (!response || !response.ok()) throw new Error('Course route returned non-2xx status.');
