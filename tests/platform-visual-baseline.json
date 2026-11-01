@@ -44,9 +44,12 @@
     },
     "home-mobile": {
       "width": 390,
-      "height": 9579,
-      "dhash": "5500003001000000",
-      "avgLuma": 218.609375
+      "height": 9953,
+      "dhash": "93001a0065004001",
+      "avgLuma": 212.984375,
+      "sourceWorkflowRun": 41339834712,
+      "sourceHead": "831448805d535f4e2a389d42754f8f5fb71223e9",
+      "reviewNote": "Reviewed CI mobile screenshot: horizontal Cisco logo fits its card; current homepage sections remain readable without horizontal overflow."
     },
     "ibm-desktop": {
       "width": 1440,
