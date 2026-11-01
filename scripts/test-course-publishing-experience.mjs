@@ -20,7 +20,9 @@ const modules = lessonSlugs.map((slug, index) => ({
   path: '/courses/github-pages-setup/module-' + String(index + 1).padStart(2, '0') + '-' + slug,
   module: true
 }));
-const courses = [...manifest.courses, ...modules];
+const publicModules = manifest.courses.filter(course => course.contentAccess === 'public')
+  .flatMap(course => (course.modules || []).map(module => ({...course, path: module.path, roleModule: true})));
+const courses = [...manifest.courses, ...modules, ...publicModules];
 const problems = [];
 const browser = await chromium.launch({headless: true});
 const configurations = [
@@ -110,7 +112,30 @@ try {
         }
 
 
-        if (course.courseId === 'ART-101') {
+        if (course.contentAccess === 'public') {
+          if (course.releaseState !== 'pilot' || course.assessmentStatus !== 'facilitated-enquiry-only') {
+            throw new Error('Public course lacks explicit pilot assessment status.');
+          }
+          const link = page.locator('a[href*="/course-registration/?course=' + course.courseId + '"]').first();
+          await link.waitFor({state: 'visible', timeout: 5000});
+          if (await page.locator('.accessGate').count()) throw new Error('Public pilot incorrectly displays a protected-content gate.');
+          const navigation = page.locator('nav[aria-label$="module navigation"]').first();
+          await navigation.waitFor({state: 'visible'});
+          if (course.roleModule) {
+            if (await page.locator('article details').count() !== 2) throw new Error('Module needs two formative retrieval checks.');
+            const summary = page.locator('article details summary').first();
+            await summary.focus();
+            await page.keyboard.press('Enter');
+            if (!await page.locator('article details').first().evaluate(el => el.open)) throw new Error('Retrieval feedback is not keyboard operable.');
+            if (!await page.locator('article table').count()) throw new Error('Module is missing its native worked-example visual.');
+          } else {
+            if (!await page.getByText('Independent subject review is pending.', {exact: false}).count()) throw new Error('Missing public pilot disclosure.');
+            const download = page.locator('article a[href$="/course-pack.zip"]').first();
+            const href = await download.getAttribute('href');
+            const response = await page.request.get(new URL(href, origin).href);
+            if (!response.ok() || (await response.body()).subarray(0, 2).toString() !== 'PK') throw new Error('Course pack is not a downloadable ZIP.');
+          }
+        } else if (course.courseId === 'ART-101') {
           if (await page.locator('a[href*="portal.skunkworksacademy.com"]').count() < 1) {
             throw new Error('Public ART-101 page has no portal registration link.');
           }
