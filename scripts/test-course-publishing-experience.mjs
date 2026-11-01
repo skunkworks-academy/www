@@ -6,6 +6,7 @@
  * Requires playwright and axe-core, installed by the workflow.
  */
 import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import axe from 'axe-core';
 
@@ -20,7 +21,9 @@ const modules = lessonSlugs.map((slug, index) => ({
   path: '/courses/github-pages-setup/module-' + String(index + 1).padStart(2, '0') + '-' + slug,
   module: true
 }));
-const courses = [...manifest.courses, ...modules];
+const publicModules = manifest.courses.filter(course => course.contentAccess === 'public')
+  .flatMap(course => (course.modules || []).map(module => ({...course, path: module.path, roleModule: true})));
+const courses = [...manifest.courses, ...modules, ...publicModules];
 const problems = [];
 const browser = await chromium.launch({headless: true});
 const configurations = [
@@ -110,7 +113,36 @@ try {
         }
 
 
-        if (course.courseId === 'ART-101') {
+        if (course.contentAccess === 'public') {
+          if (course.releaseState !== 'pilot' || course.assessmentStatus !== 'facilitated-enquiry-only') {
+            throw new Error('Public course lacks explicit pilot assessment status.');
+          }
+          const link = page.locator('a[href*="/course-registration/?course=' + course.courseId + '"]').first();
+          await link.waitFor({state: 'visible', timeout: 5000});
+          if (await page.locator('.accessGate').count()) throw new Error('Public pilot incorrectly displays a protected-content gate.');
+          const navigation = page.locator('nav[aria-label$="module navigation"]').first();
+          await navigation.waitFor({state: 'visible'});
+          if (course.roleModule) {
+            if (await page.locator('article details').count() !== 2) throw new Error('Module needs two formative retrieval checks.');
+            const summary = page.locator('article details summary').first();
+            await summary.focus();
+            await page.keyboard.press('Enter');
+            if (!await page.locator('article details').first().evaluate(el => el.open)) throw new Error('Retrieval feedback is not keyboard operable.');
+            if (!await page.locator('article table').count()) throw new Error('Module is missing its native worked-example visual.');
+          } else {
+            if (!await page.getByText('Independent subject review is pending.', {exact: false}).first().isVisible()) throw new Error('Missing public pilot disclosure.');
+            const download = page.locator('article a[href*="course-pack"][href$=".zip"]').first();
+            const href = await download.getAttribute('href');
+            const response = await page.request.get(new URL(href, origin).href);
+            if (!response.ok()) throw new Error('Course pack download failed.');
+            // Python is already required by the publishing workflow. Test the
+            // central directory and CRCs, not only the ZIP signature bytes.
+            const archive = spawnSync('python3', ['-c',
+              'import io,sys,zipfile; z=zipfile.ZipFile(io.BytesIO(sys.stdin.buffer.read())); assert z.namelist() and z.testzip() is None'
+            ], {input: await response.body(), timeout: 15000});
+            if (archive.status !== 0) throw new Error('Course pack is not a valid, nonempty ZIP.');
+          }
+        } else if (course.courseId === 'ART-101') {
           if (await page.locator('a[href*="portal.skunkworksacademy.com"]').count() < 1) {
             throw new Error('Public ART-101 page has no portal registration link.');
           }
@@ -124,14 +156,16 @@ try {
         }
 
         await page.addScriptTag({content: axe.source});
-        const audit = await page.evaluate(async () =>
-          window.axe.run(document, {runOnly: {type: 'rule', values: ['color-contrast']}})
+        const audit = await page.evaluate(async publicPilot =>
+          window.axe.run(document, {runOnly: publicPilot
+            ? {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']}
+            : {type: 'rule', values: ['color-contrast']}}), course.contentAccess === 'public'
         );
         if (audit.violations.length) {
           const issues = audit.violations.flatMap(violation =>
             violation.nodes.slice(0, 5).map(node => node.target.join(' ') + ': ' + (node.failureSummary || violation.help))
           );
-          throw new Error('WCAG text contrast violations: ' + issues.join(' | '));
+          throw new Error('Accessibility violations: ' + issues.join(' | '));
         }
         console.log('PASS ' + label + ': shared chrome, registration, route, responsive layout and axe contrast');
       } catch (error) {
@@ -154,6 +188,19 @@ try {
           throw new Error('Required Academy chrome or enrollment controls are unavailable on ' + label + '; aborting remaining cases with diagnostics.');
         }
       }
+    }
+    await page.goto(origin + '/courses', {waitUntil: 'networkidle'});
+    for (const course of manifest.courses.filter(course => course.contentAccess === 'public')) {
+      const card = page.locator('article').filter({has: page.getByText(course.courseId, {exact: true})});
+      const enquiry = card.getByRole('link', {name: 'Enquire about facilitation'});
+      if (await enquiry.getAttribute('href') !== course.registrationPath) {
+        throw new Error(course.courseId + ': catalogue enquiry destination is incorrect.');
+      }
+      await page.goto(origin + course.registrationPath, {waitUntil: 'domcontentloaded'});
+      if (await page.locator('#course').inputValue() !== course.courseId) {
+        throw new Error(course.courseId + ': registration form did not preselect the course.');
+      }
+      await page.goto(origin + '/courses', {waitUntil: 'networkidle'});
     }
     await context.close();
   }
