@@ -12,6 +12,7 @@ const js = read("assets/academy-learning-design.js");
 const nav = read("assets/skunkworks-ui.js");
 const loader = read("assets/academy-navigation.js");
 const sitemap = read("sitemap.xml");
+const publisherPolicy = JSON.parse(read("publisher-policy.json"));
 const route = "https://www.skunkworksacademy.com/plugins/academy-learning-design/";
 const pluginUrl = "https://chatgpt.com/plugins/plugins_6ae6fd252188819198e31f3bb07995b7";
 
@@ -35,6 +36,8 @@ test("Global Academy shell, footer, sitemap and navigation are integrated", () =
   assert.ok(html.includes('/assets/academy-navigation.js'), "Global navigation script missing");
   assert.ok(loader.includes('skunkworks-footer.js'), "Global shell must load footer");
   assert.ok(nav.includes(route), "Global navigation/search destination missing");
+  assert.ok(publisherPolicy.indexablePages.includes("plugins/academy-learning-design/index.html"), "Publisher policy must own indexable page");
+  assert.equal(publisherPolicy.lastModifiedOverrides["plugins/academy-learning-design/index.html"],"2026-11-01");
   assert.ok(sitemap.includes('<loc>' + route + '</loc>'), "Sitemap missing plugin route");
   assert.equal(sitemap.split('<loc>' + route + '</loc>').length - 1, 1);
   assert.ok(html.includes('href="/privacy.html"'));
