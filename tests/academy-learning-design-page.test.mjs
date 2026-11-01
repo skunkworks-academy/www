@@ -11,6 +11,7 @@ const css = read("assets/academy-learning-design.css");
 const js = read("assets/academy-learning-design.js");
 const nav = read("assets/skunkworks-ui.js");
 const loader = read("assets/academy-navigation.js");
+const navRuntime = read("assets/academy-navigation-v11.js");
 const sitemap = read("sitemap.xml");
 const publisherPolicy = JSON.parse(read("publisher-policy.json"));
 const route = "https://www.skunkworksacademy.com/plugins/academy-learning-design/";
@@ -34,7 +35,8 @@ test("Global Academy shell, footer, sitemap and navigation are integrated", () =
   assert.equal((html.match(/data-skunkworks-global-nav="v10"/g) || []).length, 1);
   assert.equal((html.match(/data-skunkworks-brand-theme="canonical"/g) || []).length, 1);
   assert.ok(html.includes('/assets/academy-navigation.js'), "Global navigation script missing");
-  assert.ok(loader.includes('skunkworks-footer.js'), "Global shell must load footer");
+  assert.ok(loader.includes("academy-navigation-v11.js"), "Global shell must load the shared runtime");
+  assert.ok(navRuntime.includes("skunkworks-footer.js"), "Shared runtime must install canonical Academy footer");
   assert.ok(nav.includes(route), "Global navigation/search destination missing");
   assert.ok(publisherPolicy.indexablePages.includes("plugins/academy-learning-design/index.html"), "Publisher policy must own indexable page");
   assert.equal(publisherPolicy.lastModifiedOverrides["plugins/academy-learning-design/index.html"],"2026-11-01");
