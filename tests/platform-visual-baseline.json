@@ -1,30 +1,130 @@
 {
   "schemaVersion": 1,
-  "sourceWorkflowRun": 34156115011,
-  "sourceHead": "91d351204bf598ed18e6624e0a58df0c3730c54d",
+  "sourceWorkflowRun": 41289305691,
+  "sourceHead": "85ac72de23a10cb84f86e90f2fb6e4dfa50259d2",
   "maxDHashDistance": 12,
   "maxHeightRatioDelta": 0.08,
   "maxAverageLumaDelta": 18,
   "cases": {
-    "publisher-desktop": {"width":1440,"height":1239,"dhash":"0001010145800000","avgLuma":214.5},
-    "registration-desktop": {"width":1440,"height":3531,"dhash":"0007202131212121","avgLuma":184.1},
-    "cisco-mobile": {"width":390,"height":6516,"dhash":"308000e080800000","avgLuma":235.1},
-    "microsoft-mobile": {"width":390,"height":11575,"dhash":"0180c08030600100","avgLuma":233.7},
-    "registration-mobile": {"width":390,"height":5590,"dhash":"08000000000094a0","avgLuma":210.3},
-    "self-paced-mobile": {"width":390,"height":19576,"dhash":"00008000000000d3","avgLuma":246.7},
-    "home-mobile": {"width":390,"height":6035,"dhash":"84d60020a0000000","avgLuma":175.3},
-    "ibm-desktop": {"width":1440,"height":3489,"dhash":"0049a80001010000","avgLuma":228.6},
-    "learn-desktop": {"width":1440,"height":4592,"dhash":"f8c894c904a20021","avgLuma":198.0},
-    "comptia-desktop": {"width":1440,"height":3436,"dhash":"546aaa5151242000","avgLuma":229.8},
-    "ibm-mobile": {"width":390,"height":6658,"dhash":"304099e10101a800","avgLuma":240.6},
-    "publisher-mobile": {"width":390,"height":2069,"dhash":"0080000024000000","avgLuma":242.3},
-    "forms-mobile": {"width":390,"height":5745,"dhash":"c001010101804000","avgLuma":246.9},
-    "self-paced-desktop": {"width":1440,"height":7383,"dhash":"c08001a501060101","avgLuma":241.4},
-    "forms-desktop": {"width":1440,"height":3346,"dhash":"4001a12181710000","avgLuma":246.3},
-    "learn-mobile": {"width":390,"height":7826,"dhash":"2580000100090900","avgLuma":219.5},
-    "home-desktop": {"width":1440,"height":3497,"dhash":"002b0000c1080000","avgLuma":186.0},
-    "microsoft-desktop": {"width":1440,"height":5636,"dhash":"5001990101010109","avgLuma":210.7},
-    "cisco-desktop": {"width":1440,"height":4216,"dhash":"00060e0101101120","avgLuma":239.2},
-    "comptia-mobile": {"width":390,"height":9529,"dhash":"800101010181c001","avgLuma":219.5}
+    "publisher-desktop": {
+      "width": 1440,
+      "height": 1239,
+      "dhash": "0001010145800000",
+      "avgLuma": 214.5
+    },
+    "registration-desktop": {
+      "width": 1440,
+      "height": 3531,
+      "dhash": "0007202131212121",
+      "avgLuma": 184.1
+    },
+    "cisco-mobile": {
+      "width": 390,
+      "height": 6516,
+      "dhash": "308000e080800000",
+      "avgLuma": 235.1
+    },
+    "microsoft-mobile": {
+      "width": 390,
+      "height": 11575,
+      "dhash": "0180c08030600100",
+      "avgLuma": 233.7
+    },
+    "registration-mobile": {
+      "width": 390,
+      "height": 5590,
+      "dhash": "08000000000094a0",
+      "avgLuma": 210.3
+    },
+    "self-paced-mobile": {
+      "width": 390,
+      "height": 21357,
+      "dhash": "c800b400800090ae",
+      "avgLuma": 221.8125
+    },
+    "home-mobile": {
+      "width": 390,
+      "height": 9579,
+      "dhash": "5500003001000000",
+      "avgLuma": 218.609375
+    },
+    "ibm-desktop": {
+      "width": 1440,
+      "height": 3520,
+      "dhash": "0024000115019080",
+      "avgLuma": 231.671875
+    },
+    "learn-desktop": {
+      "width": 1440,
+      "height": 4649,
+      "dhash": "f880019004510000",
+      "avgLuma": 209
+    },
+    "comptia-desktop": {
+      "width": 1440,
+      "height": 3436,
+      "dhash": "546aaa5151242000",
+      "avgLuma": 229.8
+    },
+    "ibm-mobile": {
+      "width": 390,
+      "height": 6658,
+      "dhash": "304099e10101a800",
+      "avgLuma": 240.6
+    },
+    "publisher-mobile": {
+      "width": 390,
+      "height": 2069,
+      "dhash": "0080000024000000",
+      "avgLuma": 242.3
+    },
+    "forms-mobile": {
+      "width": 390,
+      "height": 5570,
+      "dhash": "aa40790140018000",
+      "avgLuma": 195.4375
+    },
+    "self-paced-desktop": {
+      "width": 1440,
+      "height": 7383,
+      "dhash": "c08001a501060101",
+      "avgLuma": 241.4
+    },
+    "forms-desktop": {
+      "width": 1440,
+      "height": 3161,
+      "dhash": "8080a0a1a1212100",
+      "avgLuma": 213
+    },
+    "learn-mobile": {
+      "width": 390,
+      "height": 7826,
+      "dhash": "2580000100090900",
+      "avgLuma": 219.5
+    },
+    "home-desktop": {
+      "width": 1440,
+      "height": 4932,
+      "dhash": "203fd20001840101",
+      "avgLuma": 196
+    },
+    "microsoft-desktop": {
+      "width": 1440,
+      "height": 5636,
+      "dhash": "5001990101010109",
+      "avgLuma": 210.7
+    },
+    "cisco-desktop": {
+      "width": 1440,
+      "height": 4247,
+      "dhash": "0012a0a580100100",
+      "avgLuma": 242.203125
+    },
+    "comptia-mobile": {
+      "width": 390,
+      "height": 9529,
+      "dhash": "800101010181c001",
+      "avgLuma": 219.5
+    }
   }
 }
