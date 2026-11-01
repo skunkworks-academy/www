@@ -1,6 +1,17 @@
 import { test, expect } from "@playwright/test";
 
-const baseURL = process.env.SKW_TEST_ORIGIN || "http://127.0.0.1:4175";
+const baseURL = new URL(process.env.SKW_TEST_ORIGIN || "http://127.0.0.1:4175").origin;
+
+async function useStagedAssets(context) {
+  if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(baseURL).hostname)) return;
+  await context.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/assets\//, async route => {
+    const requested = new URL(route.request().url());
+    const response = await context.request.get(baseURL + requested.pathname + requested.search);
+    await route.fulfill({ response });
+  });
+}
+
+test.beforeEach(async ({ context }) => useStagedAssets(context));
 const routes = [
   "/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
   "/course-registration/", "/forms/", "/self-paced/", "/slides/", "/plugins/academy-learning-design/"
@@ -76,6 +87,7 @@ test("Learning Design plugin page provides accessible visual and functional cont
   for (const width of [390, 1440]) {
   for (const theme of ["light", "dark"]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: theme });
+    await useStagedAssets(context);
     const page = await context.newPage();
     try {
       await page.goto(baseURL + "/plugins/academy-learning-design/", { waitUntil: "domcontentloaded" });
