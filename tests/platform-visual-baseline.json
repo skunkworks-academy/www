@@ -104,9 +104,12 @@
     },
     "home-desktop": {
       "width": 1440,
-      "height": 4932,
-      "dhash": "203fd20001840101",
-      "avgLuma": 196
+      "height": 5265,
+      "dhash": "1000010009840000",
+      "avgLuma": 229.34375,
+      "sourceWorkflowRun": 41294615488,
+      "sourceHead": "02a1e4f67f504984186b6cdbda8c52d438aebbfe",
+      "reviewNote": "Reviewed captured PNG: official NetAcad programme mark and membership content; homepage has six cards in two desktop rows. No clipping or horizontal overflow. Tolerances unchanged."
     },
     "microsoft-desktop": {
       "width": 1440,
@@ -116,9 +119,12 @@
     },
     "cisco-desktop": {
       "width": 1440,
-      "height": 4247,
-      "dhash": "0012a0a580100100",
-      "avgLuma": 242.203125
+      "height": 4308,
+      "dhash": "0101a0012118d100",
+      "avgLuma": 235.734375,
+      "sourceWorkflowRun": 41294615488,
+      "sourceHead": "02a1e4f67f504984186b6cdbda8c52d438aebbfe",
+      "reviewNote": "Reviewed captured PNG: official NetAcad programme mark and membership content; homepage has six cards in two desktop rows. No clipping or horizontal overflow. Tolerances unchanged."
     },
     "comptia-mobile": {
       "width": 390,
