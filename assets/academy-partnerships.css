@@ -119,8 +119,8 @@ main .swa-partnerships .swa-partner .swa-partner__link {
 
 /* Official NetAcad SVG stays intact on white in both themes. */
 .swa-partner__art--netacad img {
-  width: 156px;
-  height: 96px;
+  width: 300px;
+  height: auto;
   max-width: 100%;
   object-fit: contain;
   filter: none;
@@ -135,7 +135,7 @@ main .swa-partnerships .swa-partner .swa-partner__link {
   border-radius: 8px;
   max-width: 100%;
 }
-.swa-netacad-mark img { width: 156px; height: auto; filter: none; }
+.swa-netacad-mark img { width: 300px; max-width: 100%; height: auto; filter: none; }
 .swa-netacad-mark:focus-visible { outline: 3px solid #1e6bd0; outline-offset: 4px; }
 .swa-netacad-trademark { font-size: .875rem; line-height: 1.6; margin: 24px 0; }
 .swa-netacad-skip { position: absolute; left: -10000px; }

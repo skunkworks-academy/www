@@ -27,10 +27,13 @@ before changing dates or tiers; update both the homepage and Partners page.
 - Public verification: https://www.netacad.com/academy-locator — search By Name
   for `Skunkworks`. Cisco returns Skunkworks Academy in South Africa and links to
   https://www.skunkworksacademy.com/ (checked 1 November 2026).
-- `cisco-networking-academy.svg` is the unmodified official programme artwork
-  downloaded from https://www.netacad.com/sfa-assets/images/svg/logoNetAcad_Vertical.svg,
-  the logo displayed by Cisco's own Networking Academy site.
-- SHA-256: `2340ff3227e7a309abdf1f74fab92425d7288e66bf68cb9d08783469ee70da57`.
+- `cisco-networking-academy.svg` is the unmodified horizontal artwork selected by
+  Skunkworks on 1 November 2026.
+- Source: https://commons.wikimedia.org/wiki/File:Cisco_Networking_Academy.svg
+- Original SVG: https://upload.wikimedia.org/wikipedia/commons/5/57/Cisco_Networking_Academy.svg
+- Credit: Cisco Networking Academy, Public domain, via Wikimedia Commons.
+- Copyright classification: Wikimedia Commons PD-textlogo; trademark rights remain applicable.
+- SHA-256: `cc9ba4145f850444b4a82452eb43ec4656c7acd07447e4dce8cbc4455a195d9d`.
 - Display the logo proportionally on white with clear space. Do not redraw,
   recolour, filter, crop, or combine it with the Skunkworks mark. Keep Skunkworks
   as the site identity and the programme mark within the relevant content.
