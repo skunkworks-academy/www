@@ -37,7 +37,14 @@ try {
     }, theme);
     const page = await context.newPage();
     const runtimeErrors = [];
+    const assetFailures = [];
     page.on('pageerror', error => runtimeErrors.push(String(error)));
+    page.on('response', response => {
+      const {pathname} = new URL(response.url());
+      if (/\\.(?:js|css)(?:$|\\?)/i.test(pathname) && response.status() >= 400) {
+        assetFailures.push(response.status() + ' ' + pathname);
+      }
+    });
     await page.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/.*$/i, async route => {
       const url = new URL(route.request().url());
       const local = origin + url.pathname + url.search;
@@ -109,7 +116,7 @@ try {
           }
         } else {
           const link = page.locator('.accessGateActions a[href*="courseId="]').first();
-          await link.waitFor({state: 'attached', timeout: 10000});
+          await link.waitFor({state: 'attached', timeout: 6000});
           const href = await link.getAttribute('href');
           if (!href || !href.includes('courseId=' + encodeURIComponent(course.courseId))) {
             throw new Error('Course registration CTA lacks scoped course ID.');
@@ -131,18 +138,20 @@ try {
         const reason = error?.message || String(error);
         problems.push(label + ': ' + reason);
         console.error('FAIL ' + problems.at(-1));
-        if (/swa-global-nav|swa-global-footer/.test(reason)) {
+        if (/swa-global-nav|swa-global-footer|accessGateActions/.test(reason)) {
           const diagnostics = await page.evaluate(() => ({
             url: location.href,
             readyState: document.readyState,
             navNodes: document.querySelectorAll('.swa-global-nav').length,
             footerNodes: document.querySelectorAll('.swa-global-footer').length,
+            accessState: [...document.querySelectorAll('.accessGate')].map(el => el.textContent.trim().slice(0,180)),
+            accessActionNodes: document.querySelectorAll('.accessGateActions').length,
             scripts: [...document.scripts].map(script => script.getAttribute('src') || '')
               .filter(src => /academy-navigation|skunkworks-(?:ui|footer)/.test(src)),
             bodyAttributes: [...document.body.attributes].map(a => a.name + '=' + a.value)
           })).catch(e => ({error: String(e)}));
-          console.error('ACADEMY-SHELL-DIAGNOSTICS ' + JSON.stringify({label, diagnostics, runtimeErrors}));
-          throw new Error('Canonical Academy shell is unavailable on ' + label + '; aborting remaining cases to preserve actionable diagnostics.');
+          console.error('ACADEMY-SHELL-DIAGNOSTICS ' + JSON.stringify({label, diagnostics, runtimeErrors, assetFailures}));
+          throw new Error('Required Academy chrome or enrollment controls are unavailable on ' + label + '; aborting remaining cases with diagnostics.');
         }
       }
     }
