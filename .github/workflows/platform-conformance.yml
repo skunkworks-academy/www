@@ -60,6 +60,8 @@ jobs:
             --landing courses.html \
             --manifest course-manifest.json \
             --asset-dirs assets,img,downloads
+          node scripts/publish-course-contract.mjs \
+            --source-sitemap .course-catalog/build/sitemap.xml
           rm -rf .course-catalog
 
       - name: Stage final composed artifact
@@ -74,6 +76,9 @@ jobs:
             --exclude='test-results/' \
             ./ _site/
           node scripts/stamp-platform-contract.mjs academy-platform-contract.json _site/academy-platform-contract.json
+
+      - name: Verify canonical course publication in the staged site
+        run: node scripts/publish-course-contract.mjs --verify --root _site
 
       - name: Start conformance preview
         run: |
@@ -91,6 +96,11 @@ jobs:
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4175/
           --routes /,/courses/,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/
+
+      - name: Browser-check course header, footer, registration, contrast and responsive layouts
+        env:
+          SKW_COURSE_TEST_ORIGIN: http://127.0.0.1:4175
+        run: node scripts/test-course-publishing-experience.mjs
 
       - name: Run navigation, theme, favicon, canonical, search, auth-state and asset checks
         run: npx playwright test tests/platform-conformance.spec.js --reporter=line
