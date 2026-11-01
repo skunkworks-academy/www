@@ -36,6 +36,8 @@ try {
       localStorage.setItem('theme', mode);
     }, theme);
     const page = await context.newPage();
+    const runtimeErrors = [];
+    page.on('pageerror', error => runtimeErrors.push(String(error)));
     await page.route(/^https:\/\/(?:www\.)?skunkworksacademy\.com\/.*$/i, async route => {
       const url = new URL(route.request().url());
       const local = origin + url.pathname + url.search;
@@ -59,8 +61,8 @@ try {
       try {
         const response = await page.goto(origin + course.path, {waitUntil: 'domcontentloaded', timeout: 20000});
         if (!response || !response.ok()) throw new Error('Course route returned non-2xx status.');
-        await page.waitForSelector('.swa-global-nav', {state: 'visible', timeout: 12000});
-        await page.waitForSelector('.swa-global-footer', {state: 'attached', timeout: 12000});
+        await page.waitForSelector('.swa-global-nav', {state: 'visible', timeout: 6000});
+        await page.waitForSelector('.swa-global-footer', {state: 'attached', timeout: 6000});
         await page.evaluate(mode => {
           document.documentElement.setAttribute('data-theme', mode);
           document.documentElement.setAttribute('data-swa-theme', mode);
@@ -126,8 +128,22 @@ try {
         }
         console.log('PASS ' + label + ': shared chrome, registration, route, responsive layout and axe contrast');
       } catch (error) {
-        problems.push(label + ': ' + (error.message || String(error)));
+        const reason = error?.message || String(error);
+        problems.push(label + ': ' + reason);
         console.error('FAIL ' + problems.at(-1));
+        if (/swa-global-nav|swa-global-footer/.test(reason)) {
+          const diagnostics = await page.evaluate(() => ({
+            url: location.href,
+            readyState: document.readyState,
+            navNodes: document.querySelectorAll('.swa-global-nav').length,
+            footerNodes: document.querySelectorAll('.swa-global-footer').length,
+            scripts: [...document.scripts].map(script => script.getAttribute('src') || '')
+              .filter(src => /academy-navigation|skunkworks-(?:ui|footer)/.test(src)),
+            bodyAttributes: [...document.body.attributes].map(a => a.name + '=' + a.value)
+          })).catch(e => ({error: String(e)}));
+          console.error('ACADEMY-SHELL-DIAGNOSTICS ' + JSON.stringify({label, diagnostics, runtimeErrors}));
+          throw new Error('Canonical Academy shell is unavailable on ' + label + '; aborting remaining cases to preserve actionable diagnostics.');
+        }
       }
     }
     await context.close();
