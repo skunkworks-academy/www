@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const baseURL = "http://127.0.0.1:4175";
+const baseURL = process.env.SKW_TEST_ORIGIN || "http://127.0.0.1:4175";
 const routes = [
   "/", "/learn/", "/ibm/", "/microsoft/", "/cisco/", "/comptia/",
   "/course-registration/", "/forms/", "/self-paced/", "/slides/", "/plugins/academy-learning-design/"
@@ -73,8 +73,9 @@ test("responsive shell fits mobile viewport", async ({ page }) => {
 
 
 test("Learning Design plugin page provides accessible visual and functional controls in both themes", async ({ browser }) => {
+  for (const width of [390, 1440]) {
   for (const theme of ["light", "dark"]) {
-    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: theme });
+    const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: theme });
     const page = await context.newPage();
     try {
       await page.goto(baseURL + "/plugins/academy-learning-design/", { waitUntil: "domcontentloaded" });
@@ -90,8 +91,10 @@ test("Learning Design plugin page provides accessible visual and functional cont
         viewportWidth: document.documentElement.clientWidth
       }));
       expect(dimensions.scrollWidth, "Unexpected horizontal overflow in " + theme).toBeLessThanOrEqual(dimensions.viewportWidth + 2);
-      const ratio = await page.locator(".ald-card").first().evaluate(card => {
-        const fg = getComputedStyle(card.querySelector("p")).color;
+      await expect(page.locator(".ald-hero")).toHaveAttribute("data-swa-surface-tone", "dark");
+      for (const selector of [".ald-card", ".ald-btn--primary"]) {
+      const ratio = await page.locator(selector).first().evaluate(card => {
+        const fg = getComputedStyle(card.querySelector("p") || card).color;
         const bg = getComputedStyle(card).backgroundColor;
         const rgb = value => (value.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
         const luminance = value => {
@@ -104,11 +107,13 @@ test("Learning Design plugin page provides accessible visual and functional cont
         const values = [luminance(fg), luminance(bg)].sort((a,b) => b-a);
         return (values[0] + 0.05) / (values[1] + 0.05);
       });
-      expect(ratio, "Card text must meet WCAG 2.2 AA contrast in " + theme).toBeGreaterThanOrEqual(4.5);
+      expect(ratio, selector + " text contrast in " + theme + " at " + width + "px").toBeGreaterThanOrEqual(4.5);
+      }
       await page.locator("#ald-copy-prompt").click();
       await expect(page.locator("#ald-copy-status")).toContainText(/copied|unavailable|blocked/i);
     } finally {
       await context.close();
     }
+  }
   }
 });

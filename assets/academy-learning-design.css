@@ -10,7 +10,7 @@
 .ald-skip { position:fixed; top:10px; left:12px; transform:translateY(-200%); z-index:2147483647; background:#fff; color:#111; padding:.65rem 1rem; border-radius:8px; font-weight:700; }
 .ald-skip:focus { transform:none; }
 .ald-noscript { padding:1rem 2rem; background:#fff; color:#111; }
-.ald-hero { padding:clamp(50px,7vw,96px) 0 64px; background:radial-gradient(circle at 12% 12%,rgba(30,107,208,.3),transparent 34%),linear-gradient(125deg,#03033a 5%,#0b154d 70%,#101a56); color:#fff; }
+.ald-hero { padding:clamp(50px,7vw,96px) 0 64px; background:radial-gradient(circle at 12% 12%,rgba(30,107,208,.3),transparent 34%),linear-gradient(125deg,#03033a 5%,#0b154d 70%,#101a56); background-color:#03033a; color:#fff; }
 .ald-hero__grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(24px,5vw,70px); align-items:center; }
 .ald-hero__copy { min-width:0; }
 .ald-eyebrow, .ald-kicker { margin:0 0 15px; font-size:.85rem; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
