@@ -112,6 +112,6 @@ test("JSON-LD is valid and identifies the current plugin version", () => {
 test("Hero and CTA retain explicit accessible surface pairs", () => {
   assert.match(css, /\.ald-hero \{[^}]*background-color:#03033a/);
   for (const match of html.matchAll(/<a class="([^"]*ald-btn[^"]*)"/g)) {
-    assert.ok(match[1].split(/\s+/).includes("button"));
+    assert.ok(match[1].split(/\s+/).includes("sk-button"));
   }
 });
