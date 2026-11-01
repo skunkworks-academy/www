@@ -92,10 +92,13 @@ test("Learning Design plugin page provides accessible visual and functional cont
       }));
       expect(dimensions.scrollWidth, "Unexpected horizontal overflow in " + theme).toBeLessThanOrEqual(dimensions.viewportWidth + 2);
       await expect(page.locator(".ald-hero")).toHaveAttribute("data-swa-surface-tone", "dark");
-      for (const selector of [".ald-card", ".ald-btn--primary"]) {
-      const ratio = await page.locator(selector).first().evaluate(card => {
+      for (const selector of [".ald-card", ".ald-btn", ".ald-hero h1", ".ald-hero__lead"]) {
+      for (const element of await page.locator(selector).all()) {
+      const ratio = await element.evaluate(card => {
         const fg = getComputedStyle(card.querySelector("p") || card).color;
-        const bg = getComputedStyle(card).backgroundColor;
+        let surface = card;
+        while (surface.parentElement && getComputedStyle(surface).backgroundColor === "rgba(0, 0, 0, 0)") surface = surface.parentElement;
+        const bg = getComputedStyle(surface).backgroundColor;
         const rgb = value => (value.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
         const luminance = value => {
           const channels = rgb(value).map(channel => {
@@ -108,6 +111,7 @@ test("Learning Design plugin page provides accessible visual and functional cont
         return (values[0] + 0.05) / (values[1] + 0.05);
       });
       expect(ratio, selector + " text contrast in " + theme + " at " + width + "px").toBeGreaterThanOrEqual(4.5);
+      }
       }
       await page.locator("#ald-copy-prompt").click();
       await expect(page.locator("#ald-copy-status")).toContainText(/copied|unavailable|blocked/i);
