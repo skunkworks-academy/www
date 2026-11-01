@@ -28,7 +28,7 @@ concurrency:
 jobs:
   validate:
     name: Validate and audit site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
@@ -62,7 +62,7 @@ jobs:
   lighthouse:
     name: Lighthouse local production audit
     if: github.event_name != 'schedule'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: validate
     steps:
@@ -156,7 +156,7 @@ jobs:
 
   art101-browser:
     name: ART-101 interaction and hydration test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: validate
     steps:
@@ -204,7 +204,7 @@ jobs:
 
   beginner_courses:
     name: Validate Academy-domain beginner course composition
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 18
     steps:
       - name: Checkout Academy website
@@ -273,7 +273,7 @@ jobs:
       (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: [validate, lighthouse, art101-browser, beginner_courses]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     environment:
       name: github-pages
@@ -596,7 +596,7 @@ jobs:
       needs.deploy.result == 'success' &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     needs: deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Checkout expected production contract
