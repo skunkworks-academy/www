@@ -14,6 +14,7 @@
     { label: "Learning catalogue", url: "https://skunkworksacademy.com/catalogue/", description: "Self-paced and instructor-led learning" },
     { label: "Courses", url: "https://www.skunkworksacademy.com/courses/", description: "Browse published Academy courses and learning outcomes" },
     { label: "Course registration", url: "https://www.skunkworksacademy.com/course-registration/", description: "Register for training and enquiries" },
+    { label: "Learning design plugin", url: "https://www.skunkworksacademy.com/plugins/academy-learning-design/", description: "Create accessible, visual and assessment-led Academy courses with ChatGPT" },
     { label: "Plans & purchases", url: "https://skunkworksacademy.com/plans-and-purchases/", description: "Training plans and purchases" },
     { label: "Learner portal", url: "https://portal.skunkworksacademy.com/", domains: ["portal.skunkworksacademy.com"], description: "Your Academy account and learning portal" },
     { label: "Labs", url: "https://labs.skunkworksacademy.com/", domains: ["labs.skunkworksacademy.com", "lab.skunkworksacademy.com"], description: "Hands-on technical labs" },

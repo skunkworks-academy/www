@@ -13,7 +13,8 @@
     "guides/zero-trust-lab-controls.html",
     "learn/index.html",
     "instructor-led/index.html",
-    "self-paced/index.html"
+    "self-paced/index.html",
+    "plugins/academy-learning-design/index.html"
   ],
   "adsenseEligiblePages": [
     "index.html",
@@ -21,6 +22,8 @@
     "guides/cloud-certification-roadmap.html",
     "guides/learning-readiness-canvas.html",
     "guides/zero-trust-lab-controls.html"
-  ]
+  ],
+  "lastModifiedOverrides": {
+    "plugins/academy-learning-design/index.html": "2026-11-01"
+  }
 }
-
