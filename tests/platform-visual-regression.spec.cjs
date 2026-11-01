@@ -218,6 +218,9 @@ for (const [surface, path] of surfaces) {
       expect(approved, `missing approved visual baseline for ${key}`).toBeTruthy();
 
       const current = screenshotFingerprint(screenshot);
+      // Preserve the actual measured fingerprint for visual-baseline reviews.
+      // Never change tolerances or silently accept a drift without evidence.
+      console.log('VISUAL-FINGERPRINT ' + JSON.stringify({key, ...current}));
       expect(current.width, `${key} screenshot width drifted`).toBe(approved.width);
 
       const heightDelta = Math.abs(current.height - approved.height) / approved.height;
