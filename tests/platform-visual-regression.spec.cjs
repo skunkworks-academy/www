@@ -199,7 +199,16 @@ for (const [surface, path] of surfaces) {
       await expect(page.locator('link[data-skunkworks-favicon="canonical"]').first()).toHaveCount(1);
 
       const bodyWidth = await page.locator('body').evaluate(el => el.scrollWidth);
-      expect(bodyWidth, `${surface} overflows horizontally at ${viewportName}`).toBeLessThanOrEqual(viewport.width + 2);
+      if (bodyWidth > viewport.width + 2) {
+        const offenders = await page.evaluate(() => [...document.querySelectorAll('body *')]
+          .map(el => ({tag: el.tagName, className: typeof el.className === 'string' ? el.className.slice(0, 70) : '',
+            rect: el.getBoundingClientRect()}))
+          .filter(x => x.rect.width > 0 && x.rect.right > window.innerWidth + 2)
+          .sort((a, b) => b.rect.right - a.rect.right)
+          .slice(0, 8)
+          .map(x => ({tag: x.tag, className: x.className, right: Math.round(x.rect.right), width: Math.round(x.rect.width)})));
+        console.log('MOBILE-OVERFLOW ' + JSON.stringify({surface, viewportName, bodyWidth, offenders}));
+      }
 
       expect(pageErrors, `${surface} emitted runtime errors: ${pageErrors.join(' | ')}`).toEqual([]);
       expect(
@@ -221,6 +230,7 @@ for (const [surface, path] of surfaces) {
       // Preserve the actual measured fingerprint for visual-baseline reviews.
       // Never change tolerances or silently accept a drift without evidence.
       console.log('VISUAL-FINGERPRINT ' + JSON.stringify({key, ...current}));
+      expect(bodyWidth, `${surface} overflows horizontally at ${viewportName}`).toBeLessThanOrEqual(viewport.width + 2);
       expect(current.width, `${key} screenshot width drifted`).toBe(approved.width);
 
       const heightDelta = Math.abs(current.height - approved.height) / approved.height;
