@@ -130,7 +130,7 @@ try {
             if (!await page.locator('article table').count()) throw new Error('Module is missing its native worked-example visual.');
           } else {
             if (!await page.getByText('Independent subject review is pending.', {exact: false}).count()) throw new Error('Missing public pilot disclosure.');
-            const download = page.locator('article a[href$="/course-pack.zip"]').first();
+            const download = page.locator('article a[href*="course-pack"][href$=".zip"]').first();
             const href = await download.getAttribute('href');
             const response = await page.request.get(new URL(href, origin).href);
             if (!response.ok() || (await response.body()).subarray(0, 2).toString() !== 'PK') throw new Error('Course pack is not a downloadable ZIP.');
@@ -149,14 +149,16 @@ try {
         }
 
         await page.addScriptTag({content: axe.source});
-        const audit = await page.evaluate(async () =>
-          window.axe.run(document, {runOnly: {type: 'rule', values: ['color-contrast']}})
+        const audit = await page.evaluate(async publicPilot =>
+          window.axe.run(document, {runOnly: publicPilot
+            ? {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']}
+            : {type: 'rule', values: ['color-contrast']}}), course.contentAccess === 'public'
         );
         if (audit.violations.length) {
           const issues = audit.violations.flatMap(violation =>
             violation.nodes.slice(0, 5).map(node => node.target.join(' ') + ': ' + (node.failureSummary || violation.help))
           );
-          throw new Error('WCAG text contrast violations: ' + issues.join(' | '));
+          throw new Error('Accessibility violations: ' + issues.join(' | '));
         }
         console.log('PASS ' + label + ': shared chrome, registration, route, responsive layout and axe contrast');
       } catch (error) {
@@ -179,6 +181,19 @@ try {
           throw new Error('Required Academy chrome or enrollment controls are unavailable on ' + label + '; aborting remaining cases with diagnostics.');
         }
       }
+    }
+    await page.goto(origin + '/courses', {waitUntil: 'networkidle'});
+    for (const course of manifest.courses.filter(course => course.contentAccess === 'public')) {
+      const card = page.locator('article').filter({has: page.getByText(course.courseId, {exact: true})});
+      const enquiry = card.getByRole('link', {name: 'Enquire about facilitation'});
+      if (await enquiry.getAttribute('href') !== course.registrationPath) {
+        throw new Error(course.courseId + ': catalogue enquiry destination is incorrect.');
+      }
+      await page.goto(origin + course.registrationPath, {waitUntil: 'domcontentloaded'});
+      if (await page.locator('#course').inputValue() !== course.courseId) {
+        throw new Error(course.courseId + ': registration form did not preselect the course.');
+      }
+      await page.goto(origin + '/courses', {waitUntil: 'networkidle'});
     }
     await context.close();
   }
