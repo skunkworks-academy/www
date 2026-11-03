@@ -486,6 +486,7 @@
     }
 
     function openMenu() {
+      closeAccountPanel();
       closeSearch();
       header.classList.add("swa-menu-open");
       toggle.setAttribute("aria-expanded", "true");
@@ -493,6 +494,7 @@
     }
 
     function openSearch() {
+      closeAccountPanel();
       closeMenu();
       header.classList.add("swa-search-open");
       search.setAttribute("aria-expanded", "true");
@@ -539,6 +541,9 @@
       if (!header.contains(event.target)) {
         closeMenu();
         closeSearch();
+        closeAccountPanel();
+      } else if (!accountPanel.contains(event.target) && event.target !== avatarButton) {
+        closeAccountPanel();
       }
     });
 
@@ -547,7 +552,10 @@
       var isTyping = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable);
 
       if (event.key === "Escape") {
-        if (header.classList.contains("swa-search-open")) {
+        if (header.classList.contains("swa-account-open")) {
+          closeAccountPanel();
+          avatarButton.focus();
+        } else if (header.classList.contains("swa-search-open")) {
           closeSearch();
           search.focus();
         } else if (header.classList.contains("swa-menu-open")) {
