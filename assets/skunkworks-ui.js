@@ -411,6 +411,35 @@
     }
     applyAccountControl();
     window.addEventListener("skunkworksacademy:account-change", applyAccountControl);
+    avatarButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (header.classList.contains("swa-account-open")) {
+        closeAccountPanel();
+      } else {
+        closeMenu();
+        closeSearch();
+        header.classList.add("swa-account-open");
+        avatarButton.setAttribute("aria-expanded", "true");
+      }
+    });
+    profileAction.addEventListener("click", function () {
+      closeAccountPanel();
+      var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+      if (account && account.authenticated && typeof account.openProfile === "function") {
+        account.openProfile();
+      } else {
+        window.location.assign(SIGN_IN_URL + "?view=profile");
+      }
+    });
+    accountSignOut.addEventListener("click", function () {
+      closeAccountPanel();
+      var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+      if (account && account.authenticated && typeof account.signOut === "function") {
+        account.signOut();
+      }
+    });
+
 
     function renderSearchResults(query) {
       var value = String(query || "").trim().toLowerCase();
