@@ -334,12 +334,14 @@
     controls.appendChild(search);
     controls.appendChild(accountName);
     controls.appendChild(signIn);
+    controls.appendChild(avatarButton);
     inner.appendChild(identity);
     inner.appendChild(crest);
     inner.appendChild(controls);
     inner.appendChild(links);
     inner.appendChild(searchPanel);
     header.appendChild(inner);
+    header.appendChild(accountPanel);
     document.body.insertBefore(header, document.body.firstChild);
     document.body.classList.add("swa-has-global-nav");
 
