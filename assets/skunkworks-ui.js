@@ -199,6 +199,11 @@
     var controls = document.createElement("div");
     var search = document.createElement("button");
     var accountName = document.createElement("span");
+    var avatarButton = document.createElement("button");
+    var accountPanel = document.createElement("div");
+    var accountCaption = document.createElement("strong");
+    var profileAction = document.createElement("button");
+    var accountSignOut = document.createElement("button");
     var signIn = document.createElement("a");
     var links = document.createElement("nav");
     var linksHeading = document.createElement("p");
