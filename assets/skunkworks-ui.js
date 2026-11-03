@@ -374,31 +374,41 @@
       signIn.addEventListener("click", accountHandler);
     }
 
+    function closeAccountPanel() {
+      header.classList.remove("swa-account-open");
+      avatarButton.setAttribute("aria-expanded", "false");
+    }
+
     function applyAccountControl() {
       var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+      var authenticated = Boolean(account && account.authenticated);
       var userName = account && typeof account.userName === "string" ? account.userName.trim() : "";
+      var userEmail = account && typeof account.userEmail === "string" ? account.userEmail.trim() : "";
+      var displayName = userName || userEmail || "Academy account";
 
-      accountName.hidden = !userName;
-      accountName.textContent = userName;
+      accountName.hidden = !authenticated || !userName;
+      accountName.textContent = authenticated ? userName : "";
+      avatarButton.dataset.authenticated = authenticated ? "true" : "false";
+      signIn.dataset.authenticated = authenticated ? "true" : "false";
 
-      if (!account || typeof account !== "object") {
+      if (authenticated) {
+        var parts = displayName.replace(/@.*$/, "").split(/[\s._-]+/).filter(Boolean);
+        avatarButton.textContent = parts.slice(0, 2).map(function (part) { return part[0].toUpperCase(); }).join("") || "A";
+        avatarButton.setAttribute("aria-label", "Open profile and account menu for " + displayName);
+        accountCaption.textContent = userEmail && userName ? userName + " · " + userEmail : displayName;
+        accountSignOut.hidden = typeof account.signOut !== "function";
         resetSignIn();
         return;
       }
 
-      if (account.authenticated && typeof account.signOut === "function") {
-        setAccountAction(account.signOutLabel || "Sign out", "Sign out of Skunkworks Academy", account.signOut);
-        return;
-      }
-
-      if (!account.authenticated && typeof account.signIn === "function") {
+      closeAccountPanel();
+      accountCaption.textContent = "";
+      if (account && typeof account.signIn === "function") {
         setAccountAction(account.signInLabel || "Sign in", "Sign in to Skunkworks Academy", account.signIn);
-        return;
+      } else {
+        resetSignIn();
       }
-
-      resetSignIn();
     }
-
     applyAccountControl();
     window.addEventListener("skunkworksacademy:account-change", applyAccountControl);
 
