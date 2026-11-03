@@ -270,6 +270,28 @@
     signIn.setAttribute("aria-label", "Sign in to the Skunkworks Academy learner portal");
     accountName.className = "swa-global-nav__account-name";
     accountName.hidden = true;
+    avatarButton.className = "swa-global-nav__avatar";
+    avatarButton.type = "button";
+    avatarButton.textContent = "A";
+    avatarButton.dataset.authenticated = "false";
+    avatarButton.setAttribute("aria-label", "Open account menu");
+    avatarButton.setAttribute("aria-haspopup", "true");
+    avatarButton.setAttribute("aria-expanded", "false");
+    avatarButton.setAttribute("aria-controls", "swa-global-account-panel");
+
+    accountPanel.className = "swa-global-nav__account-panel";
+    accountPanel.id = "swa-global-account-panel";
+    accountPanel.setAttribute("aria-label", "Your Academy account");
+    accountCaption.className = "swa-global-nav__account-caption";
+    profileAction.type = "button";
+    profileAction.className = "swa-global-nav__account-action";
+    profileAction.textContent = "Profile & settings";
+    accountSignOut.type = "button";
+    accountSignOut.className = "swa-global-nav__account-action";
+    accountSignOut.textContent = "Sign out";
+    accountPanel.appendChild(accountCaption);
+    accountPanel.appendChild(profileAction);
+    accountPanel.appendChild(accountSignOut);
 
     links.className = "swa-global-nav__links";
     links.id = "swa-global-nav-links";
