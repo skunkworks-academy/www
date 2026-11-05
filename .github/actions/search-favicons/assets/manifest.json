@@ -1,0 +1,80 @@
+{
+  "revision": "2026.11.05.2",
+  "source": "images/favicon-black.png",
+  "source_sha256": "23061c0c0a845f8641f5bdc645ae1b2af34525ba5df485195b13ecbc1ae86668",
+  "source_alpha_bbox": [
+    337,
+    362,
+    1231,
+    1189
+  ],
+  "assets": {
+    "favicon-search.png": {
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "d163e9927772909c23adf818cf89b62e558d63314a7284e2567ac34dafbaf6c3",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "favicon-search-dark.png": {
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "d163e9927772909c23adf818cf89b62e558d63314a7284e2567ac34dafbaf6c3",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "favicon-32.png": {
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "425e8457fa7c43464556a8912ff96f0fbdfe8e83ce01bfde23f641c4f775bc04",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "apple-touch-icon.png": {
+      "size": [
+        180,
+        180
+      ],
+      "sha256": "154cc7b54bda6109f9f17c3d1e8f62af552e837069449e5c31271d1678b2e9aa",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "favicon-192.png": {
+      "size": [
+        192,
+        192
+      ],
+      "sha256": "55793844194430e2f5049c1f1e07d6ff923471247c433dd30e6a51269490772d",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "favicon-512.png": {
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "34a8cd61a35e2aeadde0eac8fe3f1ebec8499515bfd896999a92decf0ed44529",
+      "rgba": true,
+      "transparent_corners": true
+    },
+    "favicon.ico": {
+      "sizes": [
+        16,
+        24,
+        32,
+        48,
+        64,
+        96,
+        128,
+        256
+      ],
+      "sha256": "18eacdf295fb67aff7b36b363548d1a0136f86608126551f9a2e4d41aee8abc8"
+    }
+  }
+}

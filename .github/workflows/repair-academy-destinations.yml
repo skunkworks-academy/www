@@ -44,12 +44,17 @@ jobs:
                   text = text.replace('academy-navigation.js?v=2026.07.06.2', 'academy-navigation.js?v=2026.07.17.4')
               path.write_text(text, encoding='utf-8')
           PY
+
+      - name: Apply transparent black Academy site icons
+        uses: ./.github/actions/search-favicons
+        with:
+          artifact-path: "."
       - name: Validate canonical navigation
         run: |
           for page in plans-and-purchases/index.html google/index.html comptia/index.html cisco/index.html; do
             grep -q 'data-skunkworks-global-nav="v7"' "$page"
-            grep -q 'https://skunkworksacademy.com/images/favicon-black.png' "$page"
-            grep -q 'https://skunkworksacademy.com/images/favicon-white.png' "$page"
+            grep -Fq 'images/favicon-search.png?v=2026.11.05.2' "$page"
+            grep -Fq 'images/apple-touch-icon.png?v=2026.11.05.2' "$page"
             grep -q 'data-skunkworks-site-map="v2"' "$page"
             ! grep -q 'skunkworks-academy/.github/refs/heads/main/images' "$page"
           done
