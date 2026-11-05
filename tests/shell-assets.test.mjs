@@ -125,11 +125,11 @@ test('the HTML contract rejects lookalike favicon hosts and data-href substitute
 
 test('Python exercise exceptions are displayed as text, never interpreted as markup', t => {
   const html = read('python/activities.html');
-  const inline = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
-    .map(match => match[1]).find(source => source.includes('function runPythonCode'));
-  assert.ok(inline);
   const dom = new JSDOM(html, { url: 'https://www.skunkworksacademy.com/python/activities.html', runScripts: 'outside-only' });
   t.after(() => dom.window.close());
+  const inline = [...dom.window.document.querySelectorAll('script:not([src])')]
+    .map(script => script.textContent).find(source => source.includes('function runPythonCode'));
+  assert.ok(inline);
   const message = '<img src=x onerror="window.injected=true">';
   dom.window.__BRYTHON__ = { py2js() { throw new Error(message); } };
   dom.window.eval(inline);
