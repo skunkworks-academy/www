@@ -483,10 +483,11 @@
       var hadAccountFocus = accountControl.contains(document.activeElement);
       var portalWorkspace = isPortalWorkspace(account);
       var workspaceMenuOpen = portalWorkspace && toggle.getAttribute("aria-controls") === "academy-portal-sidebar" && toggle.getAttribute("aria-expanded") === "true";
+      var academyMenuOpen = !portalWorkspace && header.classList.contains("swa-menu-open");
       header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
       toggle.setAttribute("aria-controls", portalWorkspace ? "academy-portal-sidebar" : "swa-global-nav-links");
-      toggle.setAttribute("aria-label", portalWorkspace ? (workspaceMenuOpen ? "Close workspace navigation" : "Open workspace navigation") : "Open Academy menu");
-      toggle.setAttribute("aria-expanded", String(Boolean(workspaceMenuOpen)));
+      toggle.setAttribute("aria-label", portalWorkspace ? (workspaceMenuOpen ? "Close workspace navigation" : "Open workspace navigation") : (academyMenuOpen ? "Close Academy menu" : "Open Academy menu"));
+      toggle.setAttribute("aria-expanded", String(Boolean(portalWorkspace ? workspaceMenuOpen : academyMenuOpen)));
 
       accountName.hidden = !userName;
       accountName.textContent = userName;

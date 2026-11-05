@@ -437,7 +437,11 @@
     var portalWorkspace = isPortalWorkspace();
     header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
     if (portalWorkspace) {
-      if (existing) existing.remove();
+      if (existing) {
+        var workspaceToggle = header.querySelector(".swa-global-nav__toggle");
+        if (existing.contains(document.activeElement) && workspaceToggle) workspaceToggle.focus();
+        existing.remove();
+      }
       header.classList.remove("swa-has-top-menu", "swa-menu-open");
       document.body.classList.remove("swa-has-top-menu");
       return true;

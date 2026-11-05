@@ -117,9 +117,12 @@ test('menu arrow, Home/End and Escape controls manage focus; outside focus close
   f.key('ArrowUp');
   assert.equal(f.document.activeElement, items[2]);
   f.query('#outside').focus();
-  f.query('#outside').click();
   assert.equal(f.query('#swa-global-nav-account-menu').hidden, true);
   assert.equal(f.document.activeElement, f.query('#outside'));
+  toggle.click();
+  assert.equal(f.query('#swa-global-nav-account-menu').hidden, false);
+  f.query('#outside').click();
+  assert.equal(f.query('#swa-global-nav-account-menu').hidden, true);
 });
 
 test('missing, cross-origin, credential and script URLs never become account destinations', t => {
@@ -156,6 +159,26 @@ test('other origins and account sources keep existing public navigation and acco
   const other = fixture(t, { account: { source: 'another-app' } });
   assert.equal(other.query('.swa-global-nav__account').hidden, true);
   assert.ok(other.query('.swa-global-nav__top-menu'));
+});
+
+test('workspace activation moves removed top-menu focus to the workspace toggle', t => {
+  const f = fixture(t, { signedIn: false });
+  f.query('.swa-global-nav__top-menu-button').focus();
+  f.update({ source: 'portal', authenticated: true, workspaceNavigation: 'sidebar' });
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.document.activeElement, f.query('.swa-global-nav__toggle'));
+});
+
+test('account updates retain the visible public menu and matching toggle state', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/' });
+  const toggle = f.query('.swa-global-nav__toggle');
+  toggle.click();
+  f.update({ userName: 'Updated name' });
+  assert.ok(f.query('.swa-global-nav').classList.contains('swa-menu-open'));
+  assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(toggle.getAttribute('aria-label'), 'Close Academy menu');
+  toggle.click();
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false');
 });
 
 test('portal hamburger uses the existing sidebar event contract; search survives content updates', async t => {
