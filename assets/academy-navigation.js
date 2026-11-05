@@ -5,6 +5,7 @@
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
   var RUNTIME_VERSION = "2026.09.08.3";
+  var NAVIGATION_REVISION = "2026.11.05.1";
   var PAGE_CONTRACT_VERSION = "2026.09.07.1";
   var FOOTER_REVISION = "2026.09.08.4";
   var BRAND_THEME_VERSION = "2026.09.08.3";
@@ -212,8 +213,8 @@
     return;
   }
 
-  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
-  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION;
+  var primarySrc = PRIMARY_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION + "&nav=" + NAVIGATION_REVISION;
+  var fallbackSrc = CANONICAL_ROOT + "academy-navigation-v11.js?v=" + RUNTIME_VERSION + "&rev=" + FOOTER_REVISION + "&nav=" + NAVIGATION_REVISION;
   var script = document.createElement("script");
   script.defer = true;
   script.src = primarySrc;
