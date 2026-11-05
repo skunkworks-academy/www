@@ -1448,16 +1448,16 @@ html[data-theme="dark"] .swa-global-footer {
    --------------------------------------------------------------------- */
 
 main .hero {
-  color: var(--sk-pub-on-inverse) !important;
+  color: var(--swa-surface-text, var(--sk-text-primary)) !important;
 }
 main .hero h1 {
-  color: #ffffff !important;
+  color: var(--swa-surface-text, var(--sk-text-primary)) !important;
 }
 main .hero .lead {
-  color: var(--sk-pub-on-inverse-muted) !important;
+  color: var(--swa-surface-muted, var(--sk-text-secondary)) !important;
 }
 main .hero .eyebrow {
-  color: var(--sk-pub-hero-eyebrow) !important;
+  color: var(--swa-surface-link, var(--sk-link)) !important;
 }
 main .hero .btn.inverse {
   color: #ffffff !important;

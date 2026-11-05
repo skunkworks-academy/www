@@ -53,9 +53,12 @@
     },
     "ibm-desktop": {
       "width": 1440,
-      "height": 3520,
-      "dhash": "0024000115019080",
-      "avgLuma": 231.671875
+      "height": 3421,
+      "dhash": "0080000181000080",
+      "avgLuma": 251.296875,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot: canonical black header appears once; legacy blue masthead removed; IBM banner, text, filters, cards and footer remain visible with no horizontal overflow."
     },
     "learn-desktop": {
       "width": 1440,
@@ -65,15 +68,21 @@
     },
     "comptia-desktop": {
       "width": 1440,
-      "height": 3436,
-      "dhash": "546aaa5151242000",
-      "avgLuma": 229.8
+      "height": 3467,
+      "dhash": "9492aaa151202080",
+      "avgLuma": 211.515625,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot: dark hero heading is readable on its light surface; live computed contrast assertion passes; catalogue cards and footer retain layout. Thresholds unchanged."
     },
     "ibm-mobile": {
       "width": 390,
-      "height": 6658,
-      "dhash": "304099e10101a800",
-      "avgLuma": 240.6
+      "height": 6472,
+      "dhash": "890041010101a400",
+      "avgLuma": 245.90625,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot at390px: one canonical header, IBM banner fully shown after animation completion, stacked cards and complete footer without horizontal overflow."
     },
     "publisher-mobile": {
       "width": 390,

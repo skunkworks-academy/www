@@ -21,8 +21,8 @@ for (const route of ['/', '/learn/', '/forms/', '/authors/', '/privacy.html', '/
       await expect(footer).toHaveCount(1);
       await expect(footer.locator('a')).toHaveCount(17);
       await expect(page.locator('body > footer')).toHaveCount(1);
-      await expect(page.locator('link[data-skunkworks-brand-theme="canonical"]')).toHaveAttribute('href', /rev=2026\.09\.08\.4/);
-      await expect(page.locator('script[data-skunkworks-global-footer="canonical"]')).toHaveAttribute('src', /rev=2026\.09\.08\.4/);
+      await expect(page.locator('link[data-skunkworks-brand-theme="canonical"]')).toHaveAttribute('href', /rev=2026\.11\.05\.2/);
+      await expect(page.locator('script[data-skunkworks-global-footer="canonical"]')).toHaveAttribute('src', /rev=2026\.11\.05\.1/);
       await expect(footer).toHaveCSS('background-color', 'rgb(255, 255, 255)');
       await expect(page.locator('.swa-global-nav')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
       const bounds = await footer.evaluate(el => ({ width: el.clientWidth, scroll: el.scrollWidth }));
