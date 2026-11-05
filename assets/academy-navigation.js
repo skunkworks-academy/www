@@ -5,7 +5,8 @@
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
   var RUNTIME_VERSION = "2026.09.08.3";
-  var NAVIGATION_REVISION = "2026.11.05.1";
+  var NAVIGATION_REVISION = "2026.11.05.2";
+  var BRAND_THEME_REVISION = "2026.11.05.2";
   var PAGE_CONTRACT_VERSION = "2026.09.07.1";
   var FOOTER_REVISION = "2026.09.08.4";
   var BRAND_THEME_VERSION = "2026.09.08.3";
@@ -127,7 +128,7 @@
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION;
+    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION;
     var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
     if (!link) {
       link = document.createElement("link");
@@ -243,7 +244,7 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
-    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + FOOTER_REVISION,
+    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,

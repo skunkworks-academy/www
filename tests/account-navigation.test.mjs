@@ -229,7 +229,7 @@ test('public footer and explicit theme remain intact on other hosts', t => {
 
 test('navigation and footer dependency cache revisions change without changing stable theme contract', t => {
   const f = fixture(t);
-  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.05\.1/);
+  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.05\.2/);
   assert.match(f.query('script[data-skunkworks-global-footer]').src, /rev=2026\.11\.05\.1/);
-  assert.match(f.query('link[data-skunkworks-brand-theme]').href, /rev=2026\.09\.08\.3/);
+  assert.match(f.query('link[data-skunkworks-brand-theme]').href, /v=2026\.09\.08\.3&rev=2026\.11\.05\.2/);
 });

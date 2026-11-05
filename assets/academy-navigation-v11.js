@@ -4,7 +4,7 @@
 
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
-  var NAVIGATION_REVISION = "2026.11.05.1";
+  var NAVIGATION_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
@@ -159,7 +159,7 @@
   if (typeof document === "undefined") return;
 
   function assetUrl(root, file) {
-    var revision = file === "skunkworks-footer.js" ? "2026.11.05.1" : file === "skunkworks-ui.js" ? NAVIGATION_REVISION : REVISION;
+    var revision = file === "skunkworks-footer.js" ? "2026.11.05.1" : file === "skunkworks-ui.js" || file === "academy-brand-theme.css" ? NAVIGATION_REVISION : REVISION;
     return root + file + "?v=" + VERSION + "&rev=" + revision;
   }
 
