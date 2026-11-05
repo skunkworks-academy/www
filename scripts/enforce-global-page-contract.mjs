@@ -136,8 +136,10 @@ function canonicalFaviconTags(html) {
 }
 
 function tagHasAttributeValue(tag, attribute, value) {
-  const pattern = new RegExp(`\\b${attribute}\\s*=\\s*(["'])${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1`, 'i');
-  return pattern.test(tag);
+  for (const match of tag.matchAll(/(?:^|\s)([\w:-]+)\s*=\s*(["'])(.*?)\2/g)) {
+    if (match[1].toLowerCase() === attribute.toLowerCase() && match[3] === value) return true;
+  }
+  return false;
 }
 
 function validate(html, file) {

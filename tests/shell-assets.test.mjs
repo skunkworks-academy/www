@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
 import { createRequire } from 'node:module';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 const { JSDOM } = createRequire(new URL('./shell-dom/package.json', import.meta.url))('jsdom');
 
 const read = name => fs.readFileSync(new URL('../' + name, import.meta.url), 'utf8');
@@ -90,3 +93,48 @@ for (const url of ['http://localhost:4173/', 'http://127.0.0.1:4173/', 'http://[
     assert.equal(f.query('.swa-global-nav__crest').href, 'https://skunkworksacademy.com/');
   });
 }
+
+test('the HTML contract rejects lookalike favicon hosts and data-href substitutes', t => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const work = path.dirname(path.resolve(root));
+  const scratch = fs.mkdtempSync(path.join(work, 'page-contract-security-'));
+  t.after(() => {
+    assert.equal(path.dirname(path.resolve(scratch)), work);
+    fs.rmSync(scratch, { recursive: true });
+  });
+  for (const relative of ['images/favicon-search.png', 'images/favicon-search-dark.png',
+    'assets/academy-page-contract.js', 'assets/academy-brand-theme.css', 'assets/academy-forms.css', 'assets/academy-navigation.js']) {
+    fs.mkdirSync(path.dirname(path.join(scratch, relative)), { recursive: true });
+    fs.copyFileSync(path.join(root, relative), path.join(scratch, relative));
+  }
+  const page = path.join(scratch, 'index.html');
+  fs.writeFileSync(page, '<!doctype html><html><head><title>Contract fixture</title></head><body></body></html>');
+  const enforce = mode => execFileSync(process.execPath, [path.join(root, 'scripts/enforce-global-page-contract.mjs'), mode, scratch], { stdio: 'pipe' });
+  enforce('--write');
+  enforce('--check');
+  const valid = fs.readFileSync(page, 'utf8');
+  const href = 'href="https://www.skunkworksacademy.com/images/favicon-search.png?v=2026.11.05.2"';
+  for (const replacement of [
+    href.replace('www.skunkworksacademy.com', 'wwwXskunkworksacademy.com'),
+    'data-' + href + ' href="https://untrusted.example/icon.png"',
+  ]) {
+    fs.writeFileSync(page, valid.replace(href, replacement));
+    assert.throws(() => enforce('--check'), /default\/light favicon/);
+  }
+});
+
+test('Python exercise exceptions are displayed as text, never interpreted as markup', t => {
+  const html = read('python/activities.html');
+  const inline = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+    .map(match => match[1]).find(source => source.includes('function runPythonCode'));
+  assert.ok(inline);
+  const dom = new JSDOM(html, { url: 'https://www.skunkworksacademy.com/python/activities.html', runScripts: 'outside-only' });
+  t.after(() => dom.window.close());
+  const message = '<img src=x onerror="window.injected=true">';
+  dom.window.__BRYTHON__ = { py2js() { throw new Error(message); } };
+  dom.window.eval(inline);
+  dom.window.runPythonCode();
+  assert.equal(dom.window.document.querySelector('#output').textContent, 'Error: ' + message);
+  assert.equal(dom.window.document.querySelector('#output img'), null);
+  assert.equal(dom.window.injected, undefined);
+});

@@ -289,7 +289,7 @@
                     outputElement.appendChild(script);
                 });
             } catch (error) {
-                document.getElementById("output").innerHTML = `Error: ${error.message}`;
+                document.getElementById("output").textContent = `Error: ${error.message}`;
             }
         }
 
