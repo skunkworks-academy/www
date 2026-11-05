@@ -158,7 +158,7 @@ test('other origins and account sources keep existing public navigation and acco
   assert.ok(other.query('.swa-global-nav__top-menu'));
 });
 
-test('portal hamburger uses the existing sidebar event contract; search still works', t => {
+test('portal hamburger uses the existing sidebar event contract; search survives content updates', async t => {
   const f = fixture(t);
   const toggle = f.query('.swa-global-nav__toggle');
   assert.equal(toggle.getAttribute('aria-controls'), 'academy-portal-sidebar');
@@ -173,6 +173,12 @@ test('portal hamburger uses the existing sidebar event contract; search still wo
   f.query('.swa-global-nav__search').click();
   assert.equal(f.document.activeElement, f.query('.swa-global-nav__search-input'));
   assert.ok(f.query('.swa-global-nav__search-results a'));
+  // Updating results or the page content triggers the canonical chrome observer.
+  f.query('main').appendChild(f.document.createElement('p'));
+  await new Promise(resolve => f.window.setTimeout(resolve, 0));
+  assert.ok(f.query('.swa-global-nav').classList.contains('swa-search-open'));
+  assert.equal(f.query('.swa-global-nav__search').getAttribute('aria-expanded'), 'true');
+  assert.equal(f.document.activeElement, f.query('.swa-global-nav__search-input'));
 });
 
 test('an account reset does not leave keyboard focus in a hidden menu', t => {

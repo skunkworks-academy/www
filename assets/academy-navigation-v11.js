@@ -438,7 +438,7 @@
     header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
     if (portalWorkspace) {
       if (existing) existing.remove();
-      header.classList.remove("swa-has-top-menu", "swa-menu-open", "swa-search-open");
+      header.classList.remove("swa-has-top-menu", "swa-menu-open");
       document.body.classList.remove("swa-has-top-menu");
       return true;
     }
