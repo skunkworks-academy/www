@@ -7,7 +7,7 @@
   var RUNTIME_VERSION = "2026.09.08.3";
   var NAVIGATION_REVISION = "2026.11.05.2";
   var BRAND_THEME_REVISION = "2026.11.05.2";
-  var PAGE_CONTRACT_VERSION = "2026.09.07.1";
+  var PAGE_CONTRACT_VERSION = "2026.11.05.2";
   var FOOTER_REVISION = "2026.09.08.4";
   var BRAND_THEME_VERSION = "2026.09.08.3";
   var THEME_CONFORMANCE_VERSION = "2026.09.08.3";
@@ -16,7 +16,7 @@
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var pathname = String(window.location && window.location.pathname || "/").toLowerCase();
-  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
   var ORIGIN_ROOT = (isApexAlias || isLocalPreview)
     ? window.location.origin.replace(/\/$/, "") + "/"
@@ -24,8 +24,10 @@
   var PRIMARY_ROOT = (isApexAlias || isLocalPreview)
     ? ORIGIN_ROOT + "assets/"
     : CANONICAL_ROOT;
+  var BRAND_THEME_ROOT = isLocalPreview ? ORIGIN_ROOT : PUBLIC_ROOT;
 
   if (typeof document === "undefined") return;
+  installCanonicalFavicons();
   // Docusaurus controls its own React-managed document layout. The legacy
   // global navigation MutationObserver removes/reparents its chrome and can
   // crash hydrated exercises. Keep the Academy CSS/theme, but do not install
@@ -55,9 +57,22 @@
     return /^\/(learn|courses|learning-paths|self-paced|instructor-led|comptia|cisco)\/?$/.test(pathname);
   }
 
+  function installTouchIcon(head) {
+    var expected = ORIGIN_ROOT + "images/apple-touch-icon.png?v=2026.11.05.2";
+    var icons = Array.prototype.slice.call(document.querySelectorAll('link[rel="apple-touch-icon"], link[rel="apple-touch-icon-precomposed"]'));
+    if (icons.length === 1 && icons[0].getAttribute("href") === expected && icons[0].getAttribute("sizes") === "180x180") return;
+    icons.forEach(function (node) { node.remove(); });
+    var touch = document.createElement("link");
+    touch.rel = "apple-touch-icon"; touch.href = expected; touch.sizes = "180x180";
+    touch.setAttribute("data-skunkworks-touch-icon", "canonical");
+    head.appendChild(touch);
+  }
+
   function installCanonicalFavicons() {
     var head = document.head || document.documentElement;
-    if (!head || document.querySelector('link[data-skunkworks-favicon="canonical"]')) return;
+    if (!head) return;
+    installTouchIcon(head);
+    if (document.querySelector('link[data-skunkworks-favicon-revision="2026.11.05.2"]')) return;
 
     Array.prototype.slice.call(document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]'))
       .forEach(function (node) {
@@ -65,10 +80,10 @@
       });
 
     [
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "", sizes: "96x96" },
-      { rel: "shortcut icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "", sizes: "" },
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png", media: "(prefers-color-scheme: light)", sizes: "96x96" },
-      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search-dark.png", media: "(prefers-color-scheme: dark)", sizes: "96x96" }
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png?v=2026.11.05.2", media: "", sizes: "96x96" },
+      { rel: "shortcut icon", href: ORIGIN_ROOT + "images/favicon-search.png?v=2026.11.05.2", media: "", sizes: "" },
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search.png?v=2026.11.05.2", media: "(prefers-color-scheme: light)", sizes: "96x96" },
+      { rel: "icon", href: ORIGIN_ROOT + "images/favicon-search-dark.png?v=2026.11.05.2", media: "(prefers-color-scheme: dark)", sizes: "96x96" }
     ].forEach(function (icon) {
       var link = document.createElement("link");
       link.rel = icon.rel;
@@ -77,6 +92,7 @@
       if (icon.media) link.media = icon.media;
       if (icon.sizes) link.sizes = icon.sizes;
       link.setAttribute("data-skunkworks-favicon", "canonical");
+      link.setAttribute("data-skunkworks-favicon-revision", "2026.11.05.2");
       head.appendChild(link);
     });
   }
@@ -128,7 +144,7 @@
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION;
+    var href = BRAND_THEME_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION;
     var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
     if (!link) {
       link = document.createElement("link");
@@ -244,15 +260,15 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
-    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION,
+    brandTheme: BRAND_THEME_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,
     learnTheme: PUBLIC_ROOT + "assets/academy-learn.css?v=" + LEARN_THEME_VERSION,
     learnSurface: isLearnSurface(),
     bodyBackground: "theme-owned",
-    faviconLight: ORIGIN_ROOT + "images/favicon-search.png",
-    faviconDark: ORIGIN_ROOT + "images/favicon-search-dark.png"
+    faviconLight: ORIGIN_ROOT + "images/favicon-search.png?v=2026.11.05.2",
+    faviconDark: ORIGIN_ROOT + "images/favicon-search-dark.png?v=2026.11.05.2"
   };
 
   (document.head || document.documentElement).appendChild(script);

@@ -29,7 +29,7 @@ Use this header on every Skunkworks Academy web property. It is the Academy-leve
 
 ## Behaviour
 
-- Use the black favicon in light themes and the white favicon in dark themes; show only one.
+- Header branding uses the approved black emblem on light surfaces and white emblem on dark surfaces. Browser favicons and site icons use the approved black emblem on transparency in every theme; the legacy `favicon-search-dark.png` filename is a compatibility alias of the same black artwork.
 - Header height: 76px. Minimum interactive control: 44 × 44px.
 - Desktop shows the Academy destination search field.
 - At 920px and below, hide desktop navigation and show the menu button.

@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "test": "node --test ../account-navigation.test.mjs"
+    "test": "node --test ../account-navigation.test.mjs ../shell-assets.test.mjs"
   },
   "devDependencies": {
     "jsdom": "31.0.0"

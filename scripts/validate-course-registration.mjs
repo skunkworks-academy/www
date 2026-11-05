@@ -12,8 +12,8 @@ if (!pageContractVersionMatch) {
   throw new Error('Unable to resolve Academy page-contract VERSION from assets/academy-page-contract.js');
 }
 const pageContractVersion = pageContractVersionMatch[1];
-const requiredFaviconLight = `https://www.skunkworksacademy.com/images/favicon-search.png`;
-const requiredFaviconDark = `https://www.skunkworksacademy.com/images/favicon-search-dark.png`;
+const requiredFaviconLight = `https://www.skunkworksacademy.com/images/favicon-search.png?v=2026.11.05.2`;
+const requiredFaviconDark = `https://www.skunkworksacademy.com/images/favicon-search-dark.png?v=2026.11.05.2`;
 const failures = [];
 
 function fail(file, message) {

@@ -32,6 +32,11 @@ jobs:
           if add:
               app.write_text('\n'.join(add) + '\n' + js)
           PY
+
+      - name: Apply transparent black Academy site icons
+        uses: ./.github/actions/search-favicons
+        with:
+          artifact-path: "."
       - name: Commit patch
         run: |
           if git diff --quiet; then exit 0; fi

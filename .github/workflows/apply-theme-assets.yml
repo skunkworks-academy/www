@@ -39,11 +39,16 @@ jobs:
           page.write_text(content, encoding='utf-8')
           PY
 
-      - name: Verify theme-aware favicon and navigation assets
+      - name: Apply transparent black Academy site icons
+        uses: ./.github/actions/search-favicons
+        with:
+          artifact-path: "."
+
+      - name: Verify canonical favicon and navigation assets
         shell: bash
         run: |
-          grep -F 'favicon-black.png" media="(prefers-color-scheme: light)' index.html
-          grep -F 'favicon-white.png" media="(prefers-color-scheme: dark)' index.html
+          grep -F 'images/favicon-search.png?v=2026.11.05.2' index.html
+          grep -F 'images/apple-touch-icon.png?v=2026.11.05.2' index.html
           grep -F 'brand__logo logo-light' index.html
           grep -F 'brand__logo logo-dark' index.html
           ! grep -F 'skunkworks-academy/.github/refs/heads/main/images/favicon-' index.html

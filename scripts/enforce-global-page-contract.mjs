@@ -3,15 +3,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const VERSION = '2026.09.07.1';
+const VERSION = '2026.11.05.2';
 const THEME_VERSION = '2026.09.08.3';
+const THEME_REVISION = '2026.11.05.2';
 const THEME_CONFORMANCE_VERSION = '2026.09.08.3';
 const FORMS_VERSION = '2026.09.07.1';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
-const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-search.png`;
-const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-search-dark.png`;
+const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-search.png?v=2026.11.05.2`;
+const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-search-dark.png?v=2026.11.05.2`;
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
-const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}`;
+const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}&rev=${THEME_REVISION}`;
 const THEME_CONFORMANCE = `${PUBLIC_ROOT}assets/academy-theme-conformance.css?v=${THEME_CONFORMANCE_VERSION}`;
 const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.09.08.3&rev=2026.09.08.3`;
 const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
@@ -23,7 +24,7 @@ const FAVICON_TAGS = [
   `<link rel="icon" type="image/png" sizes="96x96" href="${FAVICON_LIGHT}" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />`,
   `<link rel="icon" type="image/png" sizes="96x96" href="${FAVICON_DARK}" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />`,
 ];
-const FAVICON_INJECTION = FAVICON_TAGS.map((line) => `  ${line}`).join('\n');
+const FAVICON_INJECTION = FAVICON_TAGS.map((line) => `  ${line}`).join('\n') + '\n  <link rel="apple-touch-icon" sizes="180x180" href="' + PUBLIC_ROOT + 'images/apple-touch-icon.png?v=2026.11.05.2" data-skunkworks-touch-icon="canonical" />';
 const COLOR_SCHEME = '<meta name="color-scheme" content="light dark" data-skunkworks-color-scheme="canonical" />';
 
 const args = process.argv.slice(2);
@@ -61,7 +62,7 @@ function stripIconLinks(html) {
     if (!match) return tag;
     const rel = match[2].trim().toLowerCase();
     const tokens = rel.split(/\s+/);
-    return tokens.includes('icon') ? '' : tag;
+    return tokens.includes('icon') || tokens.includes('apple-touch-icon') || tokens.includes('apple-touch-icon-precomposed') ? '' : tag;
   });
 }
 
@@ -135,8 +136,10 @@ function canonicalFaviconTags(html) {
 }
 
 function tagHasAttributeValue(tag, attribute, value) {
-  const pattern = new RegExp(`\\b${attribute}\\s*=\\s*(["'])${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1`, 'i');
-  return pattern.test(tag);
+  for (const match of tag.matchAll(/(?:^|\s)([\w:-]+)\s*=\s*(["'])(.*?)\2/g)) {
+    if (match[1].toLowerCase() === attribute.toLowerCase() && match[3] === value) return true;
+  }
+  return false;
 }
 
 function validate(html, file) {
