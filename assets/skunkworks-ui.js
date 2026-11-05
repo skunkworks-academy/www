@@ -6,8 +6,11 @@
 
   var VERSION = "2026.09.08.3";
   var ASSET_ROOT = "https://skunkworksacademy.com";
-  var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
-  var LOGO_DARK = ASSET_ROOT + "/images/logo-white.svg?v=" + VERSION;
+  var imageHost = String(window.location && window.location.hostname || "").toLowerCase();
+  var isLocalImagePreview = imageHost === "localhost" || imageHost === "127.0.0.1" || imageHost === "::1" || imageHost === "[::1]";
+  var IMAGE_ROOT = isLocalImagePreview ? window.location.origin.replace(/\/$/, "") : ASSET_ROOT;
+  var LOGO_LIGHT = IMAGE_ROOT + "/images/favicon-black.png?v=" + VERSION;
+  var LOGO_DARK = IMAGE_ROOT + "/images/logo-white.svg?v=" + VERSION;
   var SIGN_IN_URL = "https://portal.skunkworksacademy.com/";
   var destinations = [
     { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"], description: "Skunkworks Academy home" },

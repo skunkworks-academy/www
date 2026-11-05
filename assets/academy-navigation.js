@@ -16,7 +16,7 @@
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var pathname = String(window.location && window.location.pathname || "/").toLowerCase();
-  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
   var ORIGIN_ROOT = (isApexAlias || isLocalPreview)
     ? window.location.origin.replace(/\/$/, "") + "/"
@@ -24,6 +24,7 @@
   var PRIMARY_ROOT = (isApexAlias || isLocalPreview)
     ? ORIGIN_ROOT + "assets/"
     : CANONICAL_ROOT;
+  var BRAND_THEME_ROOT = isLocalPreview ? ORIGIN_ROOT : PUBLIC_ROOT;
 
   if (typeof document === "undefined") return;
   installCanonicalFavicons();
@@ -143,7 +144,7 @@
     var head = document.head || document.documentElement;
     if (!head) return null;
 
-    var href = ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION;
+    var href = BRAND_THEME_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION;
     var link = document.querySelector('link[data-skunkworks-brand-theme="canonical"]');
     if (!link) {
       link = document.createElement("link");
@@ -259,7 +260,7 @@
     pageContractVersion: PAGE_CONTRACT_VERSION,
     pageContractRuntime: ORIGIN_ROOT + "assets/academy-page-contract.js?v=" + PAGE_CONTRACT_VERSION,
     brandThemeVersion: BRAND_THEME_VERSION,
-    brandTheme: ORIGIN_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION,
+    brandTheme: BRAND_THEME_ROOT + "assets/academy-brand-theme.css?v=" + BRAND_THEME_VERSION + "&rev=" + BRAND_THEME_REVISION,
     themeConformanceVersion: THEME_CONFORMANCE_VERSION,
     themeConformance: ORIGIN_ROOT + "assets/academy-theme-conformance.css?v=" + THEME_CONFORMANCE_VERSION,
     learnThemeVersion: LEARN_THEME_VERSION,

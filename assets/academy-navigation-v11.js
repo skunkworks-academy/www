@@ -7,10 +7,11 @@
   var NAVIGATION_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
-  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
   var isFirstPartyAssetHost = isApexAlias || isLocalPreview;
   var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
+  var BRAND_THEME_ROOT = isLocalPreview ? PRIMARY_ROOT : "https://www.skunkworksacademy.com/assets/";
 
   if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 === REVISION) return;
   window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = REVISION;
@@ -169,7 +170,7 @@
     compatibility: "v11",
     canonicalUi: assetUrl(CANONICAL_ROOT, "skunkworks-ui.js"),
     canonicalFooter: assetUrl(CANONICAL_ROOT, "skunkworks-footer.js"),
-    canonicalTheme: assetUrl(CANONICAL_ROOT, "academy-brand-theme.css"),
+    canonicalTheme: assetUrl(BRAND_THEME_ROOT, "academy-brand-theme.css"),
     assetRoot: PRIMARY_ROOT,
     topMenu: TOP_MENU.slice(),
     menuGroups: GLOBAL_NAV_GROUPS.map(function (group) {
@@ -190,8 +191,7 @@
   function ensureAcademyTheme() {
     var selector = 'link[data-skunkworks-brand-theme="canonical"]';
     var existing = document.querySelector(selector);
-    var primaryHref = assetUrl(PRIMARY_ROOT, "academy-brand-theme.css");
-    var fallbackHref = assetUrl(CANONICAL_ROOT, "academy-brand-theme.css");
+    var primaryHref = assetUrl(BRAND_THEME_ROOT, "academy-brand-theme.css");
     if (existing) {
       if (existing.getAttribute("href") !== primaryHref) existing.setAttribute("href", primaryHref);
       return existing;
@@ -200,9 +200,6 @@
     link.rel = "stylesheet";
     link.href = primaryHref;
     link.setAttribute("data-skunkworks-brand-theme", "canonical");
-    if (!isLocalPreview && primaryHref !== fallbackHref) {
-      link.addEventListener("error", function () { if (link.href !== fallbackHref) link.href = fallbackHref; }, { once: true });
-    }
     (document.head || document.documentElement).appendChild(link);
     return link;
   }

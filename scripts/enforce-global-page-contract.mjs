@@ -5,13 +5,14 @@ import path from 'node:path';
 
 const VERSION = '2026.11.05.2';
 const THEME_VERSION = '2026.09.08.3';
+const THEME_REVISION = '2026.11.05.2';
 const THEME_CONFORMANCE_VERSION = '2026.09.08.3';
 const FORMS_VERSION = '2026.09.07.1';
 const PUBLIC_ROOT = 'https://www.skunkworksacademy.com/';
 const FAVICON_LIGHT = `${PUBLIC_ROOT}images/favicon-search.png?v=2026.11.05.2`;
 const FAVICON_DARK = `${PUBLIC_ROOT}images/favicon-search-dark.png?v=2026.11.05.2`;
 const CONTRACT_JS = `${PUBLIC_ROOT}assets/academy-page-contract.js?v=${VERSION}`;
-const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}`;
+const BRAND_THEME = `${PUBLIC_ROOT}assets/academy-brand-theme.css?v=${THEME_VERSION}&rev=${THEME_REVISION}`;
 const THEME_CONFORMANCE = `${PUBLIC_ROOT}assets/academy-theme-conformance.css?v=${THEME_CONFORMANCE_VERSION}`;
 const DESIGN_SYSTEM = `${PUBLIC_ROOT}assets/skunkworks-design-system.css?v=2026.09.08.3&rev=2026.09.08.3`;
 const FORMS_CSS = `${PUBLIC_ROOT}assets/academy-forms.css?v=${FORMS_VERSION}`;
