@@ -126,7 +126,9 @@ jobs:
           grep -q 'academy-theme-conformance.css' assets/academy-navigation.js
           grep -q 'VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'REVISION = "2026.09.08.3"' assets/academy-navigation.js
-          grep -q 'PAGE_CONTRACT_VERSION = "2026.09.07.1"' assets/academy-navigation.js
+          page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
+          test -n "$page_contract_version"
+          grep -Fq "PAGE_CONTRACT_VERSION = \"$page_contract_version\"" assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'THEME_CONFORMANCE_VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'LEARN_THEME_VERSION = "2026.08.25.1"' assets/academy-navigation.js
