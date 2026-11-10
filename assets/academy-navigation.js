@@ -27,6 +27,16 @@
   var BRAND_THEME_ROOT = isLocalPreview ? ORIGIN_ROOT : PUBLIC_ROOT;
 
   if (typeof document === "undefined") return;
+  // Preserve public-page context without modifying the identity callback.
+  // Install before the course-layout guard: this helper never reparents UI.
+  if (!document.querySelector('script[data-academy-sign-in-return]')) {
+    var signInReturn = document.createElement("script");
+    signInReturn.src = ORIGIN_ROOT + "assets/academy-sign-in-return.js?v=2026.11.10.1";
+    signInReturn.defer = true;
+    signInReturn.referrerPolicy = "strict-origin-when-cross-origin";
+    signInReturn.setAttribute("data-academy-sign-in-return", "v1");
+    (document.head || document.documentElement).appendChild(signInReturn);
+  }
   installCanonicalFavicons();
   // Docusaurus controls its own React-managed document layout. The legacy
   // global navigation MutationObserver removes/reparents its chrome and can
