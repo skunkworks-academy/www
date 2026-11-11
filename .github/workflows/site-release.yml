@@ -531,7 +531,7 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url http://127.0.0.1:4174/
-          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+          --routes /,/courses/,/schedule/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
 
       - name: Browser-verify each published course in light/dark and mobile/desktop
         env:
@@ -661,4 +661,4 @@ jobs:
         run: >-
           node scripts/verify-composed-site.mjs
           --base-url https://www.skunkworksacademy.com/
-          --routes /,/courses/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+          --routes /,/courses/,/schedule/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/

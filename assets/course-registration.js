@@ -61,6 +61,20 @@
       var requestedCourse = params.get("course");
       var select = byId("course");
       if (requestedCourse && select) {
+        if (params.get("source") === "training-schedule") {
+          var scheduleOption = document.createElement("option");
+          scheduleOption.value = requestedCourse.slice(0, 300);
+          scheduleOption.textContent = requestedCourse.slice(0, 300);
+          select.appendChild(scheduleOption);
+          select.value = scheduleOption.value;
+          var intake = byId("intake");
+          if (intake) intake.value = (params.get("intake") || "Dates on request").slice(0, 1000);
+          var delivery = byId("delivery");
+          var modes = {online:"Online instructor-led",classroom:"Classroom / in-person",hybrid:"Blended learning",private:"Corporate private class"};
+          if (delivery && modes[params.get("delivery")]) delivery.value = modes[params.get("delivery")];
+          var notes = byId("notes");
+          if (notes) notes.value = "Training enquiry (not a reservation). Course: " + (params.get("courseId") || "").slice(0,160) + "\nSession: " + (params.get("session") || "Not selected").slice(0,160) + "\nTime zone: " + (params.get("timezone") || "Africa/Johannesburg").slice(0,100);
+        }
         Array.prototype.slice.call(select.options).some(function (option) {
           if (option.value === requestedCourse || option.text === requestedCourse) {
             select.value = option.value || option.text;
