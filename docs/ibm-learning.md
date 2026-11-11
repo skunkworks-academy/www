@@ -1,4 +1,4 @@
-# IBM learning portal
+# Skunkworks Academy training for IBM technologies
 
 Canonical route: `https://www.skunkworksacademy.com/ibm/`.
 
@@ -8,7 +8,9 @@ This is the public course discovery and training-enquiry surface, not a new auth
 
 - Carbon Design System `@carbon/styles` 1.119.0 buttons, tags, theme and layout tokens, compiled into CSS scoped to `#ibm-learning`.
 - IBM Plex Sans 1.1.0 fonts served locally. Carbon Apache-2.0 and Plex OFL notices are in `assets/ibm-licenses`. No runtime component CDN is required.
-- The Academy shell retains its global typography and identity UX. The IBM content region explicitly overrides heading/link/form rules for Carbon, without changing other vendor pages.
+- Skunkworks Academy is the prominent provider identity in the masthead and hero. The page explicitly identifies its operator and says it is not an official IBM website. IBM is referenced in text as the technology/course source; no standalone IBM logo or partner badge appears on this portal.
+- The Academy shell retains its global typography and identity UX. Carbon components are scoped to the content region and use Academy blue, navy and orange accents, without changing other vendor pages. The introductory panel describes the Skunkworks training-planning process rather than imitating IBM corporate artwork.
+- IBM trademark attribution is included. These branding changes do not establish permission to redistribute catalogue content or legal approval; those rights remain separate from Carbon's code licence.
 - Course search supports code/title/content, technology, source skill level, current/reference status and pagination. Topic groupings are Academy navigation categories, not IBM certification pathways.
 - Detail dialogs expose IBM-provided overview, intended audience, prerequisites, objectives and topics. Missing fields are identified. Source links go to IBM Training. No invented lab, assessment, accreditation or completion evidence.
 - Course details have shareable `?course=CODE` URLs. Search/family/level/status filters survive URL sharing. The shortlist stores only up to 30 course codes on the current browser. It is not an account profile or enrolment.
