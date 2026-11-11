@@ -1,0 +1,56 @@
+{
+  "schema": "skunkworks-academy-public-members/v1",
+  "organization": "skunkworks-academy",
+  "members": [
+    {
+      "name": "Adrian Rincon",
+      "login": "AdrianRincon0924",
+      "profile": "https://github.com/AdrianRincon0924"
+    },
+    {
+      "name": "Analita Gonçalves",
+      "login": "AnalitaGoncalves",
+      "profile": "https://github.com/AnalitaGoncalves"
+    },
+    {
+      "name": "Raydo M",
+      "login": "burnt-exe",
+      "profile": "https://github.com/burnt-exe"
+    },
+    {
+      "name": "lucaDev",
+      "login": "Luca-Sprunt",
+      "profile": "https://github.com/Luca-Sprunt"
+    },
+    {
+      "name": "quantumbalance8-jpg",
+      "login": "quantumbalance8-jpg",
+      "profile": "https://github.com/quantumbalance8-jpg"
+    },
+    {
+      "name": "r0niGee",
+      "login": "r0niGee",
+      "profile": "https://github.com/r0niGee"
+    },
+    {
+      "name": "Selaelo1",
+      "login": "Selaelo1",
+      "profile": "https://github.com/Selaelo1"
+    },
+    {
+      "name": "Tobiloba Adeyemo",
+      "login": "tobilobaadeyemo",
+      "profile": "https://github.com/tobilobaadeyemo"
+    },
+    {
+      "name": "Loyiso Ndlovu",
+      "login": "Vagz-Ware",
+      "profile": "https://github.com/Vagz-Ware"
+    },
+    {
+      "name": "Zéza Dercksen",
+      "login": "zezadercksen",
+      "profile": "https://github.com/zezadercksen"
+    }
+  ]
+}
