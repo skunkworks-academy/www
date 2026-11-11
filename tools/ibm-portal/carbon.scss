@@ -1,0 +1,18 @@
+@use 'sass:meta';
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/theme';
+@use '@carbon/styles/scss/utilities/layout';
+#ibm-learning {
+  @include layout.emit-layout-tokens();
+  @include theme.theme(themes.$white);
+  @include meta.load-css('@carbon/styles/scss/components/button');
+  @include meta.load-css('@carbon/styles/scss/components/tag');
+}
+:root[data-theme='dark'] #ibm-learning, :root[data-swa-theme='dark'] #ibm-learning {
+  @include theme.theme(themes.$g100);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-swa-theme='light']) #ibm-learning {
+    @include theme.theme(themes.$g100);
+  }
+}

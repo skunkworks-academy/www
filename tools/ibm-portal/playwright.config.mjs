@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'.',testMatch:'portal.spec.mjs',workers:1,timeout:45000,use:{baseURL:'http://127.0.0.1:4188',headless:true,...(process.platform==='win32'?{channel:'msedge',launchOptions:{args:['--disable-gpu']}}:{}),screenshot:'only-on-failure'},webServer:{command:'python serve.py',url:'http://127.0.0.1:4188/ibm/',reuseExistingServer:!process.env.CI},reporter:'list'});
