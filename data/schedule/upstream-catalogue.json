@@ -1,0 +1,2037 @@
+{
+  "source": "skunkworks-academy/course-catalog",
+  "commit": "fa6c9ffc318cbebeeec85fa792f334ceba459595",
+  "generated": [
+    {
+      "courseId": "SWA-AI-001",
+      "title": "Automation & AI Integration Specialist",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/automation-ai-integration-specialist",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-002",
+      "title": "AI for Business: Driving Innovation, Decision-Making and Efficiency",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ai-for-business-driving-innovation-decision-making-and-efficiency",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-AI-003",
+      "title": "AI Fundamentals",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/ai-fundamentals",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-004",
+      "title": "AI Fundamentals: Introduction to AI, ML and DL Concepts",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/ai-fundamentals-introduction-to-ai-ml-and-dl-concepts",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-005",
+      "title": "AI Mastery: From Foundations to Deployment",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "16–22 hours",
+      "courseUrl": "/courses/catalog/ai-mastery-from-foundations-to-deployment",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-006",
+      "title": "Applied Artificial Intelligence: Solving Real-World Problems",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/applied-artificial-intelligence-solving-real-world-problems",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-007",
+      "title": "ChatGPT Mastery: Unlocking Conversational AI Potential",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/chatgpt-mastery-unlocking-conversational-ai-potential",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-008",
+      "title": "Collecting and Processing Personal Data Using AI",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/collecting-and-processing-personal-data-using-ai",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-009",
+      "title": "Effective AI Prompting",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/effective-ai-prompting",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-AI-010",
+      "title": "Exploring Artificial Intelligence: From Theory to Applications",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/exploring-artificial-intelligence-from-theory-to-applications",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-011",
+      "title": "Leveraging AI in Sales: A Guide for Chief Sales Officers",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/leveraging-ai-in-sales-a-guide-for-chief-sales-officers",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-012",
+      "title": "Natural Language Processing (NLP)",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/natural-language-processing-nlp",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-013",
+      "title": "Personal Data Processing and AI",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/personal-data-processing-and-ai",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-014",
+      "title": "Prompt Engineering for Large Language Models",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/prompt-engineering-for-large-language-models",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-AI-015",
+      "title": "Interactive Chat-Based Learning Experience",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/interactive-chat-based-learning-experience",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AI-016",
+      "title": "Pragmatic AI: Integrating Machine Learning with Drools",
+      "category": "AI & Emerging Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/pragmatic-ai-integrating-machine-learning-with-drools",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-001",
+      "title": "Advanced Secure Software Development for GitHub",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/advanced-secure-software-development-for-github",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-002",
+      "title": "Azure Web Miner: Python-Powered Web Data Extraction and Deployment",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/azure-web-miner-python-powered-web-data-extraction-and-deployment",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-003",
+      "title": "Developing and Deploying a Web Scraping App with Python and Microsoft Azure",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/developing-and-deploying-a-web-scraping-app-with-python-and-microsoft",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-004",
+      "title": "Computer Programming for Intelligence and Law Enforcement",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/computer-programming-for-intelligence-and-law-enforcement",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-005",
+      "title": "DevOps for Agile Enterprises: Transforming Software Delivery",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/devops-for-agile-enterprises-transforming-software-delivery",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-006",
+      "title": "Foundations of DevOps and Cloud Computing",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/foundations-of-devops-and-cloud-computing",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-007",
+      "title": "GameCraft: Building 2D Games with Unity and C#",
+      "category": "Application Development",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/gamecraft-building-2d-games-with-unity-and-c",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-008",
+      "title": "Groovy Programming for Java Developers",
+      "category": "Application Development",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/groovy-programming-for-java-developers",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-009",
+      "title": "Integrating GitHub, Firebase, OpenAI, Google AI Studio and Microsoft Copilot",
+      "category": "Application Development",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/integrating-github-firebase-openai-google-ai-studio-and-microsoft-copi",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-APP-010",
+      "title": "Introduction to Python and Pandas",
+      "category": "Application Development",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/introduction-to-python-and-pandas",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-011",
+      "title": "Mobile App Development for Juniors",
+      "category": "Application Development",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "6–8 hours",
+      "courseUrl": "/courses/catalog/mobile-app-development-for-juniors",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-012",
+      "title": "Secure Coding Best Practices",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/secure-coding-best-practices",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-013",
+      "title": "Secure Coding Best Practices with OWASP Top 10",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/secure-coding-best-practices-with-owasp-top-10",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-014",
+      "title": "Secure Software Development Fundamentals",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/secure-software-development-fundamentals",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-APP-015",
+      "title": "REST API Development",
+      "category": "Application Development",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/rest-api-development",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-001",
+      "title": "Automation Fundamentals 101",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/automation-fundamentals-101",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-002",
+      "title": "Automate Your Workflow",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/automate-your-workflow",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-003",
+      "title": "Intermediate Automation: Automate Your Workflow",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/intermediate-automation-automate-your-workflow",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-AUT-004",
+      "title": "Mastering Automation Technologies",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-automation-technologies",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-005",
+      "title": "Mobile QA Automation Essentials",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/mobile-qa-automation-essentials",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-006",
+      "title": "Introduction to Drools 7 for Developers",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/introduction-to-drools-7-for-developers",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-007",
+      "title": "Mastering Drools",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-drools",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-008",
+      "title": "Mastering Drools 8",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "16–22 hours",
+      "courseUrl": "/courses/catalog/mastering-drools-8",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-009",
+      "title": "Drools Rules",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/drools-rules",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-AUT-010",
+      "title": "Drools Rule Engine Fundamentals",
+      "category": "Automation & Business Rules",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/drools-rule-engine-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-VOIP-001",
+      "title": "Asterisk Essentials: VoIP & PBX Mastery for IT Professionals",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/asterisk-essentials-voip-pbx-mastery-for-it-professionals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "AMNTFT-101",
+      "title": "Asterisk Mastery: The Complete VoIP Solution",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/asterisk-mastery-the-complete-voip-solution",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-VOIP-002",
+      "title": "Mastering Asterisk in the World of VoIP and PBX",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-asterisk-in-the-world-of-voip-and-pbx",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-VOIP-003",
+      "title": "Mastering VoIP: Building Your Asterisk-Based Communication System",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-voip-building-your-asterisk-based-communication-system",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-VOIP-004",
+      "title": "Asterisk Fundamentals",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/asterisk-fundamentals",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-VOIP-005",
+      "title": "Asterisk Deployment",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/asterisk-deployment",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "61451V",
+      "title": "Administering Avaya Aura Communication Manager",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/administering-avaya-aura-communication-manager",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-VOIP-006",
+      "title": "Administering Avaya Aura System Manager",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/administering-avaya-aura-system-manager",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "71201V",
+      "title": "Integrating Avaya Aura Core Components",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/integrating-avaya-aura-core-components",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "71301V",
+      "title": "Integrating Avaya Aura Communication Applications",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/integrating-avaya-aura-communication-applications",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "72201V",
+      "title": "Supporting Avaya Aura Core Components",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/supporting-avaya-aura-core-components",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "72301V",
+      "title": "Supporting Avaya Aura Communication Applications",
+      "category": "Communications & VoIP",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/supporting-avaya-aura-communication-applications",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "IBCPI-OC-01",
+      "title": "Integration and Cloud Solutions Bootcamp",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/integration-and-cloud-solutions-bootcamp",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-001",
+      "title": "IBM Cloud Pak for Integration Bootcamp",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "24–30 hours",
+      "courseUrl": "/courses/catalog/ibm-cloud-pak-for-integration-bootcamp",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-002",
+      "title": "Professional Cloud Architect Training",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/professional-cloud-architect-training",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-003",
+      "title": "Cloud Integration in Modern Businesses",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/cloud-integration-in-modern-businesses",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-004",
+      "title": "Cloud Introduction Training",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/cloud-introduction-training",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "AGF101",
+      "title": "Agile Foundations",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/agile-foundations",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "AGA201",
+      "title": "Beyond the Basics: Agile's Advanced Landscape",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/beyond-the-basics-agile-s-advanced-landscape",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "AGM301",
+      "title": "Project Management in the Agile World",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/project-management-in-the-agile-world",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-005",
+      "title": "Advanced Project Management Strategies",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/advanced-project-management-strategies",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-006",
+      "title": "The Complete Middleware Bootcamp",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/the-complete-middleware-bootcamp",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-007",
+      "title": "Apache Kafka Fundamentals",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/apache-kafka-fundamentals",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SEC-IBM-HCV-2024",
+      "title": "Integrating HashiCorp Vault with IBM Cloud Hyper Protect Crypto Services",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/integrating-hashicorp-vault-with-ibm-cloud-hyper-protect-crypto-servic",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-008",
+      "title": "Developing APIs with Google Cloud's Apigee API Platform",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/developing-apis-with-google-cloud-s-apigee-api-platform",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CLD-009",
+      "title": "Google Professional Cloud Architect",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/google-professional-cloud-architect",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-001",
+      "title": "Cybersecurity Essentials: Beyond Certification",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/cybersecurity-essentials-beyond-certification",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-002",
+      "title": "Security Foundations",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/security-foundations",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-003",
+      "title": "SOC Technologies: Fundamentals and Applications",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/soc-technologies-fundamentals-and-applications",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-004",
+      "title": "Cyber Threat Intelligence",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/cyber-threat-intelligence",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-005",
+      "title": "Managed Services vs. In-House Threat Detection and Response Tools",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/managed-services-vs-in-house-threat-detection-and-response-tools",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-006",
+      "title": "Firewall Solutions",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/firewall-solutions",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-007",
+      "title": "Secure Coding Fundamentals: Applying OWASP Top 10 Best Practices",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/secure-coding-fundamentals-applying-owasp-top-10-best-practices",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-008",
+      "title": "OWASP Top 10",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/owasp-top-10",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-009",
+      "title": "OWASP Top Ten 2025",
+      "category": "Cybersecurity",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/owasp-top-ten-2025",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-010",
+      "title": "Mastering OWASP Top 10",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-owasp-top-10",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-011",
+      "title": "Multi-Factor Authentication Fundamentals",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/multi-factor-authentication-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-012",
+      "title": "Security Compliance Fundamentals",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/security-compliance-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-013",
+      "title": "LLM Security",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/llm-security",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-SEC-014",
+      "title": "IBM Guardium Fundamentals",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-guardium-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-015",
+      "title": "IBM QRadar Security Foundations",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/ibm-qradar-security-foundations",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-016",
+      "title": "IBM Security Verify Access Certification Preparation",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/ibm-security-verify-access-certification-preparation",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-SEC-017",
+      "title": "RACF Auditing",
+      "category": "Cybersecurity",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/racf-auditing",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-001",
+      "title": "CompTIA A+ Core Series",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/comptia-a-core-series",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-CTIA-002",
+      "title": "CompTIA A+ Core 1",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/comptia-a-core-1",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-CTIA-003",
+      "title": "CompTIA A+ Core 2",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/comptia-a-core-2",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-CTIA-004",
+      "title": "CompTIA Network+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-network",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-005",
+      "title": "CompTIA Security+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-security",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-006",
+      "title": "CompTIA Linux+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-linux",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-007",
+      "title": "CompTIA Project+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-project",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-008",
+      "title": "CompTIA PenTest+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-pentest",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-009",
+      "title": "CompTIA Cloud+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-cloud",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-010",
+      "title": "CompTIA CTT+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-ctt",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-011",
+      "title": "CompTIA CySA+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-cysa",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-012",
+      "title": "CompTIA Data+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-data",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-013",
+      "title": "CompTIA DataSys+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-datasys",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-014",
+      "title": "CompTIA SecAI+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-secai",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-015",
+      "title": "CompTIA AutoOps+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-autoops",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-016",
+      "title": "CompTIA CloudNetX",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-cloudnetx",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-017",
+      "title": "CompTIA Server+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/comptia-server",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CTIA-018",
+      "title": "CompTIA Tech+",
+      "category": "CompTIA Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/comptia-tech",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "AZ-040T00",
+      "title": "AZ-040T00: Automating Administration with PowerShell",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/az-040t00-automating-administration-with-powershell",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "MS-102",
+      "title": "MS-102: Microsoft 365 Administrator",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ms-102-microsoft-365-administrator",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "MS-900",
+      "title": "MS-900: Microsoft 365 Fundamentals",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ms-900-microsoft-365-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "M365001WV",
+      "title": "M365001WV: Microsoft 365 Administration",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/m365001wv-microsoft-365-administration",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-MSFT-001",
+      "title": "Introduction to SQL Databases",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/introduction-to-sql-databases",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "PL-7003",
+      "title": "PL-7003: Create and Manage Model-Driven Apps with Power Apps and Dataverse",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/pl-7003-create-and-manage-model-driven-apps-with-power-apps-and-datave",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "MB-310T00-A",
+      "title": "MB-310T00-A: Microsoft Dynamics 365 Finance",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/mb-310t00-a-microsoft-dynamics-365-finance",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "MB-800T00-A",
+      "title": "MB-800T00-A: Microsoft Dynamics 365 Business Central Functional Consultant",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/mb-800t00-a-microsoft-dynamics-365-business-central-functional-consult",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "MD-102T00",
+      "title": "MD-102T00: Microsoft 365 Endpoint Administrator",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/md-102t00-microsoft-365-endpoint-administrator",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-MSFT-002",
+      "title": "Microsoft 365 Security Deep Dive",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/microsoft-365-security-deep-dive",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-MSFT-003",
+      "title": "Microsoft Instructional Skills Certificate",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/microsoft-instructional-skills-certificate",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-MSFT-004",
+      "title": "Microsoft Exchange Online Bulk Mail Management",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/microsoft-exchange-online-bulk-mail-management",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-MSFT-005",
+      "title": "Mastering the Azure Portal",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "16–22 hours",
+      "courseUrl": "/courses/catalog/mastering-the-azure-portal",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-MSFT-006",
+      "title": "Microsoft On-Premises Products and Licensing",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/microsoft-on-premises-products-and-licensing",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "80953AE",
+      "title": "80953AE: Trade in Microsoft Dynamics NAV 2017",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/80953ae-trade-in-microsoft-dynamics-nav-2017",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-001",
+      "title": "IBM Event Streams Developer Essentials",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-event-streams-developer-essentials",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-002",
+      "title": "Introduction to IBM i for New Users",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/introduction-to-ibm-i-for-new-users",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-003",
+      "title": "z/OS Basic Skills",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "2 days / 14–16 hours",
+      "courseUrl": "/courses/catalog/z-os-basic-skills",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "FICON-301V4",
+      "title": "Advanced FICON Configuration and Administration",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/advanced-ficon-configuration-and-administration",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-004",
+      "title": "Advanced zSeries FICON Protocol Training",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/advanced-zseries-ficon-protocol-training",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-005",
+      "title": "IBM Mainframe Essentials",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-mainframe-essentials",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-006",
+      "title": "IBM Spectrum Protect Plus 10.1.8 Implementation and Administration",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-spectrum-protect-plus-10-1-8-implementation-and-administration",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-007",
+      "title": "IBM Spectrum Protect Certification Preparation",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/ibm-spectrum-protect-certification-preparation",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-008",
+      "title": "IBM Db2 on Linux Workshop",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-db2-on-linux-workshop",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-009",
+      "title": "IBM Db2 on Mainframe",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-db2-on-mainframe",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-010",
+      "title": "IBM FileNet Content Manager",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-filenet-content-manager",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-011",
+      "title": "IBM Content Navigator and API Development",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-content-navigator-and-api-development",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-012",
+      "title": "IBM Maximo Fundamentals",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-maximo-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-013",
+      "title": "IBM Certified Site Reliability Engineer Preparation",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/ibm-certified-site-reliability-engineer-preparation",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-014",
+      "title": "IBM LinuxONE Foundations",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "6–8 hours",
+      "courseUrl": "/courses/catalog/ibm-linuxone-foundations",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-015",
+      "title": "IBM Design Thinking",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-design-thinking",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-016",
+      "title": "IBM Advanced Analytics Foundations",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "16–22 hours",
+      "courseUrl": "/courses/catalog/ibm-advanced-analytics-foundations",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-017",
+      "title": "IBM Business Analytics Foundations",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "6–8 hours",
+      "courseUrl": "/courses/catalog/ibm-business-analytics-foundations",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-018",
+      "title": "IBM Planning Analytics",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/ibm-planning-analytics",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-019",
+      "title": "IBM Cognos Analytics",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-cognos-analytics",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-020",
+      "title": "IBM Safer Payments",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-safer-payments",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-021",
+      "title": "IBM Sterling",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-sterling",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-022",
+      "title": "IBM Storage Scale",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-storage-scale",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-023",
+      "title": "IBM Spectrum Scale",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-spectrum-scale",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-IBM-024",
+      "title": "IBM MQ Fundamentals",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-mq-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-025",
+      "title": "IBM Carbon Design System",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–14 hours",
+      "courseUrl": "/courses/catalog/ibm-carbon-design-system",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-026",
+      "title": "IBM watsonx Foundations",
+      "category": "IBM Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "6–8 hours",
+      "courseUrl": "/courses/catalog/ibm-watsonx-foundations",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-027",
+      "title": "IBM MaaS360 Overview",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/ibm-maas360-overview",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-028",
+      "title": "IBM Counter Fraud Management for Technical Sellers",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/ibm-counter-fraud-management-for-technical-sellers",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-IBM-029",
+      "title": "Introduction to the IBM Security Immune System",
+      "category": "IBM Technologies",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/introduction-to-the-ibm-security-immune-system",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-001",
+      "title": "SAP Activate Project Manager",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/sap-activate-project-manager",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-002",
+      "title": "SAP Signavio for BPMN: Business Process Modeling and Analysis",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/sap-signavio-for-bpmn-business-process-modeling-and-analysis",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-003",
+      "title": "SAP BASE: Introduction to SAP Business Applications and System Foundation",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/sap-base-introduction-to-sap-business-applications-and-system-foundati",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "DS50",
+      "title": "SAP Information Steward DS50",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/sap-information-steward-ds50",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-004",
+      "title": "Agile MongoDB Solutions",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/agile-mongodb-solutions",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-005",
+      "title": "Practical Approach to Essbase Database Management",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/practical-approach-to-essbase-database-management",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-006",
+      "title": "Databricks Certified Data Engineer Professional",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/databricks-certified-data-engineer-professional",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-DATA-007",
+      "title": "Data Analytics and Business Intelligence",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/data-analytics-and-business-intelligence",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-DATA-008",
+      "title": "PostgreSQL Fundamentals",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/postgresql-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-DATA-009",
+      "title": "Database Systems Fundamentals",
+      "category": "SAP, Data & Databases",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/database-systems-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-BIZ-001",
+      "title": "Mastering Productivity Hacks",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/mastering-productivity-hacks",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-BIZ-002",
+      "title": "Effective Agendas for Effective Meetings",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/effective-agendas-for-effective-meetings",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-BIZ-003",
+      "title": "Business Ethics for the Office",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/business-ethics-for-the-office",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-BIZ-004",
+      "title": "Understanding Workplace Personalities",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/understanding-workplace-personalities",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-BIZ-005",
+      "title": "Effective Leadership in the Digital Age",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/effective-leadership-in-the-digital-age",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-BIZ-006",
+      "title": "Digital Marketing Fundamentals",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/catalog/digital-marketing-fundamentals",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SDM101",
+      "title": "SDM101: Strategic Digital Marketing",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/sdm101-strategic-digital-marketing",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-BIZ-007",
+      "title": "Course Design and Development",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/course-design-and-development",
+      "contentStatus": "Review recommended"
+    },
+    {
+      "courseId": "SWA-NET-001",
+      "title": "Cisco CCNA",
+      "category": "Networking & Vendor Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/cisco-ccna",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-NET-002",
+      "title": "Associate Google Workspace Administrator",
+      "category": "Networking & Vendor Certification",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "3 days / 21–24 hours",
+      "courseUrl": "/courses/catalog/associate-google-workspace-administrator",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-001",
+      "title": "ISO 9001 Essentials: Navigating Quality Management Systems",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "1–2 days / 8–16 hours",
+      "courseUrl": "/courses/catalog/iso-9001-essentials-navigating-quality-management-systems",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-002",
+      "title": "Certified ISO 22301 Lead Auditor",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-22301-lead-auditor",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-003",
+      "title": "Certified ISO 9001 Lead Auditor",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-9001-lead-auditor",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-004",
+      "title": "Certified ISO 9001 Lead Implementer",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-9001-lead-implementer",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-005",
+      "title": "Certified ISO/IEC 27001 Lead Auditor",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-iec-27001-lead-auditor",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-006",
+      "title": "Certified ISO/IEC 27001 Lead Implementer",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-iec-27001-lead-implementer",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-GRC-007",
+      "title": "Certified ISO/IEC 27001 Transition",
+      "category": "Governance, Risk & Compliance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/certified-iso-iec-27001-transition",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-FIN-001",
+      "title": "Advanced IFRS Certification Program",
+      "category": "Finance",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/advanced-ifrs-certification-program",
+      "contentStatus": "Source title found"
+    },
+    {
+      "courseId": "SWA-CRT-001",
+      "title": "Adobe Creative Cloud Mastery",
+      "category": "Creative Technology",
+      "deliveryMode": "Instructor-led",
+      "estimatedEffort": "5 days / 35–40 hours",
+      "courseUrl": "/courses/catalog/adobe-creative-cloud-mastery",
+      "contentStatus": "Source title found"
+    }
+  ],
+  "published": [
+    {
+      "courseId": "EDU-SWE-201",
+      "title": "Software Engineering Lecturer Practice",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/software-engineering-lecturer",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-MAT-201",
+      "title": "Mathematics for IT Lecturers",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/mathematics-for-it-lecturers",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-EDT-201",
+      "title": "Academic Copy Editing and Source Verification",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/academic-copy-editing",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-ITL-201",
+      "title": "IT Lecturer Practice and Assessment",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/it-lecturer-practice",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-ROB-201",
+      "title": "Robotics Lecturer Practice",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/robotics-lecturer-practice",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-NET-201",
+      "title": "Security and Network Engineering Lecturer Practice",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/security-network-engineering-lecturer",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-HWS-201",
+      "title": "IT Hardware and Software Lecturer Practice",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/hardware-software-lecturer",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "EDU-PYT-201",
+      "title": "Python Programming Lecturer Practice",
+      "category": "Academic Teaching & Editorial Practice",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10 hours (estimated)",
+      "courseUrl": "/courses/python-programming-lecturer",
+      "contentStatus": "Public pilot; independent subject review pending"
+    },
+    {
+      "courseId": "DAT-OUT-101",
+      "title": "Understanding Outliers in Data Files",
+      "category": "Data Analytics",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "24–30 hours",
+      "courseUrl": "/courses/data-outlier-analysis",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "EFL-DOM-101",
+      "title": "EasyFile Domain Setup and Production Launch",
+      "category": "Web Deployment",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "22–28 hours",
+      "courseUrl": "/courses/easyfile-domain-setup",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "PYE-101",
+      "title": "Python Certification Preparation",
+      "category": "Programming and Certification",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "30–36 hours",
+      "courseUrl": "/courses/python-certification-prep",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "ART-101",
+      "title": "Professional Articulation and Executive Communication",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "36–40 hours",
+      "courseUrl": "/courses/professional-articulation",
+      "contentStatus": "Public lessons with portal-based registration for formal assessment"
+    },
+    {
+      "courseId": "AFF-FND-101",
+      "title": "Affiliate Marketing Foundations: Platforms, Offers and Trust",
+      "category": "Digital Commerce & Affiliate Marketing",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "6–8 hours",
+      "courseUrl": "/courses/affiliate-marketing-foundations",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "AFF-TLF-201",
+      "title": "Affiliate Traffic, Lead Capture and Email Foundations",
+      "category": "Digital Commerce & Affiliate Marketing",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "8–10 hours",
+      "courseUrl": "/courses/affiliate-traffic-and-list-building",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "AFF-OPS-301",
+      "title": "Affiliate Campaign Operations, Measurement and Compliance",
+      "category": "Digital Commerce & Affiliate Marketing",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "10–12 hours",
+      "courseUrl": "/courses/affiliate-campaign-operations-and-compliance",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "SHP-OPS-201",
+      "title": "Shopify Store Operations and Growth",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "18-22 hours",
+      "courseUrl": "/courses/shopify/store-operations",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "SHP-UPA-101",
+      "title": "Shopify User Permissions",
+      "category": "Professional & Business Skills",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "4–6 hours",
+      "courseUrl": "/courses/shopify-user-permissions",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "GHP-DOM-101",
+      "title": "GitHub Pages Setup",
+      "category": "Cloud, DevOps & Project Delivery",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–7 hours",
+      "courseUrl": "/courses/github-pages-setup",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "M365-LIC-101",
+      "title": "Microsoft 365 Licenses",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "5–8 hours",
+      "courseUrl": "/courses/microsoft-365-licenses",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "SEC-OSINT-201",
+      "title": "Open-Source Intelligence (OSINT) Gathering with Recon-ng and Shodan",
+      "category": "Cybersecurity",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "24–30 hours",
+      "courseUrl": "/courses/open-source-intelligence-gathering",
+      "contentStatus": "Published evidence-led learning journey"
+    },
+    {
+      "courseId": "LXD-SLD-201",
+      "title": "Evidence-Based Slide Design for Digital Learning",
+      "category": "Creative Technology",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "30–36 hours",
+      "courseUrl": "/courses/evidence-based-slide-design-digital-learning",
+      "contentStatus": "Published evidence-led learning journey"
+    }
+  ],
+  "manifest": [
+    {
+      "courseId": "AFF-FND-101",
+      "title": "Affiliate Marketing Foundations: Platforms, Offers and Trust",
+      "category": "Digital commerce and affiliate marketing",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/affiliate-marketing-foundations",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "AFF-TLF-201",
+      "title": "Affiliate Traffic, Lead Capture and Email Foundations",
+      "category": "Digital commerce and affiliate marketing",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/affiliate-traffic-and-list-building",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "AFF-OPS-301",
+      "title": "Affiliate Campaign Operations, Measurement and Compliance",
+      "category": "Digital commerce and affiliate marketing",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/affiliate-campaign-operations-and-compliance",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "SHP-UPA-101",
+      "title": "Shopify User Permissions",
+      "category": "Commerce administration",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/shopify-user-permissions",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "SHP-OPS-201",
+      "title": "Shopify Store Operations and Growth",
+      "category": "Commerce administration",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/shopify/store-operations",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "GHP-DOM-101",
+      "title": "GitHub Pages Setup",
+      "category": "Web deployment",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/github-pages-setup",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "M365-LIC-101",
+      "title": "Microsoft 365 Licenses",
+      "category": "Microsoft 365 administration",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/microsoft-365-licenses",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "SEC-OSINT-201",
+      "title": "Open-Source Intelligence (OSINT) Gathering with Recon-ng and Shodan",
+      "category": "Cybersecurity and intelligence",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/open-source-intelligence-gathering",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "LXD-SLD-201",
+      "title": "Evidence-Based Slide Design for Digital Learning",
+      "category": "Learning experience design",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/evidence-based-slide-design-digital-learning",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "DAT-OUT-101",
+      "title": "Understanding Outliers in Data Files",
+      "category": "Data analytics",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/data-outlier-analysis",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EFL-DOM-101",
+      "title": "EasyFile Domain Setup and Production Launch",
+      "category": "Web deployment",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/easyfile-domain-setup",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "PYE-101",
+      "title": "Python Certification Preparation",
+      "category": "Programming and certification",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/python-certification-prep",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "ART-101",
+      "title": "Professional Articulation and Executive Communication",
+      "category": "Professional and business skills",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/professional-articulation",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-SWE-201",
+      "title": "Software Engineering Lecturer Practice",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/software-engineering-lecturer",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-MAT-201",
+      "title": "Mathematics for IT Lecturers",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/mathematics-for-it-lecturers",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-EDT-201",
+      "title": "Academic Copy Editing and Source Verification",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/academic-copy-editing",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-ITL-201",
+      "title": "IT Lecturer Practice and Assessment",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/it-lecturer-practice",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-ROB-201",
+      "title": "Robotics Lecturer Practice",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/robotics-lecturer-practice",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-NET-201",
+      "title": "Security and Network Engineering Lecturer Practice",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/security-network-engineering-lecturer",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-HWS-201",
+      "title": "IT Hardware and Software Lecturer Practice",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/hardware-software-lecturer",
+      "contentStatus": ""
+    },
+    {
+      "courseId": "EDU-PYT-201",
+      "title": "Python Programming Lecturer Practice",
+      "category": "Academic teaching and editorial practice",
+      "deliveryMode": "",
+      "estimatedEffort": "",
+      "courseUrl": "/courses/python-programming-lecturer",
+      "contentStatus": ""
+    }
+  ],
+  "curated": [
+    {
+      "courseId": "CLD-UF-101",
+      "title": "Claude User Fundamentals",
+      "category": "Generative AI & Productivity",
+      "deliveryMode": "Self-paced",
+      "estimatedEffort": "Self-paced",
+      "courseUrl": "https://www.skunkworksacademy.com/self-paced/claude/cld-uf-101/",
+      "contentStatus": "curriculum-present-review-required"
+    },
+    {
+      "courseId": "repo/mastering-productivity-with-ai",
+      "title": "Mastering Productivity with AI",
+      "category": "Generative AI & Productivity",
+      "deliveryMode": "Self-paced",
+      "estimatedEffort": "10 modules",
+      "courseUrl": "https://github.com/skunkworks-academy/mastering-productivity-with-ai",
+      "contentStatus": "curriculum-present-review-required"
+    },
+    {
+      "courseId": "repo/copilot-cli-for-beginners",
+      "title": "GitHub Copilot CLI for Beginners",
+      "category": "Development & Integration",
+      "deliveryMode": "Self-paced",
+      "estimatedEffort": "8 chapters",
+      "courseUrl": "https://github.com/skunkworks-academy/copilot-cli-for-beginners",
+      "contentStatus": "curriculum-present-review-required"
+    },
+    {
+      "courseId": "path/ai-for-marketing-productivity",
+      "title": "AI for Marketing Productivity",
+      "category": "Generative AI & Productivity",
+      "deliveryMode": "Learning path",
+      "estimatedEffort": "3 weeks",
+      "courseUrl": "https://marketing.skunkworksacademy.com/content/ai-for-marketing-productivity/",
+      "contentStatus": "overview-present-review-required"
+    },
+    {
+      "courseId": "SKW-BEG-AI-101",
+      "title": "Generative AI & ChatGPT for Beginners",
+      "category": "Generative AI & Productivity",
+      "deliveryMode": "Unspecified",
+      "estimatedEffort": "Not specified",
+      "courseUrl": "https://www.skunkworksacademy.com/course-registration/?course=SKW-BEG-AI-101",
+      "contentStatus": "course-registration-present-curriculum-unverified"
+    },
+    {
+      "courseId": "vendor/google-ai-essentials",
+      "title": "Google AI Essentials",
+      "category": "Vendor AI Training",
+      "deliveryMode": "Vendor course",
+      "estimatedEffort": "Not specified",
+      "courseUrl": "https://www.skunkworksacademy.com/google/",
+      "contentStatus": "listing-only"
+    },
+    {
+      "courseId": "listing/ai-security-specialist",
+      "title": "AI Security Specialist",
+      "category": "AI Security",
+      "deliveryMode": "Learning path",
+      "estimatedEffort": "12 hours (listed)",
+      "courseUrl": "https://security.skunkworksacademy.com/ibm/",
+      "contentStatus": "listing-only-link-placeholder"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-ZA" data-brand="academy">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Training Schedule | Skunkworks Academy</title>
+  <meta name="description" content="Find Academy courses and training dates across vendors. Browse public sessions or request dates for your team.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="color-scheme" content="light dark" data-skunkworks-color-scheme="canonical">
+  <link rel="canonical" href="https://www.skunkworksacademy.com/schedule/">
+  <link rel="stylesheet" href="/assets/academy-brand-theme.css?v=2026.09.08.3" data-skunkworks-brand-theme="canonical">
+  <link rel="stylesheet" href="/assets/training-schedule.css?v=2026.11.11.1">
+  <script defer src="/assets/academy-navigation.js?v=2026.09.08.3" data-skunkworks-global-nav="v10"></script>
+  <script type="module" src="/assets/training-schedule.mjs?v=2026.11.11.1"></script>
+</head>
+<body data-ad-inventory="ineligible">
+  <a class="sk-skip-link" href="#schedule">Skip to training schedule</a>
+  <main id="schedule" class="training-schedule">
+    <nav class="schedule-breadcrumb" aria-label="Breadcrumb"><a href="/">Academy</a><span aria-hidden="true">/</span><span>Training schedule</span></nav>
+    <header class="schedule-hero">
+      <div><p class="schedule-eyebrow">Your next step starts here</p><h1>Make time for<br><span>what’s next.</span></h1><p class="schedule-lead">Find your course. Choose your format. Plan your training with Skunkworks Academy.</p><div class="schedule-actions"><a href="#schedule-filters" data-sk-component="button" data-variant="primary">Explore training</a><a href="/course-registration/" data-sk-component="button" data-variant="secondary">Plan team training</a></div></div>
+      <aside class="schedule-intro" data-sk-component="card"><p class="schedule-eyebrow">One place to plan</p><h2>Your catalogue.<br>Your calendar.</h2><p>Microsoft, Cisco, CompTIA, IBM and Academy learning pathways, with clear dates and delivery details.</p><p id="catalogue-count">Loading the course catalogue…</p><a href="https://portal.skunkworksacademy.com/#academy-schedule-admin">Staff: manage sessions →</a></aside>
+    </header>
+    <section class="schedule-board" aria-labelledby="schedule-heading">
+      <div class="schedule-board-head"><div><p class="schedule-eyebrow">Training schedule</p><h2 id="schedule-heading">Find your next course</h2></div><span>Fees confirmed on enquiry</span></div>
+      <div class="schedule-modes" aria-label="Training options"><button data-mode="all" aria-pressed="true">All training</button><button data-mode="scheduled" aria-pressed="false">Public sessions</button><button data-mode="self-paced" aria-pressed="false">Self-paced</button><button data-mode="private" aria-pressed="false">Private &amp; 1-on-1</button></div>
+      <p id="mode-description">Browse every listed offering, including courses with dates available on request.</p>
+      <form id="schedule-filters" class="schedule-filters" aria-label="Filter training">
+        <label class="schedule-search">Course or keyword<input id="course-search" type="search" placeholder="Try Azure, cybersecurity, IBM or a course code" autocomplete="off"></label>
+        <label>Vendor<select aria-label="Vendor" id="vendor-filter"><option value="">All vendors</option></select></label>
+        <label>Delivery format<select aria-label="Delivery format" id="format-filter"><option value="">All formats</option><option value="online">Online</option><option value="classroom">Classroom</option><option value="hybrid">Hybrid</option></select></label>
+        <label>From date<input id="date-from" type="date"></label><label>To date<input id="date-to" type="date"></label>
+        <label>Status<select aria-label="Status" id="status-filter"><option value="">All statuses</option><option value="confirmed">Confirmed</option><option value="proposed">Proposed</option><option value="awaiting-partner-confirmation">Awaiting partner confirmation</option><option value="cancelled">Cancelled</option></select></label>
+        <label>Time zone<select aria-label="Time zone" id="timezone-filter"></select></label><button type="reset">Clear filters</button>
+      </form>
+      <p id="schedule-service-status" role="status">Checking published dates…</p>
+      <div class="schedule-results-head"><p id="schedule-result-count" role="status" aria-live="polite"></p><div class="schedule-actions" aria-label="Schedule view"><button id="list-view" aria-pressed="true">Course list</button><button id="calendar-view" aria-pressed="false">Calendar</button></div></div>
+      <section id="calendar" hidden aria-label="Monthly training calendar"><div class="calendar-controls"><button id="previous-month" aria-label="Previous month">←</button><h3 id="calendar-month"></h3><button id="next-month" aria-label="Next month">→</button></div><label>Jump to month <input id="calendar-jump" type="month"></label><p>Calendar dates show published sessions. Select a session to view its course.</p><div id="calendar-days" class="calendar-days"></div></section>
+      <div id="schedule-results" class="schedule-results" aria-busy="true"></div><button id="show-more" hidden>Show more courses</button>
+      <noscript><p>Enable JavaScript to browse the schedule, or <a href="/course-registration/">request training with an advisor</a>.</p></noscript>
+    </section>
+    <section class="schedule-help" data-sk-component="card"><div><p class="schedule-eyebrow">A schedule that fits your team</p><h2>Don’t see your ideal date?</h2><p>Request a private cohort, one-to-one training or a different delivery format. An advisor will confirm dates, pricing, prerequisites and access.</p></div><a href="/course-registration/" data-sk-component="button" data-variant="primary">Request training →</a></section>
+  </main>
+</body>
+</html>

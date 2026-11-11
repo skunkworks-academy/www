@@ -23,13 +23,14 @@
     "validate:comptia-analytics": "node scripts/validate-comptia-analytics.mjs",
     "validate:learning-design": "node --test tests/academy-learning-design-page.test.mjs",
     "validate": "npm run validate:learning-design && npm run publisher:check && npm run audit && npm run validate:self-paced && npm run validate:contrast && npm run validate:theme && npm run validate:learn && npm run validate:cisco && npm run validate:course-registration && npm run validate:comptia-analytics && npm run validate:analytics && npm run validate:ai-catalog && npm run validate:partnerships && npm run validate:publisher-composition && npm run validate:academic-role-registration",
-    "build": "npm run validate",
+    "build": "npm run validate && npm run validate:schedule",
     "validate:analytics": "node scripts/validate-google-analytics.mjs",
     "validate:ai-catalog": "node scripts/validate-ai-catalog.mjs",
     "sync:ai-catalog": "node scripts/sync-ai-catalog.mjs",
     "validate:partnerships": "node --test tests/partnerships.test.mjs",
     "validate:publisher-composition": "node --test tests/publisher-course-preservation.test.mjs",
-    "validate:academic-role-registration": "node scripts/validate-academic-role-registration.mjs"
+    "validate:academic-role-registration": "node scripts/validate-academic-role-registration.mjs",
+    "validate:schedule": "node --test tests/schedule.test.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12"
