@@ -1,0 +1,40 @@
+name: IBM learning portal
+on:
+  pull_request:
+    paths:
+      - 'ibm/index.html'
+      - 'assets/ibm-*'
+      - 'assets/ibm-*/**'
+      - 'data/ibm-learning/**'
+      - 'scripts/import-ibm-learning.mjs'
+      - 'tests/ibm-learning.test.mjs'
+      - 'tools/ibm-portal/**'
+      - 'course-registration/index.html'
+      - '.github/workflows/ibm-learning.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tools/ibm-portal/package-lock.json
+      - run: npm ci --prefix tools/ibm-portal --ignore-scripts
+      - run: npm --prefix tools/ibm-portal run build
+      - run: git diff --exit-code -- assets/ibm-carbon.css assets/ibm-fonts assets/ibm-licenses
+      - run: npm run build
+      - run: node --test tests/ibm-learning.test.mjs
+      - run: npx playwright install --with-deps chromium
+        working-directory: tools/ibm-portal
+      - run: npm --prefix tools/ibm-portal test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ibm-learning-browser-evidence
+          path: tools/ibm-portal/test-results/

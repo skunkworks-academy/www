@@ -1,0 +1,1 @@
+{"name":"academy-ibm-portal-tools","private":true,"type":"module","scripts":{"build":"node build.mjs","test":"playwright test"},"devDependencies":{"@carbon/styles":"1.119.0","@ibm/plex-sans":"1.1.0","sass":"1.94.2","@playwright/test":"1.56.1","@axe-core/playwright":"4.11.0"}}

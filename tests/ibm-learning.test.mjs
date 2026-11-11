@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {filterCourses,isCurrent,enquiryUrl} from '../assets/ibm-learning-model.mjs';
+import {transform,plain} from '../scripts/import-ibm-learning.mjs';
+const row={COURSECODE:'TEST01',TITLE:'IBM MQ administration',CONTENT_AVAILABILITY:'Content Available',EXPIREDATE:'2099-01-01',SKILLLEVEL:'Intermediate',PRODUCT_NAME:'IBM MQ',OVERVIEW:'<p>Learn MQ</p>',PRICE:'999'};
+test('feed import preserves learning identity and strips executable markup without taking price as tuition',()=>{const [c]=transform([row]);assert.equal(c.code,'TEST01');assert.equal(c.family,'Automation & integration');assert.equal(c.overview,'Learn MQ');assert.equal(c.price,undefined);assert.equal(plain('<script>alert(1)</script><p>Safe</p>'),'Safe');});
+test('retired, expired, replaced and unknown content cannot be current',()=>{const [c]=transform([row]);assert.ok(isCurrent(c,'2026-11-11'));for(const patch of [{expires:'2020-01-01'},{expires:''},{replacedBy:'NEW01'},{retireReason:'Withdrawn'},{availability:'Content Under Development'}])assert.equal(isCurrent({...c,...patch},'2026-11-11'),false);});
+test('invalid identities and duplicate course codes fail rather than corrupt the snapshot',()=>{assert.throws(()=>transform([row,row]));assert.throws(()=>transform([{...row,COURSECODE:''}]));assert.throws(()=>transform([]));});
+test('search combines words, family, level, status and shortlist',()=>{const [c]=transform([row]);assert.equal(filterCourses([c],{query:'mq TEST01',family:c.family,level:'Intermediate'}).length,1);assert.equal(filterCourses([c],{query:'nonexistent'}).length,0);assert.equal(filterCourses([c],{savedOnly:true,saved:[]}).length,0);assert.equal(filterCourses([c],{savedOnly:true,saved:['TEST01']}).length,1);});
+test('enquiry carries stable course code and encoded title, not an enrolment promise',()=>{const [c]=transform([row]);const u=new URL(enquiryUrl([c]),'https://www.skunkworksacademy.com');assert.equal(u.pathname,'/course-registration/');assert.equal(u.searchParams.get('courseId'),'TEST01');assert.equal(u.searchParams.get('source'),'ibm-learning');});

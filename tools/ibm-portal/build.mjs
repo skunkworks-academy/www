@@ -1,0 +1,13 @@
+import {compile} from 'sass';
+import {writeFileSync, mkdirSync, copyFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {resolve,dirname} from 'node:path';
+const here=dirname(fileURLToPath(import.meta.url)), root=resolve(here,'../..');
+const css=compile(resolve(here,'carbon.scss'),{loadPaths:[resolve(here,'node_modules')],style:'compressed',silenceDeprecations:['global-builtin','import','color-functions']});
+writeFileSync(resolve(root,'assets/ibm-carbon.css'),'/* Carbon Design System 1.119.0 | IBM Corp. | Apache-2.0; see /assets/ibm-licenses/ */\n'+css.css+'\n');
+mkdirSync(resolve(root,'assets/ibm-fonts'),{recursive:true});
+mkdirSync(resolve(root,'assets/ibm-licenses'),{recursive:true});
+for(const weight of ['Light','Regular','Medium','SemiBold']) copyFileSync(resolve(here,`node_modules/@ibm/plex-sans/fonts/complete/woff2/IBMPlexSans-${weight}.woff2`),resolve(root,`assets/ibm-fonts/${weight}.woff2`));
+copyFileSync(resolve(here,'node_modules/@carbon/styles/LICENSE'),resolve(root,'assets/ibm-licenses/carbon.txt'));
+copyFileSync(resolve(here,'node_modules/@ibm/plex-sans/LICENSE.txt'),resolve(root,'assets/ibm-licenses/plex.txt'));
+console.log('Built scoped Carbon components and local IBM Plex fonts.');
