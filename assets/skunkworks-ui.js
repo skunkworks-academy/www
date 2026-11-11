@@ -6,12 +6,18 @@
 
   var VERSION = "2026.09.08.3";
   var ASSET_ROOT = "https://skunkworksacademy.com";
-  var LOGO_LIGHT = ASSET_ROOT + "/images/favicon-black.png?v=" + VERSION;
-  var LOGO_DARK = ASSET_ROOT + "/images/logo-white.svg?v=" + VERSION;
+  var imageHost = String(window.location && window.location.hostname || "").toLowerCase();
+  var isLocalImagePreview = imageHost === "localhost" || imageHost === "127.0.0.1" || imageHost === "::1" || imageHost === "[::1]";
+  var IMAGE_ROOT = isLocalImagePreview ? window.location.origin.replace(/\/$/, "") : ASSET_ROOT;
+  var LOGO_LIGHT = IMAGE_ROOT + "/images/favicon-black.png?v=" + VERSION;
+  var LOGO_DARK = IMAGE_ROOT + "/images/logo-white.svg?v=" + VERSION;
   var SIGN_IN_URL = "https://portal.skunkworksacademy.com/";
   var destinations = [
     { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"], description: "Skunkworks Academy home" },
     { label: "Learning catalogue", url: "https://skunkworksacademy.com/catalogue/", description: "Self-paced and instructor-led learning" },
+    { label: "Courses", url: "https://www.skunkworksacademy.com/courses/", description: "Browse published Academy courses and learning outcomes" },
+    { label: "Course registration", url: "https://www.skunkworksacademy.com/course-registration/", description: "Register for training and enquiries" },
+    { label: "Learning design plugin", url: "https://www.skunkworksacademy.com/plugins/academy-learning-design/", description: "Create accessible, visual and assessment-led Academy courses with ChatGPT" },
     { label: "Plans & purchases", url: "https://skunkworksacademy.com/plans-and-purchases/", description: "Training plans and purchases" },
     { label: "Learner portal", url: "https://portal.skunkworksacademy.com/", domains: ["portal.skunkworksacademy.com"], description: "Your Academy account and learning portal" },
     { label: "Labs", url: "https://labs.skunkworksacademy.com/", domains: ["labs.skunkworksacademy.com", "lab.skunkworksacademy.com"], description: "Hands-on technical labs" },
@@ -74,6 +80,13 @@
       ".swa-global-nav__sign-in{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:50px!important;padding:0 8px!important;color:var(--swa-link)!important;background:transparent!important;border:0!important;text-decoration:none!important;font-size:clamp(15px,1.55vw,20px)!important;font-weight:400!important;letter-spacing:0!important;white-space:nowrap!important}",
       ".swa-global-nav__sign-in:hover,.swa-global-nav__sign-in:focus{color:#fff!important;text-decoration:underline!important;text-underline-offset:4px!important}",
       ".swa-global-nav__account-name{max-width:clamp(92px,13vw,180px)!important;overflow:hidden!important;color:var(--swa-muted)!important;font-size:14px!important;font-weight:600!important;text-overflow:ellipsis!important;white-space:nowrap!important}",
+      ".swa-global-nav__account{position:relative!important;flex:none!important;min-width:0!important}.swa-global-nav__account[hidden],.swa-global-nav__account-menu[hidden],.swa-global-nav__account-item[hidden],.swa-global-nav__sign-in[hidden],.swa-global-nav__account-name[hidden]{display:none!important}",
+      ".swa-global-nav__account-toggle{display:inline-flex!important;align-items:center!important;gap:8px!important;max-width:240px!important;min-height:44px!important;margin:0!important;padding:5px 8px!important;border:1px solid transparent!important;border-radius:24px!important;background:transparent!important;color:var(--swa-text)!important;font:inherit!important;font-size:14px!important;line-height:1.2!important;cursor:pointer!important}",
+      ".swa-global-nav__account-toggle:hover,.swa-global-nav__account-toggle[aria-expanded=\"true\"]{background:var(--swa-panel-strong)!important;border-color:var(--swa-line)!important}.swa-global-nav__account-toggle:focus-visible,.swa-global-nav__account-item:focus-visible{outline:3px solid var(--swa-text)!important;outline-offset:3px!important}",
+      ".swa-global-nav__account-avatar{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:none!important;width:32px!important;height:32px!important;border:1px solid var(--swa-line)!important;border-radius:50%!important;background:#2b2b2b!important;color:#fff!important;font-size:12px!important;font-weight:700!important;letter-spacing:0!important}.swa-global-nav__account-label{max-width:160px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}.swa-global-nav__account-chevron{font-size:12px!important;flex:none!important}",
+      ".swa-global-nav__account-menu{position:absolute!important;top:calc(100% + 8px)!important;right:0!important;z-index:2!important;display:grid!important;min-width:180px!important;width:max-content!important;max-width:calc(100vw - 20px)!important;max-height:calc(100vh - 100px)!important;overflow:auto!important;margin:0!important;padding:6px!important;border:1px solid var(--swa-line)!important;border-radius:10px!important;background:var(--swa-panel)!important;color:var(--swa-text)!important;box-shadow:0 14px 32px rgba(0,0,0,.35)!important}",
+      ".swa-global-nav__account-item{display:flex!important;align-items:center!important;min-height:44px!important;width:100%!important;margin:0!important;padding:10px 12px!important;border:0!important;border-radius:5px!important;background:transparent!important;color:var(--swa-text)!important;text-decoration:none!important;text-align:left!important;font:inherit!important;font-size:14px!important;line-height:1.3!important;cursor:pointer!important}.swa-global-nav__account-item:hover,.swa-global-nav__account-item:focus{background:var(--swa-panel-strong)!important;color:var(--swa-text)!important}",
+      "@media(max-width:620px){.swa-global-nav__account-toggle{gap:0!important;padding:5px!important;max-width:44px!important;width:44px!important;height:44px!important;justify-content:center!important}.swa-global-nav__account-label,.swa-global-nav__account-chevron{display:none!important}.swa-global-nav__controls{gap:2px!important}.swa-global-nav__account-menu{max-height:calc(100svh - 90px)!important}}",
       ".swa-global-nav__links,.swa-global-nav__search-panel{position:absolute!important;top:calc(100% + 4px)!important;right:clamp(16px,4vw,56px)!important;width:min(450px,calc(100vw - 32px))!important;max-height:calc(100vh - 104px)!important;overflow:auto!important;display:none!important;padding:20px!important;background:var(--swa-panel)!important;border:1px solid var(--swa-line)!important;border-top:0!important;border-radius:0 0 10px 10px!important;box-shadow:0 22px 48px rgba(0,0,0,.45)!important}",
       ".swa-global-nav.swa-menu-open .swa-global-nav__links{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}",
       ".swa-global-nav.swa-search-open .swa-global-nav__search-panel{display:block!important}",
@@ -197,6 +210,15 @@
     var search = document.createElement("button");
     var accountName = document.createElement("span");
     var signIn = document.createElement("a");
+    var accountControl = document.createElement("div");
+    var accountToggle = document.createElement("button");
+    var accountAvatar = document.createElement("span");
+    var accountLabel = document.createElement("span");
+    var accountChevron = document.createElement("span");
+    var accountMenu = document.createElement("div");
+    var profileLink = document.createElement("a");
+    var settingsLink = document.createElement("a");
+    var accountSignOut = document.createElement("button");
     var links = document.createElement("nav");
     var linksHeading = document.createElement("p");
     var searchPanel = document.createElement("section");
@@ -253,6 +275,38 @@
     accountName.className = "swa-global-nav__account-name";
     accountName.hidden = true;
 
+    accountControl.className = "swa-global-nav__account";
+    accountControl.hidden = true;
+    accountToggle.className = "swa-global-nav__account-toggle";
+    accountToggle.type = "button";
+    accountToggle.setAttribute("aria-haspopup", "menu");
+    accountToggle.setAttribute("aria-expanded", "false");
+    accountToggle.setAttribute("aria-controls", "swa-global-nav-account-menu");
+    accountAvatar.className = "swa-global-nav__account-avatar";
+    accountAvatar.setAttribute("aria-hidden", "true");
+    accountLabel.className = "swa-global-nav__account-label";
+    accountChevron.className = "swa-global-nav__account-chevron";
+    accountChevron.textContent = "\u25be";
+    accountChevron.setAttribute("aria-hidden", "true");
+    accountToggle.appendChild(accountAvatar);
+    accountToggle.appendChild(accountLabel);
+    accountToggle.appendChild(accountChevron);
+    accountMenu.className = "swa-global-nav__account-menu";
+    accountMenu.id = "swa-global-nav-account-menu";
+    accountMenu.hidden = true;
+    accountMenu.setAttribute("role", "menu");
+    accountMenu.setAttribute("aria-label", "Account");
+    [profileLink, settingsLink, accountSignOut].forEach(function (item, index) {
+      item.className = "swa-global-nav__account-item";
+      item.setAttribute("role", "menuitem");
+      item.tabIndex = -1;
+      item.textContent = ["Profile", "Settings", "Sign out"][index];
+      accountMenu.appendChild(item);
+    });
+    accountSignOut.type = "button";
+    accountControl.appendChild(accountToggle);
+    accountControl.appendChild(accountMenu);
+
     links.className = "swa-global-nav__links";
     links.id = "swa-global-nav-links";
     links.setAttribute("aria-label", "Academy menu");
@@ -294,6 +348,7 @@
     controls.appendChild(search);
     controls.appendChild(accountName);
     controls.appendChild(signIn);
+    controls.appendChild(accountControl);
     inner.appendChild(identity);
     inner.appendChild(crest);
     inner.appendChild(controls);
@@ -304,6 +359,99 @@
     document.body.classList.add("swa-has-global-nav");
 
     var accountHandler = null;
+
+    function isPortalWorkspace(account) {
+      return window.location.hostname.toLowerCase() === "portal.skunkworksacademy.com" &&
+        account && account.source === "portal" && account.authenticated === true && account.workspaceNavigation === "sidebar";
+    }
+
+    function isPortalAccount(account) {
+      return isPortalWorkspace(account) && typeof account.signOut === "function";
+    }
+
+    function safeAccountUrl(value) {
+      if (typeof value !== "string" || !value.trim()) return "";
+      try {
+        var target = new URL(value, window.location.origin);
+        if (target.origin !== window.location.origin || !/^https?:$/.test(target.protocol) || target.username || target.password) return "";
+        return target.href;
+      } catch (_error) { return ""; }
+    }
+
+    function setAccountLink(link, value) {
+      var href = safeAccountUrl(value);
+      link.hidden = !href;
+      if (href) link.href = href;
+      else link.removeAttribute("href");
+    }
+
+    function accountItems() {
+      return [profileLink, settingsLink, accountSignOut].filter(function (item) { return !item.hidden; });
+    }
+
+    function closeAccountMenu(restoreFocus) {
+      var wasOpen = !accountMenu.hidden;
+      accountMenu.hidden = true;
+      accountToggle.setAttribute("aria-expanded", "false");
+      if (wasOpen && restoreFocus && !accountControl.hidden) accountToggle.focus();
+    }
+
+    function openAccountMenu(last) {
+      if (accountControl.hidden) return;
+      closeMenu();
+      closeSearch();
+      accountMenu.hidden = false;
+      accountToggle.setAttribute("aria-expanded", "true");
+      var items = accountItems();
+      items[last ? items.length - 1 : 0].focus();
+    }
+
+    accountToggle.addEventListener("click", function () {
+      if (accountMenu.hidden) openAccountMenu(false);
+      else closeAccountMenu(true);
+    });
+    accountToggle.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        openAccountMenu(event.key === "ArrowUp");
+      }
+    });
+    accountMenu.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        closeAccountMenu(true);
+        return;
+      }
+      var items = accountItems();
+      var index = items.indexOf(document.activeElement);
+      var next = index;
+      if (event.key === "ArrowDown") next = (index + 1) % items.length;
+      else if (event.key === "ArrowUp") next = (index - 1 + items.length) % items.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = items.length - 1;
+      else if (event.key === " ") {
+        event.preventDefault();
+        if (index !== -1) items[index].click();
+        return;
+      } else if (event.key === "Tab") {
+        window.setTimeout(function () { closeAccountMenu(false); }, 0);
+        return;
+      } else return;
+      event.preventDefault();
+      items[next].focus();
+    });
+    accountControl.addEventListener("focusout", function (event) {
+      if (event.relatedTarget && !accountControl.contains(event.relatedTarget)) closeAccountMenu(false);
+    });
+    [profileLink, settingsLink].forEach(function (link) {
+      link.addEventListener("click", function () { closeAccountMenu(false); });
+    });
+    accountSignOut.addEventListener("click", function () {
+      var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+      closeAccountMenu(true);
+      if (isPortalAccount(account)) account.signOut();
+    });
 
     function removeAccountHandler() {
       if (!accountHandler) return;
@@ -335,9 +483,39 @@
     function applyAccountControl() {
       var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
       var userName = account && typeof account.userName === "string" ? account.userName.trim() : "";
+      var hadAccountFocus = accountControl.contains(document.activeElement);
+      var portalWorkspace = isPortalWorkspace(account);
+      var workspaceMenuOpen = portalWorkspace && toggle.getAttribute("aria-controls") === "academy-portal-sidebar" && toggle.getAttribute("aria-expanded") === "true";
+      var academyMenuOpen = !portalWorkspace && header.classList.contains("swa-menu-open");
+      header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
+      toggle.setAttribute("aria-controls", portalWorkspace ? "academy-portal-sidebar" : "swa-global-nav-links");
+      toggle.setAttribute("aria-label", portalWorkspace ? (workspaceMenuOpen ? "Close workspace navigation" : "Open workspace navigation") : (academyMenuOpen ? "Close Academy menu" : "Open Academy menu"));
+      toggle.setAttribute("aria-expanded", String(Boolean(portalWorkspace ? workspaceMenuOpen : academyMenuOpen)));
 
       accountName.hidden = !userName;
       accountName.textContent = userName;
+      closeAccountMenu(false);
+      accountControl.hidden = true;
+      signIn.hidden = false;
+
+      if (isPortalAccount(account)) {
+        var displayName = userName || "Account";
+        var words = displayName.split(/\s+/);
+        accountLabel.textContent = displayName;
+        accountAvatar.textContent = (Array.from(words[0])[0] + (words.length > 1 ? Array.from(words[words.length - 1])[0] : "")).toUpperCase();
+        accountToggle.setAttribute("aria-label", "Account menu for " + displayName);
+        accountToggle.title = displayName;
+        setAccountLink(profileLink, account.profileUrl);
+        setAccountLink(settingsLink, account.settingsUrl);
+        removeAccountHandler();
+        accountName.hidden = true;
+        signIn.hidden = true;
+        accountControl.hidden = false;
+        if (hadAccountFocus) accountToggle.focus();
+        return;
+      }
+
+      if (hadAccountFocus) signIn.focus();
 
       if (!account || typeof account !== "object") {
         resetSignIn();
@@ -359,6 +537,11 @@
 
     applyAccountControl();
     window.addEventListener("skunkworksacademy:account-change", applyAccountControl);
+    window.addEventListener("skunkworksacademy:portal-menu-state", function (event) {
+      if (!isPortalWorkspace(window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT) || !event.detail || typeof event.detail.open !== "boolean") return;
+      toggle.setAttribute("aria-expanded", String(event.detail.open));
+      toggle.setAttribute("aria-label", event.detail.open ? "Close workspace navigation" : "Open workspace navigation");
+    });
 
     function renderSearchResults(query) {
       var value = String(query || "").trim().toLowerCase();
@@ -395,6 +578,7 @@
 
     function closeMenu() {
       header.classList.remove("swa-menu-open");
+      if (isPortalWorkspace(window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT)) return;
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open Academy menu");
     }
@@ -406,6 +590,7 @@
 
     function openMenu() {
       closeSearch();
+      closeAccountMenu(false);
       header.classList.add("swa-menu-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close Academy menu");
@@ -413,6 +598,7 @@
 
     function openSearch() {
       closeMenu();
+      closeAccountMenu(false);
       header.classList.add("swa-search-open");
       search.setAttribute("aria-expanded", "true");
       renderSearchResults(searchInput.value);
@@ -422,6 +608,12 @@
     toggle.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
+      if (isPortalWorkspace(window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT)) {
+        closeSearch();
+        closeAccountMenu(false);
+        window.dispatchEvent(new CustomEvent("skunkworksacademy:portal-menu-toggle"));
+        return;
+      }
       if (header.classList.contains("swa-menu-open")) closeMenu();
       else openMenu();
     });
@@ -455,6 +647,7 @@
     });
 
     document.addEventListener("click", function (event) {
+      if (!accountControl.contains(event.target)) closeAccountMenu(accountMenu.contains(document.activeElement));
       if (!header.contains(event.target)) {
         closeMenu();
         closeSearch();
@@ -466,7 +659,11 @@
       var isTyping = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable);
 
       if (event.key === "Escape") {
-        if (header.classList.contains("swa-search-open")) {
+        if (!accountMenu.hidden) {
+          event.preventDefault();
+          closeAccountMenu(true);
+        } else if (header.classList.contains("swa-search-open")) {
+          event.preventDefault();
           closeSearch();
           search.focus();
         } else if (header.classList.contains("swa-menu-open")) {

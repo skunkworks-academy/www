@@ -1,0 +1,11 @@
+# Canonical transparent black site icons
+
+Browser favicons and site icons use the approved black Skunkworks emblem on a transparent background in every theme. White header branding and the orange portal sign-in emblem are separate intentional treatments.
+
+The source is the unchanged `images/favicon-black.png` (SHA-256 `23061c0c0a845f8641f5bdc645ae1b2af34525ba5df485195b13ecbc1ae86668`). `.github/actions/search-favicons/build-assets.py` preserves its exact alpha silhouette and antialiasing, crops unused transparent margins, centres the black mark within a 90% bounding box and resizes deterministically. It does not draw or generate a replacement logo. The source and white header artwork remain unchanged.
+
+The 96px `favicon-search.png` and legacy `favicon-search-dark.png` paths intentionally contain identical black RGBA bytes. The historical filenames remain for compatibility with deployed pages and pinned integrations. Revision `2026.11.05.2` distinguishes the new files in browser caches. Additional PNGs are 32px, 180px (touch), 192px and 512px. `favicon.ico` contains 16, 24, 32, 48, 64, 96, 128 and 256px images. All image backgrounds remain transparent.
+
+`assets/academy-navigation.js` and `assets/academy-page-contract.js` install the canonical links; the static contract emits matching links. The navigation loader installs icons even when it deliberately skips DOM-mutating navigation on Docusaurus course routes. `.github/actions/search-favicons/apply.py` normalizes emitted HTML and local web manifests before publishing, preserving other manifest fields and header images. It verifies the reviewed asset hashes before writing, and never fetches external manifests. The website release uses its checked-out action so an old pinned asset set cannot overwrite the new icons.
+
+Validation includes source hash, alpha silhouette and transparent-corner checks during deterministic generation; PNG dimensions/RGBA and ICO-size checks; exact light/dark alias equality; helper idempotence, corrupt-asset rejection, unchanged header images and manifest preservation tests; and the canonical page-contract check over every website HTML document. Browser display and rollout to other repositories are separate release checks.

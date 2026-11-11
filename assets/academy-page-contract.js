@@ -5,7 +5,7 @@
   if (typeof document === "undefined") return;
   if (window.SKUNKWORKS_ACADEMY_PAGE_CONTRACT) return;
 
-  var VERSION = "2026.09.07.1";
+  var VERSION = "2026.11.05.2";
   var FORMS_VERSION = "2026.09.07.1";
   var PUBLIC_ROOT = "https://www.skunkworksacademy.com/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
@@ -14,8 +14,8 @@
   var ASSET_ROOT = (isApexAlias || isLocalPreview)
     ? window.location.origin.replace(/\/$/, "") + "/"
     : PUBLIC_ROOT;
-  var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-search.png";
-  var FAVICON_DARK = ASSET_ROOT + "images/favicon-search-dark.png";
+  var FAVICON_LIGHT = ASSET_ROOT + "images/favicon-search.png?v=2026.11.05.2";
+  var FAVICON_DARK = ASSET_ROOT + "images/favicon-search-dark.png?v=2026.11.05.2";
   var FORMS_DESIGN_SYSTEM = ASSET_ROOT + "assets/skunkworks-design-system.css?v=2026.09.08.3&rev=2026.09.08.3";
   var FORMS_STYLES = ASSET_ROOT + "assets/academy-forms.css?v=" + FORMS_VERSION;
   var FORMS_GLOBAL_NAV = ASSET_ROOT + "assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3";
@@ -80,9 +80,22 @@
     });
   }
 
+  function installTouchIcon(head) {
+    var expected = ASSET_ROOT + "images/apple-touch-icon.png?v=2026.11.05.2";
+    var icons = Array.prototype.slice.call(document.querySelectorAll('link[rel="apple-touch-icon"], link[rel="apple-touch-icon-precomposed"]'));
+    if (icons.length === 1 && icons[0].getAttribute("href") === expected && icons[0].getAttribute("sizes") === "180x180") return;
+    icons.forEach(function (node) { node.remove(); });
+    var touch = document.createElement("link");
+    touch.rel = "apple-touch-icon"; touch.href = expected; touch.sizes = "180x180";
+    touch.setAttribute("data-skunkworks-touch-icon", "canonical");
+    head.appendChild(touch);
+  }
+
   function ensureCanonicalFavicons() {
     var head = document.head || document.documentElement;
-    if (!head || canonicalFaviconsAreCurrent()) return;
+    if (!head) return;
+    installTouchIcon(head);
+    if (canonicalFaviconsAreCurrent()) return;
 
     Array.prototype.slice.call(document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]'))
       .forEach(function (node) {

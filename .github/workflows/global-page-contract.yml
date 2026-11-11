@@ -5,12 +5,21 @@ on:
     paths:
       - '**/*.html'
       - 'assets/academy-navigation.js'
+      - 'assets/academy-navigation-v11.js'
+      - 'assets/skunkworks-ui.js'
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
       - 'assets/academy-learn.css'
       - 'assets/academy-forms.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
+      - 'images/favicon*.png'
+      - 'images/apple-touch-icon.png'
+      - 'favicon.ico'
+      - 'tests/account-navigation.test.mjs'
+      - 'tests/shell-assets.test.mjs'
+      - 'tests/shell-dom/**'
+      - '.github/actions/search-favicons/**'
       - 'scripts/enforce-global-page-contract.mjs'
       - 'scripts/audit-theme-governance.mjs'
       - 'scripts/validate-theme-conformance.mjs'
@@ -24,12 +33,21 @@ on:
     paths:
       - '**/*.html'
       - 'assets/academy-navigation.js'
+      - 'assets/academy-navigation-v11.js'
+      - 'assets/skunkworks-ui.js'
       - 'assets/academy-page-contract.js'
       - 'assets/academy-brand-theme.css'
       - 'assets/academy-learn.css'
       - 'assets/academy-forms.css'
       - 'images/favicon-black.png'
       - 'images/favicon-white.png'
+      - 'images/favicon*.png'
+      - 'images/apple-touch-icon.png'
+      - 'favicon.ico'
+      - 'tests/account-navigation.test.mjs'
+      - 'tests/shell-assets.test.mjs'
+      - 'tests/shell-dom/**'
+      - '.github/actions/search-favicons/**'
       - 'scripts/enforce-global-page-contract.mjs'
       - 'scripts/audit-theme-governance.mjs'
       - 'scripts/validate-theme-conformance.mjs'
@@ -64,6 +82,14 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
+
+      - name: Test shared shell assets and account navigation
+        run: |
+          npm ci --prefix tests/shell-dom --ignore-scripts --no-audit --no-fund
+          npm test --prefix tests/shell-dom
+
+      - name: Test canonical favicon artifact updates
+        run: python3 -m unittest discover -s .github/actions/search-favicons -p test_apply.py
 
       - name: Verify canonical contract assets exist
         shell: bash
@@ -126,7 +152,9 @@ jobs:
           grep -q 'academy-theme-conformance.css' assets/academy-navigation.js
           grep -q 'VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'REVISION = "2026.09.08.3"' assets/academy-navigation.js
-          grep -q 'PAGE_CONTRACT_VERSION = "2026.09.07.1"' assets/academy-navigation.js
+          page_contract_version="$(sed -n 's/.*var VERSION = "\([^"]*\)";.*/\1/p' assets/academy-page-contract.js)"
+          test -n "$page_contract_version"
+          grep -Fq "PAGE_CONTRACT_VERSION = \"$page_contract_version\"" assets/academy-navigation.js
           grep -q 'BRAND_THEME_VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'THEME_CONFORMANCE_VERSION = "2026.09.08.3"' assets/academy-navigation.js
           grep -q 'LEARN_THEME_VERSION = "2026.08.25.1"' assets/academy-navigation.js

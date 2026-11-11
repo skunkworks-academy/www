@@ -20,3 +20,27 @@ The CompTIA wordmark is not a custom partner badge.
 Review the Red Hat designation before reusing it in 2027 and the CompTIA
 designation before the certificate expires. Confirm renewed status and artwork
 before changing dates or tiers; update both the homepage and Partners page.
+
+## Cisco Networking Academy (1 November 2026)
+
+- Designation: **Cisco Networking Academy member**.
+- Public verification: https://www.netacad.com/academy-locator — search By Name
+  for `Skunkworks`. Cisco returns Skunkworks Academy in South Africa and links to
+  https://www.skunkworksacademy.com/ (checked 1 November 2026).
+- `cisco-networking-academy.svg` is the unmodified horizontal artwork selected by
+  Skunkworks on 1 November 2026.
+- Source: https://commons.wikimedia.org/wiki/File:Cisco_Networking_Academy.svg
+- Original SVG: https://upload.wikimedia.org/wikipedia/commons/5/57/Cisco_Networking_Academy.svg
+- Credit: Cisco Networking Academy, Public domain, via Wikimedia Commons.
+- Copyright classification: Wikimedia Commons PD-textlogo; trademark rights remain applicable.
+- SHA-256: `cc9ba4145f850444b4a82452eb43ec4656c7acd07447e4dce8cbc4455a195d9d`.
+- Display the logo proportionally on white with clear space. Do not redraw,
+  recolour, filter, crop, or combine it with the Skunkworks mark. Keep Skunkworks
+  as the site identity and the programme mark within the relevant content.
+- This describes Academy programme membership. It does not establish a reseller
+  tier, Cisco Learning Partner status, ASC/ITC status, or certification of learners.
+- The membership agreement is private supporting material and is not published.
+- Brand guidance: https://www.cisco.com/c/en/us/about/brand-center/logo-usage-guidelines.html
+
+Review the directory listing and current programme brand resources before future
+changes. No membership start or expiry date is inferred from the agreement template.

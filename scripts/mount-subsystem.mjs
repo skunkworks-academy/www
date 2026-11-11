@@ -105,6 +105,33 @@ for (const file of htmlFiles) {
   fs.writeFileSync(file, html);
 }
 
+// Docusaurus webpack chunks can encode a root publicPath even after the HTML
+// asset URLs have been remapped. Rewrite only the subsystem's own JS bundles;
+// this preserves hydration, lazy imports and independent asset isolation.
+const javascriptRoot = path.join(targetMount, "assets");
+let patchedChunks = 0;
+function rewriteSubsystemJavascript(directory) {
+  for (const entry of fs.readdirSync(directory, {withFileTypes: true})) {
+    const filename = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      rewriteSubsystemJavascript(filename);
+      continue;
+    }
+    if (!entry.isFile() || !entry.name.endsWith(".js")) continue;
+    const original = fs.readFileSync(filename, "utf8");
+    const scopedPrefix = "/" + mount + "/";
+    const transformed = original
+      .replaceAll('.p="/"', '.p="' + scopedPrefix + '"')
+      .replaceAll('"/assets/', '"' + scopedPrefix + 'assets/')
+      .replaceAll("'/assets/", "'" + scopedPrefix + "assets/");
+    if (transformed !== original) {
+      fs.writeFileSync(filename, transformed);
+      patchedChunks += 1;
+    }
+  }
+}
+if (fs.existsSync(javascriptRoot)) rewriteSubsystemJavascript(javascriptRoot);
+
 const index = path.join(targetMount, "index.html");
 if (!fs.existsSync(index)) throw new Error(`Mounted subsystem did not produce /${mount}/index.html`);
 
@@ -125,5 +152,6 @@ console.log(JSON.stringify({
   source,
   mount: `/${mount}`,
   htmlDocuments: htmlFiles.length,
-  isolatedAssets
+  isolatedAssets,
+  patchedChunks
 }, null, 2));

@@ -2,9 +2,10 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.09.08.4";
+  var VERSION = "2026.11.05.1";
   var ROOT_URL = "https://skunkworksacademy.com";
   var STORAGE_KEY = "swa-theme";
+  var themeListenerInstalled = false;
 
   if (window.SkunkworksAcademy && window.SkunkworksAcademy.footerLoaded) return;
   window.SkunkworksAcademy = Object.assign(window.SkunkworksAcademy || {}, {
@@ -62,6 +63,8 @@
       "html[data-swa-theme=\"dark\"] .swa-global-footer__theme-option:hover,html[data-swa-theme=\"dark\"] .swa-global-footer__theme-option[aria-pressed=\"true\"],html[data-theme=\"dark\"] .swa-global-footer__theme-option:hover,html[data-theme=\"dark\"] .swa-global-footer__theme-option[aria-pressed=\"true\"]{background:#1a1a1a!important}",
       "@media(max-width:900px){.swa-global-footer{padding:28px 24px 24px!important}.swa-global-footer__utility{margin-bottom:24px!important}.swa-global-footer__legal{justify-content:flex-start!important;gap:12px 24px!important}}",
       "@media(max-width:560px){.swa-global-footer{padding:24px 18px!important}.swa-global-footer__social.bottom-social{margin-bottom:22px!important;padding-bottom:22px!important}.swa-global-footer__social .container{grid-template-columns:1fr!important}.swa-global-footer__social-link{width:100%!important}.swa-global-footer__utility{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-bottom:22px!important}.swa-global-footer__legal{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px 18px!important}.swa-global-footer__legal li:last-child{grid-column:1/-1!important;margin-top:8px!important}.swa-global-footer__legal a,.swa-global-footer__copyright{white-space:normal!important}}",
+      ".swa-global-footer[data-skunkworks-footer-mode=\"portal-workspace\"]{display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:wrap!important;gap:10px 24px!important;width:calc(100% - var(--swa-portal-footer-inset-inline-start,0px))!important;margin-inline-start:var(--swa-portal-footer-inset-inline-start,0px)!important;padding:12px clamp(18px,3vw,36px)!important;font-size:13px!important}",
+      ".swa-global-footer__workspace-links{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:4px 20px!important}.swa-global-footer__workspace-links a{display:inline-flex!important;align-items:center!important;min-height:44px!important}.swa-global-footer[data-skunkworks-footer-mode=\"portal-workspace\"] .swa-global-footer__copyright{font-size:12px!important;white-space:normal!important}",
       "@media(prefers-reduced-motion:reduce){.swa-global-footer *{scroll-behavior:auto!important;transition:none!important}}"
     ].join("\n");
     document.head.appendChild(style);
@@ -183,8 +186,67 @@
     return link;
   }
 
+  function isPortalWorkspace() {
+    var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+    return window.location.hostname.toLowerCase() === "portal.skunkworksacademy.com" &&
+      account && account.source === "portal" && account.authenticated === true && account.workspaceNavigation === "sidebar";
+  }
+
+  function mountFooter(footer) {
+    document.body.appendChild(footer);
+    applyTheme(document.documentElement.getAttribute("data-swa-theme") || getSavedTheme());
+    if (!themeListenerInstalled && window.matchMedia) {
+      themeListenerInstalled = true;
+      var preference = window.matchMedia("(prefers-color-scheme: dark)");
+      var syncSystemTheme = function () {
+        if (document.documentElement.getAttribute("data-swa-theme") === "system") applyTheme("system");
+      };
+      if (preference.addEventListener) preference.addEventListener("change", syncSystemTheme);
+      else if (preference.addListener) preference.addListener(syncSystemTheme);
+    }
+  }
+
+  function createThemeControl() {
+    var theme = document.createElement("details");
+    theme.className = "swa-global-footer__theme";
+    theme.innerHTML = '<summary><span class="swa-global-footer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg></span><span>Theme</span><span class="swa-global-footer__chevron" aria-hidden="true"></span></summary>';
+
+    var themeMenu = document.createElement("div");
+    themeMenu.className = "swa-global-footer__theme-menu";
+    [
+      ["system", "Use system setting"],
+      ["light", "Light"],
+      ["dark", "Dark"]
+    ].forEach(function (item) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "swa-global-footer__theme-option";
+      button.setAttribute("data-theme-value", item[0]);
+      button.textContent = item[1];
+      button.addEventListener("click", function () {
+        saveTheme(item[0]);
+        applyTheme(item[0]);
+        theme.removeAttribute("open");
+        theme.querySelector("summary").focus();
+      });
+      themeMenu.appendChild(button);
+    });
+    theme.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        theme.removeAttribute("open");
+        theme.querySelector("summary").focus();
+      }
+    });
+    theme.appendChild(themeMenu);
+    return theme;
+  }
+
   function createFooter() {
-    if (!document.body || document.querySelector(".swa-global-footer")) return;
+    if (!document.body) return;
+    var mode = isPortalWorkspace() ? "portal-workspace" : "public";
+    var existing = document.querySelector(".swa-global-footer");
+    if (existing && existing.getAttribute("data-skunkworks-footer-mode") === mode) return;
+    if (existing) existing.remove();
 
     removeLegacyFooters();
     addStyles();
@@ -194,6 +256,25 @@
     footer.setAttribute("data-skunkworks-global-footer", VERSION);
     footer.setAttribute("role", "contentinfo");
     footer.setAttribute("aria-label", "Skunkworks Academy footer");
+    footer.setAttribute("data-skunkworks-footer-mode", mode);
+
+    if (mode === "portal-workspace") {
+      footer.setAttribute("aria-label", "Academy workspace footer");
+      var workspaceLinks = document.createElement("nav");
+      workspaceLinks.className = "swa-global-footer__workspace-links";
+      workspaceLinks.setAttribute("aria-label", "Workspace support and legal information");
+      [[ROOT_URL + "/contact.html", "Support"], [ROOT_URL + "/privacy.html", "Privacy"], [ROOT_URL + "/terms.html", "Terms"]].forEach(function (item) {
+        workspaceLinks.appendChild(standardLink(item[0], item[1]));
+      });
+      var workspaceCopyright = document.createElement("span");
+      workspaceCopyright.className = "swa-global-footer__copyright";
+      workspaceCopyright.textContent = "© Skunkworks Academy " + new Date().getFullYear();
+      workspaceLinks.appendChild(createThemeControl());
+      footer.appendChild(workspaceLinks);
+      footer.appendChild(workspaceCopyright);
+      mountFooter(footer);
+      return;
+    }
 
     var social = document.createElement("section");
     social.className = "swa-global-footer__social bottom-social";
@@ -226,37 +307,7 @@
     privacy.insertBefore(privacyMark, privacy.firstChild);
     utility.appendChild(privacy);
 
-    var theme = document.createElement("details");
-    theme.className = "swa-global-footer__theme";
-    theme.innerHTML = '<summary><span class="swa-global-footer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg></span><span>Theme</span><span class="swa-global-footer__chevron" aria-hidden="true"></span></summary>';
-
-    var themeMenu = document.createElement("div");
-    themeMenu.className = "swa-global-footer__theme-menu";
-    [
-      ["system", "Use system setting"],
-      ["light", "Light"],
-      ["dark", "Dark"]
-    ].forEach(function (item) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "swa-global-footer__theme-option";
-      button.setAttribute("data-theme-value", item[0]);
-      button.textContent = item[1];
-      button.addEventListener("click", function () {
-        saveTheme(item[0]);
-        applyTheme(item[0]);
-        theme.removeAttribute("open");
-        theme.querySelector("summary").focus();
-      });
-      themeMenu.appendChild(button);
-    });
-    theme.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        theme.removeAttribute("open");
-        theme.querySelector("summary").focus();
-      }
-    });
-    theme.appendChild(themeMenu);
+    var theme = createThemeControl();
     utility.appendChild(theme);
     footer.appendChild(utility);
 
@@ -288,18 +339,11 @@
     legal.appendChild(copyrightItem);
 
     footer.appendChild(legal);
-    document.body.appendChild(footer);
-
-    applyTheme(getSavedTheme());
-    if (window.matchMedia) {
-      var preference = window.matchMedia("(prefers-color-scheme: dark)");
-      var syncSystemTheme = function () {
-        if (document.documentElement.getAttribute("data-swa-theme") === "system") applyTheme("system");
-      };
-      if (preference.addEventListener) preference.addEventListener("change", syncSystemTheme);
-      else if (preference.addListener) preference.addListener(syncSystemTheme);
-    }
+    mountFooter(footer);
   }
 
-  ready(createFooter);
+  ready(function () {
+    createFooter();
+    window.addEventListener("skunkworksacademy:account-change", createFooter);
+  });
 })();

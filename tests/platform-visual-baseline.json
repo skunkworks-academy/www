@@ -1,30 +1,148 @@
 {
   "schemaVersion": 1,
-  "sourceWorkflowRun": 34156115011,
-  "sourceHead": "91d351204bf598ed18e6624e0a58df0c3730c54d",
+  "sourceWorkflowRun": 41289305691,
+  "sourceHead": "85ac72de23a10cb84f86e90f2fb6e4dfa50259d2",
   "maxDHashDistance": 12,
   "maxHeightRatioDelta": 0.08,
   "maxAverageLumaDelta": 18,
   "cases": {
-    "publisher-desktop": {"width":1440,"height":1239,"dhash":"0001010145800000","avgLuma":214.5},
-    "registration-desktop": {"width":1440,"height":3531,"dhash":"0007202131212121","avgLuma":184.1},
-    "cisco-mobile": {"width":390,"height":6516,"dhash":"308000e080800000","avgLuma":235.1},
-    "microsoft-mobile": {"width":390,"height":11575,"dhash":"0180c08030600100","avgLuma":233.7},
-    "registration-mobile": {"width":390,"height":5590,"dhash":"08000000000094a0","avgLuma":210.3},
-    "self-paced-mobile": {"width":390,"height":19576,"dhash":"00008000000000d3","avgLuma":246.7},
-    "home-mobile": {"width":390,"height":6035,"dhash":"84d60020a0000000","avgLuma":175.3},
-    "ibm-desktop": {"width":1440,"height":3489,"dhash":"0049a80001010000","avgLuma":228.6},
-    "learn-desktop": {"width":1440,"height":4592,"dhash":"f8c894c904a20021","avgLuma":198.0},
-    "comptia-desktop": {"width":1440,"height":3436,"dhash":"546aaa5151242000","avgLuma":229.8},
-    "ibm-mobile": {"width":390,"height":6658,"dhash":"304099e10101a800","avgLuma":240.6},
-    "publisher-mobile": {"width":390,"height":2069,"dhash":"0080000024000000","avgLuma":242.3},
-    "forms-mobile": {"width":390,"height":5745,"dhash":"c001010101804000","avgLuma":246.9},
-    "self-paced-desktop": {"width":1440,"height":7383,"dhash":"c08001a501060101","avgLuma":241.4},
-    "forms-desktop": {"width":1440,"height":3346,"dhash":"4001a12181710000","avgLuma":246.3},
-    "learn-mobile": {"width":390,"height":7826,"dhash":"2580000100090900","avgLuma":219.5},
-    "home-desktop": {"width":1440,"height":3497,"dhash":"002b0000c1080000","avgLuma":186.0},
-    "microsoft-desktop": {"width":1440,"height":5636,"dhash":"5001990101010109","avgLuma":210.7},
-    "cisco-desktop": {"width":1440,"height":4216,"dhash":"00060e0101101120","avgLuma":239.2},
-    "comptia-mobile": {"width":390,"height":9529,"dhash":"800101010181c001","avgLuma":219.5}
+    "publisher-desktop": {
+      "width": 1440,
+      "height": 1239,
+      "dhash": "0001010145800000",
+      "avgLuma": 214.5
+    },
+    "registration-desktop": {
+      "width": 1440,
+      "height": 3531,
+      "dhash": "0007202131212121",
+      "avgLuma": 184.1
+    },
+    "cisco-mobile": {
+      "width": 390,
+      "height": 6516,
+      "dhash": "308000e080800000",
+      "avgLuma": 235.1
+    },
+    "microsoft-mobile": {
+      "width": 390,
+      "height": 11575,
+      "dhash": "0180c08030600100",
+      "avgLuma": 233.7
+    },
+    "registration-mobile": {
+      "width": 390,
+      "height": 5590,
+      "dhash": "08000000000094a0",
+      "avgLuma": 210.3
+    },
+    "self-paced-mobile": {
+      "width": 390,
+      "height": 21357,
+      "dhash": "c800b400800090ae",
+      "avgLuma": 221.8125
+    },
+    "home-mobile": {
+      "width": 390,
+      "height": 9953,
+      "dhash": "93001a0065004001",
+      "avgLuma": 212.984375,
+      "sourceWorkflowRun": 41339834712,
+      "sourceHead": "831448805d535f4e2a389d42754f8f5fb71223e9",
+      "reviewNote": "Reviewed CI mobile screenshot: horizontal Cisco logo fits its card; current homepage sections remain readable without horizontal overflow."
+    },
+    "ibm-desktop": {
+      "width": 1440,
+      "height": 3421,
+      "dhash": "0080000181000080",
+      "avgLuma": 251.296875,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot: canonical black header appears once; legacy blue masthead removed; IBM banner, text, filters, cards and footer remain visible with no horizontal overflow."
+    },
+    "learn-desktop": {
+      "width": 1440,
+      "height": 4649,
+      "dhash": "f880019004510000",
+      "avgLuma": 209
+    },
+    "comptia-desktop": {
+      "width": 1440,
+      "height": 3467,
+      "dhash": "9492aaa151202080",
+      "avgLuma": 211.515625,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot: dark hero heading is readable on its light surface; live computed contrast assertion passes; catalogue cards and footer retain layout. Thresholds unchanged."
+    },
+    "ibm-mobile": {
+      "width": 390,
+      "height": 6472,
+      "dhash": "890041010101a400",
+      "avgLuma": 245.90625,
+      "sourceWorkflowRun": 42113041801,
+      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
+      "reviewNote": "Inspected corrected CI screenshot at390px: one canonical header, IBM banner fully shown after animation completion, stacked cards and complete footer without horizontal overflow."
+    },
+    "publisher-mobile": {
+      "width": 390,
+      "height": 2069,
+      "dhash": "0080000024000000",
+      "avgLuma": 242.3
+    },
+    "forms-mobile": {
+      "width": 390,
+      "height": 5570,
+      "dhash": "aa40790140018000",
+      "avgLuma": 195.4375
+    },
+    "self-paced-desktop": {
+      "width": 1440,
+      "height": 7383,
+      "dhash": "c08001a501060101",
+      "avgLuma": 241.4
+    },
+    "forms-desktop": {
+      "width": 1440,
+      "height": 3161,
+      "dhash": "8080a0a1a1212100",
+      "avgLuma": 213
+    },
+    "learn-mobile": {
+      "width": 390,
+      "height": 7826,
+      "dhash": "2580000100090900",
+      "avgLuma": 219.5
+    },
+    "home-desktop": {
+      "width": 1440,
+      "height": 5265,
+      "dhash": "1000010009840000",
+      "avgLuma": 229.34375,
+      "sourceWorkflowRun": 41294615488,
+      "sourceHead": "02a1e4f67f504984186b6cdbda8c52d438aebbfe",
+      "reviewNote": "Reviewed captured PNG: official NetAcad programme mark and membership content; homepage has six cards in two desktop rows. No clipping or horizontal overflow. Tolerances unchanged."
+    },
+    "microsoft-desktop": {
+      "width": 1440,
+      "height": 5636,
+      "dhash": "5001990101010109",
+      "avgLuma": 210.7
+    },
+    "cisco-desktop": {
+      "width": 1440,
+      "height": 4308,
+      "dhash": "0101a0012118d100",
+      "avgLuma": 235.734375,
+      "sourceWorkflowRun": 41294615488,
+      "sourceHead": "02a1e4f67f504984186b6cdbda8c52d438aebbfe",
+      "reviewNote": "Reviewed captured PNG: official NetAcad programme mark and membership content; homepage has six cards in two desktop rows. No clipping or horizontal overflow. Tolerances unchanged."
+    },
+    "comptia-mobile": {
+      "width": 390,
+      "height": 9529,
+      "dhash": "800101010181c001",
+      "avgLuma": 219.5
+    }
   }
 }

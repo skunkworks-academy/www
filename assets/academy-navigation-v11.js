@@ -4,12 +4,14 @@
 
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
+  var NAVIGATION_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
-  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1";
+  var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
   var isApexAlias = host === "skunkworksacademy.com" || host === "www.skunkworksacademy.com";
   var isFirstPartyAssetHost = isApexAlias || isLocalPreview;
   var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
+  var BRAND_THEME_ROOT = isLocalPreview ? PRIMARY_ROOT : "https://www.skunkworksacademy.com/assets/";
 
   if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 === REVISION) return;
   window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = REVISION;
@@ -158,7 +160,7 @@
   if (typeof document === "undefined") return;
 
   function assetUrl(root, file) {
-    var revision = file === "skunkworks-footer.js" ? "2026.09.08.4" : REVISION;
+    var revision = file === "skunkworks-footer.js" ? "2026.11.05.1" : file === "skunkworks-ui.js" || file === "academy-brand-theme.css" ? NAVIGATION_REVISION : REVISION;
     return root + file + "?v=" + VERSION + "&rev=" + revision;
   }
 
@@ -168,7 +170,7 @@
     compatibility: "v11",
     canonicalUi: assetUrl(CANONICAL_ROOT, "skunkworks-ui.js"),
     canonicalFooter: assetUrl(CANONICAL_ROOT, "skunkworks-footer.js"),
-    canonicalTheme: assetUrl(CANONICAL_ROOT, "academy-brand-theme.css"),
+    canonicalTheme: assetUrl(BRAND_THEME_ROOT, "academy-brand-theme.css"),
     assetRoot: PRIMARY_ROOT,
     topMenu: TOP_MENU.slice(),
     menuGroups: GLOBAL_NAV_GROUPS.map(function (group) {
@@ -176,11 +178,20 @@
     })
   });
 
+  function notifyNavigationReady() {
+    window.dispatchEvent(new CustomEvent("skunkworksacademy:navigation-ready"));
+  }
+  notifyNavigationReady();
+
+  function isPortalWorkspace() {
+    var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+    return host === "portal.skunkworksacademy.com" && account && account.source === "portal" && account.authenticated === true && account.workspaceNavigation === "sidebar";
+  }
+
   function ensureAcademyTheme() {
     var selector = 'link[data-skunkworks-brand-theme="canonical"]';
     var existing = document.querySelector(selector);
-    var primaryHref = assetUrl(PRIMARY_ROOT, "academy-brand-theme.css");
-    var fallbackHref = assetUrl(CANONICAL_ROOT, "academy-brand-theme.css");
+    var primaryHref = assetUrl(BRAND_THEME_ROOT, "academy-brand-theme.css");
     if (existing) {
       if (existing.getAttribute("href") !== primaryHref) existing.setAttribute("href", primaryHref);
       return existing;
@@ -189,9 +200,6 @@
     link.rel = "stylesheet";
     link.href = primaryHref;
     link.setAttribute("data-skunkworks-brand-theme", "canonical");
-    if (!isLocalPreview && primaryHref !== fallbackHref) {
-      link.addEventListener("error", function () { if (link.href !== fallbackHref) link.href = fallbackHref; }, { once: true });
-    }
     (document.head || document.documentElement).appendChild(link);
     return link;
   }
@@ -249,6 +257,7 @@
       ".swa-global-nav__drawer-link{display:block!important;min-height:40px!important;padding:9px 10px!important;border:1px solid transparent!important;border-radius:3px!important;background:transparent!important;color:#fff!important;text-decoration:none!important;font-size:13px!important;font-weight:600!important;line-height:1.25!important}",
       ".swa-global-nav__drawer-link:hover,.swa-global-nav__drawer-link:focus{background:#1a1a1a!important;border-color:#666!important;color:#fff!important;text-decoration:none!important}",
       ".swa-global-nav__drawer-link:focus-visible{outline:3px solid #fff!important;outline-offset:2px!important}",
+      ".swa-global-nav.swa-portal-workspace .swa-global-nav__links{display:none!important}",
       "@media(max-width:1120px){.swa-global-nav__top-menu-button{padding:0 10px!important;font-size:13px!important}}",
       "@media(max-width:980px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}.swa-global-nav.swa-has-top-menu{min-height:84px!important}.swa-global-nav__top-menu{display:none!important}}",
       "@media(max-width:620px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}.swa-global-nav.swa-has-top-menu{min-height:74px!important}.swa-global-nav__drawer-options{grid-template-columns:1fr!important}}"
@@ -292,7 +301,16 @@
     for (var index = 0; index < SECTION_BRANDS.length; index += 1) {
       var section = SECTION_BRANDS[index];
       if (section.hosts.indexOf(currentHost) === -1) continue;
-      if (!section.paths || section.paths.some(function (path) { return pathMatches(currentPath, path); })) return section;
+      if (!section.paths || section.paths.some(function (path) { return pathMatches(currentPath, path); })) {
+        // The portal publishes its already-authorized workspace choice for display only.
+        var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
+        if (currentHost === "portal.skunkworksacademy.com" && !section.paths && account && account.source === "portal" && account.authenticated === true) {
+          if (account.workspaceRole === "Staff") return { label: "Staff portal" };
+          if (account.workspaceRole === "Instructor") return { label: "Instructor portal" };
+          if (account.workspaceRole === "Student") return { label: "Learner portal" };
+        }
+        return section;
+      }
     }
     if ((currentHost === "skunkworksacademy.com" || currentHost === "www.skunkworksacademy.com") && currentPath !== "/") {
       return { label: humaniseSegment(currentPath.split("/").filter(Boolean)[0]) || "Home" };
@@ -413,6 +431,18 @@
     var header = document.querySelector(".swa-global-nav");
     if (!header) return false;
     var existing = header.querySelector(".swa-global-nav__top-menu");
+    var portalWorkspace = isPortalWorkspace();
+    header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
+    if (portalWorkspace) {
+      if (existing) {
+        var workspaceToggle = header.querySelector(".swa-global-nav__toggle");
+        if (existing.contains(document.activeElement) && workspaceToggle) workspaceToggle.focus();
+        existing.remove();
+      }
+      header.classList.remove("swa-has-top-menu", "swa-menu-open");
+      document.body.classList.remove("swa-has-top-menu");
+      return true;
+    }
     if (existing) {
       header.classList.add("swa-has-top-menu");
       document.body.classList.add("swa-has-top-menu");
@@ -525,6 +555,10 @@
 
   function startChromeGuard() {
     refreshCanonicalChrome();
+    window.addEventListener("skunkworksacademy:account-change", function () {
+      refreshCanonicalChrome();
+      notifyNavigationReady();
+    });
     if (!document.body || typeof MutationObserver === "undefined") return;
     var observer = new MutationObserver(function () { refreshCanonicalChrome(); });
     observer.observe(document.body, { childList: true, subtree: true });

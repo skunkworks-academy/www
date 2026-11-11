@@ -184,11 +184,37 @@ for (const [surface, path] of surfaces) {
 
       await page.setViewportSize(viewport);
       const response = await page.goto(`${LOCAL_ORIGIN}${path}`, {
-        waitUntil: 'domcontentloaded',
+        waitUntil: 'load',
         timeout: 20_000,
       });
+      // The public loader injects the shared runtime and styles dynamically.
+      // Do not capture an earlier font/layout or a finite banner mid-fade.
+      await expect(page.locator('.swa-global-nav')).toBeVisible();
+      await page.waitForFunction(() => [...document.querySelectorAll('link[rel="stylesheet"]')]
+        .every(link => link.disabled || Boolean(link.sheet)));
       await page.evaluate(() => document.fonts?.ready);
-      await page.waitForTimeout(250);
+
+      if (surface === 'ibm') {
+        await expect(page.locator('body > nav.ibm-masthead')).toHaveCount(0);
+      }
+      if (surface === 'comptia') {
+        const contrast = await page.locator('main .hero h1').evaluate(element => {
+          const rgb = value => (value.match(/[\d.]+/g) || []).map(Number);
+          const luminance = values => values.slice(0, 3).map(value => {
+            const channel = value / 255;
+            return channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4;
+          }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+          const text = rgb(getComputedStyle(element).color);
+          let background = [255, 255, 255];
+          for (let node = element; node; node = node.parentElement) {
+            const candidate = rgb(getComputedStyle(node).backgroundColor);
+            if (candidate.length === 3 || candidate[3] >= .95) { background = candidate; break; }
+          }
+          const foregroundLuma = luminance(text), backgroundLuma = luminance(background);
+          return (Math.max(foregroundLuma, backgroundLuma) + .05) / (Math.min(foregroundLuma, backgroundLuma) + .05);
+        });
+        expect(contrast, 'CompTIA hero heading must remain readable on its actual surface').toBeGreaterThanOrEqual(4.5);
+      }
 
       expect(response, `${path} did not return a response`).not.toBeNull();
       expect(response.status(), `${path} returned HTTP ${response.status()}`).toBeLessThan(400);
@@ -199,7 +225,16 @@ for (const [surface, path] of surfaces) {
       await expect(page.locator('link[data-skunkworks-favicon="canonical"]').first()).toHaveCount(1);
 
       const bodyWidth = await page.locator('body').evaluate(el => el.scrollWidth);
-      expect(bodyWidth, `${surface} overflows horizontally at ${viewportName}`).toBeLessThanOrEqual(viewport.width + 2);
+      if (bodyWidth > viewport.width + 2) {
+        const offenders = await page.evaluate(() => [...document.querySelectorAll('body *')]
+          .map(el => ({tag: el.tagName, className: typeof el.className === 'string' ? el.className.slice(0, 70) : '',
+            rect: el.getBoundingClientRect()}))
+          .filter(x => x.rect.width > 0 && x.rect.right > window.innerWidth + 2)
+          .sort((a, b) => b.rect.right - a.rect.right)
+          .slice(0, 8)
+          .map(x => ({tag: x.tag, className: x.className, right: Math.round(x.rect.right), width: Math.round(x.rect.width)})));
+        console.log('MOBILE-OVERFLOW ' + JSON.stringify({surface, viewportName, bodyWidth, offenders}));
+      }
 
       expect(pageErrors, `${surface} emitted runtime errors: ${pageErrors.join(' | ')}`).toEqual([]);
       expect(
@@ -211,6 +246,7 @@ for (const [surface, path] of surfaces) {
       const screenshot = await page.screenshot({
         path: screenshotPath,
         fullPage: true,
+        animations: 'disabled',
       });
 
       const key = `${surface}-${viewportName}`;
@@ -218,6 +254,10 @@ for (const [surface, path] of surfaces) {
       expect(approved, `missing approved visual baseline for ${key}`).toBeTruthy();
 
       const current = screenshotFingerprint(screenshot);
+      // Preserve the actual measured fingerprint for visual-baseline reviews.
+      // Never change tolerances or silently accept a drift without evidence.
+      console.log('VISUAL-FINGERPRINT ' + JSON.stringify({key, ...current}));
+      expect(bodyWidth, `${surface} overflows horizontally at ${viewportName}`).toBeLessThanOrEqual(viewport.width + 2);
       expect(current.width, `${key} screenshot width drifted`).toBe(approved.width);
 
       const heightDelta = Math.abs(current.height - approved.height) / approved.height;
