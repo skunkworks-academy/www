@@ -49,8 +49,9 @@ test('Google for Education is prominent without asserting an unverified programm
 });
 
 test('Linux Foundation learning resources are linked without claiming authorized partnership status', () => {
+  assert.match(home, /href="\/partners\/#linux-foundation"/);
+  assert.match(partners, /id="linux-foundation"/);
   for (const markup of [home, partners]) {
-    assert.match(markup, /href="\/partners\/#linux-foundation"/.test(markup) ? /Linux Foundation/ : /id="linux-foundation"/);
     assert.match(markup, /Training &amp; certification resources/);
     assert.match(markup, /The Linux Foundation/);
   }
