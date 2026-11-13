@@ -1,0 +1,365 @@
+/* IBM learning experience: Carbon-inspired information architecture.
+ * Layered over @carbon/styles 1.119.0 and scoped to the Academy IBM surface.
+ * No IBM trademarks or corporate identity assets are reproduced. */
+#ibm-learning {
+  --ibmx-blue: #0f62fe;
+  --ibmx-blue-hover: #0043ce;
+  --ibmx-background: #ffffff;
+  --ibmx-surface: #f4f4f4;
+  --ibmx-surface-raised: #e8e8e8;
+  --ibmx-text: #161616;
+  --ibmx-subtle: #525252;
+  --ibmx-border: #c6c6c6;
+  --ibmx-focus: #0f62fe;
+  --ibmx-side: #f4f4f4;
+  --ibm-action: var(--ibmx-blue);
+  --ibm-action-hover: var(--ibmx-blue-hover);
+}
+:root[data-theme="dark"] #ibm-learning,
+:root[data-swa-theme="dark"] #ibm-learning {
+  --ibmx-background: #161616;
+  --ibmx-surface: #262626;
+  --ibmx-surface-raised: #393939;
+  --ibmx-text: #f4f4f4;
+  --ibmx-subtle: #c6c6c6;
+  --ibmx-border: #525252;
+  --ibmx-blue: #78a9ff;
+  --ibmx-blue-hover: #a6c8ff;
+  --ibmx-side: #262626;
+  --ibmx-focus: #a6c8ff;
+  --ibm-action: #0f62fe;
+  --ibm-action-hover: #0353e9;
+}
+@media (prefers-color-scheme: dark) {
+ :root:not([data-theme="light"]):not([data-swa-theme="light"]) #ibm-learning {
+  --ibmx-background: #161616;
+  --ibmx-surface: #262626;
+  --ibmx-surface-raised: #393939;
+  --ibmx-text: #f4f4f4;
+  --ibmx-subtle: #c6c6c6;
+  --ibmx-border: #525252;
+  --ibmx-blue: #78a9ff;
+  --ibmx-blue-hover: #a6c8ff;
+  --ibmx-side: #262626;
+  --ibmx-focus: #a6c8ff;
+  --ibm-action: #0f62fe;
+  --ibm-action-hover: #0353e9;
+ }
+}
+#ibm-learning .ibm-masthead {
+  width: 100%;
+  max-width: none;
+  min-height: 68px;
+  padding: 10px clamp(16px, 3.2vw, 56px);
+  background: #161616;
+  border: 0;
+  color: #fff;
+  font-size: .875rem;
+}
+#ibm-learning .ibm-masthead a,
+#ibm-learning .ibm-masthead .academy-provider,
+#ibm-learning .ibm-masthead .academy-provider strong { color: #fff !important; }
+#ibm-learning .ibm-masthead a:last-child { color: #d0e2ff !important; }
+#ibm-learning .academy-provider {
+  border-left: 3px solid #78a9ff;
+  padding-left: 15px;
+}
+#ibm-learning .ibm-masthead .academy-provider strong {
+  font-family: 'IBM Plex Portal', sans-serif !important;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+#ibm-learning .ibm-masthead .academy-provider>span { color: #c6c6c6; }
+#ibm-learning .ibm-workspace {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  max-width: 100%;
+  align-items: stretch;
+  background: var(--ibmx-background);
+  color: var(--ibmx-text);
+}
+#ibm-learning .ibm-workspace-content { min-width: 0; overflow: clip; }
+#ibm-learning .ibm-rail {
+  min-width: 0;
+  background: var(--ibmx-side);
+  border-right: 1px solid var(--ibmx-border);
+  padding: 32px 0;
+}
+#ibm-learning .ibm-rail-inner {
+  position: sticky;
+  top: 88px;
+  padding: 0 12px;
+}
+#ibm-learning .ibm-rail-label {
+  padding: 0 14px;
+  margin: 0 0 18px;
+  color: var(--ibmx-subtle);
+  font-size: .69rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+#ibm-learning .ibm-rail nav {
+  display: grid;
+  gap: 2px;
+}
+#ibm-learning .ibm-rail nav a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: var(--ibmx-text) !important;
+  font-size: .88rem;
+}
+#ibm-learning .ibm-rail nav a:hover { background: var(--ibmx-surface-raised); }
+#ibm-learning .ibm-rail nav a[aria-current="location"] {
+  border-left-color: var(--ibmx-focus);
+  background: var(--ibmx-surface-raised);
+  font-weight: 600;
+}
+#ibm-learning .ibm-rail .ibm-nav-icon {
+  display: inline-flex;
+  min-width: 21px;
+  font-size: 1rem;
+  color: var(--ibmx-blue);
+  font-weight: 600;
+}
+#ibm-learning .ibm-rail-meta {
+  margin: 32px 13px 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--ibmx-border);
+  color: var(--ibmx-subtle);
+  font-size: .75rem;
+  line-height: 1.55;
+}
+#ibm-learning .ibm-rail-meta strong {
+  display: block;
+  color: var(--ibmx-text);
+  font-size: .79rem;
+  margin-bottom: 7px;
+}
+#ibm-learning .ibm-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  width: auto;
+  padding: 10px clamp(20px,4vw,64px);
+  font-size: .77rem;
+  color: var(--ibmx-subtle);
+  border-bottom: 1px solid var(--ibmx-border);
+}
+#ibm-learning .ibm-crumbs a { text-decoration: none; }
+#ibm-learning .ibm-crumbs a:hover { text-decoration: underline; }
+#ibm-learning .ibm-crumbs span[aria-hidden] { color: var(--ibmx-subtle); }
+#ibm-learning .ibm-workspace-content .ibm-wrap {
+  width: min(1320px, calc(100% - clamp(40px,8vw,128px)));
+}
+#ibm-learning .ibm-intro {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(290px, .78fr);
+  gap: clamp(32px,5vw,80px);
+  padding-block: clamp(56px,7vw,108px) clamp(48px,6vw,80px);
+}
+#ibm-learning .ibm-intro:before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 112px;
+  right: 0;
+  top: 16px;
+  background-image: radial-gradient(var(--ibmx-border) 1.4px, transparent 1.4px);
+  background-size: 16px 16px;
+  pointer-events: none;
+  opacity: .5;
+}
+#ibm-learning .ibm-intro-copy { position: relative; z-index: 1; }
+#ibm-learning .ibm-kicker { color: var(--ibmx-blue); font-size: .73rem; }
+#ibm-learning h1 {
+  max-width: 740px;
+  font-family: 'IBM Plex Portal',sans-serif!important;
+  font-weight: 300 !important;
+  font-size: clamp(3rem,5.1vw,5.8rem);
+  line-height: 1.045;
+  letter-spacing: -.045em;
+  margin-bottom: 28px;
+}
+#ibm-learning h1 span { color: var(--ibmx-blue); }
+#ibm-learning .ibm-intro .ibm-lead {
+  font-size: clamp(1.08rem,1.55vw,1.33rem);
+  color: var(--ibmx-subtle);
+  line-height: 1.57;
+  max-width: 680px;
+}
+#ibm-learning .ibm-hero-capabilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 25px 0 28px;
+}
+#ibm-learning .ibm-hero-capabilities span {
+  border: 1px solid var(--ibmx-border);
+  background: var(--ibmx-surface);
+  padding: 6px 12px;
+  font-size: .75rem;
+  color: var(--ibmx-text);
+}
+#ibm-learning .ibm-quick-search {
+  margin-top: 30px;
+  border: 1px solid var(--ibmx-border);
+  background: var(--ibmx-surface);
+  padding: 16px;
+  box-shadow: 0 4px 0 var(--ibmx-border);
+}
+#ibm-learning .ibm-quick-search label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--ibmx-text);
+  font-size: .78rem;
+}
+#ibm-learning .ibm-quick-search-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+#ibm-learning .ibm-quick-search input {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--ibmx-border);
+  background: var(--ibmx-background) !important;
+  color: var(--ibmx-text) !important;
+  border-radius: 0;
+}
+#ibm-learning .ibm-quick-search button {
+  flex: 0 0 auto;
+  min-height: 50px;
+  background: #0f62fe;
+  color: #fff;
+  border: 0;
+  font-size: .85rem;
+  padding: 0 18px;
+  cursor: pointer;
+}
+#ibm-learning .ibm-quick-search button:hover { background: #0043ce; }
+#ibm-learning .ibm-quick-search p {
+  color: var(--ibmx-subtle);
+  font-size: .76rem;
+  margin-top: 10px;
+}
+#ibm-learning .ibm-intro .academy-ownership { max-width: 720px; }
+#ibm-learning .academy-plan {
+  align-self: start;
+  margin-top: 46px;
+  padding: clamp(24px,3vw,40px);
+  border: 0;
+  border-top: 4px solid #78a9ff;
+  background: #262626;
+  box-shadow: 18px 18px 0 var(--ibmx-surface);
+}
+#ibm-learning .academy-plan h2 {
+  font-family: 'IBM Plex Portal',sans-serif!important;
+  font-weight: 300!important;
+  font-size: clamp(2rem,2.6vw,3rem);
+}
+#ibm-learning .academy-plan li>span { color: #78a9ff; }
+#ibm-learning .academy-plan a { color: #a6c8ff !important; }
+#ibm-learning .ibm-section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--ibmx-background);
+  width: 100%;
+  padding-inline: clamp(20px,4vw,64px);
+  border-color: var(--ibmx-border);
+}
+#ibm-learning .ibm-section-nav a:first-child { border-color: var(--ibmx-blue); }
+#ibm-learning .ibm-section-heading h2 {
+  font-size: clamp(2.1rem,3.2vw,3.5rem);
+}
+#ibm-learning #ibm-filters {
+  border: 1px solid var(--ibmx-border);
+  padding: clamp(20px,2.2vw,32px);
+  background: var(--ibmx-surface);
+}
+#ibm-learning #ibm-filters label { color: var(--ibmx-subtle); }
+#ibm-learning #ibm-filters input,
+#ibm-learning #ibm-filters select {
+  background: var(--ibmx-background) !important;
+  border: 1px solid var(--ibmx-border);
+  border-bottom: 2px solid var(--ibmx-subtle);
+}
+#ibm-learning .ibm-course-grid { gap: 12px; }
+#ibm-learning .ibm-course {
+  background: var(--ibmx-surface);
+  border: 1px solid var(--ibmx-border);
+  border-top: 3px solid transparent;
+  min-height: 352px;
+  padding: 25px;
+}
+#ibm-learning .ibm-course:hover,
+#ibm-learning .ibm-course:focus-within { border-top-color: var(--ibmx-blue); }
+#ibm-learning .ibm-course .ibm-code {
+  color: var(--ibmx-subtle);
+  font-weight: 600;
+  font-size: .78rem;
+}
+#ibm-learning .ibm-course-description { color: var(--ibmx-subtle); }
+#ibm-learning .ibm-course-bottom { border-top-color: var(--ibmx-border); }
+#ibm-learning .ibm-start { background: var(--ibmx-surface); }
+#ibm-learning .ibm-focus-grid>a { border-color: var(--ibmx-border); }
+#ibm-learning .ibm-focus-grid>a:hover { background: var(--ibmx-surface-raised); }
+#ibm-learning .ibm-focus-grid>a h3 { font-size: 1.55rem; }
+#ibm-learning .ibm-teams { gap: 60px; }
+#ibm-learning .ibm-endnote { padding-bottom: 36px; }
+#ibm-learning :is(.ibm-rail a,.ibm-quick-search input,.ibm-quick-search button):focus-visible {
+  outline: 3px solid var(--ibmx-focus);
+  outline-offset: 3px;
+}
+@media (max-width: 1180px) {
+ #ibm-learning .ibm-workspace { grid-template-columns: 190px minmax(0,1fr); }
+ #ibm-learning .ibm-intro { grid-template-columns: minmax(0,1fr) minmax(250px,.8fr);gap:30px; }
+ #ibm-learning .academy-plan { box-shadow: 9px 9px 0 var(--ibmx-surface); }
+}
+@media (max-width: 940px) {
+ #ibm-learning .ibm-workspace { display: block; }
+ #ibm-learning .ibm-rail { padding: 0; border-right:0;border-bottom:1px solid var(--ibmx-border); }
+ #ibm-learning .ibm-rail-inner { position:static;padding:0; }
+ #ibm-learning .ibm-rail-label, #ibm-learning .ibm-rail-meta { display:none; }
+ #ibm-learning .ibm-rail nav { display:flex;gap:0;overflow-x:auto;overscroll-behavior-inline:contain;padding:0 12px; }
+ #ibm-learning .ibm-rail nav a { flex:0 0 auto; min-height:48px;white-space:nowrap; }
+ #ibm-learning .ibm-crumbs { padding-inline:24px; }
+ #ibm-learning .ibm-intro { grid-template-columns:minmax(0,1fr) minmax(220px,.78fr); }
+ #ibm-learning h1 { font-size:clamp(2.7rem,6vw,4.2rem); }
+}
+@media (max-width: 700px) {
+ #ibm-learning .ibm-masthead { padding:12px 16px; }
+ #ibm-learning .ibm-masthead .academy-provider strong { font-size:.98rem; }
+ #ibm-learning .ibm-workspace-content .ibm-wrap { width:calc(100% - 32px); }
+ #ibm-learning .ibm-intro { display:block;padding-block:42px 50px; }
+ #ibm-learning .ibm-intro:before { display:none; }
+ #ibm-learning h1 { font-size:clamp(2.65rem,11vw,3.8rem); }
+ #ibm-learning .academy-plan { margin:36px 0 8px; box-shadow:8px 8px 0 var(--ibmx-surface); }
+ #ibm-learning .ibm-quick-search-row { flex-wrap:wrap; }
+ #ibm-learning .ibm-quick-search input { flex-basis:100%; }
+ #ibm-learning .ibm-quick-search button { flex-basis:100%; }
+ #ibm-learning .ibm-section-nav { position:static;padding-inline:16px; }
+ #ibm-learning .ibm-section-nav a, #ibm-learning .ibm-section-nav button { padding-block:15px; }
+ #ibm-learning .ibm-filter-row { grid-template-columns:1fr; }
+ #ibm-learning .ibm-course-grid { grid-template-columns:1fr; }
+ #ibm-learning .ibm-section-heading h2 { font-size:2.2rem; }
+ #ibm-learning .ibm-course { min-height:300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ #ibm-learning .ibm-rail *, #ibm-learning .ibm-quick-search * { transition:none!important;scroll-behavior:auto!important; }
+}
