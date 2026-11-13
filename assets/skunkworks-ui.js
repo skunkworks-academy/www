@@ -11,7 +11,29 @@
   var IMAGE_ROOT = isLocalImagePreview ? window.location.origin.replace(/\/$/, "") : ASSET_ROOT;
   var LOGO_LIGHT = IMAGE_ROOT + "/images/favicon-black.png?v=" + VERSION;
   var LOGO_DARK = IMAGE_ROOT + "/images/logo-white.svg?v=" + VERSION;
-  var SIGN_IN_URL = "https://portal.skunkworksacademy.com/";
+  // Public-site sign-in starts in Microsoft Entra and offers a post-login
+  // choice to return to this page or enter the Portal. The Portal independently
+  // validates the returnTo URL against an exact first-party host allowlist.
+  var SIGN_IN_URL = (function () {
+    var portalUrl = "https://portal.skunkworksacademy.com/";
+    try {
+      var origin = new URL(window.location.href);
+      var host = origin.hostname.toLowerCase();
+      if (origin.protocol !== "https:" || origin.username || origin.password || origin.port ||
+          !(host === "skunkworksacademy.com" || host.endsWith(".skunkworksacademy.com"))) return portalUrl;
+      // OAuth response fragments and query values are not navigation context.
+      ["code", "state", "session_state", "access_token", "id_token", "refresh_token",
+       "error", "error_description"].forEach(function (key) { origin.searchParams.delete(key); });
+      if (/(?:^|[&#])(?:access_token|id_token|code|state)=/i.test(origin.hash)) origin.hash = "";
+      if (origin.href.length > 2048) return portalUrl;
+      var login = new URL(portalUrl);
+      login.searchParams.set("start", "signin");
+      login.searchParams.set("returnTo", origin.href);
+      return login.href;
+    } catch (error) {
+      return portalUrl;
+    }
+  })();
   var destinations = [
     { label: "Home", url: "https://skunkworksacademy.com/", domains: ["skunkworksacademy.com", "www.skunkworksacademy.com"], description: "Skunkworks Academy home" },
     { label: "Learning catalogue", url: "https://skunkworksacademy.com/catalogue/", description: "Self-paced and instructor-led learning" },
