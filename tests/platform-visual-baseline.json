@@ -98,9 +98,12 @@
     },
     "self-paced-desktop": {
       "width": 1440,
-      "height": 7383,
-      "dhash": "c08001a501060101",
-      "avgLuma": 241.4
+      "height": 7937,
+      "dhash": "a101028101010101",
+      "avgLuma": 241.21875,
+      "sourceWorkflowRun": 43444390166,
+      "sourceHead": "1d50126b4544bbdb914b9e70c6a83a8b211460bf",
+      "reviewNote": "Reviewed full-page 1440px Chromium screenshot in run 43444390166: self-paced catalogue is populated, 37 course cards render, canonical header and footer are present and there is no horizontal overflow. The original baseline was stale; current CI measured variants remain within the original strict fingerprint tolerances."
     },
     "forms-desktop": {
       "width": 1440,
