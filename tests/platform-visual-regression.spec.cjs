@@ -210,7 +210,7 @@ for (const [surface, path] of surfaces) {
         // style/theme adjustments can change the hero heading metrics while a
         // full-page screenshot is already in flight. Capture only after the
         // course results and resulting layout have settled.
-        await expect(page.locator('[data-course-results]')).toHaveText(/\\d+ of \\d+ courses shown/);
+        await expect(page.locator('[data-course-results]')).toHaveText(/[0-9]+ of [0-9]+ courses shown/);
         await page.waitForTimeout(400);
         await page.evaluate(() => document.fonts?.ready);
       }
