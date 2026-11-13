@@ -49,6 +49,23 @@ function render(){
  updateSaved();updateUrl();
 }
 function reset(){byId('search').value='';byId('family').value='';byId('level').value='';byId('status').value='current';savedOnly=false;page=1;render();}
+// Keep the hero discovery search wired into the existing course filters and URL state.
+const quickSearch=document.getElementById('ibm-hero-search');
+if(quickSearch){
+  const heroQuery=byId('hero-query');
+  heroQuery.value=byId('search').value;
+  quickSearch.addEventListener('submit',event=>{
+    event.preventDefault();
+    const query=heroQuery.value.trim().slice(0,160);
+    reset();
+    byId('search').value=query;
+    page=1;
+    render();
+    byId('catalogue').scrollIntoView({block:'start'});
+    byId('search').focus({preventScroll:true});
+  });
+  byId('search').addEventListener('input',()=>{heroQuery.value=byId('search').value;});
+}
 byId('filters').addEventListener('submit',e=>e.preventDefault());
 byId('filters').addEventListener('reset',e=>{e.preventDefault();reset();});
 byId('empty-reset').addEventListener('click',reset);
