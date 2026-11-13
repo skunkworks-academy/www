@@ -140,3 +140,14 @@ main .swa-partnerships .swa-partner .swa-partner__link {
 .swa-netacad-trademark { font-size: .875rem; line-height: 1.6; margin: 24px 0; }
 .swa-netacad-skip { position: absolute; left: -10000px; }
 .swa-netacad-skip:focus { position: fixed; left: 1rem; top: 1rem; z-index: 10000; padding: 1rem; background: #fff; color: #172033; }
+
+/* Neutral text nameplate; not a Linux Foundation accreditation badge. */
+.swa-partner__art--text { background: #ffffff; }
+.swa-partner__nameplate {
+  display: block;
+  color: #172033;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 750;
+  line-height: 1.2;
+  text-align: center;
+}
