@@ -10,7 +10,7 @@ test('homepage contains all six featured partners and routes to their partnershi
   const section = home.match(/<ul class="swa-partnerships__grid">([\s\S]*?)<\/ul>/)?.[1];
   assert.ok(section, 'homepage partnership grid exists');
   for (const [name, anchor] of [
-    ['Google Cloud', 'google-cloud'],
+    ['Google for Education', 'google-cloud'],
     ['Microsoft', 'microsoft'],
     ['IBM', 'ibm'],
     ['Red Hat', 'red-hat'],
@@ -36,4 +36,13 @@ test('partner grid fits six cards in two desktop rows and retains tablet/mobile 
   assert.match(styles, /grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/);
   assert.match(styles, /@media\s*\(max-width:\s*1000px\)[\s\S]*?repeat\(2, minmax\(0, 1fr\)\)/);
   assert.match(styles, /@media\s*\(max-width:\s*580px\)[\s\S]*?minmax\(0, 1fr\)/);
+});
+
+test('Google for Education is prominent without asserting an unverified programme designation', () => {
+  for (const markup of [home, partners]) {
+    assert.match(markup, /<h3(?: id="google-cloud-heading")?>Google for Education<\/h3>/);
+    assert.match(markup, /Google Cloud Partner · Education-focused learning/);
+    assert.match(markup, /alt="Google Cloud Partner badge"/);
+  }
+  assert.match(partners, /Google Workspace for Education/);
 });
