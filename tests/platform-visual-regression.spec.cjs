@@ -205,6 +205,15 @@ for (const [surface, path] of surfaces) {
         });
       }
 
+      if (surface === 'self-paced') {
+        // The catalogue is rendered after the page-load event. Its asynchronous
+        // style/theme adjustments can change the hero heading metrics while a
+        // full-page screenshot is already in flight. Capture only after the
+        // course results and resulting layout have settled.
+        await expect(page.locator('[data-course-results]')).toHaveText(/\\d+ of \\d+ courses shown/);
+        await page.waitForTimeout(400);
+        await page.evaluate(() => document.fonts?.ready);
+      }
       if (surface === 'ibm') {
         await expect(page.locator('body > nav.ibm-masthead')).toHaveCount(0);
       }
