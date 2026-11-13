@@ -44,21 +44,21 @@
     },
     "home-mobile": {
       "width": 390,
-      "height": 9953,
-      "dhash": "93001a0065004001",
-      "avgLuma": 212.984375,
-      "sourceWorkflowRun": 41339834712,
-      "sourceHead": "831448805d535f4e2a389d42754f8f5fb71223e9",
-      "reviewNote": "Reviewed CI mobile screenshot: horizontal Cisco logo fits its card; current homepage sections remain readable without horizontal overflow."
+      "height": 10837,
+      "dhash": "0f0000da00009000",
+      "avgLuma": 184.5625,
+      "sourceWorkflowRun": 43447211862,
+      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
+      "reviewNote": "Reviewed November 13 desktop/mobile CI screenshot with eight partner/resource cards. Badge images decoded before capture; all partner cards render and no horizontal overflow."
     },
     "ibm-desktop": {
       "width": 1440,
-      "height": 3421,
-      "dhash": "0080000181000080",
-      "avgLuma": 251.296875,
-      "sourceWorkflowRun": 42113041801,
-      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
-      "reviewNote": "Inspected corrected CI screenshot: canonical black header appears once; legacy blue masthead removed; IBM banner, text, filters, cards and footer remain visible with no horizontal overflow."
+      "height": 4730,
+      "dhash": "08c1006008000022",
+      "avgLuma": 229.921875,
+      "sourceWorkflowRun": 43447211862,
+      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
+      "reviewNote": "Reviewed November 13 CI screenshot; IBM course grid has expanded while canonical page header, search/filters, cards and footer remain usable without horizontal overflow."
     },
     "learn-desktop": {
       "width": 1440,
@@ -77,12 +77,12 @@
     },
     "ibm-mobile": {
       "width": 390,
-      "height": 6472,
-      "dhash": "890041010101a400",
-      "avgLuma": 245.90625,
-      "sourceWorkflowRun": 42113041801,
-      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
-      "reviewNote": "Inspected corrected CI screenshot at390px: one canonical header, IBM banner fully shown after animation completion, stacked cards and complete footer without horizontal overflow."
+      "height": 10225,
+      "dhash": "0000000000002000",
+      "avgLuma": 241.15625,
+      "sourceWorkflowRun": 43447211862,
+      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
+      "reviewNote": "Reviewed November 13 CI screenshot; IBM course grid has expanded while canonical page header, search/filters, cards and footer remain usable without horizontal overflow."
     },
     "publisher-mobile": {
       "width": 390,
@@ -116,12 +116,12 @@
     },
     "home-desktop": {
       "width": 1440,
-      "height": 5265,
-      "dhash": "1000010009840000",
-      "avgLuma": 229.34375,
-      "sourceWorkflowRun": 41294615488,
-      "sourceHead": "02a1e4f67f504984186b6cdbda8c52d438aebbfe",
-      "reviewNote": "Reviewed captured PNG: official NetAcad programme mark and membership content; homepage has six cards in two desktop rows. No clipping or horizontal overflow. Tolerances unchanged."
+      "height": 5648,
+      "dhash": "0280040000080100",
+      "avgLuma": 216.25,
+      "sourceWorkflowRun": 43447211862,
+      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
+      "reviewNote": "Reviewed November 13 desktop/mobile CI screenshot with eight partner/resource cards. Badge images decoded before capture; all partner cards render and no horizontal overflow."
     },
     "microsoft-desktop": {
       "width": 1440,
