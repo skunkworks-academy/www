@@ -194,6 +194,17 @@ for (const [surface, path] of surfaces) {
         .every(link => link.disabled || Boolean(link.sheet)));
       await page.evaluate(() => document.fonts?.ready);
 
+      // The homepage's partner badges start below the initial viewport and
+      // use native lazy-loading. Full-page screenshots do not reliably trigger
+      // the browser's lazy-load threshold. Resolve those images explicitly so
+      // the baseline measures the published artwork, not blank white slots.
+      if (surface === 'home') {
+        await page.locator('.swa-partnerships img').evaluateAll(async images => {
+          for (const img of images) img.loading = 'eager';
+          await Promise.all(images.map(img => img.decode().catch(() => undefined)));
+        });
+      }
+
       if (surface === 'ibm') {
         await expect(page.locator('body > nav.ibm-masthead')).toHaveCount(0);
       }
