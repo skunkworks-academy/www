@@ -67,7 +67,7 @@ test('GitHub is discoverable via the existing logo and official educational path
   assert.match(partners, /id="github"/);
   for (const markup of [home, partners]) {
     assert.match(markup, /<h3(?: id="github-heading")?>GitHub<\/h3>/);
-    assert.match(markup, /src="\/partners\/images\/gh-logo\.png" alt="GitHub logo"/);
+    assert.match(markup, /src="\/partners\/images\/gh-logo\.png" alt="GitHub logo" width="3840" height="2160"/);
     assert.match(markup, /Education, learning &amp; certification resources/);
   }
   assert.match(partners, /https:\/\/github\.com\/education"/);
