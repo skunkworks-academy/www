@@ -44,3 +44,17 @@ before changing dates or tiers; update both the homepage and Partners page.
 
 Review the directory listing and current programme brand resources before future
 changes. No membership start or expiry date is inferred from the agreement template.
+
+## GitHub (13 November 2026)
+
+- The existing `/partners/images/gh-logo.png` file is reused from the Academy's
+  pre-existing GitHub information page. It is a referential GitHub logo, not
+  a badge indicating a formal education or training partner designation.
+- Official logo / branding guidance: https://brand.github.com/foundations/logo
+- Official learning references: https://github.com/education,
+  https://github.com/education/teachers/toolbox, https://learn.github.com/certifications.
+- Prior permission may be required for logo use under GitHub's trademark guidelines.
+  Confirm the asset's source, version and appropriate rights before a production
+  marketing rollout; no new partnership mark is created here.
+- GitHub Classroom retired on 28 August 2026; do not present it as an active course
+  delivery product: https://docs.github.com/en/education/manage-coursework-with-github-classroom/get-started-with-github-classroom/about-github-classroom
