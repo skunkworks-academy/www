@@ -368,6 +368,10 @@
     function isPortalAccount(account) {
       return isPortalWorkspace(account) && typeof account.signOut === "function";
     }
+    function isBffAccount(account) {
+      return account && account.source === "bff" && account.authenticated === true &&
+        typeof account.signOut === "function";
+    }
 
     function safeAccountUrl(value) {
       if (typeof value !== "string" || !value.trim()) return "";
@@ -450,7 +454,7 @@
     accountSignOut.addEventListener("click", function () {
       var account = window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT;
       closeAccountMenu(true);
-      if (isPortalAccount(account)) account.signOut();
+      if (isPortalAccount(account) || isBffAccount(account)) account.signOut();
     });
 
     function removeAccountHandler() {
@@ -459,12 +463,15 @@
       accountHandler = null;
     }
 
+    var localBffReady = false;
     function resetSignIn() {
       removeAccountHandler();
       signIn.textContent = "Sign in";
-      signIn.href = SIGN_IN_URL;
+      var here = window.location.pathname + window.location.search + window.location.hash;
+      signIn.href = localBffReady ? "/auth/login?returnTo=" + encodeURIComponent(here) : SIGN_IN_URL;
       signIn.removeAttribute("role");
-      signIn.setAttribute("aria-label", "Sign in to the Skunkworks Academy learner portal");
+      signIn.setAttribute("aria-label", localBffReady ?
+        "Sign in and return to this Academy page" : "Sign in to the Skunkworks Academy learner portal");
     }
 
     function setAccountAction(label, description, action) {
@@ -498,7 +505,7 @@
       accountControl.hidden = true;
       signIn.hidden = false;
 
-      if (isPortalAccount(account)) {
+      if (isPortalAccount(account) || isBffAccount(account)) {
         var displayName = userName || "Account";
         var words = displayName.split(/\s+/);
         accountLabel.textContent = displayName;
@@ -535,7 +542,59 @@
       resetSignIn();
     }
 
+    // Only a same-origin BFF session may light up public authenticated navigation.
+    // A static GitHub Pages 404 or HTML fallback is not identity evidence.
+    function refreshServerSession() {
+      if (window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT?.authenticated === true) return;
+      if (typeof window.fetch !== "function") return;
+      window.fetch("/session", {
+        credentials: "same-origin",
+        cache: "no-store",
+        headers: { Accept: "application/json" }
+      }).then(function (response) {
+        if (!response.ok || !(response.headers.get("content-type") || "").includes("application/json")) return null;
+        return response.json();
+      }).then(function (session) {
+        // The local BFF responds with no-store JSON even for anonymous users.
+        // Never direct a public visitor to /auth/login until that contract exists.
+        if (!session || typeof session.authenticated !== "boolean") return;
+        localBffReady = true;
+        if (session.authenticated === false) {
+          if (!window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT) resetSignIn();
+          return;
+        }
+        if (typeof session.subject !== "string" || !session.subject) return;
+        if (window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT?.authenticated === true) return;
+        var roles = Array.isArray(session.roles) ? session.roles.filter(function (role) {
+          return typeof role === "string" && ["learner", "instructor", "staff", "administrator"].includes(role);
+        }) : [];
+        var userName = typeof session.displayName === "string" ? session.displayName.slice(0, 80) : "Academy account";
+        var csrfToken = typeof session.csrfToken === "string" ? session.csrfToken : "";
+        window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT = {
+          source: "bff",
+          authenticated: true,
+          userName: userName,
+          roles: roles,
+          signOut: function () {
+            if (!csrfToken) return;
+            window.fetch("/auth/logout", {
+              method: "POST", credentials: "same-origin", cache: "no-store",
+              headers: { "X-CSRF-Token": csrfToken, "Accept": "application/json" }
+            }).then(function (response) {
+              if (!response.ok) throw new Error("Sign-out failed");
+              window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT = null;
+              window.dispatchEvent(new Event("skunkworksacademy:account-change"));
+              window.location.reload();
+            }).catch(function () { window.alert("Sign-out could not be completed. Please try again."); });
+          }
+        };
+        window.dispatchEvent(new Event("skunkworksacademy:account-change"));
+      }).catch(function () { /* Anonymous fallback on unconfigured/static properties. */ });
+    }
+
     applyAccountControl();
+    refreshServerSession();
+    window.addEventListener("pageshow", refreshServerSession);
     window.addEventListener("skunkworksacademy:account-change", applyAccountControl);
     window.addEventListener("skunkworksacademy:portal-menu-state", function (event) {
       if (!isPortalWorkspace(window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT) || !event.detail || typeof event.detail.open !== "boolean") return;
