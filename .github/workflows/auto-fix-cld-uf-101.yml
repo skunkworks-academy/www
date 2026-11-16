@@ -56,12 +56,12 @@ jobs:
 
       - name: Commit fixes
         run: |
-          if git diff --quiet; then
+          git add self-paced/claude/cld-uf-101/index.html self-paced/claude/cld-uf-101/assets/app.js
+          if git diff --cached --quiet; then
             echo "No CLD-UF-101 fixes required."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add self-paced/claude/cld-uf-101/index.html self-paced/claude/cld-uf-101/assets/app.js
           git commit -m "Fix CLD-UF-101 favicon and validator markers"
           git push
