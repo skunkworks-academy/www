@@ -38,9 +38,12 @@
     },
     "self-paced-mobile": {
       "width": 390,
-      "height": 21357,
-      "dhash": "c800b400800090ae",
-      "avgLuma": 221.8125
+      "height": 21863,
+      "dhash": "4900800000002890",
+      "avgLuma": 236.34375,
+      "sourceWorkflowRun": 43798183126,
+      "sourceHead": "d2572384aab690cb0c9738118691d5d4c4a119f6",
+      "reviewNote": "Reviewed the actual November 16 CI screenshot at native resolution. The catalogue renders 38 legible cards including MB-800-PREP, with the canonical loaded logo/header, search controls, course actions and footer intact. The 506px height increase matches the added course card. No clipping or horizontal overflow was observed. All fingerprint tolerances remain unchanged."
     },
     "home-mobile": {
       "width": 390,

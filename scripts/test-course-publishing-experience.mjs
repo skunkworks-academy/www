@@ -113,7 +113,25 @@ try {
         }
 
 
-        if (course.contentAccess === 'public') {
+        if (course.courseId === 'MB-800-PREP') {
+          if (course.contentAccess !== 'public' || course.assessmentStatus !== 'Public formative practice; local results, no credential award') {
+            throw new Error('MB-800 preparation must declare its public formative assessment boundary.');
+          }
+          if (await page.locator('html[data-swa-owned-course-shell="MB-800-PREP"]').count() !== 1) {
+            throw new Error('The MB-800 guide must own its canonical static course shell.');
+          }
+          await page.locator('a[href*="/course-registration/?course=MB-800-PREP"]').first().waitFor({state:'visible',timeout:5000});
+          if (course.roleModule) {
+            await page.locator('nav[aria-label$="module navigation"]').first().waitFor({state:'visible',timeout:5000});
+          } else {
+            await page.locator('#syllabus').waitFor({state:'visible',timeout:5000});
+          }
+          if (await page.locator('.accessGate').count()) throw new Error('Public MB-800 practice incorrectly displays a protected-content gate.');
+          if (!course.roleModule) {
+            const mock=await page.request.get(origin+'/courses/mb-800-exam-preparation/mock-exam/');
+            if(!mock.ok()) throw new Error('MB-800 timed practice route is missing.');
+          }
+        } else if (course.contentAccess === 'public') {
           if (course.releaseState !== 'pilot' || course.assessmentStatus !== 'facilitated-enquiry-only') {
             throw new Error('Public course lacks explicit pilot assessment status.');
           }

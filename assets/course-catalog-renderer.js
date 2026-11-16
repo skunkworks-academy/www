@@ -6,6 +6,7 @@
   const PAKO_URL = 'https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js';
   const PUBLIC_FIELDS = ['courseId', 'title', 'deliveryMode', 'category', 'level', 'estimatedEffort', 'courseUrl'];
   const ESTABLISHED_COURSES = [
+    ['MB-800-PREP', 'MB-800 Business Central Certification Exam Preparation', 'Self-Paced', 'Microsoft Technologies', 'Intermediate', '30 hours (estimated)', 'https://www.skunkworksacademy.com/courses/mb-800-exam-preparation/'],
     ['AFF-FND-101', 'Affiliate Marketing Foundations: Platforms, Offers and Trust', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner', '6–8 hours', 'https://www.skunkworksacademy.com/courses/affiliate-marketing-foundations'],
     ['AFF-TLF-201', 'Affiliate Traffic, Lead Capture and Email Foundations', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Beginner to intermediate', '8–10 hours', 'https://www.skunkworksacademy.com/courses/affiliate-traffic-and-list-building'],
     ['AFF-OPS-301', 'Affiliate Campaign Operations, Measurement and Compliance', 'Self-Paced', 'Digital Commerce & Affiliate Marketing', 'Intermediate', '10–12 hours', 'https://www.skunkworksacademy.com/courses/affiliate-campaign-operations-and-compliance'],
@@ -56,7 +57,9 @@
     course.description = course.description || (course.deliveryMode === 'Self-Paced'
       ? `A structured self-paced learning journey for ${course.title}, including guided theory, practical labs, assessment and evidence of capability.`
       : `A facilitator-led practical course for ${course.title}, including demonstrations, guided labs, assessment and evidence of capability.`);
-    course.enrollUrl = `https://portal.skunkworksacademy.com/checkout/?courseId=${encodeURIComponent(course.courseId)}`;
+    course.enrollUrl = course.courseId === 'MB-800-PREP'
+      ? '/course-registration/?course=MB-800-PREP'
+      : `https://portal.skunkworksacademy.com/checkout/?courseId=${encodeURIComponent(course.courseId)}`;
     course.searchText = normaliseText([
       course.courseId,
       course.title,
@@ -78,8 +81,15 @@
     for (const field of PUBLIC_FIELDS) {
       if (!payload.fields.includes(field)) throw new TypeError(`Course catalogue payload is missing ${field}.`);
     }
-    if (payload.courses.length !== 183) {
-      throw new TypeError(`Course catalogue expected 183 courses but received ${payload.courses.length}.`);
+    if (payload.schema !== 'skunkworks-academy/public-course-listing/v2' ||
+        !Number.isInteger(payload.courseCount) || payload.courseCount < 1 ||
+        payload.courses.length !== payload.courseCount) {
+      throw new TypeError('Course catalogue count or schema is inconsistent.');
+    }
+    const idIndex = payload.fields.indexOf('courseId');
+    const ids = payload.courses.map(row => Array.isArray(row) ? String(row[idIndex] || '').trim() : '');
+    if (ids.some(id => !id) || new Set(ids).size !== ids.length) {
+      throw new TypeError('Course catalogue has missing or duplicate course IDs.');
     }
     return payload;
   }
@@ -184,7 +194,7 @@
     return validatePayload({
       schema: 'skunkworks-academy/public-course-listing/v2',
       fields: PUBLIC_FIELDS,
-      courseCount: 183,
+      courseCount: 184,
       courses: [...ESTABLISHED_COURSES, ...generated]
     });
   }

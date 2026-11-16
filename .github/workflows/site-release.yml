@@ -10,6 +10,7 @@ on:
       - 'package.json'
       - 'CNAME'
       - '.github/workflows/site-release.yml'
+      - 'config/microsoft-preparation-release.json'
   push:
     branches: [main]
   schedule:
@@ -263,6 +264,40 @@ jobs:
           SKW_STUDIO_TEST_ORIGIN=http://127.0.0.1:4178 node scripts/test-beginner-visual-experience.mjs
 
 
+  microsoft-preparation:
+    name: Validate reviewed MB-800 preparation source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Validate composition and catalogue integration
+        run: |
+          node --test tests/compose-microsoft-prep.test.mjs tests/course-catalog-runtime.test.mjs
+          node scripts/validate-course-catalog.mjs
+      - name: Read reviewed source pin
+        id: release
+        run: |
+          node -e 'const fs=require("fs"); const r=require("./config/microsoft-preparation-release.json"); if(r.repository!=="skunkworks-academy/microsoft" || !/^[a-f0-9]{40}$/.test(r.commit)) throw new Error("Invalid reviewed Microsoft revision"); fs.appendFileSync(process.env.GITHUB_OUTPUT,"commit="+r.commit+"\n")'
+      - uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/microsoft
+          ref: ${{ steps.release.outputs.commit }}
+          path: .microsoft-course
+          persist-credentials: false
+      - name: Build and validate reviewed guide
+        run: |
+          node .microsoft-course/scripts/build-mb800-prep.mjs
+          node .microsoft-course/scripts/validate-mb800-prep.mjs
+      - name: Test actual reviewed guide composition
+        env:
+          SKW_MICROSOFT_SOURCE: .microsoft-course
+        run: node --test tests/compose-microsoft-prep.test.mjs
+
   deploy:
     name: Deploy GitHub Pages
     if: >-
@@ -270,9 +305,10 @@ jobs:
       needs.validate.result == 'success' &&
       needs.art101-browser.result == 'success' &&
       needs.beginner_courses.result == 'success' &&
+      needs.microsoft-preparation.result == 'success' &&
       (needs.lighthouse.result == 'success' || needs.lighthouse.result == 'skipped') &&
       ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
-    needs: [validate, lighthouse, art101-browser, beginner_courses]
+    needs: [validate, lighthouse, art101-browser, beginner_courses, microsoft-preparation]
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     environment:
@@ -292,6 +328,19 @@ jobs:
           path: .course-catalog
           persist-credentials: false
 
+      - name: Read reviewed Microsoft preparation release
+        id: microsoft-release
+        run: |
+          node -e 'const fs=require("fs"); const r=require("./config/microsoft-preparation-release.json"); if(r.repository!=="skunkworks-academy/microsoft" || !/^[a-f0-9]{40}$/.test(r.commit)) throw new Error("Invalid reviewed Microsoft revision"); fs.appendFileSync(process.env.GITHUB_OUTPUT,"commit="+r.commit+"\n")'
+
+      - name: Checkout reviewed Microsoft guide source
+        uses: actions/checkout@v7
+        with:
+          repository: skunkworks-academy/microsoft
+          ref: ${{ steps.microsoft-release.outputs.commit }}
+          path: .microsoft-course
+          persist-credentials: false
+
       - name: Checkout beginner course source
         uses: actions/checkout@v7
         with:
@@ -305,6 +354,9 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
+
+      - name: Generate Microsoft preparation guide
+        run: node .microsoft-course/scripts/build-mb800-prep.mjs
 
       - name: Build canonical course catalog
         working-directory: .course-catalog
@@ -355,9 +407,13 @@ jobs:
             exit 1
           fi
 
+          node scripts/compose-microsoft-prep.mjs \
+            --source .microsoft-course \
+            --commit '${{ steps.microsoft-release.outputs.commit }}' \
+            --upstream-sitemap .course-catalog/build/sitemap.xml
           node scripts/publish-course-contract.mjs \
             --source-sitemap .course-catalog/build/sitemap.xml
-          rm -rf .course-catalog
+          rm -rf .course-catalog .microsoft-course
           echo 'Mounted skunkworks-academy/course-catalog and integrated its canonical sitemap/routes.'
 
       - name: Verify ART-101 controls respond in a real browser
@@ -445,6 +501,14 @@ jobs:
                   fragments.append(path)
                   continue
 
+              if 'data-swa-owned-course-shell="MB-800-PREP"' in html:
+                  if 'skunkworks-ui.js' not in html or 'skunkworks-footer.js' not in html:
+                      raise SystemExit(f'Missing Academy canonical chrome on MB-800 page: {path}')
+                  if 'academy-navigation.js' in html:
+                      raise SystemExit(f'Legacy shell leaked into MB-800 static course: {path}')
+                  course_pages.append(path)
+                  continue
+
               # The Docusaurus course app owns its React document. The legacy
               # academy-navigation loader mutates HTML and can break hydration.
               # Use the same canonical UI and footer scripts directly instead.
@@ -506,6 +570,7 @@ jobs:
             --exclude='.github/' \
             --exclude='node_modules/' \
             --exclude='.course-catalog/' \
+            --exclude='.microsoft-course/' \
             --exclude='.digital-platform-courses/' \
             --exclude='_site/' \
             --exclude='test-results/' \

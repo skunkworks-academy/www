@@ -1,5 +1,5 @@
 import {compile} from 'sass';
-import {writeFileSync, mkdirSync, copyFileSync} from 'node:fs';
+import {writeFileSync, mkdirSync, copyFileSync, chmodSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolve,dirname} from 'node:path';
 const here=dirname(fileURLToPath(import.meta.url)), root=resolve(here,'../..');
@@ -10,4 +10,6 @@ mkdirSync(resolve(root,'assets/ibm-licenses'),{recursive:true});
 for(const weight of ['Light','Regular','Medium','SemiBold']) copyFileSync(resolve(here,`node_modules/@ibm/plex-sans/fonts/complete/woff2/IBMPlexSans-${weight}.woff2`),resolve(root,`assets/ibm-fonts/${weight}.woff2`));
 copyFileSync(resolve(here,'node_modules/@carbon/styles/LICENSE'),resolve(root,'assets/ibm-licenses/carbon.txt'));
 copyFileSync(resolve(here,'node_modules/@ibm/plex-sans/LICENSE.txt'),resolve(root,'assets/ibm-licenses/plex.txt'));
+// Package archives can mark license text executable. Keep generated artifacts deterministic.
+for (const name of ['carbon.txt', 'plex.txt']) chmodSync(resolve(root, 'assets/ibm-licenses', name), 0o644);
 console.log('Built scoped Carbon components and local IBM Plex fonts.');

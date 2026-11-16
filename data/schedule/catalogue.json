@@ -6,7 +6,7 @@
       "central-catalogue": 197,
       "central-manifest": 21,
       "curated-learning-paths": 7,
-      "website-catalogue": 183,
+      "website-catalogue": 184,
       "website-self-paced": 9,
       "cisco-netacad": 89,
       "comptia-offerings": 13,
@@ -14,10 +14,10 @@
       "ibm-reference-feed": 400
     },
     "centralCatalogue": 197,
-    "websiteSnapshot": 183,
-    "uniqueOfferings": 700,
-    "additionalToCentral": 503,
-    "academyListings": 300,
+    "websiteSnapshot": 184,
+    "uniqueOfferings": 701,
+    "additionalToCentral": 504,
+    "academyListings": 301,
     "partnerReferenceOnly": 400
   },
   "courses": [
@@ -11892,6 +11892,23 @@
       "contentStatus": "Source title found",
       "sources": [
         "central-catalogue",
+        "website-catalogue"
+      ],
+      "aliases": [],
+      "catalogueScope": "academy-listing",
+      "schedulingEligibility": "staff-review"
+    },
+    {
+      "courseId": "MB-800-PREP",
+      "title": "MB-800 Business Central Certification Exam Preparation",
+      "vendor": "Microsoft",
+      "category": "Microsoft Technologies",
+      "deliveryMode": "Self-Paced",
+      "estimatedEffort": "30 hours (estimated)",
+      "courseUrl": "https://www.skunkworksacademy.com/courses/mb-800-exam-preparation/",
+      "platformIds": [],
+      "contentStatus": "Public formative preparation. Guided delivery requires an enquiry.",
+      "sources": [
         "website-catalogue"
       ],
       "aliases": [],
