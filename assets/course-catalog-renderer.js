@@ -81,8 +81,15 @@
     for (const field of PUBLIC_FIELDS) {
       if (!payload.fields.includes(field)) throw new TypeError(`Course catalogue payload is missing ${field}.`);
     }
-    if (payload.courses.length !== 183) {
-      throw new TypeError(`Course catalogue expected 183 courses but received ${payload.courses.length}.`);
+    if (payload.schema !== 'skunkworks-academy/public-course-listing/v2' ||
+        !Number.isInteger(payload.courseCount) || payload.courseCount < 1 ||
+        payload.courses.length !== payload.courseCount) {
+      throw new TypeError('Course catalogue count or schema is inconsistent.');
+    }
+    const idIndex = payload.fields.indexOf('courseId');
+    const ids = payload.courses.map(row => Array.isArray(row) ? String(row[idIndex] || '').trim() : '');
+    if (ids.some(id => !id) || new Set(ids).size !== ids.length) {
+      throw new TypeError('Course catalogue has missing or duplicate course IDs.');
     }
     return payload;
   }

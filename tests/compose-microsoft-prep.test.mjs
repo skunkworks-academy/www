@@ -33,6 +33,7 @@ test('composes only public artifacts, keeps existing courses and creates discove
   assert.equal(JSON.parse(fs.readFileSync(path.join(target,'release.json'))).commit,f.expectedCommit);
   const manifest=JSON.parse(fs.readFileSync(path.join(f.root,'course-manifest.json')));assert.equal(manifest.courses.length,2);assert.equal(manifest.courses[0].courseId,'EXISTING');
   const html=fs.readFileSync(path.join(f.root,'courses/index.html'),'utf8');assert.match(html,/mb800-preparation-discovery/);assert.match(html,/course-registration\/\?course=MB-800-PREP/);
+  assert.match(html,/<article><p>MB-800-PREP<\/p>[\s\S]*?<a href="\/course-registration\/\?course=MB-800-PREP">Enquire about facilitation<\/a><\/article>/);
 }));
 test('composition is idempotent for manifest, sitemap and discovery',()=>using(f=>{
   compose(f);compose(f);

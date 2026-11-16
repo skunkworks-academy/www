@@ -277,7 +277,7 @@ jobs:
           node-version: 24
       - name: Validate composition and catalogue integration
         run: |
-          node --test tests/compose-microsoft-prep.test.mjs
+          node --test tests/compose-microsoft-prep.test.mjs tests/course-catalog-runtime.test.mjs
           node scripts/validate-course-catalog.mjs
       - name: Read reviewed source pin
         id: release
