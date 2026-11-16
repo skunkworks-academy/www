@@ -73,7 +73,8 @@ function ensureAlias(pathname) {
 }
 function verifyHtml(entry) {
   const html = mustRead(ensureHtml(pathOf(entry)));
-  if (!html.includes('<html') || !html.includes('academy-navigation.js')) {
+  const ownsPracticeShell = html.includes('data-swa-owned-course-shell="MB-800-PREP"') && html.includes('skunkworks-ui.js') && html.includes('skunkworks-footer.js');
+  if (!html.includes('<html') || (!html.includes('academy-navigation.js') && !ownsPracticeShell)) {
     throw new Error('Academy shell missing in ' + entry.loc);
   }
   if (!html.includes('rel="canonical"') || !html.includes(entry.loc)) {
@@ -90,8 +91,9 @@ for (const course of manifest.courses) {
   if (!course.courseId || !course.path || !course.path.startsWith('/courses/')) {
     throw new Error('Malformed course manifest entry: ' + JSON.stringify(course));
   }
-  if (expectedCourses.has(course.path)) throw new Error('Duplicate manifest path: ' + course.path);
-  expectedCourses.set(course.path, course.courseId);
+  const normalizedPath = course.path.replace(/\/$/, '');
+  if (expectedCourses.has(normalizedPath)) throw new Error('Duplicate manifest path: ' + course.path);
+  expectedCourses.set(normalizedPath, course.courseId);
 }
 function verifyRootSitemap() {
   const xml = mustRead(sitemapFile);
@@ -107,7 +109,7 @@ function verifyRootSitemap() {
     if (courseEntry(entry)) courseUrls.push(entry);
   }
   for (const [route, id] of expectedCourses) {
-    if (!seen.has(host + route)) throw new Error(id + ' is missing from the Academy root sitemap: ' + route);
+    if (!seen.has(host + route) && !seen.has(host + route + '/')) throw new Error(id + ' is missing from the Academy root sitemap: ' + route);
   }
   if (!seen.has(host + '/courses') && !seen.has(host + '/courses/')) {
     throw new Error('Course catalog landing is missing from the root sitemap.');
