@@ -22,6 +22,7 @@ for (const theme of ['light', 'dark']) {
         await button.click();
         await expect(header.locator('.swa-primary-open .swa-global-nav__top-menu-panel')).toBeVisible();
         await page.keyboard.press('Escape');
+        await expect(button).toHaveAttribute('aria-expanded', 'false');
         await expect(button).toBeFocused();
       } else {
         const button = header.getByRole('button', {name:'Open Academy menu'});
