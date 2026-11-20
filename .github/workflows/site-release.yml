@@ -297,6 +297,28 @@ jobs:
         env:
           SKW_MICROSOFT_SOURCE: .microsoft-course
         run: node --test tests/compose-microsoft-prep.test.mjs
+      - name: Browser-check published guide navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          fixture="$(mktemp -d)"
+          trap 'test -z "${server_pid:-}" || kill "$server_pid" || true; rm -rf "$fixture"' EXIT
+          mkdir -p "$fixture/courses"
+          cp -a assets images "$fixture/"
+          printf '{"courses":[]}\n' > "$fixture/course-manifest.json"
+          printf '<html><body></body></html>\n' > "$fixture/courses.html"
+          cp "$fixture/courses.html" "$fixture/courses/index.html"
+          printf '<urlset></urlset>\n' > "$fixture/sitemap.xml"
+          node scripts/compose-microsoft-prep.mjs --root "$fixture" --source .microsoft-course --commit '${{ steps.release.outputs.commit }}' --upstream-sitemap "$fixture/sitemap.xml"
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --workspaces=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4180 --bind 127.0.0.1 --directory "$fixture" > /tmp/skw-mb800-nav.log 2>&1 &
+          server_pid=$!
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:4180/courses/mb-800-exam-preparation/ >/dev/null; then break; fi
+            sleep 1
+          done
+          npx playwright test tests/mb800-navigation.spec.cjs --reporter=line
 
   deploy:
     name: Deploy GitHub Pages
@@ -727,3 +749,9 @@ jobs:
           node scripts/verify-composed-site.mjs
           --base-url https://www.skunkworksacademy.com/
           --routes /,/courses/,/schedule/,/courses/professional-articulation,/learn/,/ibm/,/microsoft/,/cisco/,/comptia/,/course-registration/,/forms/,/self-paced/,/slides/,/beginner/,/beginner/ai/,/beginner/cyber/,/beginner/it-support/,/beginner/microsoft-productivity/,/beginner/cloud/,/digital-platform-courses/,/digital-platform-courses/beginner/,/digital-platform-courses/beginner/ai/,/digital-platform-courses/beginner/cyber/,/digital-platform-courses/beginner/it-support/,/digital-platform-courses/beginner/microsoft-productivity/,/digital-platform-courses/beginner/cloud/
+
+      - name: Browser-verify live Academy navigation
+        run: |
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --workspaces=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+          npx playwright test tests/live-navigation.spec.cjs --reporter=line --workers=2

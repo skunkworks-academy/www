@@ -83,8 +83,14 @@ try {
           h1: [...document.querySelectorAll('h1')].filter(el => el.getBoundingClientRect().height > 0).length,
           width: document.documentElement.scrollWidth,
           canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '',
-          courseLink: Boolean([...document.querySelectorAll('.swa-global-nav a')]
-            .some(el => (el.getAttribute('href') || '').includes('/courses/')))
+          courseLink: [...document.querySelectorAll('.swa-global-nav a')].some(el => {
+            try {
+              const url = new URL(el.getAttribute('href'), location.href);
+              return url.protocol === 'https:'
+                && ['skunkworksacademy.com', 'www.skunkworksacademy.com'].includes(url.hostname)
+                && url.pathname.replace(/\/+$/, '') === '/courses';
+            } catch { return false; }
+          })
         }));
         if (result.nav !== 1 || result.footer !== 1) {
           throw new Error('Expected exactly one Academy header/footer; found ' + result.nav + '/' + result.footer);
@@ -119,6 +125,20 @@ try {
           }
           if (await page.locator('html[data-swa-owned-course-shell="MB-800-PREP"]').count() !== 1) {
             throw new Error('The MB-800 guide must own its canonical static course shell.');
+          }
+          const primary = page.locator('.swa-global-nav__top-menu');
+          await primary.waitFor({state: viewport.width > 980 ? 'visible' : 'attached', timeout: 6000});
+          const background = await page.locator('.swa-global-nav').evaluate(el => getComputedStyle(el).backgroundColor);
+          if (background !== (theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)')) {
+            throw new Error('MB-800 navigation does not use the current design-system theme.');
+          }
+          if (!course.roleModule && viewport.width <= 980) {
+            const toggle = page.locator('.swa-global-nav__toggle');
+            await toggle.click();
+            const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
+            await dialog.waitFor({state:'visible', timeout:5000});
+            await page.keyboard.press('Escape');
+            await dialog.waitFor({state:'hidden', timeout:5000});
           }
           await page.locator('a[href*="/course-registration/?course=MB-800-PREP"]').first().waitFor({state:'visible',timeout:5000});
           if (course.roleModule) {

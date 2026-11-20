@@ -4,7 +4,16 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {compose,GUIDE_PATH,GUIDE_ID} from '../scripts/compose-microsoft-prep.mjs';
+import {compose,guideNavigation,GUIDE_PATH,GUIDE_ID} from '../scripts/compose-microsoft-prep.mjs';
+test('guide navigation keeps content while installing one versioned shared shell',()=>{
+  const original='<!doctype html><html><head><script defer src="https://www.skunkworksacademy.com/assets/skunkworks-ui.js?v=old"></script><script defer src="https://www.skunkworksacademy.com/assets/skunkworks-footer.js?v=old"></script></head><body><main>Study guide</main></body></html>';
+  const published=guideNavigation(original);
+  assert.match(published, /skunkworks-ui\.js\?rev=[0-9.]+" data-skunkworks-ui="canonical"/);
+  assert.match(published, /skunkworks-footer\.js\?rev=[0-9.]+" data-skunkworks-global-footer="canonical"/);
+  assert.match(published, /academy-navigation-v11\.js\?nav=[0-9.]+" data-skunkworks-react-safe="true"/);
+  assert.match(published, /<main>Study guide<\/main>/);
+  assert.equal(guideNavigation(published),published);
+});
 function fixture() {
   const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'mb800-compose-'));
   const source=path.join(temporary,'microsoft'),root=path.join(temporary,'www');
@@ -30,6 +39,15 @@ function using(fn){const f=fixture();try{fn(f);}finally{fs.rmSync(f.temporary,{r
 test('composes only public artifacts, keeps existing courses and creates discovery',()=>using(f=>{
   const report=compose(f);assert.equal(report.routes,4);
   const target=path.join(f.root,GUIDE_PATH);assert.ok(fs.existsSync(path.join(target,'mock-exam/index.html')));assert.ok(!fs.existsSync(path.join(target,'content')));
+  for (const route of [GUIDE_PATH,GUIDE_PATH+'module-01-foundations/',GUIDE_PATH+'mock-exam/',GUIDE_PATH+'study-plan/']) {
+    const published=fs.readFileSync(path.join(f.root,route,'index.html'),'utf8');
+    assert.match(published, /skunkworks-ui\.js\?rev=[0-9.]+" data-skunkworks-ui="canonical"/);
+    assert.match(published, /skunkworks-footer\.js\?rev=[0-9.]+" data-skunkworks-global-footer="canonical"/);
+    assert.match(published, /academy-navigation-v11\.js\?nav=[0-9.]+" data-skunkworks-react-safe="true"/);
+    assert.equal((published.match(/academy-navigation-v11\.js/g)||[]).length,1);
+    assert.match(published, /Public original practice/);
+  }
+  assert.doesNotMatch(fs.readFileSync(path.join(f.courseDir,'index.html'),'utf8'),/academy-navigation-v11\.js/);
   assert.equal(JSON.parse(fs.readFileSync(path.join(target,'release.json'))).commit,f.expectedCommit);
   const manifest=JSON.parse(fs.readFileSync(path.join(f.root,'course-manifest.json')));assert.equal(manifest.courses.length,2);assert.equal(manifest.courses[0].courseId,'EXISTING');
   const html=fs.readFileSync(path.join(f.root,'courses/index.html'),'utf8');assert.match(html,/mb800-preparation-discovery/);assert.match(html,/course-registration\/\?course=MB-800-PREP/);
@@ -48,6 +66,11 @@ test('rejects unsafe module routes',()=>using(f=>{
 test('rejects missing shared shell and missing sitemap route',()=>using(f=>{
   const html=path.join(f.courseDir,'mock-exam/index.html');const original=fs.readFileSync(html,'utf8');fs.writeFileSync(html,original.replace('skunkworks-footer.js','bad.js'));assert.throws(()=>compose(f),/shared shell missing/);fs.writeFileSync(html,original);
   const map=path.join(f.courseDir,'sitemap.xml');fs.writeFileSync(map,fs.readFileSync(map,'utf8').replace(/<url><loc>[^<]+mock-exam\/<\/loc><\/url>/,''));assert.throws(()=>compose(f),/sitemap does not cover/);
+}));
+test('rejects a duplicate canonical guide runtime',()=>using(f=>{
+  const file=path.join(f.courseDir,'index.html');const html=fs.readFileSync(file,'utf8');
+  fs.writeFileSync(file,html.replace('</head>','<script src="/assets/skunkworks-ui.js"></script></head>'));
+  assert.throws(()=>compose(f),/exactly one canonical skunkworks-ui\.js/);
 }));
 test('rejects a conflicting existing course identity',()=>using(f=>{
   fs.writeFileSync(path.join(f.root,'course-manifest.json'),JSON.stringify({courses:[{courseId:GUIDE_ID,path:'/courses/other'}]}));assert.throws(()=>compose(f),/conflicts/);
