@@ -5,8 +5,8 @@
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
   var NAVIGATION_REVISION = "2026.11.20.1";
-  var FOOTER_REVISION = "2026.11.20.1";
-  var BRAND_THEME_REVISION = "2026.11.20.1";
+  var FOOTER_REVISION = "2026.11.20.2";
+  var BRAND_THEME_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
