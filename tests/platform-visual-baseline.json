@@ -143,9 +143,12 @@
     },
     "microsoft-desktop": {
       "width": 1440,
-      "height": 5636,
-      "dhash": "5001990101010109",
-      "avgLuma": 210.7
+      "height": 5655,
+      "dhash": "4001990121010101",
+      "avgLuma": 188.421875,
+      "sourceWorkflowRun": 44683155687,
+      "sourceHead": "74c4ba4e98b7c226f6207d72ca824c254c80827e",
+      "reviewNote": "Reviewed the full desktop image against the previous baseline. The light header and Microsoft catalogue remain visible and aligned; the visual test now waits for the page's IBM Plex Sans fonts before capture."
     },
     "cisco-desktop": {
       "width": 1440,
