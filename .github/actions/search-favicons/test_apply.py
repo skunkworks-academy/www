@@ -61,6 +61,17 @@ class FaviconArtifactTests(unittest.TestCase):
         self.assertEqual(result.count('data-skunkworks-favicon="canonical"'), 4)
         self.assertEqual(icons.decorate(result), result)
 
+    def test_existing_canonical_icon_tags_remain_in_place(self):
+        tags = icons.TAGS.splitlines()
+        source = '<html><head><title>Academy</title>\n' + '\n'.join(tags[:2]) + '\n<meta name="description" content="Example">\n' + '\n'.join(tags[2:]) + '\n</head></html>'
+        self.assertEqual(icons.decorate(source), source)
+        self.assertIn('data-skunkworks-touch-icon="canonical"', source)
+        with_extra = source.replace('</head>', '<link rel="icon" href="old.png">\n</head>')
+        normalized = icons.decorate(with_extra)
+        self.assertNotIn('old.png', normalized)
+        self.assertEqual(normalized.count('data-skunkworks-favicon="canonical"'), 4)
+        self.assertIn('data-skunkworks-touch-icon="canonical"', normalized)
+
     def test_wrong_revision_rejected(self):
         manifest = json.loads((self.assets / 'manifest.json').read_text())
         manifest['revision'] = 'obsolete'

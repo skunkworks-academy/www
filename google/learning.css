@@ -1,0 +1,176 @@
+/* Google-inspired learning content using the Academy palette and shared shell. */
+:root {
+  --g-canvas: #fff;
+  --g-surface: #f5f8fd;
+  --g-card: #fff;
+  --g-ink: #182435;
+  --g-muted: #415168;
+  --g-link: #174ea6;
+  --g-line: #cbd6e4;
+  --g-focus: #174ea6;
+  --g-blue-tint: #e8f0fe;
+  --g-green-tint: #e5f4ee;
+  --g-yellow-tint: #fff4d5;
+  --g-art: #dceaff;
+}
+:root[data-theme="dark"], :root[data-swa-theme="dark"] {
+  --g-canvas: #0b101a;
+  --g-surface: #111b2b;
+  --g-card: #182437;
+  --g-ink: #f2f6fc;
+  --g-muted: #d1dbe9;
+  --g-link: #b7d1ff;
+  --g-line: #60718b;
+  --g-focus: #c6d9ff;
+  --g-blue-tint: #1a2c48;
+  --g-green-tint: #183a34;
+  --g-yellow-tint: #393221;
+  --g-art: #263d60;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not([data-swa-theme]) {
+    --g-canvas: #0b101a;
+    --g-surface: #111b2b;
+    --g-card: #182437;
+    --g-ink: #f2f6fc;
+    --g-muted: #d1dbe9;
+    --g-link: #b7d1ff;
+    --g-line: #60718b;
+    --g-focus: #c6d9ff;
+    --g-blue-tint: #1a2c48;
+    --g-green-tint: #183a34;
+    --g-yellow-tint: #393221;
+    --g-art: #263d60;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+.google-skip { position: fixed; z-index: 9999; top: .5rem; left: .5rem; padding: .75rem 1rem; background: #fff; color: #111; transform: translateY(-180%); }
+.google-skip:focus { transform: none; }
+.google-fallback-header, .google-fallback-footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 1rem max(1.5rem, calc((100% - 1200px)/2)); background: #0b0b0e; color: #fff; font: 600 .95rem/1.4 system-ui,sans-serif; }
+.google-fallback-header a, .google-fallback-footer a { color: #fff; }
+.google-fallback-header nav, .google-fallback-footer nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+body .google-learning { background: var(--g-canvas); color: var(--g-ink); font-family: var(--swa-font-sans, 'IBM Plex Sans', system-ui, sans-serif); line-height: 1.6; }
+.google-learning .g-wrap { width: min(1200px, calc(100% - 3rem)); margin-inline: auto; }
+.google-learning h1, .google-learning h2, .google-learning h3 { color: inherit; line-height: 1.12; letter-spacing: -.035em; }
+.google-learning h1, .google-learning h2, .google-learning h3, .google-learning p { margin: 0; }
+.google-learning h1 { font-size: clamp(3rem, 5.4vw, 5.5rem); font-weight: 700; }
+.google-learning h2 { font-size: clamp(2.15rem, 3.7vw, 3.65rem); font-weight: 650; }
+.google-learning h3 { font-size: clamp(1.3rem, 1.65vw, 1.55rem); font-weight: 650; }
+.google-learning p { max-width: 65ch; }
+.google-learning section[id] { scroll-margin-top: 9rem; }
+body .google-learning a.g-link, body .google-learning .g-ribbon a, body .google-learning .g-jump a { color: var(--g-link) !important; }
+.google-learning .g-link { display: inline-flex; gap: .45rem; align-items: baseline; width: fit-content; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+.google-learning .g-link:hover { text-decoration-thickness: .15em; }
+body .google-learning a:focus-visible, .google-skip:focus-visible, .google-fallback-header a:focus-visible, .google-fallback-footer a:focus-visible { outline: 3px solid var(--g-focus) !important; outline-offset: 4px !important; box-shadow: 0 0 0 2px var(--g-canvas); }
+.google-learning .g-kicker, .google-learning .g-label { font-size: .74rem; font-weight: 750; letter-spacing: .11em; line-height: 1.4; }
+.google-learning .g-kicker { color: var(--g-link); }
+.google-learning .g-label { color: var(--g-muted); }
+.google-learning .g-ribbon { background: var(--g-canvas); border-bottom: 1px solid var(--g-line); font-size: .84rem; }
+.google-learning .g-ribbon .g-wrap { display: flex; align-items: center; gap: .65rem; min-height: 3rem; }
+.google-learning .g-hero { background: var(--g-canvas); overflow: hidden; }
+.google-learning .g-hero-layout { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); min-height: 550px; padding-block: clamp(3.5rem, 7vw, 6.5rem); }
+.google-learning .g-hero-copy { position: relative; z-index: 1; }
+.google-learning .g-hero h1 { margin-top: 1.35rem; }
+.google-learning .g-hero h1 span { color: var(--g-link); }
+.google-learning .g-lead { margin-top: 1.5rem; color: var(--g-muted); font-size: clamp(1.1rem, 1.7vw, 1.3rem); max-width: 36rem; }
+.google-learning .g-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+body .google-learning .g-btn { display: inline-flex; justify-content: center; align-items: center; min-height: 3rem; padding: .75rem 1.3rem; border: 2px solid #174ea6 !important; border-radius: 999px; font-size: .95rem; font-weight: 700; line-height: 1.2; text-decoration: none; }
+body .google-learning .g-btn-primary { color: #fff !important; background: #174ea6 !important; }
+body .google-learning .g-btn-primary:hover { background: #103a7d !important; border-color: #103a7d !important; }
+body .google-learning .g-btn-outline { color: var(--g-link) !important; background: var(--g-canvas) !important; border-color: var(--g-link) !important; }
+body .google-learning .g-btn-outline:hover { text-decoration: underline; }
+.google-learning .g-hero-note { margin-top: 1.25rem; color: var(--g-muted); font-size: .9rem; }
+.google-learning .g-dots { display: inline-flex; gap: 4px; margin-right: .45rem; }
+.google-learning .g-dots i { width: 8px; height: 8px; border-radius: 50%; background: #4285f4; }
+.google-learning .g-dots i:nth-child(2) { background: #ea4335; }
+.google-learning .g-dots i:nth-child(3) { background: #fbbc04; }
+.google-learning .g-dots i:nth-child(4) { background: #34a853; }
+.google-learning .g-hero-art { height: 410px; position: relative; }
+.google-learning .g-orbit { position: absolute; border-radius: 50%; }
+.google-learning .g-orbit-one { width: 370px; height: 370px; background: var(--g-art); top: 8px; right: 15px; }
+.google-learning .g-orbit-two { width: 260px; height: 260px; background: #f9d993; right: 135px; bottom: 0; }
+.google-learning .g-art-tile { position: absolute; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 18px 45px #15274a22; }
+.google-learning .g-art-main { top: 55px; left: 8%; width: 280px; height: 275px; padding: 1.7rem; border-radius: 30px 30px 100px 30px; background: #174ea6; color: #fff; font-size: 1.75rem; font-weight: 700; line-height: 1.12; transform: rotate(-6deg); }
+.google-learning .g-art-spark { font-size: 4.5rem; font-weight: 400; line-height: 1; color: #bdd7ff; }
+.google-learning .g-art-small { right: 0; bottom: 14px; width: 164px; height: 165px; padding: 1.3rem; border-radius: 24px; background: #f7f9fc; color: #182435; transform: rotate(7deg); }
+.google-learning .g-art-small span, .google-learning .g-paper span { font-size: .65rem; font-weight: 750; letter-spacing: .14em; }
+.google-learning .g-art-small strong { font-size: 1.6rem; line-height: 1.05; }
+.google-learning .g-art-dot { position: absolute; border-radius: 50%; }
+.google-learning .g-art-dot-one { width: 45px; height: 45px; top: 5px; left: 18%; background: #e77562; }
+.google-learning .g-art-dot-two { width: 24px; height: 24px; bottom: 12px; left: 6%; background: #45a77b; }
+.google-learning .g-jump { position: relative; background: var(--g-canvas); border-block: 1px solid var(--g-line); }
+.google-learning .g-jump .g-wrap { display: flex; flex-wrap: wrap; gap: .4rem 2rem; padding-block: 1rem; }
+.google-learning .g-jump a { font-size: .9rem; font-weight: 650; text-decoration: none; }
+.google-learning .g-jump a:hover { text-decoration: underline; }
+.google-learning .g-section { padding-block: clamp(4rem, 7vw, 6.5rem); background: var(--g-canvas); }
+.google-learning .g-section-soft { background: var(--g-surface); }
+.google-learning .g-section-heading { display: grid; grid-template-columns: 1fr minmax(240px, .58fr); align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
+.google-learning .g-section-heading h2, .google-learning .g-split h2, .google-learning .g-contact h2 { margin-top: .85rem; }
+.google-learning .g-section-heading > p, .google-learning .g-split-copy > p:not(.g-kicker), .google-learning .g-contact-inner p:not(.g-kicker) { color: var(--g-muted); font-size: 1.05rem; }
+.google-learning .g-feature-grid, .google-learning .g-role-grid, .google-learning .g-credential-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.google-learning .g-feature, .google-learning .g-role, .google-learning .g-credential { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; min-width: 0; padding: clamp(1.4rem, 2.6vw, 2.25rem); border-radius: 22px; }
+.google-learning .g-feature { min-height: 330px; }
+.google-learning .g-feature-education { background: var(--g-blue-tint); }
+.google-learning .g-feature-work { background: var(--g-green-tint); }
+.google-learning .g-feature-ai { background: var(--g-yellow-tint); }
+.google-learning .g-feature p:not(.g-label), .google-learning .g-role p, .google-learning .g-credential p { color: var(--g-muted); }
+.google-learning .g-feature .g-link, .google-learning .g-role .g-link, .google-learning .g-credential .g-link { margin-top: auto; padding-top: .5rem; }
+.google-learning .g-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid currentColor; border-radius: 50%; color: var(--g-link); font-size: 1.55rem; line-height: 1; }
+.google-learning .g-role, .google-learning .g-credential { background: var(--g-card); border: 1px solid var(--g-line); }
+.google-learning .g-role { min-height: 305px; }
+.google-learning .g-role-top { display: flex; align-items: center; justify-content: space-between; width: 100%; color: var(--g-link); }
+.google-learning .g-role-number { font-size: .8rem; font-weight: 700; }
+.google-learning .g-role-symbol { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--g-blue-tint); font-size: 1.8rem; }
+.google-learning .g-section-action { margin-top: 2rem; }
+.google-learning .g-split { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(3rem, 8vw, 8rem); }
+.google-learning .g-education-art { position: relative; min-height: 405px; border-radius: 28px; background: var(--g-blue-tint); overflow: hidden; }
+.google-learning .g-paper { position: absolute; width: 55%; height: 72%; left: 22%; top: 14%; border-radius: 24px; box-shadow: 0 12px 35px #1f335026; }
+.google-learning .g-paper-one { background: #f9d993; transform: rotate(-12deg); }
+.google-learning .g-paper-two { display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; background: #fff; color: #182435; transform: rotate(7deg); }
+.google-learning .g-paper-two strong { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; letter-spacing: -.04em; }
+.google-learning .g-paper-two i { color: #174ea6; font-style: normal; font-size: 2.8rem; line-height: .8; }
+.google-learning .g-education-circle { position: absolute; width: 75px; height: 75px; border-radius: 50%; background: #61b38c; right: 9%; bottom: 7%; }
+.google-learning .g-split-copy > p:not(.g-kicker) { margin-top: 1.4rem; }
+.google-learning .g-link-list { display: grid; gap: 1rem; margin-top: 1.8rem; }
+.google-learning .g-credential { min-height: 280px; }
+.google-learning .g-chip { display: inline-block; color: var(--g-link); background: var(--g-blue-tint); border-radius: 999px; padding: .35rem .65rem; font-size: .68rem; font-weight: 750; letter-spacing: .08em; }
+.google-learning .g-fine-print { margin-top: 1.6rem; color: var(--g-muted); font-size: .9rem; }
+.google-learning .g-resource-list { border-top: 1px solid var(--g-line); }
+.google-learning .g-resource-list article { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding-block: 1.75rem; border-bottom: 1px solid var(--g-line); }
+.google-learning .g-resource-list h3 { margin-top: .45rem; }
+.google-learning .g-resource-list p:not(.g-label) { margin-top: .5rem; color: var(--g-muted); }
+.google-learning .g-resource-list .g-link { flex-shrink: 0; }
+.google-learning .g-contact { background: var(--g-blue-tint); }
+.google-learning .g-contact-inner { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.google-learning .g-contact-inner p:not(.g-kicker) { margin-top: 1rem; }
+.google-learning .g-contact-inner .g-btn { flex-shrink: 0; }
+.google-learning .g-disclosure { padding-block: 2rem; color: var(--g-muted); font-size: .85rem; }
+@media (max-width: 800px) {
+  .google-learning .g-hero-layout, .google-learning .g-split { grid-template-columns: 1fr; }
+  .google-learning .g-hero-art { max-width: 470px; width: 100%; margin-inline: auto; }
+  .google-learning .g-section-heading { grid-template-columns: 1fr; gap: 1rem; }
+  .google-learning .g-feature-grid, .google-learning .g-role-grid, .google-learning .g-credential-grid { grid-template-columns: 1fr 1fr; }
+  .google-learning .g-education-art { min-height: 350px; }
+}
+@media (max-width: 540px) {
+  .google-learning .g-wrap { width: min(100% - 2rem, 1200px); }
+  .google-learning .g-hero-layout { gap: 2.5rem; padding-block: 3rem; }
+  .google-learning .g-hero-art { height: 300px; }
+  .google-learning .g-orbit-one { width: 255px; height: 255px; right: 0; }
+  .google-learning .g-orbit-two { width: 195px; height: 195px; right: 82px; }
+  .google-learning .g-art-main { width: 215px; height: 210px; left: 2%; top: 35px; font-size: 1.35rem; }
+  .google-learning .g-art-spark { font-size: 3rem; }
+  .google-learning .g-art-small { width: 128px; height: 130px; padding: 1rem; }
+  .google-learning .g-feature-grid, .google-learning .g-role-grid, .google-learning .g-credential-grid { grid-template-columns: 1fr; }
+  .google-learning .g-feature, .google-learning .g-role, .google-learning .g-credential { min-height: 0; }
+  .google-learning .g-feature .g-link, .google-learning .g-role .g-link, .google-learning .g-credential .g-link { margin-top: .5rem; }
+  .google-learning .g-resource-list article, .google-learning .g-contact-inner { align-items: flex-start; flex-direction: column; }
+  .google-learning .g-resource-list article { gap: 1rem; }
+  .google-learning .g-education-art { min-height: 300px; }
+  .google-learning .g-paper { width: 60%; left: 20%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (forced-colors: active) { body .google-learning a:focus-visible { outline: 3px solid CanvasText !important; } }
+
