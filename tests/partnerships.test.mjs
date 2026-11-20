@@ -49,17 +49,23 @@ test('Google for Education is prominent without asserting an unverified programm
   assert.match(partners, /Google Workspace for Education/);
 });
 
-test('Linux Foundation learning resources are linked without claiming authorized partnership status', () => {
-  assert.match(home, /href="\/partners\/#linux-foundation"/);
+test('Linux Foundation uses the specified Wikimedia image in every featured card without claiming partner status', () => {
+  assert.match(home, /href="\\/partners\\/#linux-foundation"/);
   assert.match(partners, /id="linux-foundation"/);
+  const image = 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Linux_Foundation_logo.png';
   for (const markup of [home, partners]) {
     assert.match(markup, /Training &amp; certification resources/);
-    assert.match(markup, /The Linux Foundation/);
+    assert.ok(markup.includes(`src="${image}" alt="The Linux Foundation logo" width="1750" height="532"`), 'correct original image with descriptive alt text');
+    assert.match(markup, /swa-partner__art--linux-foundation/);
+    assert.doesNotMatch(markup, /swa-partner__nameplate|swa-partner__art--text/);
   }
-  assert.match(partners, /https:\/\/training\.linuxfoundation\.org\/learning-paths\//);
-  assert.match(partners, /https:\/\/training\.linuxfoundation\.org\/certification-catalog\//);
+  assert.match(partners, /https:\\/\\/commons\\.wikimedia\\.org\\/wiki\\/File:Linux_Foundation_logo\\.png/);
+  assert.match(partners, /Linux Foundation, public domain, via Wikimedia Commons/);
+  assert.match(partners, /registered trademarks of The Linux Foundation/);
+  assert.match(partners, /https:\\/\\/training\\.linuxfoundation\\.org\\/learning-paths\\//);
+  assert.match(partners, /https:\\/\\/training\\.linuxfoundation\\.org\\/certification-catalog\\//);
   assert.match(partners, /do not imply Skunkworks holds an Authorized Training Partner designation/);
-  assert.match(styles, /\.swa-partner__nameplate/);
+  assert.match(styles, /\\.swa-partner__art--linux-foundation img/);
 });
 
 test('GitHub is discoverable via the existing logo and official educational pathways, without unverified designation', () => {
