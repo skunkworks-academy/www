@@ -152,7 +152,7 @@ main .swa-partnerships .swa-partner .swa-partner__link {
 }
 
 /* Source and mark notice stays legible in both Academy themes. */
-.swa-partner__validity a {
+main .swa-partnerships .swa-partner .swa-partner__validity a {
   color: var(--partner-link) !important;
   text-decoration: underline;
   text-underline-offset: .2em;
