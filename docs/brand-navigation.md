@@ -9,3 +9,5 @@ The course catalogue and digital-platform course builds load the same navigation
 The reviewed MB-800 guide bypasses the legacy loader. The website's composition step attaches the same versioned runtimes to each published guide page while leaving the pinned Microsoft source unchanged. Its release browser checks verify the navigation theme and mobile drawer alongside the course itself.
 
 `tests/account-navigation.test.mjs` checks account and keyboard behaviour, the shared theme preference, current links and React-owned DOM preservation. `tests/brand-navigation.spec.cjs` checks representative pages in both themes at desktop and mobile sizes, measures rendered contrast, exercises menus and saves screenshots for review. The platform visual regression matrix remains a separate release gate.
+
+After deployment, `tests/live-navigation.spec.cjs` opens the live home, partner, catalogue, beginner-course and MB-800 pages to check the shared navigation, theme colours, logos and keyboard-operated menus.
