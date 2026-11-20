@@ -61,9 +61,9 @@ test('Linux Foundation uses the pinned Cisco repository SVG without claiming par
     assert.doesNotMatch(markup, /swa-partner__nameplate|swa-partner__art--text/);
     assert.ok(!markup.includes('Linux_Foundation_logo.png'), 'outdated Wikimedia PNG reference removed');
   }
-  assert.match(linuxFoundationSvg, /viewBox="0 0 1000 328\\.9"/);
+  assert.match(linuxFoundationSvg, /viewBox="0 0 1000 328\.9"/);
   assert.ok(linuxFoundationSvg.includes('<path'), 'SVG artwork was copied from the supplied source');
-  assert.doesNotMatch(linuxFoundationSvg, /<script\\b|onload\\s*=|<foreignObject\\b/i);
+  assert.doesNotMatch(linuxFoundationSvg, /<script\b|onload\s*=|<foreignObject\b/i);
   assert.ok(partners.includes('https://github.com/skunkworks-academy/cisco/blob/ce9459420292bf9907985f19500f8a9c1032a24d/lf-stacked-knockout.svg'));
   assert.ok(partners.includes('registered trademarks of The Linux Foundation'));
   assert.ok(partners.includes('https://training.linuxfoundation.org/learning-paths/'));
