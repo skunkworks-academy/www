@@ -58,6 +58,7 @@ for (const path of ['/', '/partners/']) {
           await expect(panel).toBeVisible();
           expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option strong', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
           expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option span', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
+          await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
           await page.keyboard.press('Escape');
           await expect(button).toBeFocused();
           await expect(button).toHaveAttribute('aria-expanded', 'false');
@@ -67,6 +68,7 @@ for (const path of ['/', '/partners/']) {
           const dialog = page.getByRole('dialog', {name: 'Skunkworks Academy navigation'});
           await expect(dialog).toBeVisible();
           await expect(dialog.getByRole('button', {name: 'Close navigation'})).toBeFocused();
+          await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
           await page.keyboard.press('Escape');
           await expect(dialog).not.toBeVisible();
           await expect(button).toBeFocused();
