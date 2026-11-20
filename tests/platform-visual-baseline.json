@@ -8,12 +8,12 @@
   "cases": {
     "publisher-desktop": {
       "width": 1440,
-      "height": 1258,
-      "dhash": "0001818001490000",
-      "avgLuma": 248.859375,
-      "sourceWorkflowRun": 44682397770,
-      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
-      "reviewNote": "Reviewed the complete desktop screenshot against the previous baseline. The lighter, shorter header is the intentional light-theme navigation change; the publishing content, cards and footer remain visible and unclipped."
+      "height": 1125,
+      "dhash": "0001010180010000",
+      "avgLuma": 253.90625,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "registration-desktop": {
       "width": 1440,
@@ -56,12 +56,12 @@
     },
     "home-mobile": {
       "width": 390,
-      "height": 10837,
-      "dhash": "0f0000da00009000",
-      "avgLuma": 184.5625,
-      "sourceWorkflowRun": 43447211862,
-      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
-      "reviewNote": "Reviewed November 13 desktop/mobile CI screenshot with eight partner/resource cards. Badge images decoded before capture; all partner cards render and no horizontal overflow."
+      "height": 10421,
+      "dhash": "0300000070d28000",
+      "avgLuma": 210.359375,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "ibm-desktop": {
       "width": 1440,
@@ -74,18 +74,21 @@
     },
     "learn-desktop": {
       "width": 1440,
-      "height": 4649,
-      "dhash": "f880019004510000",
-      "avgLuma": 209
+      "height": 4504,
+      "dhash": "f88000040124ab00",
+      "avgLuma": 204.890625,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "comptia-desktop": {
       "width": 1440,
-      "height": 3467,
-      "dhash": "9492aaa151202080",
-      "avgLuma": 211.515625,
-      "sourceWorkflowRun": 42113041801,
-      "sourceHead": "e829617a7c62e9f970f0b74c4bf35954f463ea5e",
-      "reviewNote": "Inspected corrected CI screenshot: dark hero heading is readable on its light surface; live computed contrast assertion passes; catalogue cards and footer retain layout. Thresholds unchanged."
+      "height": 3322,
+      "dhash": "a451519151112000",
+      "avgLuma": 227.984375,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "ibm-mobile": {
       "width": 390,
@@ -98,15 +101,21 @@
     },
     "publisher-mobile": {
       "width": 390,
-      "height": 2069,
-      "dhash": "0080000024000000",
-      "avgLuma": 242.3
+      "height": 1665,
+      "dhash": "00948800c8406c00",
+      "avgLuma": 243.296875,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "forms-mobile": {
       "width": 390,
-      "height": 5570,
-      "dhash": "aa40790140018000",
-      "avgLuma": 195.4375
+      "height": 5154,
+      "dhash": "8080412901010108",
+      "avgLuma": 199.328125,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "self-paced-desktop": {
       "width": 1440,
@@ -125,12 +134,12 @@
     },
     "learn-mobile": {
       "width": 390,
-      "height": 8127,
-      "dhash": "2604a02000940000",
-      "avgLuma": 215.140625,
-      "sourceWorkflowRun": 44682397770,
-      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
-      "reviewNote": "Reviewed the full mobile page against the earlier baseline. The light header, learning cards, process steps and footer remain visible without clipping or horizontal overflow."
+      "height": 7721,
+      "dhash": "1b08881a08400000",
+      "avgLuma": 219.21875,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "home-desktop": {
       "width": 1440,
@@ -143,12 +152,12 @@
     },
     "microsoft-desktop": {
       "width": 1440,
-      "height": 5655,
-      "dhash": "4001990121010101",
-      "avgLuma": 188.421875,
-      "sourceWorkflowRun": 44683155687,
-      "sourceHead": "74c4ba4e98b7c226f6207d72ca824c254c80827e",
-      "reviewNote": "Reviewed the full desktop image against the previous baseline. The light header and Microsoft catalogue remain visible and aligned; the visual test now waits for the page's IBM Plex Sans fonts before capture."
+      "height": 5522,
+      "dhash": "100111aa01010109",
+      "avgLuma": 209.234375,
+      "sourceWorkflowRun": 44749756254,
+      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
+      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
     },
     "cisco-desktop": {
       "width": 1440,
@@ -167,4 +176,3 @@
     }
   }
 }
-

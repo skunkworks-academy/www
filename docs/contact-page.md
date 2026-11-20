@@ -1,0 +1,11 @@
+# Contact page
+
+`contact.html` leads with the four-field enquiry form and uses the Academy shell, colour tokens, themes and typography. The backend is maintained in `skunkworks-academy/portal` (`api/contactFunctions.ts`). Deploy the backend before this page.
+
+The form POSTs to `https://api.skunkworksacademy.com/api/contact/enquiries`; only a verified stored receipt is success. Failures preserve the form; retries reuse the same random request ID while content is unchanged. Enquiry content is held only in page memory before submission and is never put in URLs, analytics events or browser storage. The private staff destination is `https://portal.skunkworksacademy.com/?inbox=contact` with existing Microsoft staff permissions. Staff monitor this inbox; no automatic email is sent.
+
+Skunkie is visible and available on first view, but never opens automatically or blocks the direct form. `contact-guide.mjs` provides a deliberately labelled guided enquiry conversation: free-text request, targeted follow-up, name, validated reply email and a review handoff. It does not call an AI model or submit anything. Existing form text is preserved. The actual Academy character comes from portal `public/assets/skunkie/skunkie-motion-still-v3.webp` at commit `fd16aaf`. A separate link opens the existing authenticated AI learning companion; the Student budget is not exposed to anonymous callers.
+
+Validation: `npm run build`, `node scripts/validate-platform-contract.mjs`, and `node --test tests/contact-guide.test.mjs`. Browser validation covers 1440px desktop, 390px mobile in light/dark, 320px mobile, first-view Skunkie access, modal keyboard behaviour, free-text draft handoff, empty-form rejection, failed submit preservation and same-reference retry. Synthetic browser stubs test UI states; production capture must be tested separately after backend deployment.
+
+The shared footer uses compact 18px social icons in a centred, constrained group, with 44px minimum link targets, tighter vertical spacing and responsive wrapping. Its layout remains in assets/skunkworks-footer.js; both navigation loaders request the updated footer revision while retaining the stable theme URL. Browser checks cover Contact, Home and About at 320, 390, 768 and 1440px, including dark mode, focus, overflow and automated accessibility checks.
