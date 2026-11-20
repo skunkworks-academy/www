@@ -45,6 +45,9 @@ for (const path of ['/', '/partners/']) {
         await expect(header.getByRole('button', {name: 'Dark theme'})).toHaveAttribute('aria-pressed', String(theme === 'dark'));
         await expect(header.locator('summary[aria-label="Skunkworks ecosystem"]')).toBeVisible();
         expect(await contrast(page, '.swa-global-nav__sign-in', '.swa-global-nav')).toBeGreaterThanOrEqual(4.5);
+        const search = header.getByRole('button', {name: 'Search Academy destinations'});
+        await search.focus();
+        expect(await contrast(page, '.swa-global-nav__search', '.swa-global-nav__search')).toBeGreaterThanOrEqual(3);
 
         if (size === 'desktop') {
           const button = header.locator('.swa-global-nav__top-menu-button').first();
