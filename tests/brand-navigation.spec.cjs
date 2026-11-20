@@ -68,6 +68,11 @@ for (const path of ['/', '/partners/']) {
           const dialog = page.getByRole('dialog', {name: 'Skunkworks Academy navigation'});
           await expect(dialog).toBeVisible();
           await expect(dialog.getByRole('button', {name: 'Close navigation'})).toBeFocused();
+          const firstLink = dialog.locator('.swa-global-nav__drawer-link').first();
+          await expect(firstLink).toBeVisible();
+          const linkBounds = await firstLink.boundingBox();
+          expect(linkBounds.x).toBeGreaterThanOrEqual(0);
+          expect(linkBounds.x + linkBounds.width).toBeLessThanOrEqual(viewport.width + 1);
           await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
           await page.keyboard.press('Escape');
           await expect(dialog).not.toBeVisible();
