@@ -11,7 +11,10 @@ $('contact-topic').addEventListener('change', () => { $('topic-help').textConten
 form.addEventListener('submit', async event => {
   event.preventDefault(); if (busy) return;
   controls.forEach(control => { control.value = control.value.trim(); control.removeAttribute('aria-invalid'); });
-  const invalid = controls.find(control => !control.checkValidity() || !control.value);
+  const invalid = controls.find(control => !control.checkValidity() || !control.value ||
+    (control.minLength > 0 && control.value.length < control.minLength) ||
+    (control.maxLength > 0 && control.value.length > control.maxLength) ||
+    (control.id === 'contact-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(control.value)));
   if (invalid) { invalid.setAttribute('aria-invalid', 'true'); feedback(invalid.id === 'contact-email' ? 'Please enter a valid reply email.' : invalid.id === 'contact-message' ? 'Please write a message of 10–5,000 characters.' : 'Please complete your name, reply email, topic and message.', true); invalid.focus(); return; }
   const data = Object.fromEntries(new FormData(form));
   const signature = JSON.stringify(data);
@@ -21,7 +24,7 @@ form.addEventListener('submit', async event => {
   try {
     const response = await fetch('https://api.skunkworksacademy.com/api/contact/enquiries', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, id: pending.id }), signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
     const body = await response.json().catch(() => ({}));
-    if (!response.ok || body.received !== true || body.reference !== pending.id) throw new Error(response.status === 429 ? 'Too many enquiries right now. Please wait an hour and retry, or use email below.' : 'We could not confirm receipt. Your message is still here. Please retry; the same enquiry will not be duplicated.');
+    if (!response.ok || body.received !== true || body.reference !== pending.id) throw new Error(response.status === 429 ? 'Too many enquiries right now. Please wait an hour and retry, or use email below.' : response.status === 400 ? 'Please check your name, reply email, topic and message before sending again. Your message must contain 10–5,000 characters.' : 'We could not confirm receipt. Your message is still here. Please retry; the same enquiry will not be duplicated.');
     const unchanged = JSON.stringify(Object.fromEntries(new FormData(form))) === signature;
     feedback(`Thank you — your enquiry has been received. Your reference is ${body.reference}. The Academy team can follow up at your reply email.${unchanged ? '' : ' Changes you made while sending are still in the form and have not been sent.'}`);
     pending = null;
