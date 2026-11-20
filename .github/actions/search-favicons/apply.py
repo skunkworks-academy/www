@@ -24,7 +24,7 @@ TAGS = '\n'.join([
     '<link rel="shortcut icon" type="image/png" href="' + asset_url('favicon-search.png') + '" data-skunkworks-favicon="canonical" />',
     '<link rel="icon" type="image/png" sizes="96x96" href="' + asset_url('favicon-search.png') + '" media="(prefers-color-scheme: light)" data-skunkworks-favicon="canonical" />',
     '<link rel="icon" type="image/png" sizes="96x96" href="' + asset_url('favicon-search-dark.png') + '" media="(prefers-color-scheme: dark)" data-skunkworks-favicon="canonical" />',
-    '<link rel="apple-touch-icon" sizes="180x180" href="' + asset_url('apple-touch-icon.png') + '" />',
+    '<link rel="apple-touch-icon" sizes="180x180" href="' + asset_url('apple-touch-icon.png') + '" data-skunkworks-touch-icon="canonical" />',
 ])
 
 def attributes(tag):
@@ -36,7 +36,17 @@ def decorate(html):
     def strip(match):
         rel = set(attributes(match.group()).get('rel', '').lower().split())
         return '' if rel.intersection({'icon', 'apple-touch-icon', 'apple-touch-icon-precomposed', 'mask-icon'}) else match.group()
-    if not re.search(r'<head\b', html, re.I):
+    head = re.search(r'<head\b[^>]*>[\s\S]*?</head\s*>', html, re.I)
+    if not head:
+        return html
+    icon_links = [match for match in re.finditer(r'<link\b[^>]*>', html, re.I)
+                  if set(attributes(match.group()).get('rel', '').lower().split()).intersection(
+                      {'icon', 'apple-touch-icon', 'apple-touch-icon-precomposed', 'mask-icon'})]
+    # Preserve an already-conforming document byte for byte. This action is
+    # also used by source-branch automation, where moving correct tags creates
+    # unrelated commits and can erase the canonical touch-icon marker.
+    if (len(icon_links) == 5 and {match.group() for match in icon_links} == set(TAGS.splitlines())
+            and all(head.start() <= match.start() < head.end() for match in icon_links)):
         return html
     html = re.sub(r'[ \t]*<link\b[^>]*>[ \t]*(?:\r?\n)?', strip, html, flags=re.I)
     return re.sub(r'</head\s*>', lambda match: TAGS + '\n' + match.group(), html, count=1, flags=re.I)
