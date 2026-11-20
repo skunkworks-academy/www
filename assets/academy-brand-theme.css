@@ -1216,13 +1216,7 @@ html[data-theme="dark"] .swa-global-footer {
   color: #ffffff !important;
 }
 
-/* Shared footer: compact channel cards and generous separation, as in the
-   Academy reference. Keep these refinements in the global brand layer. */
-@media (min-width: 1200px) {
-  .swa-global-footer .swa-global-footer__social .container {
-    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  }
-}
+/* Shared footer layout lives in skunkworks-footer.js; keep accessible controls here. */
 .swa-global-footer__theme summary,
 .swa-global-footer__theme-option,
 .swa-global-footer__utility a {
