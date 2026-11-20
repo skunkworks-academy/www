@@ -58,3 +58,19 @@ changes. No membership start or expiry date is inferred from the agreement templ
   marketing rollout; no new partnership mark is created here.
 - GitHub Classroom retired on 28 August 2026; do not present it as an active course
   delivery product: https://docs.github.com/en/education/manage-coursework-with-github-classroom/get-started-with-github-classroom/about-github-classroom
+
+## Linux Foundation (20 November 2026)
+
+- `lf-stacked-knockout.svg`: unchanged SVG mirrored from Skunkworks Academy's
+  Cisco repository at the pinned commit:
+  https://raw.githubusercontent.com/skunkworks-academy/cisco/ce9459420292bf9907985f19500f8a9c1032a24d/lf-stacked-knockout.svg
+- Intrinsic viewBox: `0 0 1000 328.9`. Despite the "knockout" filename, its
+  paths use default black fill; preserve the original paths and a **white**
+  backing in both light and dark themes. Do not invert, filter, recolour or crop.
+- Used only as a referential mark for Linux Foundation learning and certification
+  resources, not a claim of Authorized Training Partner status, sponsorship or
+  endorsement. The provenance is disclosed on `/partners/#linux-foundation`.
+- Trademark permission is separate from repository file access. The Linux
+  Foundation's commercial logo-use rules must be verified and approval recorded
+  before the pending PR can be merged or published to production. No copyright
+  or public-domain assertion is made for this repository-sourced SVG.
