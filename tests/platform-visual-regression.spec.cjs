@@ -206,6 +206,20 @@ for (const [surface, path] of surfaces) {
         await document.fonts.ready;
       });
 
+      if (surface === 'microsoft') {
+        // The Microsoft landing page explicitly uses IBM Plex Sans. Wait for
+        // its real body and heading faces before measuring page fingerprints.
+        await page.evaluate(async () => {
+          for (const spec of ['400 16px "IBM Plex Sans"', '700 16px "IBM Plex Sans"']) {
+            const faces = await document.fonts.load(spec);
+            if (!faces.length || faces.some(face => face.status !== 'loaded')) {
+              throw new Error('Microsoft landing-page font did not load: ' + spec);
+            }
+          }
+          await document.fonts.ready;
+        });
+      }
+
       // The homepage's partner badges start below the initial viewport and
       // use native lazy-loading. Full-page screenshots do not reliably trigger
       // the browser's lazy-load threshold. Resolve those images explicitly so
@@ -312,3 +326,4 @@ for (const [surface, path] of surfaces) {
     });
   }
 }
+
