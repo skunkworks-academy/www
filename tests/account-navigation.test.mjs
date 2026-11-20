@@ -7,8 +7,10 @@ const { JSDOM } = createRequire(new URL('./shell-dom/package.json', import.meta.
 const sources = ['skunkworks-ui.js', 'academy-navigation-v11.js', 'skunkworks-footer.js']
   .map(name => fs.readFileSync(new URL('../assets/' + name, import.meta.url), 'utf8'));
 
-function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {}, signedIn = true } = {}) {
-  const dom = new JSDOM('<!doctype html><html><head></head><body><main><button id="outside">Outside</button></main></body></html>', {
+function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {}, signedIn = true, reactSafe = false } = {}) {
+  const marker = reactSafe ? '<script data-skunkworks-react-safe="true"></script>' : '';
+  const content = reactSafe ? '<div id="__docusaurus"><nav class="navbar navbar--fixed-top">Course navbar</nav><main><button id="outside">Outside</button></main></div>' : '<main><button id="outside">Outside</button></main>';
+  const dom = new JSDOM('<!doctype html><html><head>' + marker + '</head><body>' + content + '</body></html>', {
     url, runScripts: 'outside-only', pretendToBeVisual: true,
   });
   t.after(() => dom.window.close());
@@ -258,7 +260,69 @@ test('public footer and explicit theme remain intact on other hosts', t => {
 
 test('navigation and footer dependency cache revisions change without changing stable theme contract', t => {
   const f = fixture(t);
-  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.05\.2/);
-  assert.match(f.query('script[data-skunkworks-global-footer]').src, /rev=2026\.11\.05\.1/);
+  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.20\.1/);
+  assert.match(f.query('script[data-skunkworks-global-footer]').src, /rev=2026\.11\.20\.1/);
   assert.match(f.query('link[data-skunkworks-brand-theme]').href, /v=2026\.09\.08\.3&rev=2026\.11\.05\.2/);
 });
+
+test('skip link precedes the shell and focuses the page main content', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/partners/', signedIn: false });
+  assert.equal(f.document.body.firstElementChild.className, 'swa-skip-link');
+  f.document.body.firstElementChild.click();
+  assert.equal(f.document.activeElement, f.query('main'));
+});
+
+test('navigation drawer has a close control and returns focus on Escape', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false });
+  const toggle = f.query('.swa-global-nav__toggle');
+  const dialog = f.query('.swa-global-nav__drawer-dialog');
+  toggle.click();
+  assert.equal(dialog.open, true);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(f.document.activeElement, f.query('.swa-global-nav__drawer-close'));
+  f.key('Escape');
+  assert.equal(dialog.open, false);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(f.document.activeElement, toggle);
+  toggle.click();
+  f.query('.swa-global-nav__drawer-close').click();
+  assert.equal(dialog.open, false);
+  assert.equal(f.document.activeElement, toggle);
+});
+
+test('header theme toggle shares the persisted footer preference', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false });
+  const toggle = f.query('.swa-global-nav__theme');
+  toggle.click();
+  assert.equal(f.document.documentElement.dataset.theme, 'dark');
+  assert.equal(f.window.localStorage.getItem('swa-theme'), 'dark');
+  assert.equal(toggle.getAttribute('aria-pressed'), 'true');
+  assert.equal(f.query('[data-theme-value=dark]').getAttribute('aria-pressed'), 'true');
+  f.query('[data-theme-value=light]').click();
+  assert.equal(toggle.getAttribute('aria-pressed'), 'false');
+});
+
+test('current links match www and apex aliases, and opening a group closes search', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/partners/', signedIn: false });
+  const matching = f.query('.swa-global-nav__top-menu-option[href="https://skunkworksacademy.com/partners/"]');
+  assert.equal(matching.getAttribute('aria-current'), 'page');
+  f.query('.swa-global-nav__search').click();
+  assert.equal(f.query('.swa-global-nav__search').getAttribute('aria-expanded'), 'true');
+  f.query('.swa-global-nav__top-menu-button').click();
+  assert.equal(f.query('.swa-global-nav__search').getAttribute('aria-expanded'), 'false');
+});
+
+test('React-safe course navigation leaves framework-owned chrome intact and follows client-side routes', async t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/courses/', signedIn: false, reactSafe: true });
+  const frameworkNavbar = f.query('#__docusaurus .navbar');
+  assert.equal(frameworkNavbar.style.display, '');
+  assert.equal(f.query('link[data-skunkworks-brand-theme]'), null);
+  assert.ok(f.query('.swa-global-nav__top-menu'));
+  f.window.history.pushState({}, '', '/partners/');
+  f.query('main').appendChild(f.document.createElement('p'));
+  await new Promise(resolve => f.window.setTimeout(resolve, 0));
+  assert.equal(f.query('#__docusaurus .navbar'), frameworkNavbar);
+  assert.equal(frameworkNavbar.style.display, '');
+  assert.equal(f.query('.swa-global-nav__top-menu-option[href="https://skunkworksacademy.com/partners/"]').getAttribute('aria-current'), 'page');
+});
+

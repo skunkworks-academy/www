@@ -121,6 +121,13 @@
     }
   }
 
+  // Share the existing preference mechanism with the header control.
+  window.SkunkworksAcademy.setTheme = function (mode) {
+    if (["light", "dark", "system"].indexOf(mode) === -1) return;
+    saveTheme(mode);
+    applyTheme(mode);
+  };
+
   function externalLink(href, label) {
     var link = document.createElement("a");
     link.href = href;
@@ -347,3 +354,4 @@
     window.addEventListener("skunkworksacademy:account-change", createFooter);
   });
 })();
+

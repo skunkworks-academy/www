@@ -111,6 +111,84 @@
     document.head.appendChild(style);
   }
 
+  // Navigation uses the semantic light/dark roles from the Skunkworks Design
+  // System 1.0.0. These are scoped so older page themes cannot redefine them.
+  function addBrandNavigationStyles() {
+    if (document.getElementById("swa-brand-navigation-styles")) return;
+    var style = document.createElement("style");
+    style.id = "swa-brand-navigation-styles";
+    style.textContent = `
+      .swa-global-nav.swa-global-nav { --swa-bg:#fff; --swa-panel:#fafafa; --swa-panel-strong:#e5e5e5; --swa-text:#111; --swa-muted:#595959; --swa-line:#d4d4d4; --swa-link:#111; --swa-accent:#111; --swa-focus:#005fcc; background:var(--swa-bg)!important; color:var(--swa-text)!important; border-bottom:1px solid var(--swa-line)!important; box-shadow:none!important; font-family:Inter,'Segoe UI',Roboto,Helvetica,Arial,sans-serif!important; min-height:72px!important; }
+      html[data-theme="dark"] .swa-global-nav.swa-global-nav { --swa-bg:#111; --swa-panel:#171717; --swa-panel-strong:#303030; --swa-text:#f5f5f5; --swa-muted:#b8b8b8; --swa-line:#454545; --swa-link:#f5f5f5; --swa-accent:#f5f5f5; --swa-focus:#91caff; }
+      html body.swa-has-global-nav { padding-top:72px!important; }
+      html body.swa-has-global-nav.swa-has-top-menu { padding-top:116px!important; }
+      .swa-global-nav.swa-global-nav.swa-has-top-menu { min-height:116px!important; }
+      .swa-global-nav.swa-global-nav::after { display:none!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__inner { min-height:72px!important; padding:0 20px!important; gap:12px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__brand { gap:10px!important; font-size:16px!important; font-weight:700!important; letter-spacing:0!important; line-height:1.15!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__brand-logo.swa-logo-light { display:block!important; width:36px!important; height:36px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__brand-logo.swa-logo-dark { display:none!important; }
+      html[data-theme="dark"] .swa-global-nav.swa-global-nav .swa-global-nav__brand-logo.swa-logo-light { display:none!important; }
+      html[data-theme="dark"] .swa-global-nav.swa-global-nav .swa-global-nav__brand-logo.swa-logo-dark { display:block!important; width:36px!important; height:36px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__brand-copy { display:grid!important; gap:3px!important; min-width:0!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__brand-text { color:var(--swa-muted)!important; font-size:12px!important; font-weight:400!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__crest { display:none!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__controls { gap:4px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search,
+      .swa-global-nav.swa-global-nav .swa-global-nav__toggle,
+      .swa-global-nav.swa-global-nav .swa-global-nav__theme,
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary { display:inline-flex!important; align-items:center!important; justify-content:center!important; width:44px!important; height:44px!important; padding:10px!important; border:0!important; border-radius:4px!important; background:transparent!important; color:var(--swa-text)!important; cursor:pointer!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search svg,
+      .swa-global-nav.swa-global-nav .swa-global-nav__theme svg,
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary svg { width:22px!important; height:22px!important; fill:none!important; stroke:currentColor!important; stroke-width:1.6!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__toggle-lines { gap:5px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__toggle-lines span { width:22px!important; height:2px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search:hover,
+      .swa-global-nav.swa-global-nav .swa-global-nav__toggle:hover,
+      .swa-global-nav.swa-global-nav .swa-global-nav__theme:hover,
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary:hover { background:var(--swa-panel-strong)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__sign-in { min-height:44px!important; font-size:14px!important; font-weight:600!important; color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__sign-in:hover,
+      .swa-global-nav.swa-global-nav .swa-global-nav__sign-in:focus { color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav :is(a,button,summary,input):focus-visible { outline:3px solid var(--swa-focus)!important; outline-offset:2px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem { position:relative!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary { list-style:none!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary::-webkit-details-marker { display:none!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu { position:absolute!important; right:0!important; top:calc(100% + 8px)!important; width:min(290px,calc(100vw - 24px))!important; padding:8px!important; background:var(--swa-bg)!important; border:1px solid var(--swa-line)!important; box-shadow:0 12px 40px #0002!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu a { display:block!important; padding:12px!important; color:var(--swa-text)!important; text-decoration:none!important; font-size:14px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu a:hover { background:var(--swa-panel-strong)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu { background:var(--swa-bg)!important; border-top:1px solid var(--swa-line)!important; padding:0 20px!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button { color:var(--swa-text)!important; font-family:inherit!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button:hover,
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button:focus,
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button[aria-expanded="true"],
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button[data-current="true"] { background:var(--swa-panel-strong)!important; color:var(--swa-text)!important; border-bottom-color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-panel { background:var(--swa-panel)!important; border-color:var(--swa-line)!important; color:var(--swa-text)!important; box-shadow:0 12px 40px #0003!important; }
+      .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-title,.swa-global-nav__top-menu-option,.swa-global-nav__drawer-group-title,.swa-global-nav__drawer-link) { color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-description,.swa-global-nav__top-menu-option span,.swa-global-nav__drawer-heading,.swa-global-nav__drawer-group-description) { color:var(--swa-muted)!important; }
+      .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-option,.swa-global-nav__drawer-link):is(:hover,:focus,[aria-current="page"]) { background:var(--swa-panel-strong)!important; color:var(--swa-text)!important; border-color:var(--swa-line)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-group { border-color:var(--swa-line)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-panel,
+      .swa-global-nav.swa-global-nav .swa-global-nav__account-menu { background:var(--swa-panel)!important; border-color:var(--swa-line)!important; color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-box { background:var(--swa-bg)!important; border-color:var(--swa-muted)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-box svg { stroke:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-input { color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-input::placeholder { color:var(--swa-muted)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-dialog { position:fixed!important; inset:0 auto 0 0!important; width:min(520px,100vw)!important; max-width:100vw!important; height:100dvh!important; max-height:100dvh!important; margin:0!important; padding:12px!important; overflow:auto!important; border:0!important; border-right:1px solid var(--swa-line)!important; background:var(--swa-bg)!important; color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-dialog:not([open]) { display:none!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-dialog[open] { display:block!important; }
+      .swa-global-nav__drawer-dialog::backdrop { background:rgba(0,0,0,.5); }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-close { display:flex!important; align-items:center!important; justify-content:center!important; width:44px!important; height:44px!important; margin:0 0 8px auto!important; border:0!important; background:transparent!important; color:var(--swa-text)!important; font-size:28px!important; cursor:pointer!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__drawer-dialog .swa-global-nav__links { position:static!important; display:grid!important; grid-template-columns:1fr!important; gap:14px!important; width:100%!important; max-height:none!important; padding:8px!important; overflow:visible!important; background:transparent!important; border:0!important; box-shadow:none!important; }
+      .swa-skip-link { position:fixed!important; top:-100px!important; left:16px!important; z-index:2147483001!important; padding:12px 24px!important; background:#111!important; color:#fff!important; }
+      .swa-skip-link:focus { top:8px!important; outline:3px solid #005fcc!important; }
+      @media(max-width:980px) { html body.swa-has-global-nav.swa-has-top-menu { padding-top:72px!important; } .swa-global-nav.swa-global-nav.swa-has-top-menu { min-height:72px!important; } }
+      @media(max-width:620px) { html body.swa-has-global-nav,html body.swa-has-global-nav.swa-has-top-menu { padding-top:64px!important; } .swa-global-nav.swa-global-nav,.swa-global-nav.swa-global-nav.swa-has-top-menu { min-height:64px!important; } .swa-global-nav.swa-global-nav .swa-global-nav__inner { min-height:64px!important; padding:0 8px!important; gap:2px!important; } .swa-global-nav.swa-global-nav .swa-global-nav__identity { gap:2px!important; } .swa-global-nav.swa-global-nav .swa-global-nav__controls { gap:0!important; } .swa-global-nav.swa-global-nav .swa-global-nav__brand { font-size:14px!important; } .swa-global-nav.swa-global-nav .swa-global-nav__brand-logo { width:30px!important; height:30px!important; } }
+      @media(max-width:430px) { .swa-global-nav.swa-global-nav .swa-global-nav__brand-copy { display:none!important; } .swa-global-nav.swa-global-nav .swa-global-nav__brand { gap:0!important; } .swa-global-nav.swa-global-nav .swa-global-nav__sign-in { font-size:12px!important; padding:0 4px!important; } }
+    `;
+    document.head.appendChild(style);
+  }
+
   function isInsideContent(node) {
     return Boolean(node.closest && node.closest("main,article,section,aside,.document,.sk-document"));
   }
@@ -204,10 +282,16 @@
     var toggle = document.createElement("button");
     var toggleLines = document.createElement("span");
     var brand = document.createElement("a");
+    var brandCopy = document.createElement("span");
+    var brandName = document.createElement("strong");
     var brandText = document.createElement("span");
     var crest = document.createElement("a");
     var controls = document.createElement("div");
     var search = document.createElement("button");
+    var themeToggle = document.createElement("button");
+    var ecosystem = document.createElement("details");
+    var ecosystemSummary = document.createElement("summary");
+    var ecosystemMenu = document.createElement("div");
     var accountName = document.createElement("span");
     var signIn = document.createElement("a");
     var accountControl = document.createElement("div");
@@ -220,6 +304,8 @@
     var settingsLink = document.createElement("a");
     var accountSignOut = document.createElement("button");
     var links = document.createElement("nav");
+    var drawerDialog = document.createElement("dialog");
+    var drawerClose = document.createElement("button");
     var linksHeading = document.createElement("p");
     var searchPanel = document.createElement("section");
     var searchLabel = document.createElement("label");
@@ -250,9 +336,13 @@
     brand.setAttribute("aria-label", "Skunkworks Academy home");
     brand.appendChild(createLogo("swa-global-nav__brand-logo swa-logo-light", LOGO_LIGHT));
     brand.appendChild(createLogo("swa-global-nav__brand-logo swa-logo-dark", LOGO_DARK));
+    brandCopy.className = "swa-global-nav__brand-copy";
+    brandName.textContent = "Skunkworks Academy";
     brandText.className = "swa-global-nav__brand-text";
-    brandText.textContent = "Skunkworks Academy";
-    brand.appendChild(brandText);
+    brandText.textContent = "Home";
+    brandCopy.appendChild(brandName);
+    brandCopy.appendChild(brandText);
+    brand.appendChild(brandCopy);
 
     crest.className = "swa-global-nav__crest";
     crest.href = ASSET_ROOT + "/";
@@ -267,6 +357,30 @@
     search.setAttribute("aria-expanded", "false");
     search.setAttribute("aria-controls", "swa-global-nav-search");
     search.appendChild(createSearchIcon());
+
+    themeToggle.className = "swa-global-nav__theme";
+    themeToggle.type = "button";
+    themeToggle.setAttribute("aria-label", "Dark theme");
+    themeToggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path></svg>';
+
+    ecosystem.className = "swa-global-nav__ecosystem";
+    ecosystemSummary.className = "swa-global-nav__ecosystem-summary";
+    ecosystemSummary.setAttribute("aria-label", "Skunkworks ecosystem");
+    ecosystemSummary.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="6" height="6"></rect><rect x="15" y="3" width="6" height="6"></rect><rect x="3" y="15" width="6" height="6"></rect><rect x="15" y="15" width="6" height="6"></rect></svg>';
+    ecosystemMenu.className = "swa-global-nav__ecosystem-menu";
+    [
+      ["Skunkworks Africa", "https://www.skunkworks.africa/"],
+      ["Skunkworks Store", "https://store.skunkworks.africa/"],
+      ["Skunkworks Academy", "https://www.skunkworksacademy.com/"],
+      ["Academy Portal", "https://portal.skunkworksacademy.com/"]
+    ].forEach(function (item) {
+      var link = document.createElement("a");
+      link.textContent = item[0];
+      link.href = item[1];
+      ecosystemMenu.appendChild(link);
+    });
+    ecosystem.appendChild(ecosystemSummary);
+    ecosystem.appendChild(ecosystemMenu);
 
     signIn.className = "swa-global-nav__sign-in";
     signIn.href = SIGN_IN_URL;
@@ -308,8 +422,16 @@
     accountControl.appendChild(accountMenu);
 
     links.className = "swa-global-nav__links";
-    links.id = "swa-global-nav-links";
     links.setAttribute("aria-label", "Academy menu");
+    drawerDialog.className = "swa-global-nav__drawer-dialog";
+    drawerDialog.id = "swa-global-nav-links";
+    drawerDialog.setAttribute("aria-label", "Skunkworks Academy navigation");
+    drawerClose.className = "swa-global-nav__drawer-close";
+    drawerClose.type = "button";
+    drawerClose.setAttribute("aria-label", "Close navigation");
+    drawerClose.textContent = "\u00d7";
+    drawerDialog.appendChild(drawerClose);
+    drawerDialog.appendChild(links);
     linksHeading.className = "swa-global-nav__panel-heading";
     linksHeading.textContent = "Skunkworks Academy";
     links.appendChild(linksHeading);
@@ -346,17 +468,59 @@
     identity.appendChild(toggle);
     identity.appendChild(brand);
     controls.appendChild(search);
+    controls.appendChild(themeToggle);
     controls.appendChild(accountName);
     controls.appendChild(signIn);
     controls.appendChild(accountControl);
+    controls.appendChild(ecosystem);
     inner.appendChild(identity);
     inner.appendChild(crest);
     inner.appendChild(controls);
-    inner.appendChild(links);
+    inner.appendChild(drawerDialog);
     inner.appendChild(searchPanel);
     header.appendChild(inner);
-    document.body.insertBefore(header, document.body.firstChild);
+    // Keep the skip link before every header, without moving React-owned nodes.
+    var skip = document.querySelector('body > a.skip-link[href^="#"], body > a.skip-to-content[href^="#"]');
+    if (!skip) {
+      skip = document.createElement("a");
+      skip.className = "swa-skip-link";
+      skip.href = "#swa-main-content";
+      skip.textContent = "Skip to main content";
+      skip.addEventListener("click", function (event) {
+        var main = document.querySelector("main");
+        if (!main) return;
+        event.preventDefault();
+        if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1");
+        main.focus();
+        if (typeof main.scrollIntoView === "function") main.scrollIntoView();
+      });
+    }
+    skip.classList.add("swa-skip-link");
+    document.body.insertBefore(skip, document.body.firstChild);
+    document.body.insertBefore(header, skip.nextSibling);
     document.body.classList.add("swa-has-global-nav");
+
+    function syncThemeControl() {
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      themeToggle.setAttribute("aria-pressed", String(dark));
+      themeToggle.title = dark ? "Switch to light theme" : "Switch to dark theme";
+    }
+    syncThemeControl();
+    window.addEventListener("skunkworksacademy:theme-change", syncThemeControl);
+    themeToggle.addEventListener("click", function () {
+      var mode = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      if (window.SkunkworksAcademy && typeof window.SkunkworksAcademy.setTheme === "function") {
+        window.SkunkworksAcademy.setTheme(mode);
+      } else {
+        try { window.localStorage.setItem("swa-theme", mode); } catch (_error) {}
+        document.documentElement.setAttribute("data-swa-theme", mode);
+        document.documentElement.setAttribute("data-theme", mode);
+        document.documentElement.setAttribute("data-swa-theme-managed", "true");
+        document.documentElement.style.colorScheme = mode;
+        window.dispatchEvent(new CustomEvent("skunkworksacademy:theme-change", { detail: { theme: mode } }));
+      }
+      syncThemeControl();
+    });
 
     var accountHandler = null;
 
@@ -400,6 +564,8 @@
       if (accountControl.hidden) return;
       closeMenu();
       closeSearch();
+      ecosystem.open = false;
+      window.dispatchEvent(new CustomEvent("skunkworksacademy:close-primary-navigation"));
       accountMenu.hidden = false;
       accountToggle.setAttribute("aria-expanded", "true");
       var items = accountItems();
@@ -485,6 +651,7 @@
       var userName = account && typeof account.userName === "string" ? account.userName.trim() : "";
       var hadAccountFocus = accountControl.contains(document.activeElement);
       var portalWorkspace = isPortalWorkspace(account);
+      if (portalWorkspace && drawerDialog.open) closeMenu();
       var workspaceMenuOpen = portalWorkspace && toggle.getAttribute("aria-controls") === "academy-portal-sidebar" && toggle.getAttribute("aria-expanded") === "true";
       var academyMenuOpen = !portalWorkspace && header.classList.contains("swa-menu-open");
       header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
@@ -576,11 +743,17 @@
       });
     }
 
-    function closeMenu() {
+    function closeMenu(restoreFocus) {
+      var wasOpen = drawerDialog.open;
+      if (wasOpen) {
+        if (typeof drawerDialog.close === "function") drawerDialog.close();
+        else drawerDialog.removeAttribute("open");
+      }
       header.classList.remove("swa-menu-open");
       if (isPortalWorkspace(window.SKUNKWORKS_ACADEMY_NAV_ACCOUNT)) return;
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open Academy menu");
+      if (wasOpen && restoreFocus) toggle.focus();
     }
 
     function closeSearch() {
@@ -591,19 +764,48 @@
     function openMenu() {
       closeSearch();
       closeAccountMenu(false);
+      ecosystem.open = false;
+      window.dispatchEvent(new CustomEvent("skunkworksacademy:close-primary-navigation"));
       header.classList.add("swa-menu-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close Academy menu");
+      if (typeof drawerDialog.showModal === "function") drawerDialog.showModal();
+      else drawerDialog.setAttribute("open", "");
+      drawerClose.focus();
     }
 
     function openSearch() {
       closeMenu();
       closeAccountMenu(false);
+      ecosystem.open = false;
+      window.dispatchEvent(new CustomEvent("skunkworksacademy:close-primary-navigation"));
       header.classList.add("swa-search-open");
       search.setAttribute("aria-expanded", "true");
       renderSearchResults(searchInput.value);
       searchInput.focus();
     }
+
+    drawerClose.addEventListener("click", function () { closeMenu(true); });
+    drawerDialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      closeMenu(true);
+    });
+    drawerDialog.addEventListener("click", function (event) {
+      if (event.target === drawerDialog) closeMenu(true);
+    });
+    ecosystem.addEventListener("toggle", function () {
+      if (!ecosystem.open) return;
+      closeMenu();
+      closeSearch();
+      closeAccountMenu(false);
+      window.dispatchEvent(new CustomEvent("skunkworksacademy:close-primary-navigation"));
+    });
+    window.addEventListener("skunkworksacademy:primary-navigation-open", function () {
+      closeMenu();
+      closeSearch();
+      closeAccountMenu(false);
+      ecosystem.open = false;
+    });
 
     toggle.addEventListener("click", function (event) {
       event.preventDefault();
@@ -648,6 +850,7 @@
 
     document.addEventListener("click", function (event) {
       if (!accountControl.contains(event.target)) closeAccountMenu(accountMenu.contains(document.activeElement));
+      if (!ecosystem.contains(event.target)) ecosystem.open = false;
       if (!header.contains(event.target)) {
         closeMenu();
         closeSearch();
@@ -662,13 +865,16 @@
         if (!accountMenu.hidden) {
           event.preventDefault();
           closeAccountMenu(true);
+        } else if (ecosystem.open) {
+          event.preventDefault();
+          ecosystem.open = false;
+          ecosystemSummary.focus();
         } else if (header.classList.contains("swa-search-open")) {
           event.preventDefault();
           closeSearch();
           search.focus();
         } else if (header.classList.contains("swa-menu-open")) {
-          closeMenu();
-          toggle.focus();
+          closeMenu(true);
         }
         return;
       }
@@ -682,6 +888,8 @@
 
   ready(function () {
     addStyles();
+    addBrandNavigationStyles();
     buildNavigation();
   });
 })();
+
