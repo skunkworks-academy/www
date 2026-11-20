@@ -7,6 +7,38 @@ import {fileURLToPath} from 'node:url';
 
 export const GUIDE_PATH = '/courses/mb-800-exam-preparation/';
 export const GUIDE_ID = 'MB-800-PREP';
+
+// The reviewed guide owns its static document and bypasses the legacy shell
+// loader. Add the same versioned navigation at publication time without
+// modifying the reviewed Microsoft source or its course content.
+export function guideNavigation(html) {
+  const shell = fs.readFileSync(new URL('../assets/academy-navigation.js', import.meta.url), 'utf8');
+  const revision = /\bvar NAVIGATION_REVISION = "([0-9.]+)";/.exec(shell)?.[1];
+  if (!revision) throw new Error('Unable to resolve the Academy navigation revision.');
+  const scripts = name => [...html.matchAll(/<script\b[^>]*\bsrc\s*=\s*(["'])([^"']+)\1[^>]*>\s*<\/script>/gi)]
+    .filter(match => {
+      try {
+        const url = new URL(match[2], 'https://www.skunkworksacademy.com');
+        return ['https://www.skunkworksacademy.com', 'https://skunkworksacademy.com'].includes(url.origin)
+          && url.pathname === '/assets/' + name;
+      } catch { return false; }
+    });
+  for (const [name, marker] of [
+    ['skunkworks-ui.js', 'data-skunkworks-ui="canonical"'],
+    ['skunkworks-footer.js', 'data-skunkworks-global-footer="canonical"']
+  ]) {
+    const matches = scripts(name);
+    if (matches.length !== 1) throw new Error('Guide must include exactly one canonical ' + name + ' script.');
+    html = html.replace(matches[0][0], '<script defer src="https://www.skunkworksacademy.com/assets/' + name + '?rev=' + revision + '" ' + marker + '></script>');
+  }
+  const navigation = scripts('academy-navigation-v11.js');
+  if (navigation.length > 1) throw new Error('Guide contains duplicate navigation scripts.');
+  if (navigation.length) html = html.replace(navigation[0][0], '');
+  if (!/<\/head\s*>/i.test(html)) throw new Error('Guide document has no head.');
+  const script = '<script defer src="https://www.skunkworksacademy.com/assets/academy-navigation-v11.js?nav=' + revision + '" data-skunkworks-react-safe="true"></script>';
+  return html.replace(/<\/head\s*>/i, script + '</head>');
+}
+
 export function compose({root, source, expectedCommit, upstreamSitemap}) {
   if (!/^[a-f0-9]{40}$/.test(expectedCommit || '')) throw new Error('A full immutable Microsoft commit is required.');
   const actual = execFileSync('git', ['-C', source, 'rev-parse', 'HEAD'], {encoding:'utf8'}).trim();
@@ -34,7 +66,7 @@ export function compose({root, source, expectedCommit, upstreamSitemap}) {
     }
     const destination = path.join(output, relative, 'index.html');
     fs.mkdirSync(path.dirname(destination), {recursive:true});
-    fs.copyFileSync(file,destination);
+    fs.writeFileSync(destination,guideNavigation(html));
   }
   const assetRoot = path.join(sourceCourse,'assets');
   for (const entry of fs.readdirSync(assetRoot,{withFileTypes:true})) {

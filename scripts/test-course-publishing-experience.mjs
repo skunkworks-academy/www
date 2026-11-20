@@ -120,6 +120,20 @@ try {
           if (await page.locator('html[data-swa-owned-course-shell="MB-800-PREP"]').count() !== 1) {
             throw new Error('The MB-800 guide must own its canonical static course shell.');
           }
+          const primary = page.locator('.swa-global-nav__top-menu');
+          await primary.waitFor({state: viewport.width > 980 ? 'visible' : 'attached', timeout: 6000});
+          const background = await page.locator('.swa-global-nav').evaluate(el => getComputedStyle(el).backgroundColor);
+          if (background !== (theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)')) {
+            throw new Error('MB-800 navigation does not use the current design-system theme.');
+          }
+          if (!course.roleModule && viewport.width <= 980) {
+            const toggle = page.locator('.swa-global-nav__toggle');
+            await toggle.click();
+            const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
+            await dialog.waitFor({state:'visible', timeout:5000});
+            await page.keyboard.press('Escape');
+            await dialog.waitFor({state:'hidden', timeout:5000});
+          }
           await page.locator('a[href*="/course-registration/?course=MB-800-PREP"]').first().waitFor({state:'visible',timeout:5000});
           if (course.roleModule) {
             await page.locator('nav[aria-label$="module navigation"]').first().waitFor({state:'visible',timeout:5000});
