@@ -157,7 +157,7 @@
       .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem { position:relative!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary { list-style:none!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-summary::-webkit-details-marker { display:none!important; }
-      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu { position:absolute!important; right:0!important; top:calc(100% + 8px)!important; width:min(290px,calc(100vw - 24px))!important; padding:8px!important; background:var(--swa-bg)!important; border:1px solid var(--swa-line)!important; box-shadow:0 12px 40px #0002!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu { position:absolute!important; z-index:3!important; right:0!important; top:calc(100% + 8px)!important; width:min(290px,calc(100vw - 24px))!important; padding:8px!important; background:var(--swa-bg)!important; border:1px solid var(--swa-line)!important; box-shadow:0 12px 40px #0002!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu a { display:block!important; padding:12px!important; color:var(--swa-text)!important; text-decoration:none!important; font-size:14px!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__ecosystem-menu a:hover { background:var(--swa-panel-strong)!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__top-menu { background:var(--swa-bg)!important; border-top:1px solid var(--swa-line)!important; padding:0 20px!important; }
@@ -174,6 +174,7 @@
       .swa-global-nav.swa-global-nav .swa-global-nav__drawer-group { border-color:var(--swa-line)!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__search-panel,
       .swa-global-nav.swa-global-nav .swa-global-nav__account-menu { background:var(--swa-panel)!important; border-color:var(--swa-line)!important; color:var(--swa-text)!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__search-panel { z-index:3!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__search-box { background:var(--swa-bg)!important; border-color:var(--swa-muted)!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__search-box svg { stroke:var(--swa-text)!important; }
       .swa-global-nav.swa-global-nav .swa-global-nav__search-input { color:var(--swa-text)!important; }

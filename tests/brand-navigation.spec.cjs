@@ -51,6 +51,25 @@ for (const path of ['/', '/partners/']) {
         expect(await contrast(page, '.swa-global-nav__search', '.swa-global-nav__search')).toBeGreaterThanOrEqual(3);
 
         if (size === 'desktop') {
+          const ecosystem = header.locator('summary[aria-label="Skunkworks ecosystem"]');
+          await ecosystem.click();
+          const corporateLink = header.getByRole('link', {name: 'Skunkworks Africa', exact: true});
+          await expect(corporateLink).toBeVisible();
+          expect(await corporateLink.evaluate(element => {
+            const box = element.getBoundingClientRect();
+            const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+            return element === hit || element.contains(hit);
+          })).toBe(true);
+          await page.keyboard.press('Escape');
+          await expect(ecosystem).toBeFocused();
+          await search.click();
+          const searchInput = header.locator('.swa-global-nav__search-input');
+          await expect(searchInput).toBeFocused();
+          expect(await searchInput.evaluate(element => {
+            const box = element.getBoundingClientRect();
+            return document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2) === element;
+          })).toBe(true);
+          await page.keyboard.press('Escape');
           const button = header.locator('.swa-global-nav__top-menu-button').first();
           await expect(button).toBeVisible();
           await button.click();
