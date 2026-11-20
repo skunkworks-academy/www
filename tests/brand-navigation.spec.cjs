@@ -35,6 +35,11 @@ for (const path of ['/', '/partners/']) {
         const header = page.locator('.swa-global-nav');
         await expect(header).toBeVisible();
         await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+        await expect(header).toHaveCSS('background-color', theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)');
+        await expect(header).toHaveCSS('color', theme === 'dark' ? 'rgb(245, 245, 245)' : 'rgb(17, 17, 17)');
+        const logo = header.locator('.swa-global-nav__brand-logo.swa-logo-' + (theme === 'dark' ? 'dark' : 'light'));
+        await expect(logo).toBeVisible();
+        await expect.poll(() => logo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
         await expect(page.locator('body > .swa-skip-link').first()).toBeAttached();
         expect(await page.locator('body').evaluate(body => body.firstElementChild.classList.contains('swa-skip-link'))).toBe(true);
         await expect(header.getByRole('button', {name: 'Dark theme'})).toHaveAttribute('aria-pressed', String(theme === 'dark'));

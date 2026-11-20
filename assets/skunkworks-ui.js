@@ -118,8 +118,8 @@
     var style = document.createElement("style");
     style.id = "swa-brand-navigation-styles";
     style.textContent = `
-      .swa-global-nav.swa-global-nav { --swa-bg:#fff; --swa-panel:#fafafa; --swa-panel-strong:#e5e5e5; --swa-text:#111; --swa-muted:#595959; --swa-line:#d4d4d4; --swa-link:#111; --swa-accent:#111; --swa-focus:#005fcc; background:var(--swa-bg)!important; color:var(--swa-text)!important; border-bottom:1px solid var(--swa-line)!important; box-shadow:none!important; font-family:Inter,'Segoe UI',Roboto,Helvetica,Arial,sans-serif!important; min-height:72px!important; }
-      html[data-theme="dark"] .swa-global-nav.swa-global-nav { --swa-bg:#111; --swa-panel:#171717; --swa-panel-strong:#303030; --swa-text:#f5f5f5; --swa-muted:#b8b8b8; --swa-line:#454545; --swa-link:#f5f5f5; --swa-accent:#f5f5f5; --swa-focus:#91caff; }
+      .swa-global-nav.swa-global-nav { --swa-bg:#fff!important; --swa-panel:#fafafa!important; --swa-panel-strong:#e5e5e5!important; --swa-text:#111!important; --swa-muted:#595959!important; --swa-line:#d4d4d4!important; --swa-link:#111!important; --swa-accent:#111!important; --swa-focus:#005fcc!important; background:var(--swa-bg)!important; color:var(--swa-text)!important; border-bottom:1px solid var(--swa-line)!important; box-shadow:none!important; font-family:Inter,'Segoe UI',Roboto,Helvetica,Arial,sans-serif!important; min-height:72px!important; }
+      html[data-theme="dark"] .swa-global-nav.swa-global-nav { --swa-bg:#111!important; --swa-panel:#171717!important; --swa-panel-strong:#303030!important; --swa-text:#f5f5f5!important; --swa-muted:#b8b8b8!important; --swa-line:#454545!important; --swa-link:#f5f5f5!important; --swa-accent:#f5f5f5!important; --swa-focus:#91caff!important; }
       html body.swa-has-global-nav { padding-top:72px!important; }
       html body.swa-has-global-nav.swa-has-top-menu { padding-top:116px!important; }
       .swa-global-nav.swa-global-nav.swa-has-top-menu { min-height:116px!important; }
@@ -766,11 +766,16 @@
       closeAccountMenu(false);
       ecosystem.open = false;
       window.dispatchEvent(new CustomEvent("skunkworksacademy:close-primary-navigation"));
+      if (!drawerDialog.isConnected) return;
+      if (!drawerDialog.open) {
+        try {
+          if (typeof drawerDialog.showModal === "function") drawerDialog.showModal();
+          else drawerDialog.setAttribute("open", "");
+        } catch (_error) { return; }
+      }
       header.classList.add("swa-menu-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close Academy menu");
-      if (typeof drawerDialog.showModal === "function") drawerDialog.showModal();
-      else drawerDialog.setAttribute("open", "");
       drawerClose.focus();
     }
 

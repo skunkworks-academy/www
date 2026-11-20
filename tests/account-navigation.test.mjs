@@ -290,6 +290,25 @@ test('navigation drawer has a close control and returns focus on Escape', t => {
   assert.equal(f.document.activeElement, toggle);
 });
 
+test('drawer state remains consistent if an open dialog is encountered again or the dialog is detached', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false });
+  const toggle = f.query('.swa-global-nav__toggle');
+  const dialog = f.query('.swa-global-nav__drawer-dialog');
+  let calls = 0;
+  dialog.showModal = () => { calls++; throw new Error('already open'); };
+  dialog.setAttribute('open', '');
+  toggle.click();
+  assert.equal(calls, 0);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+  dialog.removeAttribute('open');
+  f.query('.swa-global-nav').classList.remove('swa-menu-open');
+  toggle.setAttribute('aria-expanded', 'false');
+  dialog.remove();
+  toggle.click();
+  assert.equal(calls, 0);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+});
+
 test('header theme toggle shares the persisted footer preference', t => {
   const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false });
   const toggle = f.query('.swa-global-nav__theme');
