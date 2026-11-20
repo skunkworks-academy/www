@@ -166,7 +166,7 @@
       .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button:focus,
       .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button[aria-expanded="true"],
       .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-button[data-current="true"] { background:var(--swa-panel-strong)!important; color:var(--swa-text)!important; border-bottom-color:var(--swa-text)!important; }
-      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-panel { background:var(--swa-panel)!important; border-color:var(--swa-line)!important; color:var(--swa-text)!important; box-shadow:0 12px 40px #0003!important; }
+      .swa-global-nav.swa-global-nav .swa-global-nav__top-menu-panel { max-height:min(720px,calc(100vh - 136px))!important; background:var(--swa-panel)!important; border-color:var(--swa-line)!important; color:var(--swa-text)!important; box-shadow:0 12px 40px #0003!important; }
       .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-title,.swa-global-nav__top-menu-option,.swa-global-nav__drawer-group-title,.swa-global-nav__drawer-link) { color:var(--swa-text)!important; }
       .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-description,.swa-global-nav__top-menu-option span,.swa-global-nav__drawer-heading,.swa-global-nav__drawer-group-description) { color:var(--swa-muted)!important; }
       .swa-global-nav.swa-global-nav :is(.swa-global-nav__top-menu-option,.swa-global-nav__drawer-link):is(:hover,:focus,[aria-current="page"]) { background:var(--swa-panel-strong)!important; color:var(--swa-text)!important; border-color:var(--swa-line)!important; }

@@ -56,6 +56,9 @@ for (const path of ['/', '/partners/']) {
           await button.click();
           const panel = header.locator('.swa-primary-open .swa-global-nav__top-menu-panel');
           await expect(panel).toBeVisible();
+          const panelBounds = await panel.boundingBox();
+          const lastOptionBounds = await panel.locator('.swa-global-nav__top-menu-option').last().boundingBox();
+          expect(lastOptionBounds.y + lastOptionBounds.height).toBeLessThanOrEqual(panelBounds.y + panelBounds.height);
           expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option strong', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
           expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option span', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
           await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
