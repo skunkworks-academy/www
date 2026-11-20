@@ -192,7 +192,19 @@ for (const [surface, path] of surfaces) {
       await expect(page.locator('.swa-global-nav')).toBeVisible();
       await page.waitForFunction(() => [...document.querySelectorAll('link[rel="stylesheet"]')]
         .every(link => link.disabled || Boolean(link.sheet)));
-      await page.evaluate(() => document.fonts?.ready);
+      // A completed FontFaceSet.ready can still represent fallback fonts when
+      // a webfont has failed or a late theme stylesheet registers new faces.
+      // Load the Academy's actual brand faces before comparing the baseline.
+      await page.evaluate(async () => {
+        if (!document.fonts) throw new Error('Font loading API is unavailable');
+        for (const spec of ['800 16px Inter', '900 16px Inter', '400 16px "Open Sans"', '700 16px "Open Sans"']) {
+          const faces = await document.fonts.load(spec);
+          if (!faces.length || faces.some(face => face.status !== 'loaded')) {
+            throw new Error('Academy visual baseline font did not load: ' + spec);
+          }
+        }
+        await document.fonts.ready;
+      });
 
       // The homepage's partner badges start below the initial viewport and
       // use native lazy-loading. Full-page screenshots do not reliably trigger
