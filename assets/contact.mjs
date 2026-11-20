@@ -22,8 +22,10 @@ form.addEventListener('submit', async event => {
     const response = await fetch('https://api.skunkworksacademy.com/api/contact/enquiries', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, id: pending.id }), signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
     const body = await response.json().catch(() => ({}));
     if (!response.ok || body.received !== true || body.reference !== pending.id) throw new Error(response.status === 429 ? 'Too many enquiries right now. Please wait an hour and retry, or use email below.' : 'We could not confirm receipt. Your message is still here. Please retry; the same enquiry will not be duplicated.');
-    feedback(`Thank you — your enquiry has been received. Your reference is ${body.reference}. The Academy team can follow up at your reply email.`);
-    form.reset(); pending = null; resetGuide(); $('topic-help').textContent = topicHints.general;
+    const unchanged = JSON.stringify(Object.fromEntries(new FormData(form))) === signature;
+    feedback(`Thank you — your enquiry has been received. Your reference is ${body.reference}. The Academy team can follow up at your reply email.${unchanged ? '' : ' Changes you made while sending are still in the form and have not been sent.'}`);
+    pending = null;
+    if (unchanged) { form.reset(); $('topic-help').textContent = topicHints.general; }
   } catch (error) {
     feedback(error.name === 'AbortError' || error instanceof TypeError ? 'We could not confirm receipt. Your message is still here. Check your connection and retry; the same enquiry will not be duplicated.' : error.message, true);
   } finally { clearTimeout(timeout); busy = false; send.disabled = false; send.innerHTML = 'Send enquiry <span aria-hidden="true">→</span>'; }
@@ -43,6 +45,7 @@ $('skunkie-reset').addEventListener('click', () => { resetGuide(); say('Skunkie'
 chatForm.addEventListener('submit', event => {
   event.preventDefault(); const value = input.value.trim(); if (!value) return;
   say('You', value); input.value = ''; const reply = guide.reply(value); say('Skunkie', reply.text);
+  if (reply.retry) input.value = value;
   if (reply.ready) { $('skunkie-use').hidden = false; chatForm.hidden = true; $('skunkie-use').focus(); } else input.focus();
 });
 $('skunkie-use').addEventListener('click', () => {
@@ -58,3 +61,5 @@ $('skunkie-use').addEventListener('click', () => {
   $('contact-topic').dispatchEvent(new Event('change')); dialog.close();
   form.scrollIntoView({ block: 'center', behavior: 'instant' }); $('contact-message').focus();
 });
+// Native submission remains disabled if this module or its dependencies fail to load.
+send.disabled = false;

@@ -49,7 +49,7 @@
     <section class="contact-form-panel" aria-labelledby="form-heading">
       <div class="contact-section-heading"><div><p class="eyebrow">STRAIGHT TO THE TEAM</p><h2 id="form-heading">Send an enquiry</h2></div><span class="contact-tag">No sign-in needed</span></div>
       <p class="contact-muted">Four details. We’ll take it from here.</p>
-      <form id="contact-form" novalidate>
+      <form id="contact-form" method="post" action="https://api.skunkworksacademy.com/api/contact/enquiries" novalidate>
         <div class="contact-pair">
           <div class="contact-field"><label for="contact-name">Your name</label><input id="contact-name" name="name" autocomplete="name" maxlength="100" required></div>
           <div class="contact-field"><label for="contact-email">Reply email</label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
@@ -59,7 +59,7 @@
         <div class="contact-trap" aria-hidden="true"><label for="contact-website">Leave this empty</label><input id="contact-website" name="website" tabindex="-1" autocomplete="off"></div>
         <p class="contact-privacy">Your enquiry is stored privately for the Academy team to respond. <a href="/privacy.html">How we handle your information</a>.</p>
         <div id="contact-status" role="status" aria-live="polite" tabindex="-1"></div>
-        <button class="contact-primary" type="submit" id="contact-send">Send enquiry <span aria-hidden="true">→</span></button>
+        <button class="contact-primary" type="submit" id="contact-send" disabled>Send enquiry <span aria-hidden="true">→</span></button>
         <noscript><p>This form needs JavaScript to securely send your enquiry. Please enable it, or <a href="mailto:info@skunkworks.africa">email the team</a>.</p></noscript>
       </form>
     </section>

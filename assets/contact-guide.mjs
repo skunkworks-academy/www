@@ -29,11 +29,16 @@ export function createGuide() {
       if (!value) return { text: 'Type a reply and I’ll help you take the next step.' };
       if (step === 'message') {
         if (value.length < 10) return { text: 'Tell me a little more about what you need help with.' };
-        draft.message = value.slice(0, 4000); draft.topic = suggestTopic(value); step = 'details';
+        if (value.length > 4000) return { text: 'Please keep your first message within 4,000 characters.', retry: true };
+        draft.message = value; draft.topic = suggestTopic(value); step = 'details';
         return { text: `I suggest “${topicLabels[draft.topic]}”. You can change that in the form. ${topicHints[draft.topic]} Add any useful detail, or reply “skip”.` };
       }
       if (step === 'details') {
-        if (!/^skip[.!]?$/i.test(value)) draft.message += '\n\n' + value.slice(0, 900);
+        if (!/^skip[.!]?$/i.test(value)) {
+          const remaining = 5000 - draft.message.length - 2;
+          if (value.length > remaining) return { text: `There is room for ${remaining} more characters in your enquiry. Please shorten this reply or say “skip”. I haven’t added or shortened it.`, retry: true };
+          draft.message += '\n\n' + value;
+        }
         step = 'name'; return { text: 'What name should the team use when replying?' };
       }
       if (step === 'name') {

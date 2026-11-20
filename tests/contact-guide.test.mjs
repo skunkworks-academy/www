@@ -15,3 +15,12 @@ test('routes each topic from free text, with general fallback', () => {
 test('skipping extra details does not add skip to the message', () => {
   const guide = createGuide(); guide.reply('A synthetic general enquiry'); guide.reply('skip'); assert.equal(guide.draft.message, 'A synthetic general enquiry');
 });
+test('long follow-up is preserved within budget; oversized replies stay at the same step', () => {
+  const guide = createGuide(); guide.reply('A synthetic general enquiry');
+  const detail = 'A'.repeat(3000); guide.reply(detail); assert.ok(guide.draft.message.endsWith(detail));
+  const limited = createGuide(); limited.reply('B'.repeat(4000));
+  assert.equal(limited.reply('C'.repeat(1000)).retry, true);
+  assert.equal(limited.draft.message.length, 4000);
+  assert.match(limited.reply('Shorter detail').text, /What name/);
+  assert.ok(limited.draft.message.endsWith('Shorter detail'));
+});
