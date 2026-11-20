@@ -4,7 +4,7 @@
 
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
-  var NAVIGATION_REVISION = "2026.11.05.2";
+  var NAVIGATION_REVISION = "2026.11.20.1";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
   var host = String(window.location && window.location.hostname || "").toLowerCase();
   var isLocalPreview = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
@@ -159,8 +159,13 @@
 
   if (typeof document === "undefined") return;
 
+  // Course applications own their document subtree through React. Their
+  // explicitly marked shell may update only the separate Academy header.
+  var hydrationSafe = Boolean(document.querySelector('script[data-skunkworks-react-safe="true"]'));
+  var lastRoute = String(window.location.pathname || "/");
+
   function assetUrl(root, file) {
-    var revision = file === "skunkworks-footer.js" ? "2026.11.05.1" : file === "skunkworks-ui.js" || file === "academy-brand-theme.css" ? NAVIGATION_REVISION : REVISION;
+    var revision = file === "skunkworks-footer.js" || file === "skunkworks-ui.js" ? NAVIGATION_REVISION : file === "academy-brand-theme.css" ? "2026.11.05.2" : REVISION;
     return root + file + "?v=" + VERSION + "&rev=" + revision;
   }
 
@@ -235,7 +240,7 @@
       ".swa-global-nav__top-menu-button::after{content:\"⌄\"!important;margin-left:6px!important;font-size:12px!important;line-height:1!important;transform:translateY(-1px)!important}",
       ".swa-global-nav__top-menu-button:hover,.swa-global-nav__top-menu-button:focus,.swa-global-nav__top-menu-button[aria-expanded=\"true\"]{background:#1a1a1a!important;color:#fff!important}",
       ".swa-global-nav__top-menu-button:focus-visible{outline:3px solid #fff!important;outline-offset:-4px!important}",
-      ".swa-global-nav__top-menu-button[aria-current=\"page\"]{border-bottom-color:#fff!important;background:#1a1a1a!important;color:#fff!important}",
+      ".swa-global-nav__top-menu-button[data-current=\"true\"]{border-bottom-color:#fff!important;background:#1a1a1a!important;color:#fff!important}",
       ".swa-global-nav__top-menu-panel{position:absolute!important;top:100%!important;left:0!important;display:none!important;width:min(390px,calc(100vw - 32px))!important;max-height:min(580px,calc(100vh - 152px))!important;overflow:auto!important;padding:16px!important;background:#000!important;border:1px solid rgba(255,255,255,.24)!important;border-top:1px solid #fff!important;border-radius:0 0 8px 8px!important;box-shadow:0 20px 44px rgba(0,0,0,.42)!important;white-space:normal!important}",
       ".swa-global-nav__top-menu-item:nth-last-child(-n+3) .swa-global-nav__top-menu-panel{left:auto!important;right:0!important}",
       ".swa-global-nav__top-menu-item.swa-primary-open .swa-global-nav__top-menu-panel{display:block!important}",
@@ -280,7 +285,10 @@
     try {
       var current = new URL(window.location.href);
       var target = new URL(url);
-      if (String(current.hostname).toLowerCase() !== String(target.hostname).toLowerCase()) return false;
+      var currentHost = String(current.hostname).toLowerCase();
+      var targetHost = String(target.hostname).toLowerCase();
+      var apexHosts = ["skunkworksacademy.com", "www.skunkworksacademy.com"];
+      if (currentHost !== targetHost && !(apexHosts.indexOf(currentHost) !== -1 && apexHosts.indexOf(targetHost) !== -1)) return false;
       var targetPath = normalisePath(target.pathname);
       var currentPath = normalisePath(current.pathname);
       return targetPath === "/" ? currentPath === "/" : pathMatches(currentPath, targetPath);
@@ -297,6 +305,8 @@
 
   function currentSection() {
     var currentHost = String(window.location && window.location.hostname || "").toLowerCase();
+    // Local previews represent the main Academy site, not a "127" section.
+    if (isLocalPreview) currentHost = "www.skunkworksacademy.com";
     var currentPath = normalisePath(window.location && window.location.pathname || "/");
     for (var index = 0; index < SECTION_BRANDS.length; index += 1) {
       var section = SECTION_BRANDS[index];
@@ -335,6 +345,7 @@
     var description = document.createElement("span");
     link.className = className;
     link.href = item.url;
+    if (locationMatchesUrl(item.url)) link.setAttribute("aria-current", "page");
     label.textContent = item.label;
     description.textContent = item.description || item.url;
     link.appendChild(label);
@@ -359,6 +370,7 @@
       if (!button || !nav.contains(button)) return;
       var item = button.closest(".swa-global-nav__top-menu-item");
       var opening = !item.classList.contains("swa-primary-open");
+      if (opening) window.dispatchEvent(new CustomEvent("skunkworksacademy:primary-navigation-open"));
       closePrimaryMenus(nav, item);
       item.classList.toggle("swa-primary-open", opening);
       button.setAttribute("aria-expanded", opening ? "true" : "false");
@@ -368,6 +380,7 @@
       if (button && (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
         var item = button.closest(".swa-global-nav__top-menu-item");
+        window.dispatchEvent(new CustomEvent("skunkworksacademy:primary-navigation-open"));
         closePrimaryMenus(nav, item);
         item.classList.add("swa-primary-open");
         button.setAttribute("aria-expanded", "true");
@@ -385,6 +398,7 @@
       }
     });
     document.addEventListener("click", function (event) { if (!nav.contains(event.target)) closePrimaryMenus(nav); });
+    window.addEventListener("skunkworksacademy:close-primary-navigation", function () { closePrimaryMenus(nav); });
   }
 
   function syncDrawerMenu() {
@@ -468,7 +482,7 @@
       button.textContent = group.label;
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-controls", panelId);
-      if (groupIsCurrent(group)) button.setAttribute("aria-current", "page");
+      if (groupIsCurrent(group)) button.setAttribute("data-current", "true");
       panel.className = "swa-global-nav__top-menu-panel";
       panel.id = panelId;
       panel.setAttribute("aria-label", group.label + " options");
@@ -537,13 +551,18 @@
   }
 
   function refreshCanonicalChrome() {
-    removeKnownPublicChrome();
+    if (!hydrationSafe) removeKnownPublicChrome();
+    if (String(window.location.pathname || "/") !== lastRoute) {
+      refreshRouteState();
+      return;
+    }
     ensureTopMenu();
     syncDrawerMenu();
     syncBrandText();
   }
 
   function refreshRouteState() {
+    lastRoute = String(window.location.pathname || "/");
     var nav = document.querySelector(".swa-global-nav__top-menu");
     if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
     var drawer = document.querySelector(".swa-global-nav__links");
@@ -567,10 +586,11 @@
     window.addEventListener("pagehide", function () { observer.disconnect(); }, { once: true });
   }
 
-  ensureAcademyTheme();
+  if (!hydrationSafe) ensureAcademyTheme();
   ensureTopMenuStyles();
   ensureRuntime("skunkworks-ui.js", "data-skunkworks-ui", "canonical");
   ensureRuntime("skunkworks-footer.js", "data-skunkworks-global-footer", "canonical");
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", startChromeGuard, { once: true });
   else startChromeGuard();
 })();
+

@@ -43,8 +43,11 @@ jobs:
           cat /tmp/academy-visual-http.log
           exit 1
 
+      - name: Verify design-system navigation in both themes
+        run: npx playwright test tests/brand-navigation.spec.cjs --reporter=line --output=test-results/brand-navigation
+
       - name: Run platform render matrix
-        run: npx playwright test tests/platform-visual-regression.spec.cjs --reporter=line
+        run: npx playwright test tests/platform-visual-regression.spec.cjs --reporter=line --output=test-results/platform
 
       - name: Upload desktop/mobile evidence
         if: always()
@@ -54,3 +57,4 @@ jobs:
           path: test-results/
           if-no-files-found: warn
           retention-days: 30
+

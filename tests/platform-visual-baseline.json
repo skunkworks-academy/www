@@ -8,9 +8,12 @@
   "cases": {
     "publisher-desktop": {
       "width": 1440,
-      "height": 1239,
-      "dhash": "0001010145800000",
-      "avgLuma": 214.5
+      "height": 1258,
+      "dhash": "0001818001490000",
+      "avgLuma": 248.859375,
+      "sourceWorkflowRun": 44682397770,
+      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
+      "reviewNote": "Reviewed the complete desktop screenshot against the previous baseline. The lighter, shorter header is the intentional light-theme navigation change; the publishing content, cards and footer remain visible and unclipped."
     },
     "registration-desktop": {
       "width": 1440,
@@ -20,15 +23,21 @@
     },
     "cisco-mobile": {
       "width": 390,
-      "height": 6516,
-      "dhash": "308000e080800000",
-      "avgLuma": 235.1
+      "height": 6782,
+      "dhash": "8a008400b0000080",
+      "avgLuma": 234.453125,
+      "sourceWorkflowRun": 44682397770,
+      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
+      "reviewNote": "Reviewed the full mobile screenshot against the earlier baseline. The current page includes the Networking Academy mark and membership block added since that baseline; the course list and footer are visible without horizontal overflow."
     },
     "microsoft-mobile": {
       "width": 390,
-      "height": 11575,
-      "dhash": "0180c08030600100",
-      "avgLuma": 233.7
+      "height": 11577,
+      "dhash": "0190c00100000100",
+      "avgLuma": 215.171875,
+      "sourceWorkflowRun": 44682397770,
+      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
+      "reviewNote": "Reviewed the complete mobile screenshot against the earlier baseline. The new light header and the training sections, catalogue and footer render without clipping or horizontal overflow."
     },
     "registration-mobile": {
       "width": 390,
@@ -116,9 +125,12 @@
     },
     "learn-mobile": {
       "width": 390,
-      "height": 7826,
-      "dhash": "2580000100090900",
-      "avgLuma": 219.5
+      "height": 8127,
+      "dhash": "2604a02000940000",
+      "avgLuma": 215.140625,
+      "sourceWorkflowRun": 44682397770,
+      "sourceHead": "5f36220941795afde9a3b8c92d22a3ee6026dfec",
+      "reviewNote": "Reviewed the full mobile page against the earlier baseline. The light header, learning cards, process steps and footer remain visible without clipping or horizontal overflow."
     },
     "home-desktop": {
       "width": 1440,
@@ -131,9 +143,12 @@
     },
     "microsoft-desktop": {
       "width": 1440,
-      "height": 5636,
-      "dhash": "5001990101010109",
-      "avgLuma": 210.7
+      "height": 5655,
+      "dhash": "4001990121010101",
+      "avgLuma": 188.421875,
+      "sourceWorkflowRun": 44683155687,
+      "sourceHead": "74c4ba4e98b7c226f6207d72ca824c254c80827e",
+      "reviewNote": "Reviewed the full desktop image against the previous baseline. The light header and Microsoft catalogue remain visible and aligned; the visual test now waits for the page's IBM Plex Sans fonts before capture."
     },
     "cisco-desktop": {
       "width": 1440,
@@ -152,3 +167,4 @@
     }
   }
 }
+
