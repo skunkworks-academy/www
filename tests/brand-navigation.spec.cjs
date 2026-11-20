@@ -34,6 +34,7 @@ for (const path of ['/', '/partners/']) {
         await page.goto(origin + path, {waitUntil: 'domcontentloaded'});
         const header = page.locator('.swa-global-nav');
         await expect(header).toBeVisible();
+        await expect(header.locator('.swa-global-nav__brand-text')).toHaveText(path === '/' ? 'Home' : 'Partners');
         await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
         await expect(header).toHaveCSS('background-color', theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)');
         await expect(header).toHaveCSS('color', theme === 'dark' ? 'rgb(245, 245, 245)' : 'rgb(17, 17, 17)');

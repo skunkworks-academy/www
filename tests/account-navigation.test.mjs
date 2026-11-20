@@ -345,3 +345,8 @@ test('React-safe course navigation leaves framework-owned chrome intact and foll
   assert.equal(f.query('.swa-global-nav__top-menu-option[href="https://skunkworksacademy.com/partners/"]').getAttribute('aria-current'), 'page');
 });
 
+test('local previews use the same section labels as the Academy site', t => {
+  const f = fixture(t, { url: 'http://127.0.0.1:4173/partners/', signedIn: false });
+  assert.equal(f.query('.swa-global-nav__brand-text').textContent, 'Partners');
+});
+

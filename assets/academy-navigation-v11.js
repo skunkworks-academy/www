@@ -305,6 +305,8 @@
 
   function currentSection() {
     var currentHost = String(window.location && window.location.hostname || "").toLowerCase();
+    // Local previews represent the main Academy site, not a "127" section.
+    if (isLocalPreview) currentHost = "www.skunkworksacademy.com";
     var currentPath = normalisePath(window.location && window.location.pathname || "/");
     for (var index = 0; index < SECTION_BRANDS.length; index += 1) {
       var section = SECTION_BRANDS[index];
