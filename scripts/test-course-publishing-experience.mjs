@@ -83,8 +83,14 @@ try {
           h1: [...document.querySelectorAll('h1')].filter(el => el.getBoundingClientRect().height > 0).length,
           width: document.documentElement.scrollWidth,
           canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '',
-          courseLink: Boolean([...document.querySelectorAll('.swa-global-nav a')]
-            .some(el => (el.getAttribute('href') || '').includes('/courses/')))
+          courseLink: [...document.querySelectorAll('.swa-global-nav a')].some(el => {
+            try {
+              const url = new URL(el.getAttribute('href'), location.href);
+              return url.protocol === 'https:'
+                && ['skunkworksacademy.com', 'www.skunkworksacademy.com'].includes(url.hostname)
+                && url.pathname.replace(/\/+$/, '') === '/courses';
+            } catch { return false; }
+          })
         }));
         if (result.nav !== 1 || result.footer !== 1) {
           throw new Error('Expected exactly one Academy header/footer; found ' + result.nav + '/' + result.footer);
