@@ -42,6 +42,32 @@
     }
   </style>
 
+  <style>
+    /* Homepage hero: a self-contained surface with explicit contrast in either theme. */
+    .academy-home-hero { background: #081423; color: #f7fafc; position: relative; overflow: hidden; }
+    .academy-home-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 85% 15%, rgba(0, 174, 193, .23), transparent 37%), linear-gradient(125deg, #081423 35%, #102b3b 100%); }
+    .academy-home-hero__inner { position: relative; max-width: 1200px; margin: auto; padding: clamp(3.5rem, 7vw, 6.5rem) 24px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+    .academy-home-hero .academy-home-hero__eyebrow { color: #a6f2ee; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; font-weight: 800; margin: 0 0 1.25rem; }
+    .academy-home-hero h1 { color: #fff; font-size: clamp(2.7rem, 5.4vw, 5.25rem); line-height: 1.03; letter-spacing: -.045em; max-width: 12ch; margin: 0; }
+    .academy-home-hero h1 span { color: #79e4dd; }
+    .academy-home-hero .academy-home-hero__lead { color: #e0ecf0; max-width: 58ch; font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.7; margin: 1.5rem 0 0; }
+    .academy-home-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+    .academy-home-hero .academy-home-hero__button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: .8rem 1.2rem; border: 2px solid #83e8e0; border-radius: .5rem; font-weight: 750; text-decoration: none; background: #83e8e0; color: #071b23; }
+    .academy-home-hero .academy-home-hero__button--outline { background: transparent; border-color: #c2d9df; color: #fff; }
+    .academy-home-hero .academy-home-hero__button:hover { background: #fff; border-color: #fff; color: #071b23; }
+    .academy-home-hero .academy-home-hero__button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    .academy-home-hero__panel { border: 1px solid #4c707d; background: #102939; border-radius: 1.1rem; padding: clamp(1.4rem, 3vw, 2rem); box-shadow: 0 24px 65px rgba(0,0,0,.2); }
+    .academy-home-hero .academy-home-hero__panel-label { color: #a6f2ee; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .13em; margin: 0 0 1rem; }
+    .academy-home-hero .academy-home-hero__panel h2 { color: #fff; font-size: 1.5rem; line-height: 1.2; margin: 0 0 1.25rem; }
+    .academy-home-hero__steps { list-style: none; margin: 0; padding: 0; }
+    .academy-home-hero__steps li { display: grid; grid-template-columns: 2.25rem 1fr; gap: .9rem; padding: 1rem 0; border-top: 1px solid #456471; color: #dcebf0; line-height: 1.5; }
+    .academy-home-hero__steps li > span { color: #a6f2ee; font-weight: 800; font-size: .8rem; padding-top: .15rem; }
+    .academy-home-hero__steps strong { color: #fff; display: block; font-size: 1rem; }
+    .academy-home-hero__steps p { color: #dcebf0; margin: .2rem 0 0; font-size: .9rem; }
+    @media (max-width: 760px) { .academy-home-hero__inner { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 20px; } .academy-home-hero h1 { max-width: 14ch; } }
+    @media (max-width: 420px) { .academy-home-hero__actions { flex-direction: column; } .academy-home-hero__button { width: 100%; } }
+    @media (forced-colors: active) { .academy-home-hero__panel, .academy-home-hero__button { border: 1px solid; } }
+  </style>
   <link rel="stylesheet" href="/assets/publisher.css" />
   <link rel="stylesheet" href="/assets/academy-partnerships.css?v=2026.11.01.2" />
   <meta property="og:type" content="website" />
@@ -78,27 +104,26 @@
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <main id="main">
-    <section class="sk-hero" data-sk-component="hero" data-swa-contrast="preserve">
-      <div class="sk-container sk-hero__inner sk-hero__inner--split">
-        <div class="sk-hero__content">
-          <p class="sk-eyebrow">Instructor-led insight · Updated August 2026</p>
-          <h1>Build practical technology capability — not just course completion.</h1>
-          <p class="sk-hero__lead">Skunkworks Academy publishes original technical guidance, hands-on lab patterns and implementation-ready learning paths for cloud, cybersecurity, artificial intelligence, APIs and enterprise platforms.</p>
-          <div class="sk-actions">
-            <a class="sk-button sk-button--primary" href="/guides/ai-enabled-learning-path.html">Read the featured guide</a>
-            <a class="sk-button sk-button--secondary" href="/self-paced/">Explore learning paths</a>
-            <a class="sk-button sk-button--secondary" href="/schedule/">Find training dates</a>
+    <section class="academy-home-hero" data-sk-component="hero" data-swa-contrast="preserve" aria-labelledby="academy-home-heading">
+      <div class="academy-home-hero__inner">
+        <div>
+          <p class="academy-home-hero__eyebrow">Skunkworks Academy · Learn. Practise. Apply.</p>
+          <h1 id="academy-home-heading">Build skills that <span>work in the real world.</span></h1>
+          <p class="academy-home-hero__lead">Turn ambition into practical capability with instructor-led training, self-paced learning and hands-on labs across cloud, AI, cybersecurity and enterprise technology.</p>
+          <div class="academy-home-hero__actions">
+            <a class="academy-home-hero__button" href="/self-paced/">Explore learning paths <span aria-hidden="true">&nbsp;→</span></a>
+            <a class="academy-home-hero__button academy-home-hero__button--outline" href="/schedule/">Find training dates</a>
           </div>
         </div>
-        <aside class="sk-hero__aside" aria-label="Editorial quality commitments">
-          <h2>Why this content is useful</h2>
-          <ul class="sk-hero__list">
-            <li>Written and reviewed by named technology practitioners.</li>
-            <li>Designed around deployable steps, controls and evidence.</li>
-            <li>Published with review dates, scope and source transparency.</li>
-            <li>Advertising is excluded from login, checkout, forms and lab consoles.</li>
-          </ul>
-        </aside>
+        <div class="academy-home-hero__panel">
+          <p class="academy-home-hero__panel-label">Your learning journey</p>
+          <h2>From curiosity to capability.</h2>
+          <ol class="academy-home-hero__steps">
+            <li><span>01</span><div><strong>Find your direction</strong><p>Choose learning aligned to your goals and role.</p></div></li>
+            <li><span>02</span><div><strong>Learn by doing</strong><p>Build confidence through practical activities and labs.</p></div></li>
+            <li><span>03</span><div><strong>Apply your skills</strong><p>Take what you learn into your work and career.</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
 
