@@ -99,7 +99,7 @@ test('account menu exposes safe destinations, initials and one existing sign-out
 test('menu arrow, Home/End and Escape controls manage focus; outside focus closes it', t => {
   const f = fixture(t);
   const toggle = f.query('.swa-global-nav__account-toggle');
-  const items = [...f.query('#swa-global-nav-account-menu').children];
+  const items = [...f.query('#swa-global-nav-account-menu').querySelectorAll('[role=menuitem]')];
   toggle.focus();
   f.key('ArrowDown');
   assert.equal(f.document.activeElement, items[0]);
@@ -131,7 +131,7 @@ test('missing, cross-origin, credential and script URLs never become account des
   const f = fixture(t);
   for (const value of [undefined, '', 'https://evil.example/?account=profile', 'javascript:alert(1)', '//evil.example/path', 'https://name:secret@portal.skunkworksacademy.com/']) {
     f.update({ profileUrl: value, settingsUrl: value });
-    const items = [...f.query('#swa-global-nav-account-menu').children];
+    const items = [...f.query('#swa-global-nav-account-menu').querySelectorAll('[role=menuitem]')];
     for (const item of items.slice(0, 2)) {
       assert.equal(item.hidden, true);
       assert.equal(item.hasAttribute('href'), false);
@@ -260,7 +260,7 @@ test('public footer and explicit theme remain intact on other hosts', t => {
 
 test('navigation and footer dependency cache revisions change without changing stable theme contract', t => {
   const f = fixture(t);
-  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.20\.1/);
+  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.24\.1/);
   assert.match(f.query('script[data-skunkworks-global-footer]').src, /rev=2026\.11\.20\.2/);
   assert.match(f.query('link[data-skunkworks-brand-theme]').href, /v=2026\.09\.08\.3&rev=2026\.11\.05\.2/);
 });
@@ -350,3 +350,15 @@ test('local previews use the same section labels as the Academy site', t => {
   assert.equal(f.query('.swa-global-nav__brand-text').textContent, 'Partners');
 });
 
+
+test('account menu lists only permitted workspaces and selects through the portal bridge', t => {
+  let selected;
+  const f = fixture(t, { account: { availableWorkspaces: ['Student', 'Staff', 'Invalid'], selectWorkspace: role => { selected = role; } } });
+  const items = [...f.document.querySelectorAll('[role="menuitemradio"]')];
+  assert.equal(items.length, 2);
+  assert.equal(items[1].getAttribute('aria-checked'), 'true');
+  items[0].click();
+  assert.equal(selected, 'Student');
+  f.update(null);
+  assert.equal(f.document.querySelectorAll('[role="menuitemradio"]').length, 0);
+});

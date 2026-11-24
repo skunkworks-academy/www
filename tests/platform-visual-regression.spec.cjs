@@ -190,6 +190,10 @@ for (const [surface, path] of surfaces) {
       // The public loader injects the shared runtime and styles dynamically.
       // Do not capture an earlier font/layout or a finite banner mid-fade.
       await expect(page.locator('.swa-global-nav')).toBeVisible();
+      // The navigation can be visible before the asynchronously loaded footer
+      // and theme have finished. Capture the complete shared shell.
+      await expect(page.locator('.swa-global-footer__copyright')).toBeVisible();
+      await page.waitForLoadState('networkidle');
       await page.waitForFunction(() => [...document.querySelectorAll('link[rel="stylesheet"]')]
         .every(link => link.disabled || Boolean(link.sheet)));
       // A completed FontFaceSet.ready can still represent fallback fonts when

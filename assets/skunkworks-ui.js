@@ -414,7 +414,29 @@
     accountMenu.id = "swa-global-nav-account-menu";
     accountMenu.hidden = true;
     accountMenu.setAttribute("role", "menu");
-    accountMenu.setAttribute("aria-label", "Account");
+    accountMenu.setAttribute("aria-label", "Your Academy Account");
+    var accountHeading = document.createElement("div");
+    accountHeading.textContent = "Your Academy Account";
+    accountHeading.style.cssText = "padding:10px 12px;font-weight:700";
+    accountMenu.appendChild(accountHeading);
+    var workspaceItems = [];
+    function updateWorkspaces(account) {
+      workspaceItems.forEach(function (item) { item.remove(); });
+      workspaceItems = [];
+      if (!isPortalAccount(account) || typeof account.selectWorkspace !== "function" || !Array.isArray(account.availableWorkspaces)) return;
+      ["Student", "Instructor", "Staff"].filter(function (role) { return account.availableWorkspaces.indexOf(role) !== -1; }).forEach(function (role) {
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "swa-global-nav__account-item";
+        item.setAttribute("role", "menuitemradio");
+        item.setAttribute("aria-checked", String(account.workspaceRole === role));
+        item.tabIndex = -1;
+        item.textContent = role + " workspace" + (account.workspaceRole === role ? " ✓" : "");
+        item.addEventListener("click", function () { closeAccountMenu(true); account.selectWorkspace(role); });
+        accountMenu.insertBefore(item, profileLink);
+        workspaceItems.push(item);
+      });
+    }
     [profileLink, settingsLink, accountSignOut].forEach(function (item, index) {
       item.className = "swa-global-nav__account-item";
       item.setAttribute("role", "menuitem");
@@ -555,7 +577,7 @@
     }
 
     function accountItems() {
-      return [profileLink, settingsLink, accountSignOut].filter(function (item) { return !item.hidden; });
+      return workspaceItems.concat([profileLink, settingsLink, accountSignOut]).filter(function (item) { return !item.hidden; });
     }
 
     function closeAccountMenu(restoreFocus) {
@@ -667,6 +689,7 @@
       accountName.hidden = !userName;
       accountName.textContent = userName;
       closeAccountMenu(false);
+      updateWorkspaces(account);
       accountControl.hidden = true;
       signIn.hidden = false;
 

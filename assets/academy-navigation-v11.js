@@ -4,7 +4,7 @@
 
   var VERSION = "2026.09.08.3";
   var REVISION = "2026.09.08.3";
-  var NAVIGATION_REVISION = "2026.11.20.1";
+  var NAVIGATION_REVISION = "2026.11.24.1";
   var FOOTER_REVISION = "2026.11.20.2";
   var BRAND_THEME_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
