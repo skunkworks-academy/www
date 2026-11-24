@@ -39,15 +39,20 @@ function say(speaker, text) { const p = document.createElement('p'); p.dataset.s
 function resetGuide() { guide = createGuide(); log.replaceChildren(); $('skunkie-use').hidden = true; chatForm.hidden = false; input.value = ''; }
 document.querySelectorAll('[data-open-skunkie]').forEach(button => button.addEventListener('click', () => {
   opener = button; dialog.showModal();
-  if (!log.children.length) say('Skunkie', 'What would you like the Academy team to help with? I can guide you through a short enquiry. Please leave out passwords and sensitive documents.');
+  if (!log.children.length) say('Skunky', 'What would you like the Academy team to help with? I can guide you through a short enquiry. Please leave out passwords and sensitive documents.');
   input.focus();
 }));
 $('skunkie-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('close', () => opener?.focus());
-$('skunkie-reset').addEventListener('click', () => { resetGuide(); say('Skunkie', 'What would you like the Academy team to help with?'); input.focus(); });
+$('skunkie-reset').addEventListener('click', () => { resetGuide(); say('Skunky', 'What would you like the Academy team to help with?'); input.focus(); });
+input.addEventListener('keydown', event => {
+  if (event.key !== 'Enter' || event.shiftKey || event.isComposing || event.keyCode === 229) return;
+  event.preventDefault();
+  if (!event.repeat) chatForm.requestSubmit();
+});
 chatForm.addEventListener('submit', event => {
   event.preventDefault(); const value = input.value.trim(); if (!value) return;
-  say('You', value); input.value = ''; const reply = guide.reply(value); say('Skunkie', reply.text);
+  say('You', value); input.value = ''; const reply = guide.reply(value); say('Skunky', reply.text);
   if (reply.retry) input.value = value;
   if (reply.ready) { $('skunkie-use').hidden = false; chatForm.hidden = true; $('skunkie-use').focus(); } else input.focus();
 });
@@ -58,7 +63,7 @@ $('skunkie-use').addEventListener('click', () => {
   const message = $('contact-message');
   if (!message.value) message.value = draft.message;
   else if (!message.value.includes(draft.message)) {
-    if (message.value.length + draft.message.length + 2 > 5000) { say('Skunkie', 'Your form already has a long message. Please review it before adding this draft. Your existing text has been kept.'); return; }
+    if (message.value.length + draft.message.length + 2 > 5000) { say('Skunky', 'Your form already has a long message. Please review it before adding this draft. Your existing text has been kept.'); return; }
     message.value += '\n\n' + draft.message;
   }
   $('contact-topic').dispatchEvent(new Event('change')); dialog.close();
