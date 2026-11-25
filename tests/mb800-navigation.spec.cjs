@@ -22,7 +22,8 @@ for (const theme of ['light', 'dark']) {
       const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
       await expect(dialog).toBeVisible();
       await expect(dialog.locator('details.swa-global-nav__drawer-group')).toHaveCount(9);
-      const learn = dialog.locator('details').filter({has: dialog.locator('summary', {hasText: /^Learn$/})});
+      const learn = dialog.locator('details.swa-global-nav__drawer-group').filter({has: page.locator('summary', {hasText: /^Learn$/})});
+      await expect(learn).toHaveCount(1);
       if (await learn.getAttribute('open') === null) await learn.locator('summary').click();
       await expect(learn.getByRole('link', {name:'All courses', exact:true})).toBeVisible();
       await page.keyboard.press('Escape');

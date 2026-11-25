@@ -83,7 +83,8 @@ for (const path of ['/', '/partners/']) {
         const groups = dialog.locator('details.swa-global-nav__drawer-group');
         await expect(groups).toHaveCount(9);
         await expect(dialog.locator('details[open]')).toHaveCount(1);
-        const learn = groups.filter({has: dialog.locator('summary', {hasText: /^Learn$/})});
+        const learn = groups.filter({has: page.locator('summary', {hasText: /^Learn$/})});
+        await expect(learn).toHaveCount(1);
         if (await learn.getAttribute('open') === null) await learn.locator('summary').click();
         const firstLink = learn.getByRole('link', {name:'All courses', exact:true});
         await expect(firstLink).toBeVisible();

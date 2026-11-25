@@ -36,8 +36,9 @@ for (const [label, path, ownsShell] of routes) {
       const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
       await expect(dialog).toBeVisible();
       await expect(dialog.locator('details.swa-global-nav__drawer-group')).toHaveCount(9);
-      const learn = dialog.locator('details').filter({has: dialog.locator('summary', {hasText: /^Learn$/})});
-      if (!(await learn.getAttribute('open') !== null)) await learn.locator('summary').click();
+      const learn = dialog.locator('details.swa-global-nav__drawer-group').filter({has: page.locator('summary', {hasText: /^Learn$/})});
+      await expect(learn).toHaveCount(1);
+      if (await learn.getAttribute('open') === null) await learn.locator('summary').click();
       const link = learn.getByRole('link', {name:'All courses', exact:true});
       await expect(link).toBeVisible();
       const box = await link.boundingBox();
