@@ -30,27 +30,22 @@ for (const [label, path, ownsShell] of routes) {
       await expect.poll(() => logo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
       await expect(header.getByRole('button', {name:'Dark theme'})).toHaveAttribute('aria-pressed', String(theme === 'dark'));
       if (ownsShell) await expect(page.locator('script[data-skunkworks-react-safe="true"]')).toHaveCount(1);
-      await expect(header.locator('.swa-global-nav__top-menu')).toHaveCount(1);
-      if (viewport.width > 980) {
-        const button = header.locator('.swa-global-nav__top-menu-button').first();
-        await button.click();
-        await expect(header.locator('.swa-primary-open .swa-global-nav__top-menu-panel')).toBeVisible();
-        await page.keyboard.press('Escape');
-        await expect(button).toHaveAttribute('aria-expanded','false');
-        await expect(button).toBeFocused();
-      } else {
-        const button = header.getByRole('button', {name:'Open Academy menu'});
-        await button.click();
-        const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
-        const link = dialog.locator('.swa-global-nav__drawer-link').first();
-        await expect(link).toBeVisible();
-        const box = await link.boundingBox();
-        expect(box.x).toBeGreaterThanOrEqual(0);
-        expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
-        await page.keyboard.press('Escape');
-        await expect(dialog).not.toBeVisible();
-        await expect(button).toBeFocused();
-      }
+      await expect(header.locator('.swa-global-nav__top-menu')).toHaveCount(0);
+      const button = header.getByRole('button', {name:'Open Academy menu'});
+      await button.click();
+      const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
+      await expect(dialog).toBeVisible();
+      await expect(dialog.locator('details.swa-global-nav__drawer-group')).toHaveCount(9);
+      const learn = dialog.locator('details').filter({has: dialog.locator('summary', {hasText: /^Learn$/})});
+      if (!(await learn.getAttribute('open') !== null)) await learn.locator('summary').click();
+      const link = learn.getByRole('link', {name:'All courses', exact:true});
+      await expect(link).toBeVisible();
+      const box = await link.boundingBox();
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
+      await page.keyboard.press('Escape');
+      await expect(dialog).not.toBeVisible();
+      await expect(button).toBeFocused();
     });
   }
 }

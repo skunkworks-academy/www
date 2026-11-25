@@ -25,20 +25,14 @@
     /* The fixed Academy navigation is injected asynchronously. Its geometry
        must exist before the first paint, otherwise unstyled header markup
        briefly enters document flow and shifts the entire main content. */
-    body.swa-has-global-nav.swa-has-top-menu{padding-top:128px!important}
-    .swa-global-nav{position:fixed!important;inset:0 0 auto!important;z-index:2147483000!important;width:100%!important;min-height:128px!important;background:#000!important}
-    .swa-global-nav__inner{min-height:84px!important}
-    .swa-global-nav__top-menu{min-height:44px!important}
+    body.swa-has-global-nav{padding-top:72px!important}
+    .swa-global-nav{position:fixed!important;inset:0 0 auto!important;z-index:2147483000!important;width:100%!important;min-height:72px!important;background:#000!important}
+    .swa-global-nav__inner{min-height:72px!important}
     .swa-global-nav__links,.swa-global-nav__search-panel{display:none!important}
-    @media(max-width:980px){
-      body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}
-      .swa-global-nav{min-height:84px!important}
-      .swa-global-nav__top-menu{display:none!important}
-    }
     @media(max-width:620px){
-      body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}
-      .swa-global-nav{min-height:74px!important}
-      .swa-global-nav__inner{min-height:70px!important}
+      body.swa-has-global-nav{padding-top:64px!important}
+      .swa-global-nav{min-height:64px!important}
+      .swa-global-nav__inner{min-height:64px!important}
     }
   </style>
 
@@ -69,12 +63,12 @@
     gtag('js', new Date());
     gtag('config', 'G-NWBW8HWEDR', { send_page_view: true });
   </script>
-  <script defer src="/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.09.08.3" data-skunkworks-global-nav="v10"></script>
+  <script defer src="/assets/academy-navigation.js?v=2026.09.08.3&rev=2026.11.25.1" data-skunkworks-global-nav="v10"></script>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270041066336676" crossorigin="anonymous"></script>
                                                                                                                                                                                                                                                           <link rel="stylesheet" href="https://www.skunkworksacademy.com/assets/academy-brand-theme.css?v=2026.09.08.3&rev=2026.11.05.2" data-skunkworks-brand-theme="canonical" />
   <script defer src="https://www.skunkworksacademy.com/assets/academy-page-contract.js?v=2026.11.05.2" data-skunkworks-page-contract="runtime"></script>
 </head>
-<body data-ad-inventory="eligible" class="swa-has-global-nav swa-has-top-menu">
+<body data-ad-inventory="eligible" class="swa-has-global-nav">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <main id="main">
@@ -86,7 +80,8 @@
           <p class="sk-hero__lead">Skunkworks Academy publishes original technical guidance, hands-on lab patterns and implementation-ready learning paths for cloud, cybersecurity, artificial intelligence, APIs and enterprise platforms.</p>
           <div class="sk-actions">
             <a class="sk-button sk-button--primary" href="/guides/ai-enabled-learning-path.html">Read the featured guide</a>
-            <a class="sk-button sk-button--secondary" href="/self-paced/">Explore learning paths</a>
+            <a class="sk-button sk-button--secondary" href="/learning-paths/">Explore learning paths</a>
+            <a class="sk-button sk-button--secondary" href="/courses">Explore courses</a>
             <a class="sk-button sk-button--secondary" href="/schedule/">Find training dates</a>
           </div>
         </div>

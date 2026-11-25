@@ -40,12 +40,13 @@ function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {
 
 test('older portal keeps navigation until the portal explicitly supports the sidebar', t => {
   const f = fixture(t, { account: { workspaceNavigation: undefined } });
-  assert.ok(f.query('.swa-global-nav__top-menu'));
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.document.querySelectorAll('details.swa-global-nav__drawer-group').length, 9);
   assert.equal(f.query('.swa-global-footer').dataset.skunkworksFooterMode, 'public');
   assert.equal(f.query('.swa-global-nav__toggle').getAttribute('aria-controls'), 'swa-global-nav-links');
 });
 
-test('workspace labels follow the authorized bridge without changing links; public row returns on sign-out', t => {
+test('workspace labels follow the authorized bridge without changing links; public drawer returns on sign-out', t => {
   const f = fixture(t);
   const brand = f.query('.swa-global-nav__brand');
   const href = brand.href;
@@ -58,7 +59,8 @@ test('workspace labels follow the authorized bridge without changing links; publ
     assert.ok(!f.document.body.classList.contains('swa-has-top-menu'));
   }
   f.update(null);
-  assert.ok(f.query('.swa-global-nav__top-menu'));
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.document.querySelectorAll('details.swa-global-nav__drawer-group').length, 9);
   assert.equal(f.query('.swa-global-nav__brand-text').textContent, 'Learner portal');
   assert.equal(f.query('.swa-global-nav__account').hidden, true);
 });
@@ -155,19 +157,24 @@ test('other origins and account sources keep existing public navigation and acco
   assert.equal(f.query('.swa-global-nav__account').hidden, true);
   assert.equal(f.query('.swa-global-nav__sign-in').hidden, false);
   assert.equal(f.query('.swa-global-nav__sign-in').textContent, 'Sign out');
-  assert.ok(f.query('.swa-global-nav__top-menu'));
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.document.querySelectorAll('details.swa-global-nav__drawer-group').length, 9);
   f.query('.swa-global-nav__sign-in').click();
   assert.equal(f.signOuts(), 1);
   const other = fixture(t, { account: { source: 'another-app' } });
   assert.equal(other.query('.swa-global-nav__account').hidden, true);
-  assert.ok(other.query('.swa-global-nav__top-menu'));
+  assert.equal(other.query('.swa-global-nav__top-menu'), null);
+  assert.equal(other.document.querySelectorAll('details.swa-global-nav__drawer-group').length, 9);
 });
 
-test('workspace activation moves removed top-menu focus to the workspace toggle', t => {
+test('workspace activation closes the public drawer', t => {
   const f = fixture(t, { signedIn: false });
-  f.query('.swa-global-nav__top-menu-button').focus();
+  f.query('.swa-global-nav__toggle').click();
+  assert.equal(f.query('.swa-global-nav__drawer-dialog').open, true);
+  f.query('.swa-global-nav__toggle').focus();
   f.update({ source: 'portal', authenticated: true, workspaceNavigation: 'sidebar' });
   assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.query('.swa-global-nav__drawer-dialog').open, false);
   assert.equal(f.document.activeElement, f.query('.swa-global-nav__toggle'));
 });
 
@@ -260,7 +267,7 @@ test('public footer and explicit theme remain intact on other hosts', t => {
 
 test('navigation and footer dependency cache revisions change without changing stable theme contract', t => {
   const f = fixture(t);
-  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.24\.1/);
+  assert.match(f.query('script[data-skunkworks-ui]').src, /rev=2026\.11\.25\.1/);
   assert.match(f.query('script[data-skunkworks-global-footer]').src, /rev=2026\.11\.20\.2/);
   assert.match(f.query('link[data-skunkworks-brand-theme]').href, /v=2026\.09\.08\.3&rev=2026\.11\.05\.2/);
 });
@@ -321,13 +328,13 @@ test('header theme toggle shares the persisted footer preference', t => {
   assert.equal(toggle.getAttribute('aria-pressed'), 'false');
 });
 
-test('current links match www and apex aliases, and opening a group closes search', t => {
+test('current links match www and apex aliases, and opening the drawer closes search', t => {
   const f = fixture(t, { url: 'https://www.skunkworksacademy.com/partners/', signedIn: false });
-  const matching = f.query('.swa-global-nav__top-menu-option[href="https://skunkworksacademy.com/partners/"]');
+  const matching = f.query('.swa-global-nav__drawer-link[href="https://skunkworksacademy.com/partners/"]');
   assert.equal(matching.getAttribute('aria-current'), 'page');
   f.query('.swa-global-nav__search').click();
   assert.equal(f.query('.swa-global-nav__search').getAttribute('aria-expanded'), 'true');
-  f.query('.swa-global-nav__top-menu-button').click();
+  f.query('.swa-global-nav__toggle').click();
   assert.equal(f.query('.swa-global-nav__search').getAttribute('aria-expanded'), 'false');
 });
 
@@ -336,13 +343,14 @@ test('React-safe course navigation leaves framework-owned chrome intact and foll
   const frameworkNavbar = f.query('#__docusaurus .navbar');
   assert.equal(frameworkNavbar.style.display, '');
   assert.equal(f.query('link[data-skunkworks-brand-theme]'), null);
-  assert.ok(f.query('.swa-global-nav__top-menu'));
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(f.document.querySelectorAll('details.swa-global-nav__drawer-group').length, 9);
   f.window.history.pushState({}, '', '/partners/');
   f.query('main').appendChild(f.document.createElement('p'));
   await new Promise(resolve => f.window.setTimeout(resolve, 0));
   assert.equal(f.query('#__docusaurus .navbar'), frameworkNavbar);
   assert.equal(frameworkNavbar.style.display, '');
-  assert.equal(f.query('.swa-global-nav__top-menu-option[href="https://skunkworksacademy.com/partners/"]').getAttribute('aria-current'), 'page');
+  assert.equal(f.query('.swa-global-nav__drawer-link[href="https://skunkworksacademy.com/partners/"]').getAttribute('aria-current'), 'page');
 });
 
 test('local previews use the same section labels as the Academy site', t => {
@@ -361,4 +369,17 @@ test('account menu lists only permitted workspaces and selects through the porta
   assert.equal(selected, 'Student');
   f.update(null);
   assert.equal(f.document.querySelectorAll('[role="menuitemradio"]').length, 0);
+});
+
+
+test('single-header drawer preserves every canonical destination and initially expands one group', t => {
+  const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false });
+  const groups = f.window.SKUNKWORKS_ACADEMY_SHELL.menuGroups;
+  const drawer = f.query('.swa-global-nav__links');
+  assert.equal(f.window.SKUNKWORKS_ACADEMY_SHELL.navigationMode, 'single-header-drawer');
+  assert.equal(f.query('.swa-global-nav__top-menu'), null);
+  assert.equal(drawer.querySelectorAll('details[open]').length, 1);
+  assert.deepEqual([...drawer.querySelectorAll('summary')].map(el => el.textContent), Array.from(groups, group => group.label));
+  assert.deepEqual([...drawer.querySelectorAll('.swa-global-nav__drawer-link')].map(el => el.href),
+    Array.from(groups).flatMap(group => Array.from(group.items, item => new URL(item.url).href)));
 });
