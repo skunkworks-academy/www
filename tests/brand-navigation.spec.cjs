@@ -70,36 +70,37 @@ for (const path of ['/', '/partners/']) {
             return document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2) === element;
           })).toBe(true);
           await page.keyboard.press('Escape');
-          const button = header.locator('.swa-global-nav__top-menu-button').first();
-          await expect(button).toBeVisible();
-          await button.click();
-          const panel = header.locator('.swa-primary-open .swa-global-nav__top-menu-panel');
-          await expect(panel).toBeVisible();
-          const panelBounds = await panel.boundingBox();
-          const lastOptionBounds = await panel.locator('.swa-global-nav__top-menu-option').last().boundingBox();
-          expect(lastOptionBounds.y + lastOptionBounds.height).toBeLessThanOrEqual(panelBounds.y + panelBounds.height);
-          expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option strong', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
-          expect(await contrast(page, '.swa-primary-open .swa-global-nav__top-menu-option span', '.swa-primary-open .swa-global-nav__top-menu-panel')).toBeGreaterThanOrEqual(4.5);
-          await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
-          await page.keyboard.press('Escape');
-          await expect(button).toBeFocused();
-          await expect(button).toHaveAttribute('aria-expanded', 'false');
-        } else {
-          const button = header.getByRole('button', {name: 'Open Academy menu'});
-          await button.click();
-          const dialog = page.getByRole('dialog', {name: 'Skunkworks Academy navigation'});
-          await expect(dialog).toBeVisible();
-          await expect(dialog.getByRole('button', {name: 'Close navigation'})).toBeFocused();
-          const firstLink = dialog.locator('.swa-global-nav__drawer-link').first();
-          await expect(firstLink).toBeVisible();
-          const linkBounds = await firstLink.boundingBox();
-          expect(linkBounds.x).toBeGreaterThanOrEqual(0);
-          expect(linkBounds.x + linkBounds.width).toBeLessThanOrEqual(viewport.width + 1);
-          await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
-          await page.keyboard.press('Escape');
-          await expect(dialog).not.toBeVisible();
-          await expect(button).toBeFocused();
         }
+        await expect(header.locator('.swa-global-nav__top-menu')).toHaveCount(0);
+        await expect(page.locator('body')).not.toHaveClass(/swa-has-top-menu/);
+        const headerBounds = await header.boundingBox();
+        expect(headerBounds.height).toBeLessThanOrEqual(size === 'desktop' ? 74 : 66);
+        const button = header.getByRole('button', {name: 'Open Academy menu'});
+        await button.click();
+        const dialog = page.getByRole('dialog', {name: 'Skunkworks Academy navigation'});
+        await expect(dialog).toBeVisible();
+        await expect(dialog.getByRole('button', {name: 'Close navigation'})).toBeFocused();
+        const groups = dialog.locator('details.swa-global-nav__drawer-group');
+        await expect(groups).toHaveCount(9);
+        await expect(dialog.locator('details[open]')).toHaveCount(1);
+        const learn = groups.filter({has: page.locator('summary', {hasText: /^Learn$/})});
+        await expect(learn).toHaveCount(1);
+        if (await learn.getAttribute('open') === null) await learn.locator('summary').click();
+        const firstLink = learn.getByRole('link', {name:'All courses', exact:true});
+        await expect(firstLink).toBeVisible();
+        const linkBounds = await firstLink.boundingBox();
+        expect(linkBounds.x).toBeGreaterThanOrEqual(0);
+        expect(linkBounds.x + linkBounds.width).toBeLessThanOrEqual(viewport.width + 1);
+        expect(await contrast(page, '.swa-global-nav__drawer-link', '.swa-global-nav__drawer-dialog')).toBeGreaterThanOrEqual(4.5);
+        await learn.locator('summary').click();
+        await expect(firstLink).not.toBeVisible();
+        await learn.locator('summary').focus();
+        await page.keyboard.press('Enter');
+        await expect(firstLink).toBeVisible();
+        await page.screenshot({path: testInfo.outputPath(`menu-open-${size}-${theme}.png`)});
+        await page.keyboard.press('Escape');
+        await expect(dialog).not.toBeVisible();
+        await expect(button).toBeFocused();
         const bounds = await header.locator('.swa-global-nav__inner').evaluate(node => {
           const controls = [...node.querySelectorAll('.swa-global-nav__toggle,.swa-global-nav__brand,.swa-global-nav__search,.swa-global-nav__theme,.swa-global-nav__sign-in,.swa-global-nav__ecosystem-summary')];
           return controls.filter(element => element.getClientRects().length).map(element => {
@@ -123,7 +124,8 @@ test('React-safe course shell does not mutate framework-owned navigation', async
     <script defer src="/assets/academy-navigation-v11.js" data-skunkworks-react-safe="true"></script>
     </head><body><div id="__docusaurus"><nav class="navbar navbar--fixed-top">Framework navigation</nav><main><h1>Course</h1></main></div></body></html>`}));
   await page.goto(origin + '/course-shell-fixture');
-  await expect(page.locator('.swa-global-nav__top-menu')).toBeVisible();
+  await expect(page.locator('.swa-global-nav__toggle')).toBeVisible();
+  await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(0);
   expect((await page.locator('#__docusaurus .navbar').getAttribute('style')) || '').not.toMatch(/display\s*:/i);
   await expect(page.locator('#__docusaurus main h1')).toHaveText('Course');
 });

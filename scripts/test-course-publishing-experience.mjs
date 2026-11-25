@@ -126,13 +126,13 @@ try {
           if (await page.locator('html[data-swa-owned-course-shell="MB-800-PREP"]').count() !== 1) {
             throw new Error('The MB-800 guide must own its canonical static course shell.');
           }
-          const primary = page.locator('.swa-global-nav__top-menu');
-          await primary.waitFor({state: viewport.width > 980 ? 'visible' : 'attached', timeout: 6000});
+          await page.locator('.swa-global-nav__toggle').waitFor({state:'visible', timeout:6000});
+          if (await page.locator('.swa-global-nav__top-menu').count()) throw new Error('Duplicate global navigation rendered.');
           const background = await page.locator('.swa-global-nav').evaluate(el => getComputedStyle(el).backgroundColor);
           if (background !== (theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)')) {
             throw new Error('MB-800 navigation does not use the current design-system theme.');
           }
-          if (!course.roleModule && viewport.width <= 980) {
+          if (!course.roleModule) {
             const toggle = page.locator('.swa-global-nav__toggle');
             await toggle.click();
             const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});

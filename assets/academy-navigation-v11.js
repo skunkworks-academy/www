@@ -3,8 +3,8 @@
   "use strict";
 
   var VERSION = "2026.09.08.3";
-  var REVISION = "2026.09.08.3";
-  var NAVIGATION_REVISION = "2026.11.24.1";
+  var REVISION = "2026.11.25.1";
+  var NAVIGATION_REVISION = "2026.11.25.1";
   var FOOTER_REVISION = "2026.11.20.2";
   var BRAND_THEME_REVISION = "2026.11.05.2";
   var CANONICAL_ROOT = "https://skunkworksacademy.com/assets/";
@@ -15,8 +15,11 @@
   var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
   var BRAND_THEME_ROOT = isLocalPreview ? PRIMARY_ROOT : "https://www.skunkworksacademy.com/assets/";
 
-  if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 === REVISION) return;
-  window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = REVISION;
+  // The first v11 runtime owns this document until reload, regardless of its
+  // content revision. Keep the legacy sentinel stable so an older cached
+  // runtime also defers instead of installing a competing chrome observer.
+  if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11) return;
+  window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = VERSION;
 
   var GLOBAL_NAV_GROUPS = [
     {
@@ -179,6 +182,8 @@
     canonicalFooter: assetUrl(CANONICAL_ROOT, "skunkworks-footer.js"),
     canonicalTheme: assetUrl(BRAND_THEME_ROOT, "academy-brand-theme.css"),
     assetRoot: PRIMARY_ROOT,
+    navigationMode: "single-header-drawer",
+    // Compatibility metadata only; no secondary navigation is rendered.
     topMenu: TOP_MENU.slice(),
     menuGroups: GLOBAL_NAV_GROUPS.map(function (group) {
       return { label: group.label, description: group.description, items: group.items.slice() };
@@ -229,45 +234,30 @@
     return script;
   }
 
-  function ensureTopMenuStyles() {
-    if (document.getElementById("swa-global-top-menu-styles")) return;
+  function ensureDrawerStyles() {
+    var obsolete = document.getElementById("swa-global-top-menu-styles");
+    if (obsolete) obsolete.remove();
+    if (document.getElementById("swa-global-drawer-styles")) return;
     var style = document.createElement("style");
-    style.id = "swa-global-top-menu-styles";
+    style.id = "swa-global-drawer-styles";
     style.textContent = [
-      "html body.swa-has-global-nav.swa-has-top-menu{padding-top:128px!important}",
-      ".swa-global-nav.swa-has-top-menu{min-height:128px!important}",
-      ".swa-global-nav__top-menu{position:relative!important;display:flex!important;align-items:stretch!important;min-height:44px!important;width:100%!important;padding:0 clamp(20px,4vw,56px)!important;gap:2px!important;background:#000!important;border-top:1px solid rgba(255,255,255,.24)!important;white-space:nowrap!important}",
-      ".swa-global-nav__top-menu-item{position:relative!important;display:flex!important;align-items:stretch!important}",
-      ".swa-global-nav__top-menu-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:43px!important;padding:0 13px!important;border:0!important;border-bottom:3px solid transparent!important;background:transparent!important;color:#f5f5f5!important;font-family:Segoe UI,SegoeUI,system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;font-size:14px!important;font-weight:600!important;line-height:1!important;letter-spacing:.005em!important;cursor:pointer!important}",
-      ".swa-global-nav__top-menu-button::after{content:\"⌄\"!important;margin-left:6px!important;font-size:12px!important;line-height:1!important;transform:translateY(-1px)!important}",
-      ".swa-global-nav__top-menu-button:hover,.swa-global-nav__top-menu-button:focus,.swa-global-nav__top-menu-button[aria-expanded=\"true\"]{background:#1a1a1a!important;color:#fff!important}",
-      ".swa-global-nav__top-menu-button:focus-visible{outline:3px solid #fff!important;outline-offset:-4px!important}",
-      ".swa-global-nav__top-menu-button[data-current=\"true\"]{border-bottom-color:#fff!important;background:#1a1a1a!important;color:#fff!important}",
-      ".swa-global-nav__top-menu-panel{position:absolute!important;top:100%!important;left:0!important;display:none!important;width:min(390px,calc(100vw - 32px))!important;max-height:min(580px,calc(100vh - 152px))!important;overflow:auto!important;padding:16px!important;background:#000!important;border:1px solid rgba(255,255,255,.24)!important;border-top:1px solid #fff!important;border-radius:0 0 8px 8px!important;box-shadow:0 20px 44px rgba(0,0,0,.42)!important;white-space:normal!important}",
-      ".swa-global-nav__top-menu-item:nth-last-child(-n+3) .swa-global-nav__top-menu-panel{left:auto!important;right:0!important}",
-      ".swa-global-nav__top-menu-item.swa-primary-open .swa-global-nav__top-menu-panel{display:block!important}",
-      ".swa-global-nav__top-menu-title{margin:0 0 4px!important;color:#fff!important;font-size:18px!important;font-weight:700!important;line-height:1.2!important}",
-      ".swa-global-nav__top-menu-description{margin:0 0 12px!important;color:#d9d9d9!important;font-size:13px!important;line-height:1.4!important}",
-      ".swa-global-nav__top-menu-options{display:grid!important;grid-template-columns:1fr!important;gap:4px!important}",
-      ".swa-global-nav__top-menu-option{display:grid!important;gap:2px!important;padding:9px 10px!important;border:1px solid transparent!important;border-radius:3px!important;background:transparent!important;color:#fff!important;text-decoration:none!important}",
-      ".swa-global-nav__top-menu-option:hover,.swa-global-nav__top-menu-option:focus{background:#1a1a1a!important;border-color:#666!important;color:#fff!important;text-decoration:none!important}",
-      ".swa-global-nav__top-menu-option:focus-visible{outline:3px solid #fff!important;outline-offset:2px!important}",
-      ".swa-global-nav__top-menu-option strong{font-size:14px!important;font-weight:700!important;line-height:1.3!important}.swa-global-nav__top-menu-option span{color:#d9d9d9!important;font-size:12px!important;line-height:1.35!important}",
       ".swa-global-nav__links.swa-global-nav__links--grouped{width:min(520px,calc(100vw - 32px))!important}",
-      ".swa-global-nav.swa-menu-open .swa-global-nav__links.swa-global-nav__links--grouped{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}",
-      ".swa-global-nav__drawer-heading{margin:0!important;color:#d9d9d9!important;font-size:12px!important;font-weight:700!important;letter-spacing:.12em!important;text-transform:uppercase!important}",
-      ".swa-global-nav__drawer-group{display:grid!important;gap:6px!important;padding-top:12px!important;border-top:1px solid rgba(255,255,255,.24)!important}",
-      ".swa-global-nav__drawer-group:first-of-type{padding-top:0!important;border-top:0!important}",
-      ".swa-global-nav__drawer-group-title{margin:0!important;color:#fff!important;font-size:17px!important;font-weight:700!important;line-height:1.2!important}",
-      ".swa-global-nav__drawer-group-description{margin:0 0 2px!important;color:#d9d9d9!important;font-size:12px!important;line-height:1.35!important}",
-      ".swa-global-nav__drawer-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}",
-      ".swa-global-nav__drawer-link{display:block!important;min-height:40px!important;padding:9px 10px!important;border:1px solid transparent!important;border-radius:3px!important;background:transparent!important;color:#fff!important;text-decoration:none!important;font-size:13px!important;font-weight:600!important;line-height:1.25!important}",
-      ".swa-global-nav__drawer-link:hover,.swa-global-nav__drawer-link:focus{background:#1a1a1a!important;border-color:#666!important;color:#fff!important;text-decoration:none!important}",
-      ".swa-global-nav__drawer-link:focus-visible{outline:3px solid #fff!important;outline-offset:2px!important}",
-      ".swa-global-nav.swa-portal-workspace .swa-global-nav__links{display:none!important}",
-      "@media(max-width:1120px){.swa-global-nav__top-menu-button{padding:0 10px!important;font-size:13px!important}}",
-      "@media(max-width:980px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:84px!important}.swa-global-nav.swa-has-top-menu{min-height:84px!important}.swa-global-nav__top-menu{display:none!important}}",
-      "@media(max-width:620px){html body.swa-has-global-nav.swa-has-top-menu{padding-top:74px!important}.swa-global-nav.swa-has-top-menu{min-height:74px!important}.swa-global-nav__drawer-options{grid-template-columns:1fr!important}}"
+      ".swa-global-nav.swa-menu-open .swa-global-nav__links.swa-global-nav__links--grouped{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}",
+      ".swa-global-nav__drawer-heading{margin:0!important;color:var(--swa-muted,#d9d9d9)!important;font-size:12px!important;font-weight:700!important;letter-spacing:.08em!important;text-transform:uppercase!important}",
+      ".swa-global-nav__drawer-group{min-width:0!important;border:1px solid var(--swa-line,#666)!important;border-radius:4px!important;padding:0!important}",
+      ".swa-global-nav__drawer-group-summary{display:flex!important;align-items:center!important;gap:12px!important;min-height:48px!important;padding:10px 12px!important;color:var(--swa-text,#fff)!important;font:inherit!important;font-size:16px!important;font-weight:600!important;cursor:pointer!important;list-style:none!important}",
+      ".swa-global-nav__drawer-group-summary::-webkit-details-marker{display:none!important}",
+      ".swa-global-nav__drawer-group-summary::after{content:'+';margin-inline-start:auto;font-size:20px;font-weight:400}",
+      ".swa-global-nav__drawer-group[open]>.swa-global-nav__drawer-group-summary::after{content:'−'}",
+      ".swa-global-nav__drawer-group-summary:hover,.swa-global-nav__drawer-group-summary[data-current]{background:var(--swa-panel-strong,#1a1a1a)!important}",
+      ".swa-global-nav__drawer-group-summary[data-current]{border-inline-start:3px solid var(--swa-accent,#fff)!important}",
+      ".swa-global-nav__drawer-group-summary:focus-visible,.swa-global-nav__drawer-link:focus-visible{outline:3px solid var(--swa-focus,#fff)!important;outline-offset:-3px!important}",
+      ".swa-global-nav__drawer-group-description{margin:0!important;padding:4px 12px 8px!important;color:var(--swa-muted,#d9d9d9)!important;font-size:13px!important;line-height:1.4!important}",
+      ".swa-global-nav__drawer-options{display:grid!important;grid-template-columns:1fr!important;gap:2px!important;padding:0 8px 8px!important}",
+      ".swa-global-nav__drawer-group:not([open])>:not(summary){display:none!important}",
+      ".swa-global-nav__drawer-link{display:flex!important;align-items:center!important;min-height:44px!important;padding:8px 10px!important;border:1px solid transparent!important;border-radius:3px!important;color:var(--swa-text,#fff)!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;line-height:1.35!important}",
+      ".swa-global-nav__drawer-link:hover,.swa-global-nav__drawer-link:focus,.swa-global-nav__drawer-link[aria-current=page]{background:var(--swa-panel-strong,#1a1a1a)!important;color:var(--swa-text,#fff)!important;border-color:var(--swa-line,#666)!important}",
+      ".swa-global-nav.swa-portal-workspace .swa-global-nav__links{display:none!important}"
     ].join("\n");
     (document.head || document.documentElement).appendChild(style);
   }
@@ -289,6 +279,7 @@
       var target = new URL(url);
       var currentHost = String(current.hostname).toLowerCase();
       var targetHost = String(target.hostname).toLowerCase();
+      if (isLocalPreview) currentHost = "www.skunkworksacademy.com";
       var apexHosts = ["skunkworksacademy.com", "www.skunkworksacademy.com"];
       if (currentHost !== targetHost && !(apexHosts.indexOf(currentHost) !== -1 && apexHosts.indexOf(targetHost) !== -1)) return false;
       var targetPath = normalisePath(target.pathname);
@@ -341,72 +332,11 @@
     return true;
   }
 
-  function createOptionLink(item, className) {
-    var link = document.createElement("a");
-    var label = document.createElement("strong");
-    var description = document.createElement("span");
-    link.className = className;
-    link.href = item.url;
-    if (locationMatchesUrl(item.url)) link.setAttribute("aria-current", "page");
-    label.textContent = item.label;
-    description.textContent = item.description || item.url;
-    link.appendChild(label);
-    link.appendChild(description);
-    return link;
-  }
-
-  function closePrimaryMenus(nav, exceptItem) {
-    Array.prototype.slice.call(nav.querySelectorAll(".swa-global-nav__top-menu-item")).forEach(function (item) {
-      if (exceptItem && item === exceptItem) return;
-      item.classList.remove("swa-primary-open");
-      var button = item.querySelector(".swa-global-nav__top-menu-button");
-      if (button) button.setAttribute("aria-expanded", "false");
-    });
-  }
-
-  function wireTopMenu(nav) {
-    if (nav.getAttribute("data-skunkworks-top-menu-wired") === REVISION) return;
-    nav.setAttribute("data-skunkworks-top-menu-wired", REVISION);
-    nav.addEventListener("click", function (event) {
-      var button = event.target && event.target.closest(".swa-global-nav__top-menu-button");
-      if (!button || !nav.contains(button)) return;
-      var item = button.closest(".swa-global-nav__top-menu-item");
-      var opening = !item.classList.contains("swa-primary-open");
-      if (opening) window.dispatchEvent(new CustomEvent("skunkworksacademy:primary-navigation-open"));
-      closePrimaryMenus(nav, item);
-      item.classList.toggle("swa-primary-open", opening);
-      button.setAttribute("aria-expanded", opening ? "true" : "false");
-    });
-    nav.addEventListener("keydown", function (event) {
-      var button = event.target && event.target.closest(".swa-global-nav__top-menu-button");
-      if (button && (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ")) {
-        event.preventDefault();
-        var item = button.closest(".swa-global-nav__top-menu-item");
-        window.dispatchEvent(new CustomEvent("skunkworksacademy:primary-navigation-open"));
-        closePrimaryMenus(nav, item);
-        item.classList.add("swa-primary-open");
-        button.setAttribute("aria-expanded", "true");
-        var firstLink = item.querySelector(".swa-global-nav__top-menu-option");
-        if (firstLink) firstLink.focus();
-        return;
-      }
-      if (event.key === "Escape") {
-        var openItem = nav.querySelector(".swa-global-nav__top-menu-item.swa-primary-open");
-        if (!openItem) return;
-        event.preventDefault();
-        var openButton = openItem.querySelector(".swa-global-nav__top-menu-button");
-        closePrimaryMenus(nav);
-        if (openButton) openButton.focus();
-      }
-    });
-    document.addEventListener("click", function (event) { if (!nav.contains(event.target)) closePrimaryMenus(nav); });
-    window.addEventListener("skunkworksacademy:close-primary-navigation", function () { closePrimaryMenus(nav); });
-  }
-
   function syncDrawerMenu() {
     var drawer = document.querySelector(".swa-global-nav__links");
     if (!drawer) return false;
     if (drawer.getAttribute("data-skunkworks-menu-groups") === REVISION) return true;
+    var hadFocus = drawer.contains(document.activeElement);
     while (drawer.firstChild) drawer.removeChild(drawer.firstChild);
     drawer.classList.add("swa-global-nav__links--grouped");
     drawer.setAttribute("data-skunkworks-menu-groups", REVISION);
@@ -415,17 +345,20 @@
     heading.className = "swa-global-nav__drawer-heading";
     heading.textContent = "Explore Skunkworks Academy";
     drawer.appendChild(heading);
+    var initialGroup = GLOBAL_NAV_GROUPS.find(groupIsCurrent) || GLOBAL_NAV_GROUPS[0];
     GLOBAL_NAV_GROUPS.forEach(function (group) {
-      var section = document.createElement("section");
-      var title = document.createElement("h3");
+      var section = document.createElement("details");
+      var title = document.createElement("summary");
       var description = document.createElement("p");
       var options = document.createElement("div");
       section.className = "swa-global-nav__drawer-group";
-      title.className = "swa-global-nav__drawer-group-title";
+      title.className = "swa-global-nav__drawer-group-summary";
       description.className = "swa-global-nav__drawer-group-description";
       options.className = "swa-global-nav__drawer-options";
       title.textContent = group.label;
+      if (groupIsCurrent(group)) title.setAttribute("data-current", "true");
       description.textContent = group.description;
+      section.open = group === initialGroup;
       group.items.forEach(function (item) {
         var link = document.createElement("a");
         link.className = "swa-global-nav__drawer-link";
@@ -439,72 +372,26 @@
       section.appendChild(options);
       drawer.appendChild(section);
     });
+    if (hadFocus) {
+      var currentSummary = drawer.querySelector("details[open] > summary");
+      if (currentSummary) currentSummary.focus();
+    }
     return true;
   }
 
-  function ensureTopMenu() {
+  function ensureSingleHeader() {
     if (!document.body || document.body.getAttribute("data-sk-global-nav") === "off") return false;
     var header = document.querySelector(".swa-global-nav");
     if (!header) return false;
-    var existing = header.querySelector(".swa-global-nav__top-menu");
-    var portalWorkspace = isPortalWorkspace();
-    header.classList.toggle("swa-portal-workspace", Boolean(portalWorkspace));
-    if (portalWorkspace) {
-      if (existing) {
-        var workspaceToggle = header.querySelector(".swa-global-nav__toggle");
-        if (existing.contains(document.activeElement) && workspaceToggle) workspaceToggle.focus();
-        existing.remove();
-      }
-      header.classList.remove("swa-has-top-menu", "swa-menu-open");
-      document.body.classList.remove("swa-has-top-menu");
-      return true;
-    }
-    if (existing) {
-      header.classList.add("swa-has-top-menu");
-      document.body.classList.add("swa-has-top-menu");
-      syncDrawerMenu();
-      syncBrandText();
-      return true;
-    }
-    var nav = document.createElement("nav");
-    nav.className = "swa-global-nav__top-menu";
-    nav.setAttribute("aria-label", "Primary Academy navigation");
-    nav.setAttribute("data-skunkworks-top-menu", "canonical-v11");
-    GLOBAL_NAV_GROUPS.forEach(function (group) {
-      var item = document.createElement("div");
-      var button = document.createElement("button");
-      var panel = document.createElement("section");
-      var title = document.createElement("h2");
-      var description = document.createElement("p");
-      var options = document.createElement("div");
-      var panelId = "swa-global-nav-group-" + group.label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      item.className = "swa-global-nav__top-menu-item";
-      button.className = "swa-global-nav__top-menu-button";
-      button.type = "button";
-      button.textContent = group.label;
-      button.setAttribute("aria-expanded", "false");
-      button.setAttribute("aria-controls", panelId);
-      if (groupIsCurrent(group)) button.setAttribute("data-current", "true");
-      panel.className = "swa-global-nav__top-menu-panel";
-      panel.id = panelId;
-      panel.setAttribute("aria-label", group.label + " options");
-      title.className = "swa-global-nav__top-menu-title";
-      title.textContent = group.label;
-      description.className = "swa-global-nav__top-menu-description";
-      description.textContent = group.description;
-      options.className = "swa-global-nav__top-menu-options";
-      group.items.forEach(function (option) { options.appendChild(createOptionLink(option, "swa-global-nav__top-menu-option")); });
-      panel.appendChild(title);
-      panel.appendChild(description);
-      panel.appendChild(options);
-      item.appendChild(button);
-      item.appendChild(panel);
-      nav.appendChild(item);
+    var toggle = header.querySelector(".swa-global-nav__toggle");
+    // Clean up legacy injected chrome during a mixed-version transition.
+    Array.prototype.slice.call(header.querySelectorAll(".swa-global-nav__top-menu")).forEach(function (node) {
+      if (node.contains(document.activeElement) && toggle) toggle.focus();
+      node.remove();
     });
-    header.appendChild(nav);
-    header.classList.add("swa-has-top-menu");
-    document.body.classList.add("swa-has-top-menu");
-    wireTopMenu(nav);
+    header.classList.remove("swa-has-top-menu");
+    document.body.classList.remove("swa-has-top-menu");
+    header.classList.toggle("swa-portal-workspace", Boolean(isPortalWorkspace()));
     syncDrawerMenu();
     syncBrandText();
     return true;
@@ -558,20 +445,14 @@
       refreshRouteState();
       return;
     }
-    ensureTopMenu();
-    syncDrawerMenu();
-    syncBrandText();
+    ensureSingleHeader();
   }
 
   function refreshRouteState() {
     lastRoute = String(window.location.pathname || "/");
-    var nav = document.querySelector(".swa-global-nav__top-menu");
-    if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
     var drawer = document.querySelector(".swa-global-nav__links");
     if (drawer) drawer.removeAttribute("data-skunkworks-menu-groups");
-    ensureTopMenu();
-    syncDrawerMenu();
-    syncBrandText();
+    ensureSingleHeader();
   }
 
   function startChromeGuard() {
@@ -589,7 +470,7 @@
   }
 
   if (!hydrationSafe) ensureAcademyTheme();
-  ensureTopMenuStyles();
+  ensureDrawerStyles();
   ensureRuntime("skunkworks-ui.js", "data-skunkworks-ui", "canonical");
   ensureRuntime("skunkworks-footer.js", "data-skunkworks-global-footer", "canonical");
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", startChromeGuard, { once: true });

@@ -193,6 +193,15 @@ for (const [surface, path] of surfaces) {
       // The navigation can be visible before the asynchronously loaded footer
       // and theme have finished. Capture the complete shared shell.
       await expect(page.locator('.swa-global-footer__copyright')).toBeVisible();
+      // The approved single-header contract applies to every representative
+      // surface, even when a whole-page fingerprint remains within tolerance.
+      const header = page.locator('.swa-global-nav');
+      await expect(header).toHaveCount(1);
+      await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(0);
+      await expect(page.locator('body')).not.toHaveClass(/swa-has-top-menu/);
+      const headerBounds = await header.boundingBox();
+      expect(headerBounds.height, `${surface} must retain the compact shared header`)
+        .toBeLessThanOrEqual(viewportName === 'mobile' ? 66 : 74);
       await page.waitForLoadState('networkidle');
       await page.waitForFunction(() => [...document.querySelectorAll('link[rel="stylesheet"]')]
         .every(link => link.disabled || Boolean(link.sheet)));

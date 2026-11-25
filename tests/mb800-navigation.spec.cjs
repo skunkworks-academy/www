@@ -15,26 +15,22 @@ for (const theme of ['light', 'dark']) {
       const header = page.locator('.swa-global-nav');
       await expect(header).toBeVisible();
       await expect(header).toHaveCSS('background-color', theme === 'dark' ? 'rgb(17, 17, 17)' : 'rgb(255, 255, 255)');
-      await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(1);
+      await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(0);
       await expect(page.locator('#syllabus')).toBeVisible();
-      if (size === 'desktop') {
-        const button = header.locator('.swa-global-nav__top-menu-button').first();
-        await button.click();
-        await expect(header.locator('.swa-primary-open .swa-global-nav__top-menu-panel')).toBeVisible();
-        await page.keyboard.press('Escape');
-        await expect(button).toHaveAttribute('aria-expanded', 'false');
-        await expect(button).toBeFocused();
-      } else {
-        const button = header.getByRole('button', {name:'Open Academy menu'});
-        await button.click();
-        const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
-        await expect(dialog.locator('.swa-global-nav__drawer-link').first()).toBeVisible();
-        await page.keyboard.press('Escape');
-        await expect(dialog).not.toBeVisible();
-        await expect(button).toBeFocused();
-      }
+      const button = header.getByRole('button', {name:'Open Academy menu'});
+      await button.click();
+      const dialog = page.getByRole('dialog', {name:'Skunkworks Academy navigation'});
+      await expect(dialog).toBeVisible();
+      await expect(dialog.locator('details.swa-global-nav__drawer-group')).toHaveCount(9);
+      const learn = dialog.locator('details.swa-global-nav__drawer-group').filter({has: page.locator('summary', {hasText: /^Learn$/})});
+      await expect(learn).toHaveCount(1);
+      if (await learn.getAttribute('open') === null) await learn.locator('summary').click();
+      await expect(learn.getByRole('link', {name:'All courses', exact:true})).toBeVisible();
+      await page.keyboard.press('Escape');
+      await expect(dialog).not.toBeVisible();
+      await expect(button).toBeFocused();
       await page.goto(origin + '/courses/mb-800-exam-preparation/module-01-foundations/', {waitUntil:'domcontentloaded'});
-      await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(1);
+      await expect(page.locator('.swa-global-nav__top-menu')).toHaveCount(0);
       await expect(page.locator('nav[aria-label$="module navigation"]').first()).toBeVisible();
     });
   }
