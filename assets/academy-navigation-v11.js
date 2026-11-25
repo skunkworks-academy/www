@@ -15,8 +15,11 @@
   var PRIMARY_ROOT = isFirstPartyAssetHost ? window.location.origin.replace(/\/$/, "") + "/assets/" : CANONICAL_ROOT;
   var BRAND_THEME_ROOT = isLocalPreview ? PRIMARY_ROOT : "https://www.skunkworksacademy.com/assets/";
 
-  if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 === REVISION) return;
-  window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = REVISION;
+  // The first v11 runtime owns this document until reload, regardless of its
+  // content revision. Keep the legacy sentinel stable so an older cached
+  // runtime also defers instead of installing a competing chrome observer.
+  if (window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11) return;
+  window.SKUNKWORKS_ACADEMY_GLOBAL_NAV_V11 = VERSION;
 
   var GLOBAL_NAV_GROUPS = [
     {

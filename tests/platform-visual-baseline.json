@@ -65,30 +65,30 @@
     },
     "ibm-desktop": {
       "width": 1440,
-      "height": 4730,
-      "dhash": "08c1006008000022",
-      "avgLuma": 229.921875,
-      "sourceWorkflowRun": 43447211862,
-      "sourceHead": "a6f478f3975889358fabb6f06c84cf6f100ce497",
-      "reviewNote": "Reviewed November 13 CI screenshot; IBM course grid has expanded while canonical page header, search/filters, cards and footer remain usable without horizontal overflow."
+      "height": 4541,
+      "dhash": "88000000d4000000",
+      "avgLuma": 220.640625,
+      "sourceWorkflowRun": 45549928716,
+      "sourceHead": "288a28ac6dfd76ffaf9b17dbc37a337de6afe3c8",
+      "reviewNote": "Reviewed the full CI screenshot against run 43447211862. The single shared header moves the page content upward by 56px; aligned main-content pixels are identical across rows 160-4199 of the current capture. The catalogue retains 104 matching courses, 400 references, 12 cards and page 1 of 9. The compact footer and page content remain visible without clipping. All fingerprint tolerances are unchanged."
     },
     "learn-desktop": {
       "width": 1440,
-      "height": 4504,
-      "dhash": "f88000040124ab00",
-      "avgLuma": 204.890625,
-      "sourceWorkflowRun": 44749756254,
-      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
-      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
+      "height": 4460,
+      "dhash": "9888019090031124",
+      "avgLuma": 211.515625,
+      "sourceWorkflowRun": 45549928716,
+      "sourceHead": "288a28ac6dfd76ffaf9b17dbc37a337de6afe3c8",
+      "reviewNote": "Reviewed the complete CI screenshot against run 44749756254. Removing the approved second navigation row shortens the page by 44px; the aligned hero, five learning-route cards, five vendor cards, capability links, process, FAQs and footer retain their layout. All fingerprint tolerances are unchanged."
     },
     "comptia-desktop": {
       "width": 1440,
-      "height": 3322,
-      "dhash": "a451519151112000",
-      "avgLuma": 227.984375,
-      "sourceWorkflowRun": 44749756254,
-      "sourceHead": "9e62e6f97b08f6f8ea2b2b1ba491102c1ba0297d",
-      "reviewNote": "Reviewed the full CI screenshot and compared against unchanged main run 44746536673. The compact shared footer intentionally shortens the page and centres smaller social icons and legal links. Main content and navigation remain present without clipping; fingerprint tolerances are unchanged."
+      "height": 3278,
+      "dhash": "4c11aa51a155a020",
+      "avgLuma": 221.765625,
+      "sourceWorkflowRun": 45549928716,
+      "sourceHead": "288a28ac6dfd76ffaf9b17dbc37a337de6afe3c8",
+      "reviewNote": "Reviewed the complete CI screenshot against run 44749756254. Removing the approved second navigation row shortens the page by 44px; the aligned readable heading, 13 certification cards, actions, pricing note and footer retain their layout. All fingerprint tolerances are unchanged."
     },
     "ibm-mobile": {
       "width": 390,
@@ -119,12 +119,12 @@
     },
     "self-paced-desktop": {
       "width": 1440,
-      "height": 7937,
-      "dhash": "a101028101010101",
-      "avgLuma": 241.21875,
-      "sourceWorkflowRun": 43444390166,
-      "sourceHead": "1d50126b4544bbdb914b9e70c6a83a8b211460bf",
-      "reviewNote": "Reviewed full-page 1440px Chromium screenshot in run 43444390166: self-paced catalogue is populated, 37 course cards render, canonical header and footer are present and there is no horizontal overflow. The original baseline was stale; current CI measured variants remain within the original strict fingerprint tolerances."
+      "height": 7807,
+      "dhash": "4001118101a5d101",
+      "avgLuma": 243.78125,
+      "sourceWorkflowRun": 45549928716,
+      "sourceHead": "288a28ac6dfd76ffaf9b17dbc37a337de6afe3c8",
+      "reviewNote": "Reviewed the full CI screenshot against run 43444390166, including catalogue and footer details. The current page uses the single shared header and compact footer, and contains 38 course cards including MB-800-PREP compared with the historical baseline of 37. Search filters, course actions, featured links and footer remain legible without clipping. All fingerprint tolerances are unchanged."
     },
     "forms-desktop": {
       "width": 1440,

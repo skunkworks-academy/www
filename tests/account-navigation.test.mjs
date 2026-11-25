@@ -7,7 +7,7 @@ const { JSDOM } = createRequire(new URL('./shell-dom/package.json', import.meta.
 const sources = ['skunkworks-ui.js', 'academy-navigation-v11.js', 'skunkworks-footer.js']
   .map(name => fs.readFileSync(new URL('../assets/' + name, import.meta.url), 'utf8'));
 
-function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {}, signedIn = true, reactSafe = false } = {}) {
+function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {}, signedIn = true, reactSafe = false, navigationSource = sources[1] } = {}) {
   const marker = reactSafe ? '<script data-skunkworks-react-safe="true"></script>' : '';
   const content = reactSafe ? '<div id="__docusaurus"><nav class="navbar navbar--fixed-top">Course navbar</nav><main><button id="outside">Outside</button></main></div>' : '<main><button id="outside">Outside</button></main>';
   const dom = new JSDOM('<!doctype html><html><head>' + marker + '</head><body>' + content + '</body></html>', {
@@ -28,7 +28,7 @@ function fixture(t, { url = 'https://portal.skunkworksacademy.com/', account = {
     source: 'portal', authenticated: true, workspaceNavigation: 'sidebar', userName: 'Raydo Smith', workspaceRole: 'Staff',
     profileUrl: '/?account=profile', settingsUrl: '/?account=settings', signOut: () => signOuts++, ...account,
   } : undefined;
-  sources.forEach(source => window.eval(source));
+  [sources[0], navigationSource, sources[2]].forEach(source => window.eval(source));
   const query = selector => document.querySelector(selector);
   const key = key => document.activeElement.dispatchEvent(new window.KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
   const update = fields => {
@@ -383,3 +383,38 @@ test('single-header drawer preserves every canonical destination and initially e
   assert.deepEqual([...drawer.querySelectorAll('.swa-global-nav__drawer-link')].map(el => el.href),
     Array.from(groups).flatMap(group => Array.from(group.items, item => new URL(item.url).href)));
 });
+
+for (const newerFirst of [false, true]) {
+  test(`mixed navigation revisions preserve the first drawer owner (${newerFirst ? 'newer' : 'current'} first)`, async t => {
+    const newerSource = sources[1].replace(/var REVISION = "[^"]+";/, 'var REVISION = "2099.01.01.1";');
+    const firstSource = newerFirst ? newerSource : sources[1];
+    const laterSource = newerFirst ? sources[1] : newerSource;
+    const f = fixture(t, { url: 'https://www.skunkworksacademy.com/', signedIn: false, navigationSource: firstSource });
+    const shell = f.window.SKUNKWORKS_ACADEMY_SHELL;
+    const drawer = f.query('.swa-global-nav__links');
+    const group = drawer.querySelectorAll('details')[1];
+    const summary = group.querySelector('summary');
+    f.query('.swa-global-nav__toggle').click();
+    drawer.querySelector('details[open]').open = false;
+    group.open = true;
+    summary.focus();
+
+    f.window.eval(laterSource);
+    assert.equal(f.readyEvents(), 1, 'a second revision must not initialize another runtime');
+    assert.equal(f.window.SKUNKWORKS_ACADEMY_SHELL, shell);
+    assert.equal(drawer.querySelectorAll('details')[1], group);
+    assert.equal(group.open, true);
+    assert.equal(f.document.activeElement, summary);
+
+    // A normal content mutation must settle without competing observers
+    // rebuilding the drawer or losing the user's keyboard position.
+    f.query('main').appendChild(f.document.createElement('p'));
+    await new Promise(resolve => f.window.setTimeout(resolve, 0));
+    assert.equal(drawer.querySelectorAll('details')[1], group);
+    assert.equal(group.open, true);
+    assert.equal(f.document.activeElement, summary);
+    assert.equal(f.document.querySelectorAll('.swa-global-nav').length, 1);
+    f.window.dispatchEvent(new f.window.Event('skunkworksacademy:account-change'));
+    assert.equal(f.readyEvents(), 2, 'only the owning runtime handles account changes');
+  });
+}
